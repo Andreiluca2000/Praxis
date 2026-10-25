@@ -1,4 +1,13 @@
 # Stadiul programării (Claude)
+## Etapa a treia (25.10.2026): program desktop Tauri + React
+- Program Windows: `src-tauri\target\release\praxis-assistent.exe` (3,4 MB, ~170 MB RAM cu WebView2). Construire: `pnpm build`; dezvoltare: `pnpm dev`.
+- Rust (doar acces la sistem): conturi Arzt/MFA cu Kürzel (Argon2id, comune în `%ProgramData%\Praxis-Assistent`), folder GDT intrare/ieșire per sesiune RDP (`%CLIENTNAME%`), transcriere locală whisper.cpp, setări per utilizator. 8 teste Rust.
+- TypeScript (logica, în fereastră): motor, xDT, Fertig, notițe; fără Node, 101 teste.
+- Dictare: Wortlaut / Kurz / Ausführlich din aceeași transcriere; diagnoze recunoscute → ICD + G/V/A/Z doar de medic; eliberare doar de medic → GDT 6310 cu Kürzel (dacă e activat), altfel copiere.
+- „Fertig”: rulează în fundal pe tot trimestrul; propuneri acceptate/respinse individual; cele acceptate devin notiță cu Kürzel.
+- Verificat în aplicația reală: pornire, ecran de prima configurare. Fluxul complet (dictare, Fertig) e testat doar prin testele de logică, nu prin clic în fereastră.
+
+
 
 Actualizat: 25.10.2026 (etapa a doua)
 
