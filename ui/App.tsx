@@ -1,3 +1,4 @@
+import { ClipboardCheck, Files, LogOut, Plus, Settings2, SlidersHorizontal, Stethoscope } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { validateSettings } from '../src/validation/validate.js';
 import { Login } from './Login.js';
@@ -7,6 +8,15 @@ import { Settings } from './Settings.js';
 import { Treatment } from './Treatment.js';
 
 type View = 'behandlung' | 'einstellungen';
+
+/** Seitennavigation nach dem Codex-Entwurf (praxis-assistent-konzept.html); nur fertige Bereiche sind aktiv. */
+const NAV: { id: View | 'diagnosen' | 'formulare' | 'regeln'; label: string; icon: typeof Stethoscope; ready: boolean }[] = [
+  { id: 'behandlung', label: 'Behandlung & Abrechnung', icon: ClipboardCheck, ready: true },
+  { id: 'diagnosen', label: 'Diagnosen & ICD', icon: Stethoscope, ready: false },
+  { id: 'formulare', label: 'Formulare', icon: Files, ready: false },
+  { id: 'regeln', label: 'Praxisregeln', icon: SlidersHorizontal, ready: false },
+  { id: 'einstellungen', label: 'Einstellungen', icon: Settings2, ready: true },
+];
 
 export function App() {
   const [status, setStatus] = useState<Status | null>(null);
@@ -47,28 +57,37 @@ export function App() {
     if (v.ok && v.value) { s.settings = v.value; force((n) => n + 1); }
   }
 
+  const duria = status.config.writeback_enabled || status.config.billing_writeback_enabled ? 'DURIA verbunden (GDT)' : 'DURIA nur lesend';
+
   return (
-    <>
+    <div className="shell">
       <header className="top">
-        <h1>Praxis-Assistent</h1>
-        <nav>
-          <button aria-current={view === 'behandlung' ? 'page' : undefined} onClick={() => setView('behandlung')}>Behandlung</button>
-          <button aria-current={view === 'einstellungen' ? 'page' : undefined} onClick={() => setView('einstellungen')}>Einstellungen</button>
-        </nav>
+        <div className="brand"><span className="logo" aria-hidden="true"><Plus size={20} strokeWidth={3} /></span>Praxis-Assistent</div>
+        <span className="status-pill">{status.config.mode === 'simulation' ? 'Simulator' : 'Prüfung'} · {duria}</span>
         <span className="spacer" />
         <span className="who"><strong>{status.user.kuerzel}</strong> · {status.user.role === 'arzt' ? 'Arzt' : 'MFA'}</span>
-        <button className="link" onClick={logout}>Abmelden</button>
+        <button className="link icon" onClick={logout} title="Abmelden"><LogOut size={16} /> Abmelden</button>
       </header>
-      <div className={`banner ${status.config.mode === 'simulation' ? 'sim' : ''}`} role="note">
-        {status.config.mode === 'simulation' ? 'SIMULATOR – DEMO-Regeln, keine echten Abrechnungsziffern. ' : ''}
-        Nur synthetische Daten bis zur Datenschutz-Freigabe. Vorschläge werden nur nach Bestätigung übernommen.
+      <div className="layout">
+        <nav className="sidebar" aria-label="Arbeitsbereiche">
+          <small>ARBEITSPLATZ</small>
+          {NAV.map(({ id, label, icon: Icon, ready }) => (
+            <button key={id} aria-current={view === id ? 'page' : undefined} disabled={!ready}
+              title={ready ? undefined : 'Folgt in einer späteren Version'}
+              onClick={() => ready && setView(id as View)}>
+              <Icon size={19} aria-hidden="true" />{label}
+            </button>
+          ))}
+          <p className="footnote">Nur synthetische Daten bis zur Datenschutz-Freigabe.<br />Vorschläge nur nach ärztlicher Bestätigung.</p>
+        </nav>
+        <main className="content">
+          {status.config.mode === 'simulation' && <div className="note-box">Simulator – DEMO-Regeln, keine echten Abrechnungsziffern.</div>}
+          {notice && <div className="notice" role="status">{notice} <button className="link" onClick={() => setNotice('')}>×</button></div>}
+          {view === 'behandlung'
+            ? <Treatment session={s} user={status.user} billingEnabled={status.config.billing_writeback_enabled} />
+            : <Settings status={status} kv={s.settings.region.kv} onKv={setKv} onChanged={refresh} />}
+        </main>
       </div>
-      {notice && <div className="notice" role="status">{notice} <button className="link" onClick={() => setNotice('')}>×</button></div>}
-      <main className="content">
-        {view === 'behandlung'
-          ? <Treatment session={s} user={status.user} billingEnabled={status.config.billing_writeback_enabled} />
-          : <Settings status={status} kv={s.settings.region.kv} onKv={setKv} onChanged={refresh} />}
-      </main>
-    </>
+    </div>
   );
 }

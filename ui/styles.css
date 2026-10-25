@@ -1,24 +1,37 @@
-:root { --bg:#f6f7f9; --card:#fff; --ink:#1d2430; --muted:#5b6575; --line:#dde2ea; --accent:#1f5fae;
-        --ok:#1d7a46; --warn:#a15c00; --bad:#b3261e; --grey:#6b7280; color-scheme: light; }
+/* Farben und Aufbau nach dem Codex-Entwurf (praxis-assistent-konzept.html) */
+:root { --bg:#f4f7f6; --card:#fff; --ink:#19342d; --muted:#536b62; --line:#dbe5df; --soft:#e9f1ec; --accent:#226a52;
+        --note:#fcf5e5; --ok:#1d7a46; --warn:#9a5b00; --bad:#b3261e; --grey:#6b7a73; color-scheme: light; }
 * { box-sizing: border-box; }
 html, body, #root { height: 100%; }
 body { margin:0; font:15px/1.45 "Segoe UI", system-ui, sans-serif; background:var(--bg); color:var(--ink); }
 h1 { font-size:18px; margin:0; }
 h2 { font-size:16px; margin:0 0 12px; display:flex; gap:10px; align-items:baseline; }
 
-header.top { background:var(--card); border-bottom:1px solid var(--line); padding:10px 24px; display:flex; gap:20px; align-items:center; position:sticky; top:0; z-index:2; }
-nav button { background:none; border:0; padding:8px 12px; font:inherit; color:var(--muted); cursor:pointer; border-bottom:2px solid transparent; }
-nav button[aria-current="page"] { color:var(--ink); border-color:var(--accent); font-weight:600; }
+.shell { min-height:100%; display:flex; flex-direction:column; }
+header.top { background:var(--card); border-bottom:1px solid var(--line); padding:12px 20px; display:flex; gap:14px; align-items:center; position:sticky; top:0; z-index:2; }
+.brand { display:flex; align-items:center; gap:10px; font-size:17px; font-weight:600; }
+.logo { width:30px; height:30px; display:grid; place-items:center; background:var(--accent); color:#fff; border-radius:9px; }
+.status-pill { font-size:12px; border:1px solid var(--line); border-radius:20px; padding:4px 10px; color:var(--muted); }
 .who { color:var(--muted); }
-.banner { background:#eef3fb; border-bottom:1px solid #cfdcf0; padding:6px 24px; color:#21406b; font-size:13px; }
-.banner.sim { background:#fff4e5; border-color:#f3d19c; color:#6b4200; }
-.notice { background:#fdf2f1; border-bottom:1px solid #f1c7c3; padding:6px 24px; font-size:13px; }
+button.icon { display:inline-flex; align-items:center; gap:6px; }
 
-main.content { max-width:1100px; margin:0 auto; padding:20px 24px 48px; }
+.layout { flex:1; display:grid; grid-template-columns:210px minmax(0,1fr); }
+.sidebar { background:var(--card); border-right:1px solid var(--line); padding:18px 10px; display:flex; flex-direction:column; gap:4px; }
+.sidebar small { padding:2px 10px 10px; color:var(--muted); font-size:12px; letter-spacing:.03em; }
+.sidebar button { border:0; background:transparent; display:flex; align-items:center; gap:10px; padding:10px; text-align:left; border-radius:8px; color:var(--ink); }
+.sidebar button:hover:not(:disabled) { background:var(--bg); }
+.sidebar button[aria-current="page"] { background:var(--soft); color:var(--accent); font-weight:600; }
+.sidebar button:disabled { opacity:.45; }
+.footnote { margin-top:auto; padding:24px 10px 0; color:var(--muted); font-size:12px; line-height:1.5; }
+.note-box { background:var(--note); border-radius:8px; padding:10px 14px; font-size:13px; margin-bottom:16px; }
+.notice { background:#fdf2f1; border:1px solid #f1c7c3; border-radius:8px; padding:8px 14px; font-size:13px; margin-bottom:16px; }
+
+main.content { padding:22px 24px 48px; min-width:0; max-width:1150px; }
 main.login { min-height:100%; display:grid; place-items:center; }
 main.login form { width:380px; display:grid; gap:12px; }
 .stack { display:grid; gap:16px; }
-.card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px 20px; }
+.card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px 20px; }
+button { border-radius:8px; }
 .row { display:flex; flex-wrap:wrap; gap:10px 14px; align-items:center; }
 .spacer { flex:1; }
 
