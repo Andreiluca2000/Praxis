@@ -17,5 +17,11 @@ Ziel: lesende Anbindung eines internen Praxis-Assistenten (Abrechnungsprüfung, 
 10. Bestehen vertragliche Vorgaben (Datenschutz, Auftragsverarbeitung), wenn ein lokales Zusatzprogramm diese Daten liest?
 11. Ist ein späterer **Rückweg** (Vorschläge in DURIA übernehmen) vorgesehen – z. B. GDT 6310 mit Ergebnistext? Mit Bestätigung durch den Benutzer?
 
+## Rückweg und Terminalserver (ergänzt 25.10.2026)
+12. Kann DURIA über GDT (6310) oder HL7 neben Karteikartentext auch **Leistungsziffern** und **Diagnosen (ICD + Sicherheit)** übernehmen? Wenn ja: welche Feldkennungen, und landen sie als Vorschlag oder direkt im Abrechnungsschein?
+13. Gibt es eine Möglichkeit, **bestehende** Diagnosen/Ziffern über eine Schnittstelle zu korrigieren, oder nur durch den Benutzer in DURIA?
+14. DURIA läuft bei uns auf einem **Terminalserver (RDP, eine Sitzung je Arbeitsplatz)**. Wie wird das GDT-Austauschverzeichnis je Sitzung/Arbeitsplatz getrennt (z. B. Umgebungsvariable `%CLIENTNAME%` oder `%USERNAME%` im Pfad)?
+15. Darf ein Zusatzprogramm in derselben RDP-Sitzung laufen? Gibt es Erfahrungswerte zu RAM/CPU auf dem Server?
+
 ## Nach der Antwort
 Die bestätigte Zuordnung wird in eine eigene Datei (z. B. `config/duria-mapping.json`, Vorlage: `config/duria-mapping.example.json`) eingetragen, mit `"confirmed_by_vendor": true`. Erst dann entfällt die Warnung „nicht bestätigt“ in der Oberfläche.

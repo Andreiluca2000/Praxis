@@ -12,12 +12,16 @@
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
     "validate:data": "tsx src/cli/validate-data.ts",
-    "start": "tsx src/server/main.ts",
-    "sample": "tsx src/cli/make-sample.ts",
+    "ui:dev": "vite",
+    "ui:build": "vite build",
+    "dev": "tauri dev",
+    "build": "tauri build",
+    "test:rust": "cargo test --manifest-path src-tauri/Cargo.toml",
     "check": "pnpm typecheck && pnpm test && pnpm validate:data"
   },
   "dependencies": {
     "@tauri-apps/api": "2.12.4",
+    "@tauri-apps/plugin-dialog": "2",
     "ajv": "8.20.0",
     "ajv-formats": "3.0.1",
     "react": "19.3.1",
