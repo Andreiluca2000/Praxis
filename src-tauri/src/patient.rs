@@ -104,6 +104,56 @@ impl PatientVault {
         self.open.clear();
     }
 
+    /// KVDT-Quartalsdatei (viele Patienten): Identität entfernen, jede Nummer → eigenes Pseudonym.
+    /// Nur zum Lesen; es wird keine Zuordnung zurück gespeichert (kein Rückweg aus der Quartalsprüfung).
+    pub fn sanitize_many(&self, raw: &[u8]) -> (Vec<u8>, usize, usize) {
+        let mut out = Vec::with_capacity(raw.len());
+        let (mut ids, mut dropped) = (std::collections::HashSet::new(), 0usize);
+        for line in lines(raw) {
+            match split_line(line) {
+                Some((fk, value)) if fk == PATIENT_ID_FIELD.as_bytes() => {
+                    let id = String::from_utf8_lossy(value).trim().to_string();
+                    out.extend(make_line(PATIENT_ID_FIELD, self.pseudonym(&id).as_bytes()));
+                    ids.insert(id);
+                }
+                Some((fk, _)) if is_identity(fk) => dropped += 1,
+                _ => {
+                    out.extend_from_slice(line);
+                    out.extend_from_slice(b"\r\n");
+                }
+            }
+        }
+        (out, ids.len(), dropped)
+    }
+
+    /// HL7-Ausgang: Pseudonym in PID-3 durch die echte Nummer ersetzen. Andere Segmente bleiben unverändert.
+    pub fn restore_hl7(&self, msg: &[u8], expected_token: &str) -> Result<Vec<u8>, String> {
+        let real = self.open.get(expected_token).ok_or("Patient ist nicht mehr geöffnet – bitte in DURIA neu aufrufen.")?;
+        let text = std::str::from_utf8(msg).map_err(|_| "HL7-Nachricht ist kein gültiger Text.")?;
+        let mut found = false;
+        let mut segs = Vec::new();
+        for seg in text.split('\r').filter(|s| !s.is_empty()) {
+            if let Some(rest) = seg.strip_prefix("PID|") {
+                let mut fields: Vec<String> = rest.split('|').map(String::from).collect();
+                // PID-3 ist das dritte Feld nach "PID|" (Index 2).
+                let pid3 = fields.get(2).cloned().unwrap_or_default();
+                let id = pid3.split('^').next().unwrap_or("");
+                if id != expected_token {
+                    return Err("HL7-Nachricht gehört zu einem anderen Patienten.".into());
+                }
+                fields[2] = pid3.replacen(expected_token, real, 1);
+                found = true;
+                segs.push(format!("PID|{}", fields.join("|")));
+            } else {
+                segs.push(seg.to_string());
+            }
+        }
+        if !found {
+            return Err("HL7-Nachricht ohne PID-Segment.".into());
+        }
+        Ok(format!("{}\r", segs.join("\r")).into_bytes())
+    }
+
     /// Ersetzt im Ausgang das Pseudonym (FK 3000) durch die echte Nummer und korrigiert FK 8100 (Satzlänge).
     pub fn restore(&self, gdt: &[u8], expected_token: &str) -> Result<Vec<u8>, String> {
         let real = self.open.get(expected_token).ok_or("Patient ist nicht mehr geöffnet – bitte in DURIA neu aufrufen.")?;

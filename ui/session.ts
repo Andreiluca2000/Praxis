@@ -1,5 +1,6 @@
 import { runFertigInBackground, type BillingEntry, type FertigReport } from '../src/core/fertig.js';
 import { DuriaBillingWriteback } from '../src/duria/billing-writeback.js';
+import { CHANNELS } from '../src/duria/channel.js';
 import { analyse, type AnalysisResponse } from '../src/core/analyze.js';
 import type { Facts, IsoDate, PracticeSettings, RulePackage } from '../src/domain/types.js';
 import { readDuriaExport, type DuriaSnapshot } from '../src/duria/adapter.js';
@@ -125,7 +126,8 @@ export class TreatmentSession {
       diagnoses: snap.diagnoses.filter((d) => d.date).map((d) => ({ icd: d.code, date: d.date! })),
     };
     const accepted = entries.map((entry) => ({ entry, acceptedBy: user.kuerzel }));
-    const r = await new DuriaBillingWriteback(cfg, this.contexts, this.sink())
+    const channel = CHANNELS[this.config.billing_channel] ?? CHANNELS.gdt;
+    const r = await new DuriaBillingWriteback(cfg, this.contexts, this.sink(), channel.build)
       .write(accepted, user, this.sessionId, this.current.context, this.current.patientId, recorded);
     return r.ok ? `${r.written} Eintrag/Einträge an DURIA übergeben.` : r.reason;
   }

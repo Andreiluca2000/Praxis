@@ -9,7 +9,7 @@ export function installPreviewMock() {
   const config = {
     inbox_dir: 'C:\\ProgramData\\Praxis-Assistent\\gdt\\%CLIENTNAME%\\eingang',
     outbox_dir: 'C:\\ProgramData\\Praxis-Assistent\\gdt\\%CLIENTNAME%\\ausgang',
-    outbox_file: 'PRAX_DUR.gdt', writeback_enabled: false, billing_writeback_enabled: false,
+    outbox_file: 'PRAX_DUR.gdt', writeback_enabled: false, billing_writeback_enabled: false, billing_channel: 'gdt',
     mode: 'simulation', ollama_model: null, voice: { threads: 4, language: 'de' },
   };
   mockIPC((cmd) => {

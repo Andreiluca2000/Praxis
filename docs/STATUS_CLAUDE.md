@@ -1,4 +1,11 @@
 # Stadiul programării (Claude)
+## Etapa (25.10.2026): corecturi, verificarea trimestrială KVDT, cale de trimitere interschimbabilă
+- **Corecturi** (`src/corrections/`, `ui/CorrectionsPanel.tsx`): listă de pași „12.11.2026 · Diagnose J06.9 G → J20.9 G (Grund: …) [AL]”, cu butoane de copiere și „In DURIA erledigt”. Propuneri automate (altă certitudine, cod mai specific din aceeași categorie, conflicte din Fertig). Trebuie preluate de un medic. Motivul e obligatoriu, formatul ICD și G/V/A/Z sunt verificate. Programul nu modifică nimic în DURIA.
+- **Verificarea trimestrială KVDT** (`src/kvdt/`, `ui/QuarterCheck.tsx`, Rust `read_kvdt`): doar citire. Rust elimină identitățile și pune pseudonime pentru toți pacienții. Verifică: caz fără diagnoză, diagnoză fără certitudine, cifră fără dată sau în afara trimestrului, conflicte de reguli/limite pe trimestru. Doar pentru medici.
+- **Cale interschimbabilă** (`src/duria/channel.ts`): GDT (standard) sau HL7 v2.5 DFT^P03 (pregătit). Setare `billing_channel`. Rust pune numărul real și în PID-3 la HL7. Verificările (medic, context, dubluri, DEMO) sunt aceleași pentru ambele căi. Un API viitor = încă o implementare `BillingChannel`.
+- Teste: 127 TypeScript, 17 Rust.
+
+
 ## Etapa (25.10.2026): confirmare în fișă, date pacient doar în Rust, script pentru server
 - **Confirmare** (`src/facts/confirm.ts`, `ui/FactPanel.tsx`): fiecare mențiune din fișă se confirmă (efectuat/planificat/…/nu se folosește), plus durata (din text sau introdusă) și „conținut obligatoriu documentat”. „Fertig” folosește doar ce s-a confirmat. Confirmările contradictorii rămân „necunoscut”.
 - **Granița datelor pacient** (`src-tauri/src/patient.rs`): Rust citește GDT/BDT, elimină câmpurile de identitate și înlocuiește FK 3000 cu un pseudonim HMAC (biblioteci verificate `hmac`/`sha2`). Fereastra nu vede niciodată numele, data nașterii sau numărul real. La scriere, Rust pune numărul real înapoi doar pentru pacientul deschis, refuză fișierele cu câmpuri de identitate și recalculează FK 8100.

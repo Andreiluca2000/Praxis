@@ -13,6 +13,8 @@ export interface AppConfig {
   writeback_enabled: boolean;
   /** Ziffern/Diagnosen per GDT an DURIA – erst nach Bestätigung durch DURIA einschalten. */
   billing_writeback_enabled: boolean;
+  /** Übertragungsweg für Ziffern/Diagnosen. */
+  billing_channel: 'gdt' | 'hl7';
   mode: 'simulation' | 'operational';
   ollama_model: string | null;
   voice: { threads: number; language: string };

@@ -17,9 +17,16 @@ pub struct AppConfig {
     /// Ziffern/Diagnosen per GDT (getrennt vom Notiz-Rückweg; erst nach Bestätigung durch DURIA).
     #[serde(default)]
     pub billing_writeback_enabled: bool,
+    /// Übertragungsweg für Ziffern/Diagnosen: "gdt" (Standard) oder "hl7" (vorbereitet, erst nach DURIA-Bestätigung).
+    #[serde(default = "default_channel")]
+    pub billing_channel: String,
     pub mode: String, // "simulation" | "operational"
     pub ollama_model: Option<String>,
     pub voice: VoiceConfig,
+}
+
+fn default_channel() -> String {
+    "gdt".into()
 }
 
 pub fn shared_dir() -> PathBuf {
@@ -44,6 +51,7 @@ fn defaults(resource_root: &Path) -> AppConfig {
         outbox_file: "PRAX_DUR.gdt".into(),
         writeback_enabled: false, // erst nach Bestätigung der Dateikonvention durch DURIA
         billing_writeback_enabled: false,
+        billing_channel: default_channel(),
         mode: "simulation".into(),
         ollama_model: None,
         voice: VoiceConfig {

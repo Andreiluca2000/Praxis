@@ -57,7 +57,13 @@ export function Settings({ status, kv, onKv, onChanged }: {
               onChange={(e) => patch({ writeback_enabled: e.target.checked })} /> Notizen (Karteikarte)</label>
             <label className="inline"><input type="checkbox" checked={status.config.billing_writeback_enabled} disabled={!isArzt}
               onChange={(e) => patch({ billing_writeback_enabled: e.target.checked })} /> angenommene Ziffern und Diagnosen (Abrechnung)</label>
-            <span className="muted">Erst einschalten, wenn DURIA die Übernahme per GDT bestätigt hat.</span>
+            <label>Übertragungsweg
+              <select value={status.config.billing_channel} disabled={!isArzt} onChange={(e) => patch({ billing_channel: e.target.value as 'gdt' | 'hl7' })}>
+                <option value="gdt">GDT 6310 (FK 5001 / 6001)</option>
+                <option value="hl7">HL7 v2.5 DFT^P03 (vorbereitet)</option>
+              </select>
+            </label>
+            <span className="muted">Erst einschalten, wenn DURIA die Übernahme auf diesem Weg bestätigt hat. Beide Wege sind noch nicht vom Hersteller bestätigt.</span>
           </dd>
           <dt>Spracherkennung</dt><dd>{status.voice_missing.length ? <span className="error">fehlt: {status.voice_missing.join(', ')}</span> : 'lokal (whisper.cpp) bereit'}</dd>
           <dt>Zusammenfassung</dt>

@@ -1,4 +1,5 @@
-import { ClipboardCheck, Files, LogOut, Plus, Settings2, SlidersHorizontal, Stethoscope } from 'lucide-react';
+import { CalendarCheck, ClipboardCheck, Files, LogOut, Plus, Settings2, SlidersHorizontal, Stethoscope } from 'lucide-react';
+import { QuarterCheck } from './QuarterCheck.js';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { validateSettings } from '../src/validation/validate.js';
 import { Login } from './Login.js';
@@ -7,11 +8,12 @@ import { TreatmentSession } from './session.js';
 import { Settings } from './Settings.js';
 import { Treatment } from './Treatment.js';
 
-type View = 'behandlung' | 'einstellungen';
+type View = 'behandlung' | 'quartal' | 'einstellungen';
 
 /** Seitennavigation nach dem Codex-Entwurf (praxis-assistent-konzept.html); nur fertige Bereiche sind aktiv. */
 const NAV: { id: View | 'diagnosen' | 'formulare' | 'regeln'; label: string; icon: typeof Stethoscope; ready: boolean }[] = [
   { id: 'behandlung', label: 'Behandlung & Abrechnung', icon: ClipboardCheck, ready: true },
+  { id: 'quartal', label: 'Quartalsprüfung (KVDT)', icon: CalendarCheck, ready: true },
   { id: 'diagnosen', label: 'Diagnosen & ICD', icon: Stethoscope, ready: false },
   { id: 'formulare', label: 'Formulare', icon: Files, ready: false },
   { id: 'regeln', label: 'Praxisregeln', icon: SlidersHorizontal, ready: false },
@@ -83,9 +85,11 @@ export function App() {
         <main className="content">
           {status.config.mode === 'simulation' && <div className="note-box">Simulator – DEMO-Regeln, keine echten Abrechnungsziffern.</div>}
           {notice && <div className="notice" role="status">{notice} <button className="link" onClick={() => setNotice('')}>×</button></div>}
-          {view === 'behandlung'
-            ? <Treatment session={s} user={status.user} billingEnabled={status.config.billing_writeback_enabled} />
-            : <Settings status={status} kv={s.settings.region.kv} onKv={setKv} onChanged={refresh} />}
+          {view === 'behandlung' && <Treatment session={s} user={status.user} billingEnabled={status.config.billing_writeback_enabled} />}
+          {view === 'quartal' && (status.user.role === 'arzt'
+            ? <QuarterCheck settings={s.settings} rules={s.rules} mode={status.config.mode} />
+            : <section className="card"><p className="muted">Die Quartalsprüfung ist Ärzten vorbehalten.</p></section>)}
+          {view === 'einstellungen' && <Settings status={status} kv={s.settings.region.kv} onKv={setKv} onChanged={refresh} />}
         </main>
       </div>
     </div>

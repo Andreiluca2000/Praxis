@@ -61,6 +61,8 @@ export class DuriaBillingWriteback {
     private readonly cfg: WritebackConfig & { billingEnabled: boolean },
     private readonly contexts: ContextRegistry,
     private readonly sink: FileSink,
+    /** Dateiformat des Übertragungswegs; Standard GDT. Prüfungen sind unabhängig vom Weg. */
+    private readonly build: (accepted: AcceptedEntry[], patientId: string, cfg: WritebackConfig, key: string) => Uint8Array = buildBillingGdt,
   ) {}
 
   async write(
@@ -87,7 +89,7 @@ export class DuriaBillingWriteback {
     const key = sha256Hex(`${analysed.patientToken}|${fingerprint}`);
     if (this.written.has(key)) return { ok: false, reason: 'Diese Einträge wurden bereits übergeben (kein Duplikat).' };
 
-    const r = await this.sink.writeExclusive(this.cfg.exchangeDir, this.cfg.fileName, buildBillingGdt(fresh, patientId, this.cfg, key));
+    const r = await this.sink.writeExclusive(this.cfg.exchangeDir, this.cfg.fileName, this.build(fresh, patientId, this.cfg, key));
     if (r === 'exists') return { ok: false, reason: 'DURIA hat die vorherige Übergabe noch nicht abgeholt – bitte warten.' };
     this.written.add(key);
     return { ok: true, written: fresh.length, idempotencyKey: key };

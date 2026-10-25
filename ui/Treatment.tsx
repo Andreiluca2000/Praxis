@@ -1,7 +1,9 @@
 import { useEffect, useReducer, useState } from 'react';
 import type { AnalysisResponse } from '../src/core/analyze.js';
 import type { FertigReport } from '../src/core/fertig.js';
+import { correctionText, proposeCorrections, type Correction } from '../src/corrections/corrections.js';
 import { emptyConfirmation, toFacts, type FactConfirmation } from '../src/facts/confirm.js';
+import { CorrectionsPanel } from './CorrectionsPanel.js';
 import type { NoteForm, PublicAccount } from '../src/notes/note.js';
 import { Dictation } from './Dictation.js';
 import { FactPanel } from './FactPanel.js';
@@ -18,6 +20,7 @@ export function Treatment({ session, user, billingEnabled }: { session: Treatmen
   const [quarter, setQuarter] = useState(false);
   const [report, setReport] = useState<FertigReport | null>(null);
   const [confirmation, setConfirmation] = useState<FactConfirmation>(emptyConfirmation());
+  const [corrections, setCorrections] = useState<Correction[]>([]);
   const [fertigBusy, setFertigBusy] = useState(false);
   const [msg, setMsg] = useState('');
 
@@ -25,6 +28,7 @@ export function Treatment({ session, user, billingEnabled }: { session: Treatmen
     try {
       setAnalysis(session.load(x.data, x.name, date, x.token));
       setConfirmation(emptyConfirmation());
+      setCorrections([]);
       setReport(null);
       setMsg(x.patientIds > 1 ? 'Export enthält mehrere Patienten – gesperrt.' : '');
     } catch (e) { setMsg(String(e)); }
@@ -72,7 +76,19 @@ export function Treatment({ session, user, billingEnabled }: { session: Treatmen
     setFertigBusy(true);
     // Nur ausdrücklich bestätigte Angaben gehen in die Prüfung.
     session.fertig(date, toFacts(confirmation), quarter)
-      .then(setReport, (e) => setMsg(String(e)))
+      .then((r) => {
+        setReport(r);
+        // Korrekturvorschläge (Diktat vs. DURIA, Konflikte) zur Liste hinzufügen – noch nicht festgelegt.
+        const snap = session.snapshot;
+        const proposals = proposeCorrections({
+          date, report: r, notes: session.notes.list,
+          recordedDiagnoses: snap?.diagnoses ?? [], recordedServices: snap?.services ?? [],
+        });
+        setCorrections((old) => {
+          const known = new Set(old.map(correctionText));
+          return [...old, ...proposals.filter((p) => !known.has(correctionText(p)))];
+        });
+      }, (e) => setMsg(String(e)))
       .finally(() => setFertigBusy(false));
   }
 
@@ -123,6 +139,9 @@ export function Treatment({ session, user, billingEnabled }: { session: Treatmen
       {report && (
         <FertigPanel report={report} isArzt={user.role === 'arzt'} billingEnabled={billingEnabled}
           onSubmit={(entries) => session.sendBilling(user, entries)} />
+      )}
+      {session.hasPatient && (
+        <CorrectionsPanel list={corrections} onChange={setCorrections} user={user} date={date} recorded={session.snapshot?.diagnoses ?? []} />
       )}
       {msg && <p className="muted" role="status">{msg}</p>}
     </div>

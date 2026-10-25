@@ -94,6 +94,21 @@ pub fn read_export(state: State<AppState>, path: String) -> Result<crate::Saniti
 #[tauri::command]
 pub fn gdt_write(state: State<AppState>, data: Vec<u8>, token: String) -> Result<String, String> {
     require_arzt(&state)?;
+    let channel = state.config.lock().unwrap().billing_channel.clone();
+    // HL7-Nachrichten beginnen mit "MSH|"; sie gehen nur über den ausdrücklich gewählten HL7-Weg.
+    if data.starts_with(b"MSH|") {
+        if channel != "hl7" {
+            return Err("HL7 ist als Übertragungsweg nicht ausgewählt.".into());
+        }
+        let cfg = state.config.lock().unwrap().clone();
+        if !cfg.billing_writeback_enabled {
+            return Err("Übernahme von Ziffern/Diagnosen ist deaktiviert.".into());
+        }
+        let msg = state.vault.lock().unwrap().restore_hl7(&data, &token)?;
+        let dir = PathBuf::from(gdt::expand_env(&cfg.outbox_dir));
+        let name = format!("{}.hl7", cfg.outbox_file.trim_end_matches(".gdt"));
+        return gdt::write_exclusive(&dir, &name, &msg).map(|s| s.to_string());
+    }
     // Pseudonym → echte Patientennummer erst hier, unmittelbar vor dem Schreiben.
     let data = state.vault.lock().unwrap().restore(&data, &token)?;
     let cfg = state.config.lock().unwrap().clone();
@@ -110,6 +125,28 @@ pub fn gdt_write(state: State<AppState>, data: Vec<u8>, token: String) -> Result
     }
     let dir = PathBuf::from(gdt::expand_env(&cfg.outbox_dir));
     gdt::write_exclusive(&dir, &cfg.outbox_file, &data).map(|s| s.to_string())
+}
+
+/// KVDT-Quartalsdatei lesen (nur Lesen, max. 200 MB). Fenster erhält Pseudonyme statt Patientennummern.
+#[derive(serde::Serialize)]
+pub struct SanitizedKvdt {
+    name: String,
+    data: Vec<u8>,
+    patients: usize,
+    dropped: usize,
+}
+
+#[tauri::command]
+pub fn read_kvdt(state: State<AppState>, path: String) -> Result<SanitizedKvdt, String> {
+    require_arzt(&state)?;
+    let p = PathBuf::from(&path);
+    if std::fs::metadata(&p).map_err(|e| e.to_string())?.len() > 200 * 1024 * 1024 {
+        return Err("Datei zu groß.".into());
+    }
+    let raw = std::fs::read(&p).map_err(|e| e.to_string())?;
+    let (data, patients, dropped) = state.vault.lock().unwrap().sanitize_many(&raw);
+    let name = p.file_name().map(|n| n.to_string_lossy().to_string()).unwrap_or_default();
+    Ok(SanitizedKvdt { name, data, patients, dropped })
 }
 
 #[tauri::command]

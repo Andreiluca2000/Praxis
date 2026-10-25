@@ -59,6 +59,28 @@ fn ausgang_gesperrt_bei_fremdem_oder_geschlossenem_patienten() {
 }
 
 #[test]
+fn kvdt_viele_patienten_je_eigenes_pseudonym() {
+    let v = PatientVault::new();
+    let (data, n, dropped) = v.sanitize_many(&[bdt("99001"), bdt("99002"), bdt("99001")].concat());
+    let text = String::from_utf8_lossy(&data).to_string();
+    assert_eq!(n, 2);
+    assert_eq!(dropped, 6);
+    assert!(!text.contains("99001") && !text.contains("Mustermann"));
+    assert!(text.contains(&v.pseudonym("99001")) && text.contains(&v.pseudonym("99002")));
+}
+
+#[test]
+fn hl7_pid3_wird_ersetzt_und_geprueft() {
+    let mut v = PatientVault::new();
+    let t = v.sanitize(&bdt("99001")).token.unwrap();
+    let msg = format!("MSH|^~\\&|PRAX\rPID|1||{t}^^^PRAXIS^PI\rDG1|1||J20.9^^I10GM\r");
+    let out = String::from_utf8(v.restore_hl7(msg.as_bytes(), &t).unwrap()).unwrap();
+    assert!(out.contains("PID|1||99001^^^PRAXIS^PI") && !out.contains(&t));
+    let foreign = format!("MSH|x\rPID|1||{}^^^PRAXIS^PI\r", v.pseudonym("99002"));
+    assert!(v.restore_hl7(foreign.as_bytes(), &t).is_err());
+}
+
+#[test]
 fn ausgang_mit_identitaetsfeld_abgelehnt() {
     let mut v = PatientVault::new();
     let t = v.sanitize(&bdt("99001")).token.unwrap();

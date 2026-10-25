@@ -106,6 +106,7 @@ pub fn run() {
             commands::logout,
             commands::read_export,
             commands::close_patient,
+            commands::read_kvdt,
             commands::gdt_write,
             commands::transcribe,
             commands::update_config,
