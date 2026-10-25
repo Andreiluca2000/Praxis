@@ -119,19 +119,35 @@ export function parseXdtDate(v: string | undefined, format: 'auto' | 'TTMMJJJJ' 
   return dmy ?? ymd;
 }
 
-/** Erzeugt eine xDT-Zeile (für Tests und künftigen, ausdrücklich bestätigten Rückweg). */
-export function xdtLine(fk: string, value: string, enc: XdtEncoding = 'iso-8859-15'): Buffer {
-  const content = enc === 'cp437' ? Buffer.from(encodeCp437(value)) : Buffer.from(value, enc === 'utf-8' ? 'utf8' : 'latin1');
-  const len = 3 + 4 + content.length + 2;
-  if (len > 999) throw new Error(`xDT-Zeile zu lang (FK ${fk}).`);
-  return Buffer.concat([Buffer.from(String(len).padStart(3, '0') + fk, 'latin1'), content, Buffer.from('\r\n', 'latin1')]);
+export function concatBytes(parts: Uint8Array[]): Uint8Array {
+  const out = new Uint8Array(parts.reduce((s, p) => s + p.length, 0));
+  let off = 0;
+  for (const p of parts) { out.set(p, off); off += p.length; }
+  return out;
 }
 
-function encodeCp437(s: string): number[] {
-  return [...s].map((ch) => {
-    const c = ch.charCodeAt(0);
+// ISO 8859-15 weicht an 8 Stellen von Latin-1 ab (€, Š, š, Ž, ž, Œ, œ, Ÿ).
+const LATIN9: Record<string, number> = { '€': 0xa4, Š: 0xa6, š: 0xa8, Ž: 0xb4, ž: 0xb8, Œ: 0xbc, œ: 0xbd, Ÿ: 0xbe };
+
+function encodeText(s: string, enc: XdtEncoding): Uint8Array {
+  if (enc === 'utf-8') return new TextEncoder().encode(s);
+  return Uint8Array.from([...s], (ch) => {
+    const c = ch.codePointAt(0)!;
     if (c < 0x80) return c;
-    const i = CP437_HIGH.indexOf(ch);
-    return i >= 0 ? 0x80 + i : 0x3f;
+    if (enc === 'cp437') {
+      const i = CP437_HIGH.indexOf(ch);
+      return i >= 0 ? 0x80 + i : 0x3f;
+    }
+    if (enc === 'iso-8859-15' && ch in LATIN9) return LATIN9[ch]!;
+    if (enc === 'iso-8859-15' && Object.values(LATIN9).includes(c)) return 0x3f;
+    return c <= 0xff ? c : 0x3f;
   });
+}
+
+/** Erzeugt eine xDT-Zeile (Tests und bestätigter Rückweg zu DURIA). Läuft ohne Node. */
+export function xdtLine(fk: string, value: string, enc: XdtEncoding = 'iso-8859-15'): Uint8Array {
+  const content = encodeText(value, enc);
+  const len = 3 + 4 + content.length + 2;
+  if (len > 999) throw new Error(`xDT-Zeile zu lang (FK ${fk}).`);
+  return concatBytes([new TextEncoder().encode(String(len).padStart(3, '0') + fk), content, new Uint8Array([13, 10])]);
 }

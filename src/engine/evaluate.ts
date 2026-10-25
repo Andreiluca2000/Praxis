@@ -1,4 +1,4 @@
-import { createHash } from 'node:crypto';
+import { sha256Hex } from '../domain/hash.js';
 import type {
   BilledService, ConditionResult, ContextDomain, CoverageReport, EvaluationInput, Finding,
   PracticeSettings, Rule, RulePackage, RuleWindow, Tri,
@@ -13,7 +13,7 @@ const SAME_DAY: RuleWindow = { unit: 'day', lookback_periods: 0, anchor: 'servic
 /** Fingerabdruck der ergebnisrelevanten Einstellungen (CFG-03: Wechsel invalidiert Ergebnisse). */
 export function settingsFingerprint(s: PracticeSettings): string {
   const relevant = { kv: s.region.kv, systems: [...s.available_billing_systems].sort(), hzv: s.hzv };
-  return createHash('sha256').update(JSON.stringify(relevant)).digest('hex').slice(0, 16);
+  return sha256Hex(JSON.stringify(relevant)).slice(0, 16);
 }
 
 export function isFindingStale(f: Finding, s: PracticeSettings): boolean {

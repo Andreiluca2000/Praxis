@@ -1,4 +1,4 @@
-import { createHash, createHmac, randomBytes } from 'node:crypto';
+import { hmacSha256, randomKey, sha256Hex, toHex } from '../domain/hash.js';
 
 /**
  * Patientenkontext je Arbeitsplatz-Sitzung (CLAUDE_HANDOFF_RO.md „Contractul de integrare DURIA“).
@@ -22,20 +22,20 @@ export type ContextCheck =
   | { ok: false; reason: 'no_context' | 'patient_changed' | 'revision_changed' | 'session_mismatch' | 'expired' };
 
 export class ContextRegistry {
-  private readonly key = randomBytes(32);
+  private readonly key = randomKey();
   private readonly sessions = new Map<string, PatientContext>();
 
   constructor(private readonly maxAgeMs = 30 * 60 * 1000, private readonly now = () => Date.now()) {}
 
   pseudonym(patientId: string): string {
-    return createHmac('sha256', this.key).update(patientId.trim()).digest('hex').slice(0, 24);
+    return toHex(hmacSha256(this.key, patientId.trim())).slice(0, 24);
   }
 
   open(sessionId: string, patientId: string, raw: Uint8Array, source: PatientContext['source']): PatientContext {
     const ctx: PatientContext = {
       sessionId,
       patientToken: this.pseudonym(patientId),
-      revision: createHash('sha256').update(raw).digest('hex').slice(0, 24),
+      revision: sha256Hex(raw).slice(0, 24),
       openedAt: new Date(this.now()).toISOString(),
       source,
     };

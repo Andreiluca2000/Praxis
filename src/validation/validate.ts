@@ -1,6 +1,7 @@
-import { readFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
 import { Ajv2020, type ErrorObject, type ValidateFunction } from 'ajv/dist/2020.js';
+// Schemas werden beim Bauen eingebunden (Node, Vitest, Vite) – kein Dateizugriff zur Laufzeit nötig.
+import billingRuleSchema from '../../schemas/billing-rule.schema.json' with { type: 'json' };
+import practiceSettingsSchema from '../../schemas/practice-settings.schema.json' with { type: 'json' };
 import addFormatsModule from 'ajv-formats';
 import { isIsoDate } from '../domain/dates.js';
 import type { Expression, PracticeSettings, Rule, RulePackage } from '../domain/types.js';
@@ -11,10 +12,6 @@ import type { Expression, PracticeSettings, Rule, RulePackage } from '../domain/
  */
 
 const addFormats = addFormatsModule as unknown as (ajv: Ajv2020) => Ajv2020;
-
-function schemaPath(name: string): string {
-  return fileURLToPath(new URL(`../../schemas/${name}`, import.meta.url));
-}
 
 let cache: { rules: ValidateFunction; settings: ValidateFunction } | null = null;
 
@@ -33,10 +30,9 @@ function validators() {
     allowUnionTypes: true,
   });
   addFormats(ajv);
-  const load = (n: string) => JSON.parse(readFileSync(schemaPath(n), 'utf8')) as object;
   cache = {
-    rules: ajv.compile(load('billing-rule.schema.json')),
-    settings: ajv.compile(load('practice-settings.schema.json')),
+    rules: ajv.compile(billingRuleSchema as object),
+    settings: ajv.compile(practiceSettingsSchema as object),
   };
   return cache;
 }

@@ -1,8 +1,8 @@
-import { xdtLine } from '../src/duria/xdt.js';
+import { concatBytes, xdtLine } from '../src/duria/xdt.js';
 
 /** Synthetischer BDT-Export: erfundene Person, erfundene Codes (TEST_*), keine echten Daten. */
-export function syntheticBdt(patientId = '99001', extra: Buffer[] = []): Buffer {
-  return Buffer.concat([
+export function syntheticBdt(patientId = '99001', extra: Uint8Array[] = []): Uint8Array {
+  return concatBytes([
     xdtLine('8000', '6100'),
     xdtLine('9206', '3'),
     xdtLine('3000', patientId),

@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import type { RulePackage } from '../src/domain/types.js';
 import { ContextRegistry } from '../src/duria/context.js';
 import { DEFAULT_MAPPING } from '../src/duria/mapping.js';
-import { analyse } from '../src/server/analyze.js';
+import { analyse } from '../src/core/analyze.js';
 import { confirmed, settings } from './fixtures.js';
 import { syntheticBdt } from './synthetic-bdt.js';
 

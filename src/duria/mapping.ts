@@ -1,4 +1,3 @@
-import { readFileSync } from 'node:fs';
 import type { XdtEncoding } from './xdt.js';
 
 /**
@@ -57,9 +56,10 @@ export const DEFAULT_MAPPING: XdtMapping = {
   },
 };
 
-export function loadMapping(path?: string): XdtMapping {
-  if (!path) return DEFAULT_MAPPING;
-  const user = JSON.parse(readFileSync(path, 'utf8')) as Partial<XdtMapping>;
+/** Ergänzt eine (von DURIA bestätigte) Zuordnung um die Standardwerte. Datei lesen erledigt die Plattform. */
+export function parseMapping(json: unknown): XdtMapping {
+  if (json === null || json === undefined) return DEFAULT_MAPPING;
+  const user = json as Partial<XdtMapping>;
   return {
     ...DEFAULT_MAPPING,
     ...user,
