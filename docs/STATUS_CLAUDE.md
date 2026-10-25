@@ -1,4 +1,11 @@
 # Stadiul programării (Claude)
+## Corectură (25.10.2026): ce e acceptat intră ca date de facturare, nu ca notiță
+- „Annehmen” + „in DURIA übernehmen” trimit **cifre (FK 5000/5001) și diagnoze (FK 6000/6001/6003/6004)** într-un fișier GDT 6310, cu Kürzel-ul medicului.
+- Nu se trimit cifre deja existente în DURIA. Nu se trimite nimic de două ori, nimic dacă s-a schimbat pacientul și nicio cifră DEMO. Trimite doar un medic.
+- Întrerupător separat „Ziffern und Diagnosen”, oprit până când DURIA confirmă că preia aceste câmpuri (întrebările 16–18 din DURIA_FRAGEN.md).
+- O diagnoză e gata de acceptat doar cu ICD **și** G/V/A/Z puse de medic.
+
+
 ## Etapa a treia (25.10.2026): program desktop Tauri + React
 - Program Windows: `src-tauri\target\release\praxis-assistent.exe` (3,4 MB, ~170 MB RAM cu WebView2). Construire: `pnpm build`; dezvoltare: `pnpm dev`.
 - Rust (doar acces la sistem): conturi Arzt/MFA cu Kürzel (Argon2id, comune în `%ProgramData%\Praxis-Assistent`), folder GDT intrare/ieșire per sesiune RDP (`%CLIENTNAME%`), transcriere locală whisper.cpp, setări per utilizator. 8 teste Rust.

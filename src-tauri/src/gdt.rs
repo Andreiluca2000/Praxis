@@ -79,6 +79,11 @@ impl InboxScanner {
     }
 }
 
+/// Enthält die xDT-Datei eine Zeile mit dieser Feldkennung? (Zeile = 3 Ziffern Länge + 4 Ziffern FK)
+pub fn contains_field(data: &[u8], fk: &str) -> bool {
+    data.split(|&b| b == b'\n').any(|line| line.len() >= 7 && &line[3..7] == fk.as_bytes())
+}
+
 /// Exklusiv + atomar: erst .tmp schreiben, dann umbenennen. "exists", wenn DURIA noch nicht abgeholt hat.
 pub fn write_exclusive(dir: &Path, name: &str, data: &[u8]) -> Result<&'static str, String> {
     if name.contains(['/', '\\']) || name.contains("..") || name.is_empty() {
@@ -108,6 +113,14 @@ mod tests {
         let d = std::env::temp_dir().join(format!("praxis-gdt-{tag}-{nanos}"));
         fs::create_dir_all(&d).unwrap();
         d
+    }
+
+    #[test]
+    fn feldkennung_erkennen() {
+        let data = b"01380006310\r\n0175001TEST_A\r\n0146228Text\r\n";
+        assert!(contains_field(data, "5001"));
+        assert!(!contains_field(data, "6001"));
+        assert!(!contains_field(b"0146228500100\r\n", "5001")); // nur an Position der FK, nicht im Inhalt
     }
 
     #[test]

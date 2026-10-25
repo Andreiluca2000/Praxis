@@ -87,8 +87,16 @@ pub fn read_export(state: State<AppState>, path: String) -> Result<Vec<u8>, Stri
 pub fn gdt_write(state: State<AppState>, data: Vec<u8>) -> Result<String, String> {
     require_arzt(&state)?;
     let cfg = state.config.lock().unwrap().clone();
-    if !cfg.writeback_enabled {
+    if !cfg.writeback_enabled && !cfg.billing_writeback_enabled {
         return Err("Rückweg zu DURIA ist deaktiviert.".into());
+    }
+    // Abrechnungsdaten (5001 Ziffer / 6001 Diagnose) nur mit eigenem Schalter.
+    let has_billing = gdt::contains_field(&data, "5001") || gdt::contains_field(&data, "6001");
+    if has_billing && !cfg.billing_writeback_enabled {
+        return Err("Übernahme von Ziffern/Diagnosen ist deaktiviert.".into());
+    }
+    if !has_billing && !cfg.writeback_enabled {
+        return Err("Notiz-Rückweg zu DURIA ist deaktiviert.".into());
     }
     let dir = PathBuf::from(gdt::expand_env(&cfg.outbox_dir));
     gdt::write_exclusive(&dir, &cfg.outbox_file, &data).map(|s| s.to_string())

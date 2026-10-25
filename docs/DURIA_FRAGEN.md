@@ -23,5 +23,10 @@ Ziel: lesende Anbindung eines internen Praxis-Assistenten (Abrechnungsprüfung, 
 14. DURIA läuft bei uns auf einem **Terminalserver (RDP, eine Sitzung je Arbeitsplatz)**. Wie wird das GDT-Austauschverzeichnis je Sitzung/Arbeitsplatz getrennt (z. B. Umgebungsvariable `%CLIENTNAME%` oder `%USERNAME%` im Pfad)?
 15. Darf ein Zusatzprogramm in derselben RDP-Sitzung laufen? Gibt es Erfahrungswerte zu RAM/CPU auf dem Server?
 
+## Übernahme angenommener Ziffern/Diagnosen (wichtigste Frage, ergänzt 25.10.2026)
+16. Das Programm erzeugt nach Freigabe durch den Arzt eine GDT-Datei (Satzart 6310) mit **FK 5000 (Datum) + 5001 (Leistungsziffer)** und **FK 6000 + 6001 (ICD) + 6003 (Sicherheit) + 6004 (Seitenlokalisation)**. Übernimmt DURIA diese Felder direkt in den Abrechnungsschein bzw. die Diagnosenliste des Falls? Oder nur als Text in die Karteikarte?
+17. Falls nicht per GDT: Gibt es **HL7-Eingang** (z. B. DFT/BAR) oder eine **Partner-API**, über die ein Zusatzprogramm Ziffern und Diagnosen nach Bestätigung durch den Arzt eintragen kann?
+18. Wie wird der **Fall/Schein** bestimmt, dem die Ziffer zugeordnet wird (Quartal, Kostenträger, HZV oder GKV)?
+
 ## Nach der Antwort
 Die bestätigte Zuordnung wird in eine eigene Datei (z. B. `config/duria-mapping.json`, Vorlage: `config/duria-mapping.example.json`) eingetragen, mit `"confirmed_by_vendor": true`. Erst dann entfällt die Warnung „nicht bestätigt“ in der Oberfläche.

@@ -11,6 +11,8 @@ export interface AppConfig {
   outbox_dir: string;
   outbox_file: string;
   writeback_enabled: boolean;
+  /** Ziffern/Diagnosen per GDT an DURIA – erst nach Bestätigung durch DURIA einschalten. */
+  billing_writeback_enabled: boolean;
   mode: 'simulation' | 'operational';
   ollama_model: string | null;
   voice: { threads: number; language: string };

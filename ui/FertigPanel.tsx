@@ -1,22 +1,29 @@
 import { useState } from 'react';
-import type { FertigProposal, FertigReport } from '../src/core/fertig.js';
+import type { BillingEntry, FertigProposal, FertigReport } from '../src/core/fertig.js';
 
 /**
- * Ergebnis von „Fertig“. Jeder Vorschlag wird einzeln angenommen oder verworfen.
- * Angenommene Vorschläge werden als Text mit Kürzel zusammengestellt (Notiz an DURIA bzw. zum Kopieren) –
- * das Programm trägt nichts selbst in DURIA ein.
+ * Ergebnis von „Fertig“. Der Arzt nimmt jeden Vorschlag einzeln an oder verwirft ihn.
+ * Angenommene Ziffern/Diagnosen gehen als ABRECHNUNGSDATEN an DURIA (nicht als Notiz).
+ * „Klärung nötig“ kann erst angenommen werden, wenn alles Nötige ergänzt ist (z. B. ICD + G/V/A/Z).
  */
-export function FertigPanel({ report, kuerzel, isArzt, onAcceptAsNote }: {
+export function FertigPanel({ report, isArzt, billingEnabled, onSubmit }: {
   report: FertigReport;
-  kuerzel: string;
   isArzt: boolean;
-  onAcceptAsNote: (text: string) => void;
+  billingEnabled: boolean;
+  onSubmit: (entries: BillingEntry[]) => Promise<string>;
 }) {
   const [decision, setDecision] = useState<Record<number, 'angenommen' | 'verworfen'>>({});
-  const accepted = report.proposals.filter((p, i) => decision[i] === 'angenommen');
+  const [result, setResult] = useState('');
+  const [busy, setBusy] = useState(false);
 
-  const summary = accepted.map((p) => `- ${p.title}${p.detail ? ` (${p.detail})` : ''}`).join('\n');
-  const text = accepted.length ? `[${kuerzel}] Angenommen nach Abschlussprüfung ${report.serviceDate}:\n${summary}` : '';
+  const accepted = report.proposals.flatMap((p, i) => (decision[i] === 'angenommen' ? p.entries : []));
+  const label = (e: BillingEntry) =>
+    e.type === 'ziffer' ? `Ziffer ${e.code} (${e.system}) am ${e.date}` : `Diagnose ${e.icd} ${e.certainty} am ${e.date}`;
+
+  async function submit() {
+    setBusy(true);
+    try { setResult(await onSubmit(accepted)); } catch (e) { setResult(String(e)); } finally { setBusy(false); }
+  }
 
   return (
     <section className="card">
@@ -30,7 +37,7 @@ export function FertigPanel({ report, kuerzel, isArzt, onAcceptAsNote }: {
             </span>
             <strong>{p.title}</strong>
             <span className="spacer" />
-            {p.readiness !== 'info' && isArzt && (
+            {p.readiness === 'bereit' && isArzt && (
               <>
                 <button onClick={() => setDecision({ ...decision, [i]: 'angenommen' })} disabled={decision[i] === 'angenommen'}>Annehmen</button>
                 <button className="link" onClick={() => setDecision({ ...decision, [i]: 'verworfen' })}>Verwerfen</button>
@@ -38,6 +45,7 @@ export function FertigPanel({ report, kuerzel, isArzt, onAcceptAsNote }: {
             )}
           </div>
           <p className="muted">{p.detail}</p>
+          {p.entries.length > 0 && <p className="muted">Wird eingetragen: {p.entries.map(label).join(' · ')}</p>}
           {p.finding && p.finding.conditions.length > 0 && (
             <ul className="conds">{p.finding.conditions.map((c, j) => <li key={j} className={c.state}>{c.label}: {c.reason}</li>)}</ul>
           )}
@@ -45,10 +53,13 @@ export function FertigPanel({ report, kuerzel, isArzt, onAcceptAsNote }: {
       ))}
       {accepted.length > 0 && (
         <div className="row" style={{ marginTop: 12 }}>
-          <button className="primary" onClick={() => onAcceptAsNote(text)}>Angenommenes als Notiz übernehmen</button>
-          <button onClick={() => navigator.clipboard.writeText(text)}>Kopieren</button>
+          <button className="primary" disabled={busy || !billingEnabled} onClick={submit}>
+            {accepted.length} angenommene Einträge in DURIA übernehmen
+          </button>
+          {!billingEnabled && <span className="warn">Übernahme von Ziffern/Diagnosen ist in den Einstellungen aus (wartet auf Bestätigung durch DURIA).</span>}
         </div>
       )}
+      {result && <p role="status">{result}</p>}
     </section>
   );
 }

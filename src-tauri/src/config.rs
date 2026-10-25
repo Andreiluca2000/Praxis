@@ -14,6 +14,9 @@ pub struct AppConfig {
     pub outbox_dir: String,
     pub outbox_file: String,
     pub writeback_enabled: bool,
+    /// Ziffern/Diagnosen per GDT (getrennt vom Notiz-Rückweg; erst nach Bestätigung durch DURIA).
+    #[serde(default)]
+    pub billing_writeback_enabled: bool,
     pub mode: String, // "simulation" | "operational"
     pub ollama_model: Option<String>,
     pub voice: VoiceConfig,
@@ -40,6 +43,7 @@ fn defaults(resource_root: &Path) -> AppConfig {
         outbox_dir: shared_dir().join("gdt").join("%CLIENTNAME%").join("ausgang").to_string_lossy().into(),
         outbox_file: "PRAX_DUR.gdt".into(),
         writeback_enabled: false, // erst nach Bestätigung der Dateikonvention durch DURIA
+        billing_writeback_enabled: false,
         mode: "simulation".into(),
         ollama_model: None,
         voice: VoiceConfig {

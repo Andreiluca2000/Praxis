@@ -1,11 +1,12 @@
-import { runFertigInBackground, type FertigReport } from '../src/core/fertig.js';
+import { runFertigInBackground, type BillingEntry, type FertigReport } from '../src/core/fertig.js';
+import { DuriaBillingWriteback } from '../src/duria/billing-writeback.js';
 import { analyse, type AnalysisResponse } from '../src/core/analyze.js';
 import type { Facts, IsoDate, PracticeSettings, RulePackage } from '../src/domain/types.js';
 import { readDuriaExport, type DuriaSnapshot } from '../src/duria/adapter.js';
 import { ContextRegistry, type PatientContext } from '../src/duria/context.js';
 import { DEFAULT_MAPPING } from '../src/duria/mapping.js';
 import { DuriaWriteback } from '../src/duria/writeback.js';
-import type { Note } from '../src/notes/note.js';
+import type { Note, PublicAccount } from '../src/notes/note.js';
 import { validateRulePackage, validateSettings } from '../src/validation/validate.js';
 import practice from '../config/practice.example.json';
 import rulesJson from '../data/billing/rules.example.json';
@@ -95,6 +96,24 @@ export class TreatmentSession {
     const cfg = { enabled: true, exchangeDir: '', fileName: '', senderId: 'PRAX', receiverId: 'DURIA', encoding: 'iso-8859-15' as const };
     const r = await new DuriaWriteback(cfg, this.contexts, tauriSink).write(note, this.sessionId, this.current.context, this.current.patientId);
     return r.ok ? 'An DURIA übergeben.' : r.reason;
+  }
+
+  /** Angenommene Vorschläge als Abrechnungsdaten (Ziffern/Diagnosen) an DURIA – nicht als Notiz. */
+  async sendBilling(user: PublicAccount, entries: BillingEntry[]): Promise<string> {
+    if (!this.current) return 'Kein Patient geladen.';
+    const cfg = {
+      enabled: true, billingEnabled: this.config.billing_writeback_enabled,
+      exchangeDir: '', fileName: '', senderId: 'PRAX', receiverId: 'DURIA', encoding: 'iso-8859-15' as const,
+    };
+    const snap = this.current.snapshot;
+    const recorded = {
+      codes: snap.services.filter((s) => s.state === 'active').map((s) => ({ code: s.code, date: s.date })),
+      diagnoses: snap.diagnoses.filter((d) => d.date).map((d) => ({ icd: d.code, date: d.date! })),
+    };
+    const accepted = entries.map((entry) => ({ entry, acceptedBy: user.kuerzel }));
+    const r = await new DuriaBillingWriteback(cfg, this.contexts, tauriSink)
+      .write(accepted, user, this.sessionId, this.current.context, this.current.patientId, recorded);
+    return r.ok ? `${r.written} Eintrag/Einträge an DURIA übergeben.` : r.reason;
   }
 
   fertig(serviceDate: IsoDate, facts: Facts, quarterConfirmed: boolean): Promise<FertigReport> {

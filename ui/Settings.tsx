@@ -54,7 +54,10 @@ export function Settings({ status, kv, onKv, onChanged }: {
           <dt>Rückweg zu DURIA</dt>
           <dd>
             <label className="inline"><input type="checkbox" checked={status.config.writeback_enabled} disabled={!isArzt}
-              onChange={(e) => patch({ writeback_enabled: e.target.checked })} /> aktiv (erst nach Bestätigung durch DURIA einschalten)</label>
+              onChange={(e) => patch({ writeback_enabled: e.target.checked })} /> Notizen (Karteikarte)</label>
+            <label className="inline"><input type="checkbox" checked={status.config.billing_writeback_enabled} disabled={!isArzt}
+              onChange={(e) => patch({ billing_writeback_enabled: e.target.checked })} /> angenommene Ziffern und Diagnosen (Abrechnung)</label>
+            <span className="muted">Erst einschalten, wenn DURIA die Übernahme per GDT bestätigt hat.</span>
           </dd>
           <dt>Spracherkennung</dt><dd>{status.voice_missing.length ? <span className="error">fehlt: {status.voice_missing.join(', ')}</span> : 'lokal (whisper.cpp) bereit'}</dd>
           <dt>Zusammenfassung</dt>

@@ -66,7 +66,7 @@ export function App() {
       {notice && <div className="notice" role="status">{notice} <button className="link" onClick={() => setNotice('')}>×</button></div>}
       <main className="content">
         {view === 'behandlung'
-          ? <Treatment session={s} user={status.user} />
+          ? <Treatment session={s} user={status.user} billingEnabled={status.config.billing_writeback_enabled} />
           : <Settings status={status} kv={s.settings.region.kv} onKv={setKv} onChanged={refresh} />}
       </main>
     </>

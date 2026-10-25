@@ -11,11 +11,18 @@ import type { Note } from '../notes/note.js';
  * - Läuft asynchron und blockiert die Oberfläche nicht; kann abgebrochen werden.
  */
 
+/** Strukturierter Eintrag, der nach Annahme als Abrechnungsdaten (nicht als Notiz) an DURIA geht. */
+export type BillingEntry =
+  | { type: 'ziffer'; system: 'EBM' | 'GOAE' | 'HZV' | 'DEMO'; code: string; date: IsoDate; ruleId: string; ruleVersion: string }
+  | { type: 'diagnose'; icd: string; certainty: 'G' | 'V' | 'A' | 'Z'; side: 'R' | 'L' | 'B' | null; date: IsoDate };
+
 export interface FertigProposal {
   kind: 'ziffer' | 'diagnose_kodieren' | 'dokumentation' | 'hinweis';
   title: string;
   detail: string;
   finding: Finding | null;
+  /** Nur bei readiness 'bereit': genau das, was nach Annahme eingetragen wird. */
+  entries: BillingEntry[];
   /** Nur Vorschläge mit 'bereit' können nach Bestätigung übergeben werden. */
   readiness: 'bereit' | 'klaerung' | 'info';
 }
@@ -49,7 +56,7 @@ export function runFertig(input: FertigInput, settings: PracticeSettings, rules:
 
   if (!input.quarterExportConfirmed) {
     proposals.push({
-      kind: 'hinweis', readiness: 'info', finding: null,
+      kind: 'hinweis', readiness: 'info', finding: null, entries: [],
       title: 'Quartal nicht vollständig gelesen',
       detail: `Für ${quarter.from} bis ${quarter.to} liegen nur einzelne Tage vor. Ziffern mit Quartals- oder Häufigkeitsgrenzen bleiben „nicht prüfbar“. Bitte Quartalsexport aus DURIA laden.`,
     });
@@ -67,11 +74,14 @@ export function runFertig(input: FertigInput, settings: PracticeSettings, rules:
     if (f.outcome === 'not_applicable' || f.outcome === 'already_billed' || f.outcome === 'excluded') continue;
     const codes = f.codes.join(', ');
     if (f.outcome === 'candidate') {
-      proposals.push({ kind: 'ziffer', readiness: 'bereit', finding: f, title: `Möglicherweise fehlend: ${codes}`, detail: f.explanation });
+      const entries: BillingEntry[] = f.codes.map((code) => ({
+        type: 'ziffer', system: f.billingSystem, code, date: f.serviceDate, ruleId: f.ruleId, ruleVersion: f.ruleVersion,
+      }));
+      proposals.push({ kind: 'ziffer', readiness: 'bereit', finding: f, entries, title: `Möglicherweise fehlend: ${codes}`, detail: f.explanation });
     } else if (f.outcome === 'billing_conflict') {
-      proposals.push({ kind: 'hinweis', readiness: 'klaerung', finding: f, title: `Konflikt bei ${codes}`, detail: f.conflicts.join(' ') });
+      proposals.push({ kind: 'hinweis', readiness: 'klaerung', finding: f, entries: [], title: `Konflikt bei ${codes}`, detail: f.conflicts.join(' ') });
     } else {
-      proposals.push({ kind: 'dokumentation', readiness: 'klaerung', finding: f, title: `${codes}: ${f.outcome === 'documentation_incomplete' ? 'Dokumentation unvollständig' : 'nicht prüfbar'}`, detail: [f.explanation, ...f.blockers].join(' ') });
+      proposals.push({ kind: 'dokumentation', readiness: 'klaerung', finding: f, entries: [], title: `${codes}: ${f.outcome === 'documentation_incomplete' ? 'Dokumentation unvollständig' : 'nicht prüfbar'}`, detail: [f.explanation, ...f.blockers].join(' ') });
     }
   }
 
@@ -82,8 +92,13 @@ export function runFertig(input: FertigInput, settings: PracticeSettings, rules:
       if (d.icd && coded.includes(d.icd.toUpperCase())) continue;
       const alreadyAsked = proposals.some((p) => p.kind === 'diagnose_kodieren' && norm(p.title).includes(norm(d.text)));
       if (alreadyAsked) continue;
+      // Bereit nur mit ICD-Code UND Diagnosesicherheit, vom Arzt eingetragen – nie automatisch „G“.
+      const ready = Boolean(d.icd && d.certainty && d.confirmedBy);
+      const entries: BillingEntry[] = ready
+        ? [{ type: 'diagnose', icd: d.icd!.toUpperCase(), certainty: d.certainty!, side: null, date: input.serviceDate }]
+        : [];
       proposals.push({
-        kind: 'diagnose_kodieren', readiness: d.icd && d.confirmedBy ? 'bereit' : 'klaerung', finding: null,
+        kind: 'diagnose_kodieren', readiness: ready ? 'bereit' : 'klaerung', finding: null, entries,
         title: `Diagnose im Diktat ohne Kodierung: „${d.text}“`,
         detail: d.icd
           ? `Vorgeschlagen: ${d.icd}${d.certainty ? ` ${d.certainty}` : ''} – nicht in DURIA erfasst.`

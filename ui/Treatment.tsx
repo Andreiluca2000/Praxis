@@ -10,7 +10,7 @@ import { api } from './platform.js';
 import { today, type TreatmentSession } from './session.js';
 
 /** Hauptansicht der Behandlung: Patient aus DURIA, Diktat/Notizen, „Fertig“. */
-export function Treatment({ session, user }: { session: TreatmentSession; user: PublicAccount }) {
+export function Treatment({ session, user, billingEnabled }: { session: TreatmentSession; user: PublicAccount; billingEnabled: boolean }) {
   const [, rerender] = useReducer((n: number) => n + 1, 0);
   const [date, setDate] = useState(today());
   const [analysis, setAnalysis] = useState<AnalysisResponse | null>(null);
@@ -104,8 +104,8 @@ export function Treatment({ session, user }: { session: TreatmentSession; user: 
       </section>
 
       {report && (
-        <FertigPanel report={report} kuerzel={user.kuerzel} isArzt={user.role === 'arzt'}
-          onAcceptAsNote={(text) => onText(text, 'wortlaut')} />
+        <FertigPanel report={report} isArzt={user.role === 'arzt'} billingEnabled={billingEnabled}
+          onSubmit={(entries) => session.sendBilling(user, entries)} />
       )}
       {msg && <p className="muted" role="status">{msg}</p>}
     </div>
