@@ -17,10 +17,22 @@ Schnittstelle sind die JSON-Schemas in `schemas/`. Änderungen daran werden abge
 
 ```powershell
 pnpm install
+pnpm start          # lokale Oberfläche: http://127.0.0.1:4317 (nur dieser Rechner)
+pnpm sample         # erzeugt samples/synthetisch-beispiel.bdt (erfundene Daten)
 pnpm check          # Typprüfung + Tests + Datenvalidierung
 pnpm test           # nur Tests
 pnpm validate:data  # config/ und data/ gegen Schemas + semantische Regeln
 ```
+
+Umgebungsvariablen (optional): `PRAXIS_PORT`, `PRAXIS_SETTINGS`, `PRAXIS_RULES`, `PRAXIS_MAPPING` (Pfad zu einer bestätigten DURIA-Feldzuordnung, Vorlage `config/duria-mapping.example.json`).
+
+## DURIA-Anbindung
+
+DURIA bietet laut Hersteller Anbindungen über **GDT/BDT, HL7 und DICOM**. Der Adapter liest GDT/BDT (xDT) ausschließlich lesend:
+- Identitätsfelder (Name, Geburtsdatum, Anschrift) werden beim Einlesen verworfen; die Patientennummer wird sofort zu einem lokalen Sitzungs-Pseudonym.
+- Kontext je Arbeitsplatz; Patientenwechsel, Datenänderung oder Ablauf sperren die Übernahme (CTX-01…04).
+- Nur tatsächlich gelesene Tage gelten als abgedeckt, außer der Benutzer bestätigt den Zeitraum ausdrücklich (CTX-05).
+- Die Feldzuordnung ist bis zur Bestätigung durch DURIA als „ungeprüft“ markiert. Offene Fragen: `docs/DURIA_FRAGEN.md`.
 
 Voraussetzungen: Node ≥ 22, pnpm.
 
@@ -30,7 +42,11 @@ Voraussetzungen: Node ≥ 22, pnpm.
 src/domain/       Typen (spiegeln die Schemas), Datumslogik
 src/validation/   Schema- und semantische Prüfung (Ajv, Draft 2020-12)
 src/engine/       Dreiwertige Auswertung, Zeitfenster, Vorprüfungen (KV/HZV/Aktivierung), Ergebnis
+src/duria/        xDT-Parser (GDT/BDT, CP437/ISO 8859-15), Feldzuordnung, Adapter, Patientenkontext
+src/facts/        Erkennung des Status einer Maßnahme im Text (immer „uncertain“ bis zur Bestätigung)
+src/server/       Lokaler HTTP-Server (127.0.0.1) und Ablauf Export → Erkennung → Prüfung
 src/cli/          Kommandozeilenwerkzeuge
+app/              Oberfläche (Deutsch, ohne Fremdbibliotheken)
 tests/            Akzeptanztests nach docs/ACCEPTANCE.md (nur synthetisch, Präfix TEST_)
 ```
 
@@ -50,7 +66,8 @@ tests/            Akzeptanztests nach docs/ACCEPTANCE.md (nur synthetisch, Präf
 | BILL-01…12, 14 (Regelauswertung) | Tests vorhanden (BILL-13 folgt mit ICD-Modul) |
 | CFG-01…03, HZV-01…06 | Tests vorhanden |
 | ICD-01…10 | offen – wartet auf Katalogimport (Codex) |
-| FACT-01…10 | offen – Extraktion folgt; Motor erwartet bereits `service.status` |
-| CTX-01…07 | offen – DURIA-Adapter |
+| FACT-01…10 | Tests vorhanden (regelbasiert, Bestätigung durch Benutzer nötig) |
+| CTX-01…05 | Tests vorhanden |
+| CTX-06…07 | offen – betrifft den Rückweg in DURIA, der noch nicht vorgesehen ist |
 
 Stand und nächste Schritte: `docs/STATUS_CLAUDE.md`.

@@ -12,6 +12,8 @@
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
     "validate:data": "tsx src/cli/validate-data.ts",
+    "start": "tsx src/server/main.ts",
+    "sample": "tsx src/cli/make-sample.ts",
     "check": "pnpm typecheck && pnpm test && pnpm validate:data"
   },
   "dependencies": {

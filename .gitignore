@@ -8,3 +8,6 @@ private/
 *.patient.*
 *.gdt
 *.bdt
+
+samples/
+local-server.*
