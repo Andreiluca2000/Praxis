@@ -1,0 +1,17 @@
+{
+  "schema_version": "0.1.0",
+  "region": {"country": "DE", "bundesland": "NRW", "kv": null},
+  "available_billing_systems": ["EBM", "GOAE"],
+  "hzv": {"enabled": false, "contracts": []},
+  "analysis": {
+    "default_scope": "selected_date",
+    "unknown_condition_policy": "not_verifiable",
+    "date_basis": "service_date"
+  },
+  "safety": {
+    "auto_submit_billing": false,
+    "auto_write_to_duria": false,
+    "require_patient_context_recheck": true,
+    "allow_patient_data_in_project_files": false
+  }
+}

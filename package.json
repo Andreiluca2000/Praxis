@@ -1,0 +1,27 @@
+{
+  "name": "praxis-assistent",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Interner Assistent für eine Hausarztpraxis: ICD-10-GM-Suche und erklärbare Abrechnungsprüfung (MVP, nur synthetische Daten).",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "validate:data": "tsx src/cli/validate-data.ts",
+    "check": "pnpm typecheck && pnpm test && pnpm validate:data"
+  },
+  "dependencies": {
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3",
+    "vitest": "5.0.5"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "DEMO_DOCUMENTATION_ONLY",
+  "package_version": "0.1.0",
+  "content_kind": "synthetic_example",
+  "rules": [{
+    "id": "DEMO_DURATION_EVIDENCE",
+    "version": "0.1.0",
+    "billing_system": "DEMO",
+    "status": "draft",
+    "title": "Exemplu sintetic pentru documentarea unei prestații",
+    "procedure_codes": ["DEMO_SERVICE_A"],
+    "valid_from": "2026-10-25",
+    "valid_to": null,
+    "jurisdiction": "synthetic",
+    "contract_id": null,
+    "sources": [{
+      "id": "DEMO_SOURCE",
+      "kind": "synthetic",
+      "publisher": "Praxisassistenz development example",
+      "title": "Exemplu creat exclusiv pentru testarea contractului de date",
+      "uri": "urn:praxis-assistent:synthetic:duration-example",
+      "version": "0.1.0",
+      "locator": "Exemplu fără echivalență cu o Ziffer EBM, GOÄ sau HZV",
+      "checked_on": "2026-10-25",
+      "sha256": null,
+      "license_status": "synthetic_owned"
+    }],
+    "reviews": {
+      "billing": {"state": "pending", "reviewer": null, "reviewed_at": null, "rationale": "Exemplu de structură, nu regulă reală de Abrechnung."},
+      "clinical": {"state": "pending", "reviewer": null, "reviewed_at": null, "rationale": "Nu a fost efectuată validare clinică."}
+    },
+    "required_context": [
+      {"domain": "documentation", "window": {"unit": "visit", "lookback_periods": 0, "anchor": "service_date"}},
+      {"domain": "billed_services", "window": {"unit": "quarter", "lookback_periods": 0, "anchor": "service_date"}}
+    ],
+    "eligibility": {
+      "kind": "all",
+      "items": [
+        {"kind": "fact", "field": "service.status", "operator": "eq", "value": "performed", "source_ids": ["DEMO_SOURCE"]},
+        {"kind": "fact", "field": "documentation.duration_minutes", "operator": "is_known", "source_ids": ["DEMO_SOURCE"]},
+        {"kind": "fact", "field": "documentation.required_components_complete", "operator": "eq", "value": true, "source_ids": ["DEMO_SOURCE"]}
+      ]
+    },
+    "combination_rules": [],
+    "frequency_limits": [],
+    "result": {
+      "type": "documentation_incomplete",
+      "explanation": "Simularea poate arăta dacă documentația exemplului este completă; nu propune o Ziffer și nu autorizează facturarea.",
+      "missing_evidence_message": "Lipsesc dovezi pentru una sau mai multe condiții. Informațiile nu se completează prin presupunere.",
+      "requires_human_confirmation": true
+    }
+  }]
+}

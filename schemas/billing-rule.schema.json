@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:praxis-assistent:schema:billing-rule-package:0.1.0",
+  "title": "Praxisassistenz billing rule package",
+  "description": "Data contract, not an implemented evaluator. Draft and synthetic packages cannot authorize billing.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "package_id", "package_version", "content_kind", "rules"],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "package_id": {"type": "string", "minLength": 1},
+    "package_version": {"type": "string", "minLength": 1},
+    "content_kind": {"enum": ["synthetic_example", "reviewed_catalogue"]},
+    "rules": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/rule"}}
+  },
+  "allOf": [{
+    "if": {"properties": {"content_kind": {"const": "synthetic_example"}}},
+    "then": {"properties": {"rules": {"items": {
+      "properties": {
+        "id": {"pattern": "^DEMO_"},
+        "billing_system": {"const": "DEMO"},
+        "status": {"const": "draft"},
+        "procedure_codes": {"items": {"pattern": "^DEMO_"}},
+        "sources": {"items": {"properties": {"kind": {"const": "synthetic"}}}}
+      }
+    }}}}
+  }],
+  "$defs": {
+    "date": {"type": "string", "format": "date"},
+    "codes": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "source_ids": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "window": {
+      "type": "object", "additionalProperties": false,
+      "required": ["unit", "lookback_periods", "anchor"],
+      "properties": {
+        "unit": {"enum": ["visit", "day", "treatment_case", "quarter", "year"]},
+        "lookback_periods": {"type": "integer", "minimum": 0},
+        "anchor": {"const": "service_date"}
+      }
+    },
+    "source": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "kind", "publisher", "title", "uri", "version", "locator", "checked_on", "license_status"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "kind": {"enum": ["legal_text", "official_catalogue", "contract", "official_guidance", "synthetic"]},
+        "publisher": {"type": "string", "minLength": 1},
+        "title": {"type": "string", "minLength": 1},
+        "uri": {"type": "string", "format": "uri"},
+        "version": {"type": "string", "minLength": 1},
+        "locator": {"type": "string", "minLength": 1},
+        "checked_on": {"$ref": "#/$defs/date"},
+        "sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+        "license_status": {"enum": ["pending", "permitted_for_local_use", "permitted_for_distribution", "synthetic_owned"]}
+      }
+    },
+    "review": {
+      "type": "object", "additionalProperties": false,
+      "required": ["state", "reviewer", "reviewed_at", "rationale"],
+      "properties": {
+        "state": {"enum": ["pending", "approved", "rejected", "not_applicable"]},
+        "reviewer": {"type": ["string", "null"]},
+        "reviewed_at": {"type": ["string", "null"], "format": "date-time"},
+        "rationale": {"type": ["string", "null"]}
+      },
+      "allOf": [{
+        "if": {"properties": {"state": {"enum": ["approved", "not_applicable"]}}},
+        "then": {"properties": {
+          "reviewer": {"type": "string", "minLength": 1},
+          "reviewed_at": {"type": "string", "format": "date-time"},
+          "rationale": {"type": "string", "minLength": 1}
+        }}
+      }]
+    },
+    "expression": {
+      "oneOf": [
+        {
+          "type": "object", "additionalProperties": false,
+          "required": ["kind", "field", "operator", "source_ids"],
+          "properties": {
+            "kind": {"const": "fact"},
+            "field": {"enum": ["service.status", "service.date", "service.mode", "service.performer", "service.age_years_at_date", "documentation.duration_minutes", "documentation.required_components_complete", "practice.required_authorization", "practice.required_qualification", "contract.practice_participation", "contract.patient_enrollment", "contract.covers_service_date", "contract.service_included", "evidence.complete", "billed_services.count"]},
+            "operator": {"enum": ["eq", "neq", "in", "gte", "lte", "is_known"]},
+            "value": {"oneOf": [{"type": ["string", "number", "boolean"]}, {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": ["string", "number", "boolean"]}}]},
+            "source_ids": {"$ref": "#/$defs/source_ids"}
+          },
+          "allOf": [
+            {"if": {"properties": {"operator": {"const": "is_known"}}}, "then": {"not": {"required": ["value"]}}, "else": {"required": ["value"]}},
+            {"if": {"properties": {"operator": {"enum": ["gte", "lte"]}}}, "then": {"properties": {"value": {"type": "number"}}}},
+            {"if": {"properties": {"operator": {"const": "in"}}}, "then": {"properties": {"value": {"type": "array"}}}},
+            {"if": {"properties": {"operator": {"enum": ["eq", "neq"]}}}, "then": {"properties": {"value": {"type": ["string", "number", "boolean"]}}}}
+          ]
+        },
+        {
+          "type": "object", "additionalProperties": false,
+          "required": ["kind", "items"],
+          "properties": {"kind": {"enum": ["all", "any"]}, "items": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/expression"}}}
+        },
+        {
+          "type": "object", "additionalProperties": false,
+          "required": ["kind", "item"],
+          "properties": {"kind": {"const": "not"}, "item": {"$ref": "#/$defs/expression"}}
+        }
+      ]
+    },
+    "rule": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "version", "billing_system", "status", "title", "procedure_codes", "valid_from", "valid_to", "jurisdiction", "contract_id", "sources", "reviews", "required_context", "eligibility", "combination_rules", "frequency_limits", "result"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1},
+        "billing_system": {"enum": ["EBM", "GOAE", "HZV", "DEMO"]},
+        "status": {"enum": ["draft", "reviewed", "active", "retired"]},
+        "title": {"type": "string", "minLength": 1},
+        "procedure_codes": {"allOf": [{"$ref": "#/$defs/codes"}, {"minItems": 1}]},
+        "valid_from": {"$ref": "#/$defs/date"},
+        "valid_to": {"type": ["string", "null"], "format": "date"},
+        "jurisdiction": {"enum": ["DE", "Nordrhein", "Westfalen-Lippe", "synthetic"]},
+        "contract_id": {"type": ["string", "null"]},
+        "sources": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/source"}},
+        "reviews": {"type": "object", "additionalProperties": false, "required": ["billing", "clinical"], "properties": {"billing": {"$ref": "#/$defs/review"}, "clinical": {"$ref": "#/$defs/review"}}},
+        "required_context": {
+          "type": "array", "minItems": 1,
+          "items": {"type": "object", "additionalProperties": false, "required": ["domain", "window"], "properties": {
+            "domain": {"enum": ["documentation", "billed_services", "practice_authorizations", "contract_terms", "practice_participation", "patient_enrollment"]},
+            "window": {"$ref": "#/$defs/window"}
+          }}
+        },
+        "eligibility": {"$ref": "#/$defs/expression"},
+        "combination_rules": {"type": "array", "items": {
+          "type": "object", "additionalProperties": false,
+          "required": ["relationship", "with_codes", "window", "reason", "source_ids"],
+          "properties": {
+            "relationship": {"enum": ["cannot_combine", "included_in", "requires_code"]},
+            "with_codes": {"allOf": [{"$ref": "#/$defs/codes"}, {"minItems": 1}]},
+            "window": {"$ref": "#/$defs/window"},
+            "reason": {"type": "string", "minLength": 1},
+            "source_ids": {"$ref": "#/$defs/source_ids"}
+          }
+        }},
+        "frequency_limits": {"type": "array", "items": {
+          "type": "object", "additionalProperties": false,
+          "required": ["max_count", "count_codes", "window", "source_ids"],
+          "properties": {
+            "max_count": {"type": "integer", "minimum": 1},
+            "count_codes": {"allOf": [{"$ref": "#/$defs/codes"}, {"minItems": 1}]},
+            "window": {"$ref": "#/$defs/window"},
+            "source_ids": {"$ref": "#/$defs/source_ids"}
+          }
+        }},
+        "result": {"type": "object", "additionalProperties": false, "required": ["type", "explanation", "missing_evidence_message", "requires_human_confirmation"], "properties": {
+          "type": {"enum": ["possible_missing_code", "documentation_incomplete", "coding_missing", "billing_conflict"]},
+          "explanation": {"type": "string", "minLength": 1},
+          "missing_evidence_message": {"type": "string", "minLength": 1},
+          "requires_human_confirmation": {"const": true}
+        }}
+      },
+      "allOf": [
+        {"if": {"properties": {"billing_system": {"const": "HZV"}}}, "then": {"properties": {"contract_id": {"type": "string", "minLength": 1}}}},
+        {"if": {"properties": {"billing_system": {"const": "DEMO"}}}, "then": {"properties": {"status": {"const": "draft"}, "id": {"pattern": "^DEMO_"}, "procedure_codes": {"items": {"pattern": "^DEMO_"}}}}},
+        {"if": {"properties": {"status": {"const": "active"}}}, "then": {"properties": {
+          "billing_system": {"enum": ["EBM", "GOAE", "HZV"]},
+          "jurisdiction": {"enum": ["DE", "Nordrhein", "Westfalen-Lippe"]},
+          "reviews": {"properties": {"billing": {"properties": {"state": {"const": "approved"}}}, "clinical": {"properties": {"state": {"enum": ["approved", "not_applicable"]}}}}},
+          "sources": {"items": {"properties": {"kind": {"enum": ["legal_text", "official_catalogue", "contract", "official_guidance"]}, "license_status": {"enum": ["permitted_for_local_use", "permitted_for_distribution"]}}}}
+        }}}
+      ]
+    }
+  }
+}

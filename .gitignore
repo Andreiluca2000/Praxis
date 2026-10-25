@@ -1,0 +1,10 @@
+node_modules/
+coverage/
+*.log
+
+# Niemals Patientendaten im Repository (siehe docs/CLAUDE_HANDOFF_RO.md)
+local/
+private/
+*.patient.*
+*.gdt
+*.bdt
