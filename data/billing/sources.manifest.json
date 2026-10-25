@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "retrieved_on": "2026-10-25",
+  "purpose": "Local source evidence for draft rule review; not a licensed complete billing database.",
+  "license_review": "pending; no third-party distribution approved by this dossier",
+  "artifacts": [
+    {
+      "path": "sources/ebm-2026-q4.pdf",
+      "source_url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+      "bytes": 15537112,
+      "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+      "locator": "PDF-Seite 199 (= Druckseite 199), Abschnitt 3.2.2, GOP 03230 einschließlich aller Anmerkungen"
+    },
+    {
+      "path": "sources/goae-anlage-20261025.html",
+      "source_url": "https://www.gesetze-im-internet.de/go__1982/anlage.html",
+      "bytes": 1194733,
+      "sha256": "4e72bfc8629d8de5be0f969c1bbfc5b7133b1feb9bf822ecbf1558950099148c",
+      "locator": "Abschnitt B: Allgemeine Bestimmungen und Nr. 1, 2, 3, 5"
+    },
+    {
+      "path": "sources/goae-paragraph4-20261025.html",
+      "source_url": "https://www.gesetze-im-internet.de/go__1982/__4.html",
+      "bytes": 7385,
+      "sha256": "82dd59e0ace275f23706ce5bf15d5965f5517c8dbf9ae09270cb0f96e09778f2",
+      "locator": "§ 4 Abs. 2: eigene ärztliche Leistungen"
+    }
+  ]
+}

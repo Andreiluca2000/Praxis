@@ -72,6 +72,17 @@ ul.conds li.not_fulfilled::marker { content:"✘  "; color:var(--bad); }
 ul.conds li.unknown::marker { content:"?  "; color:var(--warn); }
 .fertig-bar { display:flex; gap:14px; align-items:center; flex-wrap:wrap; position:sticky; bottom:12px; box-shadow:0 4px 18px rgba(20,30,50,.08); }
 
+.icd-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:16px; margin-top:12px; }
+.icd-hits { list-style:none; margin:0; padding:0; max-height:62vh; overflow:auto; border:1px solid var(--line); border-radius:8px; }
+.icd-hits li { padding:8px 10px; border-bottom:1px solid var(--line); cursor:pointer; font-size:14px; }
+.icd-hits li:hover { background:var(--bg); }
+.icd-hits li.on { background:var(--soft); }
+.icd-detail { border:1px solid var(--line); border-radius:8px; padding:12px 16px; max-height:62vh; overflow:auto; }
+.icd-detail h3 { margin:0 0 8px; font-size:16px; }
+.icd-detail h4 { margin:12px 0 4px; font-size:13px; color:var(--muted); }
+.icd-detail ul { margin:0; padding-left:18px; font-size:14px; }
+.dialog { position:fixed; inset:0; background:rgba(20,30,25,.35); display:grid; place-items:center; z-index:10; }
+.dialog > .card { width:min(1000px, 94vw); max-height:90vh; overflow:auto; }
 table { width:100%; border-collapse:collapse; font-size:14px; }
 th, td { text-align:left; padding:6px 8px; border-bottom:1px solid var(--line); vertical-align:middle; }
 dl.kv { display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; font-size:14px; }

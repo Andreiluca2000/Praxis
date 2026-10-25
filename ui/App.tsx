@@ -1,4 +1,5 @@
 import { CalendarCheck, ClipboardCheck, Files, LogOut, Plus, Settings2, SlidersHorizontal, Stethoscope } from 'lucide-react';
+import { IcdSearch } from './IcdSearch.js';
 import { QuarterCheck } from './QuarterCheck.js';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { validateSettings } from '../src/validation/validate.js';
@@ -8,13 +9,13 @@ import { TreatmentSession } from './session.js';
 import { Settings } from './Settings.js';
 import { Treatment } from './Treatment.js';
 
-type View = 'behandlung' | 'quartal' | 'einstellungen';
+type View = 'behandlung' | 'quartal' | 'diagnosen' | 'einstellungen';
 
 /** Seitennavigation nach dem Codex-Entwurf (praxis-assistent-konzept.html); nur fertige Bereiche sind aktiv. */
 const NAV: { id: View | 'diagnosen' | 'formulare' | 'regeln'; label: string; icon: typeof Stethoscope; ready: boolean }[] = [
   { id: 'behandlung', label: 'Behandlung & Abrechnung', icon: ClipboardCheck, ready: true },
   { id: 'quartal', label: 'Quartalsprüfung (KVDT)', icon: CalendarCheck, ready: true },
-  { id: 'diagnosen', label: 'Diagnosen & ICD', icon: Stethoscope, ready: false },
+  { id: 'diagnosen', label: 'Diagnosen & ICD', icon: Stethoscope, ready: true },
   { id: 'formulare', label: 'Formulare', icon: Files, ready: false },
   { id: 'regeln', label: 'Praxisregeln', icon: SlidersHorizontal, ready: false },
   { id: 'einstellungen', label: 'Einstellungen', icon: Settings2, ready: true },
@@ -22,7 +23,8 @@ const NAV: { id: View | 'diagnosen' | 'formulare' | 'regeln'; label: string; ico
 
 export function App() {
   const [status, setStatus] = useState<Status | null>(null);
-  const [view, setView] = useState<View>('behandlung');
+  // ?view=… nur für die Bildschirmvorschau im Entwicklungsserver.
+  const [view, setView] = useState<View>(() => (import.meta.env.DEV && (new URLSearchParams(location.search).get('view') as View)) || 'behandlung');
   const [notice, setNotice] = useState('');
   const [, force] = useState(0);
   const session = useRef<TreatmentSession | null>(null);
@@ -89,6 +91,7 @@ export function App() {
           {view === 'quartal' && (status.user.role === 'arzt'
             ? <QuarterCheck settings={s.settings} rules={s.rules} mode={status.config.mode} />
             : <section className="card"><p className="muted">Die Quartalsprüfung ist Ärzten vorbehalten.</p></section>)}
+          {view === 'diagnosen' && <section className="card"><h2>Diagnosen & ICD-10-GM</h2><IcdSearch /></section>}
           {view === 'einstellungen' && <Settings status={status} kv={s.settings.region.kv} onKv={setKv} onChanged={refresh} />}
         </main>
       </div>

@@ -1,0 +1,745 @@
+{
+  "schema_version": "1.0.0",
+  "package_id": "DE_HAUSARZT_CORE_2026Q4_DRAFT",
+  "package_version": "0.1.0-draft.1",
+  "content_kind": "draft_catalogue",
+  "rule_contract": "urn:praxis-assistent:schema:billing-rule-package:0.1.0#/$defs/rule",
+  "review_dossier": "../../docs/BILLING_DRAFTS_2026Q4.md",
+  "rules": [
+    {
+      "id": "EBM_03230_CORE_DRAFT",
+      "version": "0.1.0-draft.1",
+      "billing_system": "EBM",
+      "status": "draft",
+      "title": "Problemorientiertes ärztliches Gespräch – dokumentierte Mindestdauer",
+      "procedure_codes": [
+        "03230"
+      ],
+      "valid_from": "2026-10-01",
+      "valid_to": "2026-12-31",
+      "jurisdiction": "DE",
+      "contract_id": null,
+      "sources": [
+        {
+          "id": "EBM_2026Q4_03230",
+          "kind": "official_catalogue",
+          "publisher": "Kassenärztliche Bundesvereinigung",
+          "title": "EBM 4/2026, GOP 03230",
+          "uri": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "version": "4/2026, erstellt am 01.10.2026",
+          "locator": "PDF-Seite 199 (= Druckseite 199), Abschnitt 3.2.2, GOP 03230 einschließlich aller Anmerkungen",
+          "checked_on": "2026-10-25",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "license_status": "pending"
+        }
+      ],
+      "reviews": {
+        "billing": {
+          "state": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "rationale": "Teilmodell zur fachlichen Prüfung; offene Bedingungen siehe docs/BILLING_DRAFTS_2026Q4.md. Keine Aktivierung."
+        },
+        "clinical": {
+          "state": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "rationale": "Teilmodell zur fachlichen Prüfung; offene Bedingungen siehe docs/BILLING_DRAFTS_2026Q4.md. Keine Aktivierung."
+        }
+      },
+      "required_context": [
+        {
+          "domain": "documentation",
+          "window": {
+            "unit": "visit",
+            "lookback_periods": 0,
+            "anchor": "service_date"
+          }
+        },
+        {
+          "domain": "billed_services",
+          "window": {
+            "unit": "visit",
+            "lookback_periods": 0,
+            "anchor": "service_date"
+          }
+        },
+        {
+          "domain": "billed_services",
+          "window": {
+            "unit": "treatment_case",
+            "lookback_periods": 0,
+            "anchor": "service_date"
+          }
+        }
+      ],
+      "eligibility": {
+        "kind": "all",
+        "items": [
+          {
+            "kind": "fact",
+            "field": "service.status",
+            "operator": "eq",
+            "value": "performed",
+            "source_ids": [
+              "EBM_2026Q4_03230"
+            ]
+          },
+          {
+            "kind": "fact",
+            "field": "documentation.duration_minutes",
+            "operator": "gte",
+            "value": 10,
+            "source_ids": [
+              "EBM_2026Q4_03230"
+            ]
+          },
+          {
+            "kind": "fact",
+            "field": "documentation.required_components_complete",
+            "operator": "eq",
+            "value": true,
+            "source_ids": [
+              "EBM_2026Q4_03230"
+            ]
+          }
+        ]
+      },
+      "combination_rules": [
+        {
+          "relationship": "cannot_combine",
+          "with_codes": [
+            "03370",
+            "03372",
+            "03373",
+            "35100",
+            "35110",
+            "35150",
+            "35151",
+            "35152",
+            "35163",
+            "35164",
+            "35165",
+            "35166",
+            "35167",
+            "35168",
+            "35169",
+            "35173",
+            "35174",
+            "35175",
+            "35176",
+            "35177",
+            "35178",
+            "35179",
+            "37300",
+            "37302",
+            "37305",
+            "37306",
+            "37711"
+          ],
+          "window": {
+            "unit": "visit",
+            "lookback_periods": 0,
+            "anchor": "service_date"
+          },
+          "reason": "GOP 03230: explizit genannte Nebeneinander-Ausschlüsse; Abschnitte 35.2.1/35.2.2 zusätzlich offen.",
+          "source_ids": [
+            "EBM_2026Q4_03230"
+          ]
+        },
+        {
+          "relationship": "cannot_combine",
+          "with_codes": [
+            "30700"
+          ],
+          "window": {
+            "unit": "treatment_case",
+            "lookback_periods": 0,
+            "anchor": "service_date"
+          },
+          "reason": "GOP 03230: Ausschluss im Behandlungsfall.",
+          "source_ids": [
+            "EBM_2026Q4_03230"
+          ]
+        }
+      ],
+      "frequency_limits": [],
+      "result": {
+        "type": "possible_missing_code",
+        "explanation": "Entwurf: Problemorientiertes ärztliches Gespräch – dokumentierte Mindestdauer. Nur Teilprüfung; offene Bedingungen im Prüfdossier. Keine abrechnungsfähige Empfehlung.",
+        "missing_evidence_message": "Nicht prüfbar: Dokumentation, zeitlicher Kontext oder offene Regelbedingungen fehlen. Keine Leistung oder Diagnose ergänzen, die nicht erbracht bzw. belegt ist.",
+        "requires_human_confirmation": true
+      }
+    },
+    {
+      "id": "GOAE_1_CORE_DRAFT",
+      "version": "0.1.0-draft.1",
+      "billing_system": "GOAE",
+      "status": "draft",
+      "title": "Ärztliche Beratung, auch telefonisch",
+      "procedure_codes": [
+        "1"
+      ],
+      "valid_from": "2026-10-01",
+      "valid_to": "2026-12-31",
+      "jurisdiction": "DE",
+      "contract_id": null,
+      "sources": [
+        {
+          "id": "GOAE_NR_1",
+          "kind": "legal_text",
+          "publisher": "Bundesministerium der Justiz / Bundesamt für Justiz",
+          "title": "GOÄ Anlage – Nr. 1",
+          "uri": "https://www.gesetze-im-internet.de/go__1982/anlage.html",
+          "version": "Onlinefassung abgerufen 25.10.2026",
+          "locator": "Abschnitt B, I, Nr. 1 einschließlich zugehöriger Anmerkungen",
+          "checked_on": "2026-10-25",
+          "sha256": "4e72bfc8629d8de5be0f969c1bbfc5b7133b1feb9bf822ecbf1558950099148c",
+          "license_status": "pending"
+        },
+        {
+          "id": "GOAE_B_ALLG",
+          "kind": "legal_text",
+          "publisher": "Bundesministerium der Justiz / Bundesamt für Justiz",
+          "title": "GOÄ Anlage – Abschnitt B, Allgemeine Bestimmungen",
+          "uri": "https://www.gesetze-im-internet.de/go__1982/anlage.html",
+          "version": "Onlinefassung abgerufen 25.10.2026",
+          "locator": "Abschnitt B, Allgemeine Bestimmungen Nr. 1–5, 7 und 8",
+          "checked_on": "2026-10-25",
+          "sha256": "4e72bfc8629d8de5be0f969c1bbfc5b7133b1feb9bf822ecbf1558950099148c",
+          "license_status": "pending"
+        },
+        {
+          "id": "GOAE_PAR4",
+          "kind": "legal_text",
+          "publisher": "Bundesministerium der Justiz / Bundesamt für Justiz",
+          "title": "GOÄ § 4 Gebühren",
+          "uri": "https://www.gesetze-im-internet.de/go__1982/__4.html",
+          "version": "Onlinefassung abgerufen 25.10.2026",
+          "locator": "§ 4 Abs. 2: eigene ärztliche Leistungen",
+          "checked_on": "2026-10-25",
+          "sha256": "82dd59e0ace275f23706ce5bf15d5965f5517c8dbf9ae09270cb0f96e09778f2",
+          "license_status": "pending"
+        },
+        {
+          "id": "GOAE_NR_2",
+          "kind": "legal_text",
+          "publisher": "Bundesministerium der Justiz / Bundesamt für Justiz",
+          "title": "GOÄ Anlage – Nr. 2",
+          "uri": "https://www.gesetze-im-internet.de/go__1982/anlage.html",
+          "version": "Onlinefassung abgerufen 25.10.2026",
+          "locator": "Abschnitt B.I, Nr. 2, Anmerkung zur selben Inanspruchnahme",
+          "checked_on": "2026-10-25",
+          "sha256": "4e72bfc8629d8de5be0f969c1bbfc5b7133b1feb9bf822ecbf1558950099148c",
+          "license_status": "pending"
+        }
+      ],
+      "reviews": {
+        "billing": {
+          "state": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "rationale": "Teilmodell zur fachlichen Prüfung; offene Bedingungen siehe docs/BILLING_DRAFTS_2026Q4.md. Keine Aktivierung."
+        },
+        "clinical": {
+          "state": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "rationale": "Teilmodell zur fachlichen Prüfung; offene Bedingungen siehe docs/BILLING_DRAFTS_2026Q4.md. Keine Aktivierung."
+        }
+      },
+      "required_context": [
+        {
+          "domain": "documentation",
+          "window": {
+            "unit": "visit",
+            "lookback_periods": 0,
+            "anchor": "service_date"
+          }
+        },
+        {
+          "domain": "billed_services",
+          "window": {
+            "unit": "visit",
+            "lookback_periods": 0,
+            "anchor": "service_date"
+          }
+        },
+        {
+          "domain": "billed_services",
+          "window": {
+            "unit": "treatment_case",
+            "lookback_periods": 0,
+            "anchor": "service_date"
+          }
+        }
+      ],
+      "eligibility": {
+        "kind": "all",
+        "items": [
+          {
+            "kind": "fact",
+            "field": "service.status",
+            "operator": "eq",
+            "value": "performed",
+            "source_ids": [
+              "GOAE_PAR4"
+            ]
+          },
+          {
+            "kind": "fact",
+            "field": "documentation.required_components_complete",
+            "operator": "eq",
+            "value": true,
+            "source_ids": [
+              "GOAE_NR_1"
+            ]
+          }
+        ]
+      },
+      "combination_rules": [
+        {
+          "relationship": "cannot_combine",
+          "with_codes": [
+            "2"
+          ],
+          "window": {
+            "unit": "visit",
+            "lookback_periods": 0,
+            "anchor": "service_date"
+          },
+          "reason": "Nr. 2 ist bei derselben Inanspruchnahme nicht neben anderen Gebühren berechnungsfähig.",
+          "source_ids": [
+            "GOAE_NR_2"
+          ]
+        },
+        {
+          "relationship": "cannot_combine",
+          "with_codes": [
+            "804",
+            "805",
+            "806",
+            "807",
+            "808",
+            "809",
+            "810",
+            "811",
+            "812",
+            "817",
+            "835",
+            "849",
+            "861",
+            "862",
+            "863",
+            "864",
+            "870",
+            "871",
+            "886",
+            "887"
+          ],
+          "window": {
+            "unit": "visit",
+            "lookback_periods": 0,
+            "anchor": "service_date"
+          },
+          "reason": "Abschnitt B Allgemeine Bestimmung Nr. 4: Ausschluss neben den genannten Leistungen.",
+          "source_ids": [
+            "GOAE_B_ALLG"
+          ]
+        }
+      ],
+      "frequency_limits": [],
+      "result": {
+        "type": "possible_missing_code",
+        "explanation": "Entwurf: Ärztliche Beratung, auch telefonisch. Nur Teilprüfung; offene Bedingungen im Prüfdossier. Keine abrechnungsfähige Empfehlung.",
+        "missing_evidence_message": "Nicht prüfbar: Dokumentation, zeitlicher Kontext oder offene Regelbedingungen fehlen. Keine Leistung oder Diagnose ergänzen, die nicht erbracht bzw. belegt ist.",
+        "requires_human_confirmation": true
+      }
+    },
+    {
+      "id": "GOAE_3_CORE_DRAFT",
+      "version": "0.1.0-draft.1",
+      "billing_system": "GOAE",
+      "status": "draft",
+      "title": "Eingehende ärztliche Beratung, mindestens zehn Minuten",
+      "procedure_codes": [
+        "3"
+      ],
+      "valid_from": "2026-10-01",
+      "valid_to": "2026-12-31",
+      "jurisdiction": "DE",
+      "contract_id": null,
+      "sources": [
+        {
+          "id": "GOAE_NR_3",
+          "kind": "legal_text",
+          "publisher": "Bundesministerium der Justiz / Bundesamt für Justiz",
+          "title": "GOÄ Anlage – Nr. 3",
+          "uri": "https://www.gesetze-im-internet.de/go__1982/anlage.html",
+          "version": "Onlinefassung abgerufen 25.10.2026",
+          "locator": "Abschnitt B, I, Nr. 3 einschließlich zugehöriger Anmerkungen",
+          "checked_on": "2026-10-25",
+          "sha256": "4e72bfc8629d8de5be0f969c1bbfc5b7133b1feb9bf822ecbf1558950099148c",
+          "license_status": "pending"
+        },
+        {
+          "id": "GOAE_B_ALLG",
+          "kind": "legal_text",
+          "publisher": "Bundesministerium der Justiz / Bundesamt für Justiz",
+          "title": "GOÄ Anlage – Abschnitt B, Allgemeine Bestimmungen",
+          "uri": "https://www.gesetze-im-internet.de/go__1982/anlage.html",
+          "version": "Onlinefassung abgerufen 25.10.2026",
+          "locator": "Abschnitt B, Allgemeine Bestimmungen Nr. 1–5, 7 und 8",
+          "checked_on": "2026-10-25",
+          "sha256": "4e72bfc8629d8de5be0f969c1bbfc5b7133b1feb9bf822ecbf1558950099148c",
+          "license_status": "pending"
+        },
+        {
+          "id": "GOAE_PAR4",
+          "kind": "legal_text",
+          "publisher": "Bundesministerium der Justiz / Bundesamt für Justiz",
+          "title": "GOÄ § 4 Gebühren",
+          "uri": "https://www.gesetze-im-internet.de/go__1982/__4.html",
+          "version": "Onlinefassung abgerufen 25.10.2026",
+          "locator": "§ 4 Abs. 2: eigene ärztliche Leistungen",
+          "checked_on": "2026-10-25",
+          "sha256": "82dd59e0ace275f23706ce5bf15d5965f5517c8dbf9ae09270cb0f96e09778f2",
+          "license_status": "pending"
+        },
+        {
+          "id": "GOAE_NR_2",
+          "kind": "legal_text",
+          "publisher": "Bundesministerium der Justiz / Bundesamt für Justiz",
+          "title": "GOÄ Anlage – Nr. 2",
+          "uri": "https://www.gesetze-im-internet.de/go__1982/anlage.html",
+          "version": "Onlinefassung abgerufen 25.10.2026",
+          "locator": "Abschnitt B.I, Nr. 2, Anmerkung zur selben Inanspruchnahme",
+          "checked_on": "2026-10-25",
+          "sha256": "4e72bfc8629d8de5be0f969c1bbfc5b7133b1feb9bf822ecbf1558950099148c",
+          "license_status": "pending"
+        }
+      ],
+      "reviews": {
+        "billing": {
+          "state": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "rationale": "Teilmodell zur fachlichen Prüfung; offene Bedingungen siehe docs/BILLING_DRAFTS_2026Q4.md. Keine Aktivierung."
+        },
+        "clinical": {
+          "state": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "rationale": "Teilmodell zur fachlichen Prüfung; offene Bedingungen siehe docs/BILLING_DRAFTS_2026Q4.md. Keine Aktivierung."
+        }
+      },
+      "required_context": [
+        {
+          "domain": "documentation",
+          "window": {
+            "unit": "visit",
+            "lookback_periods": 0,
+            "anchor": "service_date"
+          }
+        },
+        {
+          "domain": "billed_services",
+          "window": {
+            "unit": "visit",
+            "lookback_periods": 0,
+            "anchor": "service_date"
+          }
+        },
+        {
+          "domain": "billed_services",
+          "window": {
+            "unit": "treatment_case",
+            "lookback_periods": 0,
+            "anchor": "service_date"
+          }
+        }
+      ],
+      "eligibility": {
+        "kind": "all",
+        "items": [
+          {
+            "kind": "fact",
+            "field": "service.status",
+            "operator": "eq",
+            "value": "performed",
+            "source_ids": [
+              "GOAE_PAR4"
+            ]
+          },
+          {
+            "kind": "fact",
+            "field": "documentation.required_components_complete",
+            "operator": "eq",
+            "value": true,
+            "source_ids": [
+              "GOAE_NR_3"
+            ]
+          },
+          {
+            "kind": "fact",
+            "field": "documentation.duration_minutes",
+            "operator": "gte",
+            "value": 10,
+            "source_ids": [
+              "GOAE_NR_3"
+            ]
+          }
+        ]
+      },
+      "combination_rules": [
+        {
+          "relationship": "cannot_combine",
+          "with_codes": [
+            "2"
+          ],
+          "window": {
+            "unit": "visit",
+            "lookback_periods": 0,
+            "anchor": "service_date"
+          },
+          "reason": "Nr. 2 ist bei derselben Inanspruchnahme nicht neben anderen Gebühren berechnungsfähig.",
+          "source_ids": [
+            "GOAE_NR_2"
+          ]
+        },
+        {
+          "relationship": "cannot_combine",
+          "with_codes": [
+            "804",
+            "805",
+            "806",
+            "807",
+            "808",
+            "809",
+            "810",
+            "811",
+            "812",
+            "817",
+            "835",
+            "849",
+            "861",
+            "862",
+            "863",
+            "864",
+            "870",
+            "871",
+            "886",
+            "887"
+          ],
+          "window": {
+            "unit": "visit",
+            "lookback_periods": 0,
+            "anchor": "service_date"
+          },
+          "reason": "Abschnitt B Allgemeine Bestimmung Nr. 4: Ausschluss neben den genannten Leistungen.",
+          "source_ids": [
+            "GOAE_B_ALLG"
+          ]
+        }
+      ],
+      "frequency_limits": [],
+      "result": {
+        "type": "possible_missing_code",
+        "explanation": "Entwurf: Eingehende ärztliche Beratung, mindestens zehn Minuten. Nur Teilprüfung; offene Bedingungen im Prüfdossier. Keine abrechnungsfähige Empfehlung.",
+        "missing_evidence_message": "Nicht prüfbar: Dokumentation, zeitlicher Kontext oder offene Regelbedingungen fehlen. Keine Leistung oder Diagnose ergänzen, die nicht erbracht bzw. belegt ist.",
+        "requires_human_confirmation": true
+      }
+    },
+    {
+      "id": "GOAE_5_CORE_DRAFT",
+      "version": "0.1.0-draft.1",
+      "billing_system": "GOAE",
+      "status": "draft",
+      "title": "Symptombezogene Untersuchung",
+      "procedure_codes": [
+        "5"
+      ],
+      "valid_from": "2026-10-01",
+      "valid_to": "2026-12-31",
+      "jurisdiction": "DE",
+      "contract_id": null,
+      "sources": [
+        {
+          "id": "GOAE_NR_5",
+          "kind": "legal_text",
+          "publisher": "Bundesministerium der Justiz / Bundesamt für Justiz",
+          "title": "GOÄ Anlage – Nr. 5",
+          "uri": "https://www.gesetze-im-internet.de/go__1982/anlage.html",
+          "version": "Onlinefassung abgerufen 25.10.2026",
+          "locator": "Abschnitt B, I, Nr. 5 einschließlich zugehöriger Anmerkungen",
+          "checked_on": "2026-10-25",
+          "sha256": "4e72bfc8629d8de5be0f969c1bbfc5b7133b1feb9bf822ecbf1558950099148c",
+          "license_status": "pending"
+        },
+        {
+          "id": "GOAE_B_ALLG",
+          "kind": "legal_text",
+          "publisher": "Bundesministerium der Justiz / Bundesamt für Justiz",
+          "title": "GOÄ Anlage – Abschnitt B, Allgemeine Bestimmungen",
+          "uri": "https://www.gesetze-im-internet.de/go__1982/anlage.html",
+          "version": "Onlinefassung abgerufen 25.10.2026",
+          "locator": "Abschnitt B, Allgemeine Bestimmungen Nr. 1–5, 7 und 8",
+          "checked_on": "2026-10-25",
+          "sha256": "4e72bfc8629d8de5be0f969c1bbfc5b7133b1feb9bf822ecbf1558950099148c",
+          "license_status": "pending"
+        },
+        {
+          "id": "GOAE_PAR4",
+          "kind": "legal_text",
+          "publisher": "Bundesministerium der Justiz / Bundesamt für Justiz",
+          "title": "GOÄ § 4 Gebühren",
+          "uri": "https://www.gesetze-im-internet.de/go__1982/__4.html",
+          "version": "Onlinefassung abgerufen 25.10.2026",
+          "locator": "§ 4 Abs. 2: eigene ärztliche Leistungen",
+          "checked_on": "2026-10-25",
+          "sha256": "82dd59e0ace275f23706ce5bf15d5965f5517c8dbf9ae09270cb0f96e09778f2",
+          "license_status": "pending"
+        },
+        {
+          "id": "GOAE_NR_2",
+          "kind": "legal_text",
+          "publisher": "Bundesministerium der Justiz / Bundesamt für Justiz",
+          "title": "GOÄ Anlage – Nr. 2",
+          "uri": "https://www.gesetze-im-internet.de/go__1982/anlage.html",
+          "version": "Onlinefassung abgerufen 25.10.2026",
+          "locator": "Abschnitt B.I, Nr. 2, Anmerkung zur selben Inanspruchnahme",
+          "checked_on": "2026-10-25",
+          "sha256": "4e72bfc8629d8de5be0f969c1bbfc5b7133b1feb9bf822ecbf1558950099148c",
+          "license_status": "pending"
+        }
+      ],
+      "reviews": {
+        "billing": {
+          "state": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "rationale": "Teilmodell zur fachlichen Prüfung; offene Bedingungen siehe docs/BILLING_DRAFTS_2026Q4.md. Keine Aktivierung."
+        },
+        "clinical": {
+          "state": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "rationale": "Teilmodell zur fachlichen Prüfung; offene Bedingungen siehe docs/BILLING_DRAFTS_2026Q4.md. Keine Aktivierung."
+        }
+      },
+      "required_context": [
+        {
+          "domain": "documentation",
+          "window": {
+            "unit": "visit",
+            "lookback_periods": 0,
+            "anchor": "service_date"
+          }
+        },
+        {
+          "domain": "billed_services",
+          "window": {
+            "unit": "visit",
+            "lookback_periods": 0,
+            "anchor": "service_date"
+          }
+        },
+        {
+          "domain": "billed_services",
+          "window": {
+            "unit": "treatment_case",
+            "lookback_periods": 0,
+            "anchor": "service_date"
+          }
+        }
+      ],
+      "eligibility": {
+        "kind": "all",
+        "items": [
+          {
+            "kind": "fact",
+            "field": "service.status",
+            "operator": "eq",
+            "value": "performed",
+            "source_ids": [
+              "GOAE_PAR4"
+            ]
+          },
+          {
+            "kind": "fact",
+            "field": "documentation.required_components_complete",
+            "operator": "eq",
+            "value": true,
+            "source_ids": [
+              "GOAE_NR_5"
+            ]
+          }
+        ]
+      },
+      "combination_rules": [
+        {
+          "relationship": "cannot_combine",
+          "with_codes": [
+            "2"
+          ],
+          "window": {
+            "unit": "visit",
+            "lookback_periods": 0,
+            "anchor": "service_date"
+          },
+          "reason": "Nr. 2 ist bei derselben Inanspruchnahme nicht neben anderen Gebühren berechnungsfähig.",
+          "source_ids": [
+            "GOAE_NR_2"
+          ]
+        },
+        {
+          "relationship": "cannot_combine",
+          "with_codes": [
+            "6",
+            "7",
+            "8"
+          ],
+          "window": {
+            "unit": "visit",
+            "lookback_periods": 0,
+            "anchor": "service_date"
+          },
+          "reason": "Anmerkung Nr. 5: nicht neben Nr. 6 bis 8.",
+          "source_ids": [
+            "GOAE_NR_5"
+          ]
+        },
+        {
+          "relationship": "cannot_combine",
+          "with_codes": [
+            "600",
+            "601",
+            "1203",
+            "1204",
+            "1228",
+            "1240",
+            "1400",
+            "1401",
+            "1414"
+          ],
+          "window": {
+            "unit": "visit",
+            "lookback_periods": 0,
+            "anchor": "service_date"
+          },
+          "reason": "Abschnitt B Allgemeine Bestimmung Nr. 8: nicht neben Nr. 5 bis 8.",
+          "source_ids": [
+            "GOAE_B_ALLG"
+          ]
+        }
+      ],
+      "frequency_limits": [],
+      "result": {
+        "type": "possible_missing_code",
+        "explanation": "Entwurf: Symptombezogene Untersuchung. Nur Teilprüfung; offene Bedingungen im Prüfdossier. Keine abrechnungsfähige Empfehlung.",
+        "missing_evidence_message": "Nicht prüfbar: Dokumentation, zeitlicher Kontext oder offene Regelbedingungen fehlen. Keine Leistung oder Diagnose ergänzen, die nicht erbracht bzw. belegt ist.",
+        "requires_human_confirmation": true
+      }
+    }
+  ]
+}

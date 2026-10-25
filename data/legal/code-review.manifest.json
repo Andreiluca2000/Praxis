@@ -1,0 +1,76 @@
+{
+  "reviewed_on": "2026-10-25",
+  "git_head_at_review": "1523871871de451009009c4b106e3eaf3ff21ec6",
+  "scope": "Static source review, not runtime or deployed ACL verification",
+  "paths_relative_to": "project root",
+  "files": [
+    {
+      "path": "src-tauri/src/patient.rs",
+      "sha256": "3c2f84e2cd00de87b00d613e82931b2ef83fe5ba5afdb2dad6c910450c1a3fb6"
+    },
+    {
+      "path": "src-tauri/src/commands.rs",
+      "sha256": "54350fcbbfb2c550d0311099e68f677b1f7207ea54cfcce049a35d926ecd5da4"
+    },
+    {
+      "path": "src-tauri/src/gdt.rs",
+      "sha256": "574c5e3b63eb2072402d6e6dfb1d29f0029d792171e73ff4da32d9533ff2096f"
+    },
+    {
+      "path": "src-tauri/src/lib.rs",
+      "sha256": "a94cd339da6e5ab6d5b6ed87e5bb0559b885d2c686a92befccba4c35e7a20643"
+    },
+    {
+      "path": "src-tauri/src/config.rs",
+      "sha256": "509f8e77e6a270642084564b639e359c4c90f499d0cc97b43559aa0805ff201a"
+    },
+    {
+      "path": "src-tauri/src/accounts.rs",
+      "sha256": "759105411e26a6e2abc241b60b32d02799ce6fafa4899e8916c8f134f9796c7a"
+    },
+    {
+      "path": "src-tauri/src/voice.rs",
+      "sha256": "003bb41ad81cbf13714ab3eb0945791a76f484141d9939ec005034cc8629384b"
+    },
+    {
+      "path": "src-tauri/tauri.conf.json",
+      "sha256": "3603cade937618800b372bc9583272d6e72cc4b8e22de9da960ae9cc2145cc60"
+    },
+    {
+      "path": "scripts/server-einrichten.ps1",
+      "sha256": "f0283deba3a3b2dd586f7fccec70aafae5d222057831ba427babb9a78972f3f3"
+    },
+    {
+      "path": "src/duria/adapter.ts",
+      "sha256": "5fd898e983a9ae7bd770543c423e5bac2bb437c48840aeb33816fd9736a26577"
+    },
+    {
+      "path": "src/engine/evaluate.ts",
+      "sha256": "24f5c421bbbddd52c2b1989ad119bd361a03624ce1cd5ca4bc83c1dce1136314"
+    },
+    {
+      "path": "src/engine/windows.ts",
+      "sha256": "7ed53c8575afefa1e8119daeb96bd9940a1a43d0d5d5469fd1932fcbaf915680"
+    },
+    {
+      "path": "src/notes/summarize.ts",
+      "sha256": "d283c0ecb81f549b217be41f9e039a45139ef8a2a3cc1ddd86b6f834e2d561d1"
+    },
+    {
+      "path": "ui/App.tsx",
+      "sha256": "204eaf8e364e412ea3c935853d49c61f6101f445b8c7366554bd570347741252"
+    },
+    {
+      "path": "ui/session.ts",
+      "sha256": "670ae327cd815b7504538c74cbb4682766c025337da70520f24c98f777a6183e"
+    },
+    {
+      "path": "ui/NoteCard.tsx",
+      "sha256": "2cf06b4194fdfa3a0740fece8cdecf47077adf75ca715b075efd57288d1e0274"
+    },
+    {
+      "path": "ui/CorrectionsPanel.tsx",
+      "sha256": "5d87c94b92ad97d88a85e1dfbcec9a53394723e474ed7b02d4b1792ae467087c"
+    }
+  ]
+}

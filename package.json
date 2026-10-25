@@ -2,7 +2,7 @@
   "name": "praxis-assistent",
   "version": "0.1.0",
   "private": true,
-  "description": "Interner Assistent für eine Hausarztpraxis: ICD-10-GM-Suche und erklärbare Abrechnungsprüfung (MVP, nur synthetische Daten).",
+  "description": "Interner Assistent fÃ¼r eine Hausarztpraxis: ICD-10-GM-Suche und erklÃ¤rbare AbrechnungsprÃ¼fung (MVP, nur synthetische Daten).",
   "type": "module",
   "engines": {
     "node": ">=22"
@@ -12,6 +12,7 @@
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
     "validate:data": "tsx src/cli/validate-data.ts",
+    "import:icd": "tsx scripts/import-icd.ts",
     "ui:dev": "vite",
     "ui:build": "vite build",
     "dev": "tauri dev",

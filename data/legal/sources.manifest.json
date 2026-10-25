@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0.0",
+  "checked_on": "2026-10-25",
+  "sources": [
+    {
+      "id": "BDSG_22",
+      "url": "https://www.gesetze-im-internet.de/bdsg_2018/__22.html",
+      "local_path": "sources/bdsg-22.html",
+      "sha256": "9bf194dccf2714fcb306b3e451844ac5a842a00bfc0a234ac0898b85234fa3d9"
+    },
+    {
+      "id": "STGB_203",
+      "url": "https://www.gesetze-im-internet.de/stgb/__203.html",
+      "local_path": "sources/stgb-203.html",
+      "sha256": "e28273ab626e1871070f7f4cdff4b12d858ebd53ea3faa7d6ac2597578e85ce1"
+    },
+    {
+      "id": "GDPR",
+      "url": "https://eur-lex.europa.eu/eli/reg/2016/679/ojv",
+      "local_path": null,
+      "sha256": null,
+      "access": "Read via official indexed EUR-Lex page; direct binary download returned empty and was discarded."
+    },
+    {
+      "id": "KBV_DATENSCHUTZ",
+      "url": "https://www.kbv.de/praxis/praxisfuehrung/datenschutz",
+      "local_path": null,
+      "sha256": null,
+      "access": "Read via web, page dated 12.05.2025."
+    }
+  ]
+}

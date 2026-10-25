@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:praxis-assistent:schema:billing-draft-dossier:1.0.0",
+  "title": "Unapproved real billing rules for review only",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "package_id", "package_version", "content_kind", "rule_contract", "review_dossier", "rules"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "package_id": {"type": "string", "minLength": 1},
+    "package_version": {"type": "string", "minLength": 1},
+    "content_kind": {"const": "draft_catalogue"},
+    "rule_contract": {"const": "urn:praxis-assistent:schema:billing-rule-package:0.1.0#/$defs/rule"},
+    "review_dossier": {"type": "string", "minLength": 1},
+    "rules": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "allOf": [
+          {"$ref": "urn:praxis-assistent:schema:billing-rule-package:0.1.0#/$defs/rule"},
+          {"type": "object", "properties": {
+            "status": {"const": "draft"},
+            "billing_system": {"enum": ["EBM", "GOAE", "HZV"]},
+            "reviews": {"type": "object", "properties": {
+              "billing": {"type": "object", "properties": {"state": {"const": "pending"}}},
+              "clinical": {"type": "object", "properties": {"state": {"const": "pending"}}}
+            }}
+          }}
+        ]
+      }
+    }
+  }
+}

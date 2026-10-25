@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--ClaML ver 2.0.0 -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xml="http://www.w3.org/XML/1998/namespace" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd"/>
+	<xs:group name="rubric.simple">
+		<xs:choice>
+			<xs:element ref="Reference"/>
+			<xs:element ref="Term"/>
+		</xs:choice>
+	</xs:group>
+	<xs:group name="rubric.complex">
+		<xs:choice>
+			<xs:group ref="rubric.simple"/>
+			<xs:element ref="Para"/>
+			<xs:element ref="Include"/>
+			<xs:element ref="IncludeDescendants"/>
+			<xs:element ref="Fragment"/>
+			<xs:element ref="List"/>
+			<xs:element ref="Table"/>
+		</xs:choice>
+	</xs:group>
+	<xs:element name="ClaML">
+		<xs:complexType mixed="false">
+			<xs:sequence>
+				<xs:element ref="Meta" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Identifier" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Title" minOccurs="1" maxOccurs="1"/>
+				<xs:element ref="Authors" minOccurs="0" maxOccurs="1"/>
+				<xs:element ref="Variants" minOccurs="0" maxOccurs="1"/>
+				<xs:element ref="ClassKinds" minOccurs="1" maxOccurs="1"/>
+				<xs:element ref="UsageKinds" minOccurs="0" maxOccurs="1"/>
+				<xs:element ref="RubricKinds" minOccurs="1" maxOccurs="1"/>
+				<xs:element ref="Modifier" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ModifierClass" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Class" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Variants">
+		<xs:complexType mixed="false">
+			<xs:sequence>
+				<xs:element ref="Variant" minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Variant">
+		<xs:complexType mixed="true">
+			<xs:attribute name="name" type="xs:ID" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Meta">
+		<xs:complexType mixed="false">
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="value" type="xs:string" use="required"/>
+			<xs:attribute name="variants" type="xs:IDREFS" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Identifier">
+		<xs:complexType mixed="false">
+			<xs:attribute name="authority" type="xs:NMTOKEN" use="optional"/>
+			<xs:attribute name="uid" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Title">
+		<xs:complexType mixed="true">
+			<xs:attribute name="name" type="xs:NMTOKEN" use="required"/>
+			<xs:attribute name="version" type="xs:string" use="optional"/>
+			<xs:attribute name="date" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Authors">
+		<xs:complexType mixed="false">
+			<xs:sequence>
+				<xs:element ref="Author" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Author">
+		<xs:complexType mixed="true">
+			<xs:attribute name="name" type="xs:ID" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ClassKinds">
+		<xs:complexType mixed="false">
+			<xs:sequence>
+				<xs:element ref="ClassKind" minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="UsageKinds">
+		<xs:complexType mixed="false">
+			<xs:sequence>
+				<xs:element ref="UsageKind" minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RubricKinds">
+		<xs:complexType mixed="false">
+			<xs:sequence>
+				<xs:element ref="RubricKind" minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ClassKind">
+		<xs:complexType mixed="false">
+			<xs:sequence>
+				<xs:element ref="Display" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:ID" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="UsageKind">
+		<xs:complexType mixed="false">
+			<xs:attribute name="name" type="xs:ID" use="required"/>
+			<xs:attribute name="mark" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RubricKind">
+		<xs:complexType mixed="false">
+			<xs:sequence>
+				<xs:element ref="Display" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:ID" use="required"/>
+			<xs:attribute name="inherited" type="xs:boolean" use="optional" default="true"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Display">
+		<xs:complexType mixed="true">
+			<xs:attribute ref="xml:lang" use="required"/>
+			<xs:attribute name="variants" type="xs:IDREF" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Modifier">
+		<xs:complexType mixed="false">
+			<xs:sequence>
+				<xs:element ref="Meta" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="SubClass" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Rubric" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="History" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="code" type="xs:NMTOKEN" use="required"/>
+			<xs:attribute name="variants" type="xs:IDREFS" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ModifierClass">
+		<xs:complexType mixed="false">
+			<xs:sequence>
+				<xs:element ref="Meta" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="SuperClass" minOccurs="1" maxOccurs="1"/>
+				<xs:element ref="SubClass" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Rubric" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="History" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="modifier" type="xs:NMTOKEN" use="required"/>
+			<xs:attribute name="code" type="xs:NMTOKEN" use="required"/>
+			<xs:attribute name="usage" type="xs:IDREF" use="optional"/>
+			<xs:attribute name="variants" type="xs:IDREFS" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Class">
+		<xs:complexType mixed="false">
+			<xs:sequence>
+				<xs:element ref="Meta" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="SuperClass" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="SubClass" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ModifiedBy" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ExcludeModifier" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Rubric" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="History" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="code" type="xs:NMTOKEN" use="required"/>
+			<xs:attribute name="kind" type="xs:IDREF" use="required"/>
+			<xs:attribute name="usage" type="xs:IDREF" use="optional"/>
+			<xs:attribute name="variants" type="xs:IDREFS" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ModifiedBy">
+		<xs:complexType mixed="false">
+			<xs:sequence>
+				<xs:element ref="Meta" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ValidModifierClass" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="code" type="xs:NMTOKEN" use="required"/>
+			<xs:attribute name="all" type="xs:boolean" use="optional" default="true"/>
+			<xs:attribute name="position" type="xs:string" use="optional"/>
+			<xs:attribute name="variants" type="xs:IDREFS" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ExcludeModifier">
+		<xs:complexType mixed="false">
+			<xs:attribute name="code" type="xs:NMTOKEN" use="required"/>
+			<xs:attribute name="variants" type="xs:IDREFS" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ValidModifierClass">
+		<xs:complexType mixed="false">
+			<xs:attribute name="code" type="xs:NMTOKEN" use="required"/>
+			<xs:attribute name="variants" type="xs:IDREFS" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Rubric">
+		<xs:complexType mixed="false">
+			<xs:sequence>
+				<xs:element ref="Label" minOccurs="1" maxOccurs="unbounded"/>
+				<xs:element ref="History" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:ID" use="optional"/>
+			<xs:attribute name="kind" type="xs:IDREF" use="required"/>
+			<xs:attribute name="usage" type="xs:IDREF" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Label">
+		<xs:complexType mixed="true">
+			<xs:group ref="rubric.complex" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:attribute ref="xml:lang" use="required"/>
+			<xs:attribute ref="xml:space" use="optional" default="default"/>
+			<xs:attribute name="variants" type="xs:IDREFS" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="History">
+		<xs:complexType mixed="true">
+			<xs:attribute name="author" type="xs:IDREF" use="required"/>
+			<xs:attribute name="date" type="xs:NMTOKEN" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SuperClass">
+		<xs:complexType mixed="false">
+			<xs:attribute name="code" type="xs:NMTOKEN" use="required"/>
+			<xs:attribute name="variants" type="xs:IDREFS" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SubClass">
+		<xs:complexType mixed="false">
+			<xs:attribute name="code" type="xs:NMTOKEN" use="required"/>
+			<xs:attribute name="variants" type="xs:IDREFS" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Reference">
+		<xs:complexType mixed="true">
+			<xs:attribute name="class" type="xs:string" use="optional"/>
+			<xs:attribute name="authority" type="xs:NMTOKEN" use="optional"/>
+			<xs:attribute name="uid" type="xs:NMTOKEN" use="optional"/>
+			<xs:attribute name="code" type="xs:NMTOKEN" use="optional"/>
+			<xs:attribute name="usage" type="xs:IDREF" use="optional"/>
+			<xs:attribute name="variants" type="xs:IDREFS" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Para">
+		<xs:complexType mixed="true">
+			<xs:group ref="rubric.simple" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:attribute name="class" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Fragment">
+		<xs:complexType mixed="true">
+			<xs:group ref="rubric.simple" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:attribute name="class" type="xs:string" use="optional"/>
+			<xs:attribute name="usage" type="xs:IDREF" use="optional"/>
+			<xs:attribute name="type" use="optional" default="item">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="item"/>
+						<xs:enumeration value="list"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Include">
+		<xs:complexType mixed="false">
+			<xs:attribute name="class" type="xs:string" use="optional"/>
+			<xs:attribute name="rubric" type="xs:IDREF" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="IncludeDescendants">
+		<xs:complexType mixed="false">
+			<xs:attribute name="code" type="xs:NMTOKEN" use="required"/>
+			<xs:attribute name="kind" type="xs:IDREF" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="List">
+		<xs:complexType mixed="false">
+			<xs:sequence>
+				<xs:element ref="ListItem" minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="class" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ListItem">
+		<xs:complexType mixed="true">
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:group ref="rubric.simple"/>
+				<xs:element ref="Para"/>
+				<xs:element ref="Include"/>
+				<xs:element ref="List"/>
+				<xs:element ref="Table"/>
+			</xs:choice>
+			<xs:attribute name="class" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Table">
+		<xs:complexType mixed="false">
+			<xs:sequence>
+				<xs:element ref="Caption" minOccurs="0" maxOccurs="1"/>
+				<xs:element ref="THead" minOccurs="0" maxOccurs="1"/>
+				<xs:element ref="TBody" minOccurs="0" maxOccurs="1"/>
+				<xs:element ref="TFoot" minOccurs="0" maxOccurs="1"/>
+			</xs:sequence>
+			<xs:attribute name="class" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Caption">
+		<xs:complexType mixed="true">
+			<xs:group ref="rubric.simple" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:attribute name="class" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="THead">
+		<xs:complexType mixed="false">
+			<xs:sequence>
+				<xs:element ref="Row" minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="class" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TBody">
+		<xs:complexType mixed="false">
+			<xs:sequence>
+				<xs:element ref="Row" minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="class" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TFoot">
+		<xs:complexType mixed="false">
+			<xs:sequence>
+				<xs:element ref="Row" minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="class" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Row">
+		<xs:complexType mixed="false">
+			<xs:sequence>
+				<xs:element ref="Cell" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="class" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Cell">
+		<xs:complexType mixed="true">
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:group ref="rubric.simple"/>
+				<xs:element ref="Para"/>
+				<xs:element ref="Include"/>
+				<xs:element ref="List"/>
+				<xs:element ref="Table"/>
+			</xs:choice>
+			<xs:attribute name="class" type="xs:string" use="optional"/>
+			<xs:attribute name="rowspan" type="xs:string" use="optional"/>
+			<xs:attribute name="colspan" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Term">
+		<xs:complexType mixed="true">
+			<xs:attribute name="class" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

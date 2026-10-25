@@ -1,4 +1,13 @@
 # Stadiul programării (Claude)
+## Etapa (25.10.2026): catalogul ICD-10-GM 2026 integrat (livrare Codex)
+- **Import** `pnpm import:icd` (`scripts/import-icd.ts`): verifică manifestul, mărimile și SHA-256, citește metadatele (16.905 coduri, 28 de coloane) și ClaML (12.606 clase, 9.256 incluziuni, 4.798 excluderi), fără DTD sau entități. Aplică cele 10 corecturi din 28.01.2026 doar pe copia derivată, cu verificarea valorii vechi. Compară ClaML cu metadatele: orice diferență oprește importul (carantină). Scrie apoi atomic `data/icd/catalog-2026.json` (generat, nu e în git).
+- Neconcordanța XSD a originalului (`xml:space` pe rădăcină) e tratată ca excepție documentată. Originalele rămân neatinse.
+- **Căutare** (`src/icd/search.ts`): cod exact sau prefix, text tolerant la umlaut, majuscule și spații, termeni incluși marcați separat, ordonare categorie → „n. n. bez.” → cod. Notele §295 (P/O/Z/V), sex, vârstă și IfSG sunt afișate. Nu setează niciodată G/V/A/Z.
+- **Interfață**: pagina „Diagnosen & ICD” și butonul „ICD suchen” la fiecare diagnoză din notițe; codul introdus e verificat față de catalog.
+- Teste ICD-01…10 pe catalogul real + teste de carantină: 143 TypeScript în total. Verificatorul Codex `verify-content.py` trece.
+- Rămase din raportul Codex: constatările Datenschutz P0 (patient.rs, server-einrichten.ps1, scanner GDT) și integrarea drafturilor de reguli EBM/GOÄ.
+
+
 ## Etapa (25.10.2026): corecturi, verificarea trimestrială KVDT, cale de trimitere interschimbabilă
 - **Corecturi** (`src/corrections/`, `ui/CorrectionsPanel.tsx`): listă de pași „12.11.2026 · Diagnose J06.9 G → J20.9 G (Grund: …) [AL]”, cu butoane de copiere și „In DURIA erledigt”. Propuneri automate (altă certitudine, cod mai specific din aceeași categorie, conflicte din Fertig). Trebuie preluate de un medic. Motivul e obligatoriu, formatul ICD și G/V/A/Z sunt verificate. Programul nu modifică nimic în DURIA.
 - **Verificarea trimestrială KVDT** (`src/kvdt/`, `ui/QuarterCheck.tsx`, Rust `read_kvdt`): doar citire. Rust elimină identitățile și pune pseudonime pentru toți pacienții. Verifică: caz fără diagnoză, diagnoză fără certitudine, cifră fără dată sau în afara trimestrului, conflicte de reguli/limite pe trimestru. Doar pentru medici.

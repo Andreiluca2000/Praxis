@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:praxis-assistent:schema:icd-source-manifest:1.0.0",
+  "title": "Official ICD source delivery manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "dataset", "version", "release_date", "effective_from", "effective_to", "publisher", "retrieved_on", "landing_url", "acquisition", "components", "counts", "corrections", "license", "validation", "artifacts", "archives"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "dataset": {"const": "ICD-10-GM"},
+    "version": {"type": "string", "pattern": "^[0-9]{4}$"},
+    "release_date": {"type": "string", "format": "date"},
+    "effective_from": {"type": "string", "format": "date"},
+    "effective_to": {"type": "string", "format": "date"},
+    "publisher": {"type": "string", "minLength": 1},
+    "retrieved_on": {"type": "string", "format": "date"},
+    "landing_url": {"type": "string", "format": "uri"},
+    "acquisition": {
+      "type": "object", "additionalProperties": false,
+      "required": ["method", "form_url", "claml_publication_id", "metadata_publication_id", "terms_file", "terms_version", "sha256_note"],
+      "properties": {
+        "method": {"type": "string"}, "form_url": {"type": "string", "format": "uri"},
+        "claml_publication_id": {"type": "string"}, "metadata_publication_id": {"type": "string"},
+        "terms_file": {"type": "string"}, "terms_version": {"type": "string", "format": "date"},
+        "sha256_note": {"type": "string"}
+      }
+    },
+    "components": {
+      "type": "object", "additionalProperties": false,
+      "required": ["systematic_claml", "modifiers", "systematic_inclusions_exclusions", "metadata_codes", "coding_instructions_in_archive", "alphabetical_index", "crosswalk_previous_year", "historical_versions", "validated_application_database"],
+      "properties": {
+        "systematic_claml": {"type": "boolean"}, "modifiers": {"type": "boolean"},
+        "systematic_inclusions_exclusions": {"type": "boolean"}, "metadata_codes": {"type": "boolean"},
+        "coding_instructions_in_archive": {"type": "boolean"}, "alphabetical_index": {"type": "boolean"},
+        "crosswalk_previous_year": {"type": "boolean"}, "historical_versions": {"type": "boolean"},
+        "validated_application_database": {"type": "boolean"}
+      }
+    },
+    "counts": {
+      "type": "object", "additionalProperties": false,
+      "required": ["claml_classes", "claml_categories", "claml_chapters", "claml_blocks", "claml_modifiers", "claml_modifier_classes", "metadata_rows", "metadata_columns", "terminal_codes", "nonterminal_codes"],
+      "properties": {
+        "claml_classes": {"type": "integer", "minimum": 1}, "claml_categories": {"type": "integer", "minimum": 1},
+        "claml_chapters": {"type": "integer", "minimum": 1}, "claml_blocks": {"type": "integer", "minimum": 1},
+        "claml_modifiers": {"type": "integer", "minimum": 1}, "claml_modifier_classes": {"type": "integer", "minimum": 1},
+        "metadata_rows": {"type": "integer", "minimum": 1}, "metadata_columns": {"type": "integer", "minimum": 1},
+        "terminal_codes": {"type": "integer", "minimum": 1}, "nonterminal_codes": {"type": "integer", "minimum": 1}
+      }
+    },
+    "corrections": {
+      "type": "object", "additionalProperties": false,
+      "required": ["source", "instructions", "original_files_modified", "required_for_derived_import", "scope"],
+      "properties": {
+        "source": {"type": "string"}, "instructions": {"type": "string"},
+        "original_files_modified": {"const": false}, "required_for_derived_import": {"const": true},
+        "scope": {"type": "string"}
+      }
+    },
+    "license": {
+      "type": "object", "additionalProperties": false,
+      "required": ["notice", "terms", "local_source_use", "distribution"],
+      "properties": {
+        "notice": {"type": "string"}, "terms": {"type": "string"},
+        "local_source_use": {"const": "permitted_subject_to_terms"}, "distribution": {"type": "string"}
+      }
+    },
+    "validation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["strict_original_xsd", "known_issue", "validation_view", "importer_decision"],
+      "properties": {
+        "strict_original_xsd": {"const": "fails_one_known_attribute"},
+        "known_issue": {"type": "string", "minLength": 1},
+        "validation_view": {"const": "passes_after_omitting_only_root_xml_space_in_memory"},
+        "importer_decision": {"const": "explicit_exception_review_required"}
+      }
+    },
+    "artifacts": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["path", "component", "bytes", "sha256", "source_url", "archive", "archive_member", "original_bytes"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1}, "component": {"type": "string", "minLength": 1},
+          "bytes": {"type": "integer", "minimum": 1}, "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+          "source_url": {"type": "string", "format": "uri"}, "archive": {"type": ["string", "null"]},
+          "archive_member": {"type": ["string", "null"]}, "original_bytes": {"type": "boolean"}
+        }
+      }
+    },
+    "archives": {"type": "object", "additionalProperties": {"type": "array", "items": {"type": "string"}, "minItems": 1}}
+  }
+}

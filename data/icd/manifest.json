@@ -1,0 +1,333 @@
+{
+  "schema_version": "1.0.0",
+  "dataset": "ICD-10-GM",
+  "version": "2026",
+  "release_date": "2025-09-12",
+  "effective_from": "2026-01-01",
+  "effective_to": "2026-12-31",
+  "publisher": "Bundesinstitut für Arzneimittel und Medizinprodukte (BfArM)",
+  "retrieved_on": "2026-10-25",
+  "landing_url": "https://www.bfarm.de/DE/Kodiersysteme/Services/Downloads/_node.html",
+  "acquisition": {
+    "method": "BfArM download confirmation form, public official distribution",
+    "form_url": "https://www.bfarm.de/SiteGlobals/Forms/Downloadbestaetigung/Downloadbestaetigung_Formular.html",
+    "claml_publication_id": "2232974",
+    "metadata_publication_id": "2232978",
+    "terms_file": "bfarm-downloadbedingungen-20250801.pdf",
+    "terms_version": "2025-08-01",
+    "sha256_note": "Locally computed integrity digests, not publisher signatures or publisher-supplied checksums."
+  },
+  "components": {
+    "systematic_claml": true,
+    "modifiers": true,
+    "systematic_inclusions_exclusions": true,
+    "metadata_codes": true,
+    "coding_instructions_in_archive": true,
+    "alphabetical_index": false,
+    "crosswalk_previous_year": false,
+    "historical_versions": false,
+    "validated_application_database": false
+  },
+  "counts": {
+    "claml_classes": 12606,
+    "claml_categories": 12334,
+    "claml_chapters": 22,
+    "claml_blocks": 250,
+    "claml_modifiers": 53,
+    "claml_modifier_classes": 273,
+    "metadata_rows": 16905,
+    "metadata_columns": 28,
+    "terminal_codes": 14370,
+    "nonterminal_codes": 2535
+  },
+  "corrections": {
+    "source": "icd10gm2026syst-corrigenda-20260128.pdf",
+    "instructions": "corrigenda-20260128.json",
+    "original_files_modified": false,
+    "required_for_derived_import": true,
+    "scope": "Age metadata corrections of 28 January 2026 only; older crosswalk corrections in the same PDF concern a component not included here."
+  },
+  "license": {
+    "notice": "SOURCE_NOTICE.txt",
+    "terms": "bfarm-downloadbedingungen-20250801.pdf",
+    "local_source_use": "permitted_subject_to_terms",
+    "distribution": "Preserve official attribution, amendment restrictions and terms; no claim of unrestricted distribution."
+  },
+  "artifacts": [
+    {
+      "path": "ClaML2.0.0.xsd",
+      "component": "claml",
+      "bytes": 14273,
+      "sha256": "79a156bc9bc7e3f808ff37abe227ce242d5956f6982481f2d146847222e3fd64",
+      "source_url": "https://www.bfarm.de/SharedDocs/Downloads/DE/Kodiersysteme/klassifikationen/icd-10-gm/version2026/icd10gm2026syst-claml_zip.html",
+      "archive": "icd10gm2026syst-claml.zip",
+      "archive_member": "Klassifikationsdateien/ClaML2.0.0.xsd",
+      "original_bytes": true
+    },
+    {
+      "path": "SOURCE_NOTICE.txt",
+      "component": "derived_attribution",
+      "bytes": 1887,
+      "sha256": "c31e62ab3da9286f9c989f42752a1796f8e02cd344138bcca9134ed30464b540",
+      "source_url": "https://www.bfarm.de/SharedDocs/Downloads/DE/Kodiersysteme/downloadbedingungen_20250801.pdf?__blob=publicationFile",
+      "archive": null,
+      "archive_member": null,
+      "original_bytes": false
+    },
+    {
+      "path": "bfarm-downloadbedingungen-20250801.pdf",
+      "component": "license",
+      "bytes": 281064,
+      "sha256": "435f2d66e72a99ccbbe43d0af5df49a6986bdc17321be921b7f794022f00395f",
+      "source_url": "https://www.bfarm.de/SharedDocs/Downloads/DE/Kodiersysteme/downloadbedingungen_20250801.pdf?__blob=publicationFile",
+      "archive": null,
+      "archive_member": null,
+      "original_bytes": true
+    },
+    {
+      "path": "claml-kurzdokumentation-20250912.pdf",
+      "component": "claml",
+      "bytes": 541421,
+      "sha256": "1c4042538f77c724bd9a16db3210b3db2469d4f6916a57e11cbba391ecc01545",
+      "source_url": "https://www.bfarm.de/SharedDocs/Downloads/DE/Kodiersysteme/klassifikationen/icd-10-gm/version2026/icd10gm2026syst-claml_zip.html",
+      "archive": "icd10gm2026syst-claml.zip",
+      "archive_member": "claml-kurzdokumentation-20250912.pdf",
+      "original_bytes": true
+    },
+    {
+      "path": "corrigenda-20260128.json",
+      "component": "derived_correction_instructions",
+      "bytes": 2535,
+      "sha256": "583922f98f4d8c2608f63eb5523fbc8d55a5b8dbc4bb78215942a82f56fd9bfe",
+      "source_url": "https://www.bfarm.de/SharedDocs/Downloads/DE/Kodiersysteme/klassifikationen/icd-10-gm/version2026/icd10gm2026syst-corrigenda-20260128.pdf?__blob=publicationFile",
+      "archive": null,
+      "archive_member": null,
+      "original_bytes": false
+    },
+    {
+      "path": "icd10gm2026syst-claml.zip",
+      "component": "claml_archive",
+      "bytes": 17804246,
+      "sha256": "088565588dc4676d8ad6c345e8568daf09f620e3cdf052923d1b30f6ba60fa82",
+      "source_url": "https://www.bfarm.de/SharedDocs/Downloads/DE/Kodiersysteme/klassifikationen/icd-10-gm/version2026/icd10gm2026syst-claml_zip.html",
+      "archive": null,
+      "archive_member": null,
+      "original_bytes": true
+    },
+    {
+      "path": "icd10gm2026syst-corrigenda-20260128.pdf",
+      "component": "corrigenda",
+      "bytes": 181780,
+      "sha256": "1aebff9d7b297b91be3c0726af4a1bb511dcd4ec44bd3778a55f0b913c1c45fb",
+      "source_url": "https://www.bfarm.de/SharedDocs/Downloads/DE/Kodiersysteme/klassifikationen/icd-10-gm/version2026/icd10gm2026syst-corrigenda-20260128.pdf?__blob=publicationFile",
+      "archive": null,
+      "archive_member": null,
+      "original_bytes": true
+    },
+    {
+      "path": "icd10gm2026syst-meta.zip",
+      "component": "metadata_archive",
+      "bytes": 16968079,
+      "sha256": "305a8f5ef0c6d46f573d4d6b26fc589aab7b1241cb1e7c05d9e9d65d1d468a06",
+      "source_url": "https://www.bfarm.de/SharedDocs/Downloads/DE/Kodiersysteme/klassifikationen/icd-10-gm/version2026/icd10gm2026syst-meta_zip.html",
+      "archive": null,
+      "archive_member": null,
+      "original_bytes": true
+    },
+    {
+      "path": "icd10gm2026syst_claml_20250912.xml",
+      "component": "claml",
+      "bytes": 14472616,
+      "sha256": "b766ebf47297aeb43ff00d4272efd55f78920750eaad2d250f44ebc73fbe74e6",
+      "source_url": "https://www.bfarm.de/SharedDocs/Downloads/DE/Kodiersysteme/klassifikationen/icd-10-gm/version2026/icd10gm2026syst-claml_zip.html",
+      "archive": "icd10gm2026syst-claml.zip",
+      "archive_member": "Klassifikationsdateien/icd10gm2026syst_claml_20250912.xml",
+      "original_bytes": true
+    },
+    {
+      "path": "icd10gm2026syst_claml_liesmich.txt",
+      "component": "claml",
+      "bytes": 12825,
+      "sha256": "2ab7cb8ca06d2f2e9c558493232ae8a884595cd1c5c5a1500bfecda628f97f82",
+      "source_url": "https://www.bfarm.de/SharedDocs/Downloads/DE/Kodiersysteme/klassifikationen/icd-10-gm/version2026/icd10gm2026syst-claml_zip.html",
+      "archive": "icd10gm2026syst-claml.zip",
+      "archive_member": "icd10gm2026syst_claml_liesmich.txt",
+      "original_bytes": true
+    },
+    {
+      "path": "icd10gm2026syst_metadaten_liesmich.txt",
+      "component": "metadata",
+      "bytes": 20788,
+      "sha256": "a57590422a215fcf41a06b047fceae71d1d6fc1e6a93f9848af0488d652da70e",
+      "source_url": "https://www.bfarm.de/SharedDocs/Downloads/DE/Kodiersysteme/klassifikationen/icd-10-gm/version2026/icd10gm2026syst-meta_zip.html",
+      "archive": "icd10gm2026syst-meta.zip",
+      "archive_member": "icd10gm2026syst_metadaten_liesmich.txt",
+      "original_bytes": true
+    },
+    {
+      "path": "metadata/icd10gm2026syst_gruppen.txt",
+      "component": "metadata",
+      "bytes": 15719,
+      "sha256": "3c05382b9f8ec1802f329af3b35e9f0b50a6ecda98c03fda3753af432e3fb8d9",
+      "source_url": "https://www.bfarm.de/SharedDocs/Downloads/DE/Kodiersysteme/klassifikationen/icd-10-gm/version2026/icd10gm2026syst-meta_zip.html",
+      "archive": "icd10gm2026syst-meta.zip",
+      "archive_member": "Klassifikationsdateien/icd10gm2026syst_gruppen.txt",
+      "original_bytes": true
+    },
+    {
+      "path": "metadata/icd10gm2026syst_kapitel.txt",
+      "component": "metadata",
+      "bytes": 1241,
+      "sha256": "b5b1b9ecf45d46d132972b32f3c62af92ea307336b6e488d18adc24022156217",
+      "source_url": "https://www.bfarm.de/SharedDocs/Downloads/DE/Kodiersysteme/klassifikationen/icd-10-gm/version2026/icd10gm2026syst-meta_zip.html",
+      "archive": "icd10gm2026syst-meta.zip",
+      "archive_member": "Klassifikationsdateien/icd10gm2026syst_kapitel.txt",
+      "original_bytes": true
+    },
+    {
+      "path": "metadata/icd10gm2026syst_kodes.txt",
+      "component": "metadata",
+      "bytes": 4213296,
+      "sha256": "bdf54fea9fc763561327494b43c7025664a13c242a9f0f4c15dadb070546fba9",
+      "source_url": "https://www.bfarm.de/SharedDocs/Downloads/DE/Kodiersysteme/klassifikationen/icd-10-gm/version2026/icd10gm2026syst-meta_zip.html",
+      "archive": "icd10gm2026syst-meta.zip",
+      "archive_member": "Klassifikationsdateien/icd10gm2026syst_kodes.txt",
+      "original_bytes": true
+    },
+    {
+      "path": "metadata/morbl_2026.txt",
+      "component": "metadata",
+      "bytes": 13792,
+      "sha256": "ac7e3cbaa1d26fe2df1219463da9bfe0cd4e694f7c2a5112bcb6f19a8e418e0d",
+      "source_url": "https://www.bfarm.de/SharedDocs/Downloads/DE/Kodiersysteme/klassifikationen/icd-10-gm/version2026/icd10gm2026syst-meta_zip.html",
+      "archive": "icd10gm2026syst-meta.zip",
+      "archive_member": "Klassifikationsdateien/morbl_2026.txt",
+      "original_bytes": true
+    },
+    {
+      "path": "metadata/mortl1_2026.txt",
+      "component": "metadata",
+      "bytes": 4681,
+      "sha256": "4feaa8686bd48e6e84d4c249ee951d7ada7968580dfc1c5c6286ea8c7342ef43",
+      "source_url": "https://www.bfarm.de/SharedDocs/Downloads/DE/Kodiersysteme/klassifikationen/icd-10-gm/version2026/icd10gm2026syst-meta_zip.html",
+      "archive": "icd10gm2026syst-meta.zip",
+      "archive_member": "Klassifikationsdateien/mortl1_2026.txt",
+      "original_bytes": true
+    },
+    {
+      "path": "metadata/mortl1grp_2026.txt",
+      "component": "metadata",
+      "bytes": 1099,
+      "sha256": "2dcd6714dc557c8ae532ca6b2ebd92d8555eb4b79b322c77e72839bb17e94837",
+      "source_url": "https://www.bfarm.de/SharedDocs/Downloads/DE/Kodiersysteme/klassifikationen/icd-10-gm/version2026/icd10gm2026syst-meta_zip.html",
+      "archive": "icd10gm2026syst-meta.zip",
+      "archive_member": "Klassifikationsdateien/mortl1grp_2026.txt",
+      "original_bytes": true
+    },
+    {
+      "path": "metadata/mortl2_2026.txt",
+      "component": "metadata",
+      "bytes": 3413,
+      "sha256": "7b177bdc9760f3e26cb6b033505d32f2d1be27dfb34f5f3f3c0a9c3bada86129",
+      "source_url": "https://www.bfarm.de/SharedDocs/Downloads/DE/Kodiersysteme/klassifikationen/icd-10-gm/version2026/icd10gm2026syst-meta_zip.html",
+      "archive": "icd10gm2026syst-meta.zip",
+      "archive_member": "Klassifikationsdateien/mortl2_2026.txt",
+      "original_bytes": true
+    },
+    {
+      "path": "metadata/mortl3_2026.txt",
+      "component": "metadata",
+      "bytes": 3035,
+      "sha256": "c2efa7fcc2a58166b82359c44ebd5dd7dc3df46fc11aac903c5bd49878539853",
+      "source_url": "https://www.bfarm.de/SharedDocs/Downloads/DE/Kodiersysteme/klassifikationen/icd-10-gm/version2026/icd10gm2026syst-meta_zip.html",
+      "archive": "icd10gm2026syst-meta.zip",
+      "archive_member": "Klassifikationsdateien/mortl3_2026.txt",
+      "original_bytes": true
+    },
+    {
+      "path": "metadata/mortl3grp_2026.txt",
+      "component": "metadata",
+      "bytes": 873,
+      "sha256": "28bb5db8380e8aed2fdb942a79fd44ff75cdbb61d1a7a84c8d39af95ae7323f4",
+      "source_url": "https://www.bfarm.de/SharedDocs/Downloads/DE/Kodiersysteme/klassifikationen/icd-10-gm/version2026/icd10gm2026syst-meta_zip.html",
+      "archive": "icd10gm2026syst-meta.zip",
+      "archive_member": "Klassifikationsdateien/mortl3grp_2026.txt",
+      "original_bytes": true
+    },
+    {
+      "path": "metadata/mortl4_2026.txt",
+      "component": "metadata",
+      "bytes": 2406,
+      "sha256": "4649f01fd2cedd60dcb72706dfd7633fbb42beb4bd821f10049f22145eac86b4",
+      "source_url": "https://www.bfarm.de/SharedDocs/Downloads/DE/Kodiersysteme/klassifikationen/icd-10-gm/version2026/icd10gm2026syst-meta_zip.html",
+      "archive": "icd10gm2026syst-meta.zip",
+      "archive_member": "Klassifikationsdateien/mortl4_2026.txt",
+      "original_bytes": true
+    },
+    {
+      "path": "w3c-xml.xsd",
+      "component": "xml_namespace_schema",
+      "bytes": 8836,
+      "sha256": "61960fb3131e38022caad5360e2f33a3382578ab3c80cd58bd74320ede61b20c",
+      "source_url": "https://www.w3.org/2001/xml.xsd",
+      "archive": null,
+      "archive_member": null,
+      "original_bytes": true
+    }
+  ],
+  "archives": {
+    "icd10gm2026syst-claml.zip": [
+      "Zusatzdateien/",
+      "Zusatzdateien/icd10gm2026syst_01_vor_titelblatt.pdf",
+      "Zusatzdateien/icd10gm2026syst_02_vor_inhaltsverzeichnis.pdf",
+      "Zusatzdateien/icd10gm2026syst_03_vor_kommentar.pdf",
+      "Zusatzdateien/icd10gm2026syst_04_vor_anleitung_zur_verschluesselung.pdf",
+      "Zusatzdateien/icd10gm2026syst_05_anh_morphologie_neubildungen.pdf",
+      "Zusatzdateien/icd10gm2026syst_06_anh_barthelindex.pdf",
+      "Zusatzdateien/icd10gm2026syst_07_anh_erwbarthelindex.pdf",
+      "Zusatzdateien/icd10gm2026syst_08_anh_frb_schoenle.pdf",
+      "Zusatzdateien/icd10gm2026syst_09_anh_fim.pdf",
+      "Zusatzdateien/icd10gm2026syst_10_anh_mmse.pdf",
+      "Zusatzdateien/icd10gm2026syst_11_anh_adipositas.pdf",
+      "claml-kurzdokumentation-20250912.pdf",
+      "downloadbedingungen-2025.pdf",
+      "icd10gm2026syst_claml_liesmich.txt",
+      "Klassifikationsdateien/",
+      "Klassifikationsdateien/ClaML2.0.0.xsd",
+      "Klassifikationsdateien/icd10gm2026syst_claml_20250912.xml"
+    ],
+    "icd10gm2026syst-meta.zip": [
+      "Klassifikationsdateien/",
+      "Klassifikationsdateien/icd10gm2026syst_gruppen.txt",
+      "Klassifikationsdateien/icd10gm2026syst_kapitel.txt",
+      "Klassifikationsdateien/icd10gm2026syst_kodes.txt",
+      "Klassifikationsdateien/morbl_2026.txt",
+      "Klassifikationsdateien/mortl1grp_2026.txt",
+      "Klassifikationsdateien/mortl1_2026.txt",
+      "Klassifikationsdateien/mortl2_2026.txt",
+      "Klassifikationsdateien/mortl3grp_2026.txt",
+      "Klassifikationsdateien/mortl3_2026.txt",
+      "Klassifikationsdateien/mortl4_2026.txt",
+      "Zusatzdateien/",
+      "Zusatzdateien/icd10gm2026syst_01_vor_titelblatt.pdf",
+      "Zusatzdateien/icd10gm2026syst_02_vor_inhaltsverzeichnis.pdf",
+      "Zusatzdateien/icd10gm2026syst_03_vor_kommentar.pdf",
+      "Zusatzdateien/icd10gm2026syst_04_vor_anleitung_zur_verschluesselung.pdf",
+      "Zusatzdateien/icd10gm2026syst_05_anh_morphologie_neubildungen.pdf",
+      "Zusatzdateien/icd10gm2026syst_06_anh_barthelindex.pdf",
+      "Zusatzdateien/icd10gm2026syst_07_anh_erwbarthelindex.pdf",
+      "Zusatzdateien/icd10gm2026syst_08_anh_frb_schoenle.pdf",
+      "Zusatzdateien/icd10gm2026syst_09_anh_fim.pdf",
+      "Zusatzdateien/icd10gm2026syst_10_anh_mmse.pdf",
+      "Zusatzdateien/icd10gm2026syst_11_anh_adipositas.pdf",
+      "downloadbedingungen-2025.pdf",
+      "icd10gm2026syst_metadaten_liesmich.txt"
+    ]
+  },
+  "validation": {
+    "strict_original_xsd": "fails_one_known_attribute",
+    "known_issue": "The original XML root ClaML at line 2 has xml:space=default, which the accompanying ClaML2.0.0.xsd does not allow. Exactly one XSD error. Source bytes are unchanged.",
+    "validation_view": "passes_after_omitting_only_root_xml_space_in_memory",
+    "importer_decision": "explicit_exception_review_required"
+  }
+}

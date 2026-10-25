@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0.0",
+  "id": "BFARM_ICD10GM_2026_CORRIGENDA_20260128",
+  "source_url": "https://www.bfarm.de/SharedDocs/Downloads/DE/Kodiersysteme/klassifikationen/icd-10-gm/version2026/icd10gm2026syst-corrigenda-20260128.pdf?__blob=publicationFile",
+  "source_file": "icd10gm2026syst-corrigenda-20260128.pdf",
+  "source_sha256": "1aebff9d7b297b91be3c0726af4a1bb511dcd4ec44bd3778a55f0b913c1c45fb",
+  "locator": "PDF page 2, 28. Januar 2026",
+  "description": "Official age metadata corrections; BfArM states source downloads were not corrected. Apply only to derived import with provenance.",
+  "applied_to_original_files": false,
+  "xml_file": "icd10gm2026syst_claml_20250912.xml",
+  "xml_patches": [
+    {
+      "selector": "./ModifierClass[@code='5'][@modifier='S04E66_5']/Meta[@name='AgeHigh']",
+      "attribute": "value",
+      "expected_old": "j017",
+      "new": "j018",
+      "expected_matches": 1
+    },
+    {
+      "selector": "./Class[@code='U10.90']/Meta[@name='AgeHigh']",
+      "attribute": "value",
+      "expected_old": "j017",
+      "new": "j018",
+      "expected_matches": 1
+    },
+    {
+      "selector": "./Class[@code='U10.91']/Meta[@name='AgeLow']",
+      "attribute": "value",
+      "expected_old": "j017",
+      "new": "j018",
+      "expected_matches": 1
+    }
+  ],
+  "metadata_file": "metadata/icd10gm2026syst_kodes.txt",
+  "metadata_code_column_one_based": 7,
+  "metadata_patches": [
+    {
+      "code": "U10.91",
+      "column_one_based": 22,
+      "expected_old": "j017",
+      "new": "j018",
+      "expected_matches": 1
+    },
+    {
+      "code": "U10.90",
+      "column_one_based": 23,
+      "expected_old": "j017",
+      "new": "j018",
+      "expected_matches": 1
+    },
+    {
+      "code": "E66.05",
+      "column_one_based": 23,
+      "expected_old": "j017",
+      "new": "j018",
+      "expected_matches": 1
+    },
+    {
+      "code": "E66.15",
+      "column_one_based": 23,
+      "expected_old": "j017",
+      "new": "j018",
+      "expected_matches": 1
+    },
+    {
+      "code": "E66.25",
+      "column_one_based": 23,
+      "expected_old": "j017",
+      "new": "j018",
+      "expected_matches": 1
+    },
+    {
+      "code": "E66.85",
+      "column_one_based": 23,
+      "expected_old": "j017",
+      "new": "j018",
+      "expected_matches": 1
+    },
+    {
+      "code": "E66.95",
+      "column_one_based": 23,
+      "expected_old": "j017",
+      "new": "j018",
+      "expected_matches": 1
+    }
+  ]
+}

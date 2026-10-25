@@ -1,0 +1,334 @@
+﻿ICD-10-GM, Systematisches Verzeichnis 
+Internationale statistische Klassifikation der Krankheiten und verwandter Gesundheitsprobleme, 10. Revision
+- German Modification -
+
+Herausgegeben vom Bundesinstitut für Arzneimittel und Medizinprodukte (BfArM), 
+im Auftrag des Bundesministeriums für Gesundheit (BMG)
+unter Beteiligung der Arbeitsgruppe ICD des Kuratoriums für Fragen der Kodiersysteme im Gesundheitswesen (KKG)
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+LIESMICHDATEI
+
+ICD-10-GM Version 2026 (OID 1.2.276.0.76.5.554)
+Systematisches Verzeichnis 
+Metadaten TXT (CSV)
+
+Stand der Klassifikation: 12.09.2025
+
+Das Standdatum entspricht dem Stand der Klassifikationsdateien bei der Erstveröffentlichung einer neuen Jahresversion. 
+Werden die Dateien nach der Erstveröffentlichung unterjährig aufgrund von Fehlerkorrekturen oder nachträglichen Ergänzungen geändert und neu publiziert, wird zusätzlich das Aktualisierungsdatum angegeben.
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+INHALT DES ZIP-FILES  icd10gm2026syst-meta.zip:
+
+  - icd10gm2026yst_metadaten_liesmich.txt
+
+  - downloadbedingungen-2025.pdf
+
+  - Ordner KLASSIFIKATIONSDATEIEN 
+    icd10gm2026syst_gruppen.txt
+    icd10gm2026syst_kapitel.txt
+    icd10gm2026syst_kodes.txt
+    morbl_2026.txt
+    mortl1_2026.txt
+    mortl1grp_2026.txt
+    mortl2_2026.txt
+    mortl3_2026.txt
+    mortl3grp_2026.txt
+    mortl4_2026.txt
+
+  - Ordner ZUSATZDATEIEN
+    icd10gm2026syst_01_vor_titelblatt.pdf
+    icd10gm2026syst_02_vor_inhaltsverzeichnis.pdf
+    icd10gm2026syst_03_vor_kommentar.pdf
+    icd10gm2026syst_04_vor_anleitung_zur_verschlüsselung.pdf
+    icd10gm2026syst_05_anh_morphologie_neubildungen.pdf
+    icd10gm2026syst_06_anh_barthelindex.pdf
+    icd10gm2026syst_07_anh_erwbarthelindex.pdf
+    icd10gm2026syst_08_anh_frb_schoenle.pdf
+    icd10gm2026syst_09_anh_fim.pdf
+    icd10gm2026syst_10_anh_mmse.pdf
+    icd10gm2026syst_11_anh_adipositas.pdf
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+HINWEISE ZUR REFERENZFASSUNG
+
+Die ICD-10-GM wird in verschiedenen Fassungen und Formaten veröffentlicht.
+
+Verbindliche Referenzfassung einer Klassifikation ist jeweils das aktuell gültige Systematische Verzeichnis als PDF.
+Bei Unstimmigkeiten zwischen dem Systematischen Verzeichnis und dem Alphabetischen Verzeichnis ist das Systematische Verzeichnis maßgeblich.
+Bei Unstimmigkeiten zwischen den verschiedenen technischen Formaten des Systematischen bzw. des Alphabetischen Verzeichnisses ist die maßgebliche Referenzfassung jeweils das PDF.
+
+Bitte beachten Sie:
+Im Falle unterjähriger Fehlerkorrekturen und Aktualisierungen informieren wir per Corrigenda, die Sie klassifikationsspezifisch unter Downloads finden.
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+INFORMATIONEN ZU DEN METADATEN UND ZUM DATENBANKAUFBAU
+
+Die Metadaten für die ICD-10-GM sind ein aufbereiteter Auszug aus der Vierstelligen Allgemeinen Systematik der ICD-10-GM. Die Daten umfassen alle drei-, vier- und fünfstelligen Schlüsselnummern mit Klassentitel sowie die Überschriften der Gruppen und Kapitel. 
+
+Die Datei der Kodes (icd10gm2026syst_kodes.txt) enthält in den ersten Feldern 1-12 kodespezifische Informationen, die aus der Klassifikation selbst gewonnen werden können; die übrigen Felder enthalten zusätzliche kodespezifische Informationen, die eigentlichen Metadaten.
+
+Die Kodes sind in Beziehung gesetzt zu den von der WHO empfohlenen Sonderverzeichnissen zur Tabellierung, d. h. zur statistischen Darstellung, von Mortalität und Morbidität. Diese insgesamt 5 Sonderverzeichnisse finden Sie als sogenannte Mortalitätslisten bzw. als Morbiditätsliste im Anhang des Systematischen Verzeichnisses in Band 1 der WHO-Ausgabe der ICD-10; im Regelwerk in Band 2 werden sie näher beschrieben und ihre Anwendung erklärt. Sie sind auszugsweise als sog. Morbl-/Mortl-Dateien im TXT-Format im ZIP-File enthalten. Diese Dateien können, müssen sich aber nicht mit jeder neuen Version der ICD-10-GM ändern; sie enthalten unabhängig davon, ob sie sich gegenüber der Vorgängerversion geändert haben oder nicht, das aktuelle Versionsjahr im Dateinamen. Der Bezug wird hergestellt über Feld 15 bis 19 der Datei Kodes der ICD-Systematik (icd10gm2026syst_kodes.txt).
+
+Außerdem enthalten die Metadaten Angaben darüber, ob eine Verwendung der Schlüsselnummer nach Paragraph 295 bzw. Paragraph 301 zulässig ist, zum Geschlechtsbezug und zum Altersbezug der einzelnen Schlüsselnummern. Es ist jeweils festgelegt, ob Verletzungen des Altersbezugs als Kann- oder als Muss-Fehler zu behandeln sind. Verletzungen des Geschlechtsbezugs sind als Kann-Fehler zu behandeln. Ferner gibt es eine Markierung für in Mitteleuropa sehr seltene Krankheiten (sogenannte Exoten, sie sind grundsätzlich als Kann-Fehler zu behandeln) und für Diagnosen, für die eine Meldepflicht nach Infektionsschutzgesetz besteht.
+
+Mit den Metadaten können Sie z. B.
+
+    - Schlüsselnummern in Klartexte zurückübersetzen
+    - Schlüsselnummern nach den ICD-Gruppen, Kapiteln und Sonderverzeichnissen für Statistiken gruppieren
+    - Schlüsselnummern auf ihre formale Korrektheit prüfen
+    - Schlüsselnummern gegen das Geschlecht und das Alter des Patienten prüfen
+
+Die Metadaten eignen sich nicht für den Aufbau von Verschlüsselungssoftware, da wesentliche Teile der ICD-10-GM fehlen: Ohne die Inklusiva, Exklusiva und Hinweise zu den einzelnen Schlüsselnummern kann mit der Klassifikation nicht sinnvoll gearbeitet werden.
+
+Bei einer Diskrepanz zwischen dem Wert eines Metadatums von einem Kode und den Inhalten von Klassentitel und Klassenattributen (z. B. Hinweise) dieses Kodes haben stets die Einträge zum Kode in der amtlichen Referenzfassung, dem Systematischen Verzeichnis als PDF, Vorrang.
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+DATENSATZBESCHREIBUNG
+
+Alle Dateien liegen im UTF-8-Zeichensatz als Importdateien für relationale Datenbanken vor. Die Metadaten umfassen folgende Dateien:
+
+  - icd10gm2026syst_kapitel.txt       Kapitel der ICD-10-Systematik
+                                      Feld 1 : Kapitelnummer, max. 2 Zeichen
+                                      Feld 2 : Kapiteltitel, bis zu 255 Zeichen
+         
+  - icd10gm2026syst_gruppen.txt       Gruppen der ICD-10-Systematik (Bei Kapiteln mit verschachtelten
+                                      Gruppen sind nur die Untergruppen aufgeführt; z. B. sind in Kapitel
+                                      II die Obergruppen C00-C97 und C00-C75 nicht aufgeführt.)
+                                      Feld 1 : erster Dreisteller der Gruppe, 3 Zeichen
+                                      Feld 2 : letzter Dreisteller der Gruppe, 3 Zeichen
+                                      Feld 3 : Kapitelnummer, max. 2 Zeichen
+                                      Feld 4 : Gruppentitel, bis zu 255 Zeichen
+
+    - morbl_2026.txt                  Morbiditätsliste  
+                                      Feld 1 : Schlüsselnummer
+                                      Feld 2 : Titel
+
+    - mortl1grp_2026.txt              Gruppen der Mortalitätsliste 1
+                                      Feld 1 : Gruppenschlüsselnummer
+                                      Feld 2 : Gruppentitel
+
+    - mortl1_2026.txt                 Mortalitätsliste 1
+                                      Feld 1 : Schlüsselnummer
+                                      Feld 2 : Gruppenschlüsselnummer
+                                      Feld 3 : Titel
+
+    - mortl2_2026.txt                 Mortalitätsliste 2
+                                      Feld 1 : Schlüsselnummer
+                                      Feld 2 : Titel
+
+    - mortl3grp_2026.txt              Gruppen der Mortalitätsliste 3
+                                      Feld 1 : Gruppenschlüsselnummer
+                                      Feld 2 : Gruppentitel
+
+    - mortl3_2026.txt                 Mortalitätsliste 3
+                                      Feld 1 : Schlüsselnummer
+                                      Feld 2 : Gruppenschlüsselnummer
+                                      Feld 3 : Titel
+
+    - mortl4_2026.txt                 Mortalitätsliste 4
+                                      Feld 1 : Schlüsselnummer
+                                      Feld 2 : Titel
+
+  - icd10gm2026syst_kodes.txt         Kodes der ICD-Systematik
+                                      Feld 1 : Klassifikationsebene, 1 Zeichen
+                                               3 = Dreisteller
+                                               4 = Viersteller
+                                               5 = Fünfsteller
+                                      Feld 2 : Ort der Schlüsselnummer im Klassifikationsbaum, 1 Zeichen
+                                               T = terminale Schlüsselnummer (kodierbarer Endpunkt)
+                                               N = nichtterminale Schlüsselnummer (kein kodierbarer Endpunkt)
+                                      Feld 3 : Art der Vier- und Fünfsteller
+                                               X = explizit aufgeführt (präkombiniert)
+                                               S = per Subklassifikation (postkombiniert)
+                                      Feld 4 : Kapitelnummer, max. 2 Zeichen
+                                      Feld 5 : erster Dreisteller der Gruppe, 3 Zeichen
+                                      Feld 6 : Schlüsselnummer ohne eventuelles Kreuz, bis zu 7 Zeichen
+                                      Feld 7 : Schlüsselnummer ohne Strich, Stern und  Ausrufezeichen, bis zu 6 Zeichen
+                                      Feld 8 : Schlüsselnummer ohne Punkt, Strich, Stern und Ausrufezeichen, bis zu 5 Zeichen
+                                      Feld 9 : Klassentitel, zusammengesetzt aus Bestandteilen der Titel der dreistelligen, vierstelligen und fünfstelligen Kodes, falls vorhanden, bis zu 255 Zeichen
+                                      Feld 10 : Titel des dreistelligen Kodes, bis zu 255 Zeichen
+                                      Feld 11 : Titel des vierstelligen Kodes, falls vorhanden, bis zu 255 Zeichen
+                                      Feld 12 : Titel des fünfstelligen Kodes, falls vorhanden, bis zu 255 Zeichen
+                                      Feld 13: Verwendung der Schlüsselnummer nach Paragraph 295
+                                               P = zur Primärverschlüsselung zugelassen
+                                               O = nur als Sternschlüsselnummer zugelassen
+                                               Z = nur als Ausrufezeichenschlüsselnummer zugelassen
+                                               V = nicht zur Verschlüsselung zugelassen
+                                      Feld 14: Verwendung der Schlüsselnummer nach Paragraph 301
+                                               P = zur Primärverschlüsselung zugelassen
+                                               O = nur als Sternschlüsselnummer zugelassen
+                                               Z = nur als Ausrufezeichenschlüsselnummer zugelassen
+                                               V = nicht zur Verschlüsselung zugelassen
+                                      Feld 15: Bezug zur Mortalitätsliste 1
+                                      Feld 16: Bezug zur Mortalitätsliste 2
+                                      Feld 17: Bezug zur Mortalitätsliste 3
+                                      Feld 18: Bezug zur Mortalitätsliste 4
+                                      Feld 19: Bezug zur Morbiditätsliste
+                                      Feld 20: Geschlechtsbezug der Schlüsselnummer
+                                               9 = kein Geschlechtsbezug
+                                               M = männlich
+                                               W = weiblich
+                                      Feld 21: Art des Fehlers bei Geschlechtsbezug
+                                               9 = irrelevant
+                                               K = Kann-Fehler
+                                      Feld 22: untere Altersgrenze für eine Schlüsselnummer (Eine Krankheit kann auftreten ab einem Alter von mindestens n vollendeten Lebenstagen/-jahren.)
+                                               9999    = irrelevant
+                                               t000 - t364 = ab 0 Tage einschließlich Fetalzeit - ab 364 Lebenstagen
+                                                      t000 = ab Geburt (ab dem 1. Lebenstag) einschließlich Fetalzeit
+                                                      t001 = ab 1 vollendeten Lebenstag (ab dem 2. Lebenstag)
+                                                      t002 = ab 2 vollendeten Lebenstagen (ab dem 3. Lebenstag)
+                                                      [...]
+                                                      t028 = ab 28 vollendeten Lebenstagen (ab dem 29. Lebenstag, ab dem 2. Lebensmonat)
+                                                      [...]
+                                                      t364 = ab 364 vollendeten Lebenstagen (ab dem 365. Lebenstag)
+                                               j001 - j124 = ab dem 1. Lebensjahr - ab 124 Lebensjahren
+                                                      j001 = ab 1 vollendeten Lebensjahr (ab dem 2. Lebensjahr; ab 365 vollendeten Lebenstagen)
+                                                      j002 = ab 2 vollendeten Lebensjahren (ab dem 3. Lebensjahr)
+                                                      j003 = ab 3 vollendeten Lebensjahren (ab dem 4. Lebensjahr)
+                                                      [...]
+                                                      j124 = ab 124 vollendeten Lebensjahren (ab dem 125. Lebensjahr)
+                                      Feld 23: obere Altersgrenze für eine Schlüsselnummer (Eine Krankheit kann auftreten bis zu einem Alter von höchstens m vollendeten Lebenstagen/-jahren.)
+                                               9999    = irrelevant
+                                               t000 - t364 = 0 Tage - bis zu 364 Tagen
+                                                      t000 = fetal, vor der Geburt
+                                                      t001 = bis zu 1 vollendeten Lebenstag (bis Ende des 1. Lebenstages)
+                                                      t002 = bis zu 2 vollendeten Lebenstagen (bis Ende des 2. Lebenstages)
+                                                      [...]
+                                                      t364 = bis zu 364 vollendeten Lebenstagen (bis Ende des 364. Lebenstages)
+                                               j001 - j124 = bis zu 1 Jahr – bis zu 124 Jahre
+                                                      j001 = bis zu 1 vollendeten Lebensjahr (bis Ende des 1. Lebensjahres; bis zum Ende des 365. Lebenstages)
+                                                      j002 = bis zu 2 vollendeten Lebensjahren (bis Ende des 2. Lebensjahres)
+                                                      [...]
+                                                      j124 = bis zu 124 vollendeten Lebensjahren (bis Ende des 124. Lebensjahres)
+                                      Feld 24: Art des Fehlers bei Altersbezug
+                                               9 = irrelevant
+                                               M = Muss-Fehler
+                                               K = Kann-Fehler
+                                      Feld 25: Krankheit in Mitteleuropa sehr selten?
+                                               J = Ja (--> Kann-Fehler auslösen!)
+                                               N = Nein
+                                      Feld 26: Schlüsselnummer mit Inhalt belegt?
+                                               J = Ja
+                                               N = Nein (--> Kann-Fehler auslösen!)
+                                      Feld 27: IfSG-Meldung, kennzeichnet, dass bei Diagnosen, die mit dieser Schlüsselnummer kodiert sind, besonders auf die Arzt-Meldepflicht nach dem Infektionsschutzgesetz (IfSG) hinzuweisen ist
+                                               J = Ja
+                                               N = Nein
+                                      Feld 28: IfSG-Labor, kennzeichnet, dass bei Laboruntersuchungen zu diesen Diagnosen die Laborausschlussziffer des EBM (32006) gewählt werden kann
+                                               J = Ja
+                                               N = Nein
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+DATENBANKAUFBAU
+
+Der Datenbankaufbau wurde mit einer aktuellen Version von Microsoft Access getestet.
+Eventuell müssen Sie diese Anweisungen für Ihre DB-Software anpassen, da
+die Realisierung des SQL-Standards von System zu System etwas variiert.
+
+Beim Import muss im Textimport-Assistenten unter Erweitert - Codepage auf UTF-8 umgestellt werden.
+
+Mit den folgenden SQL-Statements kann eine relationale Datenbank aufgebaut werden:
+
+CREATE TABLE Kapitel (
+      KapNr TEXT(2) CONSTRAINT KapX PRIMARY KEY,
+      KapTi TEXT(255)
+);
+
+CREATE TABLE Gruppen (
+      GrVon TEXT(3) CONSTRAINT GrX PRIMARY KEY,
+      GrBis TEXT(3),
+      KapNr TEXT(2) CONSTRAINT KGrX REFERENCES Kapitel,
+      GrTi  TEXT(255)
+);
+
+CREATE TABLE MorbL (
+      MorbLCode TEXT(5) CONSTRAINT MorblCodeX PRIMARY KEY,
+      MorbLTi   TEXT(255)
+);
+
+CREATE TABLE MortL1Grp (
+      MortL1GrpCode TEXT(5) CONSTRAINT MortL1GrpCodeX PRIMARY KEY,
+      MortL1GrpTi   TEXT(255)
+);
+
+CREATE TABLE MortL1 (
+      MortL1Code     TEXT(5) CONSTRAINT MortL1CodeX PRIMARY KEY,
+      MortL1GrpCode  TEXT(5) CONSTRAINT MortL1MortL1Grp REFERENCES MortL1Grp,
+      MortL1Ti       TEXT(255)
+);
+
+CREATE TABLE MortL2 (
+      MortL2Code     TEXT(5) CONSTRAINT MortL2CodeX PRIMARY KEY,
+      MortL2Ti       TEXT(255)
+);
+
+CREATE TABLE MortL3Grp (
+      MortL3GrpCode TEXT(5) CONSTRAINT MortL3GrpCodeX PRIMARY KEY,
+      MortL3GrpTi   TEXT(255)
+);
+
+CREATE TABLE MortL3 (
+      MortL3Code     TEXT(5) CONSTRAINT MortL3CodeX PRIMARY KEY,
+      MortL3GrpCode  TEXT(5) CONSTRAINT MortL3MortL3Grp REFERENCES MortL3Grp,
+      MortL3Ti       TEXT(255)
+);
+
+CREATE TABLE MortL4 (
+      MortL4Code     TEXT(5) CONSTRAINT MortL4CodeX PRIMARY KEY,
+      MortL4Ti       TEXT(255)
+);
+
+CREATE TABLE Kodes (
+      Ebene          TEXT(1),
+      Ort            TEXT(1),
+      Art            TEXT(1),
+      KapNr          TEXT(2) CONSTRAINT CodesKapitel REFERENCES Kapitel,
+      GrVon          TEXT(3) CONSTRAINT CodesGruppen REFERENCES Gruppen,
+      Code           TEXT(7) CONSTRAINT CodeX PRIMARY KEY,
+      NormCode       TEXT(6) CONSTRAINT NormCodeX UNIQUE,
+      CodeOhnePunkt  TEXT(5) CONSTRAINT CodeOhnePunktX UNIQUE,
+      Titel          TEXT(255),
+      Dreisteller    TEXT(255),
+      Viersteller    TEXT(255),
+      Fünfsteller    TEXT(255),
+      P295           TEXT(1),
+      P301           TEXT(1),
+      MortL1Code     TEXT(5) CONSTRAINT CodesMortL1 REFERENCES MortL1,
+      MortL2Code     TEXT(5) CONSTRAINT CodesMortL2 REFERENCES MortL2,
+      MortL3Code     TEXT(5) CONSTRAINT CodesMortL3 REFERENCES MortL3,
+      MortL4Code     TEXT(5) CONSTRAINT CodesMortL4 REFERENCES MortL4,
+      MorbLCode      TEXT(5) CONSTRAINT CodesMorbL  REFERENCES MorbL,
+      SexCode        TEXT(1),
+      SexFehlerTyp   TEXT(1),
+      AltUnt         TEXT(4),
+      AltOb          TEXT(4),
+      AltFehlerTyp   TEXT(1),
+      Exot           TEXT(1),
+      Belegt         TEXT(1),
+      IfSGMeldung    TEXT(1),
+      IfSGLabor      TEXT(1)
+);
+
+
+Dann sind die Tabellen Kapitel, Gruppen und Kodes sowie MorbL und MortL1 bis MortL4 über Primär- und Fremdschlüssel verknüpft.
+
+Importieren Sie dann die Eingabedateien in der angegebenen Reihenfolge in diese
+Tabellen. Teilen Sie dazu Ihrem Datenbanksystem mit, dass die Zeichencodierung UTF-8 ist und die einzelnen Werte durch Semikolon (;) getrennt sind:
+
+icd10gm2026syst_kapitel.txt  --> Kapitel
+icd10gm2026syst_gruppen.txt  --> Gruppen
+morbl_2026.txt               --> MorbL
+mortl1grp_2026.txt           --> MortL1Grp
+mortl1_2026.txt              --> MortL1
+mortl2_2026.txt              --> MortL2
+mortl3grp_2026.txt           --> MortL3Grp
+mortl3_2026.txt              --> MortL3
+mortl4_2026.txt              --> MortL4
+icd10gm2026syst_kodes.txt    --> Kodes
