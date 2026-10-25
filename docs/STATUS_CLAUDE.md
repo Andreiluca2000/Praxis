@@ -1,4 +1,11 @@
 # Stadiul programării (Claude)
+## Etapa (25.10.2026): confirmare în fișă, date pacient doar în Rust, script pentru server
+- **Confirmare** (`src/facts/confirm.ts`, `ui/FactPanel.tsx`): fiecare mențiune din fișă se confirmă (efectuat/planificat/…/nu se folosește), plus durata (din text sau introdusă) și „conținut obligatoriu documentat”. „Fertig” folosește doar ce s-a confirmat. Confirmările contradictorii rămân „necunoscut”.
+- **Granița datelor pacient** (`src-tauri/src/patient.rs`): Rust citește GDT/BDT, elimină câmpurile de identitate și înlocuiește FK 3000 cu un pseudonim HMAC (biblioteci verificate `hmac`/`sha2`). Fereastra nu vede niciodată numele, data nașterii sau numărul real. La scriere, Rust pune numărul real înapoi doar pentru pacientul deschis, refuză fișierele cu câmpuri de identitate și recalculează FK 8100.
+- **Server**: `scripts/server-einrichten.ps1` (rulat ca admin) creează `C:\ProgramData\Praxis-Assistent` cu drepturile corecte și verifică ffmpeg.
+- Teste: 114 TypeScript, 15 Rust.
+
+
 ## Corectură (25.10.2026): ce e acceptat intră ca date de facturare, nu ca notiță
 - „Annehmen” + „in DURIA übernehmen” trimit **cifre (FK 5000/5001) și diagnoze (FK 6000/6001/6003/6004)** într-un fișier GDT 6310, cu Kürzel-ul medicului.
 - Nu se trimit cifre deja existente în DURIA. Nu se trimite nimic de două ori, nimic dacă s-a schimbat pacientul și nicio cifră DEMO. Trimite doar un medic.

@@ -1,12 +1,13 @@
 import { useEffect, useReducer, useState } from 'react';
 import type { AnalysisResponse } from '../src/core/analyze.js';
 import type { FertigReport } from '../src/core/fertig.js';
-import type { Facts } from '../src/domain/types.js';
+import { emptyConfirmation, toFacts, type FactConfirmation } from '../src/facts/confirm.js';
 import type { NoteForm, PublicAccount } from '../src/notes/note.js';
 import { Dictation } from './Dictation.js';
+import { FactPanel } from './FactPanel.js';
 import { FertigPanel } from './FertigPanel.js';
 import { NoteCard } from './NoteCard.js';
-import { api } from './platform.js';
+import { api, type SanitizedExport } from './platform.js';
 import { today, type TreatmentSession } from './session.js';
 
 /** Hauptansicht der Behandlung: Patient aus DURIA, Diktat/Notizen, „Fertig“. */
@@ -16,19 +17,21 @@ export function Treatment({ session, user, billingEnabled }: { session: Treatmen
   const [analysis, setAnalysis] = useState<AnalysisResponse | null>(null);
   const [quarter, setQuarter] = useState(false);
   const [report, setReport] = useState<FertigReport | null>(null);
+  const [confirmation, setConfirmation] = useState<FactConfirmation>(emptyConfirmation());
   const [fertigBusy, setFertigBusy] = useState(false);
   const [msg, setMsg] = useState('');
 
-  function load(name: string, data: Uint8Array) {
+  function load(x: SanitizedExport) {
     try {
-      setAnalysis(session.load(data, name, date));
+      setAnalysis(session.load(x.data, x.name, date, x.token));
+      setConfirmation(emptyConfirmation());
       setReport(null);
-      setMsg('');
+      setMsg(x.patientIds > 1 ? 'Export enthält mehrere Patienten – gesperrt.' : '');
     } catch (e) { setMsg(String(e)); }
     rerender();
   }
 
-  // DURIA legt beim Aufruf eine GDT-Datei ab → automatisch laden.
+  // DURIA legt beim Aufruf eine GDT-Datei ab → Rust bereinigt sie → automatisch laden.
   useEffect(() => {
     const unlisten = api.onGdt(load);
     return () => { unlisten.then((f) => f()); };
@@ -37,9 +40,19 @@ export function Treatment({ session, user, billingEnabled }: { session: Treatmen
   async function openFile() {
     try {
       const f = await api.pickExport();
-      if (f) load(f.name, f.data);
+      if (f) load(f);
     } catch (e) { setMsg(String(e)); }
   }
+
+  // Behandlungstag geändert → Angaben dieses Tages neu ermitteln (bestätigte Angaben gelten nur für ihren Tag).
+  useEffect(() => {
+    if (!session.hasPatient) return;
+    try {
+      setAnalysis(session.reanalyse(date, {}, null));
+      setConfirmation(emptyConfirmation());
+      setReport(null);
+    } catch (e) { setMsg(String(e)); }
+  }, [date]); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function onText(text: string, form: NoteForm) {
     await session.notes.add(user, text, form, date);
@@ -57,8 +70,8 @@ export function Treatment({ session, user, billingEnabled }: { session: Treatmen
   /** „Fertig“: läuft im Hintergrund; die Oberfläche bleibt bedienbar. */
   function fertig() {
     setFertigBusy(true);
-    const facts: Facts = {}; // bestätigte Fakten aus der Karteikarte folgen mit der Faktenbestätigung
-    session.fertig(date, facts, quarter)
+    // Nur ausdrücklich bestätigte Angaben gehen in die Prüfung.
+    session.fertig(date, toFacts(confirmation), quarter)
       .then(setReport, (e) => setMsg(String(e)))
       .finally(() => setFertigBusy(false));
   }
@@ -86,6 +99,10 @@ export function Treatment({ session, user, billingEnabled }: { session: Treatmen
         )}
         {analysis?.blocked && <p className="error">Analyse gesperrt: {analysis.blocked}</p>}
       </section>
+
+      {session.hasPatient && analysis && (
+        <FactPanel mentions={analysis.mentions} value={confirmation} user={user} onChange={(c) => { setConfirmation(c); setReport(null); }} />
+      )}
 
       <Dictation disabled={false} onText={onText} />
 

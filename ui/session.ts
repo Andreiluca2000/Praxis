@@ -11,7 +11,7 @@ import { validateRulePackage, validateSettings } from '../src/validation/validat
 import practice from '../config/practice.example.json';
 import rulesJson from '../data/billing/rules.example.json';
 import { NoteBook } from './notebook.js';
-import { tauriSink, type AppConfig } from './platform.js';
+import { api, tauriSink, type AppConfig } from './platform.js';
 
 /**
  * Behandlungssitzung im Fenster: Patientendaten nur im Arbeitsspeicher, nie gespeichert.
@@ -43,6 +43,8 @@ export class TreatmentSession {
   private readonly contexts = new ContextRegistry();
   private current: Current | null = null;
   private fertigJob: { cancel: () => void } | null = null;
+  /** Pseudonym des geöffneten Patienten (von Rust); Grundlage für jede Übergabe an DURIA. */
+  private token: string | null = null;
 
   constructor(private readonly sessionId: string, private config: AppConfig) {
     this.notes = new NoteBook(() => this.config.ollama_model);
@@ -55,8 +57,13 @@ export class TreatmentSession {
 
   private deps() { return { mapping: DEFAULT_MAPPING, settings: this.settings, rules: this.rules, contexts: this.contexts }; }
 
-  load(raw: Uint8Array, name: string, serviceDate: IsoDate): AnalysisResponse {
+  /**
+   * `raw` ist bereits von Rust bereinigt: keine Identitätsfelder, FK 3000 enthält nur das Pseudonym (`token`).
+   * Die Fachlogik arbeitet unverändert damit; die echte Nummer kennt nur das Rust-Backend.
+   */
+  load(raw: Uint8Array, name: string, serviceDate: IsoDate, token: string | null): AnalysisResponse {
     this.fertigJob?.cancel();
+    this.token = token;
     const source = name.toLowerCase().endsWith('.bdt') ? 'bdt' : 'gdt';
     const before = this.current?.context.patientToken;
     const snapshot = readDuriaExport(raw, DEFAULT_MAPPING, source);
@@ -86,7 +93,14 @@ export class TreatmentSession {
     this.fertigJob?.cancel();
     this.contexts.close(this.sessionId);
     this.current = null;
+    this.token = null;
     this.notes.clear();
+    void api.closePatient();
+  }
+
+  private sink() {
+    if (!this.token || !this.current || this.current.patientId !== this.token) throw new Error('Kein eindeutiger Patient geladen.');
+    return tauriSink(this.token);
   }
 
   /** Nach Arzt-Freigabe: GDT-Datei an DURIA, wenn der Rückweg aktiv ist. */
@@ -94,7 +108,7 @@ export class TreatmentSession {
     if (!this.config.writeback_enabled) return 'Freigegeben. Rückweg zu DURIA ist aus – Text bitte kopieren.';
     if (!this.current) return 'Freigegeben, aber kein Patient geladen – nicht übergeben.';
     const cfg = { enabled: true, exchangeDir: '', fileName: '', senderId: 'PRAX', receiverId: 'DURIA', encoding: 'iso-8859-15' as const };
-    const r = await new DuriaWriteback(cfg, this.contexts, tauriSink).write(note, this.sessionId, this.current.context, this.current.patientId);
+    const r = await new DuriaWriteback(cfg, this.contexts, this.sink()).write(note, this.sessionId, this.current.context, this.current.patientId);
     return r.ok ? 'An DURIA übergeben.' : r.reason;
   }
 
@@ -111,7 +125,7 @@ export class TreatmentSession {
       diagnoses: snap.diagnoses.filter((d) => d.date).map((d) => ({ icd: d.code, date: d.date! })),
     };
     const accepted = entries.map((entry) => ({ entry, acceptedBy: user.kuerzel }));
-    const r = await new DuriaBillingWriteback(cfg, this.contexts, tauriSink)
+    const r = await new DuriaBillingWriteback(cfg, this.contexts, this.sink())
       .write(accepted, user, this.sessionId, this.current.context, this.current.patientId, recorded);
     return r.ok ? `${r.written} Eintrag/Einträge an DURIA übergeben.` : r.reason;
   }

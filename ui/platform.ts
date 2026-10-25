@@ -36,20 +36,29 @@ export const api = {
   logout: () => invoke<void>('logout'),
   transcribe: async (audio: Blob) => invoke<string>('transcribe', { audio: Array.from(new Uint8Array(await audio.arrayBuffer())) }),
   updateConfig: (patch: Partial<AppConfig>) => invoke<AppConfig>('update_config', { patch }),
-  async pickExport(): Promise<{ name: string; data: Uint8Array } | null> {
+  /** Rust liest und bereinigt die Datei; das Fenster erhält nie Identitätsdaten oder die echte Patientennummer. */
+  async pickExport(): Promise<SanitizedExport | null> {
     const path = await open({ multiple: false, directory: false, filters: [{ name: 'GDT/BDT', extensions: ['gdt', 'bdt', 'dat', 'txt'] }] });
     if (typeof path !== 'string') return null;
-    const bytes = await invoke<number[]>('read_export', { path });
-    return { name: path.split(/[\\/]/).pop() ?? path, data: Uint8Array.from(bytes) };
+    return toExport(await invoke<RawSanitized>('read_export', { path }));
   },
-  onGdt: (fn: (name: string, data: Uint8Array) => void) =>
-    listen<[string, number[]]>('gdt-incoming', (e) => fn(e.payload[0], Uint8Array.from(e.payload[1]))),
+  onGdt: (fn: (x: SanitizedExport) => void) => listen<RawSanitized>('gdt-incoming', (e) => fn(toExport(e.payload))),
+  closePatient: () => invoke<void>('close_patient'),
   onNotice: (fn: (msg: string) => void) => listen<string>('notice', (e) => fn(e.payload)),
 };
 
-/** Rückweg zu DURIA: Pfad und Dateiname bestimmt ausschließlich das Backend (Konfiguration). */
-export const tauriSink: FileSink = {
+interface RawSanitized { name: string; data: number[]; token: string | null; patient_ids: number; dropped: number; revision: string }
+export interface SanitizedExport { name: string; data: Uint8Array; token: string | null; patientIds: number; dropped: number; revision: string }
+const toExport = (r: RawSanitized): SanitizedExport => ({
+  name: r.name, data: Uint8Array.from(r.data), token: r.token, patientIds: r.patient_ids, dropped: r.dropped, revision: r.revision,
+});
+
+/**
+ * Rückweg zu DURIA: Pfad und Dateiname bestimmt das Backend. Die Datei enthält nur das Pseudonym;
+ * Rust ersetzt es unmittelbar vor dem Schreiben durch die echte Nummer (nur für den geöffneten Patienten).
+ */
+export const tauriSink = (token: string): FileSink => ({
   async writeExclusive(_dir, _name, data) {
-    return (await invoke<string>('gdt_write', { data: Array.from(data) })) as 'written' | 'exists';
+    return (await invoke<string>('gdt_write', { data: Array.from(data), token })) as 'written' | 'exists';
   },
-};
+});

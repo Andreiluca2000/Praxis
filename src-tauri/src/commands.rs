@@ -65,11 +65,17 @@ pub fn login(state: State<AppState>, kuerzel: String, password: String) -> Resul
 #[tauri::command]
 pub fn logout(state: State<AppState>) {
     *state.user.lock().unwrap() = None;
+    state.vault.lock().unwrap().close();
 }
 
-/// Datei aus dem Auswahldialog lesen (nur GDT/BDT, max. 20 MB).
 #[tauri::command]
-pub fn read_export(state: State<AppState>, path: String) -> Result<Vec<u8>, String> {
+pub fn close_patient(state: State<AppState>) {
+    state.vault.lock().unwrap().close();
+}
+
+/// Datei aus dem Auswahldialog lesen (nur GDT/BDT, max. 20 MB) – das Fenster erhält nur die bereinigte Fassung.
+#[tauri::command]
+pub fn read_export(state: State<AppState>, path: String) -> Result<crate::SanitizedExport, String> {
     require_user(&state)?;
     let p = PathBuf::from(&path);
     let ext = p.extension().map(|e| e.to_string_lossy().to_lowercase()).unwrap_or_default();
@@ -79,13 +85,17 @@ pub fn read_export(state: State<AppState>, path: String) -> Result<Vec<u8>, Stri
     if std::fs::metadata(&p).map_err(|e| e.to_string())?.len() > 20 * 1024 * 1024 {
         return Err("Datei zu groß.".into());
     }
-    std::fs::read(&p).map_err(|e| e.to_string())
+    let raw = std::fs::read(&p).map_err(|e| e.to_string())?;
+    let name = p.file_name().map(|n| n.to_string_lossy().to_string()).unwrap_or_default();
+    Ok(crate::sanitize_for_window(&state, name, &raw))
 }
 
 /// Rückweg zu DURIA. Verzeichnis und Dateiname kommen nur aus der Konfiguration, nie aus dem Fenster.
 #[tauri::command]
-pub fn gdt_write(state: State<AppState>, data: Vec<u8>) -> Result<String, String> {
+pub fn gdt_write(state: State<AppState>, data: Vec<u8>, token: String) -> Result<String, String> {
     require_arzt(&state)?;
+    // Pseudonym → echte Patientennummer erst hier, unmittelbar vor dem Schreiben.
+    let data = state.vault.lock().unwrap().restore(&data, &token)?;
     let cfg = state.config.lock().unwrap().clone();
     if !cfg.writeback_enabled && !cfg.billing_writeback_enabled {
         return Err("Rückweg zu DURIA ist deaktiviert.".into());
