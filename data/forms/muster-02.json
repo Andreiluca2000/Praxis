@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "id": "muster-02",
+  "muster": "2",
+  "title": "Verordnung von Krankenhausbehandlung",
+  "form_version": "10.2014",
+  "released": "2014-09-01",
+  "status": "entwurf",
+  "paper": { "format": "DIN A5 hoch (2b, 2c); 2a DIN A6 quer", "width": 419.5, "height": 595.3, "tint": "rot" },
+  "copies": [
+    { "id": "2a", "label": "Ausfertigung für die Krankenkasse", "recipient": "Patient legt sie vor Aufsuchen des Krankenhauses der Krankenkasse vor (außer im Notfall); enthält nur den oberen Teil" },
+    { "id": "2b", "label": "Ausfertigung für den Krankenhausarzt", "recipient": "Patient nimmt sie mit allen bedeutsamen Unterlagen ins Krankenhaus mit" },
+    { "id": "2c", "label": "Ausfertigung für den einweisenden Arzt", "recipient": "verbleibt in der Praxis" }
+  ],
+  "notes": [
+    { "id": "m02.voraussetzung", "text": "Setzt voraus, dass sich der Arzt vom Zustand überzeugt und die Notwendigkeit stationärer Behandlung festgestellt hat. Kein Anspruch bei ausschließlichem Pflegebedarf, sozialer Indikation oder Maßnahmen ohne Krankheitsbehandlung (z. B. Schönheitsoperation).", "source": { "artifact": "erlaeuterungen", "locator": "Muster 2, Einleitung Abs. 1, S. 12" } },
+    { "id": "m02.ambulant_vorrang", "text": "Vorher prüfen, ob ambulante Behandlung einschließlich häuslicher Krankenpflege ausreicht; die Krankenhauseinweisungs-Richtlinie (KE-RL) ist zu beachten.", "source": { "artifact": "erlaeuterungen", "locator": "Muster 2, Einleitung Abs. 2, S. 12" } },
+    { "id": "m02.reha", "text": "Nicht zu verwenden für Behandlung in Vorsorge- und Rehabilitationseinrichtungen.", "source": { "artifact": "erlaeuterungen", "locator": "Muster 2, Einleitung Abs. 3, S. 12" } },
+    { "id": "m02.ausfertigungen", "text": "Der Versicherte erhält 2a und 2b, 2c bleibt beim Arzt. 2a ist vollständig auszufüllen und vor Aufsuchen des Krankenhauses der Krankenkasse vorzulegen; im Notfall entfällt die Genehmigungspflicht.", "source": { "artifact": "erlaeuterungen", "locator": "Muster 2, Einleitung Abs. 4–5, S. 12" } },
+    { "id": "m02.au", "text": "Neben der Verordnung kann eine Arbeitsunfähigkeitsbescheinigung (e01) ausgestellt werden, z. B. bei vor- oder nachstationärer Behandlung.", "source": { "artifact": "erlaeuterungen", "locator": "Muster 2, Einleitung Abs. 7, S. 12" } },
+    { "id": "m02.arbeitsunfall", "text": "Ist die stationäre Behandlung wegen eines Arbeitsunfalls oder einer Berufskrankheit nötig, geht sie nicht zu Lasten der GKV; die Koordination übernehmen Durchgangsärzte.", "source": { "artifact": "erlaeuterungen", "locator": "Muster 2, ❷ Fußnote, S. 12" } },
+    { "id": "m02.unterschrift", "text": "Erst vollständig ausfüllen, dann mit Vertragsarztstempel persönlich unterschreiben – nie blanko, nicht mit roter Farbe.", "source": { "artifact": "erlaeuterungen", "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5" } }
+  ],
+  "groups": [
+    { "id": "kennzeichen", "label": "Kennzeichnungen", "select": "beliebig", "rule": { "id": "m02.kennzeichen", "text": "Notfall, Unfall/Unfallfolgen (keine Arbeitsunfälle) oder Versorgungsleiden kennzeichnen, damit die Krankenkasse ggf. Kosten gegenüber Dritten geltend machen kann.", "source": { "artifact": "erlaeuterungen", "locator": "Muster 2, ❷, S. 12" } } }
+  ],
+  "fields": [
+    { "id": "personalien", "label": "Personalienfeld (Kasse, Name, geb. am, Kostenträgerkennung, Versicherten-Nr., Status, BSNR, LANR, Datum)", "kind": "personalien", "filled_by": "duria", "box": { "x": 6.1, "y": 2.3, "w": 54.0, "h": 22.4 },
+      "rules": [ { "id": "m02.personalien", "text": "Die Daten der eGK werden maschinell über Kartenterminal und Praxis-EDV übertragen; BSNR und LANR nur als Ziffern.", "source": { "artifact": "erlaeuterungen", "locator": "Allgemeines Nr. 5 und Nr. 6, S. 5" } } ] },
+    { "id": "belegarzt", "label": "Belegarztbehandlung", "kind": "checkbox", "filled_by": "praxis", "group": "kennzeichen", "marker": "❶", "box": { "x": 62.9, "y": 10.2, "w": 3.3, "h": 2.3 },
+      "rules": [ { "id": "m02.belegarzt", "text": "Ankreuzen, wenn die Krankenhausbehandlung durch einen Belegarzt erfolgen soll; die belegärztliche Leistung wird auf Muster 5 abgerechnet.", "source": { "artifact": "erlaeuterungen", "locator": "Muster 2, ❶, S. 12" } } ] },
+    { "id": "notfall", "label": "Notfall", "kind": "checkbox", "filled_by": "praxis", "group": "kennzeichen", "marker": "❷", "box": { "x": 80.3, "y": 10.2, "w": 3.3, "h": 2.3 }, "rules": [] },
+    { "id": "unfall", "label": "Unfall, Unfallfolgen", "kind": "checkbox", "filled_by": "praxis", "group": "kennzeichen", "marker": "❷", "box": { "x": 62.9, "y": 14.1, "w": 3.3, "h": 2.3 }, "rules": [] },
+    { "id": "versorgungsleiden", "label": "Versorgungsleiden (BVG)", "kind": "checkbox", "filled_by": "praxis", "group": "kennzeichen", "marker": "❷", "box": { "x": 80.3, "y": 14.1, "w": 3.3, "h": 2.3 },
+      "rules": [ { "id": "m02.ser", "text": "Nur bei behördlich anerkannter Schädigungsfolge nach SER (bisher BVG, IfSG, OEG, SVG, ZDG); der Patient legt den Nachweis vor.", "source": { "artifact": "erlaeuterungen", "locator": "Allgemeines Nr. 8, S. 6; Muster 2, ❷, S. 12" } } ] },
+    { "id": "krankenhaeuser", "label": "Nächsterreichbare, geeignete Krankenhäuser", "kind": "text", "filled_by": "arzt", "marker": "❸", "lines": 1, "box": { "x": 63.0, "y": 17.3, "w": 34.4, "h": 7.4 },
+      "rules": [ { "id": "m02.krankenhaeuser", "text": "In geeigneten Fällen die beiden nächsterreichbaren, für die vorgesehene Behandlung geeigneten Krankenhäuser angeben (§ 73 Abs. 4 SGB V).", "source": { "artifact": "erlaeuterungen", "locator": "Muster 2, ❸, S. 13" } } ] },
+    { "id": "diagnose", "label": "Diagnose", "kind": "text", "filled_by": "arzt", "marker": "❹", "lines": 4, "box": { "x": 6.1, "y": 25.9, "w": 54.0, "h": 21.0 },
+      "rules": [ { "id": "m02.diagnose", "text": "Nur bei medizinischer Notwendigkeit; die Begründung soll sich aus der Diagnose ergeben. Ergibt sie sich schon aus Diagnose oder Symptomen (z. B. akute Appendizitis), genügt deren Angabe.", "source": { "artifact": "erlaeuterungen", "locator": "Muster 2, ❹, S. 13" } } ] },
+    { "id": "stempel", "label": "Vertragsarztstempel / Unterschrift des Arztes", "kind": "stempel", "filled_by": "arzt", "box": { "x": 63.0, "y": 25.9, "w": 34.4, "h": 21.0 },
+      "rules": [ { "id": "m02.stempel", "text": "Vertragsarztstempel und persönliche Unterschrift erst nach vollständigem Ausfüllen.", "source": { "artifact": "erlaeuterungen", "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5" } } ] },
+    { "id": "untersuchungsergebnisse", "label": "Untersuchungsergebnisse", "kind": "text", "filled_by": "arzt", "marker": "❺", "lines": 3, "only_copies": ["2b", "2c"], "box": { "x": 6.1, "y": 52.0, "w": 91.3, "h": 15.2 },
+      "rules": [ { "id": "m02.untersuchungsergebnisse", "text": "Soweit vorhanden, relevante Untersuchungsergebnisse vermerken.", "source": { "artifact": "erlaeuterungen", "locator": "Muster 2, ❺, S. 13" } } ] },
+    { "id": "massnahmen", "label": "Bisherige Maßnahmen (z. B. Medikation)", "kind": "text", "filled_by": "arzt", "marker": "❻", "lines": 2, "only_copies": ["2b", "2c"], "box": { "x": 6.1, "y": 67.2, "w": 91.3, "h": 12.1 },
+      "rules": [ { "id": "m02.massnahmen", "text": "Die bisher erbrachten medizinischen Maßnahmen angeben.", "source": { "artifact": "erlaeuterungen", "locator": "Muster 2, ❻, S. 13" } } ] },
+    { "id": "fragestellung", "label": "Fragestellung/Hinweise (z. B. Allergie)", "kind": "text", "filled_by": "arzt", "marker": "❼", "lines": 1, "only_copies": ["2b", "2c"], "box": { "x": 6.1, "y": 79.3, "w": 91.3, "h": 8.0 },
+      "rules": [
+        { "id": "m02.fragestellung", "text": "Fragestellungen oder besondere Hinweise an das Krankenhaus, z. B. Allergien.", "source": { "artifact": "erlaeuterungen", "locator": "Muster 2, ❼, S. 14" } },
+        { "id": "m02.khb", "text": "Begleitperson (KHB-RL): Erforderlichkeit hier bescheinigen, mit mindestens einem medizinischen Kriterium der Anlage zur KHB-RL oder Hinweis auf eine gültige Bescheinigung.", "source": { "artifact": "erlaeuterungen", "locator": "Muster 2, Hinweise KHB-RL, S. 14–15" } }
+      ] },
+    { "id": "befunde_mit", "label": "Mitgegebene Befunde", "kind": "text", "filled_by": "arzt", "marker": "❽", "lines": 1, "only_copies": ["2b", "2c"], "box": { "x": 6.1, "y": 87.3, "w": 91.3, "h": 8.5 },
+      "rules": [ { "id": "m02.befunde_mit", "text": "Befunde, die dem Patienten mitgegeben werden, hier angeben.", "source": { "artifact": "erlaeuterungen", "locator": "Muster 2, ❽, S. 14" } } ] }
+  ]
+}

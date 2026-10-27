@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "id": "muster-06",
+  "muster": "6",
+  "title": "Überweisungsschein",
+  "form_version": "10.2019",
+  "released": "2019-04-15",
+  "status": "entwurf",
+  "paper": { "format": "DIN A5 quer", "width": 595.3, "height": 419.5, "tint": "gelb" },
+  "copies": [
+    { "id": "6", "label": "Überweisungsschein", "recipient": "Patient legt ihn mit der eGK beim Arzt vor, an den überwiesen wird" }
+  ],
+  "notes": [
+    { "id": "m06.zweck", "text": "Überweisung zur Durchführung erforderlicher diagnostischer oder therapeutischer Leistungen an einen anderen Vertragsarzt, ein MVZ oder einen ermächtigten Arzt; auch für ambulante Operationen im Krankenhaus.", "source": { "artifact": "erlaeuterungen", "locator": "Muster 6, Einleitung, S. 26" } },
+    { "id": "m06.egk", "text": "Nur ausstellen, wenn im Quartal eine gültige eGK oder ein Anspruchsnachweis vorlag; Ausnahme z. B. bei dringend erforderlichen Maßnahmen.", "source": { "artifact": "erlaeuterungen", "locator": "Muster 6, Einleitung, S. 26" } },
+    { "id": "m06.arbeitsunfall", "text": "Bei Arbeitsunfällen, Berufskrankheiten und Schülerunfällen ist Muster 6 nicht zu verwenden; Abrechnung mit dem Unfallversicherungsträger (Ärztliche Unfallmeldung F 1050).", "source": { "artifact": "erlaeuterungen", "locator": "Muster 6, ❸, S. 27–28" } },
+    { "id": "m06.labor", "text": "Für in-vitro-diagnostische Auftragsleistungen (Kapitel 11, 19, 32 EBM; Abschnitte 1.7, 8.5, 8.6, 30.12.2) ist Muster 10 und nicht Muster 6 zu verwenden.", "source": { "artifact": "erlaeuterungen", "locator": "Muster 10, Einleitung, S. 36" } },
+    { "id": "m06.mammographie", "text": "Leistungen im Mammographie-Screening-Programm brauchen keine Überweisung.", "source": { "artifact": "erlaeuterungen", "locator": "Muster 6, Einleitung, S. 26" } },
+    { "id": "m06.dringlichkeit", "text": "Der Vordruck hat kein Ankreuzfeld für Dringlichkeit; ein Hinweis kann nur als Text unter „Auftrag“ stehen.", "source": { "artifact": "mustersammlung", "locator": "PDF-Seite 11, Muster 6 (10.2019): Feldliste" } },
+    { "id": "m06.unterschrift", "text": "Erst vollständig ausfüllen, dann mit Vertragsarztstempel persönlich unterschreiben – nie blanko, nicht mit roter Farbe.", "source": { "artifact": "erlaeuterungen", "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5" } }
+  ],
+  "groups": [
+    { "id": "art", "label": "Art der Überweisung", "select": "genau_eins", "rule": { "id": "m06.art", "text": "Zu kennzeichnen ist, ob die Überweisung kurativ, präventiv, zur Hinzuziehung bei belegärztlicher Behandlung oder als Zuweisung nach § 116b SGB V erfolgt.", "source": { "artifact": "erlaeuterungen", "locator": "Muster 6, ❶, S. 26" } } },
+    { "id": "auftragsart", "label": "Zweck der Überweisung", "select": "genau_eins", "rule": { "id": "m06.auftragsart", "text": "Anzukreuzen ist, ob die Überweisung zur Ausführung von Auftragsleistungen, zur Konsiliaruntersuchung oder zur Mit-/Weiterbehandlung erfolgt.", "source": { "artifact": "erlaeuterungen", "locator": "Muster 6, ❼❽❾, S. 28" } } }
+  ],
+  "fields": [
+    { "id": "personalien", "label": "Personalienfeld (Kasse, Name, geb. am, Kostenträgerkennung, Versicherten-Nr., Status, BSNR, LANR, Datum)", "kind": "personalien", "filled_by": "duria", "box": { "x": 4.3, "y": 3.5, "w": 38.2, "h": 31.5 },
+      "rules": [ { "id": "m06.personalien", "text": "Die Daten der eGK werden maschinell über Kartenterminal und Praxis-EDV übertragen; BSNR und LANR nur als Ziffern.", "source": { "artifact": "erlaeuterungen", "locator": "Allgemeines Nr. 5 und Nr. 6, S. 5" } } ] },
+    { "id": "kurativ", "label": "Kurativ", "kind": "checkbox", "filled_by": "praxis", "group": "art", "marker": "❶", "box": { "x": 44.2, "y": 8.7, "w": 2.3, "h": 3.5 }, "rules": [] },
+    { "id": "praeventiv", "label": "Präventiv", "kind": "checkbox", "filled_by": "praxis", "group": "art", "marker": "❶", "box": { "x": 52.7, "y": 8.7, "w": 2.3, "h": 3.5 }, "rules": [] },
+    { "id": "par116b", "label": "Behandl. gemäß § 116b SGB V", "kind": "checkbox", "filled_by": "praxis", "group": "art", "marker": "❶", "box": { "x": 62.4, "y": 8.7, "w": 2.3, "h": 3.5 },
+      "rules": [ { "id": "m06.asv", "text": "Innerhalb der ASV muss das Feld nicht angekreuzt werden; die Kennzeichnung erfolgt über die ASV-Teamnummer.", "source": { "artifact": "erlaeuterungen", "locator": "Muster 6, ❶, S. 26" } } ] },
+    { "id": "belegaerztlich", "label": "bei belegärztl. Behandlung", "kind": "checkbox", "filled_by": "praxis", "group": "art", "marker": "❶", "box": { "x": 76.9, "y": 8.7, "w": 2.3, "h": 3.5 }, "rules": [] },
+    { "id": "quartal", "label": "Quartal", "kind": "quarter", "filled_by": "praxis", "format": "QJJ", "marker": "❷", "box": { "x": 89.0, "y": 8.7, "w": 7.2, "h": 3.5 },
+      "rules": [ { "id": "m06.quartal", "text": "Quartal der Ausstellung in der Form QJJ eintragen; der Schein gilt auch im Folgequartal und quartalsübergreifend weiter.", "source": { "artifact": "erlaeuterungen", "locator": "Muster 6, ❷, S. 26–27" } } ] },
+    { "id": "unfall", "label": "Unfall Unfallfolgen", "kind": "checkbox", "filled_by": "praxis", "marker": "❸", "box": { "x": 44.2, "y": 14.4, "w": 2.3, "h": 3.5 },
+      "rules": [ { "id": "m06.unfall", "text": "Ankreuzen, wenn die Behandlung aufgrund oder als Folge eines Unfalls erforderlich ist (nicht bei Arbeits-, Schülerunfall oder Berufskrankheit).", "source": { "artifact": "erlaeuterungen", "locator": "Muster 6, ❸, S. 27" } } ] },
+    { "id": "op_datum", "label": "Datum der OP bei Leistungen nach Abschnitt 31.2", "kind": "date", "filled_by": "praxis", "format": "TTMMJJ", "marker": "❹", "box": { "x": 74.5, "y": 14.3, "w": 14.5, "h": 3.5 },
+      "rules": [ { "id": "m06.op_datum", "text": "Nur wenn ambulante Operationen nach Abschnitt 31.2 EBM erbracht wurden: Datum der Operation als TTMMJJ.", "source": { "artifact": "erlaeuterungen", "locator": "Muster 6, ❹, S. 28" } } ] },
+    { "id": "geschlecht", "label": "Geschlecht", "kind": "letter", "filled_by": "duria", "marker": "❺", "box": { "x": 93.9, "y": 14.3, "w": 2.3, "h": 3.5 },
+      "rules": [ { "id": "m06.geschlecht", "text": "Ein Buchstabe (D, M, W, X), ausgelesen von der eGK.", "source": { "artifact": "erlaeuterungen", "locator": "Muster 6, ❺, S. 28" } } ] },
+    { "id": "ueberweisung_an", "label": "Überweisung an", "kind": "text", "filled_by": "praxis", "marker": "❻", "box": { "x": 52.8, "y": 19.8, "w": 43.4, "h": 3.6 },
+      "rules": [ { "id": "m06.ueberweisung_an", "text": "Wegen der freien Arztwahl nicht auf einen Namen, sondern auf die Gebiets-, Teilgebiets- oder Zusatzbezeichnung ausstellen; namentlich nur an ermächtigte Ärzte oder Einrichtungen.", "source": { "artifact": "erlaeuterungen", "locator": "Muster 6, ❻, S. 28" } } ] },
+    { "id": "auftragsleistung", "label": "Ausführung von Auftragsleistungen", "kind": "checkbox", "filled_by": "praxis", "group": "auftragsart", "marker": "❼", "box": { "x": 44.2, "y": 25.8, "w": 2.3, "h": 3.5 },
+      "rules": [ { "id": "m06.auftragsleistung", "text": "Erfordert die Definition der Leistung nach Art und Umfang (GOP oder präzise Leistungsbezeichnung) oder eine Indikation mit Empfehlung der Methode; der Ausführende darf nur das Angegebene erbringen.", "source": { "artifact": "erlaeuterungen", "locator": "Muster 6, Ausführung von Auftragsleistungen, S. 28" } } ] },
+    { "id": "konsil", "label": "Konsiliaruntersuchung", "kind": "checkbox", "filled_by": "praxis", "group": "auftragsart", "marker": "❽", "box": { "x": 58.7, "y": 25.8, "w": 2.3, "h": 3.5 },
+      "rules": [ { "id": "m06.konsil", "text": "Diagnostik, über deren Art und Umfang der Ausführende entscheidet; der Grund der Untersuchung ist einzutragen. Therapie ist darüber nicht berechnungsfähig.", "source": { "artifact": "erlaeuterungen", "locator": "Muster 6, Konsiliaruntersuchung, S. 28–29" } } ] },
+    { "id": "mitbehandlung", "label": "Mit-/Weiterbehandlung", "kind": "checkbox", "filled_by": "praxis", "group": "auftragsart", "marker": "❾", "box": { "x": 70.8, "y": 25.8, "w": 2.3, "h": 3.5 },
+      "rules": [ { "id": "m06.mitbehandlung", "text": "Mitbehandlung: begleitende oder ergänzende Diagnostik/Therapie im Gebiet des Empfängers; Weiterbehandlung: gesamte Behandlung geht über. Auch bei Überweisung zur ambulanten Operation ankreuzen.", "source": { "artifact": "erlaeuterungen", "locator": "Muster 6, Mit-/Weiterbehandlung, S. 29" } } ] },
+    { "id": "au_bis", "label": "AU bis", "kind": "date", "filled_by": "praxis", "format": "TTMMJJ", "marker": "❿", "box": { "x": 81.7, "y": 25.8, "w": 14.5, "h": 3.5 },
+      "rules": [ { "id": "m06.au_bis", "text": "Voraussichtliches Ende einer bescheinigten AU als TTMMJJ; nur erforderlich, wenn die Behandlungsführung auf den weiterbehandelnden Arzt übergehen soll.", "source": { "artifact": "erlaeuterungen", "locator": "Muster 6, ❿, S. 29" } } ] },
+    { "id": "par16", "label": "eingeschränkter Leistungsanspruch gemäß § 16 Abs. 3a SGB V", "kind": "checkbox", "filled_by": "praxis", "marker": "⓫", "box": { "x": 44.2, "y": 31.6, "w": 2.3, "h": 3.5 },
+      "rules": [ { "id": "m06.par16", "text": "Bei Patienten mit eingeschränktem Leistungsanspruch nach § 16 Abs. 3a SGB V ankreuzen, um den Empfänger zu informieren.", "source": { "artifact": "erlaeuterungen", "locator": "Muster 6, ⓫, S. 29" } } ] },
+    { "id": "diagnose", "label": "Diagnose/Verdachtsdiagnose", "kind": "text", "filled_by": "arzt", "marker": "⓬", "lines": 2, "box": { "x": 4.3, "y": 39.2, "w": 66.5, "h": 13.4 },
+      "rules": [ { "id": "m06.diagnose", "text": "Diagnose bzw. Verdachtsdiagnose als Hinweis für den Empfänger; unnötige Mehrfachuntersuchungen vermeiden.", "source": { "artifact": "erlaeuterungen", "locator": "Muster 6, ⓬, S. 29" } } ] },
+    { "id": "befund", "label": "Befund/Medikation", "kind": "text", "filled_by": "arzt", "marker": "⓬", "lines": 2, "box": { "x": 4.3, "y": 53.5, "w": 66.5, "h": 13.4 },
+      "rules": [ { "id": "m06.befund", "text": "Bisher erhobene Befunde und/oder Behandlungsmaßnahmen angeben, damit der Empfänger informiert ist.", "source": { "artifact": "erlaeuterungen", "locator": "Muster 6, ⓬, S. 29" } } ] },
+    { "id": "auftrag", "label": "Auftrag", "kind": "text", "filled_by": "praxis", "marker": "⓬", "lines": 4, "box": { "x": 4.3, "y": 67.8, "w": 66.5, "h": 25.0 },
+      "rules": [ { "id": "m06.auftrag", "text": "Bei Auftragsleistung: Leistung nach Art und Umfang; bei Konsiliaruntersuchung: Grund der Untersuchung.", "source": { "artifact": "erlaeuterungen", "locator": "Muster 6, ❼❽ und ⓬, S. 28–29" } } ] },
+    { "id": "stempel", "label": "Vertragsarztstempel / Unterschrift des Arztes", "kind": "stempel", "filled_by": "arzt", "box": { "x": 73.4, "y": 68.0, "w": 23.4, "h": 24.6 },
+      "rules": [ { "id": "m06.stempel", "text": "Vertragsarztstempel und persönliche Unterschrift erst nach vollständigem Ausfüllen.", "source": { "artifact": "erlaeuterungen", "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5" } } ] }
+  ]
+}

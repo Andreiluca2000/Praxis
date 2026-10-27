@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:praxis-assistent:schema:forms-muster:1.0.0",
+  "title": "KBV-Vordruck (Muster) mit Feldern, Ankreuzgruppen und Ausfüllregeln",
+  "description": "Beschreibt einen Vordruck für die Ausfüllhilfe. Jede Regel nennt ihre Fundstelle (Artefakt aus data/forms/sources.manifest.json). Positionen in Prozent der Vordruckfläche, nur für die schematische Vorschau.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "id", "muster", "title", "form_version", "released", "status", "paper", "copies", "notes", "groups", "fields"],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "id": { "type": "string", "pattern": "^muster-[0-9]{2}[a-z]?$" },
+    "muster": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "form_version": { "type": "string", "pattern": "^[0-9]{1,2}\\.[0-9]{4}$", "description": "Stand des Vordrucks laut Mustersammlung, z. B. 10.2019" },
+    "released": { "type": "string", "format": "date", "description": "Freigabedatum laut Mustersammlung" },
+    "status": { "enum": ["entwurf", "geprueft"], "description": "entwurf = noch nicht fachlich freigegeben" },
+    "paper": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["format", "width", "height", "tint"],
+      "properties": {
+        "format": { "type": "string" },
+        "width": { "type": "number", "exclusiveMinimum": 0 },
+        "height": { "type": "number", "exclusiveMinimum": 0 },
+        "tint": { "enum": ["gelb", "rot", "blau"] }
+      }
+    },
+    "copies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "label", "recipient"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "label": { "type": "string", "minLength": 1 },
+          "recipient": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "notes": { "type": "array", "items": { "$ref": "#/$defs/rule" }, "description": "Allgemeine Regeln zum Vordruck (wann verwenden, wann nicht)" },
+    "groups": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "label", "select", "rule"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+          "label": { "type": "string" },
+          "select": { "enum": ["genau_eins", "beliebig"] },
+          "rule": { "$ref": "#/$defs/rule" }
+        }
+      }
+    },
+    "fields": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "label", "kind", "filled_by", "box", "rules"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+          "label": { "type": "string", "minLength": 1, "description": "Beschriftung wie auf dem Vordruck" },
+          "kind": { "enum": ["checkbox", "text", "date", "quarter", "letter", "number", "personalien", "stempel"] },
+          "filled_by": { "enum": ["duria", "praxis", "arzt", "krankenhaus"], "description": "duria = Personalien/eGK aus dem PVS; praxis = Vorschlag der App möglich; arzt = nur der Arzt; krankenhaus = nicht von der Praxis" },
+          "format": { "enum": ["QJJ", "TTMMJJ"] },
+          "group": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+          "marker": { "type": "string", "description": "Nummer in den Erläuterungen, z. B. ❶" },
+          "lines": { "type": "integer", "minimum": 1 },
+          "label_pos": { "enum": ["rechts", "unten"], "description": "Lage der Beschriftung neben einem Ankreuzfeld (Standard rechts)" },
+          "only_copies": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "box": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["x", "y", "w", "h"],
+            "properties": {
+              "x": { "type": "number", "minimum": 0, "maximum": 100 },
+              "y": { "type": "number", "minimum": 0, "maximum": 100 },
+              "w": { "type": "number", "exclusiveMinimum": 0, "maximum": 100 },
+              "h": { "type": "number", "exclusiveMinimum": 0, "maximum": 100 }
+            }
+          },
+          "rules": { "type": "array", "items": { "$ref": "#/$defs/rule" } }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "rule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "text", "source"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^m[0-9]{2}\\.[a-z0-9_.]+$" },
+        "text": { "type": "string", "minLength": 1, "description": "Kurze sinngemäße Wiedergabe (kein Volltext)" },
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["artifact", "locator"],
+          "properties": {
+            "artifact": { "enum": ["erlaeuterungen", "vordruckvereinbarung", "mustersammlung"] },
+            "locator": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    }
+  }
+}
