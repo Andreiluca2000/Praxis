@@ -110,3 +110,22 @@ main.content:has(> .forms) { max-width:1320px; }
 .fx-choice:has(input:focus-visible) { outline:3px solid rgba(31,107,85,.35); outline-offset:1px; }
 
 @media (max-width: 1200px) { .fx-main { grid-template-columns:1fr; } .fx-side { position:static; max-height:none; } }
+
+/* Offene Angaben: „!“ fehlt, „?“ entscheiden, grau empfohlen */
+.forms { --fx-miss:#c2410c; --fx-miss-bg:#fff0e6; }
+.fx-gaps { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:10px; }
+.fx-gap { padding:6px 12px; font-size:13px; gap:8px; border:0; }
+.fx-gap b { width:20px; height:20px; border-radius:50%; display:grid; place-items:center; color:#fff; font-size:12px; }
+.fx-gap.fehlt { background:var(--fx-miss-bg); color:var(--fx-miss); } .fx-gap.fehlt b { background:var(--fx-miss); }
+.fx-gap.entscheidung { background:var(--fx-open-bg); color:var(--fx-open); } .fx-gap.entscheidung b { background:#d48a12; }
+.fx-gap.empfohlen { background:#f1f2ef; color:var(--grey); font-weight:500; }
+.fx-gap:hover:not(:disabled) { filter:brightness(.97); border:0; }
+.fx-badge.fehlt { background:var(--fx-miss); } .fx-badge.empfohlen { background:#b6beb9; }
+.fx-state.fehlt { background:var(--fx-miss-bg); color:var(--fx-miss); } .fx-state.empfohlen { background:#f1f2ef; color:var(--grey); }
+.fx-row-value.empty.fehlt { color:var(--fx-miss); font-weight:600; font-style:normal; }
+.fx-row-value.empty.empfohlen { color:var(--grey); }
+.fx-row-why { font-size:12px; color:var(--muted); line-height:1.35; white-space:normal; }
+.schein-field.mark-fehlt .hit { stroke:var(--fx-miss); stroke-dasharray:4 2; stroke-width:1.6; fill:rgba(194,65,12,.06); }
+.schein-field.mark-fehlt .badge circle { fill:var(--fx-miss); }
+.schein-field.mark-empfohlen .hit { stroke:#b6beb9; stroke-dasharray:1.5 2; }
+.schein-field.mark-empfohlen .badge circle { fill:#b6beb9; }

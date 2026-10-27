@@ -1,3 +1,4 @@
+import type { Need } from '../../src/forms/gaps.js';
 import type { FieldState, FieldValue, FormDefinition, FormField, IssueLevel } from '../../src/forms/types.js';
 import type { FormLayout } from './layouts.js';
 
@@ -7,7 +8,7 @@ import type { FormLayout } from './layouts.js';
  */
 
 /** n = Nummer in der Prüfliste (eine Ankreuzgruppe teilt sich eine Nummer; first = dort steht das Abzeichen). */
-export type Mark = { n: number; first: boolean; state: FieldState | 'geaendert' | 'kartei'; issue: IssueLevel | null };
+export type Mark = { n: number; first: boolean; state: FieldState | 'geaendert' | 'kartei'; issue: IssueLevel | null; need: Need | null };
 
 type Props = {
   form: FormDefinition;
@@ -50,7 +51,12 @@ function wrap(text: string, maxChars: number, maxLines: number): string[] {
   return out;
 }
 
-const markClass = (m: Mark | undefined) => (m ? `mark-${m.issue === 'unzulaessig' ? 'bad' : m.issue === 'fehlt' || m.state === 'unbekannt' ? 'open' : m.state}` : '');
+const markClass = (m: Mark | undefined) => (m
+  ? `mark-${m.issue === 'unzulaessig' ? 'bad' : m.need === 'fehlt' ? 'fehlt' : m.need === 'entscheidung' || m.state === 'unbekannt' ? 'open' : m.need === 'empfohlen' ? 'empfohlen' : m.state}`
+  : '');
+
+/** Abzeichen: „!“ = Angabe fehlt, „?“ = selbst entscheiden, sonst die Nummer der Zeile in der Prüfliste. */
+export const badgeText = (m: Mark) => (m.issue === 'unzulaessig' ? '✕' : m.need === 'fehlt' ? '!' : m.need === 'entscheidung' ? '?' : String(m.n));
 
 function Entry({ field, value, layout, box }: { field: FormField; value: FieldValue; layout: FormLayout; box: { x: number; y: number; w: number; h: number } }) {
   if (field.kind === 'checkbox') {
@@ -141,7 +147,7 @@ export function ScheinSvg({ form, layout, values, marks, selected, onSelect }: P
             {m && m.first && (
               <g className="badge" transform={`translate(${badgeAt(layout, b).join(' ')})`}>
                 <circle r={6.4} />
-                <text y={2.6} textAnchor="middle">{m.n}</text>
+                <text y={2.6} textAnchor="middle">{badgeText(m)}</text>
               </g>
             )}
           </g>

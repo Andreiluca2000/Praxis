@@ -3,12 +3,13 @@ import { useEffect, useMemo, useState } from 'react';
 import { analyse, check, propose } from '../../src/forms/advisor.js';
 import { valuesOf } from '../../src/forms/build.js';
 import { getForm } from '../../src/forms/catalog.js';
+import { type Need, needOf, needReason } from '../../src/forms/gaps.js';
 import { applyKartei, factSentence, karteiOffer, type KarteiInput, type KarteiItem } from '../../src/forms/kartei.js';
 import type { IcdIndex } from '../../src/icd/search.js';
 import { loadIcd } from '../icd-store.js';
-import type { Analysis, FieldProposal, FieldValue, FormDefinition, FormField, FormId, FormIssue, FormProposal, FormRule } from '../../src/forms/types.js';
+import type { Analysis, FieldProposal, FieldState, FieldValue, FormDefinition, FormField, FormId, FormIssue, FormProposal, FormRule } from '../../src/forms/types.js';
 import { LAYOUTS } from './layouts.js';
-import { type Mark, ScheinSvg } from './ScheinSvg.js';
+import { badgeText, type Mark, ScheinSvg } from './ScheinSvg.js';
 import './forms.css';
 
 const EXAMPLES: [string, string][] = [
@@ -220,6 +221,7 @@ export function FormsView({ initial = devText(), kartei = null }: Props) {
     return (p && p.state !== 'leer' && p.state !== 'duria') || w?.edited.has(f.id) || w?.values[f.id] === true;
   }) || levelOf(it.fields.map((f) => f.id)) !== null);
   const marks: Record<string, Mark> = {};
+  const states = Object.fromEntries([...props].map(([id, p]) => [id, p.state])) as Record<string, FieldState>;
   visible.forEach((it, idx) => {
     const ps = it.fields.map((f) => props.get(f.id)).filter((p): p is FieldProposal => Boolean(p));
     const edited = it.fields.some((f) => w?.edited.has(f.id));
@@ -228,8 +230,11 @@ export function FormsView({ initial = devText(), kartei = null }: Props) {
     const issue = levelOf(it.fields.map((f) => f.id));
     // Das Abzeichen einer Gruppe steht am angekreuzten Feld, sonst am ersten.
     const anchor = it.fields.find((f) => w?.values[f.id] === true) ?? it.fields[0]!;
-    it.fields.forEach((f) => { marks[f.id] = { n: idx + 1, first: f.id === anchor.id, state, issue }; });
+    const need = form && w ? needOf(form, it.fields.map((f) => f.id), w.values, states, issues) : null;
+    it.fields.forEach((f) => { marks[f.id] = { n: idx + 1, first: f.id === anchor.id, state, issue, need }; });
   });
+  const withNeed = (n: Need) => visible.filter((it) => marks[it.fields[0]!.id]?.need === n);
+  const gaps = { fehlt: withNeed('fehlt'), entscheidung: withNeed('entscheidung'), empfohlen: withNeed('empfohlen') };
   const quiet = items.filter((it) => !visible.includes(it) && it.fields.every((f) => props.get(f.id)?.state === 'leer')).map((it) => it.label);
 
   const counts = { unzulaessig: issues.filter((i) => i.level === 'unzulaessig').length, fehlt: issues.filter((i) => i.level === 'fehlt').length };
@@ -248,13 +253,24 @@ export function FormsView({ initial = devText(), kartei = null }: Props) {
     if (f.kind === 'checkbox') return { text: v === true ? 'ankreuzen' : 'nicht ankreuzen', empty: false };
     if (f.kind === 'stempel') return { text: 'Stempel und Unterschrift – erst nach dem Ausfüllen', empty: false };
     if (typeof v === 'string' && v) return { text: v, empty: false };
-    return { text: props.get(f.id)?.state === 'arzt' ? 'trägt der Arzt ein' : 'bitte ergänzen', empty: true };
+    const need = marks[f.id]?.need;
+    return { text: need === 'fehlt' ? 'fehlt – bitte ergänzen' : need === 'empfohlen' ? 'nicht gefunden (empfohlen)' : 'bitte ergänzen', empty: true };
   }
+
+  const NEED_LABEL: Record<Need, string> = { fehlt: 'fehlt', entscheidung: 'entscheiden', empfohlen: 'empfohlen' };
+  const jump = (items: Item[]) => { const f = items[0]?.fields[0]; if (f) setSelected(f.id); };
 
   const side = form && w && (
     <aside className={`card fx-side ${landscape ? 'wide' : ''}`}>
       <div>
         <h3>Prüfung</h3>
+        {(gaps.fehlt.length > 0 || gaps.entscheidung.length > 0 || gaps.empfohlen.length > 0) && (
+          <div className="fx-gaps">
+            {gaps.fehlt.length > 0 && <button className="fx-gap fehlt" onClick={() => jump(gaps.fehlt)}><b>!</b>{gaps.fehlt.length === 1 ? '1 Angabe fehlt' : `${gaps.fehlt.length} Angaben fehlen`}</button>}
+            {gaps.entscheidung.length > 0 && <button className="fx-gap entscheidung" onClick={() => jump(gaps.entscheidung)}><b>?</b>{gaps.entscheidung.length === 1 ? '1 Entscheidung offen' : `${gaps.entscheidung.length} Entscheidungen offen`}</button>}
+            {gaps.empfohlen.length > 0 && <button className="fx-gap empfohlen" onClick={() => jump(gaps.empfohlen)}>{gaps.empfohlen.length} empfohlen</button>}
+          </div>
+        )}
         {issues.filter((i) => i.level !== 'hinweis').length === 0
           ? <p className="fx-ok"><CircleCheck size={17} aria-hidden="true" />Nichts Unzulässiges, nichts fehlt – Vorschläge bestätigen.</p>
           : <ul className="fx-issues">{issues.filter((i) => i.level !== 'hinweis').map((i) => <Issue key={i.text} i={i} />)}</ul>}
@@ -269,23 +285,26 @@ export function FormsView({ initial = devText(), kartei = null }: Props) {
         <ul className="fx-rows">
           {visible.map((it) => {
             const m = marks[it.fields[0]!.id]!;
-            const cls = m.issue === 'unzulaessig' ? 'bad' : m.issue === 'fehlt' || m.state === 'unbekannt' ? 'open' : m.state;
+            const cls = m.issue === 'unzulaessig' ? 'bad' : m.need === 'fehlt' ? 'fehlt' : m.need === 'entscheidung' || m.state === 'unbekannt' ? 'open' : m.need === 'empfohlen' ? 'empfohlen' : m.state;
             const open = it.fields.some((f) => f.id === selected);
+            const label = m.issue === 'unzulaessig' ? 'nicht möglich' : m.need ? NEED_LABEL[m.need] : STATE_LABEL[m.state];
             const p = it.fields.map((f) => props.get(f.id)).find((x) => x && (x.value === true || x.state === 'unbekannt')) ?? props.get(it.fields[0]!.id);
             const v = rowValue(it);
             return (
               <li key={it.key} className={`fx-row ${open ? 'on' : ''}`}>
                 <button type="button" className="fx-row-head" aria-expanded={open} onClick={() => setSelected(open ? null : it.fields[0]!.id)}>
-                  <span className={`fx-badge ${cls}`}>{m.n}</span>
+                  <span className={`fx-badge ${cls}`}>{badgeText(m)}</span>
                   <span className="fx-row-main">
                     <span className="fx-row-label">{it.label}</span>
-                    <span className={`fx-row-value ${v.empty ? 'empty' : ''}`}>{v.text}</span>
+                    <span className={`fx-row-value ${v.empty ? 'empty' : ''} ${cls}`}>{v.text}</span>
+                    {m.need && m.need !== 'empfohlen' && <span className="fx-row-why">{needReason(m.need, Boolean(kartei))}</span>}
                   </span>
-                  <span className={`fx-state ${cls}`}>{m.issue === 'unzulaessig' ? 'nicht möglich' : STATE_LABEL[m.state]}</span>
+                  <span className={`fx-state ${cls}`}>{label}</span>
                 </button>
                 {open && (
                   <div className="fx-row-body">
                     <Editor item={it} values={w.values} onChange={change} />
+                    {m.need === 'empfohlen' && <p className="muted">{needReason('empfohlen', Boolean(kartei))}</p>}
                     {p && <p>{p.reason}</p>}
                     {p?.evidence && <p className="muted">Aus Ihrer Beschreibung: „{p.evidence}“</p>}
                     {(p?.rule ?? it.rule) && <p className="fx-rule">{(p?.rule ?? it.rule)!.text}<small>{SOURCE[(p?.rule ?? it.rule)!.source.artifact]} · {(p?.rule ?? it.rule)!.source.locator}</small></p>}
