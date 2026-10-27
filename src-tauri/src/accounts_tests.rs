@@ -67,3 +67,19 @@ fn schreibgeschuetzte_kontendatei_kein_konto_im_speicher() {
     fs::set_permissions(&file, perm).unwrap();
     let _ = fs::remove_dir_all(dir);
 }
+
+/// Registrierung vom Anmeldebildschirm: erstes Konto frei, weitere nur mit gültiger Arzt-Freigabe.
+#[test]
+fn registrierung_nur_mit_arzt_freigabe() {
+    let (file, dir) = tmpfile("reg");
+    let mut s = AccountStore::open(&file).unwrap();
+    assert!(s.register("mf", "MFA", Role::Mfa, "geheim123", None).is_err()); // erstes Konto muss Arzt sein
+    s.register("al", "Dr. Test", Role::Arzt, "geheim123", None).unwrap();
+    assert!(s.register("mf", "MFA", Role::Mfa, "geheim456", None).is_err());
+    assert!(s.register("mf", "MFA", Role::Mfa, "geheim456", Some(("AL", "falsch!!"))).unwrap_err().contains("Freigabe"));
+    s.register("mf", "MFA", Role::Mfa, "geheim456", Some(("al", "geheim123"))).unwrap();
+    // Eine MFA darf nicht freigeben.
+    assert!(s.register("xy", "X", Role::Mfa, "geheim789", Some(("MF", "geheim456"))).unwrap_err().contains("Arztkonto"));
+    assert!(s.login("MF", "geheim456").is_some());
+    let _ = fs::remove_dir_all(dir);
+}

@@ -1,3 +1,4 @@
+import { CalendarCheck } from 'lucide-react';
 import { invoke } from '@tauri-apps/api/core';
 import { open } from '@tauri-apps/plugin-dialog';
 import { useMemo, useState } from 'react';
@@ -50,7 +51,7 @@ export function QuarterCheck({ settings, rules, mode }: { settings: PracticeSett
   return (
     <div className="stack">
       <section className="card">
-        <h2>Quartalsprüfung (KVDT) <span className="muted">vor dem Versand an die KV · nur lesen</span></h2>
+        <h2><CalendarCheck size={22} aria-hidden="true" />Quartalsprüfung (KVDT) <span className="muted">vor dem Versand an die KV · nur lesen</span></h2>
         <p className="muted">Die Abrechnungsdatei aus DURIA öffnen (vor der Verschlüsselung). Es wird nichts verändert oder gesendet. Namen und Patientennummern werden vor der Prüfung entfernt.</p>
         <div className="row">
           <button className="primary" onClick={load} disabled={busy}>{busy ? 'Prüft …' : 'KVDT-Datei öffnen …'}</button>

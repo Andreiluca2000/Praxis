@@ -1,3 +1,4 @@
+import { PencilLine } from 'lucide-react';
 import { useState } from 'react';
 import {
   adoptCorrection, correctionText, createCorrection, listText, markDone, type Certainty, type Correction,
@@ -52,7 +53,7 @@ export function CorrectionsPanel({ list, onChange, user, date, recorded }: {
 
   return (
     <section className="card">
-      <h2>Korrekturen in DURIA <span className="muted">werden von Hand in DURIA ausgeführt – DURIA führt die Änderungshistorie</span></h2>
+      <h2><PencilLine size={22} aria-hidden="true" />Korrekturen in DURIA <span className="muted">werden von Hand in DURIA ausgeführt – DURIA führt die Änderungshistorie</span></h2>
       {open.length === 0 && <p className="muted">Keine offenen Korrekturen.</p>}
       {open.map((c) => (
         <div key={c.id} className={`finding ${c.createdBy ? '' : 'vorschlag'}`}>

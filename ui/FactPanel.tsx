@@ -1,3 +1,4 @@
+import { ClipboardCheck } from 'lucide-react';
 import type { Mention } from '../src/facts/extract.js';
 import { conflicts, SERVICE_STATUSES, suggestedStatus, type FactConfirmation, type ServiceStatus } from '../src/facts/confirm.js';
 import type { PublicAccount } from '../src/notes/note.js';
@@ -27,7 +28,7 @@ export function FactPanel({ mentions, value, user, onChange }: {
 
   return (
     <section className="card">
-      <h2>Angaben aus der Karteikarte <span className="muted">bitte bestätigen – nur Bestätigtes wird geprüft</span></h2>
+      <h2><ClipboardCheck size={22} aria-hidden="true" />Angaben aus der Karteikarte <span className="muted">bitte bestätigen – nur Bestätigtes wird geprüft</span></h2>
       {mentions.length === 0 && <p className="muted">Für den Behandlungstag wurden keine Einträge in der Karteikarte gefunden.</p>}
       {mentions.map((m) => {
         const d = decisionFor(m.ref);

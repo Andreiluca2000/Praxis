@@ -1,4 +1,4 @@
-import { CalendarCheck, ClipboardCheck, Files, LogOut, Plus, Settings2, SlidersHorizontal, Stethoscope } from 'lucide-react';
+import { CalendarCheck, ClipboardCheck, Files, Info, LogOut, Plus, Settings2, SlidersHorizontal, Stethoscope } from 'lucide-react';
 import { IcdSearch } from './IcdSearch.js';
 import { QuarterCheck } from './QuarterCheck.js';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -76,7 +76,7 @@ export function App() {
         <div className="brand"><span className="logo" aria-hidden="true"><Plus size={20} strokeWidth={3} /></span>Praxis-Assistent</div>
         <span className="status-pill">{status.config.mode === 'simulation' ? 'Simulator' : 'Prüfung'} · {duria}</span>
         <span className="spacer" />
-        <span className="who"><strong>{status.user.kuerzel}</strong> · {status.user.role === 'arzt' ? 'Arzt' : 'MFA'}</span>
+        <span className="who"><span className="avatar" aria-hidden="true">{status.user.kuerzel.slice(0, 2)}</span><strong>{status.user.kuerzel}</strong> · {status.user.role === 'arzt' ? 'Arzt' : 'MFA'}</span>
         <button className="link icon" onClick={logout} title="Abmelden"><LogOut size={16} /> Abmelden</button>
       </header>
       <div className="layout">
@@ -86,19 +86,20 @@ export function App() {
             <button key={id} aria-current={view === id ? 'page' : undefined} disabled={!ready}
               title={ready ? undefined : 'Folgt in einer späteren Version'}
               onClick={() => ready && setView(id as View)}>
-              <Icon size={19} aria-hidden="true" />{label}
+              <span className="nav-ico" aria-hidden="true"><Icon size={19} /></span>{label}
+              {!ready && <span className="soon">bald</span>}
             </button>
           ))}
           <p className="footnote">Nur synthetische Daten bis zur Datenschutz-Freigabe.<br />Vorschläge nur nach ärztlicher Bestätigung.</p>
         </nav>
         <main className="content">
-          {status.config.mode === 'simulation' && <div className="note-box">Simulator – DEMO-Regeln, keine echten Abrechnungsziffern.</div>}
+          {status.config.mode === 'simulation' && <div className="note-box"><Info size={18} aria-hidden="true" />Simulator – DEMO-Regeln, keine echten Abrechnungsziffern.</div>}
           {notice && <div className="notice" role="status">{notice} <button className="link" onClick={() => setNotice('')}>×</button></div>}
           {view === 'behandlung' && <Treatment session={s} user={status.user} billingEnabled={status.config.billing_writeback_enabled} />}
           {view === 'quartal' && (status.user.role === 'arzt'
             ? <QuarterCheck settings={s.settings} rules={s.rules} mode={status.config.mode} />
             : <section className="card"><p className="muted">Die Quartalsprüfung ist Ärzten vorbehalten.</p></section>)}
-          {view === 'diagnosen' && <section className="card"><h2>Diagnosen & ICD-10-GM</h2><IcdSearch /></section>}
+          {view === 'diagnosen' && <section className="card"><h2><Stethoscope size={22} aria-hidden="true" />Diagnosen & ICD-10-GM</h2><IcdSearch /></section>}
           {view === 'einstellungen' && <Settings status={status} kv={s.settings.region.kv} onKv={setKv} onChanged={refresh} />}
         </main>
       </div>

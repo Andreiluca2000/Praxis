@@ -1,3 +1,4 @@
+import { CircleCheckBig } from 'lucide-react';
 import { useState } from 'react';
 import type { BillingEntry, FertigProposal, FertigReport } from '../src/core/fertig.js';
 
@@ -27,7 +28,7 @@ export function FertigPanel({ report, isArzt, billingEnabled, onSubmit }: {
 
   return (
     <section className="card">
-      <h2>Abschlussprüfung <span className="muted">Quartal {report.quarter.from} – {report.quarter.to}</span></h2>
+      <h2><CircleCheckBig size={22} aria-hidden="true" />Abschlussprüfung <span className="muted">Quartal {report.quarter.from} – {report.quarter.to}</span></h2>
       {report.proposals.length === 0 && <p className="muted">Keine Hinweise. (Ohne freigegebene Regeln werden keine Ziffern vorgeschlagen.)</p>}
       {report.proposals.map((p: FertigProposal, i) => (
         <div key={i} className={`finding ${decision[i] ?? ''}`}>

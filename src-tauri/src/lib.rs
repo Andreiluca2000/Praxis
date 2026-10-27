@@ -185,6 +185,7 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             commands::status,
             commands::create_account,
+            commands::register_account,
             commands::set_account_active,
             commands::login,
             commands::logout,

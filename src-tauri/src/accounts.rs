@@ -127,6 +127,22 @@ impl AccountStore {
         Ok(public)
     }
 
+    /// Registrierung vom Anmeldebildschirm: erstes Konto ohne Freigabe, danach nur mit Kürzel und Passwort
+    /// eines aktiven Arztkontos (`approver`). Meldet niemanden an.
+    pub fn register(&mut self, kuerzel: &str, name: &str, role: Role, password: &str, approver: Option<(&str, &str)>) -> Result<PublicAccount, String> {
+        let by = if self.is_empty() {
+            None
+        } else {
+            let (k, p) = approver.unwrap_or(("", ""));
+            let a = self.login(k, p).ok_or("Freigabe: Kürzel oder Passwort des Arztes falsch.")?;
+            if a.role != Role::Arzt {
+                return Err("Die Freigabe ist nur durch ein Arztkonto möglich.".into());
+            }
+            Some(a)
+        };
+        self.create(kuerzel, name, role, password, by.as_ref())
+    }
+
     pub fn login(&self, kuerzel: &str, password: &str) -> Option<PublicAccount> {
         let k = kuerzel.trim().to_uppercase();
         let account = self.accounts.iter().find(|a| a.kuerzel == k && a.active)?;

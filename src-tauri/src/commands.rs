@@ -49,6 +49,17 @@ pub fn create_account(state: State<AppState>, kuerzel: String, name: String, rol
     state.accounts.lock().unwrap().create(&kuerzel, &name, role, &password, by.as_ref())
 }
 
+/// Registrierung vom Anmeldebildschirm: das erste Konto (Arzt) ohne Freigabe, jedes weitere nur mit
+/// Kürzel und Passwort eines aktiven Arztkontos. Niemand wird dabei angemeldet.
+#[tauri::command]
+pub fn register_account(
+    state: State<AppState>, kuerzel: String, name: String, role: Role, password: String,
+    approver_kuerzel: Option<String>, approver_password: Option<String>,
+) -> Result<PublicAccount, String> {
+    let (k, p) = (approver_kuerzel.unwrap_or_default(), approver_password.unwrap_or_default());
+    state.accounts.lock().unwrap().register(&kuerzel, &name, role, &password, Some((&k, &p)))
+}
+
 #[tauri::command]
 pub fn set_account_active(state: State<AppState>, kuerzel: String, active: bool) -> Result<(), String> {
     let by = require_arzt(&state)?;

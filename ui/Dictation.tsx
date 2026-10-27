@@ -1,3 +1,4 @@
+import { Mic, Square } from 'lucide-react';
 import { useRef, useState } from 'react';
 import type { NoteForm } from '../src/notes/note.js';
 import { api } from './platform.js';
@@ -58,7 +59,7 @@ export function Dictation({ disabled, onText }: { disabled: boolean; onText: (te
 
   return (
     <section className="card">
-      <h2>Diktat</h2>
+      <h2><Mic size={22} aria-hidden="true" />Diktat</h2>
       <div className="row">
         <fieldset className="segmented" aria-label="Form der Notiz">
           {(['wortlaut', 'kurz', 'lang'] as const).map((f) => (
@@ -69,12 +70,12 @@ export function Dictation({ disabled, onText }: { disabled: boolean; onText: (te
           ))}
         </fieldset>
         {state === 'recording'
-          ? <button className="danger" onClick={() => recorder.current?.stop()}>■ Aufnahme beenden</button>
-          : <button className="primary" disabled={disabled || state === 'working'} onClick={start}>● Diktat starten</button>}
+          ? <button className="danger" onClick={() => recorder.current?.stop()}><Square size={14} fill="currentColor" aria-hidden="true" />Aufnahme beenden</button>
+          : <button disabled={disabled || state === 'working'} onClick={start}><span className="dot" aria-hidden="true" />Diktat starten</button>}
         {state === 'working' && <span className="muted">Wird lokal erkannt …</span>}
       </div>
       <div className="row" style={{ marginTop: 10 }}>
-        <textarea placeholder="… oder Text eingeben" value={typed} onChange={(e) => setTyped(e.target.value)} rows={2} disabled={disabled} />
+        <textarea placeholder="Hier erscheint der Diktattext – oder Text eingeben …" value={typed} onChange={(e) => setTyped(e.target.value)} rows={2} disabled={disabled} />
         <button onClick={submitTyped} disabled={disabled || state !== 'idle' || !typed.trim()}>Übernehmen</button>
       </div>
       {error && <p className="error" role="alert">{error}</p>}

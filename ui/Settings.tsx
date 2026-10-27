@@ -1,3 +1,4 @@
+import { Building2, Monitor, Users } from 'lucide-react';
 import { useState, type FormEvent } from 'react';
 import { api, type Status } from './platform.js';
 
@@ -29,7 +30,7 @@ export function Settings({ status, kv, onKv, onChanged }: {
   return (
     <div className="stack">
       <section className="card">
-        <h2>Praxis</h2>
+        <h2><Building2 size={22} aria-hidden="true" />Praxis</h2>
         <div className="row">
           <label>Bundesland<input value="Nordrhein-Westfalen" disabled /></label>
           <label>KV
@@ -47,7 +48,7 @@ export function Settings({ status, kv, onKv, onChanged }: {
       </section>
 
       <section className="card">
-        <h2>Arbeitsplatz <span className="muted">{status.session}</span></h2>
+        <h2><Monitor size={22} aria-hidden="true" />Arbeitsplatz <span className="muted">{status.session}</span></h2>
         <dl className="kv">
           <dt>GDT-Eingang</dt><dd>{status.config.inbox_dir}</dd>
           <dt>GDT-Ausgang</dt><dd>{status.config.outbox_dir}\{status.config.outbox_file}</dd>
@@ -76,7 +77,7 @@ export function Settings({ status, kv, onKv, onChanged }: {
 
       {isArzt && (
         <section className="card">
-          <h2>Konten</h2>
+          <h2><Users size={22} aria-hidden="true" />Konten</h2>
           <table>
             <thead><tr><th>Kürzel</th><th>Name</th><th>Rolle</th><th>Status</th><th /></tr></thead>
             <tbody>

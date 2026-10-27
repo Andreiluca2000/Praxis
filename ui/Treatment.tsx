@@ -1,3 +1,4 @@
+import { ArrowRight, ClipboardList, Download, NotebookPen, Stethoscope, UserRound, X } from 'lucide-react';
 import { useEffect, useReducer, useState } from 'react';
 import type { AnalysisResponse } from '../src/core/analyze.js';
 import type { FertigReport } from '../src/core/fertig.js';
@@ -104,20 +105,25 @@ export function Treatment({ session, user, billingEnabled }: { session: Treatmen
     <div className="stack">
       <section className="card">
         <div className="row">
-          <h2 style={{ margin: 0 }}>Patient</h2>
+          <h2 style={{ margin: 0 }}><UserRound size={22} aria-hidden="true" />Patient</h2>
           <span className={`pill ${session.hasPatient ? 'candidate' : 'not_applicable'}`}>
             {session.hasPatient ? `Kontext ${analysis?.context?.patientToken.slice(0, 8)}…` : 'kein Patient geladen'}
           </span>
           <span className="spacer" />
           <label>Behandlungstag<input type="date" value={date} onChange={(e) => setDate(e.target.value)} /></label>
-          <button onClick={openFile}>Export öffnen …</button>
-          {session.hasPatient && <button className="link" onClick={() => { session.clear(); setAnalysis(null); setReport(null); rerender(); }}>Schließen</button>}
+          <button onClick={openFile}><Download size={17} aria-hidden="true" />Export öffnen …</button>
+          {session.hasPatient && <button className="soft" onClick={() => { session.clear(); setAnalysis(null); setReport(null); rerender(); }}><X size={17} aria-hidden="true" />Schließen</button>}
         </div>
         {!session.hasPatient && <p className="muted">Patient in DURIA aufrufen (GDT) oder Export öffnen. Name und Geburtsdatum werden nicht übernommen.</p>}
         {snap && (
           <>
+            <div className="stats">
+              <div className="stat"><span className="ico"><ClipboardList size={19} aria-hidden="true" /></span><div><span>Leistungen</span><b>{snap.services.length}</b></div></div>
+              <div className="stat"><span className="ico"><Stethoscope size={19} aria-hidden="true" /></span><div><span>Diagnosen</span><b>{snap.diagnoses.length}</b></div></div>
+              <div className="stat"><span className="ico"><NotebookPen size={19} aria-hidden="true" /></span><div><span>Notizen</span><b>{snap.noteCount}</b></div></div>
+            </div>
             <p className="muted">
-              Leistungen {snap.services.length} · Diagnosen {snap.diagnoses.length} · Notizen {snap.noteCount} · verworfene Identitätsfelder {(filter?.dropped ?? 0) + snap.droppedIdentityFields}
+              Verworfene Identitätsfelder {(filter?.dropped ?? 0) + snap.droppedIdentityFields}
               {filter && filter.redacted > 0 && <> · {filter.redacted} Namen/Daten im Text ersetzt</>}
               {filter && filter.unknown > 0 && <> · {filter.unknown} nicht vorgesehene Felder nicht übernommen</>}
             </p>
@@ -142,10 +148,12 @@ export function Treatment({ session, user, billingEnabled }: { session: Treatmen
       ))}
 
       <section className="card fertig-bar">
-        <label className="inline"><input type="checkbox" checked={quarter} onChange={(e) => setQuarter(e.target.checked)} /> Export enthält das ganze Quartal</label>
-        <span className="muted">Ohne Quartalsdaten bleiben Ziffern mit Quartals-/Häufigkeitsgrenzen „nicht prüfbar“.</span>
+        <div className="fertig-info">
+          <label className="inline"><input type="checkbox" checked={quarter} onChange={(e) => setQuarter(e.target.checked)} /> Export enthält das ganze Quartal</label>
+          <span className="muted">Ohne Quartalsdaten bleiben Ziffern mit Quartals-/Häufigkeitsgrenzen „nicht prüfbar“.</span>
+        </div>
         <span className="spacer" />
-        <button className="primary big" disabled={!session.hasPatient || fertigBusy} onClick={fertig}>{fertigBusy ? 'Prüft im Hintergrund …' : 'Fertig'}</button>
+        <button className="primary big" disabled={!session.hasPatient || fertigBusy} onClick={fertig}>{fertigBusy ? 'Prüft im Hintergrund …' : <>Fertig <ArrowRight size={18} aria-hidden="true" /></>}</button>
       </section>
 
       {report && (
