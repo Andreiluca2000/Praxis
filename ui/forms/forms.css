@@ -76,6 +76,27 @@ ul.fx-rows { list-style:none; margin:0; padding:0; display:grid; gap:6px; }
 .fx-rule small { display:block; color:var(--muted); margin-top:3px; font-size:11.5px; }
 .fx-quiet { margin:10px 2px 0; line-height:1.5; }
 
+/* Aus dem geöffneten Patienten (Kartei) */
+.forms { --fx-kartei:#2c6f86; --fx-kartei-bg:#e4f1f5; }
+.fx-kartei > p { margin:8px 0 12px; }
+.fx-kartei-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:14px; }
+.fx-kartei-group { border:0; margin:0; padding:0; display:grid; gap:6px; align-content:start; }
+.fx-kartei-group legend { font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); font-weight:650; padding:0 0 6px; }
+.fx-kartei-item { display:flex; gap:10px; align-items:flex-start; padding:9px 12px; border:1px solid var(--line); border-radius:14px; color:var(--ink); font-size:14px; font-weight:400; cursor:pointer; }
+.fx-kartei-item:hover { border-color:var(--accent); background:var(--soft-2); }
+.fx-kartei-item:has(input:checked) { border-color:#b9dcc7; background:#f3fbf6; }
+.fx-kartei-item input { margin-top:2px; flex:none; }
+.fx-kartei-item span { display:grid; gap:2px; min-width:0; }
+.fx-kartei-item b { font-weight:600; }
+.fx-kartei-item b.clamp { font-weight:500; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.fx-kartei-item small { color:var(--muted); font-size:12px; }
+.fx-kartei-item.blocked { cursor:default; opacity:.75; background:#fafaf8; }
+.fx-kartei-item.blocked small { color:var(--warn); }
+.fx-nopatient { display:flex; gap:8px; align-items:center; margin:0; }
+.schein-field.mark-kartei .badge circle { fill:var(--fx-kartei); }
+.fx-badge.kartei { background:var(--fx-kartei); }
+.fx-state.kartei { background:var(--fx-kartei-bg); color:var(--fx-kartei); }
+
 /* Querformat (Muster 6): Vordruck in voller Breite, Prüfliste darunter in zwei Spalten */
 main.content:has(> .forms) { max-width:1320px; }
 .fx-main.landscape { grid-template-columns:1fr; }

@@ -6,7 +6,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { validateSettings } from '../src/validation/validate.js';
 import { Login } from './Login.js';
 import { api, type Status } from './platform.js';
-import { TreatmentSession } from './session.js';
+import { today, TreatmentSession } from './session.js';
 import { Settings } from './Settings.js';
 import { Treatment } from './Treatment.js';
 
@@ -101,7 +101,7 @@ export function App() {
             ? <QuarterCheck settings={s.settings} rules={s.rules} mode={status.config.mode} />
             : <section className="card"><p className="muted">Die Quartalsprüfung ist Ärzten vorbehalten.</p></section>)}
           {view === 'diagnosen' && <section className="card"><h2><Stethoscope size={22} aria-hidden="true" />Diagnosen & ICD-10-GM</h2><IcdSearch /></section>}
-          {view === 'formulare' && <FormsView />}
+          {view === 'formulare' && <FormsView kartei={s.snapshot ? { diagnoses: s.snapshot.diagnoses, notes: s.snapshot.notes, serviceDate: today() } : null} />}
           {view === 'einstellungen' && <Settings status={status} kv={s.settings.region.kv} onKv={setKv} onChanged={refresh} />}
         </main>
       </div>

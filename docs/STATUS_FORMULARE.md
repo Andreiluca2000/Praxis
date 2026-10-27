@@ -11,5 +11,5 @@
 
 Offene Punkte:
 - Fachliche Durchsicht der Regeln (Arzt) – besonders Muster 4 b) Pflegegrad 3 und Zuzahlung.
-- Vorbefüllen aus dem geöffneten Patienten (DURIA-Export: Diagnosen mit Sicherheit, Befundtext) – noch nicht gebaut.
+- Vorbefüllen aus dem geöffneten Patienten: gebaut (Diagnosen mit G/V/A/Z, Karteieinträge, Pflegegrad u. a.; nur nach Bestätigung). Freigegebene Notizen der Sitzung sind noch nicht im Angebot; Behandlungstag = heute.
 - Übergabe an DURIA (Vordruck dort vorbefüllen) – hängt von DURIA ab (GDT 6310 nur Karteitext; Formular-Schnittstelle unbekannt).

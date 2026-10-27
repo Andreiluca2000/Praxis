@@ -1,8 +1,11 @@
-import { Ambulance, CircleAlert, CircleCheck, Files, Hospital, Info, Send, Stethoscope, TriangleAlert, WandSparkles } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { Ambulance, CircleAlert, CircleCheck, ClipboardList, Files, Hospital, Info, Send, Stethoscope, TriangleAlert, WandSparkles } from 'lucide-react';
+import { useEffect, useMemo, useState } from 'react';
 import { analyse, check, propose } from '../../src/forms/advisor.js';
 import { valuesOf } from '../../src/forms/build.js';
 import { getForm } from '../../src/forms/catalog.js';
+import { applyKartei, factSentence, karteiOffer, type KarteiInput, type KarteiItem } from '../../src/forms/kartei.js';
+import type { IcdIndex } from '../../src/icd/search.js';
+import { loadIcd } from '../icd-store.js';
 import type { Analysis, FieldProposal, FieldValue, FormDefinition, FormField, FormId, FormIssue, FormProposal, FormRule } from '../../src/forms/types.js';
 import { LAYOUTS } from './layouts.js';
 import { type Mark, ScheinSvg } from './ScheinSvg.js';
@@ -15,10 +18,10 @@ const EXAMPLES: [string, string][] = [
 ];
 
 const ICON: Record<FormId, typeof Send> = { 'muster-06': Send, 'muster-02': Hospital, 'muster-04': Ambulance };
-const STATE_LABEL: Record<Mark['state'], string> = { vorgeschlagen: 'vorgeschlagen', unbekannt: 'bitte wählen', arzt: 'Arzt', duria: 'aus DURIA', leer: 'leer', geaendert: 'geändert' };
+const STATE_LABEL: Record<Mark['state'], string> = { vorgeschlagen: 'vorgeschlagen', unbekannt: 'bitte wählen', arzt: 'Arzt', duria: 'aus DURIA', leer: 'leer', geaendert: 'geändert', kartei: 'aus Kartei' };
 const SOURCE: Record<string, string> = { erlaeuterungen: 'KBV-Erläuterungen 01/2026', vordruckvereinbarung: 'Vordruckvereinbarung 05/2026', mustersammlung: 'Mustersammlung 05/2026' };
 
-type Work = { proposal: FormProposal; values: Record<string, FieldValue>; edited: ReadonlySet<string> };
+type Work = { proposal: FormProposal; values: Record<string, FieldValue>; edited: ReadonlySet<string>; kartei: ReadonlySet<string> };
 
 /** Eine Zeile der Prüfliste: ein Feld oder eine ganze Ankreuzgruppe. */
 type Item = { key: string; label: string; fields: FormField[]; select: 'genau_eins' | 'beliebig' | null; rule: FormRule | null };
@@ -68,6 +71,46 @@ function Issue({ i }: { i: FormIssue }) {
   );
 }
 
+const KIND_LABEL: Record<KarteiItem['kind'], string> = { tatsache: 'Für die Regeln', diagnose: 'Diagnosen', eintrag: 'Karteieinträge' };
+
+/** Angebot aus dem geöffneten Patienten – nur Angehaktes wird nach „Übernehmen“ verwendet. */
+function KarteiCard({ offer, taken, onTake }: { offer: readonly KarteiItem[]; taken: readonly KarteiItem[]; onTake: (chosen: KarteiItem[]) => void }) {
+  const [pick, setPick] = useState<ReadonlySet<string>>(() => new Set(offer.filter((i) => i.preselected && !i.blocked).map((i) => i.id)));
+  const toggle = (id: string) => setPick((p) => { const n = new Set(p); if (n.has(id)) n.delete(id); else n.add(id); return n; });
+  const kinds = (['tatsache', 'diagnose', 'eintrag'] as const).filter((k) => offer.some((i) => i.kind === k));
+  const chosen = offer.filter((i) => pick.has(i.id) && !i.blocked);
+  return (
+    <section className="card fx-kartei">
+      <div className="row">
+        <h2 style={{ margin: 0 }}><ClipboardList size={20} aria-hidden="true" />Aus dem geöffneten Patienten</h2>
+        <span className="pill">DURIA · pseudonymisiert</span>
+        <span className="spacer" />
+        {taken.length > 0 && <span className="pill candidate">{taken.length} übernommen</span>}
+      </div>
+      <p className="muted">Anhaken, was auf den Schein soll – erst „Übernehmen“ trägt es ein. Diagnosen nur mit Sicherheit G/V/A/Z.</p>
+      <div className="fx-kartei-grid">
+        {kinds.map((k) => (
+          <fieldset key={k} className="fx-kartei-group">
+            <legend>{KIND_LABEL[k]}</legend>
+            {offer.filter((i) => i.kind === k).map((i) => (
+              <label key={i.id} className={`fx-kartei-item ${i.blocked ? 'blocked' : ''}`} title={i.blocked ?? i.source}>
+                <input type="checkbox" checked={pick.has(i.id) && !i.blocked} disabled={Boolean(i.blocked)} onChange={() => toggle(i.id)} />
+                <span><b className={i.kind === 'eintrag' ? 'clamp' : ''}>{i.text}</b><small>{i.blocked ?? i.source}</small></span>
+              </label>
+            ))}
+          </fieldset>
+        ))}
+      </div>
+      <div className="row" style={{ marginTop: 12 }}>
+        <span className="spacer" />
+        <button className="soft" disabled={!chosen.length} onClick={() => onTake(chosen)}>
+          <ClipboardList size={16} aria-hidden="true" />{chosen.length ? `${chosen.length} übernehmen` : 'Nichts ausgewählt'}
+        </button>
+      </div>
+    </section>
+  );
+}
+
 function Editor({ item, values, onChange }: { item: Item; values: Record<string, FieldValue>; onChange: (id: string, v: FieldValue) => void }) {
   if (item.select === 'genau_eins') {
     return (
@@ -99,28 +142,57 @@ function Editor({ item, values, onChange }: { item: Item; values: Record<string,
 /** ?text=… füllt die Beschreibung nur im Entwicklungsserver vor (Bildschirmvorschau mit ?preview=1&view=formulare). */
 const devText = () => (import.meta.env.DEV ? new URLSearchParams(location.search).get('text') ?? '' : '');
 
-export function FormsView({ initial = devText() }: { initial?: string }) {
+type Props = {
+  initial?: string;
+  /** Geöffneter Patient aus DURIA (pseudonymisiert); null = kein Patient geöffnet. */
+  kartei?: Omit<KarteiInput, 'title'> | null;
+};
+
+const KARTEI_SENTENCE = /\s*Aus der Kartei: [^.]*\./g;
+
+function build(t: string, a: Analysis, chosen: readonly KarteiItem[]): Partial<Record<FormId, Work>> {
+  const out: Partial<Record<FormId, Work>> = {};
+  for (const s of a.suggestions) {
+    const proposal = propose(s.formId, t, a.facts, new Date());
+    const base = valuesOf(proposal.fields);
+    const fromKartei = applyKartei(s.formId, base, chosen);
+    out[s.formId] = { proposal, values: { ...base, ...fromKartei }, edited: new Set(), kartei: new Set(Object.keys(fromKartei)) };
+  }
+  return out;
+}
+
+export function FormsView({ initial = devText(), kartei = null }: Props) {
   const [text, setText] = useState(initial);
   const [analysis, setAnalysis] = useState<Analysis | null>(() => (initial ? analyse(initial) : null));
-  const [work, setWork] = useState<Partial<Record<FormId, Work>>>(() => (initial ? build(initial, analyse(initial)) : {}));
+  const [work, setWork] = useState<Partial<Record<FormId, Work>>>(() => (initial ? build(initial, analyse(initial), []) : {}));
   const [active, setActive] = useState<FormId | null>(() => (initial ? analyse(initial).suggestions[0]?.formId ?? null : null));
   const [selected, setSelected] = useState<string | null>(null);
+  const [icd, setIcd] = useState<IcdIndex | null>(null);
+  const [taken, setTaken] = useState<readonly KarteiItem[]>([]);
 
-  function build(t: string, a: Analysis): Partial<Record<FormId, Work>> {
-    const out: Partial<Record<FormId, Work>> = {};
-    for (const s of a.suggestions) {
-      const proposal = propose(s.formId, t, a.facts, new Date());
-      out[s.formId] = { proposal, values: valuesOf(proposal.fields), edited: new Set() };
-    }
-    return out;
-  }
+  useEffect(() => {
+    if (!kartei) return;
+    let alive = true;
+    loadIcd().then((ix) => { if (alive) setIcd(ix); }).catch(() => { /* ohne Katalog: Kode ohne Titel */ });
+    return () => { alive = false; };
+  }, [kartei]);
 
-  function run(t = text) {
+  const offer = useMemo(() => (kartei ? karteiOffer({ ...kartei, title: (c) => icd?.get(c)?.title ?? null }) : []), [kartei, icd]);
+
+  function run(t = text, chosen: readonly KarteiItem[] = taken) {
     const a = analyse(t);
     setAnalysis(a);
-    setWork(build(t, a));
+    setWork(build(t, a, chosen));
     setActive(a.suggestions[0]?.formId ?? null);
     setSelected(null);
+  }
+
+  /** Bestätigte Auswahl aus der Kartei übernehmen: Tatsachen in die Beschreibung, Diagnosen/Befund in die Felder. */
+  function takeKartei(chosen: readonly KarteiItem[]) {
+    const t = [text.replace(KARTEI_SENTENCE, '').trim(), factSentence(chosen)].filter(Boolean).join(' ');
+    setTaken(chosen);
+    setText(t);
+    run(t, chosen);
   }
 
   const w = active ? work[active] : undefined;
@@ -151,7 +223,8 @@ export function FormsView({ initial = devText() }: { initial?: string }) {
   visible.forEach((it, idx) => {
     const ps = it.fields.map((f) => props.get(f.id)).filter((p): p is FieldProposal => Boolean(p));
     const edited = it.fields.some((f) => w?.edited.has(f.id));
-    const state = edited ? 'geaendert' : ps.some((p) => p.state === 'unbekannt') ? 'unbekannt' : ps.find((p) => p.state !== 'leer')?.state ?? 'vorgeschlagen';
+    const fromKartei = it.fields.some((f) => w?.kartei.has(f.id));
+    const state = edited ? 'geaendert' : fromKartei ? 'kartei' : ps.some((p) => p.state === 'unbekannt') ? 'unbekannt' : ps.find((p) => p.state !== 'leer')?.state ?? 'vorgeschlagen';
     const issue = levelOf(it.fields.map((f) => f.id));
     // Das Abzeichen einer Gruppe steht am angekreuzten Feld, sonst am ersten.
     const anchor = it.fields.find((f) => w?.values[f.id] === true) ?? it.fields[0]!;
@@ -252,6 +325,9 @@ export function FormsView({ initial = devText() }: { initial?: string }) {
           </div>
         )}
       </section>
+
+      {kartei && offer.length > 0 && <KarteiCard key={offer.map((i) => i.id).join('|')} offer={offer} taken={taken} onTake={takeKartei} />}
+      {kartei === null && <p className="muted fx-nopatient"><ClipboardList size={15} aria-hidden="true" />Kein Patient geöffnet – unter „Behandlung“ den DURIA-Export öffnen, dann lassen sich Diagnosen und Kartei hier übernehmen.</p>}
 
       {analysis?.blockers.map((b) => <div key={b.text} className="note-box"><Info size={18} aria-hidden="true" />{b.text}</div>)}
 

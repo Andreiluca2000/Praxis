@@ -7,7 +7,7 @@ import type { FormLayout } from './layouts.js';
  */
 
 /** n = Nummer in der Prüfliste (eine Ankreuzgruppe teilt sich eine Nummer; first = dort steht das Abzeichen). */
-export type Mark = { n: number; first: boolean; state: FieldState | 'geaendert'; issue: IssueLevel | null };
+export type Mark = { n: number; first: boolean; state: FieldState | 'geaendert' | 'kartei'; issue: IssueLevel | null };
 
 type Props = {
   form: FormDefinition;
