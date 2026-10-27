@@ -1,18 +1,11 @@
-import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
+import { patientPairs } from '../src/core/patient-pairs.js';
 import type { BilledService } from '../src/domain/types.js';
 import { concatBytes, xdtLine } from '../src/duria/xdt.js';
-import { checkPairs, loadPairRegistry, type PairRegistry } from '../src/engine/pairs.js';
+import { checkPairs, confirmationKey, loadPairRegistry } from '../src/engine/pairs.js';
 import { checkQuarter } from '../src/kvdt/quarter-check.js';
 import { settings } from './fixtures.js';
-
-/** Echtes Codex-Dossier (Entwurf) + Ausnahme-Quelle; Tests nur mit erfundenen Fällen. */
-const json = (p: string) => JSON.parse(readFileSync(new URL(`../data/billing/${p}`, import.meta.url), 'utf8')) as Record<string, unknown>;
-const RAW = json('scope-resolutions/rules.review.json');
-const WOUNDS = json('wounds/rules.review.json');
-const loaded = loadPairRegistry(RAW, [WOUNDS]);
-if ('error' in loaded) throw new Error(loaded.error);
-const REG: PairRegistry = loaded;
+import { RAW, REG, WOUNDS } from './pair-registry.js';
 
 const D = '2026-11-12';
 const svc = (code: string, session: string | null = null, date = D, system: BilledService['system'] = 'EBM'): BilledService =>
@@ -121,5 +114,44 @@ describe('KVDT-Quartalsprüfung mit Paarprüfung', () => {
     expect(sim.bySeverity.fehler).toBe(0);
     const op = checkQuarter(data, settings(), { schema_version: '0.1.0', package_id: 'X', package_version: '1', content_kind: 'reviewed_catalogue', rules: [] }, 'operational', REG);
     expect(op.combinations).toBeNull();
+  });
+});
+
+describe('Bestätigung „getrennte Sitzungen dokumentiert“', () => {
+  const by = { by: 'AL', at: '2026-11-12T16:50' };
+  const confirmed = new Map([[confirmationKey('EBM_03100_03360_SESSION', D), by]]);
+
+  it('nur nach Bestätigung (mit wem/wann) kein Ausschluss – nie automatisch aus der Uhrzeit', () => {
+    expect(verdicts([svc('03100', '0930'), svc('03360', '1645')])).toEqual(['03100/03360:not_verifiable']);
+    const f = checkPairs([svc('03100', '0930'), svc('03360', '1645')], REG, { confirmedSeparate: confirmed }).findings;
+    expect(f.map((x) => x.verdict)).toEqual(['separate_confirmed']);
+    expect(f[0]!.confirmation).toEqual(by);
+    expect(f[0]!.text).toMatch(/übrigen Bedingungen bleiben zu prüfen/);
+  });
+
+  it('Bestätigung gilt nur für Klausel und Tag, nicht für andere Paare oder Tage', () => {
+    const other = checkPairs([svc('03100'), svc('03370')], REG, { confirmedSeparate: confirmed }).findings;
+    expect(other.map((x) => x.verdict)).toEqual(['not_verifiable']);
+    const day = checkPairs([svc('03100', null, '2026-11-13'), svc('03360', null, '2026-11-13')], REG, { confirmedSeparate: confirmed }).findings;
+    expect(day.map((x) => x.verdict)).toEqual(['not_verifiable']);
+  });
+
+  it('gleiche Uhrzeit widerspricht der Bestätigung → Ausschluss bleibt', () => {
+    const f = checkPairs([svc('03100', '0930'), svc('03360', '0930')], REG, { confirmedSeparate: confirmed }).findings;
+    expect(f.map((x) => x.verdict)).toEqual(['excluded']);
+    expect(f[0]!.sessionNote).toMatch(/widerspricht/);
+    expect(f[0]!.confirmation).toBeNull();
+  });
+});
+
+describe('Paare des geöffneten Patienten (src/core)', () => {
+  const snap = { services: [svc('03100', '0930'), svc('03360', '0930')] } as Parameters<typeof patientPairs>[0];
+  it('nur im Simulator und nur mit Dossier', () => {
+    expect(patientPairs(snap, REG, { mode: 'operational', hzvContractId: null })).toBeNull();
+    expect(patientPairs(snap, null, { mode: 'simulation', hzvContractId: null })).toBeNull();
+    expect(patientPairs(snap, REG, { mode: 'simulation', hzvContractId: null })?.findings.map((f) => f.verdict)).toEqual(['excluded']);
+  });
+  it('HZV-Fall wird nicht geprüft', () => {
+    expect(patientPairs(snap, REG, { mode: 'simulation', hzvContractId: 'TEST_HZV' })?.skipped).toMatch(/HZV/);
   });
 });

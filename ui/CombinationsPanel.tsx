@@ -6,6 +6,7 @@ const VERDICT: Record<PairVerdict, { label: string; pill: string }> = {
   excluded: { label: 'Ausschluss', pill: 'billing_conflict' },
   exception_review: { label: 'Ausnahme prüfen', pill: '' },
   not_verifiable: { label: 'Sitzung nicht prüfbar', pill: 'not_applicable' },
+  separate_confirmed: { label: 'Getrennte Sitzungen bestätigt', pill: 'candidate' },
 };
 
 function Evidence({ items }: { items: PairEvidence[] }) {

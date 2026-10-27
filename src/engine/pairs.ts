@@ -9,6 +9,8 @@ import type { BilledService, IsoDate } from '../domain/types.js';
  * - Fehlt die Kennung oder ist sie verschieden, bleibt die Sitzung unbekannt: verschiedene Uhrzeiten belegen
  *   allein keine getrennte Sitzung (unterbrochene Konsultation, Laboranalyse nach dem Gehen) → „nicht prüfbar“.
  * - Paare mit Ausnahme-Verweis (`exception_record_ids`) ergeben nie einen Ausschluss ohne Prüfung der Ausnahme.
+ * - Getrennte Sitzungen gelten nur, wenn ein Mensch sie als dokumentiert bestätigt (`confirmedSeparate`, mit wem/wann) –
+ *   nie automatisch aus der Uhrzeit. Bei gleicher Sitzungskennung bleibt der Ausschluss trotz Bestätigung bestehen.
  * - Das Dossier enthält nur Paare mit Sitzungs-/Inanspruchnahme-Bezug. Ein fehlendes Paar heißt NICHT „kombinierbar“;
  *   Ausschlüsse je Tag, Behandlungsfall oder postoperativer Frist stehen in anderen Dossiers.
  */
@@ -45,7 +47,16 @@ export interface PairRegistry {
   exceptions: Map<string, PairEvidence[]>;
 }
 
-export type PairVerdict = 'excluded' | 'not_verifiable' | 'exception_review';
+export type PairVerdict = 'excluded' | 'not_verifiable' | 'exception_review' | 'separate_confirmed';
+
+/** Bestätigung „getrennte Sitzungen dokumentiert“ durch eine berechtigte Person (Kürzel, Zeitpunkt). */
+export interface SeparateConfirmation {
+  by: string;
+  at: string;
+}
+
+/** Schlüssel einer Bestätigung: Klausel und Leistungstag. */
+export const confirmationKey = (clauseId: string, date: IsoDate) => `${clauseId}@${date}`;
 
 export interface PairFinding {
   clauseId: string;
@@ -57,6 +68,7 @@ export interface PairFinding {
   text: string;
   evidence: PairEvidence[];
   exceptions: { id: string; evidence: PairEvidence[] }[];
+  confirmation: SeparateConfirmation | null;
   status: 'draft';
 }
 
@@ -142,7 +154,10 @@ const SCOPE_TEXT: Record<PairScope, string> = { session: 'derselben Sitzung', in
  * Prüft die Leistungen EINES Falls (ein Patient). HZV-Fälle werden nicht geprüft: das Dossier ist EBM/GOÄ national
  * und darf nicht auf Selektivverträge übertragen werden.
  */
-export function checkPairs(services: BilledService[], reg: PairRegistry, opts: { hzv?: boolean } = {}): PairReport {
+export function checkPairs(
+  services: BilledService[], reg: PairRegistry,
+  opts: { hzv?: boolean; confirmedSeparate?: ReadonlyMap<string, SeparateConfirmation> | undefined } = {},
+): PairReport {
   if (opts.hzv) return { findings: [], outOfRange: 0, skipped: 'HZV-Fall: EBM-/GOÄ-Paare werden nicht übertragen.' };
   const active = services.filter((s) => s.state === 'active');
   const days = new Map<IsoDate, BilledService[]>();
@@ -159,13 +174,20 @@ export function checkPairs(services: BilledService[], reg: PairRegistry, opts: {
         if (a.system !== b.system || a.code === b.code) continue;
         const clause = reg.index.get(key(a.system, a.code, b.code));
         if (!clause) continue;
-        const { same, note } = judge(a, b);
-        const verdict: PairVerdict = clause.exceptionIds.length > 0 ? 'exception_review' : same ? 'excluded' : 'not_verifiable';
+        const judged = judge(a, b);
+        const confirmed = opts.confirmedSeparate?.get(confirmationKey(clause.id, date)) ?? null;
+        // Gleiche Sitzungskennung widerspricht einer Bestätigung → Ausschluss bleibt.
+        const accepted = confirmed && !judged.same ? confirmed : null;
+        const note = confirmed && judged.same ? `${judged.note}; Bestätigung „getrennt“ widerspricht der gleichen Uhrzeit` : judged.note;
+        const verdict: PairVerdict = accepted ? 'separate_confirmed'
+          : clause.exceptionIds.length > 0 ? 'exception_review' : judged.same ? 'excluded' : 'not_verifiable';
         const dedupe = `${clause.id}|${date}|${verdict}|${note}`;
         if (seen.has(dedupe)) continue;
         seen.add(dedupe);
         const [x, y] = clause.codes;
-        const text = verdict === 'excluded'
+        const text = verdict === 'separate_confirmed'
+          ? `${x} und ${y}: getrennte Sitzungen als dokumentiert bestätigt (${accepted!.by}, ${accepted!.at}) – dieser Ausschluss greift nicht; die übrigen Bedingungen bleiben zu prüfen.`
+          : verdict === 'excluded'
           ? `${x} und ${y} sind in ${SCOPE_TEXT[clause.scope]} nicht nebeneinander berechnungsfähig.`
           : verdict === 'exception_review'
             ? `${x} und ${y}: Ausschluss in ${SCOPE_TEXT[clause.scope]} – zuerst die genannte Ausnahme prüfen.`
@@ -174,6 +196,7 @@ export function checkPairs(services: BilledService[], reg: PairRegistry, opts: {
           clauseId: clause.id, system: clause.system, date, codes: [x, y], verdict, sessionNote: note, text,
           evidence: clause.evidence,
           exceptions: clause.exceptionIds.map((id) => ({ id, evidence: reg.exceptions.get(id) ?? [] })),
+          confirmation: accepted,
           status: 'draft',
         });
       }

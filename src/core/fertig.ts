@@ -1,7 +1,8 @@
 import { quarterEnd, quarterStart } from '../domain/dates.js';
-import type { Facts, Finding, IsoDate, PracticeSettings, RulePackage } from '../domain/types.js';
+import type { BilledService, Facts, Finding, IsoDate, PracticeSettings, RulePackage } from '../domain/types.js';
 import { declareCoverage, type DuriaSnapshot } from '../duria/adapter.js';
 import { evaluatePackage } from '../engine/evaluate.js';
+import { checkPairs, type PairFinding, type PairRegistry, type SeparateConfirmation } from '../engine/pairs.js';
 import type { Note } from '../notes/note.js';
 
 /**
@@ -25,6 +26,8 @@ export interface FertigProposal {
   entries: BillingEntry[];
   /** Nur Vorschläge mit 'bereit' können nach Bestätigung übergeben werden. */
   readiness: 'bereit' | 'klaerung' | 'info';
+  /** Paare „nicht nebeneinander je Sitzung“ (Entwurfs-Dossier) zwischen der vorgeschlagenen und einer erfassten Ziffer. */
+  pairFindings?: PairFinding[];
 }
 
 export interface FertigReport {
@@ -43,11 +46,35 @@ export interface FertigInput {
   /** Bestätigt der Benutzer bzw. der DURIA-Export (Quartalsexport), dass das ganze Quartal enthalten ist? */
   quarterExportConfirmed: boolean;
   hzvContractId: string | null;
+  /** Bestätigungen „getrennte Sitzungen dokumentiert“ (Schlüssel `confirmationKey`). */
+  confirmedSeparate?: ReadonlyMap<string, SeparateConfirmation>;
+}
+
+/**
+ * Paare zwischen einer vorgeschlagenen Ziffer und den bereits erfassten Leistungen desselben Tages.
+ * Die Sitzung des Vorschlags ist unbekannt (null) – ein Ausschluss ergibt sich daher nur aus einer Bestätigung oder
+ * bleibt „nicht prüfbar“; nie wird daraus eine Freigabe.
+ */
+export function pairsForProposal(
+  proposed: BilledService, existing: BilledService[], reg: PairRegistry,
+  opts: { hzv: boolean; confirmedSeparate?: ReadonlyMap<string, SeparateConfirmation> | undefined },
+): PairFinding[] {
+  const sameDay = existing.filter((s) => s.date === proposed.date);
+  return checkPairs([...sameDay, proposed], reg, opts).findings
+    .filter((f) => f.codes.includes(proposed.code) && f.verdict !== 'separate_confirmed');
 }
 
 const norm = (s: string) => s.toLowerCase().normalize('NFKD').replace(/\p{Diacritic}/gu, '').replace(/\s+/g, ' ').trim();
 
-export function runFertig(input: FertigInput, settings: PracticeSettings, rules: RulePackage, mode: 'operational' | 'simulation'): FertigReport {
+/**
+ * `pairs`: Entwurfs-Dossier der Sitzungspaare. Es wirkt hier nur als Vorsichtsbremse – ein Paar macht aus „bereit“
+ * eine „Klärung“ mit Normtext, nie umgekehrt – und gilt deshalb in beiden Modi. (Im Simulator laufen nur DEMO-Regeln,
+ * deren Ziffern mit keinem EBM-/GOÄ-Paar übereinstimmen.)
+ */
+export function runFertig(
+  input: FertigInput, settings: PracticeSettings, rules: RulePackage, mode: 'operational' | 'simulation', pairs?: PairRegistry | null,
+): FertigReport {
+  const registry = pairs ?? null;
   const quarter = { from: quarterStart(input.serviceDate), to: quarterEnd(input.serviceDate) };
   const coverage = input.quarterExportConfirmed
     ? declareCoverage(quarter.from, quarter.to)
@@ -74,6 +101,22 @@ export function runFertig(input: FertigInput, settings: PracticeSettings, rules:
     if (f.outcome === 'not_applicable' || f.outcome === 'already_billed' || f.outcome === 'excluded') continue;
     const codes = f.codes.join(', ');
     if (f.outcome === 'candidate') {
+      const pairFindings = registry
+        ? f.codes.flatMap((code) => pairsForProposal(
+          { code, system: f.billingSystem, date: f.serviceDate, state: 'active', session: null, evidence: [] },
+          input.snapshot.services, registry, { hzv: input.hzvContractId !== null, confirmedSeparate: input.confirmedSeparate },
+        ))
+        : [];
+      if (pairFindings.length > 0) {
+        // Kein „bereit“: ein Paar mit einer erfassten Ziffer desselben Tages muss erst geklärt werden.
+        const blocked = pairFindings.some((p) => p.verdict === 'excluded');
+        proposals.push({
+          kind: 'ziffer', readiness: 'klaerung', finding: f, entries: [], pairFindings,
+          title: `${blocked ? 'Nicht nebeneinander' : 'Kombination klären'}: ${codes}`,
+          detail: [f.explanation, ...pairFindings.map((p) => `${p.text} (${p.sessionNote}; ${p.evidence[0]?.locator ?? p.clauseId})`)].join(' '),
+        });
+        continue;
+      }
       const entries: BillingEntry[] = f.codes.map((code) => ({
         type: 'ziffer', system: f.billingSystem, code, date: f.serviceDate, ruleId: f.ruleId, ruleVersion: f.ruleVersion,
       }));
@@ -112,13 +155,13 @@ export function runFertig(input: FertigInput, settings: PracticeSettings, rules:
 
 /** Hintergrund-Ausführung mit Abbruch: blockiert die Oberfläche nicht. */
 export function runFertigInBackground(
-  input: FertigInput, settings: PracticeSettings, rules: RulePackage, mode: 'operational' | 'simulation',
+  input: FertigInput, settings: PracticeSettings, rules: RulePackage, mode: 'operational' | 'simulation', pairs?: PairRegistry | null,
 ): { promise: Promise<FertigReport>; cancel: () => void } {
   let cancelled = false;
   const promise = new Promise<FertigReport>((resolve, reject) => {
     setTimeout(() => {
       if (cancelled) return reject(new Error('Abgebrochen.'));
-      try { resolve(runFertig(input, settings, rules, mode)); } catch (e) { reject(e); }
+      try { resolve(runFertig(input, settings, rules, mode, pairs)); } catch (e) { reject(e); }
     }, 0);
   });
   return { promise, cancel: () => { cancelled = true; } };
