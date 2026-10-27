@@ -1,4 +1,5 @@
 import { CalendarCheck, ClipboardCheck, Files, Info, LogOut, Plus, Settings2, SlidersHorizontal, Stethoscope } from 'lucide-react';
+import { FormsView } from './forms/FormsView.js';
 import { IcdSearch } from './IcdSearch.js';
 import { QuarterCheck } from './QuarterCheck.js';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -9,14 +10,14 @@ import { TreatmentSession } from './session.js';
 import { Settings } from './Settings.js';
 import { Treatment } from './Treatment.js';
 
-type View = 'behandlung' | 'quartal' | 'diagnosen' | 'einstellungen';
+type View = 'behandlung' | 'quartal' | 'diagnosen' | 'formulare' | 'einstellungen';
 
 /** Seitennavigation nach dem Codex-Entwurf (praxis-assistent-konzept.html); nur fertige Bereiche sind aktiv. */
 const NAV: { id: View | 'diagnosen' | 'formulare' | 'regeln'; label: string; icon: typeof Stethoscope; ready: boolean }[] = [
   { id: 'behandlung', label: 'Behandlung & Abrechnung', icon: ClipboardCheck, ready: true },
   { id: 'quartal', label: 'Quartalsprüfung (KVDT)', icon: CalendarCheck, ready: true },
   { id: 'diagnosen', label: 'Diagnosen & ICD', icon: Stethoscope, ready: true },
-  { id: 'formulare', label: 'Formulare', icon: Files, ready: false },
+  { id: 'formulare', label: 'Formulare', icon: Files, ready: true },
   { id: 'regeln', label: 'Praxisregeln', icon: SlidersHorizontal, ready: false },
   { id: 'einstellungen', label: 'Einstellungen', icon: Settings2, ready: true },
 ];
@@ -100,6 +101,7 @@ export function App() {
             ? <QuarterCheck settings={s.settings} rules={s.rules} mode={status.config.mode} />
             : <section className="card"><p className="muted">Die Quartalsprüfung ist Ärzten vorbehalten.</p></section>)}
           {view === 'diagnosen' && <section className="card"><h2><Stethoscope size={22} aria-hidden="true" />Diagnosen & ICD-10-GM</h2><IcdSearch /></section>}
+          {view === 'formulare' && <FormsView />}
           {view === 'einstellungen' && <Settings status={status} kv={s.settings.region.kv} onKv={setKv} onChanged={refresh} />}
         </main>
       </div>
