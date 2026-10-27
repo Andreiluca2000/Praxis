@@ -1,26 +1,7 @@
+import { Combine } from 'lucide-react';
 import { useState } from 'react';
-import type { PairEvidence, PairVerdict } from '../src/engine/pairs.js';
 import type { QuarterCombinations } from '../src/kvdt/quarter-check.js';
-
-const VERDICT: Record<PairVerdict, { label: string; pill: string }> = {
-  excluded: { label: 'Ausschluss', pill: 'billing_conflict' },
-  exception_review: { label: 'Ausnahme prüfen', pill: '' },
-  not_verifiable: { label: 'Sitzung nicht prüfbar', pill: 'not_applicable' },
-  separate_confirmed: { label: 'Getrennte Sitzungen bestätigt', pill: 'candidate' },
-};
-
-function Evidence({ items }: { items: PairEvidence[] }) {
-  return (
-    <ul className="evidence">
-      {items.map((e, i) => (
-        <li key={i}>
-          <span className="muted">{e.url ? <a href={e.url} target="_blank" rel="noreferrer">{e.locator}</a> : e.locator}</span>
-          {e.anchor && <blockquote>„{e.anchor}“</blockquote>}
-        </li>
-      ))}
-    </ul>
-  );
-}
+import { PairEvidence as Evidence, VERDICT } from './PairEvidence.js';
 
 /** Paare „nicht nebeneinander je Sitzung“ aus dem Entwurfs-Dossier – Hinweise zur Prüfung, keine Entscheidung. */
 export function CombinationsPanel({ combinations }: { combinations: QuarterCombinations }) {
@@ -31,7 +12,7 @@ export function CombinationsPanel({ combinations }: { combinations: QuarterCombi
   return (
     <section className="card">
       <div className="row">
-        <h2 style={{ margin: 0 }}>Kombinationen je Sitzung <span className="muted">Entwurf · nicht freigegeben</span></h2>
+        <h2 style={{ margin: 0 }}><Combine size={22} aria-hidden="true" />Kombinationen je Sitzung <span className="muted">Entwurf · nicht freigegeben</span></h2>
         <span className={`pill ${excluded ? 'billing_conflict' : 'candidate'}`}>{excluded} Ausschlüsse</span>
         <span className="pill">{combinations.findings.length - excluded} zu prüfen</span>
         <span className="spacer" />

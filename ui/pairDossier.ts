@@ -8,8 +8,8 @@ let cached: Promise<PairRegistry | { error: string }> | null = null;
  */
 export function loadPairDossier(): Promise<PairRegistry | { error: string }> {
   cached ??= Promise.all([
-    import('../data/billing/scope-resolutions/rules.review.json', { with: { type: 'json' } }),
-    import('../data/billing/wounds/rules.review.json', { with: { type: 'json' } }),
+    import('../data/billing/scope-resolutions/rules.review.json'),
+    import('../data/billing/wounds/rules.review.json'),
   ]).then(([pairs, wounds]) => loadPairRegistry(pairs.default, [wounds.default]))
     .catch((e: unknown) => ({ error: `Dossier nicht lesbar: ${String(e)}` }));
   return cached;

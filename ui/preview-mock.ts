@@ -10,7 +10,10 @@ function syntheticExport() {
   const data = concatBytes([
     xdtLine('8000', '6310'), xdtLine('9206', '3'), xdtLine('3000', 'P-vorschau01'), xdtLine('6200', '27102026'),
     xdtLine('6220', 'Frau [entfernt] klagt seit 3 Tagen über Husten, kein Fieber.'),
-    xdtLine('6001', 'J20.9'), xdtLine('6003', 'G'), xdtLine('5000', '27102026'), xdtLine('5001', '03230'),
+    xdtLine('6001', 'J20.9'), xdtLine('6003', 'G'), xdtLine('5000', '27102026'),
+    // Paare für die Vorschau: 03100 + 03360 zur gleichen Uhrzeit (Ausschluss), 03230 + 35100 ohne Uhrzeit (nicht prüfbar).
+    xdtLine('5001', '03100'), xdtLine('5006', '0930'), xdtLine('5001', '03360'), xdtLine('5006', '0930'),
+    xdtLine('5001', '03230'), xdtLine('5001', '35100'),
   ]);
   return { name: 'DURIA-Übergabe', format: 'gdt', data: Array.from(data), token: 'P-vorschau01', patient_ids: 1, dropped: 4, unknown: 2, invalid: 0, redacted: 2, revision: 'vorschau' };
 }

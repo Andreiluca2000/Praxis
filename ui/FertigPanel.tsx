@@ -1,6 +1,7 @@
 import { CircleCheckBig } from 'lucide-react';
 import { useState } from 'react';
 import type { BillingEntry, FertigProposal, FertigReport } from '../src/core/fertig.js';
+import { VERDICT } from './PairEvidence.js';
 
 /**
  * Ergebnis von „Fertig“. Der Arzt nimmt jeden Vorschlag einzeln an oder verwirft ihn.
@@ -50,6 +51,11 @@ export function FertigPanel({ report, isArzt, billingEnabled, onSubmit }: {
           {p.finding && p.finding.conditions.length > 0 && (
             <ul className="conds">{p.finding.conditions.map((c, j) => <li key={j} className={c.state}>{c.label}: {c.reason}</li>)}</ul>
           )}
+          {p.pairFindings?.map((f) => (
+            <p key={`${f.clauseId}@${f.date}`} className="pair-hint">
+              <span className={`pill ${VERDICT[f.verdict].pill}`}>{VERDICT[f.verdict].label}</span>{f.text} <span className="muted">(Entwurf)</span>
+            </p>
+          ))}
         </div>
       ))}
       {accepted.length > 0 && (

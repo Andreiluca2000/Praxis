@@ -10,6 +10,8 @@ import { Dictation } from './Dictation.js';
 import { FactPanel } from './FactPanel.js';
 import { FertigPanel } from './FertigPanel.js';
 import { NoteCard } from './NoteCard.js';
+import { loadPairDossier } from './pairDossier.js';
+import { PatientPairs } from './PatientPairs.js';
 import { api, type ExportFilter, type SanitizedExport } from './platform.js';
 import { today, type TreatmentSession } from './session.js';
 
@@ -25,6 +27,7 @@ export function Treatment({ session, user, billingEnabled }: { session: Treatmen
   const [fertigBusy, setFertigBusy] = useState(false);
   const [msg, setMsg] = useState('');
   const [filter, setFilter] = useState<ExportFilter | null>(null);
+  const [pairError, setPairError] = useState('');
 
   function load(x: SanitizedExport) {
     try {
@@ -37,6 +40,15 @@ export function Treatment({ session, user, billingEnabled }: { session: Treatmen
     } catch (e) { setMsg(String(e)); }
     rerender();
   }
+
+  // Paar-Dossier (Entwurf) nur im Simulator laden; es gilt für alle Patienten dieser Sitzung.
+  useEffect(() => {
+    if (session.mode !== 'simulation') return session.setPairRegistry(null);
+    loadPairDossier().then((r) => {
+      if ('error' in r) setPairError(r.error); else session.setPairRegistry(r);
+      rerender();
+    }).catch((e) => setPairError(String(e)));
+  }, [session, session.mode]);
 
   // Übergabe, die schon vor dem Öffnen dieser Ansicht eingegangen ist (z. B. direkt nach der Anmeldung).
   useEffect(() => {
@@ -101,6 +113,11 @@ export function Treatment({ session, user, billingEnabled }: { session: Treatmen
   }
 
   const snap = analysis?.snapshot;
+  const pairReport = session.hasPatient ? session.pairs() : null;
+  function confirmPair(clauseId: string, day: string) {
+    try { session.confirmSeparate(user, clauseId, day); setReport(null); } catch (e) { setMsg(String(e)); }
+    rerender();
+  }
   return (
     <div className="stack">
       <section className="card">
@@ -133,6 +150,13 @@ export function Treatment({ session, user, billingEnabled }: { session: Treatmen
         )}
         {analysis?.blocked && <p className="error">Analyse gesperrt: {analysis.blocked}</p>}
       </section>
+
+      {pairError && session.mode === 'simulation' && <p className="error" role="alert">Kombinationsprüfung (Entwurf) nicht verfügbar: {pairError}</p>}
+      {pairReport && pairReport.findings.length > 0 && (
+        <PatientPairs report={pairReport} isArzt={user.role === 'arzt'}
+          onConfirm={(f) => confirmPair(f.clauseId, f.date)}
+          onRevoke={(f) => { session.revokeSeparate(f.clauseId, f.date); setReport(null); rerender(); }} />
+      )}
 
       {session.hasPatient && analysis && (
         <FactPanel mentions={analysis.mentions} value={confirmation} user={user} onChange={(c) => { setConfirmation(c); setReport(null); }} />

@@ -2,6 +2,8 @@ import { runFertigInBackground, type BillingEntry, type FertigReport } from '../
 import { DuriaBillingWriteback } from '../src/duria/billing-writeback.js';
 import { CHANNELS } from '../src/duria/channel.js';
 import { analyse, type AnalysisResponse } from '../src/core/analyze.js';
+import { patientPairs } from '../src/core/patient-pairs.js';
+import { confirmationKey, type PairRegistry, type PairReport, type SeparateConfirmation } from '../src/engine/pairs.js';
 import type { Facts, IsoDate, PracticeSettings, RulePackage } from '../src/domain/types.js';
 import { readDuriaExport, type DuriaSnapshot } from '../src/duria/adapter.js';
 import { ContextRegistry, type PatientContext } from '../src/duria/context.js';
@@ -44,6 +46,10 @@ export class TreatmentSession {
   private readonly contexts = new ContextRegistry();
   private current: Current | null = null;
   private fertigJob: { cancel: () => void } | null = null;
+  /** Entwurfs-Dossier der Sitzungspaare (nur Simulator), vom Fenster bei Bedarf geladen. */
+  private pairRegistry: PairRegistry | null = null;
+  /** Bestätigungen „getrennte Sitzungen dokumentiert“ – nur für den geöffneten Patienten, nur im Arbeitsspeicher. */
+  private separate = new Map<string, SeparateConfirmation>();
   /** Pseudonym des geöffneten Patienten (von Rust); Grundlage für jede Übergabe an DURIA. */
   private token: string | null = null;
 
@@ -70,14 +76,32 @@ export class TreatmentSession {
     const res = analyse(raw, source, { sessionId: this.sessionId, serviceDate, mode: this.mode }, this.deps());
     const ctx = this.contexts.current(this.sessionId);
     if (res.context && ctx && snapshot.patientId) {
-      if (before && before !== ctx.patientToken) this.notes.clear(); // Patientenwechsel
+      if (before && before !== ctx.patientToken) { this.notes.clear(); this.separate.clear(); } // Patientenwechsel
       this.current = { raw, source, snapshot, context: ctx, patientId: snapshot.patientId };
     } else {
       this.current = null;
       this.notes.clear();
+      this.separate.clear();
     }
     return res;
   }
+
+  setPairRegistry(reg: PairRegistry | null) { this.pairRegistry = reg; }
+
+  /** Paare der erfassten Leistungen (Entwurf); `null` außerhalb des Simulators oder ohne Dossier. */
+  pairs(): PairReport | null {
+    if (!this.current) return null;
+    return patientPairs(this.current.snapshot, this.pairRegistry, { mode: this.mode, hzvContractId: null, confirmedSeparate: this.separate });
+  }
+
+  /** Nur ein Arzt bestätigt, dass getrennte Sitzungen in der Karteikarte dokumentiert sind (mit Kürzel und Zeit). */
+  confirmSeparate(user: PublicAccount, clauseId: string, date: IsoDate) {
+    if (user.role !== 'arzt') throw new Error('Nur ein Arzt kann getrennte Sitzungen bestätigen.');
+    const at = new Date().toLocaleString('de-DE', { dateStyle: 'short', timeStyle: 'short' });
+    this.separate.set(confirmationKey(clauseId, date), { by: user.kuerzel, at });
+  }
+
+  revokeSeparate(clauseId: string, date: IsoDate) { this.separate.delete(confirmationKey(clauseId, date)); }
 
   reanalyse(serviceDate: IsoDate, facts: Facts, range: { from: IsoDate; to: IsoDate } | null): AnalysisResponse {
     if (!this.current) throw new Error('Kein Patient geladen.');
@@ -95,6 +119,7 @@ export class TreatmentSession {
     this.current = null;
     this.token = null;
     this.notes.clear();
+    this.separate.clear();
     void api.closePatient();
   }
 
@@ -136,8 +161,8 @@ export class TreatmentSession {
     this.fertigJob?.cancel();
     const job = runFertigInBackground({
       serviceDate, snapshot: this.current.snapshot, notes: this.notes.list, confirmedFacts: facts,
-      quarterExportConfirmed: quarterConfirmed, hzvContractId: null,
-    }, this.settings, this.rules, this.mode);
+      quarterExportConfirmed: quarterConfirmed, hzvContractId: null, confirmedSeparate: new Map(this.separate),
+    }, this.settings, this.rules, this.mode, this.mode === 'simulation' ? this.pairRegistry : null);
     this.fertigJob = job;
     return job.promise;
   }

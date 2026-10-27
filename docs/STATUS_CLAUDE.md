@@ -1,4 +1,13 @@
 # Stadiul programării (Claude)
+## Etapa (27.10.2026, noaptea târziu): perechile pacientului în „Behandlung”, cu confirmarea ședințelor separate
+- **Behandlung** (`ui/PatientPairs.tsx`): cardul „Kombinationen je Sitzung” pentru prestațiile pacientului deschis apare doar în simulator, cu registrul încărcat la nevoie. Fiecare pereche are verdictul ca pastilă, textul și dovada (citat din normă). Mesajul fix: o pereche lipsă nu înseamnă „kombinierbar”.
+- **Confirmarea „Getrennte Sitzungen dokumentiert”:** e disponibilă doar pentru medic, doar la verdictele `not_verifiable` și `exception_review`, în doi pași (întâi o întrebare: „sunt documentate două ședințe separate, nu doar ore diferite?”). Rezultatul e `separate_confirmed`, cu Kürzel și ora, și poate fi retras. Dacă ora e aceeași, Ausschluss rămâne (o decide motorul, din `99c83f3`). Confirmările stau doar în memorie, pentru pacientul deschis. Se șterg la schimbarea pacientului, la închidere și la logout, și ajung și la „Fertig” (`confirmedSeparate`).
+- **Fertig** (`ui/FertigPanel.tsx`): la fiecare cifră propusă apar perechile ei (`pairFindings`) ca pastile, marcate „Entwurf”.
+- **Comun:** `ui/PairEvidence.tsx` (verdicte + dovezi), folosit și de verificarea trimestrială KVDT, care primește iconiță la titlu.
+- **Dev:** `ui/pairDossier.ts` importă JSON-ul fără `with { type: 'json' }`, pentru că Vite dev livrează JSON ca modul JS și browserul refuza importul. Mock-ul `?preview=patient` conține acum perechile 03100/03360 la aceeași oră și 03230/35100 fără oră.
+- **Aplicația reală** (release, conturi de test, GDT sintetic citit prin `read_export`): Ausschluss 03100/03360; 03230/35100 „nicht prüfbar” cu buton → întrebare → „bestätigt (TST, …)” → retragere; MFA vede perechile, dar nu are buton. Nume/număr: nu se văd. TS 171.
+
+
 ## Etapa (27.10.2026, noaptea): design „Soft Premium” (direcția A, aleasă de Andree) + Anmelden/Registrieren separate
 - **Stil** (`ui/styles.css`, rescris): fundal ivoire `#f6f5f1`, carduri albe cu raza de 20 px și umbre fine, accent petrol `#1f6b55` și mentă `#e3f1ea`. Butoanele și taburile sunt pastile, câmpurile au raza de 12 px și un inel de focus vizibil. Fără elemente pătrate. Conceptele (Higgsfield GPT Image 2.5, 11 credite) și capturile înainte/după au fost arătate lui Andree.
 - **Cadru:** iconițele din meniu stau în cercuri, elementul activ e o pastilă mentă, iar „Formulare” și „Praxisregeln” au eticheta „bald”. Utilizatorul apare ca chip cu avatar, iar banner-ul Simulator are iconiță. Toate titlurile de card au iconiță (lucide-react).
