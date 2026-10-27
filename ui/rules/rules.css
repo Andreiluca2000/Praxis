@@ -1,0 +1,41 @@
+/* Praxisregeln (ui/rules): Liste, Editor, Simulation – nach dem abgestimmten Entwurf. */
+.guard { display:flex; gap:12px; align-items:flex-start; margin-top:14px; padding:14px 16px; border-radius:16px; background:var(--soft-2); border:1px solid #d6e7dd; }
+.guard svg { color:var(--accent); flex:none; margin-top:2px; }
+.guard div { display:grid; gap:2px; font-size:14px; }
+.guard span { color:var(--muted); }
+.rule-list { display:grid; gap:12px; margin-top:16px; }
+.rule { border:1px solid var(--line); border-radius:18px; padding:14px 18px; transition:box-shadow .15s; }
+.rule:hover { box-shadow:var(--shadow); }
+.rule-title { font-size:15.5px; }
+.rule-text { margin:8px 0; }
+.chip { display:inline-flex; align-items:center; gap:4px; padding:2px 9px; margin-left:4px; border-radius:var(--r-pill); background:#eef0ec; color:var(--ink); font-size:12.5px; font-weight:600; }
+.pill.rule-type { gap:5px; }
+.pill.rule-type.erinnerung { background:#e7eefb; color:#2d5aa8; }
+.pill.rule-type.pflicht { background:#fff1dc; color:var(--warn); }
+.pill.rule-type.kombination { background:#efe8fb; color:#6a3fb0; }
+.pill.rule-type.zurueck { background:#eef0ec; color:var(--grey); }
+.editor-grid { display:grid; grid-template-columns:minmax(0,1.6fr) minmax(0,1fr); gap:18px; align-items:start; }
+.editor-grid .card { display:grid; gap:14px; }
+.type-picker { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.type-option { justify-content:flex-start; text-align:left; gap:12px; padding:10px 14px; border-radius:16px; color:var(--ink); font-weight:400; }
+.type-option span:last-child { display:grid; }
+.type-option small { color:var(--muted); font-size:12.5px; }
+.type-option .nav-ico { width:36px; height:36px; border-radius:50%; display:grid; place-items:center; background:var(--soft-2); color:var(--accent); }
+.type-option.on { border-color:var(--accent); background:var(--soft); box-shadow:0 0 0 3px rgba(31,107,85,.12); }
+.type-option.on .nav-ico { background:var(--accent); color:#fff; }
+.two-cols { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.chips-input { display:flex; gap:8px; align-items:center; padding:7px 10px; border:1px solid var(--line-strong); border-radius:var(--r-ctrl); background:#fff; min-height:42px; }
+.chips-input .chip { margin:0; }
+ul.checks { list-style:none; margin:0; padding:0; display:grid; gap:10px; }
+ul.checks li { display:flex; gap:10px; align-items:center; }
+ul.checks svg { color:var(--ok); }
+h3.sub { display:flex; gap:8px; align-items:center; margin:18px 0 8px; font-size:15px; font-weight:650; }
+ul.history { margin:0; padding-left:18px; display:grid; gap:6px; font-size:14px; color:var(--muted); }
+ul.history b { color:var(--ink); }
+.activate .row { margin-top:10px; }
+.rule-actions { display:flex; gap:8px; flex-wrap:wrap; }
+.rule-empty { text-align:center; padding:28px 16px; color:var(--muted); }
+.code-input { border:0; outline:none; padding:2px 4px; min-width:120px; flex:1; box-shadow:none; }
+.code-input:focus { box-shadow:none; }
+.chip button { padding:0 2px; border:0; background:none; color:var(--muted); }
+.readonly-note { display:flex; gap:8px; align-items:center; color:var(--muted); font-size:13.5px; }

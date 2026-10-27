@@ -4,6 +4,8 @@ import { declareCoverage } from '../duria/adapter.js';
 import { evaluatePackage } from '../engine/evaluate.js';
 import { checkPairs, type PairFinding, type PairRegistry } from '../engine/pairs.js';
 import { checkWindowRules, type WindowFinding, type WindowRuleSet } from '../engine/window-rules.js';
+import { evaluateOnServices } from '../rules/evaluate.js';
+import type { ActiveRule } from '../rules/model.js';
 import { first, parseXdt, parseXdtDate, type XdtRecord } from '../duria/xdt.js';
 
 /**
@@ -31,7 +33,7 @@ export interface CaseFinding {
   caseIndex: number;
   patientToken: string | null;
   severity: 'fehler' | 'hinweis';
-  kind: 'keine_diagnose' | 'diagnose_ohne_sicherheit' | 'leistung_ohne_datum' | 'datum_ausserhalb_quartal' | 'regel';
+  kind: 'keine_diagnose' | 'diagnose_ohne_sicherheit' | 'leistung_ohne_datum' | 'datum_ausserhalb_quartal' | 'regel' | 'praxisregel';
   text: string;
 }
 
@@ -94,6 +96,8 @@ function quarterRange(q: string | null): { from: IsoDate; to: IsoDate } | null {
 export function checkQuarter(
   data: Uint8Array, settings: PracticeSettings, rules: RulePackage, mode: 'operational' | 'simulation', pairs?: PairRegistry | null,
   windows?: WindowRuleSet | null,
+  /** Aktive Praxisregeln: nur Hinweise, nie Fehler. */
+  practice: ActiveRule[] = [],
 ): QuarterReport {
   const { cases, parseErrors } = readKvdt(data);
   // Entwurfsdaten sind operativ wirkungslos (wie DEMO-Regeln): nur im Simulator.
@@ -114,6 +118,9 @@ export function checkQuarter(
       for (const s of c.services) {
         if (s.date < range.from || s.date > range.to) add(c, 'fehler', 'datum_ausserhalb_quartal', `Ziffer ${s.code} am ${s.date} liegt außerhalb des Quartals.`);
       }
+    }
+    for (const p of evaluateOnServices(practice, c.services, { behandlungsfallComplete: true })) {
+      add(c, 'hinweis', 'praxisregel', `${p.title} (v${p.version}) · ${p.codes.join(' + ')} am ${p.date}: ${p.text}`);
     }
     // Regelprüfung je Leistungstag mit vollständigem Quartal (die KVDT-Datei enthält den ganzen Fall).
     if (combinations && pairs) {

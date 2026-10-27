@@ -3,20 +3,21 @@ import { invoke } from '@tauri-apps/api/core';
 import { open } from '@tauri-apps/plugin-dialog';
 import { useMemo, useState } from 'react';
 import type { PracticeSettings, RulePackage } from '../src/domain/types.js';
+import type { ActiveRule } from '../src/rules/model.js';
 import { checkQuarter, type QuarterReport } from '../src/kvdt/quarter-check.js';
 import { CombinationsPanel } from './CombinationsPanel.js';
 import { loadPairDossier, loadWindowDossiers } from './pairDossier.js';
 
 const KIND: Record<string, string> = {
   keine_diagnose: 'Keine Diagnose', diagnose_ohne_sicherheit: 'Diagnose ohne Sicherheit', leistung_ohne_datum: 'Leistung ohne Datum',
-  datum_ausserhalb_quartal: 'Außerhalb des Quartals', regel: 'Regelkonflikt',
+  datum_ausserhalb_quartal: 'Außerhalb des Quartals', regel: 'Regelkonflikt', praxisregel: 'Praxisregel',
 };
 
 /**
  * Quartalsprüfung der KVDT-Datei vor dem Versand an die KV. Nur lesen – es wird nichts verändert oder gesendet.
  * Patienten erscheinen nur als Pseudonym; die Zuordnung erfolgt in DURIA über die Fallnummer/Reihenfolge.
  */
-export function QuarterCheck({ settings, rules, mode }: { settings: PracticeSettings; rules: RulePackage; mode: 'operational' | 'simulation' }) {
+export function QuarterCheck({ settings, rules, mode, practice = [] }: { settings: PracticeSettings; rules: RulePackage; mode: 'operational' | 'simulation'; practice?: ActiveRule[] }) {
   const [report, setReport] = useState<QuarterReport | null>(null);
   const [meta, setMeta] = useState<{ name: string; patients: number; dropped: number; invalid: number } | null>(null);
   const [busy, setBusy] = useState(false);
@@ -39,7 +40,7 @@ export function QuarterCheck({ settings, rules, mode }: { settings: PracticeSett
       const windows = mode === 'simulation' ? await loadWindowDossiers() : null;
       setDossierError([pairs, windows].map((x) => (x && 'error' in x ? x.error : '')).filter(Boolean).join(' '));
       setReport(checkQuarter(Uint8Array.from(r.data), settings, rules, mode,
-        pairs && !('error' in pairs) ? pairs : null, windows && !('error' in windows) ? windows : null));
+        pairs && !('error' in pairs) ? pairs : null, windows && !('error' in windows) ? windows : null, practice));
     } catch (e) { setError(String(e)); } finally { setBusy(false); }
   }
 

@@ -4,6 +4,21 @@
  */
 import { mockIPC } from '@tauri-apps/api/mocks';
 import { concatBytes, xdtLine } from '../src/duria/xdt.js';
+import { activate, EMPTY_FILE, saveDraft, type PracticeRuleContent } from '../src/rules/model.js';
+
+/** Erfundene Praxisregeln für die Vorschau (aktive Erinnerung, aktive Hausregel, ein Entwurf). */
+function samplePracticeRules(): string {
+  const by = { kuerzel: 'AL', role: 'arzt' as const };
+  const t = '2026-10-12T09:00:00Z';
+  const rule = (c: Omit<PracticeRuleContent, 'system' | 'validFrom'>) => ({ system: 'EBM' as const, validFrom: '2026-10-01', ...c });
+  let f = EMPTY_FILE;
+  let r = saveDraft(f, null, rule({ type: 'erinnerung', title: 'Gesprächsdauer bei 03230', codes: ['03230'], text: 'Gesprächsdauer in Minuten in der Karteikarte notieren (mind. 10 Minuten je Einheit).', priority: 'wichtig' }), by, t);
+  f = activate(r.file, r.ruleId, 1, by, 'Hinweis der Abrechnungsberatung', t);
+  r = saveDraft(f, null, rule({ type: 'kombination', title: '03230 nicht neben 35100', codes: ['03230'], partnerCodes: ['35100'], scope: 'calendar_day', text: 'Praxisintern: Gespräch und psychosomatische Leistung nicht am selben Tag abrechnen.', priority: 'hinweis' }), by, t);
+  f = activate(r.file, r.ruleId, 1, by, 'Praxisabsprache 10/2026', t);
+  r = saveDraft(f, null, rule({ type: 'zurueck', title: '01435 nur nach Rücksprache', codes: ['01435'], text: 'Die Praxis rechnet 01435 nicht automatisch ab.', priority: 'hinweis' }), by, t);
+  return JSON.stringify(r.file);
+}
 
 /** Erfundener, bereits „bereinigter“ GDT-Satz für ?preview=patient (wie ihn Rust liefern würde). */
 function syntheticExport() {
@@ -32,11 +47,14 @@ export function installPreviewMock() {
   const screen = new URLSearchParams(location.search).get('preview');
   const loggedOut = screen === 'login' || screen === 'setup';
   let delivered = false;
-  mockIPC((cmd) => {
+  let practiceRules: string | null = samplePracticeRules();
+  mockIPC((cmd, args) => {
     if (cmd === 'status') {
       return { needs_setup: screen === 'setup', user: loggedOut ? null : user, accounts: loggedOut ? [] : [user], config, voice_missing: [], session: 'PC07:AL' };
     }
     if (cmd.startsWith('plugin:event')) return 0;
+    if (cmd === 'rules_read') return practiceRules;
+    if (cmd === 'rules_write') { practiceRules = (args as { json: string }).json; return null; }
     if (cmd === 'take_incoming' && screen === 'patient' && !delivered) { delivered = true; return syntheticExport(); }
     return null;
   });

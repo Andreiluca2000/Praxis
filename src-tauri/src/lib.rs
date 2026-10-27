@@ -196,6 +196,8 @@ pub fn run() {
             commands::gdt_write,
             commands::transcribe,
             commands::update_config,
+            commands::rules_read,
+            commands::rules_write,
         ])
         .run(tauri::generate_context!())
         .expect("Praxis-Assistent konnte nicht starten");

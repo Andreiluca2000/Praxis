@@ -36,6 +36,9 @@ export const api = {
   /** Registrierung auf dem Anmeldebildschirm; weitere Konten nur mit Freigabe durch ein Arztkonto. */
   registerAccount: (a: { kuerzel: string; name: string; role: 'arzt' | 'mfa'; password: string; approverKuerzel?: string; approverPassword?: string }) =>
     invoke<PublicAccount>('register_account', { kuerzel: a.kuerzel, name: a.name, role: a.role, password: a.password, approverKuerzel: a.approverKuerzel ?? null, approverPassword: a.approverPassword ?? null }),
+  /** Praxisregeln (praxisweit). Lesen: jeder Angemeldete; Speichern: nur Ärzte, auf dem Server nur als Administrator. */
+  rulesRead: () => invoke<string | null>('rules_read'),
+  rulesWrite: (json: string) => invoke<void>('rules_write', { json }),
   setAccountActive: (kuerzel: string, active: boolean) => invoke<void>('set_account_active', { kuerzel, active }),
   login: (kuerzel: string, password: string) => invoke<PublicAccount>('login', { kuerzel, password }),
   logout: () => invoke<void>('logout'),

@@ -7,10 +7,12 @@ import { validateSettings } from '../src/validation/validate.js';
 import { Login } from './Login.js';
 import { api, type Status } from './platform.js';
 import { today, TreatmentSession } from './session.js';
+import { activeRules } from '../src/rules/model.js';
+import { PraxisregelnView } from './rules/PraxisregelnView.js';
 import { Settings } from './Settings.js';
 import { Treatment } from './Treatment.js';
 
-type View = 'behandlung' | 'quartal' | 'diagnosen' | 'formulare' | 'einstellungen';
+type View = 'behandlung' | 'quartal' | 'diagnosen' | 'formulare' | 'regeln' | 'einstellungen';
 
 /** Seitennavigation nach dem Codex-Entwurf (praxis-assistent-konzept.html); nur fertige Bereiche sind aktiv. */
 const NAV: { id: View | 'diagnosen' | 'formulare' | 'regeln'; label: string; icon: typeof Stethoscope; ready: boolean }[] = [
@@ -18,7 +20,7 @@ const NAV: { id: View | 'diagnosen' | 'formulare' | 'regeln'; label: string; ico
   { id: 'quartal', label: 'Quartalsprüfung (KVDT)', icon: CalendarCheck, ready: true },
   { id: 'diagnosen', label: 'Diagnosen & ICD', icon: Stethoscope, ready: true },
   { id: 'formulare', label: 'Formulare', icon: Files, ready: true },
-  { id: 'regeln', label: 'Praxisregeln', icon: SlidersHorizontal, ready: false },
+  { id: 'regeln', label: 'Praxisregeln', icon: SlidersHorizontal, ready: true },
   { id: 'einstellungen', label: 'Einstellungen', icon: Settings2, ready: true },
 ];
 
@@ -34,7 +36,10 @@ export function App() {
     try {
       const s = await api.status();
       setStatus(s);
-      if (s.user && !session.current) session.current = new TreatmentSession(s.session, s.config);
+      if (s.user && !session.current) {
+        session.current = new TreatmentSession(s.session, s.config);
+        await session.current.loadPractice();
+      }
       session.current?.setConfig(s.config);
       if (!s.user) session.current = null;
     } catch (e) { setNotice(String(e)); }
@@ -98,10 +103,11 @@ export function App() {
           {notice && <div className="notice" role="status">{notice} <button className="link" onClick={() => setNotice('')}>×</button></div>}
           {view === 'behandlung' && <Treatment session={s} user={status.user} billingEnabled={status.config.billing_writeback_enabled} />}
           {view === 'quartal' && (status.user.role === 'arzt'
-            ? <QuarterCheck settings={s.settings} rules={s.rules} mode={status.config.mode} />
+            ? <QuarterCheck settings={s.settings} rules={s.rules} mode={status.config.mode} practice={activeRules(s.practice, today())} />
             : <section className="card"><p className="muted">Die Quartalsprüfung ist Ärzten vorbehalten.</p></section>)}
           {view === 'diagnosen' && <section className="card"><h2><Stethoscope size={22} aria-hidden="true" />Diagnosen & ICD-10-GM</h2><IcdSearch /></section>}
           {view === 'formulare' && <FormsView kartei={s.snapshot ? { diagnoses: s.snapshot.diagnoses, notes: s.snapshot.notes, serviceDate: today() } : null} />}
+          {view === 'regeln' && <PraxisregelnView session={s} user={status.user} />}
           {view === 'einstellungen' && <Settings status={status} kv={s.settings.region.kv} onKv={setKv} onChanged={refresh} />}
         </main>
       </div>

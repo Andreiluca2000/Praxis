@@ -5,6 +5,8 @@ import { analyse, type AnalysisResponse } from '../src/core/analyze.js';
 import { patientPairs } from '../src/core/patient-pairs.js';
 import { confirmationKey, type PairRegistry, type PairReport, type SeparateConfirmation } from '../src/engine/pairs.js';
 import { checkWindowRules, type WindowFinding, type WindowRuleSet } from '../src/engine/window-rules.js';
+import { evaluateOnServices, type PracticeFinding } from '../src/rules/evaluate.js';
+import { activeRules, EMPTY_FILE, parseRuleFile, type PracticeRuleFile } from '../src/rules/model.js';
 import type { Facts, IsoDate, PracticeSettings, RulePackage } from '../src/domain/types.js';
 import { readDuriaExport, type DuriaSnapshot } from '../src/duria/adapter.js';
 import { ContextRegistry, type PatientContext } from '../src/duria/context.js';
@@ -88,6 +90,36 @@ export class TreatmentSession {
   }
 
   setPairRegistry(reg: PairRegistry | null) { this.pairRegistry = reg; }
+
+  /** Praxisregeln (praxisweit, aus praxisregeln.json). Fehlerhafte Datei → keine Regel, Meldung in `practiceError`. */
+  practice: PracticeRuleFile = EMPTY_FILE;
+  practiceError = '';
+
+  async loadPractice(): Promise<void> {
+    try {
+      const raw = await api.rulesRead();
+      const parsed = parseRuleFile(raw === null ? null : JSON.parse(raw));
+      if ('error' in parsed) { this.practice = EMPTY_FILE; this.practiceError = parsed.error; } else { this.practice = parsed; this.practiceError = ''; }
+    } catch (e) {
+      this.practice = EMPTY_FILE;
+      this.practiceError = `Praxisregeln nicht lesbar: ${String(e)}`;
+    }
+  }
+
+  /** Speichert die ganze Datei (nur Ärzte; auf dem Server nur als Administrator). Erst nach Erfolg gilt sie im Fenster. */
+  async savePractice(file: PracticeRuleFile): Promise<void> {
+    const check = parseRuleFile(JSON.parse(JSON.stringify(file)));
+    if ('error' in check) throw new Error(check.error);
+    await api.rulesWrite(JSON.stringify(file, null, 2));
+    this.practice = file;
+    this.practiceError = '';
+  }
+
+  /** Praxisregeln auf die erfassten Leistungen des geöffneten Patienten. */
+  practiceFindings(serviceDate: IsoDate, quarterComplete: boolean): PracticeFinding[] {
+    if (!this.current) return [];
+    return evaluateOnServices(activeRules(this.practice, serviceDate), this.current.snapshot.services, { behandlungsfallComplete: quarterComplete });
+  }
 
   /** Regeln mit Zeitraum (Tag/Woche/Fall) und Höchstanzahlen – Entwurf, nur im Simulator. */
   private windowRules: WindowRuleSet | null = null;
@@ -174,6 +206,7 @@ export class TreatmentSession {
     const job = runFertigInBackground({
       serviceDate, snapshot: this.current.snapshot, notes: this.notes.list, confirmedFacts: facts,
       quarterExportConfirmed: quarterConfirmed, hzvContractId: null, confirmedSeparate: new Map(this.separate),
+      practiceRules: activeRules(this.practice, serviceDate),
     }, this.settings, this.rules, this.mode, this.mode === 'simulation' ? this.pairRegistry : null);
     this.fertigJob = job;
     return job.promise;

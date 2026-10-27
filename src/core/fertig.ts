@@ -4,6 +4,8 @@ import { declareCoverage, type DuriaSnapshot } from '../duria/adapter.js';
 import { evaluatePackage } from '../engine/evaluate.js';
 import { checkPairs, type PairFinding, type PairRegistry, type SeparateConfirmation } from '../engine/pairs.js';
 import type { Note } from '../notes/note.js';
+import { applyToProposals, type PracticeFinding } from '../rules/evaluate.js';
+import type { ActiveRule } from '../rules/model.js';
 
 /**
  * „Fertig“: Abschlussprüfung nach der Behandlung, im Hintergrund.
@@ -28,6 +30,8 @@ export interface FertigProposal {
   readiness: 'bereit' | 'klaerung' | 'info';
   /** Paare „nicht nebeneinander je Sitzung“ (Entwurfs-Dossier) zwischen der vorgeschlagenen und einer erfassten Ziffer. */
   pairFindings?: PairFinding[];
+  /** Hinweise aus Praxisregeln (können die Bereitschaft nur absenken). */
+  practiceNotes?: PracticeFinding[];
 }
 
 export interface FertigReport {
@@ -48,6 +52,8 @@ export interface FertigInput {
   hzvContractId: string | null;
   /** Bestätigungen „getrennte Sitzungen dokumentiert“ (Schlüssel `confirmationKey`). */
   confirmedSeparate?: ReadonlyMap<string, SeparateConfirmation>;
+  /** Aktive Praxisregeln am Behandlungstag – senken Vorschläge höchstens ab, geben nie etwas frei. */
+  practiceRules?: ActiveRule[];
 }
 
 /**
@@ -150,7 +156,10 @@ export function runFertig(
     }
   }
 
-  return { serviceDate: input.serviceDate, quarter, quarterComplete: input.quarterExportConfirmed, proposals, finishedAt: new Date().toISOString() };
+  const finalProposals = input.practiceRules?.length
+    ? applyToProposals(input.practiceRules, proposals, { facts: input.confirmedFacts, services: input.snapshot.services })
+    : proposals;
+  return { serviceDate: input.serviceDate, quarter, quarterComplete: input.quarterExportConfirmed, proposals: finalProposals, finishedAt: new Date().toISOString() };
 }
 
 /** Hintergrund-Ausführung mit Abbruch: blockiert die Oberfläche nicht. */

@@ -29,6 +29,46 @@ fn default_channel() -> String {
     "gdt".into()
 }
 
+/// Praxisweite Praxisregeln (nur Regeln und Verlauf, keine Patientendaten). Schreiben auf dem Server nur als Administrator.
+pub fn practice_rules_file() -> PathBuf {
+    shared_dir().join("praxisregeln.json")
+}
+
+/// Höchstgröße der Praxisregel-Datei (Schutz vor versehentlich riesigen Dateien).
+pub const PRACTICE_RULES_MAX_BYTES: u64 = 2 * 1024 * 1024;
+
+/// Atomar schreiben (erst .tmp, dann umbenennen); fehlende Rechte → verständliche Meldung.
+pub fn write_practice_rules(file: &Path, json: &str) -> Result<(), String> {
+    let value: serde_json::Value = serde_json::from_str(json).map_err(|_| "Praxisregeln: ungültiges Format.".to_string())?;
+    if value.get("schema_version").and_then(|v| v.as_str()) != Some("1.0.0") || !value.get("rules").map(|r| r.is_array()).unwrap_or(false) {
+        return Err("Praxisregeln: unbekanntes Dateiformat.".into());
+    }
+    if json.len() as u64 > PRACTICE_RULES_MAX_BYTES {
+        return Err("Praxisregeln: Datei zu groß.".into());
+    }
+    let failed = |e: std::io::Error| match e.kind() {
+        std::io::ErrorKind::PermissionDenied => {
+            "Praxisregeln können nur mit Administratorrechten gespeichert werden (Programm per Rechtsklick „Als Administrator ausführen“).".to_string()
+        }
+        _ => format!("Praxisregeln nicht speicherbar: {e}"),
+    };
+    if let Some(dir) = file.parent() {
+        fs::create_dir_all(dir).map_err(failed)?;
+    }
+    let tmp = file.with_extension("tmp");
+    fs::write(&tmp, json).map_err(failed)?;
+    fs::rename(&tmp, file).map_err(failed)
+}
+
+pub fn read_practice_rules(file: &Path) -> Result<Option<String>, String> {
+    match fs::metadata(file) {
+        Err(e) if e.kind() == std::io::ErrorKind::NotFound => Ok(None),
+        Err(e) => Err(format!("Praxisregeln nicht lesbar: {e}")),
+        Ok(m) if m.len() > PRACTICE_RULES_MAX_BYTES => Err("Praxisregeln: Datei zu groß.".into()),
+        Ok(_) => fs::read_to_string(file).map(Some).map_err(|e| format!("Praxisregeln nicht lesbar: {e}")),
+    }
+}
+
 pub fn shared_dir() -> PathBuf {
     let base = std::env::var("ProgramData").unwrap_or_else(|_| "C:\\ProgramData".into());
     PathBuf::from(base).join("Praxis-Assistent")
@@ -96,4 +136,30 @@ pub fn save_config(file: &Path, cfg: &AppConfig) -> Result<(), String> {
         fs::create_dir_all(d).map_err(|e| e.to_string())?;
     }
     fs::write(file, serde_json::to_string_pretty(cfg).map_err(|e| e.to_string())?).map_err(|e| e.to_string())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn praxisregeln_lesen_schreiben_und_rechte() {
+        let nanos = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_nanos();
+        let dir = std::env::temp_dir().join(format!("praxis-rules-{nanos}"));
+        let file = dir.join("praxisregeln.json");
+        assert_eq!(read_practice_rules(&file).unwrap(), None);
+        assert!(write_practice_rules(&file, "kein json").is_err());
+        assert!(write_practice_rules(&file, r#"{"schema_version":"9","rules":[]}"#).is_err());
+        write_practice_rules(&file, r#"{"schema_version":"1.0.0","rules":[]}"#).unwrap();
+        assert!(read_practice_rules(&file).unwrap().unwrap().contains("1.0.0"));
+        // Schreibgeschützt (wie auf dem Server für Benutzer) → Hinweis auf Administratorrechte.
+        let mut perm = fs::metadata(&file).unwrap().permissions();
+        perm.set_readonly(true);
+        fs::set_permissions(&file, perm.clone()).unwrap();
+        let err = write_practice_rules(&file, r#"{"schema_version":"1.0.0","rules":[1]}"#).unwrap_err();
+        assert!(err.contains("Administratorrechten"), "{err}");
+        perm.set_readonly(false);
+        fs::set_permissions(&file, perm).unwrap();
+        let _ = fs::remove_dir_all(dir);
+    }
 }

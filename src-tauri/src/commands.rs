@@ -178,6 +178,20 @@ pub async fn transcribe(state: State<'_, AppState>, audio: Vec<u8>) -> Result<St
     tauri::async_runtime::spawn_blocking(move || voice::transcribe(&audio, &cfg)).await.map_err(|e| e.to_string())?
 }
 
+/// Praxisregeln lesen (jeder angemeldete Benutzer). `None` = noch keine Datei.
+#[tauri::command]
+pub fn rules_read(state: State<AppState>) -> Result<Option<String>, String> {
+    require_user(&state)?;
+    config::read_practice_rules(&config::practice_rules_file())
+}
+
+/// Praxisregeln speichern – nur Ärzte; das Fenster prüft Inhalt und Fassungen, Rust Form und Größe.
+#[tauri::command]
+pub fn rules_write(state: State<AppState>, json: String) -> Result<(), String> {
+    require_arzt(&state)?;
+    config::write_practice_rules(&config::practice_rules_file(), &json)
+}
+
 #[tauri::command]
 pub fn update_config(state: State<AppState>, patch: serde_json::Value) -> Result<AppConfig, String> {
     require_arzt(&state)?;

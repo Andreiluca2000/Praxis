@@ -1,4 +1,4 @@
-import { ArrowRight, ClipboardList, Download, NotebookPen, Stethoscope, UserRound, X } from 'lucide-react';
+import { ArrowRight, ClipboardList, Download, NotebookPen, SlidersHorizontal, Stethoscope, UserRound, X } from 'lucide-react';
 import { useEffect, useReducer, useState } from 'react';
 import type { AnalysisResponse } from '../src/core/analyze.js';
 import type { FertigReport } from '../src/core/fertig.js';
@@ -119,6 +119,7 @@ export function Treatment({ session, user, billingEnabled }: { session: Treatmen
   const snap = analysis?.snapshot;
   const pairReport = session.hasPatient ? session.pairs() : null;
   const windowFindings = session.hasPatient ? session.windowFindings(quarter) : null;
+  const practiceFindings = session.hasPatient ? session.practiceFindings(date, quarter) : [];
   function confirmPair(clauseId: string, day: string) {
     try { session.confirmSeparate(user, clauseId, day); setReport(null); } catch (e) { setMsg(String(e)); }
     rerender();
@@ -156,6 +157,18 @@ export function Treatment({ session, user, billingEnabled }: { session: Treatmen
         {analysis?.blocked && <p className="error">Analyse gesperrt: {analysis.blocked}</p>}
       </section>
 
+      {practiceFindings.length > 0 && (
+        <section className="card">
+          <h2><SlidersHorizontal size={22} aria-hidden="true" />Praxisregeln <span className="muted">Hinweise der Praxis zu den erfassten Leistungen</span></h2>
+          {practiceFindings.map((f) => (
+            <p key={`${f.ruleId}-${f.date}-${f.codes.join('+')}`} className="pair-hint">
+              <span className={`pill ${f.priority === 'wichtig' ? 'not_verifiable' : 'candidate'}`}>{f.priority === 'wichtig' ? 'Wichtig' : 'Hinweis'}</span>
+              <strong>{f.codes.join(' + ')}</strong> {f.text} <span className="muted">({f.title}, v{f.version})</span>
+            </p>
+          ))}
+        </section>
+      )}
+      {session.practiceError && <p className="error" role="alert">{session.practiceError} Bis zur Korrektur gilt keine Praxisregel.</p>}
       {pairError && session.mode === 'simulation' && <p className="error" role="alert">Kombinationsprüfung (Entwurf) nicht verfügbar: {pairError}</p>}
       {pairReport && (pairReport.findings.length > 0 || (windowFindings?.length ?? 0) > 0) && (
         <PatientPairs report={pairReport} isArzt={user.role === 'arzt'} windowFindings={windowFindings ?? []} windowSkipped={session.windowSkipped}
