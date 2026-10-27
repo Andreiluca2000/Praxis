@@ -14,6 +14,8 @@ function syntheticExport() {
     // Paare für die Vorschau: 03100 + 03360 zur gleichen Uhrzeit (Ausschluss), 03230 + 35100 ohne Uhrzeit (nicht prüfbar).
     xdtLine('5001', '03100'), xdtLine('5006', '0930'), xdtLine('5001', '03360'), xdtLine('5006', '0930'),
     xdtLine('5001', '03230'), xdtLine('5001', '35100'),
+    // Ausschluss am selben Tag trotz verschiedener Uhrzeiten (Zeitraum-Regel aus dem Dossier „visits“).
+    xdtLine('5001', '01101'), xdtLine('5006', '0800'), xdtLine('5001', '01955'), xdtLine('5006', '1900'),
   ]);
   return { name: 'DURIA-Übergabe', format: 'gdt', data: Array.from(data), token: 'P-vorschau01', patient_ids: 1, dropped: 4, unknown: 2, invalid: 0, redacted: 2, revision: 'vorschau' };
 }

@@ -83,3 +83,29 @@ fn registrierung_nur_mit_arzt_freigabe() {
     assert!(s.login("MF", "geheim456").is_some());
     let _ = fs::remove_dir_all(dir);
 }
+
+/// Sperre nach wiederholten Fehlversuchen – auch für die Arzt-Freigabe bei der Registrierung.
+#[test]
+fn sperre_nach_fehlversuchen() {
+    use crate::accounts::{FIRST_LOCK, FREE_ATTEMPTS};
+    use std::time::{Duration, Instant};
+    let (file, dir) = tmpfile("lock");
+    let mut s = AccountStore::open(&file).unwrap();
+    s.register("al", "Dr. Test", Role::Arzt, "geheim123", None).unwrap();
+    let t0 = Instant::now();
+    for _ in 0..FREE_ATTEMPTS {
+        assert_eq!(s.attempt("AL", "falsch!!", t0).unwrap_err(), "Kürzel oder Passwort falsch.");
+    }
+    // Jetzt gesperrt – selbst das richtige Passwort wird abgewiesen.
+    assert!(s.attempt("al", "geheim123", t0).unwrap_err().contains("Zu viele Fehlversuche"));
+    // Die Freigabe einer Registrierung läuft über dieselbe Sperre (Uhr = jetzt, also noch gesperrt).
+    assert!(s.register("mf", "MFA", Role::Mfa, "geheim456", Some(("AL", "geheim123"))).unwrap_err().contains("Zu viele Fehlversuche"));
+    // Nach Ablauf geht es wieder; ein weiterer Fehlversuch verdoppelt die Sperre.
+    let t1 = t0 + FIRST_LOCK + Duration::from_secs(1);
+    assert!(s.attempt("AL", "falsch!!", t1).is_err());
+    assert!(s.attempt("AL", "geheim123", t1 + FIRST_LOCK + Duration::from_secs(1)).unwrap_err().contains("Zu viele Fehlversuche"));
+    assert!(s.attempt("AL", "geheim123", t1 + FIRST_LOCK * 2 + Duration::from_secs(1)).is_ok());
+    // Erfolg setzt den Zähler zurück.
+    assert_eq!(s.attempt("AL", "falsch!!", t1 + FIRST_LOCK * 3).unwrap_err(), "Kürzel oder Passwort falsch.");
+    let _ = fs::remove_dir_all(dir);
+}

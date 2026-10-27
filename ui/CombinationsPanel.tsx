@@ -2,6 +2,7 @@ import { Combine } from 'lucide-react';
 import { useState } from 'react';
 import type { QuarterCombinations } from '../src/kvdt/quarter-check.js';
 import { PairEvidence as Evidence, VERDICT } from './PairEvidence.js';
+import { WindowFindings } from './WindowFindings.js';
 
 /** Paare „nicht nebeneinander je Sitzung“ aus dem Entwurfs-Dossier – Hinweise zur Prüfung, keine Entscheidung. */
 export function CombinationsPanel({ combinations }: { combinations: QuarterCombinations }) {
@@ -20,8 +21,8 @@ export function CombinationsPanel({ combinations }: { combinations: QuarterCombi
       </div>
       <p className="warn">
         ⚠ Grundlage ist ein ungeprüfter Entwurf (Dossier {combinations.schemaVersion}, nur Q4/2026). Ergebnisse sind Hinweise für die
-        Abrechnungsprüfung, keine Entscheidung. Ein fehlendes Paar bedeutet nicht „kombinierbar“ – Ausschlüsse je Tag, Behandlungsfall
-        oder postoperativer Frist sind hier nicht enthalten.
+        Abrechnungsprüfung, keine Entscheidung. Ein fehlendes Paar bedeutet nicht „kombinierbar“ – „nicht neben“ ohne Zeitraum und
+        Abschnitte ohne belegte Zuordnung werden nicht geprüft (siehe unten).
       </p>
       {combinations.outOfRange > 0 && <p className="muted">{combinations.outOfRange} Leistungstage außerhalb Q4/2026 wurden nicht geprüft.</p>}
       {shown.length === 0 && <p className="muted">Keine Paare aus dem Dossier gefunden.</p>}
@@ -48,6 +49,7 @@ export function CombinationsPanel({ combinations }: { combinations: QuarterCombi
           ))}
         </tbody>
       </table>
+      <WindowFindings findings={combinations.windowFindings} skipped={combinations.windowSkipped} />
     </section>
   );
 }

@@ -1,0 +1,2079 @@
+{
+  "schema_version": "1.1.0",
+  "kind": "optional_hausarzt_review_dossier",
+  "built_on": "2026-10-27",
+  "status": "draft",
+  "review": "pending",
+  "operational": false,
+  "complete": false,
+  "default_verdict": "not_verified",
+  "valid_from": "2026-10-01",
+  "valid_to": "2026-12-31",
+  "covered_codes": {
+    "EBM": [
+      "33012",
+      "35100",
+      "35110",
+      "03370",
+      "03371",
+      "03372",
+      "03373"
+    ],
+    "GOAE": [
+      "651",
+      "652",
+      "654",
+      "605",
+      "605a",
+      "410",
+      "420"
+    ]
+  },
+  "clauses": [
+    {
+      "id": "GOAE_651_CONTENT",
+      "system": "GOAE",
+      "codes": [
+        "651"
+      ],
+      "kind": "content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "ECG de repaus cu derivații de membre și precordiale, minimum nouă; ECG după efort nu dovedește singur ergometria 652.",
+      "scope": "actual_service",
+      "parameters": {
+        "min_leads": 9
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/goae-anlage-20261025.html",
+          "sha256": "4e72bfc8629d8de5be0f969c1bbfc5b7133b1feb9bf822ecbf1558950099148c",
+          "url": "https://www.gesetze-im-internet.de/go__1982/anlage.html",
+          "anchor": "Elektrokardiographische Untersuchung in Ruhe - auch gegebenenfalls nach Belastung - mit Extremitäten- und Brustwandableitungen (mindestens neun Ableitungen)",
+          "locator": "HTML table 19, rows [25] (one-based)"
+        }
+      ]
+    },
+    {
+      "id": "GOAE_652_CONTENT",
+      "system": "GOAE",
+      "codes": [
+        "652"
+      ],
+      "kind": "content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Ergometrie cu înregistrare continuă și minimum nouă derivații, în repaus și la efort fizic definit și reproductibil.",
+      "scope": "actual_service",
+      "parameters": {
+        "min_leads": 9
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/goae-anlage-20261025.html",
+          "sha256": "4e72bfc8629d8de5be0f969c1bbfc5b7133b1feb9bf822ecbf1558950099148c",
+          "url": "https://www.gesetze-im-internet.de/go__1982/anlage.html",
+          "anchor": "Elektrokardiographische Untersuchung unter fortschreibender Registrierung (mindestens neun Ableitungen) in Ruhe und bei physikalisch definierter und reproduzierbarer Belastung (Ergometrie) - gegebenenfalls auch Belastungsänderung -",
+          "locator": "HTML table 19, rows [26] (one-based)"
+        }
+      ]
+    },
+    {
+      "id": "GOAE_654_CONTENT",
+      "system": "GOAE",
+      "codes": [
+        "654"
+      ],
+      "kind": "content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Tensiune arterială pe minimum 18 ore, inclusiv înregistrare și evaluare; montarea aparatului singură nu este prestația completă.",
+      "scope": "actual_service",
+      "parameters": {
+        "min_minutes": 1080
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/goae-anlage-20261025.html",
+          "sha256": "4e72bfc8629d8de5be0f969c1bbfc5b7133b1feb9bf822ecbf1558950099148c",
+          "url": "https://www.gesetze-im-internet.de/go__1982/anlage.html",
+          "anchor": "Langzeitblutdruckmessung von mindestens 18 Stunden Dauer - einschließlich Aufzeichnung und Auswertung -",
+          "locator": "HTML table 19, rows [29] (one-based)"
+        }
+      ]
+    },
+    {
+      "id": "GOAE_605_CONTENT",
+      "system": "GOAE",
+      "codes": [
+        "605"
+      ],
+      "kind": "content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Spirografie de repaus cu metoda cu înregistrare continuă din legendă; un test parțial nu dovedește serviciul complet.",
+      "scope": "actual_service",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/goae-anlage-20261025.html",
+          "sha256": "4e72bfc8629d8de5be0f969c1bbfc5b7133b1feb9bf822ecbf1558950099148c",
+          "url": "https://www.gesetze-im-internet.de/go__1982/anlage.html",
+          "anchor": "Ruhespirographische Untersuchung (im geschlossenen oder offenen System) mit fortlaufend registrierenden Methoden",
+          "locator": "HTML table 18, rows [63] (one-based)"
+        }
+      ]
+    },
+    {
+      "id": "GOAE_605A_CONTENT",
+      "system": "GOAE",
+      "codes": [
+        "605a"
+      ],
+      "kind": "content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Curbă debit-volum la spirografie, cu înregistrare grafică și documentare; nu se adaugă automat din simpla mențiune spirometrie.",
+      "scope": "actual_service",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/goae-anlage-20261025.html",
+          "sha256": "4e72bfc8629d8de5be0f969c1bbfc5b7133b1feb9bf822ecbf1558950099148c",
+          "url": "https://www.gesetze-im-internet.de/go__1982/anlage.html",
+          "anchor": "Darstellung der Flußvolumenkurve bei spirographischen Untersuchungen - einschließlich graphischer Registrierung und Dokumentation -",
+          "locator": "HTML table 18, rows [64] (one-based)"
+        }
+      ]
+    },
+    {
+      "id": "GOAE_410_CONTENT",
+      "system": "GOAE",
+      "codes": [
+        "410"
+      ],
+      "kind": "content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Examinarea ecografică a unui organ; verifică regulile de numărare, documentare și codurile specifice.",
+      "scope": "actual_service",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/goae-anlage-20261025.html",
+          "sha256": "4e72bfc8629d8de5be0f969c1bbfc5b7133b1feb9bf822ecbf1558950099148c",
+          "url": "https://www.gesetze-im-internet.de/go__1982/anlage.html",
+          "anchor": "Ultraschalluntersuchung eines Organs",
+          "locator": "HTML table 15, rows [12] (one-based)"
+        }
+      ]
+    },
+    {
+      "id": "GOAE_420_CONTENT",
+      "system": "GOAE",
+      "codes": [
+        "420"
+      ],
+      "kind": "content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Până la trei organe suplimentare după una dintre bazele 410–418, per organ; nu număra imagini sau structuri vizualizate incidental.",
+      "scope": "actual_service",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/goae-anlage-20261025.html",
+          "sha256": "4e72bfc8629d8de5be0f969c1bbfc5b7133b1feb9bf822ecbf1558950099148c",
+          "url": "https://www.gesetze-im-internet.de/go__1982/anlage.html",
+          "anchor": "Ultraschalluntersuchung von bis zu drei weiteren Organen im Anschluß an eine der Leistungen nach den Nummern 410 bis 418, je Organ",
+          "locator": "HTML table 15, rows [19] (one-based)"
+        }
+      ]
+    },
+    {
+      "id": "GOAE_ECG_EXCLUSIONS",
+      "system": "GOAE",
+      "codes": [
+        "651",
+        "652"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "650–653 nu sunt facturabile împreună în contextul normei; nu deduce o interdicție zilnică.",
+      "scope": "unresolved_neben",
+      "parameters": {
+        "relation": "excludes",
+        "counterpart_codes": [
+          "650",
+          "651",
+          "652",
+          "653"
+        ],
+        "exclude_self_pair": true
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/goae-anlage-20261025.html",
+          "sha256": "4e72bfc8629d8de5be0f969c1bbfc5b7133b1feb9bf822ecbf1558950099148c",
+          "url": "https://www.gesetze-im-internet.de/go__1982/anlage.html",
+          "anchor": "Die Leistungen nach den Nummern 650 bis 653 sind nicht nebeneinander berechnungsfähig.",
+          "locator": "F 650–653"
+        }
+      ]
+    },
+    {
+      "id": "GOAE_605_EXCLUDES_610",
+      "system": "GOAE",
+      "codes": [
+        "605"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "605 este exclus lângă 610; nu extinde automat lista la 605a.",
+      "scope": "unresolved_neben",
+      "parameters": {
+        "relation": "excludes",
+        "counterpart_codes": [
+          "610"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/goae-anlage-20261025.html",
+          "sha256": "4e72bfc8629d8de5be0f969c1bbfc5b7133b1feb9bf822ecbf1558950099148c",
+          "url": "https://www.gesetze-im-internet.de/go__1982/anlage.html",
+          "anchor": "Neben der Leistung nach Nummer 610 sind die Leistungen nach den Nummern 605 und 608 nicht berechnungsfähig.",
+          "locator": "F 610"
+        }
+      ]
+    },
+    {
+      "id": "GOAE_605_EXCLUDES_612",
+      "system": "GOAE",
+      "codes": [
+        "605"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "605 este exclus lângă 612; nu extinde automat lista la 605a.",
+      "scope": "unresolved_neben",
+      "parameters": {
+        "relation": "excludes",
+        "counterpart_codes": [
+          "612"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/goae-anlage-20261025.html",
+          "sha256": "4e72bfc8629d8de5be0f969c1bbfc5b7133b1feb9bf822ecbf1558950099148c",
+          "url": "https://www.gesetze-im-internet.de/go__1982/anlage.html",
+          "anchor": "Neben der Leistung nach Nummer 612 sind die Leistungen nach den Nummern 605, 608, 609 und 610 nicht berechnungsfähig.",
+          "locator": "F 612"
+        }
+      ]
+    },
+    {
+      "id": "GOAE_605_INCLUDED_606",
+      "system": "GOAE",
+      "codes": [
+        "605"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "606 include spirografia de repaus prealabilă; nu o factura din nou ca aceeași componentă 605.",
+      "scope": "same_service",
+      "parameters": {
+        "relation": "conditional_inclusion",
+        "counterpart_codes": [
+          "606"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/goae-anlage-20261025.html",
+          "sha256": "4e72bfc8629d8de5be0f969c1bbfc5b7133b1feb9bf822ecbf1558950099148c",
+          "url": "https://www.gesetze-im-internet.de/go__1982/anlage.html",
+          "anchor": "Spiroergometrische Untersuchung - einschließlich vorausgegangener Ruhespirographie und gegebenenfalls einschließlich Oxymetrie -",
+          "locator": "F 606"
+        }
+      ]
+    },
+    {
+      "id": "GOAE_SONO_ONCE",
+      "system": "GOAE",
+      "codes": [
+        "410"
+      ],
+      "kind": "frequency",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "410 se aplică o dată per ședință; nu se repetă pentru fiecare organ.",
+      "scope": "session",
+      "parameters": {
+        "max_count": 1
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/goae-anlage-20261025.html",
+          "sha256": "4e72bfc8629d8de5be0f969c1bbfc5b7133b1feb9bf822ecbf1558950099148c",
+          "url": "https://www.gesetze-im-internet.de/go__1982/anlage.html",
+          "anchor": "Die Zuschläge bzw. Leistungen nach den Nummern 401 bis 418 sowie 422 bis 424 sind je Sitzung jeweils nur einmal berechnungsfähig.",
+          "locator": "C VI Allgemeine Bestimmungen 2"
+        }
+      ]
+    },
+    {
+      "id": "GOAE_SONO_BASE_EXCLUSIONS",
+      "system": "GOAE",
+      "codes": [
+        "410"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "410 nu se asociază cu alte poziții 410–418; pentru organe suplimentare verifică 420.",
+      "scope": "unresolved_neben",
+      "parameters": {
+        "relation": "excludes",
+        "counterpart_codes": [
+          "412",
+          "413",
+          "415",
+          "417",
+          "418"
+        ]
+      },
+      "notes": [
+        "417 este poziția specifică tiroidei și rămâne referință în selecția curentă. Nu înlocui automat cu 410 numai fiindcă 417 nu este selectat."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/goae-anlage-20261025.html",
+          "sha256": "4e72bfc8629d8de5be0f969c1bbfc5b7133b1feb9bf822ecbf1558950099148c",
+          "url": "https://www.gesetze-im-internet.de/go__1982/anlage.html",
+          "anchor": "Die Zuschläge bzw. Leistungen nach den Nummern 410 bis 418 sind nicht nebeneinander berechnungsfähig.",
+          "locator": "C VI Allgemeine Bestimmungen 3"
+        }
+      ]
+    },
+    {
+      "id": "GOAE_SONO_IMAGE_INCLUDED",
+      "system": "GOAE",
+      "codes": [
+        "410",
+        "420"
+      ],
+      "kind": "documentation",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Documentarea imagistică necesară este inclusă în tarif.",
+      "scope": "actual_service",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/goae-anlage-20261025.html",
+          "sha256": "4e72bfc8629d8de5be0f969c1bbfc5b7133b1feb9bf822ecbf1558950099148c",
+          "url": "https://www.gesetze-im-internet.de/go__1982/anlage.html",
+          "anchor": "Mit den Gebühren für die Zuschläge bzw. Leistungen nach den Nummern 401 bis 424 ist die erforderliche Bilddokumentation abgegolten.",
+          "locator": "C VI Allgemeine Bestimmungen 5"
+        }
+      ]
+    },
+    {
+      "id": "GOAE_SONO_ORGAN_DEFINITION",
+      "system": "GOAE",
+      "codes": [
+        "410",
+        "420"
+      ],
+      "kind": "definition",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Numără organe/contexte conform definiției, nu secțiuni sau imagini; intestinul contează ca un organ.",
+      "scope": "actual_service",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/goae-anlage-20261025.html",
+          "sha256": "4e72bfc8629d8de5be0f969c1bbfc5b7133b1feb9bf822ecbf1558950099148c",
+          "url": "https://www.gesetze-im-internet.de/go__1982/anlage.html",
+          "anchor": "Als Organe im Sinne der Leistungen nach den Nummern 410 und 420 gelten neben den anatomisch definierten Organen auch der Darm, Gelenke als Funktionseinheiten sowie Muskelgruppen, Lymphknoten und/oder Gefäße einer Körperregion. Als Organ gilt die jeweils untersuchte Körperregion unabhängig davon, ob nur Gefäße oder nur Lymphknoten oder Gefäße und Lymphknoten bzw. Weichteile untersucht werden. Die Darstellung des Darms gilt als eine Organuntersuchung unabhängig davon, ob der gesamte Darm, mehrere Darmabschnitte oder nur ein einziger Darmabschnitt untersucht werden.",
+          "locator": "C VI Allgemeine Bestimmungen 6"
+        }
+      ]
+    },
+    {
+      "id": "GOAE_SONO_TWO_PLANES",
+      "system": "GOAE",
+      "codes": [
+        "410",
+        "420"
+      ],
+      "kind": "content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Cel puțin două planuri; organele vecine doar vizualizate în cursul examinării țintite sunt incluse.",
+      "scope": "actual_service",
+      "parameters": {
+        "min_planes": 2
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/goae-anlage-20261025.html",
+          "sha256": "4e72bfc8629d8de5be0f969c1bbfc5b7133b1feb9bf822ecbf1558950099148c",
+          "url": "https://www.gesetze-im-internet.de/go__1982/anlage.html",
+          "anchor": "Die sonographische Untersuchung eines Organs erfordert die Differenzierung der Organstrukturen in mindestens zwei Ebenen und schließt gegebenenfalls die Untersuchung unterschiedlicher Funktionszustände und die mit der gezielten Organuntersuchung verbundene Darstellung von Nachbarorganen mit ein.",
+          "locator": "C VI Allgemeine Bestimmungen 7"
+        }
+      ]
+    },
+    {
+      "id": "GOAE_410_INVOICE",
+      "system": "GOAE",
+      "codes": [
+        "410"
+      ],
+      "kind": "documentation",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Organele examinate trebuie indicate pe factură.",
+      "scope": "invoice_line",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/goae-anlage-20261025.html",
+          "sha256": "4e72bfc8629d8de5be0f969c1bbfc5b7133b1feb9bf822ecbf1558950099148c",
+          "url": "https://www.gesetze-im-internet.de/go__1982/anlage.html",
+          "anchor": "Das untersuchte Organ ist in der Rechnung anzugeben.",
+          "locator": "C VI 410"
+        }
+      ]
+    },
+    {
+      "id": "GOAE_420_INVOICE",
+      "system": "GOAE",
+      "codes": [
+        "420"
+      ],
+      "kind": "documentation",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Organele examinate trebuie indicate pe factură.",
+      "scope": "invoice_line",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/goae-anlage-20261025.html",
+          "sha256": "4e72bfc8629d8de5be0f969c1bbfc5b7133b1feb9bf822ecbf1558950099148c",
+          "url": "https://www.gesetze-im-internet.de/go__1982/anlage.html",
+          "anchor": "Die untersuchten Organe sind in der Rechnung anzugeben.",
+          "locator": "C VI 420"
+        }
+      ]
+    },
+    {
+      "id": "GOAE_420_LIMIT",
+      "system": "GOAE",
+      "codes": [
+        "420"
+      ],
+      "kind": "frequency",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Cel mult trei utilizări 420 per ședință; fiecare cere un organ suplimentar examinat complet.",
+      "scope": "session",
+      "parameters": {
+        "max_count": 3
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/goae-anlage-20261025.html",
+          "sha256": "4e72bfc8629d8de5be0f969c1bbfc5b7133b1feb9bf822ecbf1558950099148c",
+          "url": "https://www.gesetze-im-internet.de/go__1982/anlage.html",
+          "anchor": "Die Leistung nach Nummer 420 kann je Sitzung höchstens dreimal berechnet werden.",
+          "locator": "C VI 420"
+        }
+      ]
+    },
+    {
+      "id": "GOAE_420_BASE",
+      "system": "GOAE",
+      "codes": [
+        "420"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "420 necesită o prestație de bază 410–418 și organe suplimentare; baza este o alternativă, nu toate codurile simultan.",
+      "scope": "session",
+      "parameters": {
+        "relation": "requires_one_base",
+        "counterpart_codes": [
+          "410",
+          "412",
+          "413",
+          "415",
+          "417",
+          "418"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/goae-anlage-20261025.html",
+          "sha256": "4e72bfc8629d8de5be0f969c1bbfc5b7133b1feb9bf822ecbf1558950099148c",
+          "url": "https://www.gesetze-im-internet.de/go__1982/anlage.html",
+          "anchor": "Ultraschalluntersuchung von bis zu drei weiteren Organen im Anschluß an eine der Leistungen nach den Nummern 410 bis 418, je Organ",
+          "locator": "C VI 420"
+        }
+      ]
+    },
+    {
+      "id": "EBM_33012_CONTENT",
+      "system": "EBM",
+      "codes": [
+        "33012"
+      ],
+      "kind": "content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Ecografie tiroidiană B-Mode, per ședință; nu confundată cu țesuturile moi ale gâtului.",
+      "scope": "session",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "33012 Sonographische Untersuchung der Schilddrüse mittels B-Mode- Verfahren, je Sitzung",
+          "locator": "EBM Q4/2026 PDF page 845",
+          "page": 845
+        }
+      ]
+    },
+    {
+      "id": "EBM_33012_AUTHORIZATION",
+      "system": "EBM",
+      "codes": [
+        "33012"
+      ],
+      "kind": "qualification",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Este necesară autorizația KV conform Ultraschall-Vereinbarung pentru domeniul efectuat; activarea modulului nu o acordă.",
+      "scope": "actual_service",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Die Berechnung der Gebührenordnungspositionen dieses Kapitels setzt eine Genehmigung der Kassenärztlichen Vereinigung nach der Ultraschall-Vereinbarung gemäß § 135 Abs. 2 SGB V voraus.",
+          "locator": "EBM Q4/2026 PDF page 843",
+          "page": 843
+        }
+      ]
+    },
+    {
+      "id": "EBM_33012_IMAGES",
+      "system": "EBM",
+      "codes": [
+        "33012"
+      ],
+      "kind": "documentation",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Documentarea imagistică a organului este obligatorie; simpla mențiune Sono nu o dovedește.",
+      "scope": "actual_service",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Die Dokumentation der untersuchten Organe mittels bildgebenden Verfahrens, ggf. als Darstellung mehrerer Organe oder Organregionen in einem Bild, ist - mit Ausnahme nicht gestauter Gallenwege und der leeren Harnblase bei Restharnbestimmung - obligater Bestandteil der Leistungen.",
+          "locator": "EBM Q4/2026 PDF page 843",
+          "page": 843
+        }
+      ]
+    },
+    {
+      "id": "EBM_33012_IMAGE_ID",
+      "system": "EBM",
+      "codes": [
+        "33012"
+      ],
+      "kind": "documentation",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Identificarea univocă a pacientului trebuie păstrată în documentația medicală originală; această cerință nu autorizează importarea identității în asistent.",
+      "scope": "actual_service",
+      "parameters": {},
+      "notes": [
+        "Verificarea poate folosi local un indicator de existență; proiectarea Datenschutz și legătura cu documentul original rămân separate."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Die Aufnahme und/oder der Eindruck einer eindeutigen Patientenidentifikation in die Bilddokumentation ist obligater Bestandteil der Leistungen.",
+          "locator": "EBM Q4/2026 PDF page 843",
+          "page": 843
+        }
+      ]
+    },
+    {
+      "id": "EBM_33012_EXCLUSION",
+      "system": "EBM",
+      "codes": [
+        "33012"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excluderea se aplică în contextul exact din normă; nu transforma neben necalificat în întreaga zi.",
+      "scope": "unresolved_neben",
+      "parameters": {
+        "relation": "excludes",
+        "counterpart_codes": [
+          "01205",
+          "01207"
+        ],
+        "counterpart_sections": []
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Die Gebührenordnungsposition 33012 ist nicht neben den Gebührenordnungspositionen 01205 und 01207 berechnungsfähig.",
+          "locator": "EBM Q4/2026 PDF page 845",
+          "page": 845
+        }
+      ]
+    },
+    {
+      "id": "EBM_33012_DAY",
+      "system": "EBM",
+      "codes": [
+        "33012"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excluderea se aplică în contextul exact din normă; nu transforma neben necalificat în întreaga zi.",
+      "scope": "calendar_day",
+      "parameters": {
+        "relation": "excludes",
+        "counterpart_codes": [
+          "31630",
+          "31631",
+          "31632",
+          "31633",
+          "31634",
+          "31635",
+          "31636",
+          "31637",
+          "31682",
+          "31683",
+          "31684",
+          "31685",
+          "31686",
+          "31687",
+          "31688",
+          "31689",
+          "31695",
+          "31696",
+          "31697",
+          "31698",
+          "31699",
+          "31700",
+          "31701",
+          "31702"
+        ],
+        "counterpart_sections": []
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Die Gebührenordnungsposition 33012 ist am Behandlungstag nicht neben den Gebührenordnungspositionen 31630 bis 31637, 31682 bis 31689 und 31695 bis 31702 berechnungsfähig.",
+          "locator": "EBM Q4/2026 PDF page 845",
+          "page": 845
+        }
+      ]
+    },
+    {
+      "id": "EBM_33012_CASE",
+      "system": "EBM",
+      "codes": [
+        "33012"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excluderea se aplică în contextul exact din normă; nu transforma neben necalificat în întreaga zi.",
+      "scope": "behandlungsfall",
+      "parameters": {
+        "relation": "excludes",
+        "counterpart_codes": [
+          "26330"
+        ],
+        "counterpart_sections": []
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Die Gebührenordnungsposition 33012 ist im Behandlungsfall nicht neben der Gebührenordnungsposition 26330 berechnungsfähig.",
+          "locator": "EBM Q4/2026 PDF page 845",
+          "page": 845
+        }
+      ]
+    },
+    {
+      "id": "EBM_35100_CONTENT",
+      "system": "EBM",
+      "codes": [
+        "35100"
+      ],
+      "kind": "content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Clarificare diferențială psihosomatică, notă scrisă privind relațiile etiologice și minimum 15 minute; nu numai discuție lungă.",
+      "scope": "actual_service",
+      "parameters": {
+        "min_minutes": 15
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Differentialdiagnostische Klärung psychosomatischer Krankheitszustände, - Schriftlicher Vermerk über ätiologische Zusammenhänge, - Dauer mindestens 15 Minuten",
+          "locator": "EBM Q4/2026 PDF page 908",
+          "page": 908
+        }
+      ]
+    },
+    {
+      "id": "EBM_35100_QUALIFICATION",
+      "system": "EBM",
+      "codes": [
+        "35100"
+      ],
+      "kind": "qualification",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Este necesară competența profesională pentru Psychosomatische Grundversorgung conform §7(1); nu se deduce din specialitatea Hausarzt.",
+      "scope": "actual_service",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Die Gebührenordnungsposition 35100 ist nur von Vertragsärzten berechnungsfähig, die über die fachliche Befähigung für Maßnahmen der Psychosomatischen Grundversorgung gemäß § 7 Abs. 1 der Psychotherapie-Vereinbarung verfügen.",
+          "locator": "EBM Q4/2026 PDF page 908",
+          "page": 908
+        }
+      ]
+    },
+    {
+      "id": "EBM_35100_EXTRA_TIME",
+      "system": "EBM",
+      "codes": [
+        "35100"
+      ],
+      "kind": "content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Alăturarea cu alte prestații diagnostice/terapeutice cere încă minimum 15 minute peste durata cerută de acestea; excluderile rămân valabile.",
+      "scope": "actual_service",
+      "parameters": {
+        "additional_minutes": 15
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Bei der Nebeneinanderberechnung diagnostischer bzw. therapeutischer Gebührenordnungspositionen und der Gebührenordnungsposition 35100 ist eine mindestens 15 Minuten längere Arzt-Patienten-Kontaktzeit als in den entsprechenden Gebührenordnungspositionen angegeben Voraussetzung für die Berechnung der Gebührenordnungsposition 35100.",
+          "locator": "EBM Q4/2026 PDF page 908",
+          "page": 908
+        }
+      ]
+    },
+    {
+      "id": "EBM_35100_CASE",
+      "system": "EBM",
+      "codes": [
+        "35100"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excluderea se aplică în contextul exact din normă; nu transforma neben necalificat în întreaga zi.",
+      "scope": "behandlungsfall",
+      "parameters": {
+        "relation": "excludes",
+        "counterpart_codes": [
+          "08521"
+        ],
+        "counterpart_sections": []
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Die Gebührenordnungsposition 35100 ist im Behandlungsfall nicht neben der Gebührenordnungsposition 08521 berechnungsfähig.",
+          "locator": "EBM Q4/2026 PDF page 909",
+          "page": 909
+        }
+      ]
+    },
+    {
+      "id": "EBM_35100_EXCLUSION",
+      "system": "EBM",
+      "codes": [
+        "35100"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excluderi păstrate cu interval nerezolvat; include 35110 și secțiunea 35.2.",
+      "scope": "unresolved_neben",
+      "parameters": {
+        "relation": "excludes",
+        "counterpart_codes": [
+          "01205",
+          "01207",
+          "01210",
+          "01212",
+          "01214",
+          "01216",
+          "01218",
+          "03230",
+          "04230",
+          "04231",
+          "04355",
+          "04356",
+          "14220",
+          "14221",
+          "14222",
+          "14310",
+          "14311",
+          "16220",
+          "21220",
+          "21221",
+          "22220",
+          "22221",
+          "22222",
+          "23220",
+          "30702",
+          "35111",
+          "35112",
+          "35113",
+          "35120",
+          "35130",
+          "35131",
+          "35140",
+          "35141",
+          "35142",
+          "35150",
+          "35151",
+          "35152",
+          "35163",
+          "35164",
+          "35165",
+          "35166",
+          "35167",
+          "35168",
+          "35169",
+          "35173",
+          "35174",
+          "35175",
+          "35176",
+          "35177",
+          "35178",
+          "35179",
+          "35110"
+        ],
+        "counterpart_sections": [
+          "35.2"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Die Gebührenordnungsposition 35100 ist nicht neben den Gebührenordnungspositionen 01205, 01207, 01210, 01212, 01214, 01216, 01218, 03230, 04230, 04231, 04355, 04356, 14220 bis 14222,",
+          "locator": "EBM Q4/2026 PDF page 908",
+          "page": 908
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "14310, 14311, 16220, 21220, 21221, 22220 bis 22222, 23220, 30702, 35110 bis 35113, 35120, 35130, 35131, 35140 bis 35142, 35150 bis 35152, 35163 bis 35169 und 35173 bis 35179 und nicht neben den Gebührenordnungspositionen des Abschnitts 35.2 berechnungsfähig.",
+          "locator": "EBM Q4/2026 PDF page 909",
+          "page": 909
+        }
+      ]
+    },
+    {
+      "id": "EBM_35110_CONTENT",
+      "system": "EBM",
+      "codes": [
+        "35110"
+      ],
+      "kind": "content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Intervenție verbală psihosomatică cu folosirea sistematică a interacțiunii medic-pacient și minimum 15 minute.",
+      "scope": "actual_service",
+      "parameters": {
+        "min_minutes": 15
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Verbale Intervention bei psychosomatischen Krankheitszuständen, - Systematische Nutzung der Arzt-Patienten-Interaktion, - Dauer mindestens 15 Minuten",
+          "locator": "EBM Q4/2026 PDF page 909",
+          "page": 909
+        }
+      ]
+    },
+    {
+      "id": "EBM_35110_QUALIFICATION",
+      "system": "EBM",
+      "codes": [
+        "35110"
+      ],
+      "kind": "qualification",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Este necesară competența profesională pentru Psychosomatische Grundversorgung conform §7(1); nu se deduce din specialitatea Hausarzt.",
+      "scope": "actual_service",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Die Gebührenordnungsposition 35110 ist nur von Vertragsärzten berechnungsfähig, die über die fachliche Befähigung für Maßnahmen der Psychosomatischen Grundversorgung gemäß § 7 Abs. 1 der Psychotherapie-Vereinbarung verfügen.",
+          "locator": "EBM Q4/2026 PDF page 909",
+          "page": 909
+        }
+      ]
+    },
+    {
+      "id": "EBM_35110_EXTRA_TIME",
+      "system": "EBM",
+      "codes": [
+        "35110"
+      ],
+      "kind": "content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Alăturarea cu alte prestații diagnostice/terapeutice cere încă minimum 15 minute peste durata cerută de acestea; excluderile rămân valabile.",
+      "scope": "actual_service",
+      "parameters": {
+        "additional_minutes": 15
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Bei der Nebeneinanderberechnung diagnostischer bzw. therapeutischer Gebührenordnungspositionen und der Gebührenordnungsposition 35110 ist eine mindestens 15 Minuten längere Arzt-Patienten-Kontaktzeit als in den entsprechenden Gebührenordnungspositionen angegeben Voraussetzung für die Berechnung der Gebührenordnungsposition 35110.",
+          "locator": "EBM Q4/2026 PDF page 909",
+          "page": 909
+        }
+      ]
+    },
+    {
+      "id": "EBM_35110_CASE",
+      "system": "EBM",
+      "codes": [
+        "35110"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excluderea se aplică în contextul exact din normă; nu transforma neben necalificat în întreaga zi.",
+      "scope": "behandlungsfall",
+      "parameters": {
+        "relation": "excludes",
+        "counterpart_codes": [
+          "08521"
+        ],
+        "counterpart_sections": []
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Die Gebührenordnungsposition 35110 ist im Behandlungsfall nicht neben der Gebührenordnungsposition 08521 berechnungsfähig.",
+          "locator": "EBM Q4/2026 PDF page 909",
+          "page": 909
+        }
+      ]
+    },
+    {
+      "id": "EBM_35110_EXCLUSION",
+      "system": "EBM",
+      "codes": [
+        "35110"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excluderea se aplică în contextul exact din normă; nu transforma neben necalificat în întreaga zi.",
+      "scope": "unresolved_neben",
+      "parameters": {
+        "relation": "excludes",
+        "counterpart_codes": [
+          "01205",
+          "01207",
+          "01210",
+          "01212",
+          "01214",
+          "01216",
+          "01218",
+          "03230",
+          "04230",
+          "04231",
+          "04355",
+          "04356",
+          "14220",
+          "14221",
+          "14222",
+          "14310",
+          "14311",
+          "16220",
+          "21220",
+          "21221",
+          "22220",
+          "22221",
+          "22222",
+          "23220",
+          "30702",
+          "35111",
+          "35112",
+          "35113",
+          "35120",
+          "35130",
+          "35131",
+          "35140",
+          "35141",
+          "35142",
+          "35150",
+          "35151",
+          "35152",
+          "35163",
+          "35164",
+          "35165",
+          "35166",
+          "35167",
+          "35168",
+          "35169",
+          "35173",
+          "35174",
+          "35175",
+          "35176",
+          "35177",
+          "35178",
+          "35179",
+          "35100"
+        ],
+        "counterpart_sections": [
+          "35.2"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Die Gebührenordnungsposition 35110 ist nicht neben den Gebührenordnungspositionen 01205, 01207, 01210, 01212, 01214, 01216, 01218, 03230, 04230, 04231, 04355, 04356, 14220 bis 14222, 14310, 14311, 16220, 21220, 21221, 22220 bis 22222, 23220, 30702, 35100, 35111 bis 35113, 35120, 35130, 35131, 35140 bis 35142, 35150 bis 35152, 35163 bis 35169 und 35173 bis 35179 und nicht neben den Gebührenordnungspositionen des Abschnitts 35.2 berechnungsfähig.",
+          "locator": "EBM Q4/2026 PDF page 909",
+          "page": 909
+        }
+      ]
+    },
+    {
+      "id": "EBM_PSYCH_VIDEO",
+      "system": "EBM",
+      "codes": [
+        "35100",
+        "35110"
+      ],
+      "kind": "exception",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "35100/35110 pot fi efectuate prin video numai în condițiile §21 Anlage 1 și Anlage 31b BMV-Ä, cu marcajul suplimentar cerut.",
+      "scope": "actual_service",
+      "parameters": {},
+      "notes": [
+        "Nu considera telefonul echivalent cu video; condițiile anexelor și identificatorul marcajului cer verificare separată."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Die Gebührenordnungspositionen 35100, 35110 bis 35113, 35120, 35141, 35142, 35150 bis 35152, 35163 bis 35168 und 35173 bis 35178 sind auch bei Durchführung der Leistungen im Rahmen einer Videosprechstunde berechnungsfähig, wenn die Voraussetzungen gemäß § 21 der Anlage 1 zum Bundesmantelvertrag-Ärzte (BMV-Ä) und der Anlage 31b zum BMV-Ä erfüllt sind. Die Durchführung als Videosprechstunde ist durch Angabe einer bundeseinheitlich kodierten Zusatzkennzeichnung zu dokumentieren.",
+          "locator": "EBM Q4/2026 PDF page 907",
+          "page": 907
+        }
+      ]
+    },
+    {
+      "id": "EBM_35110_DAILY_LIMIT",
+      "system": "EBM",
+      "codes": [
+        "35110"
+      ],
+      "kind": "frequency",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Cel mult trei utilizări pe zi; nu transforma automat o conversație de 45 minute în trei prestații.",
+      "scope": "calendar_day",
+      "parameters": {
+        "max_count": 3
+      },
+      "notes": [
+        "Delimitarea contactelor și condițiile repetării trebuie revizuite; plafonul singur nu aprobă multiplicarea."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Die Gebührenordnungsposition 35110 ist bis zu dreimal am Tag berechnungsfähig.",
+          "locator": "EBM Q4/2026 PDF page 909",
+          "page": 909
+        }
+      ]
+    },
+    {
+      "id": "EBM_PALL_ELIGIBLE",
+      "system": "EBM",
+      "codes": [
+        "03370",
+        "03371",
+        "03372",
+        "03373"
+      ],
+      "kind": "definition",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Boală incurabilă, progresivă și avansată cu speranță de viață redusă la zile/săptămâni/luni conform evaluării medicului; un diagnostic oncologic singur nu dovedește condiția.",
+      "scope": "actual_service",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Die Gebührenordnungspositionen 03370 bis 03373 sind für die Behandlung von schwerstkranken und sterbenden Patienten in jedem Alter berechnungsfähig, die an einer nicht heilbaren, fortschreitenden und so weit fortgeschrittenen Erkrankung leiden, dass dadurch nach fachlicher Einschätzung des behandelnden Arztes die Lebenserwartung auf Tage, Wochen oder Monate gesunken ist.",
+          "locator": "EBM Q4/2026 PDF page 206",
+          "page": 206
+        }
+      ]
+    },
+    {
+      "id": "EBM_PALL_HOME_ASSESSMENT",
+      "system": "EBM",
+      "codes": [
+        "03370",
+        "03371",
+        "03372",
+        "03373"
+      ],
+      "kind": "content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Medicul verifică individual posibilitatea unei îngrijiri ambulatorii adecvate la domiciliu, inclusiv cămine și hospice.",
+      "scope": "actual_service",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Der behandelnde Arzt ist verpflichtet, in jedem Einzelfall zu überprüfen, ob eine angemessene ambulante Versorgung in der Häuslichkeit (darunter fallen auch Pflege- und Hospizeinrichtungen) möglich ist.",
+          "locator": "EBM Q4/2026 PDF page 207",
+          "page": 207
+        }
+      ]
+    },
+    {
+      "id": "EBM_PALL_SAPV_FULL",
+      "system": "EBM",
+      "codes": [
+        "03371",
+        "03372",
+        "03373"
+      ],
+      "kind": "exception",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "03371–03373 nu se facturează pentru pacientul cu SAPV Vollversorgung; nu extinde automat această interdicție asupra 03370 sau oricărei implicări SAPV.",
+      "scope": "actual_service",
+      "parameters": {
+        "sapv_full_care_excludes": true
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Die Gebührenordnungspositionen 03371, 03372 und 03373 sind nicht bei Patienten berechnungsfähig, die eine Vollversorgung nach § 5 Abs. 2 der Richtlinie zur Verordnung von spezialisierter ambulanter Palliativversorgung (SAPV) des Gemeinsamen Bundesausschusses erhalten.",
+          "locator": "EBM Q4/2026 PDF page 207",
+          "page": 207
+        }
+      ]
+    },
+    {
+      "id": "EBM_PALL_SAPV_EQUIVALENT",
+      "system": "EBM",
+      "codes": [
+        "03370",
+        "03371",
+        "03372",
+        "03373"
+      ],
+      "kind": "exception",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Toate cele patru cifre sunt excluse dacă medicul curant prestează pacientului servicii echivalente în cadrul SAPV.",
+      "scope": "actual_service",
+      "parameters": {
+        "equivalent_sapv_same_physician_excludes": true
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Die Gebührenordnungspositionen 03370 bis 03373 sind nicht berechnungsfähig, wenn der behandelnde Vertragsarzt äquivalente Leistungen bei dem Patienten im Rahmen der spezialisierten ambulanten Palliativversorgung gemäß § 37b SGB V i. V. m. § 132d Abs. 1 SGB V erbringt.",
+          "locator": "EBM Q4/2026 PDF page 207",
+          "page": 207
+        }
+      ]
+    },
+    {
+      "id": "EBM_03370_PLAN",
+      "system": "EBM",
+      "codes": [
+        "03370"
+      ],
+      "kind": "content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Evaluare fizică și psihică, consiliere pentru stabilirea voinței pacientului și plan paliativ întocmit/documentat conform acesteia.",
+      "scope": "krankheitsfall",
+      "parameters": {
+        "max_count": 1
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Untersuchung des körperlichen und psychischen Zustandes des Patienten, - Beratung und Aufklärung des Patienten und/oder der betreuenden Person zur Ermittlung des Patientenwillens und ggf. Erfassung des Patientenwillens, - Erstellung und Dokumentation eines palliativmedizinischen Behandlungsplans unter Berücksichtigung des Patientenwillens, einmal im Krankheitsfall",
+          "locator": "EBM Q4/2026 PDF page 207",
+          "page": 207
+        }
+      ]
+    },
+    {
+      "id": "EBM_03371_BASE",
+      "system": "EBM",
+      "codes": [
+        "03371"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Necesită una dintre bazele indicate, cu excepțiile și eventualele neconcordanțe evaluate separat.",
+      "scope": "actual_service",
+      "parameters": {
+        "relation": "requires_one_base",
+        "counterpart_codes": [
+          "03000",
+          "03100"
+        ]
+      },
+      "notes": [
+        "Pentru 03371/03100 vezi PALL_03100_SESSION și excepția explicită din trimestrul următor."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "03371 Zuschlag zu der Versichertenpauschale 03000 oder 03100 für die palliativmedizinische Betreuung des Patienten in der Arztpraxis ",
+          "locator": "EBM Q4/2026 PDF page 207",
+          "page": 207
+        }
+      ]
+    },
+    {
+      "id": "EBM_03371_CONTENT",
+      "system": "EBM",
+      "codes": [
+        "03371"
+      ],
+      "kind": "content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Contact personal și îngrijire paliativă efectivă; minimum 15 minute.",
+      "scope": "actual_service",
+      "parameters": {
+        "personal_contact_required": true,
+        "min_minutes": 15
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Persönlicher Arzt-Patienten-Kontakt, - Dauer mindestens 15 Minuten, - Palliativmedizinische Betreuung des Patienten (z. B. Schmerztherapie, Symptomkontrolle),",
+          "locator": "EBM Q4/2026 PDF page 207",
+          "page": 207
+        }
+      ]
+    },
+    {
+      "id": "EBM_03372_BASE",
+      "system": "EBM",
+      "codes": [
+        "03372"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Necesită una dintre bazele indicate, cu excepțiile și eventualele neconcordanțe evaluate separat.",
+      "scope": "actual_service",
+      "parameters": {
+        "relation": "requires_one_base",
+        "counterpart_codes": [
+          "01410",
+          "01413"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "03372 Zuschlag zu den Gebührenordnungspositionen 01410 oder 01413 für die palliativmedizinische Betreuung in der Häuslichkeit ",
+          "locator": "EBM Q4/2026 PDF page 208",
+          "page": 208
+        }
+      ]
+    },
+    {
+      "id": "EBM_03372_CONTENT",
+      "system": "EBM",
+      "codes": [
+        "03372"
+      ],
+      "kind": "content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Contact personal și îngrijire paliativă efectivă; minimum 15 minute.",
+      "scope": "actual_service",
+      "parameters": {
+        "personal_contact_required": true,
+        "min_minutes": 15
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Persönlicher Arzt-Patienten-Kontakt, - Dauer mindestens 15 Minuten, - Palliativmedizinische Betreuung des Patienten (z. B. Schmerztherapie, Symptomkontrolle),",
+          "locator": "EBM Q4/2026 PDF page 208",
+          "page": 208
+        }
+      ]
+    },
+    {
+      "id": "EBM_03373_BASE",
+      "system": "EBM",
+      "codes": [
+        "03373"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Necesită una dintre bazele indicate, cu excepțiile și eventualele neconcordanțe evaluate separat.",
+      "scope": "actual_service",
+      "parameters": {
+        "relation": "requires_one_base",
+        "counterpart_codes": [
+          "01411",
+          "01412",
+          "01415"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "03373 Zuschlag zu den Gebührenordnungspositionen 01411, 01412 oder 01415 für die palliativmedizinische Betreuung in der Häuslichkeit ",
+          "locator": "EBM Q4/2026 PDF page 208",
+          "page": 208
+        }
+      ]
+    },
+    {
+      "id": "EBM_03373_CONTENT",
+      "system": "EBM",
+      "codes": [
+        "03373"
+      ],
+      "kind": "content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Contact personal și îngrijire paliativă efectivă; nu importa pragul de 15 minute de la 03372.",
+      "scope": "actual_service",
+      "parameters": {
+        "personal_contact_required": true
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Persönlicher Arzt-Patienten-Kontakt, - Palliativmedizinische Betreuung des Patienten (z. B. Schmerztherapie, Symptomkontrolle),",
+          "locator": "EBM Q4/2026 PDF page 208",
+          "page": 208
+        }
+      ]
+    },
+    {
+      "id": "EBM_03371_CASE_LIMIT",
+      "system": "EBM",
+      "codes": [
+        "03371"
+      ],
+      "kind": "frequency",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "03371: o dată în Behandlungsfall.",
+      "scope": "behandlungsfall",
+      "parameters": {
+        "max_count": 1
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "- Anleitung und Beratung der Betreuungs- und Bezugspersonen, einmal im Behandlungsfall",
+          "locator": "EBM Q4/2026 PDF page 208",
+          "page": 208
+        }
+      ]
+    },
+    {
+      "id": "EBM_03371_NEXT_QUARTER",
+      "system": "EBM",
+      "codes": [
+        "03371"
+      ],
+      "kind": "exception",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "În trimestrul următor facturării 03100, 03371 poate fi facturat fără 03100 în trimestrul actual dacă există contact personal; toate celelalte condiții rămân.",
+      "scope": "next_quarter",
+      "parameters": {
+        "prior_quarter_code": "03100",
+        "personal_contact_required": true
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Abweichend von Nr. 4.4.2 der Allgemeinen Bestimmungen und der Leistungslegende ist der Zuschlag nach der Gebührenordnungsposition 03371 im Folgequartal der Berechnung der Gebührenordnungsposition 03100 auch ohne Berechnung der Grundleistung nach der Gebührenordnungsposition 03100 berechnungsfähig, sofern im aktuellen Quartal ein persönlicher Arzt-Patienten-Kontakt stattgefunden hat.",
+          "locator": "EBM Q4/2026 PDF page 208",
+          "page": 208
+        }
+      ]
+    },
+    {
+      "id": "EBM_03372_UNITS",
+      "system": "EBM",
+      "codes": [
+        "03372"
+      ],
+      "kind": "frequency",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "03372: pentru fiecare 15 minute împlinite; plafon zilnic 620 puncte = cel mult cinci unități de 124 puncte.",
+      "scope": "calendar_day",
+      "parameters": {
+        "unit_minutes": 15,
+        "limit_points": 620,
+        "unit_points": 124,
+        "derived_max_units": 5
+      },
+      "notes": [
+        "Nu rotunji în sus timpul incomplet; cinci este plafon derivat, nu numărul recomandat."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "je vollendete 15 Minuten 15,80 € 124 Punkte Der Höchstwert für die Gebührenordnungsposition 03372 beträgt am Behandlungstag 620 Punkte.",
+          "locator": "EBM Q4/2026 PDF page 208",
+          "page": 208
+        }
+      ]
+    },
+    {
+      "id": "EBM_03373_VISIT_UNIT",
+      "system": "EBM",
+      "codes": [
+        "03373"
+      ],
+      "kind": "frequency",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "03373 se aplică per vizită, fără unități de 15 minute în legendă.",
+      "scope": "visit",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Palliativmedizinische Betreuung des Patienten (z. B. Schmerztherapie, Symptomkontrolle), je Besuch",
+          "locator": "EBM Q4/2026 PDF page 208",
+          "page": 208
+        }
+      ]
+    },
+    {
+      "id": "EBM_03373_SETTINGS",
+      "system": "EBM",
+      "codes": [
+        "03373"
+      ],
+      "kind": "exception",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Exclus pentru vizite în Notdienst organizat, urgențe ale furnizorilor neparticipanți și vizite urgente pe Belegstation.",
+      "scope": "actual_service",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Die Gebührenordnungsposition 03373 ist für Besuche im Rahmen des organisierten Not(-fall)dienstes, für Besuche im Rahmen der Notfallversorgung durch nicht an der vertragsärztlichen Versorgung",
+          "locator": "EBM Q4/2026 PDF page 208",
+          "page": 208
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "teilnehmende Ärzte, Institute und Krankenhäuser sowie für dringende Visiten auf der Belegstation nicht berechnungsfähig.",
+          "locator": "EBM Q4/2026 PDF page 209",
+          "page": 209
+        }
+      ]
+    },
+    {
+      "id": "EBM_03370_EXCLUSION",
+      "system": "EBM",
+      "codes": [
+        "03370"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excluderea se aplică în contextul exact din normă; nu transforma neben necalificat în întreaga zi.",
+      "scope": "unresolved_neben",
+      "parameters": {
+        "relation": "excludes",
+        "counterpart_codes": [
+          "03100",
+          "03220",
+          "03230",
+          "03360",
+          "03362",
+          "37800"
+        ],
+        "counterpart_sections": [],
+        "scope_by_counterpart": {
+          "03100": "session"
+        },
+        "scope_basis_clause": "EBM_PALL_03100_SESSION"
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Die Gebührenordnungsposition 03370 ist nicht neben den Gebührenordnungspositionen 03100, 03220, 03230, 03360, 03362 und 37800 berechnungsfähig.",
+          "locator": "EBM Q4/2026 PDF page 207",
+          "page": 207
+        }
+      ]
+    },
+    {
+      "id": "EBM_03371_EXCLUSION",
+      "system": "EBM",
+      "codes": [
+        "03371"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excluderea se aplică în contextul exact din normă; nu transforma neben necalificat în întreaga zi.",
+      "scope": "unresolved_neben",
+      "parameters": {
+        "relation": "excludes",
+        "counterpart_codes": [
+          "03100",
+          "03220",
+          "03360",
+          "03362",
+          "03372",
+          "03373",
+          "37305",
+          "37306",
+          "37400"
+        ],
+        "counterpart_sections": [],
+        "scope_by_counterpart": {
+          "03100": "session"
+        },
+        "scope_basis_clause": "EBM_PALL_03100_SESSION"
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Die Gebührenordnungsposition 03371 ist nicht neben den Gebührenordnungspositionen 03100, 03220, 03360, 03362, 03372, 03373, 37305, 37306 und 37400 berechnungsfähig.",
+          "locator": "EBM Q4/2026 PDF page 208",
+          "page": 208
+        }
+      ]
+    },
+    {
+      "id": "EBM_03372_EXCLUSION",
+      "system": "EBM",
+      "codes": [
+        "03372"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excluderea se aplică în contextul exact din normă; nu transforma neben necalificat în întreaga zi.",
+      "scope": "unresolved_neben",
+      "parameters": {
+        "relation": "excludes",
+        "counterpart_codes": [
+          "03100",
+          "03220",
+          "03230",
+          "03360",
+          "03362",
+          "03371",
+          "03373",
+          "37305",
+          "37306",
+          "37400"
+        ],
+        "counterpart_sections": [],
+        "scope_by_counterpart": {
+          "03100": "session"
+        },
+        "scope_basis_clause": "EBM_PALL_03100_SESSION"
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Die Gebührenordnungsposition 03372 ist nicht neben den Gebührenordnungspositionen 03100, 03220, 03230, 03360, 03362, 03371, 03373, 37305, 37306 und 37400 berechnungsfähig.",
+          "locator": "EBM Q4/2026 PDF page 208",
+          "page": 208
+        }
+      ]
+    },
+    {
+      "id": "EBM_03373_EXCLUSION",
+      "system": "EBM",
+      "codes": [
+        "03373"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excluderea se aplică în contextul exact din normă; nu transforma neben necalificat în întreaga zi.",
+      "scope": "unresolved_neben",
+      "parameters": {
+        "relation": "excludes",
+        "counterpart_codes": [
+          "01100",
+          "01101",
+          "01102",
+          "01205",
+          "01207",
+          "01210",
+          "01212",
+          "01214",
+          "01216",
+          "01218",
+          "03100",
+          "03220",
+          "03230",
+          "03360",
+          "03362",
+          "03371",
+          "03372",
+          "37305",
+          "37306",
+          "37400"
+        ],
+        "counterpart_sections": [],
+        "scope_by_counterpart": {
+          "03100": "session"
+        },
+        "scope_basis_clause": "EBM_PALL_03100_SESSION"
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Die Gebührenordnungsposition 03373 ist nicht neben den Gebührenordnungspositionen 01100 bis 01102, 01205, 01207, 01210, 01212, 01214, 01216, 01218, 03100, 03220, 03230, 03360, 03362, 03371, 03372, 37305, 37306 und 37400 berechnungsfähig.",
+          "locator": "EBM Q4/2026 PDF page 209",
+          "page": 209
+        }
+      ]
+    },
+    {
+      "id": "EBM_03370_DISEASE_CASE",
+      "system": "EBM",
+      "codes": [
+        "03370"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excluderea se aplică în contextul exact din normă; nu transforma neben necalificat în întreaga zi.",
+      "scope": "krankheitsfall",
+      "parameters": {
+        "relation": "excludes",
+        "counterpart_codes": [
+          "37300"
+        ],
+        "counterpart_sections": []
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Die Gebührenordnungsposition 03370 ist im Krankheitsfall nicht neben der Gebührenordnungsposition 37300 berechnungsfähig.",
+          "locator": "EBM Q4/2026 PDF page 207",
+          "page": 207
+        }
+      ]
+    },
+    {
+      "id": "EBM_03371_CASE_EXCLUSIONS",
+      "system": "EBM",
+      "codes": [
+        "03371"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excluderea se aplică în contextul exact din normă; nu transforma neben necalificat în întreaga zi.",
+      "scope": "behandlungsfall",
+      "parameters": {
+        "relation": "excludes",
+        "counterpart_codes": [
+          "37302",
+          "37711",
+          "37802"
+        ],
+        "counterpart_sections": []
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Die Gebührenordnungsposition 03371 ist im Behandlungsfall nicht neben den Gebührenordnungspositionen 37302, 37711 und 37802 berechnungsfähig.",
+          "locator": "EBM Q4/2026 PDF page 208",
+          "page": 208
+        }
+      ]
+    },
+    {
+      "id": "EBM_PALL_BASE_PRACTICE",
+      "system": "EBM",
+      "codes": [
+        "03371",
+        "03372",
+        "03373"
+      ],
+      "kind": "definition",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Suplimentul se facturează în aceeași Praxis care a facturat baza, în contextul temporal al acesteia; excepția 03371 din trimestrul următor este separată.",
+      "scope": "actual_service",
+      "parameters": {
+        "same_practice_as_base": true
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "anchor": "Als Zuschlag benannte Gebührenordnungspositionen sind nur in derselben Arztpraxis berechnungsfähig, welche die dem Zuschlag zugrunde liegende Gebührenordnungsposition berechnet hat. Zuschläge sind nur im zeitlichen Zusammenhang mit der in der Grundleistung ggf. genannten Abrechnungsbestimmung berechnungsfähig. Ist keine Abrechnungsbestimmung genannt, ist der Zuschlag nur in demselben Quartal berechnungsfähig.",
+          "locator": "EBM Q4/2026 PDF page 37",
+          "page": 37
+        }
+      ]
+    },
+    {
+      "id": "EBM_PALL_03100_SESSION",
+      "system": "EBM",
+      "codes": [
+        "03370",
+        "03371",
+        "03372",
+        "03373"
+      ],
+      "kind": "definition",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "KBV precizează excludere numai în aceeași ședință între 03100 și paliația 3.2.5; facturarea în același caz/trimestru sau trimestrul următor nu este interzisă global.",
+      "scope": "session",
+      "parameters": {
+        "relation": "scope_clarification",
+        "counterpart_codes": [
+          "03100"
+        ]
+      },
+      "notes": [
+        "Clarificarea se aplică numai perechii cu 03100. Nu rezolvă automat toate celelalte neben necalificate.",
+        "KVSA confirmă explicația națională EBM; nu sunt importate tarife ori reguli regionale Sachsen-Anhalt pentru NRW."
+      ],
+      "evidence": [
+        {
+          "path": "kbv-chroniker-20261027.html",
+          "sha256": "84bc88740800f40a04186e1609aee51bf2e4ff1379177005a4b5e220b5c129cd",
+          "url": "https://www.kbv.de/praxis/abrechnung/chronikerpauschale",
+          "anchor": "Zu diesen Leistungen wurde lediglich ein Sitzungsausschluss zur Versorgungspauschale festgelegt.",
+          "locator": "Abrechnungsausschlüsse Versorgungspauschale / explanatory FAQ"
+        },
+        {
+          "path": "kbv-chroniker-20261027.html",
+          "sha256": "84bc88740800f40a04186e1609aee51bf2e4ff1379177005a4b5e220b5c129cd",
+          "url": "https://www.kbv.de/praxis/abrechnung/chronikerpauschale",
+          "anchor": "Leistungen der hausärztlichen geriatrischen Versorgung (Abschnitt 3.2.4 EBM), palliativmedizinischen Versorgung (Abschnitt 3.2.5 EBM) sowie aus Kapitel 37 EBM (Kooperations- und Koordinationsleistungen Pflegeheim, palliativmedizinische Versorgung, Patienten mit psychiatrischen und psychotherapeutischen Betreuungsbedarf, Außerklinische Intensivpflege, Long-COVID) bleiben neben der Versorgungspauschale im Behandlungsfall und im Folgequartal berechnungsfähig, da sich der Gesundheitszustand des Patienten im Laufe des Halbjahres verändern kann.",
+          "locator": "Abrechnungsausschlüsse: Abschnitte 3.2.4, 3.2.5 und Kapitel 37"
+        },
+        {
+          "path": "kvsa-versorgungspauschale-20261027.html",
+          "sha256": "a8ca195348fb87afabec9665fa4567130c00b10db10b9de7608571347ce35b32",
+          "url": "https://www.kvsa.de/praxis/abrechnung/wichtige-infos/versorgungspauschale",
+          "anchor": "In einer Sitzung: 01436, 38200, 38205, Abschnitt 3.2.4 (Geriatrie), Abschnitt 3.2.5 (Palliativ), Kapitel 37",
+          "locator": "Abrechnungsausschlüsse Versorgungspauschale / explanatory FAQ"
+        }
+      ]
+    },
+    {
+      "id": "GOAE_ECG_650_651_REVIEW",
+      "system": "GOAE",
+      "codes": [
+        "651"
+      ],
+      "kind": "exception",
+      "status": "draft",
+      "review": "pending",
+      "scope": "actual_service",
+      "summary_ro": "650/651: controalele distincte medical necesare cer revizie individuală; simpla trecere la examinarea mai amplă nu justifică două facturări.",
+      "parameters": {
+        "relation": "conditional_combination",
+        "counterpart_codes": [
+          "650"
+        ],
+        "review_conditions": [
+          "Investigații distincte efectuate și evaluate, cu indicație documentată.",
+          "Nu este doar aceeași investigație etichetată succesiv 650 și 651."
+        ]
+      },
+      "notes": [
+        "Interpretarea BÄK nu aprobă automat repetarea sau asocierea. Păstrează și clauza normativă GOAE_ECG_EXCLUSIONS."
+      ],
+      "evidence": [
+        {
+          "path": "baek-ekg-20170428.pdf",
+          "sha256": "d5fc5b2f55189a25efc5c42f90580ff63cb485dbe3ef53ec82134bc0018a9795",
+          "url": "https://www.bundesaerztekammer.de/fileadmin/user_upload/_old-files/downloads/pdf-Ordner/GOAE/Elektrokardiographie.pdf",
+          "page": 1,
+          "locator": "BÄK GOÄ-Ratgeber, 28.04.2017, ECG, PDF page 1",
+          "anchor": "medizinischen Notwendigkeit gemäß §1 Abs. 2 GOÄ"
+        }
+      ]
+    },
+    {
+      "id": "GOAE_ECG_651_652_STAGED",
+      "system": "GOAE",
+      "codes": [
+        "651"
+      ],
+      "kind": "exception",
+      "status": "draft",
+      "review": "pending",
+      "scope": "actual_service",
+      "summary_ro": "651/652: ECG-ul de repaus ca etapă a ergometriei este inclus; investigația ulterioară indicată de anomaliile inițiale cere revizie distinctă.",
+      "parameters": {
+        "relation": "conditional_combination",
+        "counterpart_codes": [
+          "652"
+        ],
+        "review_conditions": [
+          "Rezultatul ECG-ului inițial justifică ulterior ergometria, cu indicație documentată.",
+          "Prestație completă, traseu ECG documentat și evaluare.",
+          "Nu este doar înregistrarea de repaus necesară ergometriei."
+        ]
+      },
+      "notes": [
+        "Nu declara automat nici interdicție pe zi, nici permisiune pe baza a două ore sau două coduri.",
+        "Nu extinde interpretarea la 653 ori la alte perechi ECG."
+      ],
+      "evidence": [
+        {
+          "path": "baek-ekg-20170428.pdf",
+          "sha256": "d5fc5b2f55189a25efc5c42f90580ff63cb485dbe3ef53ec82134bc0018a9795",
+          "url": "https://www.bundesaerztekammer.de/fileadmin/user_upload/_old-files/downloads/pdf-Ordner/GOAE/Elektrokardiographie.pdf",
+          "page": 1,
+          "locator": "BÄK GOÄ-Ratgeber, 28.04.2017, ECG, PDF page 1",
+          "anchor": "Stufendiagnostik zur weiteren Abklärung indiziert ist."
+        }
+      ]
+    },
+    {
+      "id": "GOAE_ECG_INVOICE_CONTEXT",
+      "system": "GOAE",
+      "codes": [
+        "651",
+        "652"
+      ],
+      "kind": "documentation",
+      "status": "draft",
+      "review": "pending",
+      "scope": "invoice_line",
+      "summary_ro": "BÄK recomandă orele investigațiilor pe factură; diagnosticul poate susține plauzibilitatea, fără a înlocui necesitatea medicală.",
+      "parameters": {},
+      "notes": [
+        "Recomandare de documentare, nu dovadă suficientă pentru facturare. Nu inventa indicații sau ore lipsă."
+      ],
+      "evidence": [
+        {
+          "path": "baek-ekg-20170428.pdf",
+          "sha256": "d5fc5b2f55189a25efc5c42f90580ff63cb485dbe3ef53ec82134bc0018a9795",
+          "url": "https://www.bundesaerztekammer.de/fileadmin/user_upload/_old-files/downloads/pdf-Ordner/GOAE/Elektrokardiographie.pdf",
+          "page": 1,
+          "locator": "BÄK GOÄ-Ratgeber, 28.04.2017, ECG, PDF page 1",
+          "anchor": "Uhrzeit der jeweiligen"
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Optional modules remain disabled; selection is not qualification or eligibility.",
+    "Own review material does not establish complete coverage of all conditions or combinations.",
+    "Unqualified neben scopes remain unresolved. No implicit calendar-day prohibition.",
+    "KV authorization documents, psychotherapy agreement details and SAPV context remain necessary. The 03100/palliative session scope is clarified by KBV.",
+    "No HZV rules or automatic fallback. No patient data, operative approval or DURIA writeback."
+  ]
+}

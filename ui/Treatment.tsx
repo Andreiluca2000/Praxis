@@ -10,7 +10,7 @@ import { Dictation } from './Dictation.js';
 import { FactPanel } from './FactPanel.js';
 import { FertigPanel } from './FertigPanel.js';
 import { NoteCard } from './NoteCard.js';
-import { loadPairDossier } from './pairDossier.js';
+import { loadPairDossier, loadWindowDossiers } from './pairDossier.js';
 import { PatientPairs } from './PatientPairs.js';
 import { api, type ExportFilter, type SanitizedExport } from './platform.js';
 import { today, type TreatmentSession } from './session.js';
@@ -46,6 +46,10 @@ export function Treatment({ session, user, billingEnabled }: { session: Treatmen
     if (session.mode !== 'simulation') return session.setPairRegistry(null);
     loadPairDossier().then((r) => {
       if ('error' in r) setPairError(r.error); else session.setPairRegistry(r);
+      rerender();
+    }).catch((e) => setPairError(String(e)));
+    loadWindowDossiers().then((r) => {
+      if ('error' in r) setPairError(r.error); else session.setWindowRules(r);
       rerender();
     }).catch((e) => setPairError(String(e)));
   }, [session, session.mode]);
@@ -114,6 +118,7 @@ export function Treatment({ session, user, billingEnabled }: { session: Treatmen
 
   const snap = analysis?.snapshot;
   const pairReport = session.hasPatient ? session.pairs() : null;
+  const windowFindings = session.hasPatient ? session.windowFindings(quarter) : null;
   function confirmPair(clauseId: string, day: string) {
     try { session.confirmSeparate(user, clauseId, day); setReport(null); } catch (e) { setMsg(String(e)); }
     rerender();
@@ -152,8 +157,8 @@ export function Treatment({ session, user, billingEnabled }: { session: Treatmen
       </section>
 
       {pairError && session.mode === 'simulation' && <p className="error" role="alert">Kombinationsprüfung (Entwurf) nicht verfügbar: {pairError}</p>}
-      {pairReport && pairReport.findings.length > 0 && (
-        <PatientPairs report={pairReport} isArzt={user.role === 'arzt'}
+      {pairReport && (pairReport.findings.length > 0 || (windowFindings?.length ?? 0) > 0) && (
+        <PatientPairs report={pairReport} isArzt={user.role === 'arzt'} windowFindings={windowFindings ?? []} windowSkipped={session.windowSkipped}
           onConfirm={(f) => confirmPair(f.clauseId, f.date)}
           onRevoke={(f) => { session.revokeSeparate(f.clauseId, f.date); setReport(null); rerender(); }} />
       )}

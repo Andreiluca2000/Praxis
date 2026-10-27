@@ -68,7 +68,7 @@ pub fn set_account_active(state: State<AppState>, kuerzel: String, active: bool)
 
 #[tauri::command]
 pub fn login(state: State<AppState>, kuerzel: String, password: String) -> Result<PublicAccount, String> {
-    let user = state.accounts.lock().unwrap().login(&kuerzel, &password).ok_or("Kürzel oder Passwort falsch.")?;
+    let user = state.accounts.lock().unwrap().attempt(&kuerzel, &password, std::time::Instant::now())?;
     *state.user.lock().unwrap() = Some(user.clone());
     Ok(user)
 }

@@ -4,8 +4,15 @@
 use argon2::password_hash::{rand_core::OsRng, PasswordHash, PasswordHasher, PasswordVerifier, SaltString};
 use argon2::Argon2;
 use serde::{Deserialize, Serialize};
+use std::collections::HashMap;
 use std::fs;
 use std::path::{Path, PathBuf};
+use std::time::{Duration, Instant};
+
+/// Nach so vielen Fehlversuchen je Kürzel wird gesperrt; jede weitere Fehleingabe verdoppelt die Sperre.
+pub const FREE_ATTEMPTS: u32 = 5;
+pub const FIRST_LOCK: Duration = Duration::from_secs(30);
+pub const MAX_LOCK: Duration = Duration::from_secs(15 * 60);
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "lowercase")]
@@ -45,6 +52,8 @@ impl From<&Account> for PublicAccount {
 pub struct AccountStore {
     file: PathBuf,
     accounts: Vec<Account>,
+    /// Fehlversuche je Kürzel (nur im Arbeitsspeicher dieser Programminstanz): Anzahl und Sperre bis.
+    failures: HashMap<String, (u32, Option<Instant>)>,
 }
 
 fn now_stamp() -> String {
@@ -64,7 +73,7 @@ impl AccountStore {
         } else {
             Vec::new()
         };
-        Ok(AccountStore { file: file.to_path_buf(), accounts })
+        Ok(AccountStore { file: file.to_path_buf(), accounts, failures: HashMap::new() })
     }
 
     /// Speichert die neue Fassung; erst danach gilt sie auch im Speicher (kein Konto, das nur bis zum Neustart lebt).
@@ -134,13 +143,40 @@ impl AccountStore {
             None
         } else {
             let (k, p) = approver.unwrap_or(("", ""));
-            let a = self.login(k, p).ok_or("Freigabe: Kürzel oder Passwort des Arztes falsch.")?;
+            let a = self.attempt(k, p, Instant::now()).map_err(|e| format!("Freigabe: {e}"))?;
             if a.role != Role::Arzt {
                 return Err("Die Freigabe ist nur durch ein Arztkonto möglich.".into());
             }
             Some(a)
         };
         self.create(kuerzel, name, role, password, by.as_ref())
+    }
+
+    /// Anmeldung mit Sperre nach wiederholten Fehlversuchen (gilt auch für unbekannte Kürzel, damit
+    /// sich vorhandene nicht an der Antwort erkennen lassen). `now` ist für Tests einstellbar.
+    pub fn attempt(&mut self, kuerzel: &str, password: &str, now: Instant) -> Result<PublicAccount, String> {
+        let key = kuerzel.trim().to_uppercase();
+        if let Some((_, Some(until))) = self.failures.get(&key) {
+            if *until > now {
+                let secs = (*until - now).as_secs().max(1);
+                return Err(format!("Zu viele Fehlversuche – bitte in {secs} s erneut versuchen."));
+            }
+        }
+        match self.login(&key, password) {
+            Some(user) => {
+                self.failures.remove(&key);
+                Ok(user)
+            }
+            None => {
+                let entry = self.failures.entry(key).or_insert((0, None));
+                entry.0 += 1;
+                if entry.0 >= FREE_ATTEMPTS {
+                    let lock = FIRST_LOCK.saturating_mul(1u32 << (entry.0 - FREE_ATTEMPTS).min(10)).min(MAX_LOCK);
+                    entry.1 = Some(now + lock);
+                }
+                Err("Kürzel oder Passwort falsch.".into())
+            }
+        }
     }
 
     pub fn login(&self, kuerzel: &str, password: &str) -> Option<PublicAccount> {

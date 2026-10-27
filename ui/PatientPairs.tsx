@@ -1,7 +1,9 @@
 import { Combine, ShieldCheck, Undo2 } from 'lucide-react';
 import { useState } from 'react';
 import type { PairFinding, PairReport } from '../src/engine/pairs.js';
+import type { WindowFinding } from '../src/engine/window-rules.js';
 import { PairEvidence, VERDICT } from './PairEvidence.js';
+import { WindowFindings } from './WindowFindings.js';
 
 /** Für diese Befunde kann ein Arzt „getrennte Sitzungen dokumentiert“ bestätigen (bei gleicher Uhrzeit hält die Prüfung den Ausschluss). */
 const CONFIRMABLE = new Set<PairFinding['verdict']>(['not_verifiable', 'exception_review']);
@@ -10,9 +12,11 @@ const CONFIRMABLE = new Set<PairFinding['verdict']>(['not_verifiable', 'exceptio
  * Paare „nicht nebeneinander je Sitzung“ der erfassten Leistungen des geöffneten Patienten (Entwurfs-Dossier, nur Simulator).
  * Die Bestätigung getrennter Sitzungen ist eine bewusste Handlung eines Arztes mit Kürzel und Zeit – nie automatisch.
  */
-export function PatientPairs({ report, isArzt, onConfirm, onRevoke }: {
+export function PatientPairs({ report, isArzt, onConfirm, onRevoke, windowFindings = [], windowSkipped = {} }: {
   report: PairReport;
   isArzt: boolean;
+  windowFindings?: WindowFinding[];
+  windowSkipped?: Record<string, number>;
   onConfirm: (f: PairFinding) => void;
   onRevoke: (f: PairFinding) => void;
 }) {
@@ -29,8 +33,8 @@ export function PatientPairs({ report, isArzt, onConfirm, onRevoke }: {
         <span className="pill">{report.findings.length - excluded} weitere</span>
       </div>
       <p className="muted">
-        Grundlage ist ein ungeprüfter Entwurf (nur Q4/2026). Ein fehlendes Paar bedeutet nicht „kombinierbar“ – Ausschlüsse je Tag,
-        Behandlungsfall oder postoperativer Frist sind hier nicht enthalten.
+        Grundlage ist ein ungeprüfter Entwurf (nur Q4/2026). Ein fehlendes Paar bedeutet nicht „kombinierbar“ – „nicht neben“
+        ohne Zeitraum und Abschnitte ohne belegte Zuordnung werden nicht geprüft (siehe unten).
       </p>
       {report.skipped && <p className="muted">{report.skipped}</p>}
       {report.outOfRange > 0 && <p className="muted">{report.outOfRange} Leistungstage außerhalb Q4/2026 wurden nicht geprüft.</p>}
@@ -69,6 +73,7 @@ export function PatientPairs({ report, isArzt, onConfirm, onRevoke }: {
           </div>
         );
       })}
+      <WindowFindings findings={windowFindings} skipped={windowSkipped} />
     </section>
   );
 }

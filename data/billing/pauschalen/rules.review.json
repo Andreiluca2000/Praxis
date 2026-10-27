@@ -1,0 +1,1660 @@
+{
+  "schema_version": "1.0.0",
+  "kind": "pauschalen_review_dossier",
+  "built_on": "2026-10-26",
+  "status": "draft",
+  "review": "pending",
+  "operational": false,
+  "complete": false,
+  "default_verdict": "not_verified",
+  "valid_from": "2026-10-01",
+  "valid_to": "2026-12-31",
+  "billing_system": "EBM",
+  "covered_codes": [
+    "03000",
+    "03008",
+    "03010",
+    "03020",
+    "03030",
+    "03040",
+    "03041",
+    "03042",
+    "03043",
+    "03044",
+    "03045",
+    "03046",
+    "03047",
+    "03048"
+  ],
+  "clauses": [
+    {
+      "id": "VP_CONTACT",
+      "codes": [
+        "03000"
+      ],
+      "kind": "required_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "03000 cere contact personal sau video conform Anlage 31b; numai telefonul sau emiterea unei rețete nu îndeplinesc acest conținut.",
+      "parameters": {},
+      "notes": [
+        "Evaluarea completă a cazurilor exclusiv video, a grupelor de vârstă și a prevederilor generale rămâne necesară."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 179,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 179",
+          "anchor": "Persönlicher Arzt-Patienten-Kontakt und/oder Arzt-Patienten- Kontakt im Rahmen einer Videosprechstunde gemäß Anlage 31b zum BMV-Ä,"
+        }
+      ]
+    },
+    {
+      "id": "VP_FREQUENCY",
+      "codes": [
+        "03000"
+      ],
+      "kind": "frequency",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "03000: o singură dată în Behandlungsfall, nu o dată la fiecare consultație.",
+      "parameters": {
+        "max_count": 1,
+        "scope": "ebm_behandlungsfall"
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 179,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 179",
+          "anchor": "einmal im Behandlungsfall"
+        }
+      ]
+    },
+    {
+      "id": "VP_EMERGENCY_SERVICE",
+      "codes": [
+        "03000"
+      ],
+      "kind": "care_setting",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "În serviciul de urgență organizat se folosesc pauschalele de urgență aplicabile, nu 03000.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 180,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 180",
+          "anchor": "Bei Behandlung im organisierten Not(-fall)dienst sind anstelle der Versichertenpauschale nach der Gebührenordnungsposition 03000 die Notfallpauschalen nach den Gebührenordnungspositionen 01210, 01212, 01214, 01216 und 01218 zu berechnen."
+        }
+      ]
+    },
+    {
+      "id": "VP_DEFINED_REFERRAL",
+      "codes": [
+        "03000"
+      ],
+      "kind": "care_setting",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "03000 nu se facturează pentru o trimitere cu Auftrag definit ca natură și întindere.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 180,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 180",
+          "anchor": "Bei einer Behandlung im Rahmen einer nach Art und Umfang definierten Überweisung (Definitionsauftrag) ist die Versichertenpauschale nach der Gebührenordnungsposition 03000 nicht berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "03000_FOLLOWING_03100",
+      "codes": [
+        "03000"
+      ],
+      "kind": "previous_quarter",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "După 03100, aceeași Praxis nu poate factura această pauschală pentru același pacient în trimestrul imediat următor.",
+      "parameters": {
+        "previous_quarter_code": "03100",
+        "same_patient": true,
+        "same_practice": true,
+        "scope": "immediately_following_quarter"
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 180,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 180",
+          "anchor": "Die Gebührenordnungsposition 03000 ist im Folgequartal der Berechnung der Gebührenordnungsposition 03100 von der Vertragsarztpraxis, die die Gebührenordnungsposition 03100 berechnet hat, für denselben Patienten nicht berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "03030_FOLLOWING_03100",
+      "codes": [
+        "03030"
+      ],
+      "kind": "previous_quarter",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "După 03100, aceeași Praxis nu poate factura această pauschală pentru același pacient în trimestrul imediat următor.",
+      "parameters": {
+        "previous_quarter_code": "03100",
+        "same_patient": true,
+        "same_practice": true,
+        "scope": "immediately_following_quarter"
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 182,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 182",
+          "anchor": "Die Gebührenordnungsposition 03030 ist im Folgequartal der Berechnung der Gebührenordnungsposition 03100 von der Vertragsarztpraxis, die die Gebührenordnungsposition 03100 berechnet hat, für denselben Patienten nicht berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "03000_CASE_EXCLUSIONS",
+      "codes": [
+        "03000"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere în Behandlungsfall; nu restrânge verificarea la ziua selectată.",
+      "parameters": {
+        "scope": "ebm_behandlungsfall",
+        "counterpart_codes": [
+          "01600",
+          "01601",
+          "01610",
+          "03030",
+          "03100"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 180,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 180",
+          "anchor": "Die Gebührenordnungsposition 03000 ist im Behandlungsfall nicht neben den Gebührenordnungspositionen 01600, 01601, 01610, 03030 und 03100 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "03030_CASE_EXCLUSIONS",
+      "codes": [
+        "03030"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere în Behandlungsfall; nu restrânge verificarea la ziua selectată.",
+      "parameters": {
+        "scope": "ebm_behandlungsfall",
+        "counterpart_codes": [
+          "01600",
+          "01601",
+          "01610",
+          "03000",
+          "03100"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 183,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 183",
+          "anchor": "Die Gebührenordnungsposition 03030 ist im Behandlungsfall nicht neben den Gebührenordnungspositionen 01600, 01601, 01610, 03000 und 03100 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "VP_UNQUALIFIED_EXCLUSION",
+      "codes": [
+        "03000"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "03000 exclude 01436; formularea nicht neben nu este convertită automat într-o fereastră de o zi.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "unresolved_neben",
+        "counterpart_codes": [
+          "01436"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 180,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 180",
+          "anchor": "Die Gebührenordnungsposition 03000 ist nicht neben der Gebührenordnungsposition 01436 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "UNFORESEEN_CONTENT",
+      "codes": [
+        "03030"
+      ],
+      "kind": "required_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "03030 presupune solicitare neprevăzută în intervalele prevăzute, contact personal și prestația asociată; nu este o taxă generală pentru orice consultație de seară.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 182,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 182",
+          "anchor": "03030 Versichertenpauschale bei unvorhergesehener Inanspruchnahme zwischen 19:00 und 7:00 Uhr, an Samstagen, Sonntagen, gesetzlichen Feiertagen, am 24.12. und 31.12. bei persönlichem Arzt-Patienten-Kontakt"
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 182,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 182",
+          "anchor": "Persönlicher Arzt-Patienten-Kontakt im Zusammenhang mit der Erbringung der Leistungen entsprechend den Gebührenordnungspositionen 01100, 01101, 01411, 01412 oder 01415,"
+        }
+      ]
+    },
+    {
+      "id": "UNFORESEEN_FREQUENCY",
+      "codes": [
+        "03030"
+      ],
+      "kind": "frequency",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Maximum de două ori în Behandlungsfall; exclude cazul de tratament belegärztlich-stationär.",
+      "parameters": {
+        "max_count": 2,
+        "scope": "ebm_behandlungsfall"
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 182,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 182",
+          "anchor": "höchstens zweimal im Behandlungsfall"
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 182,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 182",
+          "anchor": "Die Versichertenpauschale nach der Nr. 03030 ist im belegärztlich- stationären Behandlungsfall nicht berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "UNFORESEEN_REPLACES_VP",
+      "codes": [
+        "03000",
+        "03030"
+      ],
+      "kind": "conditional_route",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Dacă singura solicitare din caz este cea neprevăzută descrisă, se utilizează 03030 în loc de 03000/03100; decizia cere întregul caz.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 182,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 182",
+          "anchor": "Erfolgt im Behandlungsfall lediglich eine Inanspruchnahme durch den Patienten unvorhergesehen im Zusammenhang mit der Erbringung der Leistungen entsprechend den Gebührenordnungspositionen 01100, 01101, 01411, 01412 oder 01415, so ist anstelle der Versichertenpauschalen 03000 bzw. 03100 die Versichertenpauschale 03030 zu berechnen."
+        }
+      ]
+    },
+    {
+      "id": "UNFORESEEN_OTHER_EXCLUSIONS",
+      "codes": [
+        "03030"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excluderi suplimentare 03030; fereastra nicht neben rămâne pentru revizie.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "unresolved_neben",
+        "counterpart_codes": [
+          "01205",
+          "01207",
+          "01210",
+          "01212",
+          "01214",
+          "01216",
+          "01218",
+          "01436",
+          "30702"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 183,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 183",
+          "anchor": "Die Gebührenordnungsposition 03030 ist nicht neben den Gebührenordnungspositionen 01205, 01207, 01210, 01212, 01214, 01216, 01218, 01436 und 30702 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "REFERRAL_CONTENT",
+      "codes": [
+        "03008"
+      ],
+      "kind": "required_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "03008 cere programarea efectivă la specialist și Überweisung; o simplă recomandare nu dovedește ambele componente.",
+      "parameters": {
+        "base_codes": [
+          "03000",
+          "03100"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 180,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 180",
+          "anchor": "Vermittlung eines Behandlungstermins bei einem an der fachärztlichen Versorgung teilnehmenden Vertragsarzt, - Überweisung an einen an der fachärztlichen Versorgung teilnehmenden Vertragsarzt"
+        }
+      ]
+    },
+    {
+      "id": "REFERRAL_CALENDAR",
+      "codes": [
+        "03008"
+      ],
+      "kind": "calendar_window",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Tratamentul începe cel târziu în ziua 4; ruta până în ziua 35 cere condiția medicală suplimentară, iar din ziua 24 justificare medicală indicată. Ziua următoare constatării este ziua 1.",
+      "parameters": {
+        "standard_last_day": 4,
+        "extended_last_day": 35,
+        "documented_reason_from_day": 24
+      },
+      "notes": [
+        "Zile calendaristice, inclusiv weekend și sărbători. Data emiterii trimiterii nu înlocuiește automat constatarea necesității; se verifică începerea tratamentului."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 180,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 180",
+          "anchor": "Die Gebührenordnungsposition 03008 ist berechnungsfähig, sofern die Behandlung des Versicherten spätestens am 4. Kalendertag nach Feststellung der Behandlungsnotwendigkeit durch den Hausarzt beginnt."
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 180,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 180",
+          "anchor": "Die Gebührenordnungsposition 03008 ist auch berechnungsfähig, wenn die Behandlung des Versicherten spätestens am 35. Kalendertag nach Feststellung der Behandlungsnotwendigkeit durch den Hausarzt beginnt und eine Terminvermittlung durch die Terminservicestellen der Kassenärztlichen Vereinigung oder eine"
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 181,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 181",
+          "anchor": "eigenständige Terminvereinbarung durch den Patienten (oder eine Bezugsperson) aufgrund der medizinischen Besonderheit des Einzelfalls nicht angemessen oder nicht zumutbar ist."
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 181,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 181",
+          "anchor": "Die Berechnungsfähigkeit der Gebührenordnungsposition 03008 ab dem 24. Kalendertag nach Feststellung der Behandlungsnotwendigkeit setzt die Angabe einer medizinischen Begründung voraus. Der Tag nach der Feststellung der Behandlungsnotwendigkeit gilt jeweils als erster Zähltag."
+        }
+      ]
+    },
+    {
+      "id": "REFERRAL_DISTINCT_SPECIALTY",
+      "codes": [
+        "03008"
+      ],
+      "kind": "frequency",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Mai multe 03008 în același trimestru cer Vermittlung către Fachärzte din Arztgruppen diferite; mai multe programări nu sunt suficiente.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 181,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 181",
+          "anchor": "Die Gebührenordnungsposition 03008 ist nur dann mehrfach im Behandlungsfall berechnungsfähig, wenn der Patient in demselben Quartal zu mehreren Fachärzten unterschiedlicher Arztgruppen vermittelt wird."
+        }
+      ]
+    },
+    {
+      "id": "REFERRAL_PREVIOUS_SPECIALIST",
+      "codes": [
+        "03008"
+      ],
+      "kind": "required_history",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Verifică tratamentul anterior la aceeași Arztgruppe în aceeași Praxis în trimestrul curent; medicul are obligația de a întreba.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 181,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 181",
+          "anchor": "Die Gebührenordnungsposition 03008 ist nicht berechnungsfähig, wenn der vermittelte Patient nach Kenntnis des vermittelnden Arztes bei der an der fachärztlichen Versorgung teilnehmenden Arztgruppe derselben Praxis in demselben Quartal bereits behandelt wurde. Der Arzt ist verpflichtet, sich zu erkundigen, ob der Patient in demselben Quartal bei dieser Arztgruppe in dieser Praxis bereits behandelt wurde."
+        }
+      ]
+    },
+    {
+      "id": "REFERRAL_DOCUMENTATION",
+      "codes": [
+        "03008"
+      ],
+      "kind": "documentation",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Înregistrează (N)BSNR a Praxisului destinatar; ruta video are marcaj și condițiile Anlage 31b. Nu inventa marcajul de import DURIA.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 181,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 181",
+          "anchor": "Bei der Abrechnung der Gebührenordnungsposition 03008 ist die (Neben-)Betriebsstättennummer der Praxis, an die der Patient vermittelt wurde, anzugeben."
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 181,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 181",
+          "anchor": "Die Gebührenordnungsposition 03008 ist auch bei Durchführung der Leistung im Rahmen einer Videosprechstunde berechnungsfähig und dies durch Angabe einer bundeseinheitlich kodierten Zusatzkennzeichnung zu dokumentieren."
+        }
+      ]
+    },
+    {
+      "id": "REFERRAL_PEDIATRIC_SPECIALIST",
+      "codes": [
+        "03008"
+      ],
+      "kind": "conditional_route",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Este prevăzută și trimiterea la Kinder-/Jugendmedizin care îndeplinește condițiile secțiunii 4.4 sau 4.5; nu orice cabinet pediatric.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 181,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 181",
+          "anchor": "Die Gebührenordnungsposition 03008 ist auch bei Überweisung an einen Facharzt für Kinder- und Jugendmedizin, der die Voraussetzungen zur Berechnung von Gebührenordnungspositionen des Abschnitts 4.4 oder 4.5 erfüllt, berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "REFERRAL_NEXT_QUARTER",
+      "codes": [
+        "03008"
+      ],
+      "kind": "conditional_route",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "În trimestrul următor 03100, 03008 poate exista fără repetarea 03100 dacă există contact personal sau video în trimestrul curent și restul condițiilor.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 181,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 181",
+          "anchor": "Abweichend von Nr. 4.4.2 der Allgemeinen Bestimmungen und der Leistungslegende ist der Zuschlag nach der Gebührenordnungsposition 03008 im Folgequartal der Berechnung der Gebührenordnungsposition 03100 auch ohne Berechnung der Grundleistung nach der Gebührenordnungsposition 03100 berechnungsfähig, sofern im aktuellen Quartal ein persönlicher Arzt-Patienten-Kontakt oder ein Arzt- Patienten-Kontakt im Rahmen einer Videosprechstunde gemäß Anlage 31b zum BMV-Ä stattgefunden hat."
+        }
+      ]
+    },
+    {
+      "id": "REFERRAL_SELECTIVE_CONTRACT",
+      "codes": [
+        "03008"
+      ],
+      "kind": "contract_exception",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excepția fără pauschala de bază în Selektivvertrag se aplică numai dacă 03008 nu face parte din contract; dovada către KV este 88196. Contract necunoscut înseamnă neverificat, inclusiv pentru HZV.",
+      "parameters": {
+        "contract_required": true,
+        "fallback_to_ebm": false
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 181,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 181",
+          "anchor": "Abweichend von Nr. 4.4.2 der Allgemeinen Bestimmungen und der Leistungslegende ist der Zuschlag nach der Gebührenordnungsposition 03008 in selektivvertraglichen Fällen auch ohne Berechnung der Grundleistungen nach den Gebührenordnungspositionen 03000 und 03100 berechnungsfähig, sofern die Leistung nach der Gebührenordnungsposition 03008 nicht Gegenstand des Selektivvertrags ist. Der Fall ist gegenüber der Kassenärztlichen Vereinigung anhand der Gebührenordnungsposition 88196 nachzuweisen."
+        }
+      ]
+    },
+    {
+      "id": "TSS_SCOPE",
+      "codes": [
+        "03010"
+      ],
+      "kind": "frequency",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "03010: supliment la 03000, o dată în Arztgruppenfall, exclus cu 01710 în acest context. Prevederile TSS 4.3.10.1/.2 rămân necesare.",
+      "parameters": {
+        "max_count": 1,
+        "scope": "arztgruppenfall",
+        "base_codes": [
+          "03000"
+        ],
+        "counterpart_codes": [
+          "01710"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 182,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 182",
+          "anchor": "03010 Zuschlag zu der Gebührenordnungsposition 03000 für die Behandlung aufgrund einer TSS-Vermittlung gemäß Allgemeiner Bestimmung 4.3.10.1 oder 4.3.10.2, einmal im Arztgruppenfall"
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 182,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 182",
+          "anchor": "Die Gebührenordnungsposition 03010 ist im Arztgruppenfall nicht neben der Gebührenordnungsposition 01710 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "TSS_KV_MAY_ADD",
+      "codes": [
+        "03010"
+      ],
+      "kind": "assignment",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "03010 poate fi adăugat de KV; verifică procedura KV înaintea unei alerte de cod lipsă sau a trimiterii duplicate.",
+      "parameters": {
+        "assignment": "kv_may_add",
+        "missing_code_action": "check_kv_process"
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 182,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 182",
+          "anchor": "Die Gebührenordnungsposition 03010 kann durch die zuständige Kassenärztliche Vereinigung zugesetzt werden."
+        }
+      ]
+    },
+    {
+      "id": "HYGIENE_BASE",
+      "codes": [
+        "03020"
+      ],
+      "kind": "frequency",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "03020: supliment la 03000/03100, o singură dată în Behandlungsfall; este adăugat de KV.",
+      "parameters": {
+        "max_count": 1,
+        "scope": "ebm_behandlungsfall",
+        "base_codes": [
+          "03000",
+          "03100"
+        ],
+        "assignment": "kv_added",
+        "missing_code_action": "check_kv_statement"
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 182,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 182",
+          "anchor": "03020 Hygienezuschlag zu den Gebührenordnungspositionen 03000 und 03100, einmal im Behandlungsfall"
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 182,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 182",
+          "anchor": "Die Gebührenordnungsposition 03020 wird durch die zuständige Kassenärztliche Vereinigung zugesetzt."
+        }
+      ]
+    },
+    {
+      "id": "HYGIENE_NEXT_QUARTER",
+      "codes": [
+        "03020"
+      ],
+      "kind": "conditional_route",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "În trimestrul următor 03100, 03020 poate exista fără 03100 doar cu contact personal în trimestrul curent; nu generaliza excepția video de la 03008.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 182,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 182",
+          "anchor": "Abweichend von Nr. 4.4.2 der Allgemeinen Bestimmungen und der Leistungslegende ist der Zuschlag nach der Gebührenordnungsposition 03020 im Folgequartal der Berechnung der Gebührenordnungsposition 03100 auch ohne Berechnung der Grundleistung nach der Gebührenordnungsposition 03100 berechnungsfähig, sofern im aktuellen Quartal ein persönlicher Arzt-Patienten-Kontakt stattgefunden hat."
+        }
+      ]
+    },
+    {
+      "id": "03040_BASE",
+      "codes": [
+        "03040"
+      ],
+      "kind": "assignment",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Vorhaltepauschale adăugată de KV; lipsa ei în exportul local nu dovedește o cifră omisă de medic.",
+      "parameters": {
+        "base_codes": [
+          "03000",
+          "03030"
+        ],
+        "assignment": "kv_added",
+        "missing_code_action": "check_kv_statement",
+        "base_points": 128,
+        "max_count": 1,
+        "scope": "ebm_behandlungsfall"
+      },
+      "notes": [
+        "03040 o dată în Behandlungsfall; 03043 o dată în Behandlungsfall și maximum de două ori în Krankheitsfall. Punctajul de bază nu este remunerația finală."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 189,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 189",
+          "anchor": "Die Gebührenordnungsposition 03040 wird durch die zuständige Kassenärztliche Vereinigung zugesetzt."
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 189,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 189",
+          "anchor": "einmal im Behandlungsfall 16,31 € 128 Punkte"
+        }
+      ]
+    },
+    {
+      "id": "03040_EMERGENCY_CONTACT",
+      "codes": [
+        "03040"
+      ],
+      "kind": "required_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Prestațiile de Notdienst în același caz cer încă un contact personal/video în afara serviciului organizat, conform pauschalei de bază.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 189,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 189",
+          "anchor": "Neben den Gebührenordnungspositionen des Abschnitts 1.2 ist für die Berechnung der Gebührenordnungsposition 03040 in demselben Behandlungsfall mindestens ein weiterer persönlicher Arzt-Patienten-Kontakt bzw. Arzt-Patienten-Kontakt im Rahmen einer Videosprechstunde außerhalb des organisierten Not(-fall)dienstes gemäß der Gebührenordnungsposition 03000 notwendig."
+        }
+      ]
+    },
+    {
+      "id": "03043_BASE",
+      "codes": [
+        "03043"
+      ],
+      "kind": "assignment",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Vorhaltepauschale adăugată de KV; lipsa ei în exportul local nu dovedește o cifră omisă de medic.",
+      "parameters": {
+        "base_codes": [
+          "03100"
+        ],
+        "assignment": "kv_added",
+        "missing_code_action": "check_kv_statement",
+        "base_points": 179,
+        "max_count": 1,
+        "scope": "ebm_behandlungsfall",
+        "max_count_krankheitsfall": 2
+      },
+      "notes": [
+        "03040 o dată în Behandlungsfall; 03043 o dată în Behandlungsfall și maximum de două ori în Krankheitsfall. Punctajul de bază nu este remunerația finală."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 191,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 191",
+          "anchor": "Die Gebührenordnungsposition 03043 wird durch die zuständige Kassenärztliche Vereinigung zugesetzt."
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 191,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 191",
+          "anchor": "einmal im Behandlungsfall, höchstens zweimal im Krankheitsfall 22,81 € 179 Punkte"
+        }
+      ]
+    },
+    {
+      "id": "03043_EMERGENCY_CONTACT",
+      "codes": [
+        "03043"
+      ],
+      "kind": "required_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Prestațiile de Notdienst în același caz cer încă un contact personal/video în afara serviciului organizat, conform pauschalei de bază.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 191,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 191",
+          "anchor": "Neben den Gebührenordnungspositionen des Abschnitts 1.2 ist für die Berechnung der Gebührenordnungsposition 03043 in demselben Behandlungsfall mindestens ein weiterer persönlicher Arzt-Patienten-Kontakt bzw. Arzt-Patienten-Kontakt im Rahmen einer Videosprechstunde außerhalb des organisierten Not(-fall)dienstes gemäß der Gebührenordnungsposition 03100 notwendig."
+        }
+      ]
+    },
+    {
+      "id": "VORHALTE_UNFORESEEN_REDUCTION",
+      "codes": [
+        "03040"
+      ],
+      "kind": "conditional_price",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "03040 împreună cu un singur 03030 în Behandlungsfall: reducere 50%; cu două 03030, fără această reducere. Nu interzice combinația.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 189,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 189",
+          "anchor": "Bei der Nebeneinanderberechnung der Gebührenordnungsposition 03040 und der Gebührenordnungsposition 03030 in demselben Behandlungsfall ist ein Abschlag in Höhe von 50 % auf die Gebührenordnungsposition 03040 vorzunehmen. Bei zweimaliger Berechnung der Gebührenordnungsposition 03030 im Behandlungsfall neben der Gebührenordnungsposition 03040 ist kein Abschlag auf die Gebührenordnungsposition 03040 vorzunehmen."
+        }
+      ]
+    },
+    {
+      "id": "VORHALTE_CASE_EXCLUSIONS",
+      "codes": [
+        "03040"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "03040: excluderi în Behandlungsfall pentru lista psihoterapie și secțiunile indicate, cu excepția actorului specialist din structurile mixte.",
+      "parameters": {
+        "scope": "ebm_behandlungsfall",
+        "counterpart_codes": [
+          "35111",
+          "35112",
+          "35113",
+          "35120",
+          "35130",
+          "35131",
+          "35140",
+          "35141",
+          "35142",
+          "35150",
+          "35151",
+          "35152",
+          "35163",
+          "35164",
+          "35165",
+          "35166",
+          "35167",
+          "35168",
+          "35169",
+          "35173",
+          "35174",
+          "35175",
+          "35176",
+          "35177",
+          "35178",
+          "35179"
+        ],
+        "sections": [
+          "30.5",
+          "30.7",
+          "30.9",
+          "35.2"
+        ],
+        "exception_clause": "VORHALTE_SPECIALIST_EXCEPTION"
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 190,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 190",
+          "anchor": "Die Gebührenordnungsposition 03040 ist im Behandlungsfall nicht neben den Gebührenordnungspositionen 35111 bis 35113, 35120, 35130, 35131, 35140 bis 35142, 35150 bis 35152, 35163 bis 35169 und 35173 bis 35179 und nicht neben den Gebührenordnungspositionen der Abschnitte 30.5, 30.7, 30.9 und 35.2 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "VORHALTE_EXTERNAL_AGREEMENTS",
+      "codes": [
+        "03040"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Sunt aplicabile și Onkologie-Vereinbarung și §6 Anlage 5 BMV-Ä; aceste acorduri nu sunt convertite aici în liste de cifre inventate.",
+      "parameters": {
+        "scope": "ebm_behandlungsfall",
+        "exception_clause": "VORHALTE_SPECIALIST_EXCEPTION"
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 189,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 189",
+          "anchor": "Die Gebührenordnungsposition 03040 ist im Behandlungsfall nicht neben den Gebührenordnungspositionen der \"Onkologie- Vereinbarung\" (Anlage 7 des Bundesmantelvertrags-Ärzte (BMV-Ä)) berechnungsfähig."
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 189,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 189",
+          "anchor": "Die Gebührenordnungsposition 03040 ist im Behandlungsfall nicht neben Leistungen gemäß § 6 (Abgrenzungen der fachärztlichen Versorgung) Anlage 5 des Bundesmantelvertrags-Ärzte (BMV-Ä) berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "VORHALTE_SPECIALIST_EXCEPTION",
+      "codes": [
+        "03040"
+      ],
+      "kind": "conditional_exception",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excluderile specifice au excepție în BAG între sectoare/MVZ/Praxis cu angajați dacă prestațiile sunt efectuate de Vertragsärzte din sectorul specialist. Nu scuti automat orice Praxis mixt.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 190,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 190",
+          "anchor": "Diese Ausschlüsse finden in versorgungsbereichsübergreifenden Berufsausübungsgemeinschaften, Medizinischen Versorgungszentren und Praxen mit angestellten Ärzten keine Anwendung, sofern diese Leistungen von Vertragsärzten des fachärztlichen Versorgungsbereiches durchgeführt werden."
+        }
+      ]
+    },
+    {
+      "id": "VORHALTE_03100_TWO_QUARTER_EXCLUSIONS",
+      "codes": [
+        "03043"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "03043: excluderile indicate acoperă trimestrul facturării și trimestrul următor, pentru același pacient și aceeași Praxis care a facturat 03100.",
+      "parameters": {
+        "scope": "current_and_following_quarter",
+        "same_patient": true,
+        "same_practice": true,
+        "counterpart_codes": [
+          "35111",
+          "35112",
+          "35113",
+          "35120",
+          "35130",
+          "35131",
+          "35140",
+          "35141",
+          "35142",
+          "35150",
+          "35151",
+          "35152",
+          "35163",
+          "35164",
+          "35165",
+          "35166",
+          "35167",
+          "35168",
+          "35169",
+          "35173",
+          "35174",
+          "35175",
+          "35176",
+          "35177",
+          "35178",
+          "35179"
+        ],
+        "sections": [
+          "30.5",
+          "30.7",
+          "30.9",
+          "35.2"
+        ],
+        "exception_clause": "VORHALTE_03100_SPECIALIST_EXCEPTION"
+      },
+      "notes": [
+        "Cuprinde și Onkologie-Vereinbarung și §6 Anlage 5 BMV-Ä; sunt necesare conținuturile aplicabile ale acelor acorduri."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 191,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 191",
+          "anchor": "sind im Quartal der Berechnung der Gebührenordnungsposition 03043 und im Folgequartal für die Behandlung desselben Patienten von derselben Vertragsarztpraxis, die die Gebührenordnungsposition 03100 berechnet hat, nicht berechnungsfähig."
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 191,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 191",
+          "anchor": "und die Gebührenordnungspositionen 35111 bis 35113, 35120, 35130, 35131, 35140 bis 35142, 35150 bis 35152, 35163 bis 35169 und 35173 bis 35179 sowie die Gebührenordnungspositionen der Abschnitte 30.5, 30.7, 30.9 und 35.2"
+        }
+      ]
+    },
+    {
+      "id": "VORHALTE_03100_SPECIALIST_EXCEPTION",
+      "codes": [
+        "03043"
+      ],
+      "kind": "conditional_exception",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excepția pentru actorul specialist din structuri mixte cere aici efectuarea și facturarea de către specialist; nu este o excepție pentru toate prestațiile Praxisului.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 191,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 191",
+          "anchor": "Diese Ausschlüsse finden in versorgungsbereichsübergreifenden Berufsausübungsgemeinschaften,"
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 192,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 192",
+          "anchor": "Medizinischen Versorgungszentren und Praxen mit angestellten Ärzten keine Anwendung, sofern diese Leistungen von Vertragsärzten des fachärztlichen Versorgungsbereiches durchgeführt und berechnet werden."
+        }
+      ]
+    },
+    {
+      "id": "VORHALTE_MUTUAL_EXCLUSION",
+      "codes": [
+        "03040",
+        "03043"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "03040 și 03043 se exclud în același Behandlungsfall.",
+      "parameters": {
+        "scope": "ebm_behandlungsfall",
+        "counterpart_codes": [
+          "03040",
+          "03043"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 190,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 190",
+          "anchor": "Die Gebührenordnungsposition 03040 ist im Behandlungsfall nicht neben der Gebührenordnungsposition 03043 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "03040_CASELOAD",
+      "codes": [
+        "03040"
+      ],
+      "kind": "conditional_price",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Sub 400 cazuri per medic ajustat la Tätigkeitsumfang se aplică scădere; peste 1200 creștere. La exact 400 sau 1200 nu se aplică această ajustare.",
+      "parameters": {
+        "low_case_threshold_exclusive": 400,
+        "high_case_threshold_exclusive": 1200,
+        "low_deduction_points": 13,
+        "high_addition_points": 9
+      },
+      "notes": [
+        "Numărătorul este cel din Präambel 3.1 Nr.10; numitorul folosește Tätigkeitsumfang, nu simplul număr al conturilor de medic. Ordinea cumulării reducerilor nu este automatizată."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 190,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 190",
+          "anchor": "ist ein Abschlag in Höhe von 13 Punkten auf die Gebührenordnungsposition 03040 vorzunehmen."
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 190,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 190",
+          "anchor": "Bei Praxen mit weniger als 400 Behandlungsfällen je Arzt"
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 190,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 190",
+          "anchor": "Bei Praxen mit mehr als 1200 Behandlungsfällen je Arzt"
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 190,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 190",
+          "anchor": "ist ein Aufschlag in Höhe von 9 Punkten auf die Gebührenordnungsposition 03040 vorzunehmen."
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 190,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 190",
+          "anchor": "Für die Bestimmung der Anzahl der Ärzte gemäß Nr. 1 der Präambel 3.1 ist der Umfang der Tätigkeit laut Zulassungs- bzw. Genehmigungsbescheid zu berücksichtigen."
+        }
+      ]
+    },
+    {
+      "id": "03040_VACCINATION_REDUCTION",
+      "codes": [
+        "03040"
+      ],
+      "kind": "conditional_price",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Sub 10 prestații de vaccinare eligibile pe trimestru: reducere 40%, cu excepția Praxisurilor specializate definite prin pragul strict peste 20%.",
+      "parameters": {
+        "vaccination_count_threshold_exclusive": 10,
+        "deduction_percent": 40,
+        "specialist_share_threshold_exclusive": 20
+      },
+      "notes": [
+        "Excepție: tratamente diabetologice specializate sau HIV/AIDS secțiunea 30.10 sau substituție secțiunea 1.8. Nu este suficient diagnosticul de diabet la 20% dintre pacienți."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 190,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 190",
+          "anchor": "Bei Praxen mit weniger als 10 Leistungen gemäß der Anlage 1 der Schutzimpfungsrichtlinie des Gemeinsamen Bundesausschusses in Behandlungsfällen gemäß Nr. 10 der Präambel 3.1 ist ein Abschlag in Höhe von 40 % auf die Gebührenordnungsposition 03040 vorzunehmen."
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 190,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 190",
+          "anchor": "spezialisierte diabetologische Behandlungen (diabetologische Schwerpunktpraxen) oder spezialisierte Behandlungen von an HIV-/AIDS-erkrankten Patienten gemäß Abschnitt 30.10 (HIV-Schwerpunktpraxen) oder substitutionsgestützte Behandlungen Opioidabhängiger gemäß Abschnitt 1.8 (Substitutionspraxen) durchführen, kein Abschlag."
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 190,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 190",
+          "anchor": "bei mehr als 20 % der Patienten"
+        }
+      ]
+    },
+    {
+      "id": "03043_CASELOAD",
+      "codes": [
+        "03043"
+      ],
+      "kind": "conditional_price",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Sub 400 cazuri per medic ajustat la Tätigkeitsumfang se aplică scădere; peste 1200 creștere. La exact 400 sau 1200 nu se aplică această ajustare.",
+      "parameters": {
+        "low_case_threshold_exclusive": 400,
+        "high_case_threshold_exclusive": 1200,
+        "low_deduction_points": 18,
+        "high_addition_points": 13
+      },
+      "notes": [
+        "Numărătorul este cel din Präambel 3.1 Nr.10; numitorul folosește Tätigkeitsumfang, nu simplul număr al conturilor de medic. Ordinea cumulării reducerilor nu este automatizată."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 192,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 192",
+          "anchor": "ist ein Abschlag in Höhe von 18 Punkten auf die Gebührenordnungsposition 03043 vorzunehmen."
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 192,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 192",
+          "anchor": "Bei Praxen mit weniger als 400 Behandlungsfällen je Arzt"
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 192,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 192",
+          "anchor": "Bei Praxen mit mehr als 1200 Behandlungsfällen je Arzt"
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 192,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 192",
+          "anchor": "ist ein Aufschlag in Höhe von 13 Punkten auf die Gebührenordnungsposition 03043 vorzunehmen."
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 192,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 192",
+          "anchor": "Für die Bestimmung der Anzahl der Ärzte gemäß Nr. 1 der Präambel 3.1 ist der Umfang der Tätigkeit laut Zulassungs- bzw. Genehmigungsbescheid zu berücksichtigen."
+        }
+      ]
+    },
+    {
+      "id": "03043_VACCINATION_REDUCTION",
+      "codes": [
+        "03043"
+      ],
+      "kind": "conditional_price",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Sub 10 prestații de vaccinare eligibile pe trimestru: reducere 40%, cu excepția Praxisurilor specializate definite prin pragul strict peste 20%.",
+      "parameters": {
+        "vaccination_count_threshold_exclusive": 10,
+        "deduction_percent": 40,
+        "specialist_share_threshold_exclusive": 20
+      },
+      "notes": [
+        "Excepție: tratamente diabetologice specializate sau HIV/AIDS secțiunea 30.10 sau substituție secțiunea 1.8. Nu este suficient diagnosticul de diabet la 20% dintre pacienți."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 192,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 192",
+          "anchor": "Bei Praxen mit weniger als 10 Leistungen gemäß der Anlage 1 der Schutzimpfungsrichtlinie des Gemeinsamen Bundesausschusses in Behandlungsfällen gemäß Nr. 10 der Präambel 3.1 ist ein Abschlag in Höhe von 40 % auf die Gebührenordnungsposition 03043 vorzunehmen."
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 192,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 192",
+          "anchor": "spezialisierte diabetologische Behandlungen (diabetologische Schwerpunktpraxen) oder spezialisierte Behandlungen von an HIV-/AIDS-erkrankten Patienten gemäß Abschnitt 30.10 (HIV-Schwerpunktpraxen) oder substitutionsgestützte Behandlungen Opioidabhängiger gemäß Abschnitt 1.8 (Substitutionspraxen) durchführen, kein Abschlag."
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 192,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 192",
+          "anchor": "bei mehr als 20 % der Patienten"
+        }
+      ]
+    },
+    {
+      "id": "CRITERIA_KV_ASSIGNMENT",
+      "codes": [
+        "03041",
+        "03042",
+        "03044",
+        "03045",
+        "03046",
+        "03047",
+        "03048"
+      ],
+      "kind": "assignment",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Aceste suplimente sunt adăugate de KV; verificarea criteriilor este la nivelul Praxisului, nu inferată dintr-o singură Karteikarte.",
+      "parameters": {
+        "assignment": "kv_added",
+        "missing_code_action": "check_kv_statement"
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 187,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 187",
+          "anchor": "Die Gebührenordnungspositionen 03041, 03042 und 03044 bis 03048 werden durch die zuständige Kassenärztliche Vereinigung zugesetzt."
+        }
+      ]
+    },
+    {
+      "id": "03041_CRITERIA_LEVELS",
+      "codes": [
+        "03041",
+        "03042"
+      ],
+      "kind": "practice_criteria",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Nivel inferior pentru 2–7 criterii, superior pentru minimum 8; excepția Praxisului specializat permite nivelul inferior fără prag minim, nu automat nivelul superior.",
+      "parameters": {
+        "base_codes": [
+          "03040"
+        ],
+        "lower_min_criteria": 2,
+        "upper_min_criteria": 8
+      },
+      "notes": [
+        "03041/03042 o dată în Behandlungsfall; 03044/03045 o dată în Behandlungsfall, maximum de două ori în Krankheitsfall."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 191,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 191",
+          "anchor": "03041 bei Erfüllung von mindestens 2 und weniger als 8 Kriterien"
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 191,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 191",
+          "anchor": "03042 bei Erfüllung von mindestens 8 Kriterien"
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 191,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 191",
+          "anchor": "ist die Gebührenordnungsposition 03041 ohne die Erfüllung einer Mindestanzahl von Kriterien berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "03041_LEVEL_EXCLUSION",
+      "codes": [
+        "03041",
+        "03042"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Cele două niveluri se exclud în Behandlungsfall; nu propune ambele suplimente.",
+      "parameters": {
+        "scope": "ebm_behandlungsfall",
+        "counterpart_codes": [
+          "03041",
+          "03042"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 191,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 191",
+          "anchor": "Die Gebührenordnungsposition 03041 ist im Behandlungsfall nicht neben der Gebührenordnungsposition 03042 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "03044_CRITERIA_LEVELS",
+      "codes": [
+        "03044",
+        "03045"
+      ],
+      "kind": "practice_criteria",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Nivel inferior pentru 2–7 criterii, superior pentru minimum 8; excepția Praxisului specializat permite nivelul inferior fără prag minim, nu automat nivelul superior.",
+      "parameters": {
+        "base_codes": [
+          "03043"
+        ],
+        "lower_min_criteria": 2,
+        "upper_min_criteria": 8
+      },
+      "notes": [
+        "03041/03042 o dată în Behandlungsfall; 03044/03045 o dată în Behandlungsfall, maximum de două ori în Krankheitsfall."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 192,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 192",
+          "anchor": "03044 bei Erfüllung von mindestens 2 und weniger als 8 Kriterien"
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 192,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 192",
+          "anchor": "03045 bei Erfüllung von mindestens 8 Kriterien"
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 193,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 193",
+          "anchor": "ist die Gebührenordnungsposition 03044 ohne die Erfüllung einer Mindestanzahl von Kriterien berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "03044_LEVEL_EXCLUSION",
+      "codes": [
+        "03044",
+        "03045"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Cele două niveluri se exclud în Behandlungsfall; nu propune ambele suplimente.",
+      "parameters": {
+        "scope": "ebm_behandlungsfall",
+        "counterpart_codes": [
+          "03044",
+          "03045"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 193,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 193",
+          "anchor": "Die Gebührenordnungsposition 03044 ist im Behandlungsfall nicht neben der Gebührenordnungsposition 03045 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "VORHALTE_TEN_CRITERIA",
+      "codes": [
+        "03041",
+        "03042",
+        "03044",
+        "03045"
+      ],
+      "kind": "practice_criteria",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Cele 10 criterii aparțin întregului Praxis în trimestrul curent. Pentru vaccinări pragul Q4 este 25%, nu pragul 7% din Q1–Q3; acesta diferă de condiția absolută de 10 vaccinări.",
+      "parameters": {},
+      "notes": [
+        "Pagina 188 conține criteriile 1–9; pagina 189 criteriul 10. Procentele sunt ale prestațiilor raportate la cazurile definite, nu ale diagnosticelor. Nu se calculează punctajul final din exportul unui singur pacient."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 187,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 187",
+          "anchor": "Voraussetzung für die Berechnung der Gebührenordnungspositionen 03041, 03042, 03044 und 03045 ist die Erfüllung einer Mindestanzahl der folgenden Kriterien durch die Praxis im aktuellen Quartal"
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 188,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 188",
+          "anchor": "1 Durchführung von mindestens 5 % an Leistungen gemäß den Gebührenordnungspositionen 01410, 01411, 01412, 01413, 01415, 01721, 03062, 03063, 38100 und/oder 38105 im Verhältnis zu allen Behandlungsfällen gemäß Nr. 10 der Präambel 3.1 2 Durchführung von mindestens 12 % an Leistungen gemäß den Gebührenordnungspositionen der Abschnitte 3.2.4, 3.2.5 (einschl. Höchstwerte), 30980, 30984 und/oder des Abschnittes 37.3 im Verhältnis zu allen Behandlungsfällen gemäß Nr. 10 der Präambel 3.1 3 Durchführung von mindestens 1 % an Leistungen gemäß den Gebührenordnungspositionen des Abschnittes 37.2 im Verhältnis zu allen Behandlungsfällen gemäß Nr. 10 der Präambel 3.1 4 Durchführung von mindestens 7 % im 1., 2. und 3. Quartal des Kalenderjahres bzw. von mindestens 25 % im 4. Quartal des Kalenderjahres an Leistungen gemäß der Anlage 1 der Schutzimpfungsrichtlinie des Gemeinsamen Bundesausschusses im Verhältnis zu allen Behandlungsfällen gemäß Nr. 10 der Präambel 3.1 5 Durchführung von mindestens 3 % an Leistungen gemäß den Gebührenordnungspositionen 02300, 02301, 02302, 02310, 02311, 02312, 02313 (einschl. Höchstwerte) und/oder 31600 im Verhältnis zu allen Behandlungsfällen gemäß Nr. 10 der Präambel 3.1 6 Durchführung von mindestens 2 % an Leistungen gemäß den Gebührenordnungspositionen 33012 und/oder 33042 im Verhältnis zu allen Behandlungsfällen gemäß Nr. 10 der Präambel 3.1 7 Durchführung von mindestens 3 % an Leistungen gemäß den Gebührenordnungspositionen 03241, 03321, 03322, 03324 und/ oder 03330 im Verhältnis zu allen Behandlungsfällen gemäß Nr. 10 der Präambel 3.1 8 Durchführung von mindestens 1 % an Leistungen gemäß der Gebührenordnungsposition 01450 im Verhältnis zu allen Behandlungsfällen gemäß Nr. 10 der Präambel 3.1 9 Ausübung der vertragsärztlichen Tätigkeit in fachgleichen (Teil)- Berufsausübungsgemeinschaften zwischen Ärzten gemäß Nr. 1 der Präambel 3.1 oder in fachgleichen Praxen von Ärzten gemäß Nr. 1 der Präambel 3.1 mit angestelltem/n Arzt/Ärzten und/oder Regelmäßige Teilnahme an Qualitätszirkeln gemäß Nr. 4 der Qualitätssicherungs-Richtlinien der KBV gemäß § 75 Abs. 7 SGB V"
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 189,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 189",
+          "anchor": "10 Angebot von mindestens 14-täglich stattfindenden Sprechstunden gemäß § 17 Absatz 1a Satz 2 BMV-Ä - nach 15 Uhr am Mittwoch und/oder - nach 15 Uhr am Freitag und/oder - nach 19 Uhr an mindestens einem Werktag und/oder - vor 8 Uhr an mindestens einem Werktag Für die Erfüllung dieses Kriteriums muss die Dauer einer Sprechstunde in den genannten Zeitfenstern mindestens 60 Minuten umfassen. Die Meldung des Sprechstundenangebotes an die zuständige Kassenärztliche Vereinigung erfolgt nach den Vorgaben gemäß § 17 Absatz 1 Satz 6 BMV-Ä."
+        }
+      ]
+    },
+    {
+      "id": "03046_NEXT_QUARTER_BASE",
+      "codes": [
+        "03046"
+      ],
+      "kind": "previous_quarter",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Supliment în trimestrul imediat următor cifrei anterioare indicate; cere și cifra de bază curentă. Nu propune toate suplimentele numai pentru că există 03100 în istoric.",
+      "parameters": {
+        "base_codes": [
+          "03110"
+        ],
+        "previous_quarter_code": "03043",
+        "max_count": 1,
+        "scope": "immediately_following_quarter"
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 193,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 193",
+          "anchor": "03046 Zuschlag zur Gebührenordnungsposition 03110 im Folgequartal der Berechnung der Gebührenordnungsposition 03043, einmal im Behandlungsfall"
+        }
+      ]
+    },
+    {
+      "id": "03047_NEXT_QUARTER_BASE",
+      "codes": [
+        "03047"
+      ],
+      "kind": "previous_quarter",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Supliment în trimestrul imediat următor cifrei anterioare indicate; cere și cifra de bază curentă. Nu propune toate suplimentele numai pentru că există 03100 în istoric.",
+      "parameters": {
+        "base_codes": [
+          "03046"
+        ],
+        "previous_quarter_code": "03044",
+        "max_count": 1,
+        "scope": "immediately_following_quarter"
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 193,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 193",
+          "anchor": "03047 Zuschlag zur Gebührenordnungsposition 03046 im Folgequartal der Berechnung der Gebührenordnungsposition 03044, einmal im Behandlungsfall"
+        }
+      ]
+    },
+    {
+      "id": "03048_NEXT_QUARTER_BASE",
+      "codes": [
+        "03048"
+      ],
+      "kind": "previous_quarter",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Supliment în trimestrul imediat următor cifrei anterioare indicate; cere și cifra de bază curentă. Nu propune toate suplimentele numai pentru că există 03100 în istoric.",
+      "parameters": {
+        "base_codes": [
+          "03046"
+        ],
+        "previous_quarter_code": "03045",
+        "max_count": 1,
+        "scope": "immediately_following_quarter"
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 193,
+          "locator": "EBM Q4/2026, section 3.2.1, PDF page 193",
+          "anchor": "03048 Zuschlag zur Gebührenordnungsposition 03046 im Folgequartal der Berechnung der Gebührenordnungsposition 03045, einmal im Behandlungsfall"
+        }
+      ]
+    }
+  ],
+  "scope_notes": [
+    "National EBM Q4/2026 partial review only; not GOAE, HZV or an approved engine package.",
+    "All general provisions, video adjustments, TSS details, practice denominators and external agreements remain applicable.",
+    "Unqualified nicht neben is unresolved. Case and quarter restrictions must not be reduced to calendar day.",
+    "KV-added positions are not automatically missing physician entries. No DURIA writeback is performed."
+  ]
+}

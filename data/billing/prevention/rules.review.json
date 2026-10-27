@@ -1,0 +1,1006 @@
+{
+  "schema_version": "1.1.0",
+  "kind": "prevention_review_dossier",
+  "built_on": "2026-10-26",
+  "status": "draft",
+  "review": "pending",
+  "operational": false,
+  "complete": false,
+  "default_verdict": "not_verified",
+  "valid_from": "2026-10-01",
+  "valid_to": "2026-12-31",
+  "billing_system": "EBM",
+  "clauses": [
+    {
+      "id": "CHECKUP_18_34",
+      "codes": [
+        "01732"
+      ],
+      "kind": "age_frequency",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Între 18 și 34 ani împliniți, Check-up general o singură dată în această grupă de vârstă.",
+      "parameters": {
+        "min_age": 18,
+        "max_age_exclusive": 35,
+        "max_count_in_age_band": 1
+      },
+      "notes": [
+        "Un export fără Check-up anterior nu dovedește absența în întregul istoric. Tranziția către grupa 35+ trebuie analizată cu istoricul."
+      ],
+      "evidence": [
+        {
+          "source": "GU",
+          "path": "../sources/gba-gu-rl-20210212.pdf",
+          "sha256": "899db465881090411c058a90661c8fe1582f2ed887de7e296c37b4d48de5e6f7",
+          "url": "https://www.g-ba.de/downloads/62-492-2383/GU-RL_2020-11-20_iK-2021-02-12.pdf",
+          "page": 5,
+          "locator": "B I §2",
+          "anchor": "Versicherte haben ab Vollendung des 18. Lebensjahres bis zum Ende des 35. Lebensjahres einmalig Anspruch auf eine allgemeine Gesundheitsuntersuchung."
+        }
+      ]
+    },
+    {
+      "id": "CHECKUP_35_INTERVAL",
+      "codes": [
+        "01732"
+      ],
+      "kind": "calendar_interval",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "De la 35 ani, intervalul exclude următorii doi ani calendaristici după anul investigației; nu calcula automat 36 de luni de la ziua exactă.",
+      "parameters": {
+        "min_age": 35,
+        "calendar_year_step": 3
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "GU",
+          "path": "../sources/gba-gu-rl-20210212.pdf",
+          "sha256": "899db465881090411c058a90661c8fe1582f2ed887de7e296c37b4d48de5e6f7",
+          "url": "https://www.g-ba.de/downloads/62-492-2383/GU-RL_2020-11-20_iK-2021-02-12.pdf",
+          "page": 5,
+          "locator": "B I §2",
+          "anchor": "Wird eine allgemeine Gesundheitsuntersuchung durchgeführt, ist in den auf das Untersuchungsjahr folgenden zwei Kalenderjahren keine allgemeine Gesundheitsuntersuchung durchzuführen."
+        },
+        {
+          "source": "GU",
+          "path": "../sources/gba-gu-rl-20210212.pdf",
+          "sha256": "899db465881090411c058a90661c8fe1582f2ed887de7e296c37b4d48de5e6f7",
+          "url": "https://www.g-ba.de/downloads/62-492-2383/GU-RL_2020-11-20_iK-2021-02-12.pdf",
+          "page": 5,
+          "locator": "B I §2",
+          "anchor": "Versicherte haben ab Vollendung des 35. Lebensjahres alle drei Jahre Anspruch auf eine allgemeine Gesundheitsuntersuchung."
+        }
+      ]
+    },
+    {
+      "id": "CHECKUP_COMPONENTS",
+      "codes": [
+        "01732"
+      ],
+      "kind": "required_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Verifică anamneza, examenul complet, laboratorul aplicabil vârstei/riscului, vaccinările și consilierea; vârsta și intervalul singure nu sunt suficiente.",
+      "parameters": {},
+      "notes": [
+        "Lista integrală a conținuturilor este în B I §3 și Anlage 1; nu înlocui conținutul cu un checkbox generic."
+      ],
+      "evidence": [
+        {
+          "source": "GU",
+          "path": "../sources/gba-gu-rl-20210212.pdf",
+          "sha256": "899db465881090411c058a90661c8fe1582f2ed887de7e296c37b4d48de5e6f7",
+          "url": "https://www.g-ba.de/downloads/62-492-2383/GU-RL_2020-11-20_iK-2021-02-12.pdf",
+          "page": 5,
+          "locator": "B I §3",
+          "anchor": "Untersuchung zur Erhebung des vollständigen Status (Ganzkörperstatus)"
+        }
+      ]
+    },
+    {
+      "id": "CHECKUP_DOCUMENTATION",
+      "codes": [
+        "01732"
+      ],
+      "kind": "documentation",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Documentează rezultatele și măsurile recomandate sau inițiate conform Anlage 1.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "source": "GU",
+          "path": "../sources/gba-gu-rl-20210212.pdf",
+          "sha256": "899db465881090411c058a90661c8fe1582f2ed887de7e296c37b4d48de5e6f7",
+          "url": "https://www.g-ba.de/downloads/62-492-2383/GU-RL_2020-11-20_iK-2021-02-12.pdf",
+          "page": 6,
+          "locator": "B I §4",
+          "anchor": "Die Ergebnisse der Anamnese und der Untersuchungen werden ebenso wie die aufgrund der allgemeinen Gesundheitsuntersuchung veranlassten oder empfohlenen Maßnahmen den Inhalten der Anlage 1 entsprechend dokumentiert."
+        }
+      ]
+    },
+    {
+      "id": "LAB_UNDER_35",
+      "codes": [
+        "32881",
+        "32882"
+      ],
+      "kind": "conditional_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "În grupa 18–34, analizele de sânge din Check-up depind de profilul de risc; nu propune automat întregul laborator pentru orice pacient.",
+      "parameters": {},
+      "notes": [
+        "Harnstreifentest de rutină nu este prevăzut aici pentru această grupă; analizele pentru o indicație curativă au altă justificare."
+      ],
+      "evidence": [
+        {
+          "source": "GU",
+          "path": "../sources/gba-gu-rl-20210212.pdf",
+          "sha256": "899db465881090411c058a90661c8fe1582f2ed887de7e296c37b4d48de5e6f7",
+          "url": "https://www.g-ba.de/downloads/62-492-2383/GU-RL_2020-11-20_iK-2021-02-12.pdf",
+          "page": 12,
+          "locator": "Anlage 1 Nr.3",
+          "anchor": "Untersuchungen aus dem Blut (einschließlich Blutentnahme) bei entsprechendem Risikoprofil, z. B. positiver Familienanamnese, Adipositas oder Bluthochdruck:"
+        }
+      ]
+    },
+    {
+      "id": "LAB_35_PLUS",
+      "codes": [
+        "32880",
+        "32881",
+        "32882"
+      ],
+      "kind": "required_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "De la 35 ani, laboratorul Check-up cuprinde profilul lipidic, glicemia plasmatică à jeun și testul urinar prevăzut.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "source": "GU",
+          "path": "../sources/gba-gu-rl-20210212.pdf",
+          "sha256": "899db465881090411c058a90661c8fe1582f2ed887de7e296c37b4d48de5e6f7",
+          "url": "https://www.g-ba.de/downloads/62-492-2383/GU-RL_2020-11-20_iK-2021-02-12.pdf",
+          "page": 12,
+          "locator": "Anlage 1 Nr.3",
+          "anchor": "Versicherte ab Vollendung des 35. Lebensjahres: a) Untersuchungen aus dem Blut (einschließlich Blutentnahme): - Lipidprofil (Gesamtcholesterin, LDL-Cholesterin, HDL-Cholesterin, Triglyceride) - Nüchternplasmaglucose b) Untersuchungen aus dem Urin: - Eiweiß, Glucose, Erythrozyten, Leukozyten und Nitrit (Harnstreifentest)"
+        }
+      ]
+    },
+    {
+      "id": "LAB_LINK_TO_CHECKUP",
+      "codes": [
+        "01732",
+        "32880",
+        "32881",
+        "32882"
+      ],
+      "kind": "conditional_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "32880–32882 se leagă de analizele cerute efectiv de Anlage 1; solicitarea la laborator nu dovedește că Hausarzt a efectuat și poate factura analiza.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 101,
+          "locator": "GOP 01732",
+          "anchor": "Im Zusammenhang mit der Gebührenordnungsposition 01732 sind die Gebührenordnungspositionen 32880 bis 32882 in Abhängigkeit der in Anlage 1 der Gesundheitsuntersuchungs-Richtlinie jeweils geforderten Laboruntersuchungen berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "32880_EXCLUSIONS",
+      "codes": [
+        "32880"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Evită facturarea paralelă a codurilor de laborator enumerate în aceeași situație relevantă; fereastra nicht neben necesită revizie.",
+      "parameters": {
+        "relation": "excludes",
+        "counterpart_codes": [
+          "32025",
+          "32033",
+          "32057",
+          "32060",
+          "32061",
+          "32062",
+          "32063"
+        ],
+        "scope": "unresolved_neben"
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 793,
+          "locator": "GOP 32880",
+          "anchor": "Die Gebührenordnungsposition 32880 ist nicht neben den Gebührenordnungspositionen 32025, 32033, 32057 und 32060 bis 32063 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "32881_EXCLUSIONS",
+      "codes": [
+        "32881"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Evită facturarea paralelă a codurilor de laborator enumerate în aceeași situație relevantă; fereastra nicht neben necesită revizie.",
+      "parameters": {
+        "relation": "excludes",
+        "counterpart_codes": [
+          "32025",
+          "32033",
+          "32057",
+          "32060",
+          "32061",
+          "32062",
+          "32063"
+        ],
+        "scope": "unresolved_neben"
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 793,
+          "locator": "GOP 32881",
+          "anchor": "Die Gebührenordnungsposition 32881 ist nicht neben den Gebührenordnungspositionen 32025, 32033, 32057 und 32060 bis 32063 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "32882_EXCLUSIONS",
+      "codes": [
+        "32882"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Evită facturarea paralelă a codurilor de laborator enumerate în aceeași situație relevantă; fereastra nicht neben necesită revizie.",
+      "parameters": {
+        "relation": "excludes",
+        "counterpart_codes": [
+          "32025",
+          "32033",
+          "32057",
+          "32060",
+          "32061",
+          "32062",
+          "32063"
+        ],
+        "scope": "unresolved_neben"
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 793,
+          "locator": "GOP 32882",
+          "anchor": "Die Gebührenordnungsposition 32882 ist nicht neben den Gebührenordnungspositionen 32025, 32033, 32057 und 32060 bis 32063 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "HEPATITIS_AGE_ONCE",
+      "codes": [
+        "01734"
+      ],
+      "kind": "age_frequency",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "01734 este supliment la 01732, de la 35 ani și o singură dată; păstrează separat istoricul screeningului B și C.",
+      "parameters": {
+        "min_age": 35,
+        "max_count": 1,
+        "window": "lifetime",
+        "base_code": "01732"
+      },
+      "notes": [
+        "Nu dubla automat 01734 pentru că se testează B și C. Prevederea tranzitorie din 2021 nu se generalizează ca drept nou în 2026."
+      ],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 101,
+          "locator": "GOP 01734",
+          "anchor": "Die Gebührenordnungsposition 01734 ist bei Versicherten ab dem vollendeten 35. Lebensjahr einmalig berechnungsfähig."
+        },
+        {
+          "source": "GU",
+          "path": "../sources/gba-gu-rl-20210212.pdf",
+          "sha256": "899db465881090411c058a90661c8fe1582f2ed887de7e296c37b4d48de5e6f7",
+          "url": "https://www.g-ba.de/downloads/62-492-2383/GU-RL_2020-11-20_iK-2021-02-12.pdf",
+          "page": 9,
+          "locator": "B III §2",
+          "anchor": "Versicherte, die das 35. Lebensjahr vollendet haben, haben im Rahmen der Inanspruchnahme einer allgemeinen Gesundheitsuntersuchung einmalig Anspruch auf ein Screening auf Hepatitis-B-Virusinfektion und einmalig Anspruch auf ein Screening auf Hepatitis-C- Virusinfektion."
+        }
+      ]
+    },
+    {
+      "id": "HEPATITIS_REFLEX",
+      "codes": [
+        "01865",
+        "01866",
+        "01867"
+      ],
+      "kind": "conditional_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Testele de confirmare HBV-DNA/HCV-RNA depind de rezultatul reactiv corespunzător și folosesc aceeași recoltare; nu propune toate cele trei coduri automat.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "source": "GU",
+          "path": "../sources/gba-gu-rl-20210212.pdf",
+          "sha256": "899db465881090411c058a90661c8fe1582f2ed887de7e296c37b4d48de5e6f7",
+          "url": "https://www.g-ba.de/downloads/62-492-2383/GU-RL_2020-11-20_iK-2021-02-12.pdf",
+          "page": 9,
+          "locator": "B III §4",
+          "anchor": "Bei positivem (reaktivem) Ergebnis der HBs-Ag- Untersuchung erfolgt anschließend eine Untersuchung auf HBV-DNA aus derselben Blutentnahme."
+        },
+        {
+          "source": "GU",
+          "path": "../sources/gba-gu-rl-20210212.pdf",
+          "sha256": "899db465881090411c058a90661c8fe1582f2ed887de7e296c37b4d48de5e6f7",
+          "url": "https://www.g-ba.de/downloads/62-492-2383/GU-RL_2020-11-20_iK-2021-02-12.pdf",
+          "page": 9,
+          "locator": "B III §4",
+          "anchor": "Bei positivem (reaktivem) Ergebnis der HCV- Antikörper-Untersuchung erfolgt anschließend eine Untersuchung auf HCV-RNA aus derselben Blutentnahme."
+        }
+      ]
+    },
+    {
+      "id": "HEPATITIS_LAB_AUTH",
+      "codes": [
+        "01865",
+        "01866",
+        "01867"
+      ],
+      "kind": "authorization",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Laboratorul pentru screeningul hepatitei necesită autorizarea relevantă; nu atribui automat Hausarzt codurile laboratorului extern.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "source": "GU",
+          "path": "../sources/gba-gu-rl-20210212.pdf",
+          "sha256": "899db465881090411c058a90661c8fe1582f2ed887de7e296c37b4d48de5e6f7",
+          "url": "https://www.g-ba.de/downloads/62-492-2383/GU-RL_2020-11-20_iK-2021-02-12.pdf",
+          "page": 9,
+          "locator": "B III §5",
+          "anchor": "Die Laboruntersuchungen nach § 4 dürfen nur von Ärztinnen und Ärzten durchgeführt werden, die eine Genehmigung gemäß der Vereinbarung von Qualitätssicherungsmaßnahmen nach § 135 Absatz 2 SGB V zur Erbringung von speziellen Untersuchungen der Laboratoriumsmedizin (Qualitätssicherungsvereinbarung Spezial-Labor) in der Fassung vom 1. April 2018 zur Ausführung und Abrechnung dieser Leistung besitzen."
+        }
+      ]
+    },
+    {
+      "id": "SKIN_INTERVAL",
+      "codes": [
+        "01745",
+        "01746"
+      ],
+      "kind": "calendar_interval",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Screeningul cutanat standard de la 35 ani: repetare după încheierea anului calendaristic următor ultimei examinări.",
+      "parameters": {
+        "min_age": 35,
+        "calendar_year_step": 2,
+        "shared_history_codes": [
+          "01745",
+          "01746"
+        ]
+      },
+      "notes": [
+        "Schimbarea codului 01745 în 01746 sau schimbarea Praxisului nu resetează istoricul. Contractele pentru sub 35 ani necesită profil separat."
+      ],
+      "evidence": [
+        {
+          "source": "KFE",
+          "path": "../sources/gba-kfe-rl-20260312.pdf",
+          "sha256": "04dfd4a1d08a1d43ceed0d42e184a333cfa987f1e0b4877c731692fc51edf805",
+          "url": "https://www.g-ba.de/downloads/62-492-4074/KFE-RL_2025-12-18_iK-2026-03-12.pdf",
+          "page": 21,
+          "locator": "§29",
+          "anchor": "Eine erneute Früherkennungsuntersuchung auf Hautkrebs ist jeweils erst nach Ablauf des auf die vorangegangene Untersuchung folgenden Kalenderjahres möglich."
+        },
+        {
+          "source": "KFE",
+          "path": "../sources/gba-kfe-rl-20260312.pdf",
+          "sha256": "04dfd4a1d08a1d43ceed0d42e184a333cfa987f1e0b4877c731692fc51edf805",
+          "url": "https://www.g-ba.de/downloads/62-492-4074/KFE-RL_2025-12-18_iK-2026-03-12.pdf",
+          "page": 21,
+          "locator": "§29",
+          "anchor": "Versicherte haben ab dem Alter von 35 Jahren jedes zweite Jahr Anspruch auf vertragsärztliche Maßnahmen zur Früherkennung von Hautkrebs nach Maßgabe der folgenden Bestimmungen."
+        }
+      ]
+    },
+    {
+      "id": "SKIN_AUTH",
+      "codes": [
+        "01745",
+        "01746"
+      ],
+      "kind": "authorization",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Verifică specialitatea admisă și autorizația KV; codul de supliment 01746 nu este generalizat la orice specialitate.",
+      "parameters": {},
+      "notes": [
+        "EBM 1.7.2, pagina 100, distinge specialitățile pentru 01745/01746; dermatologii au prevederea distinctă pentru 01745."
+      ],
+      "evidence": [
+        {
+          "source": "KFE",
+          "path": "../sources/gba-kfe-rl-20260312.pdf",
+          "sha256": "04dfd4a1d08a1d43ceed0d42e184a333cfa987f1e0b4877c731692fc51edf805",
+          "url": "https://www.g-ba.de/downloads/62-492-4074/KFE-RL_2025-12-18_iK-2026-03-12.pdf",
+          "page": 22,
+          "locator": "§31",
+          "anchor": "darf nur von im Rahmen der vertragsärztlichen Versorgung tätigen Ärztinnen und Ärzten erbracht werden, welche eine entsprechende Genehmigung der zuständigen Kassenärztlichen Vereinigung (KV) vorweisen können."
+        }
+      ]
+    },
+    {
+      "id": "SKIN_DOCUMENTATION",
+      "codes": [
+        "01745",
+        "01746"
+      ],
+      "kind": "documentation",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Documentarea completă cu software certificat de KBV este condiție de facturare; textul liber al asistentului nu înlocuiește acest flux.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "source": "KFE",
+          "path": "../sources/gba-kfe-rl-20260312.pdf",
+          "sha256": "04dfd4a1d08a1d43ceed0d42e184a333cfa987f1e0b4877c731692fc51edf805",
+          "url": "https://www.g-ba.de/downloads/62-492-4074/KFE-RL_2025-12-18_iK-2026-03-12.pdf",
+          "page": 25,
+          "locator": "§34(2)–(4)",
+          "anchor": "Die vollständige Dokumentation ist Voraussetzung für die Abrechnung der Früherkennungsmaßnahme."
+        },
+        {
+          "source": "KFE",
+          "path": "../sources/gba-kfe-rl-20260312.pdf",
+          "sha256": "04dfd4a1d08a1d43ceed0d42e184a333cfa987f1e0b4877c731692fc51edf805",
+          "url": "https://www.g-ba.de/downloads/62-492-4074/KFE-RL_2025-12-18_iK-2026-03-12.pdf",
+          "page": 25,
+          "locator": "§34(3)",
+          "anchor": "Zur Datenerfassung darf nur eine von der KBV zertifizierte Software Verwendung finden."
+        }
+      ]
+    },
+    {
+      "id": "SKIN_CHECKUP_ROUTE",
+      "codes": [
+        "01732",
+        "01745",
+        "01746"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "În ruta Hausarzt obișnuită, 01746 este suplimentul la Check-up; 01745 se exclude cu 01732 și 01746 în Behandlungsfall, cu excepția interdisciplinară explicită de mai jos.",
+      "parameters": {
+        "base_code": "01732",
+        "supplement_code": "01746",
+        "exception_clause": "SKIN_INTERDISCIPLINARY_BAG"
+      },
+      "notes": [
+        "Nu înlocui automat codul fără a verifica prestația, actorul și condițiile suplimentului."
+      ],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 105,
+          "locator": "GOP 01745/01746",
+          "anchor": "Die Gebührenordnungsposition 01745 ist im Behandlungsfall nicht neben den Gebührenordnungspositionen 01732 und 01746 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "SKIN_INTERDISCIPLINARY_BAG",
+      "codes": [
+        "01732",
+        "01745",
+        "01746"
+      ],
+      "kind": "conditional_exception",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Există excepție de combinare pentru participanții aceleiași BAG interdisciplinare. Identifică medicii, specialitățile și forma Praxisului înaintea unui verdict.",
+      "parameters": {},
+      "notes": [
+        "Nu transforma excepția în permisiune universală în orice Praxis sau pentru orice repetare."
+      ],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 100,
+          "locator": "Präambel 1.7.2 Nr.3",
+          "anchor": "Abweichend zu den Anmerkungen hinter den Gebührenordnungspositionen 01732, 01745 und 01746 sind die Gebührenordnungspositionen 01732, 01745 und 01746 für Beteiligte derselben fachübergreifenden Berufsausübungsgemeinschaft nebeneinander berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "01747_AGE_ONCE",
+      "codes": [
+        "01747"
+      ],
+      "kind": "age_frequency",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Screeningul AAA: bărbați de la 65 ani, o singură dată. Verifică și prestațiile anterioare la alți furnizori.",
+      "parameters": {
+        "min_age": 65,
+        "sex_requirement": "male",
+        "max_count": 1,
+        "window": "lifetime"
+      },
+      "notes": [
+        "Nu considera un istoric local gol ca dovadă a lipsei screeningului anterior. 01747 și 01748 sunt prestații distincte, nu se propun ambele doar din vârstă."
+      ],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 105,
+          "locator": "GOP 01747",
+          "anchor": "Die Gebührenordnungsposition 01747 ist bei männlichen Patienten ab dem Alter von 65 Jahren einmalig berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "01748_AGE_ONCE",
+      "codes": [
+        "01748"
+      ],
+      "kind": "age_frequency",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Screeningul AAA: bărbați de la 65 ani, o singură dată. Verifică și prestațiile anterioare la alți furnizori.",
+      "parameters": {
+        "min_age": 65,
+        "sex_requirement": "male",
+        "max_count": 1,
+        "window": "lifetime"
+      },
+      "notes": [
+        "Nu considera un istoric local gol ca dovadă a lipsei screeningului anterior. 01747 și 01748 sunt prestații distincte, nu se propun ambele doar din vârstă."
+      ],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 106,
+          "locator": "GOP 01748",
+          "anchor": "Die Gebührenordnungsposition 01748 ist bei männlichen Patienten ab dem Alter von 65 Jahren einmalig berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "AAA_COUNSELLING",
+      "codes": [
+        "01747"
+      ],
+      "kind": "required_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Consilierea cere contact personal, informarea și înmânarea informației pentru asigurat; ecografia este distinctă.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 105,
+          "locator": "GOP 01747",
+          "anchor": "Persönlicher Arzt-Patienten-Kontakt, - Ausgabe der Versicherteninformation gemäß Anlage 3 zur GU-RL, - Ärztliche Aufklärung zum Screening auf Bauchaortenaneurysmen"
+        }
+      ]
+    },
+    {
+      "id": "AAA_ULTRASOUND_AUTH",
+      "codes": [
+        "01748"
+      ],
+      "kind": "authorization",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Ecografia AAA necesită autorizație KV conform Ultraschall-Vereinbarung și conținutul tehnic prevăzut.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 106,
+          "locator": "GOP 01748",
+          "anchor": "Die Berechnung der Gebührenordnungsposition 01748 setzt eine Genehmigung der Kassenärztlichen Vereinigung nach der Ultraschall- Vereinbarung gemäß § 135 Abs. 2 SGB V voraus."
+        }
+      ]
+    },
+    {
+      "id": "AAA_FOLLOWUP",
+      "codes": [
+        "01748"
+      ],
+      "kind": "screening_vs_treatment",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Controalele și diagnosticul după rezultat anormal aparțin Krankenbehandlung; nu repeta automat codul de screening unic.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "source": "GU",
+          "path": "../sources/gba-gu-rl-20210212.pdf",
+          "sha256": "899db465881090411c058a90661c8fe1582f2ed887de7e296c37b4d48de5e6f7",
+          "url": "https://www.g-ba.de/downloads/62-492-2383/GU-RL_2020-11-20_iK-2021-02-12.pdf",
+          "page": 7,
+          "locator": "B II §4(4)",
+          "anchor": "Die Verlaufskontrollen und weitere Diagnostik nach Feststellung eines auffälligen Befundes im Sinne des Absatz 3 erfolgen im Rahmen der Krankenbehandlung nach § 27 SGB V."
+        }
+      ]
+    },
+    {
+      "id": "AAA_COMBINATION_ADJUSTMENT",
+      "codes": [
+        "01748",
+        "33042",
+        "33043"
+      ],
+      "kind": "conditional_price",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Asocierea 01748 cu 33042 sau 33043 are reduceri specifice asupra celuilalt cod, nu o interdicție generală.",
+      "parameters": {
+        "deduction_points_33042": 70,
+        "deduction_points_33043": 7
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 106,
+          "locator": "GOP 01748",
+          "anchor": "Sofern die Gebührenordnungsposition 01748 neben der Gebührenordnungsposition 33042 berechnet wird, ist ein Abschlag von 70 Punkten auf die Gebührenordnungsposition 33042 vorzunehmen."
+        },
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 106,
+          "locator": "GOP 01748",
+          "anchor": "Sofern die Gebührenordnungsposition 01748 neben der Gebührenordnungsposition 33043 berechnet wird, ist ein Abschlag von 7 Punkten auf die Gebührenordnungsposition 33043 vorzunehmen."
+        }
+      ]
+    },
+    {
+      "id": "AAA_DAY_EXCLUSIONS",
+      "codes": [
+        "01748"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "01748 se exclude în aceeași zi cu codurile enumerate.",
+      "parameters": {
+        "counterpart_codes": [
+          "31682",
+          "31683",
+          "31684",
+          "31685",
+          "31686",
+          "31687",
+          "31688",
+          "31689",
+          "33040",
+          "33081"
+        ],
+        "scope": "calendar_day"
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 106,
+          "locator": "GOP 01748",
+          "anchor": "Die Gebührenordnungsposition 01748 ist am Behandlungstag nicht neben den Gebührenordnungspositionen 31682 bis 31689, 33040 und 33081 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "MALE_CANCER_INTERVAL",
+      "codes": [
+        "01731"
+      ],
+      "kind": "calendar_interval",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Examinarea clinică de prevenție pentru bărbați de la 45 ani are interval anual calendaristic; nu include automat alte analize sau proceduri.",
+      "parameters": {
+        "min_age": 45,
+        "sex_requirement": "male",
+        "calendar_year_step": 1
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "KFE",
+          "path": "../sources/gba-kfe-rl-20260312.pdf",
+          "sha256": "04dfd4a1d08a1d43ceed0d42e184a333cfa987f1e0b4877c731692fc51edf805",
+          "url": "https://www.g-ba.de/downloads/62-492-4074/KFE-RL_2025-12-18_iK-2026-03-12.pdf",
+          "page": 4,
+          "locator": "§1(2)b și §2",
+          "anchor": "bei Männern der Früherkennung von Krebserkrankungen der Prostata und des äußeren Genitales ab dem Alter von 45 Jahren."
+        },
+        {
+          "source": "KFE",
+          "path": "../sources/gba-kfe-rl-20260312.pdf",
+          "sha256": "04dfd4a1d08a1d43ceed0d42e184a333cfa987f1e0b4877c731692fc51edf805",
+          "url": "https://www.g-ba.de/downloads/62-492-4074/KFE-RL_2025-12-18_iK-2026-03-12.pdf",
+          "page": 4,
+          "locator": "§2",
+          "anchor": "Der Anspruch auf Früherkennung besteht nach der ersten Inanspruchnahme – soweit nicht in den folgenden Abschnitten oder Anlagen der Richtlinie Abweichendes bestimmt ist – jährlich."
+        },
+        {
+          "source": "KFE",
+          "path": "../sources/gba-kfe-rl-20260312.pdf",
+          "sha256": "04dfd4a1d08a1d43ceed0d42e184a333cfa987f1e0b4877c731692fc51edf805",
+          "url": "https://www.g-ba.de/downloads/62-492-4074/KFE-RL_2025-12-18_iK-2026-03-12.pdf",
+          "page": 4,
+          "locator": "§2 Satz 2",
+          "anchor": "Er kann ab Beginn des jeweiligen Kalenderjahres wahrgenommen werden"
+        },
+        {
+          "source": "KFE",
+          "path": "../sources/gba-kfe-rl-20260312.pdf",
+          "sha256": "04dfd4a1d08a1d43ceed0d42e184a333cfa987f1e0b4877c731692fc51edf805",
+          "url": "https://www.g-ba.de/downloads/62-492-4074/KFE-RL_2025-12-18_iK-2026-03-12.pdf",
+          "page": 4,
+          "locator": "§2",
+          "anchor": "Er kann ab Beginn des jeweiligen Kalenderjahres wahrgenommen werden; dies gilt entsprechend, wenn mehrjährige, nicht aber, wenn mehrmonatige Intervalle festgelegt sind."
+        }
+      ]
+    },
+    {
+      "id": "MALE_CANCER_CONTENT",
+      "codes": [
+        "01731"
+      ],
+      "kind": "required_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Verifică examenul clinic prevăzut și consilierea; nu interpreta simpla mențiune „Vorsorge” ca dovadă a tuturor componentelor.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "source": "KFE",
+          "path": "../sources/gba-kfe-rl-20260312.pdf",
+          "sha256": "04dfd4a1d08a1d43ceed0d42e184a333cfa987f1e0b4877c731692fc51edf805",
+          "url": "https://www.g-ba.de/downloads/62-492-4074/KFE-RL_2025-12-18_iK-2026-03-12.pdf",
+          "page": 20,
+          "locator": "§25",
+          "anchor": "Gezielte Anamnese, Inspektion und Palpation des äußeren Genitales einschließlich der entsprechenden Hautareale, Abtasten der Prostata vom After aus, Palpation regionärer Lymphknoten, Befundmitteilung mit anschließender diesbezüglicher Beratung."
+        }
+      ]
+    },
+    {
+      "id": "03241_RECORDING_DURATION",
+      "codes": [
+        "03241"
+      ],
+      "kind": "technical_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Minimum 18 ore de înregistrare; durata aparatului nu este durata conversației cu medicul. Separă înregistrarea de interpretare.",
+      "parameters": {
+        "min_recording_minutes": 1080
+      },
+      "notes": [
+        "Ambele coduri necesită autorizația KV relevantă conform paginii 200; nu propune interpretarea numai din dovada montării aparatului."
+      ],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 200,
+          "locator": "GOP 03241",
+          "anchor": "03241 Computergestützte Auswertung eines kontinuierlich aufgezeichneten Langzeit-EKG von mindestens 18 Stunden Dauer"
+        }
+      ]
+    },
+    {
+      "id": "03322_RECORDING_DURATION",
+      "codes": [
+        "03322"
+      ],
+      "kind": "technical_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Minimum 18 ore de înregistrare; durata aparatului nu este durata conversației cu medicul. Separă înregistrarea de interpretare.",
+      "parameters": {
+        "min_recording_minutes": 1080
+      },
+      "notes": [
+        "Ambele coduri necesită autorizația KV relevantă conform paginii 200; nu propune interpretarea numai din dovada montării aparatului."
+      ],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 200,
+          "locator": "GOP 03322",
+          "anchor": "03322 Aufzeichnung eines Langzeit-EKG von mindestens 18 Stunden Dauer"
+        }
+      ]
+    },
+    {
+      "id": "EXERCISE_ECG",
+      "codes": [
+        "03321"
+      ],
+      "kind": "technical_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Verifică ECG în repaus/după efort, derivațiile la efort, supravegherea curbei și măsurarea repetată a tensiunii; un ECG de repaus nu este echivalent.",
+      "parameters": {
+        "rest_after_load_min_leads": 12,
+        "during_load_min_leads": 3
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 200,
+          "locator": "GOP 03321",
+          "anchor": "Untersuchung in Ruhe und nach Belastung mit mindestens 12 Ableitungen sowie während physikalisch definierter und reproduzierbarer Belastung mit mindestens 3 Ableitungen und fortlaufender Kontrolle des Kurvenverlaufes, - Wiederholte Blutdruckmessung"
+        }
+      ]
+    },
+    {
+      "id": "AMBULATORY_BP",
+      "codes": [
+        "03324"
+      ],
+      "kind": "technical_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Minimum 20 ore, intervale conforme, înregistrarea frecvenței cardiace și evaluarea; nu este o simplă măsurare de tensiune.",
+      "parameters": {
+        "min_recording_minutes": 1200,
+        "max_awake_interval_minutes": 15,
+        "max_sleep_interval_minutes": 30,
+        "heart_rate_required": true
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 201,
+          "locator": "GOP 03324",
+          "anchor": "Automatisierte Aufzeichnung von mindestens 20 Stunden Dauer, - Computergestützte Auswertung, - Aufzeichnung der Blutdruckwerte mindestens alle 15 Minuten während der Wach- und mindestens alle 30 Minuten während der Schlafphase mit gleichzeitiger Registrierung der Herzfrequenz, - Auswertung und Beurteilung des Befundes"
+        }
+      ]
+    },
+    {
+      "id": "SPIROGRAPHY",
+      "codes": [
+        "03330"
+      ],
+      "kind": "technical_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Necesită curba flux-volum, măsurare inspiratorie și expiratorie și înregistrare grafică. Nu echivala automat Peak-Flow cu spirografia completă.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 202,
+          "locator": "GOP 03330",
+          "anchor": "Darstellung der Flussvolumenkurve, - In- und exspiratorische Messungen, - Graphische Registrierung"
+        }
+      ]
+    }
+  ],
+  "covered_codes": [
+    "01731",
+    "01732",
+    "01734",
+    "01745",
+    "01746",
+    "01747",
+    "01748",
+    "01865",
+    "01866",
+    "01867",
+    "03241",
+    "03321",
+    "03322",
+    "03324",
+    "03330",
+    "32880",
+    "32881",
+    "32882",
+    "33042",
+    "33043"
+  ],
+  "scope_notes": [
+    "Partial national EBM/GKV content only. No GOAE or HZV fallback.",
+    "Coverage of a source clause is not complete eligibility for any listed code.",
+    "Age, clinical context, authorization, documented performance, prior providers and payer/contract must be checked.",
+    "Calendar preview is only one component, never permission to invoice.",
+    "Regional under-35 skin-screening contracts and the future 2027 KFE version are not activated."
+  ]
+}

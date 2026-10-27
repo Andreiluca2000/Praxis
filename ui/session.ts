@@ -4,6 +4,7 @@ import { CHANNELS } from '../src/duria/channel.js';
 import { analyse, type AnalysisResponse } from '../src/core/analyze.js';
 import { patientPairs } from '../src/core/patient-pairs.js';
 import { confirmationKey, type PairRegistry, type PairReport, type SeparateConfirmation } from '../src/engine/pairs.js';
+import { checkWindowRules, type WindowFinding, type WindowRuleSet } from '../src/engine/window-rules.js';
 import type { Facts, IsoDate, PracticeSettings, RulePackage } from '../src/domain/types.js';
 import { readDuriaExport, type DuriaSnapshot } from '../src/duria/adapter.js';
 import { ContextRegistry, type PatientContext } from '../src/duria/context.js';
@@ -87,6 +88,17 @@ export class TreatmentSession {
   }
 
   setPairRegistry(reg: PairRegistry | null) { this.pairRegistry = reg; }
+
+  /** Regeln mit Zeitraum (Tag/Woche/Fall) und Höchstanzahlen – Entwurf, nur im Simulator. */
+  private windowRules: WindowRuleSet | null = null;
+  setWindowRules(r: WindowRuleSet | null) { this.windowRules = r; }
+  get windowSkipped() { return this.windowRules?.skipped ?? {}; }
+
+  /** Behandlungsfall gilt nur als vollständig, wenn der Export das ganze Quartal enthält (vom Benutzer bestätigt). */
+  windowFindings(quarterComplete: boolean): WindowFinding[] | null {
+    if (!this.current || this.mode !== 'simulation' || !this.windowRules) return null;
+    return checkWindowRules({ services: this.current.snapshot.services, behandlungsfallComplete: quarterComplete }, this.windowRules).findings;
+  }
 
   /** Paare der erfassten Leistungen (Entwurf); `null` außerhalb des Simulators oder ohne Dossier. */
   pairs(): PairReport | null {

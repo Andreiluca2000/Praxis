@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "artifacts": [
+    {
+      "path": "kbv-chroniker-20261027.html",
+      "source_url": "https://www.kbv.de/praxis/abrechnung/chronikerpauschale",
+      "retrieved_on": "2026-10-27",
+      "sha256": "84bc88740800f40a04186e1609aee51bf2e4ff1379177005a4b5e220b5c129cd",
+      "bytes": 263305,
+      "role": "official_explanatory_context_not_regional_tariff"
+    },
+    {
+      "path": "kvsa-versorgungspauschale-20261027.html",
+      "source_url": "https://www.kvsa.de/praxis/abrechnung/wichtige-infos/versorgungspauschale",
+      "retrieved_on": "2026-10-27",
+      "sha256": "a8ca195348fb87afabec9665fa4567130c00b10db10b9de7608571347ce35b32",
+      "bytes": 160091,
+      "role": "official_explanatory_context_not_regional_tariff"
+    },
+    {
+      "path": "baek-ekg-20170428.pdf",
+      "source_url": "https://www.bundesaerztekammer.de/fileadmin/user_upload/_old-files/downloads/pdf-Ordner/GOAE/Elektrokardiographie.pdf",
+      "retrieved_on": "2026-10-27",
+      "published_on": "2017-04-28",
+      "sha256": "d5fc5b2f55189a25efc5c42f90580ff63cb485dbe3ef53ec82134bc0018a9795",
+      "bytes": 106436,
+      "role": "baek_interpretive_guidance_not_statutory_amendment"
+    }
+  ]
+}

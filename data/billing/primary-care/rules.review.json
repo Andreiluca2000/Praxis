@@ -1,0 +1,947 @@
+{
+  "schema_version": "1.0.0",
+  "kind": "primary_care_review_dossier",
+  "built_on": "2026-10-26",
+  "status": "draft",
+  "review": "pending",
+  "operational": false,
+  "complete": false,
+  "default_verdict": "not_verified",
+  "billing_system": "EBM",
+  "valid_from": "2026-10-01",
+  "valid_to": "2026-12-31",
+  "clauses": [
+    {
+      "id": "HAUSARZT_SCOPE",
+      "codes": [],
+      "kind": "scope",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Aplică mai întâi profilul Hausarzt, apoi condițiile cifrei; catalogul general nu este o listă de propuneri pentru Praxis.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 175,
+          "locator": "EBM Q4/2026 PDF page 175",
+          "anchor": "Bei der Berechnung der zusätzlich berechnungsfähigen Gebührenordnungspositionen in den Absätzen 3, 4 und 5 sind die Maßnahmen zur Qualitätssicherung gemäß § 135 Abs. 2 SGB V, die berufsrechtliche Verpflichtung zur grundsätzlichen Beschränkung auf das jeweilige Gebiet sowie die Richtlinien des Gemeinsamen Bundesausschusses zu beachten."
+        }
+      ]
+    },
+    {
+      "id": "VP_INCLUDED_02100",
+      "codes": [
+        "03000",
+        "03100"
+      ],
+      "kind": "included_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "În îngrijirea Hausarzt obișnuită, cifra 02100 este marcată VP în Anhang 1; nu o propune separat numai fiindcă serviciul este documentat.",
+      "parameters": {
+        "included_codes": [
+          "02100"
+        ],
+        "setting": "ordinary_hausarzt_care",
+        "separate_missing_code_candidate": false
+      },
+      "notes": [
+        "Contextul Notdienst sau alte rute speciale necesită revizie separată; nu transforma această clasificare într-o interdicție universală. Nu se aplică automat GOÄ."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 1114,
+          "locator": "EBM Q4/2026 PDF page 1114",
+          "anchor": "02100 Infusion x",
+          "table_cell": {
+            "column": "VP",
+            "row_code": "02100",
+            "mark_bbox": [
+              585.43701171875,
+              302.052978515625,
+              590.93701171875,
+              317.0459899902344
+            ],
+            "visually_checked": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "VP_INCLUDED_02101",
+      "codes": [
+        "03000",
+        "03100"
+      ],
+      "kind": "included_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "În îngrijirea Hausarzt obișnuită, cifra 02101 este marcată VP în Anhang 1; nu o propune separat numai fiindcă serviciul este documentat.",
+      "parameters": {
+        "included_codes": [
+          "02101"
+        ],
+        "setting": "ordinary_hausarzt_care",
+        "separate_missing_code_candidate": false
+      },
+      "notes": [
+        "Contextul Notdienst sau alte rute speciale necesită revizie separată; nu transforma această clasificare într-o interdicție universală. Nu se aplică automat GOÄ."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 1114,
+          "locator": "EBM Q4/2026 PDF page 1114",
+          "anchor": "02101 Infusionstherapie x",
+          "table_cell": {
+            "column": "VP",
+            "row_code": "02101",
+            "mark_bbox": [
+              585.43701171875,
+              321.42095947265625,
+              590.93701171875,
+              336.4139709472656
+            ],
+            "visually_checked": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "VP_INCLUDED_02350",
+      "codes": [
+        "03000",
+        "03100"
+      ],
+      "kind": "included_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "În îngrijirea Hausarzt obișnuită, cifra 02350 este marcată VP în Anhang 1; nu o propune separat numai fiindcă serviciul este documentat.",
+      "parameters": {
+        "included_codes": [
+          "02350"
+        ],
+        "setting": "ordinary_hausarzt_care",
+        "separate_missing_code_candidate": false
+      },
+      "notes": [
+        "Contextul Notdienst sau alte rute speciale necesită revizie separată; nu transforma această clasificare într-o interdicție universală. Nu se aplică automat GOÄ."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 1115,
+          "locator": "EBM Q4/2026 PDF page 1115",
+          "anchor": "02350 Fixierender Verband x",
+          "table_cell": {
+            "column": "VP",
+            "row_code": "02350",
+            "mark_bbox": [
+              585.43701171875,
+              374.22100830078125,
+              590.93701171875,
+              389.2139892578125
+            ],
+            "visually_checked": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "VP_INCLUDED_02360",
+      "codes": [
+        "03000",
+        "03100"
+      ],
+      "kind": "included_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "În îngrijirea Hausarzt obișnuită, cifra 02360 este marcată VP în Anhang 1; nu o propune separat numai fiindcă serviciul este documentat.",
+      "parameters": {
+        "included_codes": [
+          "02360"
+        ],
+        "setting": "ordinary_hausarzt_care",
+        "separate_missing_code_candidate": false
+      },
+      "notes": [
+        "Contextul Notdienst sau alte rute speciale necesită revizie separată; nu transforma această clasificare într-o interdicție universală. Nu se aplică automat GOÄ."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 1115,
+          "locator": "EBM Q4/2026 PDF page 1115",
+          "anchor": "02360 Anwendung von Lokalanästhetika x",
+          "table_cell": {
+            "column": "VP",
+            "row_code": "02360",
+            "mark_bbox": [
+              585.43701171875,
+              393.5889892578125,
+              590.93701171875,
+              408.5820007324219
+            ],
+            "visually_checked": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "VENOUS_SAMPLING_INCLUDED",
+      "codes": [
+        "03000",
+        "03100"
+      ],
+      "kind": "included_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Serviciul este marcat VP în Anhang 1; nu genera o cifră EBM separată pentru serviciul obișnuit inclus.",
+      "parameters": {
+        "included_service": "venous_blood_sampling",
+        "setting": "ordinary_hausarzt_care",
+        "separate_missing_code_candidate": false
+      },
+      "notes": [
+        "Coloanele au fost verificate vizual în PDF, nu deduse numai din ordinea textului extras. Păstrează separat GOÄ și contractele speciale."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 1083,
+          "locator": "EBM Q4/2026 PDF page 1083",
+          "anchor": "Blutentnahme durch Venenpunktion x x"
+        }
+      ]
+    },
+    {
+      "id": "IV_INJECTION_INCLUDED",
+      "codes": [
+        "03000",
+        "03100"
+      ],
+      "kind": "included_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Serviciul este marcat VP în Anhang 1; nu genera o cifră EBM separată pentru serviciul obișnuit inclus.",
+      "parameters": {
+        "included_service": "intravenous_injection",
+        "setting": "ordinary_hausarzt_care",
+        "separate_missing_code_candidate": false
+      },
+      "notes": [
+        "Coloanele au fost verificate vizual în PDF, nu deduse numai din ordinea textului extras. Păstrează separat GOÄ și contractele speciale."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 1096,
+          "locator": "EBM Q4/2026 PDF page 1096",
+          "anchor": "Intravenöse Injektion x x"
+        }
+      ]
+    },
+    {
+      "id": "IM_SC_INJECTION_INCLUDED",
+      "codes": [
+        "03000",
+        "03100"
+      ],
+      "kind": "included_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Serviciul este marcat VP în Anhang 1; nu genera o cifră EBM separată pentru serviciul obișnuit inclus.",
+      "parameters": {
+        "included_service": "intramuscular_subcutaneous_injection",
+        "setting": "ordinary_hausarzt_care",
+        "separate_missing_code_candidate": false
+      },
+      "notes": [
+        "Coloanele au fost verificate vizual în PDF, nu deduse numai din ordinea textului extras. Păstrează separat GOÄ și contractele speciale."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 1095,
+          "locator": "EBM Q4/2026 PDF page 1095",
+          "anchor": "Injektion, intrakutan, subkutan, submukös, subkonjunktival oder intramuskulär x x"
+        }
+      ]
+    },
+    {
+      "id": "SC_INFUSION_INCLUDED",
+      "codes": [
+        "03000",
+        "03100"
+      ],
+      "kind": "included_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Serviciul este marcat VP în Anhang 1; nu genera o cifră EBM separată pentru serviciul obișnuit inclus.",
+      "parameters": {
+        "included_service": "subcutaneous_infusion",
+        "setting": "ordinary_hausarzt_care",
+        "separate_missing_code_candidate": false
+      },
+      "notes": [
+        "Coloanele au fost verificate vizual în PDF, nu deduse numai din ordinea textului extras. Păstrează separat GOÄ și contractele speciale."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 1095,
+          "locator": "EBM Q4/2026 PDF page 1095",
+          "anchor": "Infusion, subkutan x x"
+        }
+      ]
+    },
+    {
+      "id": "VP_ANNEX_BASE",
+      "codes": [
+        "03000",
+        "03100"
+      ],
+      "kind": "included_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Legendele pauschalelor includ prestațiile din Anhang 1; verifică și regula specifică fiecărui context.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 179,
+          "locator": "EBM Q4/2026 PDF page 179",
+          "anchor": "In Anhang 1 aufgeführte Leistungen,"
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 183,
+          "locator": "EBM Q4/2026 PDF page 183",
+          "anchor": "In Anhang 1 aufgeführte Leistungen,"
+        }
+      ]
+    },
+    {
+      "id": "LAB_SECTION_DAY_EXCLUSION",
+      "codes": [
+        "32025",
+        "32026",
+        "32027",
+        "32030",
+        "32031",
+        "32033",
+        "32128",
+        "32135",
+        "32150",
+        "32151",
+        "32152"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Prevederea generală 32.2 exclude în ziua tratamentului secțiunea 31.1.2 și 34291; rămâne aplicabilă chiar dacă nu este repetată la fiecare analiză.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "calendar_day",
+        "counterpart_codes": [
+          "34291"
+        ],
+        "counterpart_sections": [
+          "31.1.2"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 784,
+          "locator": "EBM Q4/2026 PDF page 784",
+          "anchor": "Die Gebührenordnungspositionen des Abschnitts 32.2 sind am Behandlungstag nicht neben den Gebührenordnungspositionen des Abschnitts 31.1.2 und nicht neben der Gebührenordnungsposition 34291 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "LAB_PRACTICE_ONE_HOUR",
+      "codes": [
+        "32025",
+        "32026",
+        "32027"
+      ],
+      "kind": "performance_context",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Analiza trebuie efectuată în Praxisul care a solicitat-o, cu criteriul rezultatului în maximum o oră; Labor­gemeinschaft este exclusă. Solicitarea către laborator nu dovedește efectuarea locală.",
+      "parameters": {
+        "max_minutes_sample_to_result": 60,
+        "performed_at_ordering_practice": true,
+        "lab_community_allowed": false
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 784,
+          "locator": "EBM Q4/2026 PDF page 784",
+          "anchor": "Die Gebührenordnungspositionen 32025 bis 32027 sind nur berechnungsfähig bei Erbringung in der Arztpraxis des Vertragsarztes, der die Untersuchung veranlasst hat. Diese Erbringung ist anzunehmen, wenn das Untersuchungsergebnis innerhalb einer Stunde nach Materialentnahme vorliegt. Die Gebührenordnungspositionen 32025 bis 32027 sind bei Erbringung in Laborgemeinschaften nicht berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "D_DIMER_METHOD",
+      "codes": [
+        "32027"
+      ],
+      "kind": "method",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "32027 cere determinare cantitativă și nu metoda cu reactivi pe suport prevăzută în excluderea legendei; nu deduce codul din simplul cuvânt D-Dimer.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 784,
+          "locator": "EBM Q4/2026 PDF page 784",
+          "anchor": "32027 D-Dimer (nicht mittels trägergebundener Reagenzien)"
+        }
+      ]
+    },
+    {
+      "id": "32025_EXCLUDES_UNRESOLVED_NEBEN",
+      "codes": [
+        "32025"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul prevăzut; nu presupune o zi pentru formulările nicht neben necalificate.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "unresolved_neben",
+        "counterpart_codes": [
+          "01732",
+          "32057",
+          "32880",
+          "32881",
+          "32882"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 784,
+          "locator": "EBM Q4/2026 PDF page 784",
+          "anchor": "Die Gebührenordnungsposition 32025 ist nicht neben den Gebührenordnungspositionen 01732, 32057 und 32880 bis 32882 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "32026_EXCLUDES_UNRESOLVED_NEBEN",
+      "codes": [
+        "32026"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul prevăzut; nu presupune o zi pentru formulările nicht neben necalificate.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "unresolved_neben",
+        "counterpart_codes": [
+          "32113",
+          "32114"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 784,
+          "locator": "EBM Q4/2026 PDF page 784",
+          "anchor": "Die Gebührenordnungsposition 32026 ist nicht neben den Gebührenordnungspositionen 32113 und 32114 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "32027_EXCLUDES_UNRESOLVED_NEBEN",
+      "codes": [
+        "32027"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul prevăzut; nu presupune o zi pentru formulările nicht neben necalificate.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "unresolved_neben",
+        "counterpart_codes": [
+          "32117"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 784,
+          "locator": "EBM Q4/2026 PDF page 784",
+          "anchor": "Die Gebührenordnungsposition 32027 ist nicht neben der Gebührenordnungsposition 32117 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "32025_EXCLUDES_CALENDAR_DAY",
+      "codes": [
+        "32025"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul prevăzut; nu presupune o zi pentru formulările nicht neben necalificate.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "calendar_day",
+        "counterpart_codes": [
+          "01812"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 784,
+          "locator": "EBM Q4/2026 PDF page 784",
+          "anchor": "Die Gebührenordnungsposition 32025 ist am Behandlungstag nicht neben der Gebührenordnungsposition 01812 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "32033_EXCLUDES_UNRESOLVED_NEBEN",
+      "codes": [
+        "32033"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul prevăzut; nu presupune o zi pentru formulările nicht neben necalificate.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "unresolved_neben",
+        "counterpart_codes": [
+          "01732",
+          "32880",
+          "32881",
+          "32882"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 785,
+          "locator": "EBM Q4/2026 PDF page 785",
+          "anchor": "Die Gebührenordnungsposition 32033 ist nicht neben den Gebührenordnungspositionen 01732 und 32880 bis 32882 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "32150_EXCLUDES_UNRESOLVED_NEBEN",
+      "codes": [
+        "32150"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul prevăzut; nu presupune o zi pentru formulările nicht neben necalificate.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "unresolved_neben",
+        "counterpart_codes": [
+          "32074",
+          "32092",
+          "32134",
+          "32450"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 792,
+          "locator": "EBM Q4/2026 PDF page 792",
+          "anchor": "Die Gebührenordnungsposition 32150 ist nicht neben den Gebührenordnungspositionen 32074, 32092, 32134 und 32450 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "32151_EXCLUDES_CALENDAR_DAY",
+      "codes": [
+        "32151"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul prevăzut; nu presupune o zi pentru formulările nicht neben necalificate.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "calendar_day",
+        "counterpart_codes": [
+          "32720"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 793,
+          "locator": "EBM Q4/2026 PDF page 793",
+          "anchor": "Die Gebührenordnungsposition 32151 ist am Behandlungstag nicht neben der Gebührenordnungsposition 32720 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "BASIC_URINE_NOT_SEPARATE",
+      "codes": [
+        "32030",
+        "32033"
+      ],
+      "kind": "included_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Proteina/glucoza urinară și greutatea specifică/pH singure nu dau automat dreptul la o cifră separată.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 784,
+          "locator": "EBM Q4/2026 PDF page 784",
+          "anchor": "Der Nachweis von Eiweiß und/oder Glukose im Harn (ggf. einschl. Kontrolle auf Ascorbinsäure) sowie die Bestimmung des spezifischen Gewichts und/oder des pH-Wertes im Harn ist nicht berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "ORIENTING_TEST_METHOD",
+      "codes": [
+        "32030"
+      ],
+      "kind": "method",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "32030 are metoda orientativă indicată și nu se folosește pentru testul urinar cu bandeletă.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 784,
+          "locator": "EBM Q4/2026 PDF page 784",
+          "anchor": "32030 Orientierende Untersuchung Obligater Leistungsinhalt - Orientierende Untersuchung mit visueller Auswertung mittels vorgefertigter - Reagenzträger oder - Reagenzzubereitungen"
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 785,
+          "locator": "EBM Q4/2026 PDF page 785",
+          "anchor": "Die Gebührenordnungsposition 32030 ist für die Untersuchung des Urins mittels Harnstreifentest nicht berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "ORIENTING_TEST_MULTIPLE",
+      "codes": [
+        "32030"
+      ],
+      "kind": "frequency",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Nu multiplica 32030 prin folosirea mai multor teste simple în locul unuia multiplu; repetările facturabile cer indicarea tipului analizelor.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 785,
+          "locator": "EBM Q4/2026 PDF page 785",
+          "anchor": "Können mehrere Bestandteile eines Körpermaterials sowohl durch Verwendung eines Mehrfachreagenzträgers als auch durch Verwendung mehrerer Einfachreagenzträger erfasst werden, so ist in jedem Fall nur einmal die Gebührenordnungsposition 32030 berechnungsfähig. Bei mehrfacher Berechnung der Gebührenordnungsposition 32030 ist die Art der Untersuchungen anzugeben."
+        }
+      ]
+    },
+    {
+      "id": "URINE_MICROSCOPY",
+      "codes": [
+        "32031"
+      ],
+      "kind": "method",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "32031 este microscopie a elementelor morfologice; o bandeletă singură nu este această investigație.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 785,
+          "locator": "EBM Q4/2026 PDF page 785",
+          "anchor": "32031 Mikroskopische Untersuchung des Harns auf morphologische Bestandteile"
+        }
+      ]
+    },
+    {
+      "id": "URINE_FIVE_PARAMETERS",
+      "codes": [
+        "32033"
+      ],
+      "kind": "method",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Minimum cinci dintre parametrii enumerați; verifică metoda și analizele efective, nu numai mențiunea Urinstatus.",
+      "parameters": {
+        "min_parameters": 5
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 785,
+          "locator": "EBM Q4/2026 PDF page 785",
+          "anchor": "32033 Harnstreifentest auf mindestens fünf der folgenden Parameter: Eiweiß, Glukose, Erythrozyten, Leukozyten, Nitrit, pH-Wert, spezifisches Gewicht, Ketonkörper ggf. einschließlich Kontrolle auf Ascorbinsäure einschließlich visueller oder apparativer Auswertung"
+        }
+      ]
+    },
+    {
+      "id": "IMMUNOLOGICAL_LAB_METHOD",
+      "codes": [
+        "32128",
+        "32135"
+      ],
+      "kind": "method",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "CRP/Mikroalbuminurie trebuie corelate cu metoda din 32.2.6 și cu efectuarea locală reală; nu atribui automat Praxisului rezultatul laboratorului extern.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 791,
+          "locator": "EBM Q4/2026 PDF page 791",
+          "anchor": "Immunologischer oder gleichwertiger chemischer Nachweis, ggf. einschl. mehrerer Probenverdünnungen, gilt für die Gebührenordnungspositionen 32128 und 32130 bis 32136, je Untersuchung"
+        }
+      ]
+    },
+    {
+      "id": "TROPONIN_METHOD",
+      "codes": [
+        "32150"
+      ],
+      "kind": "method",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "32150 privește testul I și/sau T pe suport prevăzut în context ACS; nu dubla codul pentru I și T și nu decide conduita clinică din regula de facturare.",
+      "parameters": {},
+      "notes": [
+        "Anmerkung privind contextul clinic și momentul simptomelor rămâne obligatorie pentru revizie. Asistentul de Abrechnung nu recomandă amânarea evaluării unei urgențe pentru a satisface un interval tarifar."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 792,
+          "locator": "EBM Q4/2026 PDF page 792",
+          "anchor": "32150 Immunologischer Nachweis von Troponin I und/oder Troponin T auf einem vorgefertigten Reagenzträger bei akutem koronaren Syndrom (ACS), ggf. einschl. apparativer quantitativer Auswertung"
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 792,
+          "locator": "EBM Q4/2026 PDF page 792",
+          "anchor": "Die Untersuchung entsprechend der Gebührenordnungsposition 32150 sollte bei Verdacht einer Myokardschädigung nur dann durchgeführt werden, wenn der Beginn der klinischen Symptomatik länger als 3 Stunden zurückliegt und die Entscheidung über das Vorgehen bei dem Patienten aufgrund der typischen Symptomatik und eines typischen EKG-Befundes nicht getroffen werden kann."
+        }
+      ]
+    },
+    {
+      "id": "CULTURE_METHOD",
+      "codes": [
+        "32151"
+      ],
+      "kind": "method",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Necesită cultură cu mediul/suportul prevăzut. Recoltarea unei probe sau trimiterea ei nu dovedește cultura în Praxis.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 792,
+          "locator": "EBM Q4/2026 PDF page 792",
+          "anchor": "32151 Kulturelle bakteriologische und/oder mykologische Untersuchung Obligater Leistungsinhalt - Kulturelle bakteriologische Untersuchung und/oder - Kulturelle mykologische Untersuchung, - Verwendung eines - Standardnährbodens und/oder - Trägers mit einem oder mehreren vorgefertigten Nährböden (z. B. Eintauchnährböden)"
+        }
+      ]
+    },
+    {
+      "id": "STREP_AGE",
+      "codes": [
+        "32152"
+      ],
+      "kind": "age_context",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Testul rapid Streptokokken are limita de vârstă din legendă. Nu îl propune tuturor adulților cu durere în gât; folosește regula generală de raportare a vârstei la trimestru.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 793,
+          "locator": "EBM Q4/2026 PDF page 793",
+          "anchor": "32152 Orientierender Schnelltest auf A-Streptokokken-Gruppenantigen bei Patienten bis zum vollendeten 16. Lebensjahr"
+        }
+      ]
+    },
+    {
+      "id": "LAB_BONUS_KV",
+      "codes": [
+        "32001"
+      ],
+      "kind": "assignment",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "32001 este adăugat de KV, o dată în Behandlungsfall; absența din exportul medicului nu este o cifră lipsă de transmis automat.",
+      "parameters": {
+        "assignment": "kv_added",
+        "missing_code_action": "check_kv_statement"
+      },
+      "notes": [
+        "Calculul Wirtschaftlichkeitsbonus necesită costurile întregului Praxis, excepțiile și prevederile 32.1; nu este calculat din fișa unui singur pacient."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 783,
+          "locator": "EBM Q4/2026 PDF page 783",
+          "anchor": "Die Gebührenordnungsposition 32001 wird durch die zuständige Kassenärztliche Vereinigung zugesetzt."
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 783,
+          "locator": "EBM Q4/2026 PDF page 783",
+          "anchor": "einmal im Behandlungsfall"
+        }
+      ]
+    },
+    {
+      "id": "LAB_BONUS_NEXT_QUARTER",
+      "codes": [
+        "32001"
+      ],
+      "kind": "contact_context",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Ruta 32001 după 03100 în trimestrul următor cere contact personal; nu deduce dreptul din simpla existență a 03100 în istoric.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 782,
+          "locator": "EBM Q4/2026 PDF page 782",
+          "anchor": "oder im Folgequartal der Berechnung der Gebührenordnungsposition 03100, sofern ein persönlicher Arzt- Patienten-Kontakt stattgefunden hat,"
+        }
+      ]
+    }
+  ],
+  "covered_codes": [
+    "03000",
+    "03100",
+    "32001",
+    "32025",
+    "32026",
+    "32027",
+    "32030",
+    "32031",
+    "32033",
+    "32128",
+    "32135",
+    "32150",
+    "32151",
+    "32152"
+  ],
+  "scope_notes": [
+    "Only ordinary Hausarzt inclusion guards and a bounded local-lab subset. No specialist infusion programme is developed here.",
+    "Appendix VP columns were visually checked. Inclusion is not a universal prohibition for every care setting.",
+    "Optional lab capability is unconfirmed; no recommendation is enabled. EBM/GOAE/HZV remain separate.",
+    "Methods, indications, complete performance, authorizations, quality assurance and case context remain necessary."
+  ]
+}

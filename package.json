@@ -13,6 +13,7 @@
     "typecheck": "tsc --noEmit",
     "validate:data": "tsx src/cli/validate-data.ts",
     "import:icd": "tsx scripts/import-icd.ts",
+    "build:validators": "tsx scripts/build-validators.ts",
     "ui:dev": "vite",
     "ui:build": "vite build",
     "dev": "tauri dev",

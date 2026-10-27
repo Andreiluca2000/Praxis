@@ -1,8 +1,7 @@
-import { Ajv2020, type ErrorObject, type ValidateFunction } from 'ajv/dist/2020.js';
-// Schemas werden beim Bauen eingebunden (Node, Vitest, Vite) – kein Dateizugriff zur Laufzeit nötig.
-import billingRuleSchema from '../../schemas/billing-rule.schema.json' with { type: 'json' };
-import practiceSettingsSchema from '../../schemas/practice-settings.schema.json' with { type: 'json' };
-import addFormatsModule from 'ajv-formats';
+import type { ErrorObject } from 'ajv';
+// Vorkompilierte Prüfer (scripts/build-validators.ts): zur Laufzeit wird kein Code erzeugt,
+// daher braucht das Fenster kein 'unsafe-eval' in der CSP. Ein Test stellt sicher, dass sie zu den Schemas passen.
+import { rules as rulesValidator, settings as settingsValidator } from './validators.generated.js';
 import { isIsoDate } from '../domain/dates.js';
 import type { Expression, PracticeSettings, Rule, RulePackage } from '../domain/types.js';
 
@@ -11,30 +10,13 @@ import type { Expression, PracticeSettings, Rule, RulePackage } from '../domain/
  * BILLING_RULES.md, die das Schema nicht ausdrücken kann.
  */
 
-const addFormats = addFormatsModule as unknown as (ajv: Ajv2020) => Ajv2020;
+interface CompiledValidator {
+  (data: unknown): boolean;
+  errors?: ErrorObject[] | null;
+}
 
-let cache: { rules: ValidateFunction; settings: ValidateFunction } | null = null;
-
-function validators() {
-  if (cache) return cache;
-  // Unbekannte Schlüsselwörter/Formate bleiben Fehler (strictSchema). Abgeschaltet sind nur die Stilregeln
-  // strictTypes/strictRequired: die von Codex gepflegten Schemas sind gültiges Draft 2020-12, wiederholen
-  // aber `type`/`properties` in if/then/not nicht – das ändert nichts an der Validierung.
-  const ajv = new Ajv2020({
-    allErrors: true,
-    strictSchema: true,
-    strictNumbers: true,
-    strictTypes: false,
-    strictTuples: true,
-    strictRequired: false,
-    allowUnionTypes: true,
-  });
-  addFormats(ajv);
-  cache = {
-    rules: ajv.compile(billingRuleSchema as object),
-    settings: ajv.compile(practiceSettingsSchema as object),
-  };
-  return cache;
+function validators(): { rules: CompiledValidator; settings: CompiledValidator } {
+  return { rules: rulesValidator, settings: settingsValidator };
 }
 
 export interface ValidationResult<T> {

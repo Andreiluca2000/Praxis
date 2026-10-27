@@ -3,6 +3,7 @@ import type { BilledService, IsoDate, PracticeSettings, RulePackage } from '../d
 import { declareCoverage } from '../duria/adapter.js';
 import { evaluatePackage } from '../engine/evaluate.js';
 import { checkPairs, type PairFinding, type PairRegistry } from '../engine/pairs.js';
+import { checkWindowRules, type WindowFinding, type WindowRuleSet } from '../engine/window-rules.js';
 import { first, parseXdt, parseXdtDate, type XdtRecord } from '../duria/xdt.js';
 
 /**
@@ -39,6 +40,9 @@ export interface QuarterCombinations {
   findings: (PairFinding & { caseIndex: number; patientToken: string | null })[];
   outOfRange: number;
   schemaVersion: string;
+  /** Ausschlüsse je Tag/Woche/Behandlungsfall/Krankheitsfall und Höchstanzahlen (andere Dossiers, Entwurf). */
+  windowFindings: (WindowFinding & { caseIndex: number; patientToken: string | null })[];
+  windowSkipped: Record<string, number>;
 }
 
 export interface QuarterReport {
@@ -89,10 +93,13 @@ function quarterRange(q: string | null): { from: IsoDate; to: IsoDate } | null {
 
 export function checkQuarter(
   data: Uint8Array, settings: PracticeSettings, rules: RulePackage, mode: 'operational' | 'simulation', pairs?: PairRegistry | null,
+  windows?: WindowRuleSet | null,
 ): QuarterReport {
   const { cases, parseErrors } = readKvdt(data);
   // Entwurfsdaten sind operativ wirkungslos (wie DEMO-Regeln): nur im Simulator.
-  const combinations: QuarterCombinations | null = pairs && mode === 'simulation' ? { findings: [], outOfRange: 0, schemaVersion: pairs.schemaVersion } : null;
+  const combinations: QuarterCombinations | null = pairs && mode === 'simulation'
+    ? { findings: [], outOfRange: 0, schemaVersion: pairs.schemaVersion, windowFindings: [], windowSkipped: windows?.skipped ?? {} }
+    : null;
   const findings: CaseFinding[] = [];
   const quarter = cases.map((c) => quarterRange(c.quarter)).find((q) => q !== null) ?? null;
   const add = (c: KvdtCase, severity: CaseFinding['severity'], kind: CaseFinding['kind'], text: string) =>
@@ -113,6 +120,11 @@ export function checkQuarter(
       const r = checkPairs(c.services, pairs);
       combinations.outOfRange += r.outOfRange;
       combinations.findings.push(...r.findings.map((f) => ({ ...f, caseIndex: c.index, patientToken: c.patientToken })));
+      // Ein KVDT-Schein ist der ganze Behandlungsfall dieses Quartals.
+      if (windows) {
+        const w = checkWindowRules({ services: c.services, behandlungsfallComplete: true }, windows);
+        combinations.windowFindings.push(...w.findings.map((f) => ({ ...f, caseIndex: c.index, patientToken: c.patientToken })));
+      }
     }
     const coverage = range ? declareCoverage(range.from, range.to) : [];
     const days = [...new Set(c.services.map((s) => s.date))];

@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "purpose": "official source snapshots for partial prevention review",
+  "checked_on": "2026-10-26",
+  "license_review": "pending; existing source terms and distribution review apply",
+  "future_version_policy": "The KFE service document effective 2027-01-01 is not this source and is not activated.",
+  "artifacts": [
+    {
+      "path": "../sources/gba-gu-rl-20210212.pdf",
+      "source_url": "https://www.g-ba.de/downloads/62-492-2383/GU-RL_2020-11-20_iK-2021-02-12.pdf",
+      "landing_url": "https://www.g-ba.de/richtlinien/10/",
+      "bytes": 243305,
+      "sha256": "899db465881090411c058a90661c8fe1582f2ed887de7e296c37b4d48de5e6f7",
+      "effective_from": "2021-02-12",
+      "amended_on": "2020-11-20",
+      "retrieved_on": "2026-10-26"
+    },
+    {
+      "path": "../sources/gba-kfe-rl-20260312.pdf",
+      "source_url": "https://www.g-ba.de/downloads/62-492-4074/KFE-RL_2025-12-18_iK-2026-03-12.pdf",
+      "landing_url": "https://www.g-ba.de/richtlinien/17/",
+      "bytes": 814395,
+      "sha256": "04dfd4a1d08a1d43ceed0d42e184a333cfa987f1e0b4877c731692fc51edf805",
+      "effective_from": "2026-03-12",
+      "amended_on": "2025-12-18",
+      "retrieved_on": "2026-10-26"
+    }
+  ]
+}

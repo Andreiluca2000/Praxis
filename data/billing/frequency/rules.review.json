@@ -1,0 +1,229 @@
+{
+  "schema_version": "1.0.0",
+  "kind": "legend_frequency_review_dossier",
+  "built_on": "2026-10-27",
+  "status": "draft",
+  "review": "pending",
+  "operational": false,
+  "complete": false,
+  "default_verdict": "not_verified",
+  "billing_system": "EBM",
+  "valid_from": "2026-10-01",
+  "valid_to": "2026-12-31",
+  "clauses": [
+    {
+      "id": "01435_CASE_FREQUENCY",
+      "codes": [
+        "01435"
+      ],
+      "kind": "frequency",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "01435: o singură dată în Behandlungsfall; excluderile față de pauschale, Notdienst și 03100 rămân în dosarul de combinații.",
+      "parameters": {
+        "max_count": 1,
+        "scope": "ebm_behandlungsfall"
+      },
+      "notes": [
+        "Excepția pentru copii sub 12 ani este clauza următoare; nu ridica limita pentru adulți."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 61,
+          "locator": "EBM Q4/2026 PDF page 61",
+          "anchor": "Anderer mittelbarer Arzt-Patienten-Kontakt gemäß 4.3.1 der Allgemeinen Bestimmungen einmal im Behandlungsfall"
+        }
+      ]
+    },
+    {
+      "id": "01435_CHILD_FREQUENCY",
+      "codes": [
+        "01435"
+      ],
+      "kind": "conditional_frequency",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "01435: de două ori în Behandlungsfall numai pentru copii până la împlinirea vârstei de 12 ani; vârsta se stabilește la prima solicitare din trimestru.",
+      "parameters": {
+        "max_count": 2,
+        "scope": "ebm_behandlungsfall",
+        "max_age_exclusive": 12,
+        "age_reference": "first_contact_or_first_billing_in_quarter"
+      },
+      "notes": [
+        "Data nașterii trebuie să provină din datele administrative confirmate, nu din text liber."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 61,
+          "locator": "EBM Q4/2026 PDF page 61",
+          "anchor": "Die Gebührenordnungsposition 01435 ist bei Neugeborenen, Säuglingen, Kleinkindern und Kindern bis zum vollendeten 12. Lebensjahr zweimal im Behandlungsfall berechnungsfähig."
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 32,
+          "locator": "EBM Q4/2026 PDF page 32",
+          "anchor": "Maßgeblich für die Zuordnung zu einer Altersklasse bzw. einem Zeitraum ist das Alter des Patienten bei der ersten Inanspruchnahme bzw. am Tag der ersten Leistungsabrechnung im Kalendervierteljahr."
+        }
+      ]
+    },
+    {
+      "id": "03230_TIME_UNIT",
+      "codes": [
+        "03230"
+      ],
+      "kind": "time_unit",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "03230 se socotește pe fiecare 10 minute încheiate de convorbire; 9 minute nu dau o unitate, 25 de minute dau două.",
+      "parameters": {
+        "unit_minutes": 10,
+        "min_minutes": 10,
+        "rounding": "completed_units_only"
+      },
+      "notes": [
+        "Lângă alte prestații diagnostice/terapeutice contactul trebuie să fie cu cel puțin 10 minute mai lung (EBM_03230_EXTRA_TIME în combinații).",
+        "Durata trebuie documentată; programul nu completează minute retroactiv."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 199,
+          "locator": "EBM Q4/2026 PDF page 199",
+          "anchor": "Gespräch von mindestens 10 Minuten Dauer"
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 199,
+          "locator": "EBM Q4/2026 PDF page 199",
+          "anchor": "das Gespräch erforderlich macht (machen), je vollendete 10 Minuten"
+        }
+      ]
+    },
+    {
+      "id": "03230_PRACTICE_VOLUME",
+      "codes": [
+        "03230"
+      ],
+      "kind": "practice_volume",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "03230 este plătită dintr-un volum al Praxisului de 64 de puncte înmulțit cu numărul cazurilor de tratament (Nr. 10 Präambel 3.1). Nu este o limită pe pacient.",
+      "parameters": {
+        "points_per_case": 64,
+        "case_basis": "praeambel_3_1_nr_10",
+        "level": "practice_quarter",
+        "missing_code_action": "none_volume_is_settlement_not_omission"
+      },
+      "notes": [
+        "Volumul limitează remunerarea, nu documentarea sau facturarea unei convorbiri efectuate; depășirea nu este o eroare de cod a medicului.",
+        "Calculul cere numărul complet al cazurilor Praxisului din trimestru; nu se deduce dintr-o singură fișă."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 176,
+          "locator": "EBM Q4/2026 PDF page 176",
+          "anchor": "Für die Gebührenordnungsposition 03230 wird ein Punktzahlvolumen für die gemäß der Gebührenordnungsposition 03230 erbrachten und berechneten Gespräche gebildet, aus dem alle gemäß der Gebührenordnungsposition 03230 erbrachten Leistungen zu vergüten sind."
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 176,
+          "locator": "EBM Q4/2026 PDF page 176",
+          "anchor": "Das Punktzahlvolumen beträgt 64 Punkte multipliziert mit der Anzahl der Behandlungsfälle gemäß Nr. 10 dieser Präambel."
+        },
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 176,
+          "locator": "EBM Q4/2026 PDF page 176",
+          "anchor": "In Berufsausübungsgemeinschaften, Medizinischen Versorgungszentren und Praxen mit angestellten Ärzten beträgt das Punktzahlvolumen 64 Punkte für jeden Behandlungsfall gemäß Nr. 10 dieser Präambel, bei dem ein Arzt gemäß Nr. 1 dieser Präambel vertragsärztliche Leistungen durchführt und berechnet."
+        }
+      ]
+    },
+    {
+      "id": "33042_CASE_LIMIT",
+      "codes": [
+        "33042"
+      ],
+      "kind": "frequency",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "33042: cel mult de două ori în Behandlungsfall; deducerea lângă 01748/33105 este în dosarul de prevenție.",
+      "parameters": {
+        "max_count": 2,
+        "scope": "ebm_behandlungsfall"
+      },
+      "notes": [
+        "Autorizația Ultraschall-Vereinbarung și asocierile cu 33081/01772/02344 rămân condiții separate."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 848,
+          "locator": "EBM Q4/2026 PDF page 848",
+          "anchor": "Die Gebührenordnungsposition 33042 ist im Behandlungsfall höchstens zweimal berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "32001_HAUSARZT_POINTS",
+      "codes": [
+        "32001"
+      ],
+      "kind": "kv_points",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Wirtschaftlichkeitsbonus 32001: pentru capitolul 3 (Allgemeinmedizin, hausärztliche Internisten, praktische Ärzte) valoarea de pornire din tabel este de 19 puncte pe Behandlungsfall; KV o adaugă și o reduce după costurile de laborator.",
+      "parameters": {
+        "chapter": "3",
+        "points_per_case": 19,
+        "assignment": "kv_added",
+        "missing_code_action": "check_kv_statement"
+      },
+      "notes": [
+        "Bonusul final depinde de costurile de laborator ale întregului Praxis și de prevederile 32.1; nu este calculat din fișa unui pacient."
+      ],
+      "evidence": [
+        {
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 782,
+          "locator": "EBM Q4/2026 PDF page 782",
+          "anchor": "3 Allgemeinmedizin, hausärztliche Internisten und praktische Ärzte 19"
+        }
+      ]
+    }
+  ],
+  "covered_codes": [
+    "01435",
+    "03230",
+    "32001",
+    "33042"
+  ],
+  "scope_notes": [
+    "Only legend limits of selected Hausarzt GOPs that no other dossier expressed as parameters (Claude audit 27.10.2026).",
+    "A frequency or volume limit never approves billing and never turns a missing code into an omission.",
+    "Counting needs the complete case, quarter and practice history; unknown history means not verifiable. EBM/GOAE/HZV remain separate."
+  ]
+}
