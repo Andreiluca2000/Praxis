@@ -62,10 +62,9 @@ export class TreatmentSession {
    * `raw` ist bereits von Rust bereinigt: keine Identitätsfelder, FK 3000 enthält nur das Pseudonym (`token`).
    * Die Fachlogik arbeitet unverändert damit; die echte Nummer kennt nur das Rust-Backend.
    */
-  load(raw: Uint8Array, name: string, serviceDate: IsoDate, token: string | null): AnalysisResponse {
+  load(raw: Uint8Array, source: 'gdt' | 'bdt', serviceDate: IsoDate, token: string | null): AnalysisResponse {
     this.fertigJob?.cancel();
     this.token = token;
-    const source = name.toLowerCase().endsWith('.bdt') ? 'bdt' : 'gdt';
     const before = this.current?.context.patientToken;
     const snapshot = readDuriaExport(raw, DEFAULT_MAPPING, source);
     const res = analyse(raw, source, { sessionId: this.sessionId, serviceDate, mode: this.mode }, this.deps());

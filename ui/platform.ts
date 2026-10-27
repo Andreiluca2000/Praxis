@@ -59,14 +59,14 @@ export const api = {
 };
 
 interface RawSanitized {
-  name: string; data: number[]; token: string | null; patient_ids: number; dropped: number;
+  name: string; format: 'gdt' | 'bdt'; data: number[]; token: string | null; patient_ids: number; dropped: number;
   unknown: number; invalid: number; redacted: number; revision: string;
 }
 /** Was Rust vor der Übergabe entfernt hat (nur Anzahlen, nie Inhalte). */
 export interface ExportFilter { dropped: number; unknown: number; invalid: number; redacted: number }
-export interface SanitizedExport { name: string; data: Uint8Array; token: string | null; patientIds: number; dropped: number; filter: ExportFilter; revision: string }
+export interface SanitizedExport { name: string; format: 'gdt' | 'bdt'; data: Uint8Array; token: string | null; patientIds: number; dropped: number; filter: ExportFilter; revision: string }
 const toExport = (r: RawSanitized): SanitizedExport => ({
-  name: r.name, data: Uint8Array.from(r.data), token: r.token, patientIds: r.patient_ids, dropped: r.dropped,
+  name: r.name, format: r.format, data: Uint8Array.from(r.data), token: r.token, patientIds: r.patient_ids, dropped: r.dropped,
   filter: { dropped: r.dropped, unknown: r.unknown, invalid: r.invalid, redacted: r.redacted }, revision: r.revision,
 });
 

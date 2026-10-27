@@ -38,6 +38,8 @@ pub struct AppState {
 #[derive(serde::Serialize, Clone)]
 pub struct SanitizedExport {
     pub name: String,
+    /// "gdt" oder "bdt" – ersetzt die frühere Erkennung über den Dateinamen, der das Fenster nicht mehr erreicht.
+    pub format: &'static str,
     pub data: Vec<u8>,
     pub token: Option<String>,
     pub patient_ids: usize,
@@ -51,10 +53,11 @@ pub struct SanitizedExport {
 }
 
 /// `label` ist eine neutrale Bezeichnung, nie der Dateiname (der kann den Patientennamen enthalten).
-pub fn sanitize_for_window(state: &AppState, label: &str, raw: &[u8]) -> SanitizedExport {
+pub fn sanitize_for_window(state: &AppState, label: &str, format: &'static str, raw: &[u8]) -> SanitizedExport {
     let s = state.vault.lock().unwrap().sanitize(raw);
     SanitizedExport {
         name: label.into(),
+        format,
         data: s.data,
         token: s.token,
         patient_ids: s.patient_ids,
@@ -111,7 +114,7 @@ fn handle_incoming(app: &tauri::AppHandle, state: &AppState, scanner: &mut gdt::
         return hold(&format!("unvollständig oder ungültig ({why})"));
     }
     // Rohdaten verlassen Rust nicht: nur die bereinigte Fassung wartet auf das Fenster.
-    *state.pending.lock().unwrap() = Some(sanitize_for_window(state, "DURIA-Übergabe", &data));
+    *state.pending.lock().unwrap() = Some(sanitize_for_window(state, "DURIA-Übergabe", "gdt", &data));
     drop(user);
     let _ = app.emit("gdt-incoming", ());
     if std::fs::remove_file(path).is_err() {

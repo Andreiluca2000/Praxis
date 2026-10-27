@@ -27,7 +27,7 @@ export function Treatment({ session, user, billingEnabled }: { session: Treatmen
 
   function load(x: SanitizedExport) {
     try {
-      setAnalysis(session.load(x.data, x.name, date, x.token));
+      setAnalysis(session.load(x.data, x.format, date, x.token));
       setFilter(x.filter);
       setConfirmation(emptyConfirmation());
       setCorrections([]);

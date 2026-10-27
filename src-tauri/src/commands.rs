@@ -96,7 +96,7 @@ pub fn read_export(state: State<AppState>, path: String) -> Result<crate::Saniti
     }
     let raw = std::fs::read(&p).map_err(|e| e.to_string())?;
     // Ins Fenster nur eine neutrale Bezeichnung, nie der Dateiname.
-    Ok(crate::sanitize_for_window(&state, "Ausgewählte Datei", &raw))
+    Ok(crate::sanitize_for_window(&state, "Ausgewählte Datei", if ext == "bdt" { "bdt" } else { "gdt" }, &raw))
 }
 
 /// Rückweg zu DURIA. Verzeichnis und Dateiname kommen nur aus der Konfiguration, nie aus dem Fenster.
