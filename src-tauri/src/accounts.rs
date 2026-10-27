@@ -67,14 +67,24 @@ impl AccountStore {
         Ok(AccountStore { file: file.to_path_buf(), accounts })
     }
 
-    fn save(&self) -> Result<(), String> {
+    /// Speichert die neue Fassung; erst danach gilt sie auch im Speicher (kein Konto, das nur bis zum Neustart lebt).
+    fn commit(&mut self, accounts: Vec<Account>) -> Result<(), String> {
+        let failed = |e: std::io::Error| match e.kind() {
+            // Auf dem Server dürfen nur Administratoren die Kontendatei ändern (scripts/server-einrichten.ps1).
+            std::io::ErrorKind::PermissionDenied => {
+                "Konten können nur mit Administratorrechten geändert werden (Programm per Rechtsklick „Als Administrator ausführen“).".to_string()
+            }
+            _ => format!("Konten nicht speicherbar: {e}"),
+        };
         if let Some(dir) = self.file.parent() {
-            fs::create_dir_all(dir).map_err(|e| e.to_string())?;
+            fs::create_dir_all(dir).map_err(failed)?;
         }
         let tmp = self.file.with_extension("tmp");
-        let json = serde_json::to_string_pretty(&self.accounts).map_err(|e| e.to_string())?;
-        fs::write(&tmp, json).map_err(|e| format!("Konten nicht speicherbar: {e}"))?;
-        fs::rename(&tmp, &self.file).map_err(|e| format!("Konten nicht speicherbar: {e}"))
+        let json = serde_json::to_string_pretty(&accounts).map_err(|e| e.to_string())?;
+        fs::write(&tmp, json).map_err(failed)?;
+        fs::rename(&tmp, &self.file).map_err(failed)?;
+        self.accounts = accounts;
+        Ok(())
     }
 
     pub fn is_empty(&self) -> bool {
@@ -111,8 +121,9 @@ impl AccountStore {
         let hash = Argon2::default().hash_password(password.as_bytes(), &salt).map_err(|e| e.to_string())?.to_string();
         let account = Account { kuerzel, name: name.trim().into(), role, hash, active: true, created_at: now_stamp() };
         let public = PublicAccount::from(&account);
-        self.accounts.push(account);
-        self.save()?;
+        let mut next = self.accounts.clone();
+        next.push(account);
+        self.commit(next)?;
         Ok(public)
     }
 
@@ -129,11 +140,12 @@ impl AccountStore {
             return Err("Keine Berechtigung.".into());
         }
         let active_doctors = self.accounts.iter().filter(|a| a.role == Role::Arzt && a.active).count();
-        let account = self.accounts.iter_mut().find(|a| a.kuerzel == kuerzel).ok_or("Konto nicht gefunden.")?;
+        let mut next = self.accounts.clone();
+        let account = next.iter_mut().find(|a| a.kuerzel == kuerzel).ok_or("Konto nicht gefunden.")?;
         if !active && account.role == Role::Arzt && account.active && active_doctors == 1 {
             return Err("Das letzte aktive Arztkonto kann nicht deaktiviert werden.".into());
         }
         account.active = active;
-        self.save()
+        self.commit(next)
     }
 }

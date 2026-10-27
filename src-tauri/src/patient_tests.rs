@@ -1,4 +1,4 @@
-use crate::patient::{make_line, PatientVault};
+use crate::patient::{make_line, redact, PatientVault};
 
 fn bdt(id: &str) -> Vec<u8> {
     [
@@ -61,10 +61,12 @@ fn ausgang_gesperrt_bei_fremdem_oder_geschlossenem_patienten() {
 #[test]
 fn kvdt_viele_patienten_je_eigenes_pseudonym() {
     let v = PatientVault::new();
-    let (data, n, dropped) = v.sanitize_many(&[bdt("99001"), bdt("99002"), bdt("99001")].concat());
-    let text = String::from_utf8_lossy(&data).to_string();
-    assert_eq!(n, 2);
-    assert_eq!(dropped, 6);
+    let s = v.sanitize_many(&[bdt("99001"), bdt("99002"), bdt("99001")].concat());
+    let text = String::from_utf8_lossy(&s.data).to_string();
+    assert_eq!(s.patient_ids, 2);
+    assert_eq!(s.dropped, 6);
+    assert_eq!(s.unknown, 3); // 6220 Freitext gehört nicht zur Quartalsprüfung
+    assert!(!text.contains("Übelkeit"));
     assert!(!text.contains("99001") && !text.contains("Mustermann"));
     assert!(text.contains(&v.pseudonym("99001")) && text.contains(&v.pseudonym("99002")));
 }
@@ -86,4 +88,69 @@ fn ausgang_mit_identitaetsfeld_abgelehnt() {
     let t = v.sanitize(&bdt("99001")).token.unwrap();
     let out = [make_line("8000", b"6310"), make_line("3000", t.as_bytes()), make_line("3101", b"Name")].concat();
     assert!(v.restore(&out, &t).is_err());
+}
+
+/// Synthetische Identität eines Testpatienten (erfunden).
+const NAME: &str = "Testfrau";
+const VORNAME: &str = "Erika";
+const GEBURT: &str = "02031961";
+
+fn line_raw(len: &str, fk: &str, value: &str) -> Vec<u8> {
+    format!("{len}{fk}{value}\r\n").into_bytes()
+}
+
+/// PRIV-01: Identität in jedem bekannten Identitätsfeld erreicht das Fenster nicht.
+#[test]
+fn priv01_identitaetsfelder_nie_im_fenster() {
+    let mut v = PatientVault::new();
+    let fields = ["3100", "3101", "3102", "3103", "3104", "3105", "3106", "3107", "3108", "3110", "3112", "3113", "3114", "3119", "3622", "3626", "3628"];
+    let mut raw = vec![make_line("8000", b"6200"), make_line("3000", b"TEST_77001")];
+    for fk in fields {
+        raw.push(make_line(fk, format!("TEST_IDENT_{fk}").as_bytes()));
+    }
+    let s = v.sanitize(&raw.concat());
+    let text = String::from_utf8_lossy(&s.data).to_string();
+    assert!(!text.contains("TEST_IDENT_") && !text.contains("TEST_77001"));
+    assert_eq!(s.dropped, fields.len());
+}
+
+/// PRIV-02: Identität im Freitext, in unbekannten Feldern und in defekten Zeilen.
+#[test]
+fn priv02_freitext_unbekannte_und_defekte_zeilen() {
+    let mut v = PatientVault::new();
+    let raw = [
+        make_line("8000", b"6200"),
+        make_line("3000", b"TEST_77001"),
+        make_line("3101", NAME.as_bytes()),
+        make_line("3102", VORNAME.as_bytes()),
+        make_line("3103", GEBURT.as_bytes()),
+        make_line("6200", b"12112026"),
+        make_line("6220", format!("Frau {NAME}, {VORNAME} (geb. 02.03.1961), Pat.-Nr. TEST_77001, klagt über Husten").as_bytes()),
+        make_line("6228", b"Rotation der Schulter frei"),
+        make_line("3999", format!("{NAME} unbekanntes Feld").as_bytes()), // nicht erlaubte FK
+        make_line("4111", b"TEST_Kassennummer"),                            // nicht erlaubte FK
+        line_raw("099", "6220", &format!("{NAME} falsche Laenge")),         // Längenangabe falsch
+        format!("Freitext ohne Aufbau {NAME}\r\n").into_bytes(),            // kein xDT
+        make_line("5001", b"03230"),
+    ]
+    .concat();
+    let s = v.sanitize(&raw);
+    let text = String::from_utf8_lossy(&s.data).to_string();
+    for secret in [NAME, VORNAME, GEBURT, "02.03.1961", "TEST_77001", "TEST_Kassennummer"] {
+        assert!(!text.contains(secret), "{secret} im Fenster");
+    }
+    assert!(text.contains("Frau [entfernt], [entfernt] (geb. [entfernt])") && text.contains("klagt über Husten"));
+    assert!(text.contains("03230") && text.contains("Rotation der Schulter"));
+    assert_eq!((s.unknown, s.invalid, s.redacted), (2, 2, 4));
+    // Jede Zeile im Ausgang hat wieder eine korrekte Längenangabe.
+    for l in text.split("\r\n").filter(|l| !l.is_empty()) {
+        assert_eq!(l[..3].parse::<usize>().unwrap(), l.len() + 2, "{l}");
+    }
+}
+
+#[test]
+fn ersetzen_nur_ganze_woerter() {
+    let secrets = vec![b"rot".to_vec()];
+    assert_eq!(redact(b"Rotation, Rot. ROT", &secrets), (b"Rotation, [entfernt]. [entfernt]".to_vec(), 2));
+    assert_eq!(redact("Rotkäppchen".as_bytes(), &secrets).1, 0);
 }

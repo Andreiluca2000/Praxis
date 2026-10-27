@@ -44,15 +44,30 @@ export const api = {
     if (typeof path !== 'string') return null;
     return toExport(await invoke<RawSanitized>('read_export', { path }));
   },
-  onGdt: (fn: (x: SanitizedExport) => void) => listen<RawSanitized>('gdt-incoming', (e) => fn(toExport(e.payload))),
+  /** Wartende Übergabe aus DURIA (einmalig abholen); `null`, wenn nichts wartet. */
+  async takeIncoming(): Promise<SanitizedExport | null> {
+    const r = await invoke<RawSanitized | null>('take_incoming');
+    return r ? toExport(r) : null;
+  },
+  /** Das Ereignis ist nur ein Hinweis; die Daten werden abgeholt, damit beim Laden des Fensters nichts verloren geht. */
+  onGdt: (fn: (x: SanitizedExport) => void) => listen('gdt-incoming', async () => {
+    const x = await api.takeIncoming();
+    if (x) fn(x);
+  }),
   closePatient: () => invoke<void>('close_patient'),
   onNotice: (fn: (msg: string) => void) => listen<string>('notice', (e) => fn(e.payload)),
 };
 
-interface RawSanitized { name: string; data: number[]; token: string | null; patient_ids: number; dropped: number; revision: string }
-export interface SanitizedExport { name: string; data: Uint8Array; token: string | null; patientIds: number; dropped: number; revision: string }
+interface RawSanitized {
+  name: string; data: number[]; token: string | null; patient_ids: number; dropped: number;
+  unknown: number; invalid: number; redacted: number; revision: string;
+}
+/** Was Rust vor der Übergabe entfernt hat (nur Anzahlen, nie Inhalte). */
+export interface ExportFilter { dropped: number; unknown: number; invalid: number; redacted: number }
+export interface SanitizedExport { name: string; data: Uint8Array; token: string | null; patientIds: number; dropped: number; filter: ExportFilter; revision: string }
 const toExport = (r: RawSanitized): SanitizedExport => ({
-  name: r.name, data: Uint8Array.from(r.data), token: r.token, patientIds: r.patient_ids, dropped: r.dropped, revision: r.revision,
+  name: r.name, data: Uint8Array.from(r.data), token: r.token, patientIds: r.patient_ids, dropped: r.dropped,
+  filter: { dropped: r.dropped, unknown: r.unknown, invalid: r.invalid, redacted: r.redacted }, revision: r.revision,
 });
 
 /**

@@ -15,7 +15,7 @@ const KIND: Record<string, string> = {
  */
 export function QuarterCheck({ settings, rules, mode }: { settings: PracticeSettings; rules: RulePackage; mode: 'operational' | 'simulation' }) {
   const [report, setReport] = useState<QuarterReport | null>(null);
-  const [meta, setMeta] = useState<{ name: string; patients: number; dropped: number } | null>(null);
+  const [meta, setMeta] = useState<{ name: string; patients: number; dropped: number; invalid: number } | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [filter, setFilter] = useState<'alle' | 'fehler'>('fehler');
@@ -26,8 +26,8 @@ export function QuarterCheck({ settings, rules, mode }: { settings: PracticeSett
     if (typeof path !== 'string') return;
     setBusy(true);
     try {
-      const r = await invoke<{ name: string; data: number[]; patients: number; dropped: number }>('read_kvdt', { path });
-      setMeta({ name: r.name, patients: r.patients, dropped: r.dropped });
+      const r = await invoke<{ name: string; data: number[]; patients: number; dropped: number; invalid: number }>('read_kvdt', { path });
+      setMeta({ name: r.name, patients: r.patients, dropped: r.dropped, invalid: r.invalid });
       // Prüfung im nächsten Takt, damit die Anzeige „prüft …“ sichtbar wird.
       await new Promise((ok) => setTimeout(ok, 0));
       setReport(checkQuarter(Uint8Array.from(r.data), settings, rules, mode));
@@ -48,7 +48,7 @@ export function QuarterCheck({ settings, rules, mode }: { settings: PracticeSett
         <p className="muted">Die Abrechnungsdatei aus DURIA öffnen (vor der Verschlüsselung). Es wird nichts verändert oder gesendet. Namen und Patientennummern werden vor der Prüfung entfernt.</p>
         <div className="row">
           <button className="primary" onClick={load} disabled={busy}>{busy ? 'Prüft …' : 'KVDT-Datei öffnen …'}</button>
-          {meta && <span className="muted">{meta.name} · {meta.patients} Patienten · {meta.dropped} Identitätsfelder entfernt</span>}
+          {meta && <span className="muted">{meta.name} · {meta.patients} Patienten · {meta.dropped} Identitätsfelder entfernt{meta.invalid > 0 ? ` · ${meta.invalid} ungültige Zeilen verworfen` : ''}</span>}
         </div>
         {error && <p className="error" role="alert">{error}</p>}
       </section>

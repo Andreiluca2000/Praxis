@@ -9,7 +9,7 @@ import { Dictation } from './Dictation.js';
 import { FactPanel } from './FactPanel.js';
 import { FertigPanel } from './FertigPanel.js';
 import { NoteCard } from './NoteCard.js';
-import { api, type SanitizedExport } from './platform.js';
+import { api, type ExportFilter, type SanitizedExport } from './platform.js';
 import { today, type TreatmentSession } from './session.js';
 
 /** Hauptansicht der Behandlung: Patient aus DURIA, Diktat/Notizen, „Fertig“. */
@@ -23,10 +23,12 @@ export function Treatment({ session, user, billingEnabled }: { session: Treatmen
   const [corrections, setCorrections] = useState<Correction[]>([]);
   const [fertigBusy, setFertigBusy] = useState(false);
   const [msg, setMsg] = useState('');
+  const [filter, setFilter] = useState<ExportFilter | null>(null);
 
   function load(x: SanitizedExport) {
     try {
       setAnalysis(session.load(x.data, x.name, date, x.token));
+      setFilter(x.filter);
       setConfirmation(emptyConfirmation());
       setCorrections([]);
       setReport(null);
@@ -34,6 +36,11 @@ export function Treatment({ session, user, billingEnabled }: { session: Treatmen
     } catch (e) { setMsg(String(e)); }
     rerender();
   }
+
+  // Übergabe, die schon vor dem Öffnen dieser Ansicht eingegangen ist (z. B. direkt nach der Anmeldung).
+  useEffect(() => {
+    api.takeIncoming().then((x) => { if (x) load(x); }).catch((e) => setMsg(String(e)));
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // DURIA legt beim Aufruf eine GDT-Datei ab → Rust bereinigt sie → automatisch laden.
   useEffect(() => {
@@ -109,7 +116,12 @@ export function Treatment({ session, user, billingEnabled }: { session: Treatmen
         {!session.hasPatient && <p className="muted">Patient in DURIA aufrufen (GDT) oder Export öffnen. Name und Geburtsdatum werden nicht übernommen.</p>}
         {snap && (
           <>
-            <p className="muted">Leistungen {snap.services.length} · Diagnosen {snap.diagnoses.length} · Notizen {snap.noteCount} · verworfene Identitätsfelder {snap.droppedIdentityFields}</p>
+            <p className="muted">
+              Leistungen {snap.services.length} · Diagnosen {snap.diagnoses.length} · Notizen {snap.noteCount} · verworfene Identitätsfelder {(filter?.dropped ?? 0) + snap.droppedIdentityFields}
+              {filter && filter.redacted > 0 && <> · {filter.redacted} Namen/Daten im Text ersetzt</>}
+              {filter && filter.unknown > 0 && <> · {filter.unknown} nicht vorgesehene Felder nicht übernommen</>}
+            </p>
+            {filter && filter.invalid > 0 && <p className="warn">⚠ {filter.invalid} Zeilen ohne gültigen Aufbau wurden nicht übernommen – Export ggf. unvollständig.</p>}
             {snap.warnings.map((w, i) => <p key={i} className="warn">⚠ {w}</p>)}
           </>
         )}

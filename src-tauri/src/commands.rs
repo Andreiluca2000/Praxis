@@ -66,11 +66,20 @@ pub fn login(state: State<AppState>, kuerzel: String, password: String) -> Resul
 pub fn logout(state: State<AppState>) {
     *state.user.lock().unwrap() = None;
     state.vault.lock().unwrap().close();
+    *state.pending.lock().unwrap() = None;
+}
+
+/// Wartende Übergabe aus DURIA abholen (einmalig). Nur für den angemeldeten Benutzer.
+#[tauri::command]
+pub fn take_incoming(state: State<AppState>) -> Result<Option<crate::SanitizedExport>, String> {
+    require_user(&state)?;
+    Ok(state.pending.lock().unwrap().take())
 }
 
 #[tauri::command]
 pub fn close_patient(state: State<AppState>) {
     state.vault.lock().unwrap().close();
+    *state.pending.lock().unwrap() = None;
 }
 
 /// Datei aus dem Auswahldialog lesen (nur GDT/BDT, max. 20 MB) – das Fenster erhält nur die bereinigte Fassung.
@@ -86,8 +95,8 @@ pub fn read_export(state: State<AppState>, path: String) -> Result<crate::Saniti
         return Err("Datei zu groß.".into());
     }
     let raw = std::fs::read(&p).map_err(|e| e.to_string())?;
-    let name = p.file_name().map(|n| n.to_string_lossy().to_string()).unwrap_or_default();
-    Ok(crate::sanitize_for_window(&state, name, &raw))
+    // Ins Fenster nur eine neutrale Bezeichnung, nie der Dateiname.
+    Ok(crate::sanitize_for_window(&state, "Ausgewählte Datei", &raw))
 }
 
 /// Rückweg zu DURIA. Verzeichnis und Dateiname kommen nur aus der Konfiguration, nie aus dem Fenster.
@@ -105,7 +114,7 @@ pub fn gdt_write(state: State<AppState>, data: Vec<u8>, token: String) -> Result
             return Err("Übernahme von Ziffern/Diagnosen ist deaktiviert.".into());
         }
         let msg = state.vault.lock().unwrap().restore_hl7(&data, &token)?;
-        let dir = PathBuf::from(gdt::expand_env(&cfg.outbox_dir));
+        let dir = PathBuf::from(gdt::expand_env(&cfg.outbox_dir)?);
         let name = format!("{}.hl7", cfg.outbox_file.trim_end_matches(".gdt"));
         return gdt::write_exclusive(&dir, &name, &msg).map(|s| s.to_string());
     }
@@ -123,7 +132,7 @@ pub fn gdt_write(state: State<AppState>, data: Vec<u8>, token: String) -> Result
     if !has_billing && !cfg.writeback_enabled {
         return Err("Notiz-Rückweg zu DURIA ist deaktiviert.".into());
     }
-    let dir = PathBuf::from(gdt::expand_env(&cfg.outbox_dir));
+    let dir = PathBuf::from(gdt::expand_env(&cfg.outbox_dir)?);
     gdt::write_exclusive(&dir, &cfg.outbox_file, &data).map(|s| s.to_string())
 }
 
@@ -134,6 +143,8 @@ pub struct SanitizedKvdt {
     data: Vec<u8>,
     patients: usize,
     dropped: usize,
+    unknown: usize,
+    invalid: usize,
 }
 
 #[tauri::command]
@@ -144,9 +155,8 @@ pub fn read_kvdt(state: State<AppState>, path: String) -> Result<SanitizedKvdt, 
         return Err("Datei zu groß.".into());
     }
     let raw = std::fs::read(&p).map_err(|e| e.to_string())?;
-    let (data, patients, dropped) = state.vault.lock().unwrap().sanitize_many(&raw);
-    let name = p.file_name().map(|n| n.to_string_lossy().to_string()).unwrap_or_default();
-    Ok(SanitizedKvdt { name, data, patients, dropped })
+    let s = state.vault.lock().unwrap().sanitize_many(&raw);
+    Ok(SanitizedKvdt { name: "KVDT-Datei".into(), data: s.data, patients: s.patient_ids, dropped: s.dropped, unknown: s.unknown, invalid: s.invalid })
 }
 
 #[tauri::command]

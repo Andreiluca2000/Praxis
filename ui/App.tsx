@@ -46,7 +46,14 @@ export function App() {
   }, []);
 
   if (!status) return <main className="login"><p className="muted">Lädt …</p></main>;
-  if (!status.user || !session.current) return <Login needsSetup={status.needs_setup} onDone={refresh} />;
+  if (!status.user || !session.current) {
+    return (
+      <>
+        {notice && <div className="notice" role="status">{notice}</div>}
+        <Login needsSetup={status.needs_setup} onDone={refresh} />
+      </>
+    );
+  }
 
   const s = session.current;
   async function logout() {

@@ -16,7 +16,8 @@ mod voice;
 use accounts::{AccountStore, PublicAccount};
 use patient::PatientVault;
 use config::{load_config, AppConfig};
-use std::path::PathBuf;
+use std::collections::HashSet;
+use std::path::{Path, PathBuf};
 use std::sync::Mutex;
 use std::time::Duration;
 use tauri::{Emitter, Manager};
@@ -28,6 +29,9 @@ pub struct AppState {
     pub config_file: PathBuf,
     /// Echte Patientennummer nur hier; das Fenster sieht nur Pseudonyme.
     pub vault: Mutex<PatientVault>,
+    /// Letzte bereinigte Übergabe aus DURIA, bis das Fenster sie abholt (nur im Arbeitsspeicher).
+    /// Das Ereignis ist nur ein Hinweis – so geht nichts verloren, wenn das Fenster gerade erst lädt.
+    pub pending: Mutex<Option<SanitizedExport>>,
 }
 
 /// Bereinigte Daten für das Fenster (ohne Identität, Patientennummer pseudonymisiert).
@@ -38,43 +42,119 @@ pub struct SanitizedExport {
     pub token: Option<String>,
     pub patient_ids: usize,
     pub dropped: usize,
+    /// Verworfene Zeilen mit nicht erlaubter Feldkennung bzw. ohne gültigen Aufbau (nur gezählt).
+    pub unknown: usize,
+    pub invalid: usize,
+    /// Im Freitext ersetzte Identitätswerte.
+    pub redacted: usize,
     pub revision: String,
 }
 
-pub fn sanitize_for_window(state: &AppState, name: String, raw: &[u8]) -> SanitizedExport {
+/// `label` ist eine neutrale Bezeichnung, nie der Dateiname (der kann den Patientennamen enthalten).
+pub fn sanitize_for_window(state: &AppState, label: &str, raw: &[u8]) -> SanitizedExport {
     let s = state.vault.lock().unwrap().sanitize(raw);
-    SanitizedExport { name, data: s.data, token: s.token, patient_ids: s.patient_ids, dropped: s.dropped, revision: s.revision }
+    SanitizedExport {
+        name: label.into(),
+        data: s.data,
+        token: s.token,
+        patient_ids: s.patient_ids,
+        dropped: s.dropped,
+        unknown: s.unknown,
+        invalid: s.invalid,
+        redacted: s.redacted,
+        revision: s.revision,
+    }
+}
+
+/// Merkt sich, worüber schon informiert wurde – sonst käme alle 1,2 s dieselbe Meldung.
+#[derive(Default)]
+struct InboxNotices {
+    waiting: HashSet<PathBuf>,
+    /// Übergeben, aber nicht löschbar: nicht ein zweites Mal übergeben.
+    consumed: HashSet<PathBuf>,
+    dir_error: Option<String>,
+}
+
+/// Eine bereite Datei aus dem Eingang verarbeiten. Die Anmeldung bleibt dabei gesperrt,
+/// damit ein gleichzeitiges Abmelden nicht zwischen Prüfung und Übergabe fällt (PRIV-05).
+fn handle_incoming(app: &tauri::AppHandle, state: &AppState, scanner: &mut gdt::InboxScanner, path: &Path, seen: &mut InboxNotices) {
+    let notice = |text: &str| {
+        let _ = app.emit("notice", text.to_string());
+    };
+    if seen.consumed.contains(path) {
+        return;
+    }
+    let user = state.user.lock().unwrap();
+    if user.is_none() {
+        // Ohne Anmeldung wird die Datei weder gelesen noch gelöscht.
+        if seen.waiting.insert(path.to_path_buf()) {
+            notice("Eine Übergabe aus DURIA wartet – bitte anmelden.");
+        }
+        return;
+    }
+    seen.waiting.remove(path);
+    let inbox = scanner.dir().to_path_buf();
+    let hold = |why: &str| {
+        let moved = gdt::quarantine(path, &inbox).map(|_| " Sie wurde für 24 Stunden zurückgehalten.").unwrap_or(" Bitte Eingangsordner prüfen.");
+        notice(&format!("Übergabe aus DURIA nicht geöffnet: {why}.{moved}"));
+    };
+    if gdt::is_stale(path, gdt::MAX_AGE) {
+        return hold("älter als 10 Minuten, gehört vermutlich zu einem früheren Aufruf");
+    }
+    let data = match gdt::read_exclusive(path) {
+        Ok(Some(d)) => d,
+        Ok(None) => return scanner.forget(path), // DURIA schreibt noch
+        Err(e) if e.kind() == std::io::ErrorKind::InvalidData => return hold("Datei zu groß"),
+        Err(_) => return notice("Übergabe aus DURIA konnte nicht gelesen werden."),
+    };
+    if let Err(why) = gdt::validate_xdt(&data) {
+        return hold(&format!("unvollständig oder ungültig ({why})"));
+    }
+    // Rohdaten verlassen Rust nicht: nur die bereinigte Fassung wartet auf das Fenster.
+    *state.pending.lock().unwrap() = Some(sanitize_for_window(state, "DURIA-Übergabe", &data));
+    drop(user);
+    let _ = app.emit("gdt-incoming", ());
+    if std::fs::remove_file(path).is_err() {
+        seen.consumed.insert(path.to_path_buf());
+        notice("Übergabe gelesen, aber nicht aus dem Eingang entfernt – bitte Eingangsordner prüfen.");
+    }
 }
 
 /// Beobachtet das GDT-Eingangsverzeichnis (je RDP-Sitzung eigener Ordner) und meldet neue Dateien.
 fn start_inbox(app: tauri::AppHandle) {
     std::thread::spawn(move || {
         let mut scanner: Option<(String, gdt::InboxScanner)> = None;
-        loop {
+        let mut seen = InboxNotices::default();
+        for tick in 0u64.. {
             std::thread::sleep(Duration::from_millis(1200));
             let state = app.state::<AppState>();
-            let dir = gdt::expand_env(&state.config.lock().unwrap().inbox_dir);
+            let configured = state.config.lock().unwrap().inbox_dir.clone();
+            let dir = match gdt::expand_env(&configured) {
+                Ok(d) => d,
+                Err(e) => {
+                    if seen.dir_error.as_ref() != Some(&e) {
+                        let _ = app.emit("notice", format!("DURIA-Eingang deaktiviert: {e}"));
+                        seen.dir_error = Some(e);
+                    }
+                    scanner = None;
+                    continue;
+                }
+            };
+            seen.dir_error = None;
             if scanner.as_ref().map(|(d, _)| d != &dir).unwrap_or(true) {
                 let _ = std::fs::create_dir_all(&dir);
-                scanner = Some((dir.clone(), gdt::InboxScanner::new(std::path::Path::new(&dir))));
+                scanner = Some((dir.clone(), gdt::InboxScanner::new(Path::new(&dir))));
+                seen = InboxNotices::default();
             }
-            let logged_in = state.user.lock().unwrap().is_some();
             let Some((_, s)) = scanner.as_mut() else { continue };
-            for item in s.scan() {
-                match item {
-                    Ok(file) if logged_in => {
-                        // Rohdaten verlassen Rust nicht: nur die bereinigte Fassung geht ins Fenster.
-                        let clean = sanitize_for_window(&state, file.name, &file.data);
-                        let _ = app.emit("gdt-incoming", clean);
-                    }
-                    Ok(file) => {
-                        let _ = app.emit("notice", format!("GDT-Datei {} empfangen, aber niemand angemeldet – verworfen.", file.name));
-                    }
-                    Err(e) => {
-                        let _ = app.emit("notice", e);
-                    }
-                }
+            if tick % 50 == 0 {
+                gdt::purge_quarantine(s.dir(), gdt::QUARANTINE_KEEP);
             }
+            for path in s.ready() {
+                handle_incoming(&app, &state, s, &path, &mut seen);
+            }
+            seen.waiting.retain(|p| p.exists());
+            seen.consumed.retain(|p| p.exists());
         }
     });
 }
@@ -94,6 +174,7 @@ pub fn run() {
                 config: Mutex::new(config),
                 config_file,
                 vault: Mutex::new(PatientVault::new()),
+                pending: Mutex::new(None),
             });
             start_inbox(app.handle().clone());
             Ok(())
@@ -105,6 +186,7 @@ pub fn run() {
             commands::login,
             commands::logout,
             commands::read_export,
+            commands::take_incoming,
             commands::close_patient,
             commands::read_kvdt,
             commands::gdt_write,

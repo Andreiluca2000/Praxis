@@ -49,3 +49,21 @@ fn letzter_arzt_bleibt_aktiv_und_deaktivierte_koennen_nicht_anmelden() {
     assert!(s.login("MF", "geheim456").is_none());
     let _ = fs::remove_dir_all(dir);
 }
+
+/// DS-02: Darf die Kontendatei nicht geändert werden, entsteht auch im Speicher kein Konto.
+#[test]
+fn schreibgeschuetzte_kontendatei_kein_konto_im_speicher() {
+    let (file, dir) = tmpfile("ro");
+    fs::create_dir_all(&dir).unwrap();
+    fs::write(&file, "[]").unwrap();
+    let mut perm = fs::metadata(&file).unwrap().permissions();
+    perm.set_readonly(true);
+    fs::set_permissions(&file, perm.clone()).unwrap();
+    let mut s = AccountStore::open(&file).unwrap();
+    let err = s.create("al", "Dr. Test", Role::Arzt, "geheim123", None).unwrap_err();
+    assert!(err.contains("Administratorrechten"), "{err}");
+    assert!(s.is_empty() && s.login("AL", "geheim123").is_none());
+    perm.set_readonly(false);
+    fs::set_permissions(&file, perm).unwrap();
+    let _ = fs::remove_dir_all(dir);
+}
