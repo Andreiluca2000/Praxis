@@ -28,13 +28,13 @@ pub struct FieldProfile {
 
 /// GDT/BDT eines Patienten: Satzart, Zeichensatz, Kennungen, Leistungen, Diagnosen, Befund-/Notiztext.
 pub const SINGLE_PATIENT: FieldProfile = FieldProfile {
-    pass: &["8000", "9206", "9218", "8315", "8316", "8402", "6302", "4101", "5000", "5001", "5005", "6000", "6001", "6003", "6004", "6200"],
+    pass: &["8000", "9206", "9218", "8315", "8316", "8402", "6302", "4101", "5000", "5001", "5005", "5006", "6000", "6001", "6003", "6004", "6200"],
     free_text: &["6205", "6220", "6227", "6228", "6230"],
 };
 
 /// KVDT-Quartalsdatei: nur was die Quartalsprüfung liest, kein Freitext.
 pub const KVDT: FieldProfile = FieldProfile {
-    pass: &["8000", "9206", "9218", "4101", "5000", "5001", "5005", "6001", "6003", "6004"],
+    pass: &["8000", "9206", "9218", "4101", "5000", "5001", "5005", "5006", "6001", "6003", "6004"],
     free_text: &[],
 };
 

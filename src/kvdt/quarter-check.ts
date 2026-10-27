@@ -2,6 +2,7 @@ import { quarterEnd, quarterStart } from '../domain/dates.js';
 import type { BilledService, IsoDate, PracticeSettings, RulePackage } from '../domain/types.js';
 import { declareCoverage } from '../duria/adapter.js';
 import { evaluatePackage } from '../engine/evaluate.js';
+import { checkPairs, type PairFinding, type PairRegistry } from '../engine/pairs.js';
 import { first, parseXdt, parseXdtDate, type XdtRecord } from '../duria/xdt.js';
 
 /**
@@ -9,7 +10,7 @@ import { first, parseXdt, parseXdtDate, type XdtRecord } from '../duria/xdt.js';
  * - Jeder Schein (Satzart 0101–0104) = ein Behandlungsfall eines Patienten im Quartal.
  * - Patientenbezug nur über das Pseudonym (FK 3000 wird in Rust vorher ersetzt; Identitätsfelder entfernt).
  * - Ergebnis: je Fall Konflikte, fehlende Diagnosen, Häufigkeitsüberschreitungen, mögliche fehlende Ziffern.
- * Feldkennungen nach KVDT: 5000 Leistungstag, 5001 GNR, 5005 Multiplikator, 6001 ICD, 6003 Sicherheit,
+ * Feldkennungen nach KVDT: 5000 Leistungstag, 5001 GNR, 5005 Multiplikator, 5006 Uhrzeit (zur vorigen GNR), 6001 ICD, 6003 Sicherheit,
  * 6004 Seite, 4101 Quartal (QJJJJ). Ob DURIA weitere/abweichende Felder nutzt, ist zu bestätigen.
  */
 
@@ -33,10 +34,18 @@ export interface CaseFinding {
   text: string;
 }
 
+/** Paarprüfung aus dem Entwurfs-Dossier – nur im Simulator, nie als Fehler gezählt. */
+export interface QuarterCombinations {
+  findings: (PairFinding & { caseIndex: number; patientToken: string | null })[];
+  outOfRange: number;
+  schemaVersion: string;
+}
+
 export interface QuarterReport {
   quarter: { from: IsoDate; to: IsoDate } | null;
   cases: number;
   findings: CaseFinding[];
+  combinations: QuarterCombinations | null;
   parseErrors: string[];
   bySeverity: { fehler: number; hinweis: number };
 }
@@ -44,13 +53,17 @@ export interface QuarterReport {
 function caseFromRecord(rec: XdtRecord, index: number): KvdtCase {
   const c: KvdtCase = { index, satzart: rec.satzart, patientToken: first(rec, '3000')?.trim() ?? null, quarter: first(rec, '4101')?.trim() ?? null, services: [], diagnoses: [], warnings: [] };
   let date: IsoDate | null = null;
+  let lastService: BilledService | null = null;
   let lastDx: KvdtCase['diagnoses'][number] | null = null;
   for (const f of rec.fields) {
     if (f.fk === '5000') date = parseXdtDate(f.value);
     else if (f.fk === '5001') {
       const code = f.value.trim();
-      if (date) c.services.push({ code, system: 'EBM', date, state: 'active', evidence: [{ ref: `kvdt:${index}:${f.line}` }] });
+      lastService = date ? { code, system: 'EBM', date, state: 'active', session: null, evidence: [{ ref: `kvdt:${index}:${f.line}` }] } : null;
+      if (lastService) c.services.push(lastService);
       else c.warnings.push(`Ziffer ${code} ohne Leistungstag (Zeile ${f.line}).`);
+    } else if (f.fk === '5006' && lastService) {
+      lastService.session = f.value.trim() || null;
     } else if (f.fk === '6001') {
       lastDx = { icd: f.value.trim().toUpperCase(), certainty: null, side: null };
       c.diagnoses.push(lastDx);
@@ -74,8 +87,12 @@ function quarterRange(q: string | null): { from: IsoDate; to: IsoDate } | null {
   return { from: quarterStart(anchor), to: quarterEnd(anchor) };
 }
 
-export function checkQuarter(data: Uint8Array, settings: PracticeSettings, rules: RulePackage, mode: 'operational' | 'simulation'): QuarterReport {
+export function checkQuarter(
+  data: Uint8Array, settings: PracticeSettings, rules: RulePackage, mode: 'operational' | 'simulation', pairs?: PairRegistry | null,
+): QuarterReport {
   const { cases, parseErrors } = readKvdt(data);
+  // Entwurfsdaten sind operativ wirkungslos (wie DEMO-Regeln): nur im Simulator.
+  const combinations: QuarterCombinations | null = pairs && mode === 'simulation' ? { findings: [], outOfRange: 0, schemaVersion: pairs.schemaVersion } : null;
   const findings: CaseFinding[] = [];
   const quarter = cases.map((c) => quarterRange(c.quarter)).find((q) => q !== null) ?? null;
   const add = (c: KvdtCase, severity: CaseFinding['severity'], kind: CaseFinding['kind'], text: string) =>
@@ -92,6 +109,11 @@ export function checkQuarter(data: Uint8Array, settings: PracticeSettings, rules
       }
     }
     // Regelprüfung je Leistungstag mit vollständigem Quartal (die KVDT-Datei enthält den ganzen Fall).
+    if (combinations && pairs) {
+      const r = checkPairs(c.services, pairs);
+      combinations.outOfRange += r.outOfRange;
+      combinations.findings.push(...r.findings.map((f) => ({ ...f, caseIndex: c.index, patientToken: c.patientToken })));
+    }
     const coverage = range ? declareCoverage(range.from, range.to) : [];
     const days = [...new Set(c.services.map((s) => s.date))];
     for (const day of days) {
@@ -101,5 +123,5 @@ export function checkQuarter(data: Uint8Array, settings: PracticeSettings, rules
     }
   }
   const bySeverity = { fehler: findings.filter((f) => f.severity === 'fehler').length, hinweis: findings.filter((f) => f.severity === 'hinweis').length };
-  return { quarter, cases: cases.length, findings, parseErrors, bySeverity };
+  return { quarter, cases: cases.length, findings, combinations, parseErrors, bySeverity };
 }

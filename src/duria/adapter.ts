@@ -45,7 +45,7 @@ export function readDuriaExport(buf: Uint8Array, mapping: XdtMapping, source: 'g
   const notes: NoteEntry[] = [];
   let dropped = 0;
   const known = new Set([
-    f.satzart, f.patient_id, f.service_date, f.service_code, f.diagnosis_code, f.diagnosis_certainty,
+    f.satzart, f.patient_id, f.service_date, f.service_code, f.service_time ?? f.service_code, f.diagnosis_code, f.diagnosis_certainty,
     f.diagnosis_side, f.diagnosis_date, f.note_date, ...f.note_text, ...f.identity_fields_to_drop,
   ]);
   const unknownFks = new Set<string>();
@@ -60,6 +60,7 @@ export function readDuriaExport(buf: Uint8Array, mapping: XdtMapping, source: 'g
     let noteDate: IsoDate | null = null;
     let diagDate: IsoDate | null = null;
     let lastDiag: DocumentedDiagnosis | null = null;
+    let lastService: BilledService | null = null;
     for (const fld of rec.fields) {
       const ref = `${source}:${ri + 1}:${fld.line}`;
       if (f.identity_fields_to_drop.includes(fld.fk)) { dropped++; continue; }
@@ -70,8 +71,11 @@ export function readDuriaExport(buf: Uint8Array, mapping: XdtMapping, source: 'g
       else if (fld.fk === f.diagnosis_date) diagDate = date(fld.value);
       else if (fld.fk === f.service_code) {
         const code = fld.value.trim();
-        if (!svcDate) warnings.push(`Leistung ${code} (Zeile ${fld.line}) ohne gültiges Datum – nicht übernommen.`);
-        else services.push({ code, system: 'EBM', date: svcDate, state: 'active', evidence: [{ ref, recorded_on: svcDate }] });
+        lastService = svcDate ? { code, system: 'EBM', date: svcDate, state: 'active', session: null, evidence: [{ ref, recorded_on: svcDate }] } : null;
+        if (lastService) services.push(lastService);
+        else warnings.push(`Leistung ${code} (Zeile ${fld.line}) ohne gültiges Datum – nicht übernommen.`);
+      } else if (f.service_time && fld.fk === f.service_time && lastService) {
+        lastService.session = fld.value.trim() || null;
       } else if (fld.fk === f.diagnosis_code) {
         lastDiag = { code: fld.value.trim().toUpperCase(), certainty: null, side: null, date: diagDate ?? svcDate ?? noteDate, ref };
         diagnoses.push(lastDiag);

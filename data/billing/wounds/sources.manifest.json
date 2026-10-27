@@ -1,0 +1,19 @@
+{
+  "schema_version":"1.0.0",
+  "kind":"official_wound_sources",
+  "retrieved_on":"2026-10-26",
+  "artifacts":[{
+    "path":"../sources/gba-mvv-rl-20260909.pdf",
+    "publisher":"Gemeinsamer Bundesausschuss",
+    "title":"Richtlinie Methoden vertragsärztliche Versorgung",
+    "landing_url":"https://www.g-ba.de/richtlinien/7/",
+    "source_url":"https://www.g-ba.de/downloads/62-492-4212/MVV-RL_2026-06-18_iK-2026-09-09.pdf",
+    "amended_on":"2026-06-18",
+    "effective_from":"2026-09-09",
+    "bytes":643584,
+    "sha256":"3db6b17738eb917cce2400c012735a62cacd28145c927d95c47868cc31bc5fd2",
+    "pages":93,
+    "used_sections":["Anlage I Nr.33, PDF pages 66–67"],
+    "provenance_note":"Original public PDF downloaded without modification. SHA-256 computed locally; not a publisher signature."
+  }]
+}

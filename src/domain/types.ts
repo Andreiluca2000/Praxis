@@ -204,6 +204,8 @@ export interface BilledService {
   date: IsoDate;
   /** Stornierte/korrigierte Einträge zählen nicht (PVS-Korrekturen). */
   state: 'active' | 'cancelled';
+  /** Sitzungskennung aus der Quelle (KVDT/BDT FK 5006 Uhrzeit); fehlt sie, ist die Sitzung unbekannt. */
+  session?: string | null;
   evidence: EvidenceRef[];
 }
 

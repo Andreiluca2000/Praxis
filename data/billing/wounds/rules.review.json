@@ -1,0 +1,2690 @@
+{
+  "schema_version": "1.0.0",
+  "kind": "wounds_review_dossier",
+  "built_on": "2026-10-26",
+  "status": "draft",
+  "review": "pending",
+  "operational": false,
+  "complete": false,
+  "default_verdict": "not_verified",
+  "valid_from": "2026-10-01",
+  "valid_to": "2026-12-31",
+  "billing_system": "EBM",
+  "covered_codes": [
+    "02300",
+    "02301",
+    "02302",
+    "02310",
+    "02311",
+    "02312",
+    "02313",
+    "02314",
+    "02350",
+    "02360",
+    "31600",
+    "40901",
+    "40902",
+    "40903"
+  ],
+  "clauses": [
+    {
+      "id": "COMPLETE_SERVICE",
+      "codes": [
+        "02300",
+        "02301",
+        "02302",
+        "02310",
+        "02311",
+        "02312",
+        "02313",
+        "02314",
+        "02350",
+        "02360",
+        "31600"
+      ],
+      "kind": "required_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Prestația trebuie efectuată complet; o mențiune, un diagnostic sau un checkbox generic nu dovedește componentele obligatorii.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 22,
+          "locator": "EBM, PDF page 22",
+          "anchor": "Eine Gebührenordnungsposition, deren Leistungsinhalt nicht vollständig erbracht wurde, kann nicht berechnet werden."
+        }
+      ]
+    },
+    {
+      "id": "INCLUDED_COMPONENTS",
+      "codes": [
+        "02300",
+        "02301",
+        "02302",
+        "02310",
+        "02311",
+        "02312",
+        "02313",
+        "02314",
+        "02350",
+        "02360",
+        "31600"
+      ],
+      "kind": "included_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Nu factura separat o prestație ale cărei componente obligatorii și facultative sunt integral incluse în altă cifră facturată.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 22,
+          "locator": "EBM, PDF page 22",
+          "anchor": "Eine Gebührenordnungsposition ist nicht berechnungsfähig, wenn deren obligate und - sofern vorhanden - fakultative Leistungsinhalte vollständig Bestandteil einer anderen berechneten Gebührenordnungsposition sind."
+        }
+      ]
+    },
+    {
+      "id": "MINOR_PROCEDURE_DEFINITION",
+      "codes": [
+        "02300",
+        "02301",
+        "02302"
+      ],
+      "kind": "required_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Eingriff cere deschiderea pielii/mucoasei sau îngrijire primară, cu excepțiile explicit prevăzute. Puncția cu acul nu devine automat mică chirurgie.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 32,
+          "locator": "EBM, PDF page 32",
+          "anchor": "Operative Eingriffe setzen die Eröffnung von Haut und/oder Schleimhaut bzw. eine primäre Wundversorgung voraus, soweit in den Leistungsbeschreibungen nicht anders angegeben. Punktionen mit Nadeln, Kanülen und Biopsienadeln fallen nicht unter die Definition eines operativen Eingriffs."
+        }
+      ]
+    },
+    {
+      "id": "LOCAL_ANESTHESIA_INCLUDED",
+      "codes": [
+        "02300",
+        "02301",
+        "02302"
+      ],
+      "kind": "included_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Anestezia locală și de conducere necesară este inclusă; nu propune 02360 ca supliment automat pentru sutură.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 157,
+          "locator": "EBM, PDF page 157",
+          "anchor": "Lokalanästhesien und Leitungsanästhesien sind, soweit erforderlich, Bestandteil der berechnungsfähigen Gebührenordnungspositionen."
+        }
+      ]
+    },
+    {
+      "id": "MINOR_SIZE_DEFINITION",
+      "codes": [
+        "02300",
+        "02301",
+        "02302"
+      ],
+      "kind": "required_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Dimensiunile mic/mare și local/extins urmează definiția generală; termenul klein nu se aplică intervențiilor la cap și mâini.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 32,
+          "locator": "EBM, PDF page 32",
+          "anchor": "Länge: kleiner/größer 3 cm, Fläche: kleiner/größer 4 cm², lokal: bis 4 cm² oder bis zu 1 cm³, radikal und ausgedehnt: größer 4 cm² oder größer 1 cm³. Nicht anzuwenden ist der Begriff \"klein\" bei Eingriffen am Kopf und an den Händen."
+        }
+      ]
+    },
+    {
+      "id": "MINOR_115B_SCOPE",
+      "codes": [
+        "02300",
+        "02301",
+        "02302"
+      ],
+      "kind": "authorization",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excepția de la condițiile §115b depinde de absența intervenției din catalogul contractului; nu este o scutire universală.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 157,
+          "locator": "EBM, PDF page 157",
+          "anchor": "Die Voraussetzungen gemäß § 115b SGB V müssen für Leistungen dieses Abschnitts nicht erfüllt sein, sofern die Eingriffe nicht im Katalog zum Vertrag nach § 115b SGB V genannt sind."
+        }
+      ]
+    },
+    {
+      "id": "02300_CONTENT",
+      "codes": [
+        "02300"
+      ],
+      "kind": "required_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Verifică ruta efectuată din conținutul alternativ prevăzut; 02302 nu este exclusiv pediatric, iar simplul diagnostic nu stabilește nivelul intervenției.",
+      "parameters": {
+        "default_max_count": 1,
+        "scope": "calendar_day",
+        "exception_clauses": [
+          "MINOR_MULTIPLE_EXCEPTION"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 158,
+          "locator": "EBM, PDF page 158",
+          "anchor": "02300 Kleinchirurgischer Eingriff I und/oder primäre Wundversorgung und/oder Epilation Obligater Leistungsinhalt - Operativer Eingriff mit einer Dauer von bis zu 5 Minuten und/oder - Primäre Wundversorgung und/oder - Epilation durch Elektrokoagulation im Gesicht und/oder an den Händen bei krankhaftem und entstellendem Haarwuchs, einmal am Behandlungstag"
+        }
+      ]
+    },
+    {
+      "id": "02300_PEDIATRIC_NARKOSE",
+      "codes": [
+        "02300"
+      ],
+      "kind": "conditional_route",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Ruta pediatrică în Narkose permite 31101/36101 în condițiile indicate și păstrează excluderile; nu adăuga automat îngrijire postoperatorie 31.4.",
+      "parameters": {
+        "alternative_codes": [
+          "31101",
+          "36101"
+        ]
+      },
+      "notes": [
+        "Interpretarea grupei de vârstă urmează 4.3.5 și 4.3.5.1; nu folosi automat vârsta la data fiecărei proceduri."
+      ],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 158,
+          "locator": "EBM, PDF page 158",
+          "anchor": "Die Gebührenordnungsposition 02300 ist bei Neugeborenen, Säuglingen, Kleinkindern und Kindern bis zum vollendeten 12. Lebensjahr nach der Gebührenordnungsposition 31101 oder nach der Gebührenordnungsposition 36101 berechnungsfähig, sofern der Eingriff in Narkose erfolgt. Die Voraussetzungen gemäß § 115b SGB V müssen dabei nicht erfüllt sein, sofern die Eingriffe nicht im Katalog zum Vertrag nach § 115b SGB V genannt sind. In diesen Fällen ist die postoperative Behandlung nach den Gebührenordnungspositionen des Abschnitts 31.4 nicht berechnungsfähig. Die in der Präambel 31.2.1 Nr. 8 bzw. Präambel 36.2.1 Nr. 4 benannten Einschränkungen entfallen in diesen Fällen, es gelten die Abrechnungsausschlüsse der Gebührenordnungsposition 02300 entsprechend."
+        }
+      ]
+    },
+    {
+      "id": "02301_CONTENT",
+      "codes": [
+        "02301"
+      ],
+      "kind": "required_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Verifică ruta efectuată din conținutul alternativ prevăzut; 02302 nu este exclusiv pediatric, iar simplul diagnostic nu stabilește nivelul intervenției.",
+      "parameters": {
+        "default_max_count": 1,
+        "scope": "calendar_day",
+        "exception_clauses": [
+          "MINOR_MULTIPLE_EXCEPTION"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 159,
+          "locator": "EBM, PDF page 159",
+          "anchor": "02301 Kleinchirurgischer Eingriff II und/oder primäre Wundversorgung mittels Naht Obligater Leistungsinhalt - Primäre Wundversorgung bei Säuglingen, Kleinkindern und Kindern und/oder - Primäre Wundversorgung mittels Naht und/oder Gewebekleber und/oder - Koagulation und/oder Kauterisation krankhafter Haut- und/oder Schleimhautveränderungen und/oder - Operative Entfernung einer oder mehrerer Geschwülste an der Harnröhrenmündung und/oder - Operative Entfernung eines unter der Oberfläche von Haut oder Schleimhaut gelegenen Fremdkörpers nach Aufsuchen durch Schnitt und/oder - Öffnung eines Körperkanalverschlusses an der Körperoberfläche oder Eröffnung eines Abszesses oder Exzision eines Furunkels und/oder - Verschiebeplastik zur Deckung eines Hautdefektes und/oder - Eröffnung eines subcutanen Panaritiums oder einer Paronychie, einmal am Behandlungstag"
+        }
+      ]
+    },
+    {
+      "id": "02301_PEDIATRIC_NARKOSE",
+      "codes": [
+        "02301"
+      ],
+      "kind": "conditional_route",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Ruta pediatrică în Narkose permite 31101/36101 în condițiile indicate și păstrează excluderile; nu adăuga automat îngrijire postoperatorie 31.4.",
+      "parameters": {
+        "alternative_codes": [
+          "31101",
+          "36101"
+        ]
+      },
+      "notes": [
+        "Interpretarea grupei de vârstă urmează 4.3.5 și 4.3.5.1; nu folosi automat vârsta la data fiecărei proceduri."
+      ],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 159,
+          "locator": "EBM, PDF page 159",
+          "anchor": "Die Gebührenordnungsposition 02301 ist bei Neugeborenen, Säuglingen, Kleinkindern und Kindern bis zum vollendeten 12. Lebensjahr nach der Gebührenordnungsposition 31101 oder nach der Gebührenordnungsposition 36101 berechnungsfähig, sofern der Eingriff in Narkose erfolgt. Die Voraussetzungen gemäß § 115b SGB V müssen dabei nicht erfüllt sein, sofern die Eingriffe nicht im Katalog zum Vertrag nach § 115b SGB V genannt sind. In diesen Fällen ist die postoperative Behandlung nach den Gebührenordnungspositionen des Abschnitts 31.4 nicht berechnungsfähig. Die in der Präambel 31.2.1 Nr. 8 bzw. Präambel 36.2.1 Nr. 4 benannten Einschränkungen entfallen in diesen Fällen, es gelten die Abrechnungsausschlüsse der Gebührenordnungsposition 02301 entsprechend."
+        }
+      ]
+    },
+    {
+      "id": "02302_CONTENT",
+      "codes": [
+        "02302"
+      ],
+      "kind": "required_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Verifică ruta efectuată din conținutul alternativ prevăzut; 02302 nu este exclusiv pediatric, iar simplul diagnostic nu stabilește nivelul intervenției.",
+      "parameters": {
+        "default_max_count": 1,
+        "scope": "calendar_day",
+        "exception_clauses": [
+          "MINOR_MULTIPLE_EXCEPTION"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 160,
+          "locator": "EBM, PDF page 160",
+          "anchor": "02302 Kleinchirurgischer Eingriff III und/oder primäre Wundversorgung bei Säuglingen, Kleinkindern und Kindern Obligater Leistungsinhalt - Primäre Wundversorgung mittels Naht bei Säuglingen, Kleinkindern und Kindern und/oder - Exzision eines Bezirkes oder einer intradermalen Geschwulst aus der Haut des Gesichts mit Wundverschluss und/oder - Hochtouriges Schleifen von Bezirken der Haut bei schweren Entstellungen durch Naevi oder Narben und/oder - Exzision eines großen Bezirkes aus Haut und/oder Schleimhaut oder einer kleinen unter der Haut und/oder Schleimhaut gelegenen Geschwulst und/oder - Exzision und/oder Probeexzision von tiefliegendem Körpergewebe (z. B. Fettgewebe) und/oder aus einem Organ ohne Eröffnung einer Körperhöhle und/oder - Emmert-Plastik und/oder - Venae sectio und/oder 29,30 € 230 Punkte"
+        },
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 161,
+          "locator": "EBM, PDF page 161",
+          "anchor": "- Biopsie ohne Inzision am Endometrium: Diagnostische Mikrokürettage (Strichkürettage) oder Aspirationskürettage, einmal am Behandlungstag"
+        }
+      ]
+    },
+    {
+      "id": "02302_PEDIATRIC_NARKOSE",
+      "codes": [
+        "02302"
+      ],
+      "kind": "conditional_route",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Ruta pediatrică în Narkose permite 31101/36101 în condițiile indicate și păstrează excluderile; nu adăuga automat îngrijire postoperatorie 31.4.",
+      "parameters": {
+        "alternative_codes": [
+          "31101",
+          "36101"
+        ]
+      },
+      "notes": [
+        "Interpretarea grupei de vârstă urmează 4.3.5 și 4.3.5.1; nu folosi automat vârsta la data fiecărei proceduri."
+      ],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 161,
+          "locator": "EBM, PDF page 161",
+          "anchor": "Die Gebührenordnungsposition 02302 ist bei Neugeborenen, Säuglingen, Kleinkindern und Kindern bis zum vollendeten 12. Lebensjahr nach der Gebührenordnungsposition 31101 oder nach der Gebührenordnungsposition 36101 berechnungsfähig, sofern der Eingriff in Narkose erfolgt. Die Voraussetzungen gemäß § 115b SGB V müssen dabei nicht erfüllt sein, sofern die Eingriffe nicht im Katalog zum Vertrag nach § 115b SGB V genannt sind. In diesen Fällen ist die postoperative Behandlung nach den Gebührenordnungspositionen des Abschnitts 31.4 nicht berechnungsfähig. Die in der Präambel 31.2.1 Nr. 8 bzw. Präambel 36.2.1 Nr. 4 benannten Einschränkungen entfallen in diesen Fällen, es gelten die Abrechnungsausschlüsse der Gebührenordnungsposition 02302 entsprechend."
+        }
+      ]
+    },
+    {
+      "id": "MINOR_AGE_REFERENCE",
+      "codes": [
+        "02300",
+        "02301",
+        "02302"
+      ],
+      "kind": "age_context",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Grupele de vârstă se raportează la prima utilizare/prima facturare în trimestru, conform normei generale.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 32,
+          "locator": "EBM, PDF page 32",
+          "anchor": "Maßgeblich für die Zuordnung zu einer Altersklasse bzw. einem Zeitraum ist das Alter des Patienten bei der ersten Inanspruchnahme bzw. am Tag der ersten Leistungsabrechnung im Kalendervierteljahr."
+        }
+      ]
+    },
+    {
+      "id": "MINOR_MULTIPLE_EXCEPTION",
+      "codes": [
+        "02300",
+        "02301",
+        "02302"
+      ],
+      "kind": "conditional_combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Pentru diagnosticele și prestațiile documentate prevăzute, 02300–02302 pot fi repetate și combinate: maximum cinci în total pe zi, nu cinci pentru fiecare cod. Nu atribui D22/T01 pentru a justifica facturarea.",
+      "parameters": {
+        "relation": "conditional_with",
+        "scope": "calendar_day",
+        "pair_group": [
+          "02300",
+          "02301",
+          "02302"
+        ],
+        "shared_max_count": 5,
+        "diagnosis_families": [
+          "D22.-",
+          "T01.-"
+        ]
+      },
+      "notes": [
+        "Diagnosticul singur nu dovedește mai multe prestații. Excepția privește combinarea/repetarea 02300–02302, nu celelalte coduri excluse."
+      ],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 157,
+          "locator": "EBM, PDF page 157",
+          "anchor": "Die Gebührenordnungspositionen 02300 bis 02302 sind bei Patienten mit den Diagnosen Nävuszellnävussyndrom (ICD-10-GM: D22.-) und/ oder mehreren offenen Wunden (ICD-10-GM: T01.-) mehrfach in einer Sitzung - auch nebeneinander, jedoch insgesamt höchstens fünfmal am Behandlungstag - berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "ANESTHESIA_DIFFERENT_ACTOR",
+      "codes": [
+        "02300",
+        "02301",
+        "02302"
+      ],
+      "kind": "conditional_combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excluderea față de 05330/05331 privește același medic; există excepția pentru medici din specialități diferite, inclusiv în structurile comune precizate.",
+      "parameters": {
+        "relation": "conditional_with",
+        "scope": "unresolved_neben",
+        "counterpart_codes": [
+          "05330",
+          "05331"
+        ],
+        "required_context": [
+          "operating_physician",
+          "anesthesia_physician",
+          "different_specialty_groups"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 38,
+          "locator": "EBM, PDF page 38",
+          "anchor": "Die Nebeneinanderberechnungsausschlüsse der Gebührenordnungspositionen 02300 bis 02302 neben den Gebührenordnungspositionen 05330 und 05331 sowie der Gebührenordnungspositionen des Abschnitts 31.2 neben den Gebührenordnungspositionen des Abschnitts 31.5.3 bzw. der Gebührenordnungspositionen des Abschnitts 36.2 neben den Gebührenordnungspositionen des Abschnitts 36.5.3 beziehen sich nur auf die Erbringung der operativen Leistungen und der Anästhesie durch denselben an der vertragsärztlichen Versorgung teilnehmenden Arzt. Bei Erbringung der Gebührenordnungsposition durch Vertragsärzte verschiedener Fachgruppen findet dieser Ausschluss, auch in (Teil-)Berufsausübungsgemeinschaften, Arztpraxen mit angestellten Ärzten und Medizinischen Versorgungszentren von Anästhesiologen mit operativ tätigen Vertragsärzten, keine Anwendung."
+        }
+      ]
+    },
+    {
+      "id": "02300_EXCLUDES_UNRESOLVED_NEBEN",
+      "codes": [
+        "02300"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul exact din normă; excepțiile legate se aplică numai cifrelor și actorilor precizați, nu întregii liste.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "unresolved_neben",
+        "counterpart_codes": [
+          "01741",
+          "02301",
+          "02302",
+          "02311",
+          "02321",
+          "02322",
+          "02323",
+          "02325",
+          "02326",
+          "02330",
+          "02331",
+          "02340",
+          "02341",
+          "02342",
+          "02343",
+          "02344",
+          "02350",
+          "02360",
+          "03331",
+          "04331",
+          "04410",
+          "04511",
+          "04512",
+          "04513",
+          "04514",
+          "04516",
+          "04517",
+          "04518",
+          "04519",
+          "04520",
+          "04524",
+          "05320",
+          "05330",
+          "05331",
+          "05340",
+          "05341",
+          "06331",
+          "06332",
+          "06340",
+          "06350",
+          "06351",
+          "06352",
+          "07310",
+          "07311",
+          "07330",
+          "07340",
+          "08311",
+          "08320",
+          "08330",
+          "08331",
+          "08332",
+          "08333",
+          "08334",
+          "08340",
+          "08341",
+          "09310",
+          "09315",
+          "09316",
+          "09317",
+          "09350",
+          "09351",
+          "09360",
+          "09361",
+          "09362",
+          "10320",
+          "10322",
+          "10324",
+          "10340",
+          "10341",
+          "10342",
+          "13257",
+          "13260",
+          "13400",
+          "13401",
+          "13402",
+          "13410",
+          "13411",
+          "13412",
+          "13413",
+          "13414",
+          "13416",
+          "13421",
+          "13422",
+          "13423",
+          "13424",
+          "13430",
+          "13431",
+          "13435",
+          "13545",
+          "13551",
+          "13662",
+          "13663",
+          "13670",
+          "15310",
+          "15321",
+          "15322",
+          "15323",
+          "16232",
+          "20334",
+          "26320",
+          "26321",
+          "26322",
+          "26323",
+          "26324",
+          "26325",
+          "26330",
+          "26340",
+          "26341",
+          "26350",
+          "26351",
+          "26352",
+          "30214",
+          "30601",
+          "30610",
+          "30611",
+          "36882"
+        ],
+        "counterpart_sections": [
+          "18.3",
+          "30.5",
+          "31.5.3",
+          "34.5",
+          "36.5.3"
+        ],
+        "exception_clauses": [
+          "MINOR_MULTIPLE_EXCEPTION",
+          "ANESTHESIA_DIFFERENT_ACTOR"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 158,
+          "locator": "EBM, PDF page 158",
+          "anchor": "Die Gebührenordnungsposition 02300 ist nicht neben den Gebührenordnungspositionen 01741, 02301, 02302, 02311, 02321 bis 02323, 02325, 02326, 02330, 02331, 02340 bis 02344, 02350, 02360, 03331, 04331, 04410, 04511 bis 04514, 04516 bis 04520, 04524, 05320, 05330, 05331, 05340, 05341, 06331, 06332, 06340, 06350 bis 06352, 07310, 07311, 07330, 07340, 08311, 08320, 08330 bis 08334, 08340, 08341, 09310, 09315 bis 09317, 09350, 09351, 09360 bis 09362, 10320, 10322, 10324, 10340 bis 10342, 13257, 13260, 13400 bis 13402, 13410 bis 13414, 13416, 13421 bis 13424, 13430, 13431, 13435, 13545, 13551,"
+        },
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 159,
+          "locator": "EBM, PDF page 159",
+          "anchor": "13662, 13663, 13670, 15310, 15321 bis 15323, 16232, 20334, 26320 bis 26325, 26330, 26340, 26341, 26350 bis 26352, 30214, 30601, 30610, 30611 und 36882 und nicht neben den Gebührenordnungspositionen der Abschnitte 18.3, 30.5, 31.5.3, 34.5 und 36.5.3 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "02300_EXCLUDES_CALENDAR_DAY",
+      "codes": [
+        "02300"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul exact din normă; excepțiile legate se aplică numai cifrelor și actorilor precizați, nu întregii liste.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "calendar_day",
+        "counterpart_codes": [
+          "09329",
+          "10343",
+          "10344"
+        ],
+        "counterpart_sections": []
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 159,
+          "locator": "EBM, PDF page 159",
+          "anchor": "Die Gebührenordnungsposition 02300 ist am Behandlungstag nicht neben den Gebührenordnungspositionen 09329, 10343 und 10344 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "02300_EXCLUDES_EBM_BEHANDLUNGSFALL",
+      "codes": [
+        "02300"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul exact din normă; excepțiile legate se aplică numai cifrelor și actorilor precizați, nu întregii liste.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "ebm_behandlungsfall",
+        "counterpart_codes": [
+          "02310",
+          "02312",
+          "10330",
+          "34291"
+        ],
+        "counterpart_sections": []
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 159,
+          "locator": "EBM, PDF page 159",
+          "anchor": "Die Gebührenordnungsposition 02300 ist im Behandlungsfall nicht neben den Gebührenordnungspositionen 02310, 02312, 10330 und 34291 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "02300_EXCLUDES_POSTOPERATIVE_21_DAYS",
+      "codes": [
+        "02300"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul exact din normă; excepțiile legate se aplică numai cifrelor și actorilor precizați, nu întregii liste.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "postoperative_21_days",
+        "counterpart_codes": [],
+        "counterpart_sections": [
+          "31.4"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 159,
+          "locator": "EBM, PDF page 159",
+          "anchor": "Die Gebührenordnungsposition 02300 ist im Zeitraum von 21 Tagen nach Erbringung einer Leistung des Abschnitts 31.2 nicht neben den Gebührenordnungspositionen des Abschnitts 31.4 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "02301_EXCLUDES_UNRESOLVED_NEBEN",
+      "codes": [
+        "02301"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul exact din normă; excepțiile legate se aplică numai cifrelor și actorilor precizați, nu întregii liste.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "unresolved_neben",
+        "counterpart_codes": [
+          "01741",
+          "02300",
+          "02302",
+          "02311",
+          "02321",
+          "02322",
+          "02331",
+          "02340",
+          "02341",
+          "02342",
+          "02343",
+          "02344",
+          "02350",
+          "02360",
+          "03331",
+          "04331",
+          "04410",
+          "04511",
+          "04512",
+          "04513",
+          "04514",
+          "04516",
+          "04517",
+          "04518",
+          "04519",
+          "04520",
+          "04524",
+          "05320",
+          "05330",
+          "05331",
+          "05340",
+          "05341",
+          "06331",
+          "06332",
+          "06340",
+          "06350",
+          "06351",
+          "06352",
+          "07310",
+          "07311",
+          "07330",
+          "07340",
+          "08311",
+          "08320",
+          "08330",
+          "08331",
+          "08332",
+          "08333",
+          "08334",
+          "08340",
+          "08341",
+          "09310",
+          "09315",
+          "09316",
+          "09317",
+          "09350",
+          "09351",
+          "09360",
+          "09361",
+          "09362",
+          "10320",
+          "10322",
+          "10324",
+          "10340",
+          "10341",
+          "10342",
+          "13257",
+          "13260",
+          "13400",
+          "13401",
+          "13402",
+          "13410",
+          "13411",
+          "13412",
+          "13413",
+          "13414",
+          "13416",
+          "13421",
+          "13422",
+          "13423",
+          "13424",
+          "13430",
+          "13431",
+          "13545",
+          "13551",
+          "13662",
+          "13663",
+          "13670",
+          "15310",
+          "15321",
+          "15322",
+          "15323",
+          "16232",
+          "18310",
+          "18311",
+          "18320",
+          "18330",
+          "18331",
+          "18340",
+          "18700",
+          "20334",
+          "26320",
+          "26321",
+          "26322",
+          "26323",
+          "26324",
+          "26325",
+          "26330",
+          "26340",
+          "26341",
+          "26350",
+          "26351",
+          "26352",
+          "30214",
+          "30601",
+          "30610",
+          "30611",
+          "31820",
+          "31821",
+          "31822",
+          "31823",
+          "31824",
+          "31825",
+          "31826",
+          "31827",
+          "31828",
+          "31840",
+          "31841",
+          "34500",
+          "34501",
+          "34503",
+          "34504",
+          "34505",
+          "36820",
+          "36821",
+          "36822",
+          "36823",
+          "36824",
+          "36825",
+          "36826",
+          "36827",
+          "36828",
+          "36829",
+          "36840",
+          "36841",
+          "36882"
+        ],
+        "counterpart_sections": [
+          "30.5"
+        ],
+        "exception_clauses": [
+          "MINOR_MULTIPLE_EXCEPTION",
+          "ANESTHESIA_DIFFERENT_ACTOR"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 160,
+          "locator": "EBM, PDF page 160",
+          "anchor": "Die Gebührenordnungsposition 02301 ist nicht neben den Gebührenordnungspositionen 01741, 02300, 02302, 02311, 02321, 02322, 02331, 02340 bis 02344, 02350, 02360, 03331, 04331, 04410, 04511 bis 04514, 04516 bis 04520, 04524, 05320, 05330, 05331, 05340, 05341, 06331, 06332, 06340, 06350 bis 06352, 07310, 07311, 07330, 07340, 08311, 08320, 08330 bis 08334, 08340, 08341, 09310, 09315 bis 09317, 09350, 09351, 09360 bis 09362, 10320, 10322, 10324, 10340 bis 10342, 13257, 13260, 13400 bis 13402, 13410 bis 13414, 13416, 13421 bis 13424, 13430, 13431, 13545, 13551, 13662, 13663, 13670, 15310, 15321 bis 15323, 16232, 18310, 18311, 18320, 18330, 18331, 18340, 18700, 20334, 26320 bis 26325, 26330, 26340, 26341, 26350 bis 26352, 30214, 30601, 30610, 30611, 31820 bis 31828, 31840, 31841, 34500, 34501, 34503 bis 34505, 36820 bis 36829, 36840, 36841 und 36882 und nicht neben den Gebührenordnungspositionen des Abschnitts 30.5 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "02301_EXCLUDES_CALENDAR_DAY",
+      "codes": [
+        "02301"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul exact din normă; excepțiile legate se aplică numai cifrelor și actorilor precizați, nu întregii liste.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "calendar_day",
+        "counterpart_codes": [
+          "09329",
+          "10343",
+          "10344"
+        ],
+        "counterpart_sections": []
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 160,
+          "locator": "EBM, PDF page 160",
+          "anchor": "Die Gebührenordnungsposition 02301 ist am Behandlungstag nicht neben den Gebührenordnungspositionen 09329, 10343 und 10344 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "02301_EXCLUDES_EBM_BEHANDLUNGSFALL",
+      "codes": [
+        "02301"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul exact din normă; excepțiile legate se aplică numai cifrelor și actorilor precizați, nu întregii liste.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "ebm_behandlungsfall",
+        "counterpart_codes": [
+          "02310",
+          "02312",
+          "10330",
+          "34291"
+        ],
+        "counterpart_sections": []
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 160,
+          "locator": "EBM, PDF page 160",
+          "anchor": "Die Gebührenordnungsposition 02301 ist im Behandlungsfall nicht neben den Gebührenordnungspositionen 02310, 02312, 10330 und 34291 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "02301_EXCLUDES_POSTOPERATIVE_21_DAYS",
+      "codes": [
+        "02301"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul exact din normă; excepțiile legate se aplică numai cifrelor și actorilor precizați, nu întregii liste.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "postoperative_21_days",
+        "counterpart_codes": [],
+        "counterpart_sections": [
+          "31.4"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 160,
+          "locator": "EBM, PDF page 160",
+          "anchor": "Die Gebührenordnungsposition 02301 ist im Zeitraum von 21 Tagen nach Erbringung einer Leistung des Abschnitts 31.2 nicht neben den Gebührenordnungspositionen des Abschnitts 31.4 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "02302_EXCLUDES_UNRESOLVED_NEBEN",
+      "codes": [
+        "02302"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul exact din normă; excepțiile legate se aplică numai cifrelor și actorilor precizați, nu întregii liste.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "unresolved_neben",
+        "counterpart_codes": [
+          "01741",
+          "02300",
+          "02301",
+          "02311",
+          "02321",
+          "02322",
+          "02331",
+          "02340",
+          "02341",
+          "02342",
+          "02343",
+          "02344",
+          "02350",
+          "02360",
+          "03331",
+          "04331",
+          "04410",
+          "04511",
+          "04512",
+          "04513",
+          "04514",
+          "04516",
+          "04517",
+          "04518",
+          "04519",
+          "04520",
+          "04524",
+          "05320",
+          "05330",
+          "05331",
+          "05340",
+          "05341",
+          "06331",
+          "06332",
+          "06340",
+          "06350",
+          "06351",
+          "06352",
+          "07310",
+          "07311",
+          "07330",
+          "07340",
+          "08311",
+          "08320",
+          "08330",
+          "08331",
+          "08332",
+          "08333",
+          "08334",
+          "08340",
+          "08341",
+          "09310",
+          "09315",
+          "09316",
+          "09317",
+          "09350",
+          "09351",
+          "09360",
+          "09361",
+          "09362",
+          "10320",
+          "10322",
+          "10324",
+          "10340",
+          "10341",
+          "10342",
+          "13260",
+          "13400",
+          "13401",
+          "13402",
+          "13410",
+          "13411",
+          "13412",
+          "13413",
+          "13414",
+          "13416",
+          "13421",
+          "13422",
+          "13423",
+          "13424",
+          "13430",
+          "13431",
+          "13545",
+          "13551",
+          "13662",
+          "13663",
+          "13670",
+          "15310",
+          "15321",
+          "15322",
+          "15323",
+          "16232",
+          "18310",
+          "18311",
+          "18330",
+          "18340",
+          "18700",
+          "20334",
+          "26320",
+          "26321",
+          "26322",
+          "26323",
+          "26324",
+          "26325",
+          "26330",
+          "26340",
+          "26341",
+          "26350",
+          "26351",
+          "26352",
+          "30214",
+          "30601",
+          "30610",
+          "30611",
+          "31820",
+          "31821",
+          "31822",
+          "31823",
+          "31824",
+          "31825",
+          "31826",
+          "31827",
+          "31828",
+          "31840",
+          "31841",
+          "34500",
+          "34501",
+          "34503",
+          "34504",
+          "34505",
+          "36820",
+          "36821",
+          "36822",
+          "36823",
+          "36824",
+          "36825",
+          "36826",
+          "36827",
+          "36828",
+          "36829",
+          "36840",
+          "36841",
+          "36882"
+        ],
+        "counterpart_sections": [
+          "30.5"
+        ],
+        "exception_clauses": [
+          "MINOR_MULTIPLE_EXCEPTION",
+          "ANESTHESIA_DIFFERENT_ACTOR"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 161,
+          "locator": "EBM, PDF page 161",
+          "anchor": "Die Gebührenordnungsposition 02302 ist nicht neben den Gebührenordnungspositionen 01741, 02300, 02301, 02311, 02321, 02322, 02331, 02340 bis 02344, 02350, 02360, 03331, 04331, 04410, 04511 bis 04514, 04516 bis 04520, 04524, 05320, 05330, 05331, 05340, 05341, 06331, 06332, 06340, 06350 bis 06352, 07310, 07311, 07330, 07340, 08311, 08320, 08330 bis 08334, 08340, 08341, 09310, 09315 bis 09317, 09350, 09351, 09360 bis 09362, 10320, 10322, 10324, 10340 bis 10342, 13260, 13400 bis 13402, 13410 bis 13414, 13416, 13421 bis 13424, 13430, 13431, 13545, 13551, 13662, 13663, 13670, 15310, 15321 bis 15323, 16232, 18310, 18311, 18330, 18340, 18700, 20334, 26320 bis 26325, 26330, 26340, 26341, 26350 bis 26352, 30214, 30601, 30610, 30611, 31820 bis 31828, 31840, 31841, 34500, 34501, 34503 bis 34505, 36820 bis 36829, 36840, 36841 und 36882 und nicht neben den Gebührenordnungspositionen des Abschnitts 30.5 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "02302_EXCLUDES_CALENDAR_DAY",
+      "codes": [
+        "02302"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul exact din normă; excepțiile legate se aplică numai cifrelor și actorilor precizați, nu întregii liste.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "calendar_day",
+        "counterpart_codes": [
+          "09329",
+          "10343",
+          "10344"
+        ],
+        "counterpart_sections": []
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 161,
+          "locator": "EBM, PDF page 161",
+          "anchor": "Die Gebührenordnungsposition 02302 ist am Behandlungstag nicht neben den Gebührenordnungspositionen 09329, 10343 und 10344 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "02302_EXCLUDES_EBM_BEHANDLUNGSFALL",
+      "codes": [
+        "02302"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul exact din normă; excepțiile legate se aplică numai cifrelor și actorilor precizați, nu întregii liste.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "ebm_behandlungsfall",
+        "counterpart_codes": [
+          "02310",
+          "02312",
+          "10330",
+          "34291"
+        ],
+        "counterpart_sections": []
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 161,
+          "locator": "EBM, PDF page 161",
+          "anchor": "Die Gebührenordnungsposition 02302 ist im Behandlungsfall nicht neben den Gebührenordnungspositionen 02310, 02312, 10330 und 34291 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "02302_EXCLUDES_POSTOPERATIVE_21_DAYS",
+      "codes": [
+        "02302"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul exact din normă; excepțiile legate se aplică numai cifrelor și actorilor precizați, nu întregii liste.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "postoperative_21_days",
+        "counterpart_codes": [],
+        "counterpart_sections": [
+          "31.4"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 161,
+          "locator": "EBM, PDF page 161",
+          "anchor": "Die Gebührenordnungsposition 02302 ist im Zeitraum von 21 Tagen nach Erbringung einer Leistung des Abschnitts 31.2 nicht neben den Gebührenordnungspositionen des Abschnitts 31.4 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "SECONDARY_WOUND_CONTENT",
+      "codes": [
+        "02310"
+      ],
+      "kind": "required_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "02310 cere o rană cu vindecare secundară/decubit și cel puțin una dintre manevrele obligatorii enumerate; un simplu schimb de pansament nu dovedește automat conținutul.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 161,
+          "locator": "EBM, PDF page 161",
+          "anchor": "02310 Behandlung einer/eines/von sekundär heilenden Wunde(n) und/ oder Decubitalulcus (-ulcera) Obligater Leistungsinhalt - Abtragung von Nekrosen und/oder - Wunddebridement und/oder - Anlage und/oder Wechsel eines Kompressionsverbandes und/oder - Einbringung und/oder Wechsel einer Wundtamponade,"
+        }
+      ]
+    },
+    {
+      "id": "SECONDARY_WOUND_CONTACTS",
+      "codes": [
+        "02310"
+      ],
+      "kind": "contact_frequency",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Minimum trei contacte în contextul relevant; o singură facturare în Behandlungsfall. Aplică excepția video și prevederea Arztfall, nu număra rândurile duplicate ca contacte.",
+      "parameters": {
+        "min_contacts": 3,
+        "max_count": 1,
+        "scope": "ebm_behandlungsfall",
+        "exception_clauses": [
+          "SECONDARY_WOUND_ONE_VIDEO",
+          "MINIMUM_CONTACT_ARZTFALL"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 162,
+          "locator": "EBM, PDF page 162",
+          "anchor": "Mindestens 3 persönliche Arzt-Patienten-Kontakte im Behandlungsfall, Fakultativer Leistungsinhalt - Einbringung, Wechsel oder Entfernung von Antibiotikaketten, - Anlage/Wechsel von Schienenverbänden, einmal im Behandlungsfall"
+        }
+      ]
+    },
+    {
+      "id": "SECONDARY_WOUND_ONE_VIDEO",
+      "codes": [
+        "02310"
+      ],
+      "kind": "contact_exception",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Unul dintre contactele personale cerute poate fi video conform Anlage 31b. Excepția explicită pentru 02310 nu se transferă automat la 02360.",
+      "parameters": {
+        "max_substituted_video_contacts": 1
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 30,
+          "locator": "EBM, PDF page 30",
+          "anchor": "Bei den Gebührenordnungspositionen 02310, 07310, 07311, 07330, 07340, 10330, 18310, 18311, 18330 und 18340, deren Berechnung"
+        },
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 31,
+          "locator": "EBM, PDF page 31",
+          "anchor": "mindestens drei oder mehr persönliche bzw. andere Arzt-Patienten- Kontakte im Behandlungsfall voraussetzt, kann ein persönlicher Arzt- Patienten-Kontakt auch als Arzt-Patienten-Kontakt im Rahmen einer Videosprechstunde gemäß Anlage 31b zum BMV-Ä erfolgen."
+        }
+      ]
+    },
+    {
+      "id": "MINIMUM_CONTACT_ARZTFALL",
+      "codes": [
+        "02310",
+        "02360"
+      ],
+      "kind": "contact_exception",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Numărul minim poate fi îndeplinit și în Arztfall; activitatea între Praxisuri cere contextul și limitele din 4.3.3/4.3.4.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 31,
+          "locator": "EBM, PDF page 31",
+          "anchor": "Gebührenordnungspositionen, die eine Mindestzahl an Arzt- Patienten-Kontakten im Behandlungsfall voraussetzen, sind auch berechnungsfähig, wenn die Mindestzahl an Arzt-Patienten-Kontakten im Arztfall stattfindet."
+        },
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 31,
+          "locator": "EBM, PDF page 31",
+          "anchor": "Sämtliche auf den Behandlungsfall bezogenen Abrechnungsbestimmungen und Berechnungsausschlüsse gelten bei Erbringung von Gebührenordnungspositionen in arztpraxisübergreifender Tätigkeit bezogen auf den Arztfall."
+        }
+      ]
+    },
+    {
+      "id": "SECONDARY_WOUND_EXCLUDED_INDICATIONS",
+      "codes": [
+        "02310"
+      ],
+      "kind": "indication",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "02310 nu este ruta pentru picior diabetic, ulcer venos cronic și celelalte afecțiuni enumerate. Nu echivala orice rană cronică cu această cifră.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 162,
+          "locator": "EBM, PDF page 162",
+          "anchor": "Die Gebührenordnungsposition 02310 kann nicht berechnet werden beim diabetischen Fuß, beim chronisch venösen Ulcus cruris, bei der chronisch venösen Insuffizienz, beim postthrombotischen Syndrom, beim Lymphödem und bei oberflächlichen sowie tiefen Beinvenenthrombosen."
+        }
+      ]
+    },
+    {
+      "id": "02310_EXCLUDES_UNRESOLVED_NEBEN",
+      "codes": [
+        "02310"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul exact din normă; excepțiile legate se aplică numai cifrelor și actorilor precizați, nu întregii liste.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "unresolved_neben",
+        "counterpart_codes": [
+          "02312",
+          "02313",
+          "02350",
+          "15323"
+        ],
+        "counterpart_sections": []
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 162,
+          "locator": "EBM, PDF page 162",
+          "anchor": "Die Gebührenordnungsposition 02310 ist nicht neben den Gebührenordnungspositionen 02312, 02313, 02350 und 15323 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "02310_EXCLUDES_EBM_BEHANDLUNGSFALL",
+      "codes": [
+        "02310"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul exact din normă; excepțiile legate se aplică numai cifrelor și actorilor precizați, nu întregii liste.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "ebm_behandlungsfall",
+        "counterpart_codes": [
+          "02300",
+          "02301",
+          "02302",
+          "02311",
+          "02340",
+          "02341",
+          "02344",
+          "02360",
+          "07340",
+          "10330",
+          "10340",
+          "10341",
+          "10342",
+          "18340",
+          "30214",
+          "34291"
+        ],
+        "counterpart_sections": []
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 162,
+          "locator": "EBM, PDF page 162",
+          "anchor": "Die Gebührenordnungsposition 02310 ist im Behandlungsfall nicht neben den Gebührenordnungspositionen 02300 bis 02302, 02311, 02340, 02341, 02344, 02360, 07340, 10330, 10340 bis 10342, 18340, 30214 und 34291 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "02310_EXCLUDES_POSTOPERATIVE_21_DAYS",
+      "codes": [
+        "02310"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul exact din normă; excepțiile legate se aplică numai cifrelor și actorilor precizați, nu întregii liste.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "postoperative_21_days",
+        "counterpart_codes": [],
+        "counterpart_sections": [
+          "31.4"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 162,
+          "locator": "EBM, PDF page 162",
+          "anchor": "Die Gebührenordnungsposition 02310 ist im Zeitraum von 21 Tagen nach Erbringung einer Leistung des Abschnitts 31.2 nicht neben den Gebührenordnungspositionen des Abschnitts 31.4 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "DIABETIC_FOOT_CONTENT",
+      "codes": [
+        "02311"
+      ],
+      "kind": "required_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "02311 cere îndepărtarea necrozelor extinse și verificarea/prescrierea încălțămintei potrivite; pansamentul singur este insuficient. Unitatea este picior/ședință.",
+      "parameters": {
+        "unit": "leg_per_session"
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 162,
+          "locator": "EBM, PDF page 162",
+          "anchor": "02311 Behandlung des diabetischen Fußes Obligater Leistungsinhalt - Abtragung ausgedehnter Nekrosen der unteren Extremität beim diabetischen Fuß, - Überprüfung und/oder Verordnung von geeignetem Schuhwerk, Fakultativer Leistungsinhalt - Verband, je Bein, je Sitzung"
+        }
+      ]
+    },
+    {
+      "id": "DIABETIC_FOOT_QUALIFICATION",
+      "codes": [
+        "02311"
+      ],
+      "kind": "authorization",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Minimum mediu de 100 pacienți cu diabet/trimestru în cele patru trimestre anterioare cererii și calificarea pentru instruire. Excepția specialităților privește dovada calificării, nu elimină automat pragul de cazuri pentru toată lumea.",
+      "parameters": {
+        "minimum_diabetes_patients_per_quarter": 100,
+        "averaging_quarters_before_application": 4,
+        "training_exception_specialties": [
+          "Chirurgie",
+          "Orthopädie",
+          "Dermatologie"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 162,
+          "locator": "EBM, PDF page 162",
+          "anchor": "Die Gebührenordnungsposition 02311 kann nur dann berechnet werden, wenn der Vertragsarzt - im Durchschnitt der letzten 4 Quartale vor Antragstellung - je Quartal die Behandlung von mindestens 100 Patienten mit Diabetes mellitus durchgeführt hat und die Qualifikation zur Durchführung von programmierten Schulungen für Diabetiker nachweisen kann. Fachärzte für Chirurgie, Orthopädie und Dermatologie können diese Leistung auch dann berechnen, wenn sie die Qualifikation zur Durchführung von programmierten Schulungen für Diabetiker nicht nachweisen können."
+        }
+      ]
+    },
+    {
+      "id": "02311_EXCLUDES_UNRESOLVED_NEBEN",
+      "codes": [
+        "02311"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul exact din normă; excepțiile legate se aplică numai cifrelor și actorilor precizați, nu întregii liste.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "unresolved_neben",
+        "counterpart_codes": [
+          "02300",
+          "02301",
+          "02302",
+          "02313",
+          "02350",
+          "02360",
+          "10340",
+          "10341",
+          "10342",
+          "30214",
+          "30500",
+          "30501"
+        ],
+        "counterpart_sections": []
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 162,
+          "locator": "EBM, PDF page 162",
+          "anchor": "Die Gebührenordnungsposition 02311 ist nicht neben den Gebührenordnungspositionen 02300 bis 02302, 02313, 02350, 02360, 10340 bis 10342, 30214, 30500 und 30501 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "02311_EXCLUDES_EBM_BEHANDLUNGSFALL",
+      "codes": [
+        "02311"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul exact din normă; excepțiile legate se aplică numai cifrelor și actorilor precizați, nu întregii liste.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "ebm_behandlungsfall",
+        "counterpart_codes": [
+          "02310",
+          "02312",
+          "07310",
+          "07311",
+          "07340",
+          "10330",
+          "18310",
+          "18311",
+          "18340"
+        ],
+        "counterpart_sections": []
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 162,
+          "locator": "EBM, PDF page 162",
+          "anchor": "Die Gebührenordnungsposition 02311 ist im Behandlungsfall nicht neben den Gebührenordnungspositionen 02310, 02312, 07310, 07311, 07340, 10330, 18310, 18311 und 18340 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "VENOUS_ULCER_CONTENT",
+      "codes": [
+        "02312"
+      ],
+      "kind": "required_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Necroze, tratament local cu pansamente, bandaje de decongestie și fotografii la început/apoi la patru săptămâni; unitatea este picior/ședință, nu fiecare ulcer.",
+      "parameters": {
+        "unit": "leg_per_session",
+        "photo_interval_weeks": 4
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 163,
+          "locator": "EBM, PDF page 163",
+          "anchor": "02312 Behandlungskomplex eines oder mehrerer chronisch venösen/r Ulcus/Ulcera cruris Obligater Leistungsinhalt - Abtragung von Nekrosen, - Lokaltherapie unter Anwendung von Verbänden, - Entstauende phlebologische Funktionsverbände, - Fotodokumentation zu Beginn der Behandlung, danach alle 4 Wochen, Fakultativer Leistungsinhalt - Thromboseprophylaxe, - Teilbäder, je Bein, je Sitzung"
+        }
+      ]
+    },
+    {
+      "id": "VENOUS_ULCER_CAP",
+      "codes": [
+        "02312"
+      ],
+      "kind": "point_cap",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Plafon de 4.244 puncte în Behandlungsfall și în Arztfall; nu îl transforma într-un plafon separat pentru fiecare picior sau rană.",
+      "parameters": {
+        "cap_points": 4244,
+        "cap_scopes": [
+          "ebm_behandlungsfall",
+          "arztfall"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 163,
+          "locator": "EBM, PDF page 163",
+          "anchor": "Die Gebührenordnungsposition 02312 unterliegt einer Höchstpunktzahl im Behandlungsfall von 4.244 Punkten. Der Höchstwert ist auch auf den Arztfall anzuwenden."
+        }
+      ]
+    },
+    {
+      "id": "02312_EXCLUDES_UNRESOLVED_NEBEN",
+      "codes": [
+        "02312"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul exact din normă; excepțiile legate se aplică numai cifrelor și actorilor precizați, nu întregii liste.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "unresolved_neben",
+        "counterpart_codes": [
+          "02310",
+          "02350",
+          "02360",
+          "07340",
+          "10330",
+          "18340"
+        ],
+        "counterpart_sections": []
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 163,
+          "locator": "EBM, PDF page 163",
+          "anchor": "Die Gebührenordnungsposition 02312 ist nicht neben den Gebührenordnungspositionen 02310, 02350, 02360, 07340, 10330 und 18340 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "02312_EXCLUDES_EBM_BEHANDLUNGSFALL",
+      "codes": [
+        "02312"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul exact din normă; excepțiile legate se aplică numai cifrelor și actorilor precizați, nu întregii liste.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "ebm_behandlungsfall",
+        "counterpart_codes": [
+          "02300",
+          "02301",
+          "02302",
+          "02311",
+          "07310",
+          "07311",
+          "10340",
+          "10341",
+          "10342",
+          "18310",
+          "18311",
+          "30214"
+        ],
+        "counterpart_sections": []
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 163,
+          "locator": "EBM, PDF page 163",
+          "anchor": "Die Gebührenordnungsposition 02312 ist im Behandlungsfall nicht neben den Gebührenordnungspositionen 02300 bis 02302, 02311, 07310, 07311, 10340 bis 10342, 18310, 18311 und 30214 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "COMPRESSION_CONTENT",
+      "codes": [
+        "02313"
+      ],
+      "kind": "required_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Indicațiile sunt cele enumerate; circumferința piciorului se documentează la minimum trei puncte la început și la fiecare patru săptămâni. Unitatea este picior/ședință.",
+      "parameters": {
+        "unit": "leg_per_session",
+        "measurement_points_min": 3,
+        "measurement_interval_weeks": 4
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 163,
+          "locator": "EBM, PDF page 163",
+          "anchor": "02313 Kompressionstherapie bei der chronisch venösen Insuffizienz, beim postthrombotischen Syndrom, bei oberflächlichen und tiefen Beinvenenthrombosen und/oder beim Lymphödem Obligater Leistungsinhalt - Kompressionstherapie, - Dokumentation des Beinumfangs an mindestens drei Messpunkten zu Beginn der Behandlung, danach alle vier Wochen, je Bein, je Sitzung"
+        }
+      ]
+    },
+    {
+      "id": "COMPRESSION_CAP",
+      "codes": [
+        "02313"
+      ],
+      "kind": "point_cap",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Plafon de 3.750 puncte în Behandlungsfall și în Arztfall, nu per rană sau per picior.",
+      "parameters": {
+        "cap_points": 3750,
+        "cap_scopes": [
+          "ebm_behandlungsfall",
+          "arztfall"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 163,
+          "locator": "EBM, PDF page 163",
+          "anchor": "Die Gebührenordnungsposition 02313 unterliegt einer Höchstpunktzahl im Behandlungsfall von 3.750 Punkten. Der Höchstwert ist auch auf den Arztfall anzuwenden."
+        }
+      ]
+    },
+    {
+      "id": "02313_EXCLUDES_UNRESOLVED_NEBEN",
+      "codes": [
+        "02313"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul exact din normă; excepțiile legate se aplică numai cifrelor și actorilor precizați, nu întregii liste.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "unresolved_neben",
+        "counterpart_codes": [
+          "02310",
+          "02311",
+          "02350",
+          "07340",
+          "10330",
+          "18340",
+          "30214",
+          "30501"
+        ],
+        "counterpart_sections": []
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 163,
+          "locator": "EBM, PDF page 163",
+          "anchor": "Die Gebührenordnungsposition 02313 ist nicht neben den Gebührenordnungspositionen 02310, 02311, 02350, 07340, 10330, 18340, 30214 und 30501 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "WOUND_REPORT_TO_HAUSARZT",
+      "codes": [
+        "02311",
+        "02312",
+        "02313"
+      ],
+      "kind": "documentation",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Raportarea către Hausarzt este condiționată de context: propria prestație Hausarzt, Auftrag definit, lipsa unui Hausarzt declarat și consimțământul au prevederi distincte. Nu propune un raport facturabil doar pentru a satisface obligația de comunicare.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 22,
+          "locator": "EBM, PDF page 22",
+          "anchor": "Die nachfolgend beschriebene Übermittlung der Behandlungsdaten und Befunde in den unten genannten Fällen setzt gemäß § 73 Abs. 1b SGB V voraus, dass hierzu eine schriftliche Einwilligung des Versicherten vorliegt, die widerrufen werden kann. Gibt der Versicherte auf Nachfrage keinen Hausarzt an bzw. ist eine schriftliche Einwilligung zur Information des Hausarztes gemäß § 73 Abs. 1b SGB V nicht erteilt, sind die nachstehend aufgeführten Gebührenordnungspositionen auch ohne schriftliche Mitteilung an den Hausarzt berechnungsfähig. Unbeschadet der grundsätzlichen Verpflichtung zur Übermittlung von Behandlungsdaten sind die nachfolgenden Gebührenordnungspositionen insbesondere nur dann vollständig erbracht und können nur berechnet werden, wenn mindestens ein Bericht im Behandlungsfall entsprechend der Gebührenordnungsposition 01600 bzw. ein Brief entsprechend der Gebührenordnungsposition 01601 an den Hausarzt erfolgt ist, sofern sie nicht vom Hausarzt selbst erbracht worden sind, es sei denn die Leistungen werden auf Überweisung zur Durchführung von Auftragsleistungen (Indikations- oder Definitionsauftrag) gemäß § 24 Abs. 3 Bundesmantelvertrag-Ärzte (BMV-Ä) erbracht: 02311, 02312, 02313,"
+        }
+      ]
+    },
+    {
+      "id": "VAC_CONTENT",
+      "codes": [
+        "02314"
+      ],
+      "kind": "required_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Contact personal și montarea/schimbarea sistemului imediat după îngrijirea rănii, pentru închiderea secundară intenționată; instruirea sau schimbarea recipientului singure nu înlocuiesc conținutul obligatoriu.",
+      "parameters": {
+        "max_count": 1,
+        "scope": "calendar_day"
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 163,
+          "locator": "EBM, PDF page 163",
+          "anchor": "02314 Zusatzpauschale für die Vakuumversiegelungstherapie zum intendierten sekundären Wundverschluss gemäß Nr. 33 der Anlage I \"Anerkannte Untersuchungs- oder Behandlungsmethoden\" der Richtlinie Methoden vertragsärztliche Versorgung des Gemeinsamen Bundesausschusses Obligater Leistungsinhalt - Persönlicher Arzt-Patienten-Kontakt, - Anlage und/oder Wechsel eines Systems zur Vakuumversiegelung im unmittelbaren Anschluss an eine Wundversorgung, 17,20 € 135 Punkte"
+        },
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 164,
+          "locator": "EBM, PDF page 164",
+          "anchor": "Fakultativer Leistungsinhalt - Einweisung des Patienten in die Pumpenbedienung, - interdisziplinäre Abstimmung, - Einstellen der Pumpe, - Behälterwechsel, einmal am Behandlungstag"
+        }
+      ]
+    },
+    {
+      "id": "VAC_INDICATION",
+      "codes": [
+        "02314"
+      ],
+      "kind": "indication",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Necesită factori de risc ai rănii/pacientului pentru care tratamentul standard nu promite vindecare suficientă; nu orice rană este eligibilă pentru VAC.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 164,
+          "locator": "EBM, PDF page 164",
+          "anchor": "Die Gebührenordnungsposition 02314 ist nur bei Patienten berechnungsfähig, bei denen aufgrund wund- oder patientenspezifischer Risikofaktoren unter einer Standardwundbehandlung keine ausreichende Heilung zu erwarten ist."
+        }
+      ]
+    },
+    {
+      "id": "VAC_PROVIDER_SCOPE",
+      "codes": [
+        "02314"
+      ],
+      "kind": "authorization",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Verifică lista specialităților/calificărilor admise și distincția primar/secundar; prezența aparatului în Praxis nu dovedește calificarea.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 157,
+          "locator": "EBM, PDF page 157",
+          "anchor": "Die Gebührenordnungsposition 02314 kann nur von - Fachärzten für Allgemeinmedizin, - Fachärzten für Innere und Allgemeinmedizin, - Praktische Ärzten, - Ärzten ohne Gebietsbezeichnung, - Fachärzten für Innere Medizin ohne Schwerpunktbezeichnung, die gegenüber dem Zulassungsausschuss ihre Teilnahme an der hausärztlichen Versorgung gemäß § 73 Abs. 1a SGB V erklärt haben,"
+        },
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 158,
+          "locator": "EBM, PDF page 158",
+          "anchor": "- Fachärzten für Chirurgie, - Fachärzten für Kinderchirurgie, - Fachärzten für Plastische und Ästhetische Chirurgie, - Fachärzten für Frauenheilkunde und Geburtshilfe, - Fachärzten für Hals-, Nasen- und Ohrenheilkunde, - Fachärzten für Haut- und Geschlechtskrankheiten, - Fachärzten für Innere Medizin und Angiologie, - Fachärzten für Innere Medizin und Endokrinologie und Diabetologie, - Fachärzten für Mund-, Kiefer- und Gesichtschirurgie, - Fachärzten für Neurochirurgie, - Fachärzten für Orthopädie und Unfallchirurgie, - Fachärzten für Urologie, - Vertragsärzten mit der Zusatzweiterbildung „Diabetologie“ oder der Bezeichnung „Diabetologe Deutsche Diabetes Gesellschaft (DDG)“ oder der Zusatzweiterbildung Phlebologie berechnet werden."
+        },
+        {
+          "source": "GBA",
+          "path": "../sources/gba-mvv-rl-20260909.pdf",
+          "sha256": "3db6b17738eb917cce2400c012735a62cacd28145c927d95c47868cc31bc5fd2",
+          "url": "https://www.g-ba.de/downloads/62-492-4212/MVV-RL_2026-06-18_iK-2026-09-09.pdf",
+          "page": 66,
+          "locator": "GBA, PDF page 66",
+          "anchor": "Zur Durchführung der Vakuumversiegelungstherapie von Wunden müssen folgende Bedingungen erfüllt sein: 1. Zur Durchführung der Vakuumversiegelungstherapie zum intendierten primären Wundverschluss berechtigt sind die folgenden operativ tätigen Fachärztinnen und Fachärzte: • Fachärztinnen und Fachärzte im Gebiet der Chirurgie, • Fachärztinnen und Fachärzte für Frauenheilkunde und Geburtshilfe, • Fachärztinnen und Fachärzte für Hals-, Nasen- und Ohrenheilkunde, • Fachärztinnen und Fachärzte für Mund-, Kiefer- Gesichtschirurgie, • Fachärztinnen und Fachärzte für Neurochirurgie, • Fachärztinnen und Fachärzte für Haut- und Geschlechtskrankheiten und für Urologie. Zur Durchführung der Vakuumversiegelungstherapie zum intendierten sekundären Wundverschluss berechtigt sind zusätzlich zu den zuvor genannten folgende weitere Fachärztinnen und Fachärzte: • Fachärztinnen und Fachärzte für Allgemeinmedizin, • Fachärztinnen und Fachärzte für Innere Medizin und Angiologie, • Fachärztinnen und Fachärzte für Innere Medizin und Endokrinologie und Diabetologie, • Fachärztinnen und Fachärzte mit der Zusatzweiterbildung „Diabetologie“ oder der Bezeichnung „Diabetologe Deutsche Diabetes Gesellschaft (DDG)“, • Fachärztinnen und Fachärzte mit der Zusatzweiterbildung Phlebologie. Die verwendeten Facharzt-, Schwerpunkt- und Zusatzbezeichnungen richten sich nach der (Muster-)Weiterbildungsordnung der Bundesärztekammer und schließen auch diejenigen Ärztinnen und Ärzte ein, welche eine entsprechende Bezeichnung nach altem Recht führen."
+        }
+      ]
+    },
+    {
+      "id": "VAC_PLAN_MONITORING",
+      "codes": [
+        "02314"
+      ],
+      "kind": "documentation",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "VAC trebuie integrat într-un plan medical, cu controale regulate ale vindecării și reevaluarea indicației, documentate în fișă.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "source": "GBA",
+          "path": "../sources/gba-mvv-rl-20260909.pdf",
+          "sha256": "3db6b17738eb917cce2400c012735a62cacd28145c927d95c47868cc31bc5fd2",
+          "url": "https://www.g-ba.de/downloads/62-492-4212/MVV-RL_2026-06-18_iK-2026-09-09.pdf",
+          "page": 67,
+          "locator": "GBA, PDF page 67",
+          "anchor": "Die Durchführung der Vakuumversiegelungstherapie ist in ein medizinisches Behandlungskonzept einzubetten. Dies schließt neben den Verbandswechseln eine regelmäßige ärztliche Kontrolle der Wundheilung sowie Überprüfung der Indikation im Behandlungsverlauf ein. 3. Die Indikationsstellung, die regelmäßige Kontrolle der Wundheilung sowie die Überprüfung der Indikation im Behandlungsverlauf sind in der Patientenakte zu dokumentieren."
+        }
+      ]
+    },
+    {
+      "id": "VAC_CERTIFIED_PRODUCTS",
+      "codes": [
+        "02314"
+      ],
+      "kind": "equipment",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Sistemul și consumabilele trebuie să fie dispozitive medicale certificate conform cerinței G-BA.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "source": "GBA",
+          "path": "../sources/gba-mvv-rl-20260909.pdf",
+          "sha256": "3db6b17738eb917cce2400c012735a62cacd28145c927d95c47868cc31bc5fd2",
+          "url": "https://www.g-ba.de/downloads/62-492-4212/MVV-RL_2026-06-18_iK-2026-09-09.pdf",
+          "page": 67,
+          "locator": "GBA, PDF page 67",
+          "anchor": "Als apparative Anforderungen für die Vakuumversiegelungstherapie sind zertifizierte Medizinprodukte zu verwenden; diese schließen sowohl das System zur Erzeugung des Unterdrucks, als auch die nötigen Verbrauchsmaterialien ein."
+        }
+      ]
+    },
+    {
+      "id": "02314_EXCLUDES_CALENDAR_DAY",
+      "codes": [
+        "02314"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul exact din normă; excepțiile legate se aplică numai cifrelor și actorilor precizați, nu întregii liste.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "calendar_day",
+        "counterpart_codes": [
+          "31401",
+          "36401"
+        ],
+        "counterpart_sections": []
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 164,
+          "locator": "EBM, PDF page 164",
+          "anchor": "Die Gebührenordnungsposition 02314 ist am Behandlungstag nicht neben den Gebührenordnungspositionen 31401 und 36401 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "40901_VAC_COST",
+      "codes": [
+        "40901"
+      ],
+      "kind": "cost_frequency",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Cost de material legat de 02314, după suprafața rănii: 40901 până la 20 cm² inclusiv, 40902 peste 20 cm²; cel mult trei facturări pe săptămână calendaristică pentru cifra prevăzută.",
+      "parameters": {
+        "base_codes": [
+          "02314"
+        ],
+        "area_band": "at_most_20_cm2",
+        "max_count": 3,
+        "scope": "calendar_week"
+      },
+      "notes": [
+        "Schimbarea codului după suprafață nu este declarată aici ca resetare sau multiplicare a limitei; istoricul comun/combinațiile speciale necesită revizie. Nu propune ambele coduri pentru aceeași prestație doar din două descrieri ale aceleiași răni."
+      ],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 1075,
+          "locator": "EBM, PDF page 1075",
+          "anchor": "40901 Kostenpauschale für die Sachkosten im Zusammenhang mit der Durchführung der Leistung entsprechend der Gebührenordnungsposition 02314 bei einer Wundfläche bis einschließlich 20 cm 2, je durchgeführter Leistung, höchstens dreimal in der Kalenderwoche"
+        }
+      ]
+    },
+    {
+      "id": "40902_VAC_COST",
+      "codes": [
+        "40902"
+      ],
+      "kind": "cost_frequency",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Cost de material legat de 02314, după suprafața rănii: 40901 până la 20 cm² inclusiv, 40902 peste 20 cm²; cel mult trei facturări pe săptămână calendaristică pentru cifra prevăzută.",
+      "parameters": {
+        "base_codes": [
+          "02314"
+        ],
+        "area_band": "above_20_cm2",
+        "max_count": 3,
+        "scope": "calendar_week"
+      },
+      "notes": [
+        "Schimbarea codului după suprafață nu este declarată aici ca resetare sau multiplicare a limitei; istoricul comun/combinațiile speciale necesită revizie. Nu propune ambele coduri pentru aceeași prestație doar din două descrieri ale aceleiași răni."
+      ],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 1075,
+          "locator": "EBM, PDF page 1075",
+          "anchor": "40902 Kostenpauschale für die Sachkosten im Zusammenhang mit der Durchführung der Leistung entsprechend der Gebührenordnungsposition 02314 bei einer Wundfläche > 20 cm 2, je durchgeführter Leistung, höchstens dreimal in der Kalenderwoche"
+        }
+      ]
+    },
+    {
+      "id": "VAC_PUMP_COST",
+      "codes": [
+        "40903"
+      ],
+      "kind": "cost_frequency",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Costul pompei se raportează la zi calendaristică și contextul 02314; nu presupune că 02314 trebuie repetat pentru fiecare zi de utilizare a pompei.",
+      "parameters": {
+        "related_service_codes": [
+          "02314"
+        ],
+        "scope": "calendar_day"
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 1075,
+          "locator": "EBM, PDF page 1075",
+          "anchor": "40903 Kostenpauschale für die Vakuumpumpe im Zusammenhang mit der Durchführung der Leistung entsprechend der Gebührenordnungsposition 02314, je Kalendertag"
+        }
+      ]
+    },
+    {
+      "id": "FIXING_BANDAGE_CONTENT",
+      "codes": [
+        "02350"
+      ],
+      "kind": "required_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "02350 cere includerea unei articulații mari și material neelastic, modelabil individual, nereutilizabil; un pansament obișnuit nu este echivalent.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 171,
+          "locator": "EBM, PDF page 171",
+          "anchor": "02350 Fixierender Verband mit Einschluss mindestens eines großen Gelenkes unter Verwendung unelastischer, individuell anmodellierbarer, nicht weiter verwendbarer Materialien"
+        }
+      ]
+    },
+    {
+      "id": "02350_EXCLUDES_UNRESOLVED_NEBEN",
+      "codes": [
+        "02350"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul exact din normă; excepțiile legate se aplică numai cifrelor și actorilor precizați, nu întregii liste.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "unresolved_neben",
+        "counterpart_codes": [
+          "02300",
+          "02301",
+          "02302",
+          "02310",
+          "02311",
+          "02312",
+          "02313",
+          "10340",
+          "10341",
+          "10342",
+          "27332",
+          "30214"
+        ],
+        "counterpart_sections": []
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 171,
+          "locator": "EBM, PDF page 171",
+          "anchor": "Die Gebührenordnungsposition 02350 ist nicht neben den Gebührenordnungspositionen 02300 bis 02302, 02310 bis 02313, 10340 bis 10342, 27332 und 30214 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "02350_EXCLUDES_CALENDAR_DAY",
+      "codes": [
+        "02350"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul exact din normă; excepțiile legate se aplică numai cifrelor și actorilor precizați, nu întregii liste.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "calendar_day",
+        "counterpart_codes": [
+          "31614",
+          "31615",
+          "31616",
+          "31617",
+          "31618",
+          "31619",
+          "31620",
+          "31621"
+        ],
+        "counterpart_sections": []
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 171,
+          "locator": "EBM, PDF page 171",
+          "anchor": "Die Gebührenordnungsposition 02350 ist am Behandlungstag nicht neben den Gebührenordnungspositionen 31614 bis 31621 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "02350_EXCLUDES_EBM_BEHANDLUNGSFALL",
+      "codes": [
+        "02350"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul exact din normă; excepțiile legate se aplică numai cifrelor și actorilor precizați, nu întregii liste.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "ebm_behandlungsfall",
+        "counterpart_codes": [
+          "07310",
+          "07311",
+          "07330",
+          "07340",
+          "10330",
+          "18310",
+          "18311",
+          "18330",
+          "18340",
+          "34291"
+        ],
+        "counterpart_sections": []
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 171,
+          "locator": "EBM, PDF page 171",
+          "anchor": "Die Gebührenordnungsposition 02350 ist im Behandlungsfall nicht neben den Gebührenordnungspositionen 07310, 07311, 07330, 07340, 10330, 18310, 18311, 18330, 18340 und 34291 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "02350_EXCLUDES_POSTOPERATIVE_21_DAYS",
+      "codes": [
+        "02350"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul exact din normă; excepțiile legate se aplică numai cifrelor și actorilor precizați, nu întregii liste.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "postoperative_21_days",
+        "counterpart_codes": [
+          "31600",
+          "31614",
+          "31615",
+          "31616",
+          "31617",
+          "31618",
+          "31619",
+          "31620",
+          "31621"
+        ],
+        "counterpart_sections": []
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 171,
+          "locator": "EBM, PDF page 171",
+          "anchor": "Die Gebührenordnungsposition 02350 ist im Zeitraum von 21 Tagen nach Erbringung einer Leistung des Abschnitts 31.2 nicht neben den Gebührenordnungspositionen 31600 und 31614 bis 31621 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "THERAPEUTIC_LOCAL_ANESTHETIC",
+      "codes": [
+        "02360"
+      ],
+      "kind": "required_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "02360 este tratament al tulburărilor funcționale/durerii cu minimum trei contacte personale, o singură dată în caz; nu este cifra anesteziei locale necesare unei suturi.",
+      "parameters": {
+        "min_contacts": 3,
+        "max_count": 1,
+        "scope": "ebm_behandlungsfall"
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 171,
+          "locator": "EBM, PDF page 171",
+          "anchor": "02360 Behandlung mit Lokalanästhetika Obligater Leistungsinhalt - Mindestens 3 persönliche Arzt-Patienten-Kontakte im Behandlungsfall, - Anwendung von Lokalanästhetika - zur Behandlung funktioneller Störungen und/oder - zur Schmerzbehandlung, einmal im Behandlungsfall"
+        }
+      ]
+    },
+    {
+      "id": "02360_EXCLUDES_UNRESOLVED_NEBEN",
+      "codes": [
+        "02360"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul exact din normă; excepțiile legate se aplică numai cifrelor și actorilor precizați, nu întregii liste.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "unresolved_neben",
+        "counterpart_codes": [
+          "01832",
+          "02300",
+          "02301",
+          "02302",
+          "02311",
+          "02312",
+          "06350",
+          "06351",
+          "06352",
+          "09315",
+          "09316",
+          "09317",
+          "09351",
+          "09360",
+          "09361",
+          "09362",
+          "10340",
+          "10341",
+          "10342",
+          "15321",
+          "15322",
+          "15323",
+          "26350",
+          "26351",
+          "26352",
+          "30214",
+          "34503",
+          "34505"
+        ],
+        "counterpart_sections": []
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 171,
+          "locator": "EBM, PDF page 171",
+          "anchor": "Die Gebührenordnungsposition 02360 ist nicht neben den Gebührenordnungspositionen 01832, 02300 bis 02302, 02311, 02312, 06350 bis 06352, 09315 bis 09317, 09351, 09360 bis 09362, 10340 bis 10342, 15321 bis 15323, 26350 bis 26352, 30214, 34503 und 34505 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "02360_EXCLUDES_EBM_BEHANDLUNGSFALL",
+      "codes": [
+        "02360"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul exact din normă; excepțiile legate se aplică numai cifrelor și actorilor precizați, nu întregii liste.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "ebm_behandlungsfall",
+        "counterpart_codes": [
+          "02310",
+          "02325",
+          "02326",
+          "07310",
+          "07311",
+          "07320",
+          "07330",
+          "07340",
+          "10330",
+          "16232",
+          "18310",
+          "18311",
+          "18320",
+          "18330",
+          "18331",
+          "18340",
+          "34291"
+        ],
+        "counterpart_sections": []
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 171,
+          "locator": "EBM, PDF page 171",
+          "anchor": "Die Gebührenordnungsposition 02360 ist im Behandlungsfall nicht neben den Gebührenordnungspositionen 02310, 02325, 02326, 07310, 07311, 07320, 07330, 07340, 10330, 16232, 18310, 18311, 18320, 18330, 18331, 18340 und 34291 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "POSTOP_ORDINARY_ROUTE",
+      "codes": [
+        "31600"
+      ],
+      "kind": "required_content",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Ruta obișnuită: intervenție 31.2 și Überweisung a operatorului, control și discutarea constatărilor; schimburile de pansament/drenaj sunt componente facultative incluse.",
+      "parameters": {
+        "max_count": 1,
+        "scope": "postoperative_21_days",
+        "exception_clauses": [
+          "POSTOP_HYBRID_2026",
+          "POSTOP_HOSPITAL_REFERRAL_EXCEPTION"
+        ]
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 706,
+          "locator": "EBM, PDF page 706",
+          "anchor": "31600 Postoperative Behandlung durch den Hausarzt nach der Erbringung eines Eingriffs des Abschnitts 31.2 bei Überweisung durch den Operateur Obligater Leistungsinhalt - Befundkontrolle(n), - Befundbesprechung(en), Fakultativer Leistungsinhalt - Verbandswechsel, - Anlage und/oder Wechsel und/oder Ändern eines immobilisierenden Verbandes, - Drainagenwechsel, - Drainagenentfernung, - Einleitung und/oder Kontrolle der medikamentösen Therapie, einmalig im Zeitraum von 21 Tagen nach Erbringung einer Leistung des Abschnitts 31.2"
+        }
+      ]
+    },
+    {
+      "id": "POSTOP_DATES_OWNERSHIP",
+      "codes": [
+        "31600"
+      ],
+      "kind": "postoperative_context",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Documentează data operației; în zilele postoperatorii 1–21 numai un complex 31.4. Participarea mai multor medici cere acordul și declarația celui care facturează; nu multiplică prestația.",
+      "parameters": {
+        "first_postoperative_day": 1,
+        "last_postoperative_day": 21,
+        "max_count": 1
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 705,
+          "locator": "EBM, PDF page 705",
+          "anchor": "Die Gebührenordnungspositionen des Abschnittes 31.4 können vom Operateur oder auf Überweisung des Operateurs, mit Angabe der Gebührenordnungsposition für die postoperative Behandlung, vom weiterbehandelnden Vertragsarzt nach ambulanter Durchführung eines Eingriffs des Abschnittes 31.2 berechnet werden. Der die Gebührenordnungspositionen des Abschnitts 31.4 abrechnende Vertragsarzt hat auf dem Abrechnungsschein das Datum des zu Grunde liegenden operativen Eingriffes zu dokumentieren. 2. In dem Zeitraum vom 1. bis zum 21. postoperativen Tag kann nur einmalig eine Gebührenordnungsposition des Abschnittes 31.4 abgerechnet werden oder eine Überweisung zur Weiterbehandlung durch einen anderen Vertragsarzt erfolgen. 3. Haben an der Erbringung einer Leistung entsprechend einer Gebührenordnungsposition des Abschnittes 31.4 mehrere Ärzte mitgewirkt, so hat der die Gebührenordnungsposition des Abschnittes 31.4 abrechnende Arzt in einer der Quartalsabrechnung beizufügenden und von ihm unterzeichneten Erklärung zu bestätigen, dass er mit den anderen Ärzten eine Vereinbarung darüber getroffen hat, wonach nur er allein in den jeweiligen Fällen diese Leistung abrechnet."
+        }
+      ]
+    },
+    {
+      "id": "POSTOP_HAUSARZT_SCOPE",
+      "codes": [
+        "31600"
+      ],
+      "kind": "actor_scope",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Pentru sectorul Hausarzt, din 31.4 este admis numai 31600; după operații simultane se aplică regula intervenției cu valoarea cea mai mare.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 705,
+          "locator": "EBM, PDF page 705",
+          "anchor": "Nach einem Simultaneingriff erfolgt die Abrechnung des Nachbehandlungskomplexes entsprechend dem höchstwertigsten Eingriff. 5. Für Vertragsärzte des hausärztlichen Versorgungsbereichs ist nur die Gebührenordnungsposition 31600 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "POSTOP_HYBRID_2026",
+      "codes": [
+        "31600"
+      ],
+      "kind": "conditional_route",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Ruta Hybrid-DRG are excepția temporară până la 31.12.2026, cu marcaj 88110 și condiții OPS; nu activa această excepție nelimitat în 2027.",
+      "parameters": {
+        "expires_on": "2026-12-31",
+        "marker_code": "88110"
+      },
+      "notes": [
+        "Sunt necesare catalogul Hybrid-DRG și maparea OPS aplicabile; nu sunt modelate complet aici."
+      ],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 705,
+          "locator": "EBM, PDF page 705",
+          "anchor": "Postoperative Behandlungen im Zusammenhang mit der Durchführung von Leistungen gemäß § 115f Absatz 1 Satz 1 Nummer 2 SGB V (Hybrid-DRG-Leistungskatalog) sind von Vertragsärzten zeitlich befristet bis 31. Dezember 2026 nach den Gebührenordnungspositionen der Abschnitte 31.4.2 und 31.4.3 unter Angabe der Gebührenordnungsposition 88110 berechnungsfähig."
+        },
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 705,
+          "locator": "EBM, PDF page 705",
+          "anchor": "Die berechnungsfähige Gebührenordnungsposition des Abschnittes 31.4.3 richtet sich nach dem OPS-Kode der durchgeführten Leistung gemäß § 115f Absatz 1 Satz 1 Nummer 2 SGB V (Hybrid-DRG- Leistungskatalog) und dessen Zuordnung gemäß Anhang 2 zum EBM. Für nicht im Anhang 2 zum EBM aufgeführte OPS-Kodes gemäß § 115f Absatz 1 Satz 1 Nummer 2 SGB V (Hybrid-DRG-Leistungskatalog) ist für die postoperative Behandlung durch Vertragsärzte des hausärztlichen Versorgungsbereichs die Gebührenordnungsposition 31600 abweichend von der Leistungslegende und unter Angabe der Gebührenordnungsposition 88110 berechnungsfähig."
+        }
+      ]
+    },
+    {
+      "id": "POSTOP_HOSPITAL_REFERRAL_EXCEPTION",
+      "codes": [
+        "31600"
+      ],
+      "kind": "conditional_route",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Pentru prestația Hybrid-DRG efectuată de spital, norma permite complexul fără Überweisung a operatorului, o singură dată per intervenție. Nu extinde excepția la orice operație spitalicească.",
+      "parameters": {},
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 706,
+          "locator": "EBM, PDF page 706",
+          "anchor": "Bei Durchführung einer Leistung gemäß § 115f Absatz 1 Satz 1 Nummer 2 SGB V (Hybrid-DRG-Leistungskatalog) durch ein Krankenhaus können die Gebührenordnungspositionen des Abschnittes 31.4.2 bzw. 31.4.3 abweichend von der Leistungslegende und Satz 1 der Nr. 1 der Präambel 31.4.1 ohne Vorliegen einer Überweisung des Operateurs einmalig je Eingriff berechnet werden."
+        }
+      ]
+    },
+    {
+      "id": "31600_EXCLUDES_POSTOPERATIVE_21_DAYS",
+      "codes": [
+        "31600"
+      ],
+      "kind": "combination",
+      "status": "draft",
+      "review": "pending",
+      "summary_ro": "Excludere cu intervalul exact din normă; excepțiile legate se aplică numai cifrelor și actorilor precizați, nu întregii liste.",
+      "parameters": {
+        "relation": "excludes",
+        "scope": "postoperative_21_days",
+        "counterpart_codes": [
+          "02300",
+          "02301",
+          "02302",
+          "02310",
+          "02340",
+          "02341",
+          "02344",
+          "02350",
+          "02360"
+        ],
+        "counterpart_sections": []
+      },
+      "notes": [],
+      "evidence": [
+        {
+          "source": "EBM",
+          "path": "../sources/ebm-2026-q4.pdf",
+          "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+          "url": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+          "page": 706,
+          "locator": "EBM, PDF page 706",
+          "anchor": "Die Gebührenordnungsposition 31600 ist im Zeitraum von 21 Tagen nach Erbringung einer Leistung des Abschnitts 31.2 nicht neben den Gebührenordnungspositionen 02300 bis 02302, 02310, 02340, 02341, 02344, 02350 und 02360 berechnungsfähig."
+        }
+      ]
+    }
+  ],
+  "scope_notes": [
+    "Partial national EBM and GBA review only. No GOAE/HZV fallback or DURIA writeback.",
+    "Wound/leg/session/patient/actor and case contexts must be distinct; do not count text rows as treatments.",
+    "Exceptions apply to their named pairs and context only, never to every exclusion on the same code.",
+    "Unqualified nicht neben is unresolved. Explicit case/day/postoperative restrictions keep their scope.",
+    "General provisions, professional review, applicable OPS/Hybrid-DRG catalogues and integration remain necessary."
+  ]
+}

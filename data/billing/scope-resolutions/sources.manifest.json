@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0.0",
+  "artifacts": [
+    {
+      "path": "baek-neben-20261027.html",
+      "source_url": "https://www.bundesaerztekammer.de/themen/aerzte/honorar/goae/goae-ratgeber/abschnitt-b-grundleistungen-und-allgemeine-leistungen/neben-gebuehrenrechtlich",
+      "retrieved_on": "2026-10-27",
+      "published_on": "2011-06-03",
+      "sha256": "f4782f5cec30b868a1a9e0965bb5a1637f6617948f61c069af3289056deeb0e5",
+      "bytes": 77486,
+      "role": "baek_interpretive_guidance_not_statutory_amendment"
+    },
+    {
+      "path": "baek-zuschlaege-20261027.html",
+      "source_url": "https://www.bundesaerztekammer.de/themen/aerzte/honorar/goae/goae-ratgeber/abschnitt-b-grundleistungen-und-allgemeine-leistungen/zuschlaege-kombinieren",
+      "retrieved_on": "2026-10-27",
+      "published_on": "2006-07-28",
+      "sha256": "c28a29ee7e4aa14e53408e450f8ce9e6b57518ef3a3e6e04743bb14eff15c2a3",
+      "bytes": 122459,
+      "role": "baek_interpretive_guidance_not_statutory_amendment"
+    },
+    {
+      "path": "kvb-infos-2017-10.pdf",
+      "source_url": "https://www.kvb.de/fileadmin/kvb/Mitglieder/Service/Informationsservice/KVB-INFOS/2017-DS/KVB-INFOS-10-2017.pdf",
+      "retrieved_on": "2026-10-27",
+      "publication_issue": "10/2017",
+      "sha256": "1b7828957e9b1385f2f0fa66fee80c3488eeecf9d9f4cc79683971708c4b697e",
+      "bytes": 368648,
+      "role": "historical_kv_explanation_exact_pairs_cross_checked_against_ebm_q4_2026"
+    },
+    {
+      "path": "kvhb-ebm-glossar-20261027.html",
+      "source_url": "https://www.kvhb.de/praxen/abrechnung-honorar/ebm-glossar",
+      "retrieved_on": "2026-10-27",
+      "sha256": "a1e8cfebf55b5f410d6c535c47364745efef100146aa40756f09aafeef349fc3",
+      "bytes": 134828,
+      "role": "official_kv_ebm_interpretive_guidance_not_regional_tariff"
+    },
+    {
+      "path": "kvwl-sitzung-20261027.html",
+      "source_url": "https://www.kvwl.de/mitglieder/abrechnung-honorar/ebm/ebm-aenderungen-und-hinweise/hinweise-zu-bestehenden-regelungen",
+      "retrieved_on": "2026-10-27",
+      "sha256": "4bb3a602aff4a8611abb36addfa096d249729365eb4841dc1f887091b2a1ac2b",
+      "bytes": 374195,
+      "role": "official_kv_ebm_interpretive_guidance_not_regional_tariff"
+    }
+  ]
+}

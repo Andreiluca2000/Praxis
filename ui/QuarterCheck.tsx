@@ -3,6 +3,8 @@ import { open } from '@tauri-apps/plugin-dialog';
 import { useMemo, useState } from 'react';
 import type { PracticeSettings, RulePackage } from '../src/domain/types.js';
 import { checkQuarter, type QuarterReport } from '../src/kvdt/quarter-check.js';
+import { CombinationsPanel } from './CombinationsPanel.js';
+import { loadPairDossier } from './pairDossier.js';
 
 const KIND: Record<string, string> = {
   keine_diagnose: 'Keine Diagnose', diagnose_ohne_sicherheit: 'Diagnose ohne Sicherheit', leistung_ohne_datum: 'Leistung ohne Datum',
@@ -19,6 +21,7 @@ export function QuarterCheck({ settings, rules, mode }: { settings: PracticeSett
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [filter, setFilter] = useState<'alle' | 'fehler'>('fehler');
+  const [dossierError, setDossierError] = useState('');
 
   async function load() {
     setError('');
@@ -30,7 +33,10 @@ export function QuarterCheck({ settings, rules, mode }: { settings: PracticeSett
       setMeta({ name: r.name, patients: r.patients, dropped: r.dropped, invalid: r.invalid });
       // Prüfung im nächsten Takt, damit die Anzeige „prüft …“ sichtbar wird.
       await new Promise((ok) => setTimeout(ok, 0));
-      setReport(checkQuarter(Uint8Array.from(r.data), settings, rules, mode));
+      // Paar-Dossier ist Entwurf: nur im Simulator laden und prüfen.
+      const pairs = mode === 'simulation' ? await loadPairDossier() : null;
+      setDossierError(pairs && 'error' in pairs ? pairs.error : '');
+      setReport(checkQuarter(Uint8Array.from(r.data), settings, rules, mode, pairs && !('error' in pairs) ? pairs : null));
     } catch (e) { setError(String(e)); } finally { setBusy(false); }
   }
 
@@ -79,6 +85,8 @@ export function QuarterCheck({ settings, rules, mode }: { settings: PracticeSett
           </table>
         </section>
       )}
+      {report && dossierError && <section className="card"><p className="error" role="alert">Kombinationsprüfung (Entwurf) nicht verfügbar: {dossierError}</p></section>}
+      {report?.combinations && <CombinationsPanel combinations={report.combinations} />}
     </div>
   );
 }

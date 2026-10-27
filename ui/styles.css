@@ -88,3 +88,8 @@ th, td { text-align:left; padding:6px 8px; border-bottom:1px solid var(--line); 
 dl.kv { display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; font-size:14px; }
 dl.kv dt { color:var(--muted); }
 dl.kv dd { margin:0; word-break:break-all; }
+
+/* Belege der Kombinationsprüfung (Normtext als Zitat) */
+details > summary { cursor:pointer; color:var(--accent); font-size:13px; margin-top:4px; }
+ul.evidence { list-style:none; margin:6px 0; padding:0; display:grid; gap:6px; }
+ul.evidence blockquote { margin:2px 0 0; padding:4px 10px; border-left:3px solid var(--line); background:var(--bg); font-size:13px; }

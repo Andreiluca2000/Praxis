@@ -17,6 +17,8 @@ export interface XdtMapping {
     identity_fields_to_drop: string[];
     service_date: string;
     service_code: string;
+    /** Uhrzeit zur vorigen Ziffer = Sitzungskennung (optional, ältere Zuordnungen kennen sie nicht). */
+    service_time?: string;
     diagnosis_code: string;
     diagnosis_certainty: string;
     diagnosis_side: string;
@@ -42,6 +44,7 @@ export const DEFAULT_MAPPING: XdtMapping = {
     identity_fields_to_drop: ['3100', '3101', '3102', '3103', '3104', '3105', '3106', '3107', '3108', '3110', '3112', '3113', '3114', '3622', '3626', '3628'],
     service_date: '5000',
     service_code: '5001',
+    service_time: '5006',
     diagnosis_code: '6001',
     diagnosis_certainty: '6003',
     diagnosis_side: '6004',
