@@ -1,0 +1,381 @@
+{
+ "schema_version": "1.0.0",
+ "id": "muster-65",
+ "muster": "65",
+ "title": "Ärztliches Attest Kind",
+ "form_version": "10.2018",
+ "released": "2018-03-29",
+ "status": "entwurf",
+ "paper": {
+  "format": "DIN A4 hoch",
+  "width": 595.3,
+  "height": 841.9,
+  "tint": "rot"
+ },
+ "copies": [
+  {
+   "id": "65a",
+   "label": "Ausfertigung für die Krankenkasse",
+   "recipient": "Krankenkasse"
+  },
+  {
+   "id": "65b",
+   "label": "Ausfertigung für den Arzt",
+   "recipient": "Praxis (verbleibt beim Arzt)"
+  }
+ ],
+ "notes": [
+  {
+   "id": "m65.zweck",
+   "text": "Das Muster bescheinigt die Behandlungsnotwendigkeit von Kindern, die bei Leistungen der medizinischen Vorsorge/Rehabilitation für Mütter oder Väter mit aufgenommen werden sollen; es wird in der Praxis vorgehalten.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 65, Einleitung, S. 139–140"
+   }
+  },
+  {
+   "id": "m65.abgrenzung",
+   "text": "Vorsorgeleistungen für Mütter oder Väter werden auf Muster 64, Reha-Leistungen auf Muster 61 verordnet; Muster 65 ersetzt diese Verordnung nicht.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 65, Einleitung, S. 140"
+   }
+  },
+  {
+   "id": "m65.eigener_rehabedarf",
+   "text": "Besteht für das Kind ein eigener Rehabilitationsbedarf, ist unter Berücksichtigung der gleichrangigen Zuständigkeit eine Reha-Leistung zu Lasten der DRV oder GKV zu beantragen bzw. zu verordnen.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 65, Einleitung, S. 140"
+   }
+  },
+  {
+   "id": "m65.ebm_01622",
+   "text": "Für das Ausstellen der ärztlichen Verordnung ist die Nr. 01622 EBM berechnungsfähig (Hinweis auf dem Vordruck).",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 98, Muster 65a (10.2018)"
+   }
+  },
+  {
+   "id": "m65.ausfertigungen",
+   "text": "Zwei gleich aufgebaute Ausfertigungen: 65a „Ausfertigung für die Krankenkasse“ (PDF-Seite 98) und 65b „Ausfertigung für den Arzt“ (PDF-Seite 99); abgebildet ist 65a.",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seiten 98–99, Muster 65a (10.2018)"
+   }
+  }
+ ],
+ "groups": [],
+ "fields": [
+  {
+   "id": "personalien",
+   "label": "Personalienfeld des Kindes (Krankenkasse bzw. Kostenträger, Name, Vorname, geb. am, Kostenträgerkennung, Versicherten-Nr., Status, Betriebsstätten-Nr., Arzt-Nr., Datum)",
+   "kind": "personalien",
+   "filled_by": "duria",
+   "box": {
+    "x": 4.4,
+    "y": 1.7,
+    "w": 38.0,
+    "h": 15.7
+   },
+   "rules": []
+  },
+  {
+   "id": "anamnese",
+   "label": "I. Kurze Angaben zur Anamnese",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 2,
+   "marker": "❶",
+   "box": {
+    "x": 11.5,
+    "y": 22.5,
+    "w": 84.7,
+    "h": 4.9
+   },
+   "rules": [
+    {
+     "id": "m65.anamnese",
+     "text": "Klinische Anamnese und ggf. bisherigen Verlauf der Krankenbehandlung des Kindes einschließlich seiner Beschwerden dokumentieren.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 65, ❶, S. 140"
+     }
+    }
+   ]
+  },
+  {
+   "id": "gesundheitsstoerungen",
+   "label": "II. Vorliegende Gesundheitsprobleme, A. Gesundheitsstörungen",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 2,
+   "marker": "❷",
+   "box": {
+    "x": 11.5,
+    "y": 33.9,
+    "w": 84.7,
+    "h": 4.9
+   },
+   "rules": [
+    {
+     "id": "m65.gesundheitsstoerungen",
+     "text": "Gesundheitsstörungen angeben, z. B. Gefährdung der Entwicklung durch Atemwegsinfekte über das altersübliche Maß hinaus, Übergewicht oder psychische Auffälligkeiten.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 65, ❷, S. 140"
+     }
+    }
+   ]
+  },
+  {
+   "id": "erkrankung_1",
+   "label": "II. Vorliegende Gesundheitsprobleme, B. Erkrankungen, Zeile 1",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❸",
+   "box": {
+    "x": 11.5,
+    "y": 42.4,
+    "w": 68.9,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m65.erkrankungen",
+     "text": "Leistungsbegründende Gesundheitsstörungen einschließlich Risikofaktoren und Erkrankungen in der Reihenfolge ihrer Bedeutung angeben; Diagnosen als ICD-Codes (Klartext möglich), optional Funktionsdiagnosen oder Freitext.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 65, ❸, S. 140"
+     }
+    }
+   ]
+  },
+  {
+   "id": "icd_1",
+   "label": "Diagnoseschlüssel ICD-10-GM, Zeile 1",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❸",
+   "box": {
+    "x": 82.9,
+    "y": 42.4,
+    "w": 13.3,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m65.erkrankungen",
+     "text": "Leistungsbegründende Gesundheitsstörungen einschließlich Risikofaktoren und Erkrankungen in der Reihenfolge ihrer Bedeutung angeben; Diagnosen als ICD-Codes (Klartext möglich), optional Funktionsdiagnosen oder Freitext.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 65, ❸, S. 140"
+     }
+    }
+   ]
+  },
+  {
+   "id": "erkrankung_2",
+   "label": "II. Vorliegende Gesundheitsprobleme, B. Erkrankungen, Zeile 2",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❸",
+   "box": {
+    "x": 11.5,
+    "y": 45.3,
+    "w": 68.9,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "icd_2",
+   "label": "Diagnoseschlüssel ICD-10-GM, Zeile 2",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❸",
+   "box": {
+    "x": 82.9,
+    "y": 45.3,
+    "w": 13.3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "erkrankung_3",
+   "label": "II. Vorliegende Gesundheitsprobleme, B. Erkrankungen, Zeile 3",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❸",
+   "box": {
+    "x": 11.5,
+    "y": 48.1,
+    "w": 68.9,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "icd_3",
+   "label": "Diagnoseschlüssel ICD-10-GM, Zeile 3",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❸",
+   "box": {
+    "x": 82.9,
+    "y": 48.1,
+    "w": 13.3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "weitere_informationen",
+   "label": "II. Vorliegende Gesundheitsprobleme, C. Weitere relevante Informationen (z. B. Behinderungen, Entwicklungsverzögerungen)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 2,
+   "marker": "❹",
+   "box": {
+    "x": 11.5,
+    "y": 53.8,
+    "w": 84.7,
+    "h": 4.9
+   },
+   "rules": [
+    {
+     "id": "m65.weitere_informationen",
+     "text": "Weitere relevante Informationen, z. B. zu Behinderungen, Entwicklungsverzögerungen und Pflegegrad, können angegeben werden.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 65, ❹, S. 140"
+     }
+    }
+   ]
+  },
+  {
+   "id": "krankenbehandlung",
+   "label": "III. Bisherige Krankenbehandlung und andere Maßnahmen",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 2,
+   "marker": "❺",
+   "box": {
+    "x": 11.5,
+    "y": 62.4,
+    "w": 84.7,
+    "h": 4.9
+   },
+   "rules": [
+    {
+     "id": "m65.krankenbehandlung",
+     "text": "Bisher durchgeführte Leistungen der Krankenbehandlung (ärztliche/psychotherapeutische Interventionen, Arznei- und Heilmitteltherapie, andere Maßnahmen) aufführen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 65, ❺, S. 141"
+     }
+    }
+   ]
+  },
+  {
+   "id": "interventionen",
+   "label": "IV. Empfohlene Interventionen während der Maßnahme",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 2,
+   "marker": "❻",
+   "box": {
+    "x": 11.5,
+    "y": 70.9,
+    "w": 84.7,
+    "h": 4.9
+   },
+   "rules": [
+    {
+     "id": "m65.interventionen",
+     "text": "Empfohlene Interventionen für das Kind während der Maßnahme angeben, z. B. Ernährungsberatung, Mutter-Kind-Interaktion, Entspannungstherapie, Sport und Gesundheitstraining.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 65, ❻, S. 141"
+     }
+    }
+   ]
+  },
+  {
+   "id": "zuweisung_ja",
+   "label": "V. Hinweise für die Zuweisung, A. Anforderungen an die Einrichtung: ja, folgende",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❼",
+   "box": {
+    "x": 11.6,
+    "y": 82.4,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m65.zuweisung",
+     "text": "Anforderungen an die Einrichtung im Einzelfall angeben (z. B. Klima, Barrierefreiheit, spezialisierte Therapieangebote und Fachkräfte, Kostformen), um die Behandlung des Kindes sicherzustellen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 65, ❼, S. 141"
+     }
+    }
+   ]
+  },
+  {
+   "id": "zuweisung_text",
+   "label": "V. Hinweise für die Zuweisung, A. Anforderungen an die Einrichtung: folgende",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 2,
+   "marker": "❼",
+   "box": {
+    "x": 23.6,
+    "y": 82.3,
+    "w": 47.2,
+    "h": 5.0
+   },
+   "rules": []
+  },
+  {
+   "id": "datum",
+   "label": "Ausstellungsdatum",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "TTMMJJ",
+   "box": {
+    "x": 56.3,
+    "y": 93.7,
+    "w": 14.5,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "stempel",
+   "label": "Vertragsarztstempel / Unterschrift des Arztes",
+   "kind": "stempel",
+   "filled_by": "arzt",
+   "box": {
+    "x": 73.5,
+    "y": 83.8,
+    "w": 22.7,
+    "h": 12.0
+   },
+   "rules": [
+    {
+     "id": "m65.unterschrift",
+     "text": "Erst vollständig ausfüllen, dann mit Vertragsarztstempel persönlich unterschreiben – nie blanko.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5"
+     }
+    }
+   ]
+  }
+ ]
+}

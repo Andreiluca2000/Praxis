@@ -53,6 +53,13 @@ function kindAlter(text: string): PatientFacts['kindAlter'] {
   return baby ? { value: 0, evidence: baby } : null;
 }
 
+function ssw(text: string): PatientFacts['ssw'] {
+  const m = uni(/\b(\d{1,2})(?:\s*\+\s*\d)?\s*\.?\s*(?:ssw|schwangerschaftswoche)\b|\b(?:ssw|schwangerschaftswoche)\s*(\d{1,2})\b/iu).exec(text);
+  if (!m) return null;
+  const n = Number(m[1] ?? m[2]);
+  return n >= 1 && n <= 45 ? { value: n, evidence: m[0].trim() } : null;
+}
+
 export function extractFacts(description: string): PatientFacts {
   const text = norm(description);
   const arbeitsunfall = cue(/\b(arbeitsunfall\w*|berufskrankheit\w*|schul(?:e)?unfall\w*|schülerunfall\w*|kita-?unfall|bg-fall|berufsgenossenschaft\w*|d-arzt\w*|durchgangsarzt\w*)/iu, text);
@@ -82,6 +89,8 @@ export function extractFacts(description: string): PatientFacts {
     kindAlter: kindAlter(text),
     kindBehindert: yes(cue(/\b(behindert\w*|behinderung\w*|mehrfachbehindert\w*|schwerbehindert\w*)/iu, text)),
     mitaufnahme: yes(cue(/\b(mitaufnahme|mit aufgenommen|begleitperson|rooming-?in)\b/iu, text)),
+    ssw: ssw(text),
+    mehrlinge: yes(cue(/\b(mehrling\w*|zwilling\w*|drilling\w*|gemini)\b/iu, text)),
     kitaUnfall: yes(cue(/\b(kita-?unfall\w*|schulunfall\w*|schülerunfall\w*|kindergartenunfall\w*|unfall (?:in|im|auf) (?:der|dem)?\s*(?:kita|schule|kindergarten|schulweg|pausenhof|sportunterricht))/iu, text)),
   };
 }

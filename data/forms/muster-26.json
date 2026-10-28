@@ -1,0 +1,644 @@
+{
+ "schema_version": "1.0.0",
+ "id": "muster-26",
+ "muster": "26",
+ "title": "Verordnung Soziotherapie gemäß § 37a SGB V",
+ "form_version": "10.2017",
+ "released": "2017-07-07",
+ "status": "entwurf",
+ "paper": {
+  "format": "DIN A4 hoch",
+  "width": 595.3,
+  "height": 841.9,
+  "tint": "blau"
+ },
+ "copies": [
+  {
+   "id": "26a",
+   "label": "Ausfertigung für die Krankenkasse",
+   "recipient": "Krankenkasse (mit Muster 27)"
+  },
+  {
+   "id": "26b",
+   "label": "1. Durchschlag",
+   "recipient": "soziotherapeutischer Leistungserbringer"
+  },
+  {
+   "id": "26c",
+   "label": "2. Durchschlag",
+   "recipient": "verordnender Arzt"
+  }
+ ],
+ "notes": [
+  {
+   "id": "m26.berechtigte",
+   "text": "Verordnen dürfen Fachärzte für Neurologie, Nervenheilkunde, Psychosomatische Medizin und Psychotherapie, Psychiatrie und Psychotherapie, Kinder- und Jugendpsychiatrie (18.–21. Lebensjahr bei therapeutischer Begründung) sowie Psychologische und Kinder- und Jugendlichenpsychotherapeuten (ebenfalls 18.–21. Lebensjahr).",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 26, Einleitung, S. 71"
+   }
+  },
+  {
+   "id": "m26.kooperation",
+   "text": "Zusätzlich ist die Erklärung über die Kooperation in einem gemeindepsychiatrischen Verbund oder in vergleichbaren Versorgungsstrukturen notwendig.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 26, Einleitung, S. 71"
+   }
+  },
+  {
+   "id": "m26.st_rl",
+   "text": "Die Soziotherapie-Richtlinie des G-BA (ST-RL) ist zu beachten.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 26, Einleitung, S. 71"
+   }
+  },
+  {
+   "id": "m26.durchschlaege",
+   "text": "Zwei Durchschläge: Original für die Krankenkasse, 1. Durchschlag für den soziotherapeutischen Leistungserbringer, 2. Durchschlag verbleibt beim Arzt.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 26, Einleitung, S. 71"
+   }
+  },
+  {
+   "id": "m26.vorlage_frist",
+   "text": "Der Vordruck ist zusammen mit dem Soziotherapeutischen Betreuungsplan (Muster 27) spätestens am 3. Arbeitstag nach Ausstellung der Krankenkasse zur Genehmigung vorzulegen.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 26, Einleitung, S. 71"
+   }
+  },
+  {
+   "id": "m26.genehmigung",
+   "text": "Bis zur Entscheidung über die Genehmigung übernimmt die Krankenkasse die Kosten der verordneten und vom Leistungserbringer erbrachten Leistungen.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 26, Einleitung, S. 71"
+   }
+  },
+  {
+   "id": "m26.ebm",
+   "text": "Für das Ausstellen der Erstverordnung ist die Nr. 30810, für die Folgeverordnung die Nr. 30811 EBM berechnungsfähig (Aufdruck).",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 46, Muster 26a (10.2017)"
+   }
+  }
+ ],
+ "groups": [
+  {
+   "id": "betreuer",
+   "label": "Gesetzlicher Betreuer bestellt",
+   "select": "genau_eins",
+   "rule": {
+    "id": "m26.betreuer",
+    "text": "Ist ein gesetzlicher Betreuer bestellt, Kreuz setzen, Kontaktdaten aufnehmen und – soweit bekannt – die übernommenen Betreuungsangelegenheiten benennen.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 26, ❽, S. 73"
+    }
+   }
+  },
+  {
+   "id": "krankenhaus",
+   "label": "Krankenhausbehandlung",
+   "select": "genau_eins",
+   "rule": {
+    "id": "m26.krankenhaus",
+    "text": "Soziotherapie ist nur verordnungsfähig, wenn Krankenhausbehandlung vermieden oder verkürzt wird oder geboten, aber nicht ausführbar ist; die zutreffende Angabe ist anzukreuzen.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 26, ⓮, S. 74"
+    }
+   }
+  }
+ ],
+ "fields": [
+  {
+   "id": "personalien",
+   "label": "Personalienfeld (Kasse, Name, geb. am, Kostenträgerkennung, Versicherten-Nr., Status, BSNR, LANR, Datum)",
+   "kind": "personalien",
+   "filled_by": "duria",
+   "box": {
+    "x": 4.4,
+    "y": 1.7,
+    "w": 38.0,
+    "h": 15.7
+   },
+   "rules": [
+    {
+     "id": "m26.personalien",
+     "text": "Die Daten der eGK werden maschinell über Kartenterminal und Praxis-EDV übertragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 5 und Nr. 6, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "diagnose",
+   "label": "Diagnose (ICD-10-Code)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❶",
+   "box": {
+    "x": 54.5,
+    "y": 9.6,
+    "w": 33.3,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m26.diagnose",
+     "text": "Einzutragen ist die therapierelevante Diagnose als ICD-10-GM-Code.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 26, ❶, S. 71"
+     }
+    }
+   ]
+  },
+  {
+   "id": "gaf",
+   "label": "Schweregrad (lt. GAF-Skala)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❷",
+   "box": {
+    "x": 54.5,
+    "y": 12.4,
+    "w": 33.3,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m26.gaf_40_50",
+     "text": "Maßgeblich ist immer die Fähigkeitsstörung (GAF-Skala). Bei den in § 2 Abs. 2–4 ST-RL genannten schweren Krankheiten, vor allem aus dem schizophrenen Formenkreis, ist Soziotherapie möglich, wenn der GAF-Wert höchstens zwischen 40 und 50 liegt.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 26, ❷, S. 71–72"
+     }
+    },
+    {
+     "id": "m26.gaf_unter_40",
+     "text": "Bei allen schweren psychischen Krankheiten aus F00–F99 ist Soziotherapie möglich bei GAF höchstens 40 plus einem Kriterium aus § 2 Abs. 5 ST-RL, etwa relevante Co-Morbiditäten oder stark eingeschränkte Wegefähigkeit.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 26, ❷, S. 73"
+     }
+    }
+   ]
+  },
+  {
+   "id": "seit",
+   "label": "Erkrankung besteht seit (falls bekannt)",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "TTMMJJ",
+   "marker": "❸",
+   "box": {
+    "x": 73.2,
+    "y": 15.3,
+    "w": 14.5,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m26.erkrankung_seit",
+     "text": "Falls bekannt, das Datum, seit dem die Erkrankung besteht, im Format TTMMJJ eintragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 26, ❸, S. 73"
+     }
+    }
+   ]
+  },
+  {
+   "id": "faehigkeit",
+   "label": "Art und Ausprägung der Fähigkeitsstörungen",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 3,
+   "marker": "❹",
+   "box": {
+    "x": 10.3,
+    "y": 18.9,
+    "w": 85.9,
+    "h": 7.1
+   },
+   "rules": [
+    {
+     "id": "m26.faehigkeitsstoerung",
+     "text": "Art und Ausprägung der Fähigkeitsstörung in Stichworten angeben; sie muss zum unter ❷ angegebenen GAF-Wert passen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 26, ❹, S. 73"
+     }
+    }
+   ]
+  },
+  {
+   "id": "comorbiditaeten",
+   "label": "Art und Ausprägung der Co-Morbiditäten / Sonstige Einschränkungen",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 3,
+   "marker": "❺",
+   "box": {
+    "x": 10.3,
+    "y": 28.2,
+    "w": 85.9,
+    "h": 7.1
+   },
+   "rules": [
+    {
+     "id": "m26.comorbiditaeten",
+     "text": "Bei Erkrankungen aus F00–F99, die nicht in § 2 Abs. 2–4 ST-RL genannt sind, und GAF höchstens 40 sind Co-Morbiditäten (psychiatrisch oder somatisch) oder sonstige Einschränkungen anzugeben.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 26, ❺, S. 73"
+     }
+    }
+   ]
+  },
+  {
+   "id": "versicherter",
+   "label": "Angaben des Versicherten (Straße, PLZ, Ort, Telefon)",
+   "kind": "text",
+   "filled_by": "duria",
+   "marker": "❻",
+   "box": {
+    "x": 10.3,
+    "y": 37.4,
+    "w": 42.3,
+    "h": 8.8
+   },
+   "rules": [
+    {
+     "id": "m26.versicherter",
+     "text": "Neben den Adressdaten ist die Wohnform anzugeben; die Krankenkasse prüft, ob die Einrichtung soziotherapeutische Inhalte bereits vorhält (z. B. Betreutes Wohnen).",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 26, ❻, S. 73"
+     }
+    }
+   ]
+  },
+  {
+   "id": "wohnform",
+   "label": "Wohnform (z. B. alleinstehend in eigener Wohnung, Familie/Eltern, in Einrichtung)",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❻",
+   "box": {
+    "x": 10.3,
+    "y": 47.0,
+    "w": 42.3,
+    "h": 1.8
+   },
+   "rules": [
+    {
+     "id": "m26.versicherter",
+     "text": "Neben den Adressdaten ist die Wohnform anzugeben; die Krankenkasse prüft, ob die Einrichtung soziotherapeutische Inhalte bereits vorhält (z. B. Betreutes Wohnen).",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 26, ❻, S. 73"
+     }
+    }
+   ]
+  },
+  {
+   "id": "angehoeriger",
+   "label": "Angaben des nächsten Angehörigen (Name, Anschrift, Telefon)",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❼",
+   "box": {
+    "x": 53.9,
+    "y": 37.4,
+    "w": 42.3,
+    "h": 11.4
+   },
+   "rules": [
+    {
+     "id": "m26.angehoeriger",
+     "text": "Kontaktdaten eines nächsten Angehörigen eintragen, damit der Leistungserbringer bei Bedarf Rücksprache halten kann.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 26, ❼, S. 73"
+     }
+    }
+   ]
+  },
+  {
+   "id": "betreuer_nein",
+   "label": "Gesetzlicher Betreuer bestellt: Nein",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "betreuer",
+   "marker": "❽",
+   "box": {
+    "x": 39.4,
+    "y": 51.0,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "betreuer_ja",
+   "label": "Gesetzlicher Betreuer bestellt: Ja",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "betreuer",
+   "marker": "❽",
+   "box": {
+    "x": 47.9,
+    "y": 51.0,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "betreuer_angelegenheiten",
+   "label": "Wenn ja, für welche Angelegenheiten?",
+   "kind": "text",
+   "filled_by": "praxis",
+   "lines": 2,
+   "marker": "❽",
+   "box": {
+    "x": 10.3,
+    "y": 56.0,
+    "w": 42.3,
+    "h": 5.7
+   },
+   "rules": [
+    {
+     "id": "m26.betreuer",
+     "text": "Ist ein gesetzlicher Betreuer bestellt, Kreuz setzen, Kontaktdaten aufnehmen und – soweit bekannt – die übernommenen Betreuungsangelegenheiten benennen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 26, ❽, S. 73"
+     }
+    }
+   ]
+  },
+  {
+   "id": "betreuer_kontakt",
+   "label": "Angaben zum Betreuer (Name, Anschrift, Telefon)",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❽",
+   "box": {
+    "x": 53.9,
+    "y": 50.3,
+    "w": 42.3,
+    "h": 11.4
+   },
+   "rules": [
+    {
+     "id": "m26.betreuer",
+     "text": "Ist ein gesetzlicher Betreuer bestellt, Kreuz setzen, Kontaktdaten aufnehmen und – soweit bekannt – die übernommenen Betreuungsangelegenheiten benennen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 26, ❽, S. 73"
+     }
+    }
+   ]
+  },
+  {
+   "id": "einheiten_gesamt",
+   "label": "Voraussichtliche Anzahl der Therapieeinheiten",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❾",
+   "box": {
+    "x": 27.9,
+    "y": 62.3,
+    "w": 13.3,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m26.einheiten_dauer",
+     "text": "Ist eine Einschätzung möglich, die voraussichtliche Gesamtzahl der Therapieeinheiten und die voraussichtliche Dauer der Therapie eintragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 26, ❾–❿, S. 73"
+     }
+    }
+   ]
+  },
+  {
+   "id": "dauer",
+   "label": "Voraussichtliche Dauer der Therapie",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❿",
+   "box": {
+    "x": 27.9,
+    "y": 65.2,
+    "w": 13.3,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m26.einheiten_dauer",
+     "text": "Ist eine Einschätzung möglich, die voraussichtliche Gesamtzahl der Therapieeinheiten und die voraussichtliche Dauer der Therapie eintragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 26, ❾–❿, S. 73"
+     }
+    }
+   ]
+  },
+  {
+   "id": "einheiten_beantragt",
+   "label": "Beantragte Anzahl der Therapieeinheiten",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "⓫",
+   "box": {
+    "x": 58.7,
+    "y": 62.3,
+    "w": 13.3,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m26.max_30",
+     "text": "Einzutragen ist die aktuell beantragte Zahl der Therapieeinheiten; eine Verordnung kann für höchstens 30 Therapieeinheiten ausgestellt werden.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 26, ⓫, S. 74"
+     }
+    }
+   ]
+  },
+  {
+   "id": "bereits",
+   "label": "Bereits durchgeführte Leistungen",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "⓬",
+   "box": {
+    "x": 58.7,
+    "y": 65.2,
+    "w": 13.3,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m26.bereits_erbracht",
+     "text": "Ist bekannt, dass im vorliegenden Krankheitsfall innerhalb der letzten 3 Jahre bereits Soziotherapie durchgeführt wurde, ist dies anzugeben.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 26, ⓬, S. 74"
+     }
+    }
+   ]
+  },
+  {
+   "id": "prognose",
+   "label": "Prognose",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 3,
+   "marker": "⓭",
+   "box": {
+    "x": 10.3,
+    "y": 68.8,
+    "w": 61.7,
+    "h": 7.1
+   },
+   "rules": [
+    {
+     "id": "m26.prognose",
+     "text": "Prognose: Es wird eingeschätzt, dass der Versicherte mit der verordneten Zahl an Einheiten befähigt werden kann, fachärztliche oder psychotherapeutische Leistungen in Anspruch zu nehmen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 26, ⓭, S. 74"
+     }
+    }
+   ]
+  },
+  {
+   "id": "kh_vermieden",
+   "label": "Krankenhausbehandlung wird vermieden",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "krankenhaus",
+   "marker": "⓮",
+   "box": {
+    "x": 30.4,
+    "y": 76.7,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "kh_verkuerzt",
+   "label": "Krankenhausbehandlung wird verkürzt",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "krankenhaus",
+   "marker": "⓮",
+   "box": {
+    "x": 46.0,
+    "y": 76.7,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "kh_nicht_ausfuehrbar",
+   "label": "Krankenhausbehandlung ist nicht ausführbar",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "krankenhaus",
+   "marker": "⓮",
+   "box": {
+    "x": 59.4,
+    "y": 76.7,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "begruendung",
+   "label": "Begründung",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 3,
+   "marker": "⓮",
+   "box": {
+    "x": 10.3,
+    "y": 79.5,
+    "w": 61.7,
+    "h": 7.1
+   },
+   "rules": [
+    {
+     "id": "m26.krankenhaus",
+     "text": "Soziotherapie ist nur verordnungsfähig, wenn Krankenhausbehandlung vermieden oder verkürzt wird oder geboten, aber nicht ausführbar ist; die zutreffende Angabe ist anzukreuzen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 26, ⓮, S. 74"
+     }
+    }
+   ]
+  },
+  {
+   "id": "datum",
+   "label": "Datum",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "TTMMJJ",
+   "box": {
+    "x": 57.6,
+    "y": 93.7,
+    "w": 14.4,
+    "h": 2.0
+   },
+   "rules": [
+    {
+     "id": "m26.vorlage_frist",
+     "text": "Der Vordruck ist zusammen mit dem Soziotherapeutischen Betreuungsplan (Muster 27) spätestens am 3. Arbeitstag nach Ausstellung der Krankenkasse zur Genehmigung vorzulegen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 26, Einleitung, S. 71"
+     }
+    }
+   ]
+  },
+  {
+   "id": "stempel",
+   "label": "Vertragsarztstempel / Unterschrift des Arztes",
+   "kind": "stempel",
+   "filled_by": "arzt",
+   "box": {
+    "x": 73.5,
+    "y": 83.8,
+    "w": 22.7,
+    "h": 12.0
+   },
+   "rules": [
+    {
+     "id": "m26.unterschrift",
+     "text": "Erst vollständig ausfüllen, dann mit Vertragsarztstempel persönlich unterschreiben – nie blanko.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5"
+     }
+    }
+   ]
+  }
+ ]
+}

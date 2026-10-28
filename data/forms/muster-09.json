@@ -1,0 +1,641 @@
+{
+ "schema_version": "1.0.0",
+ "id": "muster-09",
+ "muster": "9",
+ "title": "Bescheinigung einer Fehlgeburt, Frühgeburt oder Behinderung des Kindes",
+ "form_version": "1.2026",
+ "released": "2025-08-15",
+ "status": "entwurf",
+ "paper": {
+  "format": "DIN A5 hoch, Vorder- und Rückseite (9a); 9b DIN A6 quer",
+  "width": 419.5,
+  "height": 595.3,
+  "tint": "rot"
+ },
+ "pages": [
+  "Vorderseite",
+  "Rückseite"
+ ],
+ "copies": [
+  {
+   "id": "9a",
+   "label": "Ausfertigung zur Vorlage bei der Krankenkasse",
+   "recipient": "Krankenkasse (Rückseite mit Antrag und Erklärung der Versicherten)"
+  },
+  {
+   "id": "9b",
+   "label": "Ausfertigung zur Vorlage beim Arbeitgeber",
+   "recipient": "Arbeitgeber (nur Bescheinigung einer Fehlgeburt; DIN A6 quer, ohne Rückseite)"
+  }
+ ],
+ "notes": [
+  {
+   "id": "m09.zweck",
+   "text": "Für die Gewährung von Mutterschaftsgeld bei Fehl- und Frühgeburten und bei Kindern mit Behinderung benötigen die Kassen eine ärztliche Bescheinigung; dafür ist Muster 9 zu nutzen.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 9, Einleitung, S. 34"
+   }
+  },
+  {
+   "id": "m09.mutterschaftsgeld_dauer",
+   "text": "Mutterschaftsgeld nach der Entbindung wird grundsätzlich acht Wochen gezahlt; zwölf Wochen bei Frühgeburten, Mehrlingsgeburten und bei ärztlich festgestellter Behinderung des Kindes (§ 2 Abs. 1 Satz 1 SGB IX) vor Ablauf der Achtwochenfrist. Bei Fehlgeburt richtet sich der Anspruch nach der Schwangerschaftswoche.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 9, Einleitung, S. 33"
+   }
+  },
+  {
+   "id": "m09.mehrlinge",
+   "text": "Bei einer Mehrlingsgeburt ist Muster 9 nicht auszustellen, da den Kassen die Information in der Regel durch die Geburtsurkunden vorliegt.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 9, Einleitung, S. 34"
+   }
+  },
+  {
+   "id": "m09.rueckseite_hinweis",
+   "text": "Auf der Vorderseite 9a steht bei 1. und 3. „(Bitte auch Rückseite ausfüllen!)“; die Rückseite füllt die Versicherte aus.",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 17, Muster 9 (1.2026)"
+   }
+  },
+  {
+   "id": "m09.ausfertigung_9b",
+   "text": "Muster 9b ist die Ausfertigung für den Arbeitgeber und enthält nur Personalienfeld, 1. Fehlgeburt (Datum, Schwangerschaftswoche) und Stempel.",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 19, Muster 9 (1.2026)"
+   }
+  }
+ ],
+ "groups": [
+  {
+   "id": "schwangerschaftswoche",
+   "label": "Die Versicherte befand sich mindestens in der … Schwangerschaftswoche",
+   "select": "beliebig",
+   "rule": {
+    "id": "m09.ssw",
+    "text": "Anzugeben ist, in welcher Schwangerschaftswoche sich die Versicherte zum Zeitpunkt der Fehlgeburt mindestens befand; die Berechnung erfolgt post menstruationem, ab dem ersten Tag der letzten Regelblutung. Danach richtet sich die Dauer des Mutterschaftsgeldes.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 9, ❷, S. 34"
+    }
+   }
+  },
+  {
+   "id": "fruehgeburt_art",
+   "label": "Frühgeburt: Geburtsgewicht unter 2.500 Gramm oder ab 2.500 Gramm mit wesentlich erweitertem Pflegebedarf",
+   "select": "beliebig",
+   "rule": {
+    "id": "m09.fruehgeburt",
+    "text": "Eine Frühgeburt liegt vor, wenn das Kind lebend geboren wird und weniger als 2.500 Gramm wiegt oder bei 2.500 Gramm oder mehr ein wesentlich erweiterter Pflegebedarf besteht. Das Geburtsdatum des Kindes wird als TTMMJJ eingetragen.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 9, ❸, S. 34"
+    }
+   }
+  },
+  {
+   "id": "beschaeftigung",
+   "label": "Ich bin derzeit (Angaben zum Beschäftigungsverhältnis, Versicherte)",
+   "select": "beliebig",
+   "rule": {
+    "id": "m09.beschaeftigung",
+    "text": "Die Versicherte kreuzt ihr Beschäftigungsverhältnis an (beschäftigt, arbeitslos, selbständig, Künstlerin/Publizistin).",
+    "source": {
+     "artifact": "mustersammlung",
+     "locator": "PDF-Seite 18, Muster 9 (1.2026)"
+    }
+   }
+  }
+ ],
+ "fields": [
+  {
+   "id": "personalien",
+   "label": "Personalienfeld (Krankenkasse bzw. Kostenträger, Name, Vorname, geb. am, Kostenträgerkennung, Versicherten-Nr., Status, Betriebsstätten-Nr., Arzt-Nr., Datum)",
+   "kind": "personalien",
+   "filled_by": "duria",
+   "box": {
+    "x": 6.2,
+    "y": 2.5,
+    "w": 53.9,
+    "h": 22.2
+   },
+   "rules": [
+    {
+     "id": "m09.personalien",
+     "text": "Die Daten der eGK werden maschinell über Kartenterminal und Praxis-EDV übertragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 5 und Nr. 6, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "fehlgeburt_am",
+   "label": "1. Fehlgeburt am",
+   "kind": "date",
+   "filled_by": "arzt",
+   "format": "TTMMJJ",
+   "marker": "❶",
+   "box": {
+    "x": 25.0,
+    "y": 26.2,
+    "w": 20.6,
+    "h": 2.5
+   },
+   "rules": [
+    {
+     "id": "m09.fehlgeburt_datum",
+     "text": "Bei Fehlgeburt ab der 13. Schwangerschaftswoche wird das Datum sechsstellig als TTMMJJ eingetragen. Bei verhaltener Fehlgeburt (Missed Abortion) zählt nicht das Diagnosedatum, sondern der Tag, an dem der Fötus tatsächlich vom Uterus getrennt wurde.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 9, ❶, S. 34"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ssw_13",
+   "label": "Die oben bezeichnete Versicherte befand sich mindestens in der 13. Schwangerschaftswoche (Schutzfrist 2 Wochen)",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "schwangerschaftswoche",
+   "marker": "❷",
+   "box": {
+    "x": 6.2,
+    "y": 32.3,
+    "w": 3.3,
+    "h": 2.4
+   },
+   "rules": [
+    {
+     "id": "m09.ssw",
+     "text": "Anzugeben ist, in welcher Schwangerschaftswoche sich die Versicherte zum Zeitpunkt der Fehlgeburt mindestens befand; die Berechnung erfolgt post menstruationem, ab dem ersten Tag der letzten Regelblutung. Danach richtet sich die Dauer des Mutterschaftsgeldes.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 9, ❷, S. 34"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ssw_17",
+   "label": "Die oben bezeichnete Versicherte befand sich mindestens in der 17. Schwangerschaftswoche (Schutzfrist 6 Wochen)",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "schwangerschaftswoche",
+   "marker": "❷",
+   "box": {
+    "x": 6.2,
+    "y": 36.4,
+    "w": 3.3,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "ssw_20",
+   "label": "Die oben bezeichnete Versicherte befand sich mindestens in der 20. Schwangerschaftswoche (Schutzfrist 8 Wochen)",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "schwangerschaftswoche",
+   "marker": "❷",
+   "box": {
+    "x": 6.2,
+    "y": 40.4,
+    "w": 3.3,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "fruehgeburt_am",
+   "label": "2. Frühgeburt am",
+   "kind": "date",
+   "filled_by": "arzt",
+   "format": "TTMMJJ",
+   "marker": "❸",
+   "only_copies": [
+    "9a"
+   ],
+   "box": {
+    "x": 25.0,
+    "y": 52.4,
+    "w": 20.6,
+    "h": 2.5
+   },
+   "rules": [
+    {
+     "id": "m09.fruehgeburt",
+     "text": "Eine Frühgeburt liegt vor, wenn das Kind lebend geboren wird und weniger als 2.500 Gramm wiegt oder bei 2.500 Gramm oder mehr ein wesentlich erweiterter Pflegebedarf besteht. Das Geburtsdatum des Kindes wird als TTMMJJ eingetragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 9, ❸, S. 34"
+     }
+    }
+   ]
+  },
+  {
+   "id": "gewicht_unter",
+   "label": "a) Geburtsgewicht unter 2.500 Gramm",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "fruehgeburt_art",
+   "marker": "❹",
+   "only_copies": [
+    "9a"
+   ],
+   "box": {
+    "x": 6.2,
+    "y": 56.5,
+    "w": 3.3,
+    "h": 2.4
+   },
+   "rules": [
+    {
+     "id": "m09.gewicht_unter",
+     "text": "Beträgt das Geburtsgewicht weniger als 2.500 Gramm, ist das betreffende Kästchen anzukreuzen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 9, ❹, S. 34"
+     }
+    }
+   ]
+  },
+  {
+   "id": "pflegebedarf",
+   "label": "b) Geburtsgewicht ab 2.500 Gramm, es besteht jedoch ein wesentlich erweiterter Pflegebedarf wegen nicht voll ausgebildeter Reifezeichen oder verfrühter Beendigung der Schwangerschaft",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "fruehgeburt_art",
+   "marker": "❺",
+   "only_copies": [
+    "9a"
+   ],
+   "box": {
+    "x": 6.2,
+    "y": 60.5,
+    "w": 3.3,
+    "h": 2.4
+   },
+   "rules": [
+    {
+     "id": "m09.pflegebedarf",
+     "text": "Bei Geburtsgewicht ab 2.500 Gramm liegt ebenfalls eine Frühgeburt vor, wenn wegen nicht voll ausgebildeter Reifezeichen oder verfrühter Beendigung der Schwangerschaft ein wesentlich erweiterter Pflegebedarf besteht; das Kästchen ist anzukreuzen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 9, ❺, S. 34"
+     }
+    }
+   ]
+  },
+  {
+   "id": "behinderung",
+   "label": "Bei dem Kind liegt eine Behinderung vor",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❻",
+   "only_copies": [
+    "9a"
+   ],
+   "box": {
+    "x": 6.2,
+    "y": 74.7,
+    "w": 3.3,
+    "h": 2.4
+   },
+   "rules": [
+    {
+     "id": "m09.behinderung",
+     "text": "Behinderung nach § 2 Abs. 1 Satz 1 SGB IX: Beeinträchtigungen, die das Kind mit hoher Wahrscheinlichkeit länger als sechs Monate an gleichberechtigter Teilhabe hindern können (Abweichung vom lebensalterstypischen Zustand). Dann kreuzt der Arzt „Bei dem Kind liegt eine Behinderung vor“ an.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 9, ❻, S. 35"
+     }
+    },
+    {
+     "id": "m09.frist_8_wochen",
+     "text": "Die ärztliche Feststellung der Behinderung muss innerhalb von acht Wochen nach der Entbindung erfolgen (§ 3 Abs. 2 Nr. 3 MuSchG), damit sich die Schutzfrist von acht auf zwölf Wochen verlängert. Danach ist die Bescheinigung nicht mehr auszustellen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 9, ❻, S. 35"
+     }
+    }
+   ]
+  },
+  {
+   "id": "stempel",
+   "label": "Vertragsarztstempel / ärztliche Unterschrift",
+   "kind": "stempel",
+   "filled_by": "arzt",
+   "box": {
+    "x": 63.0,
+    "y": 27.8,
+    "w": 32.2,
+    "h": 17.0
+   },
+   "rules": [
+    {
+     "id": "m09.unterschrift",
+     "text": "Erst vollständig ausfüllen, dann mit Vertragsarztstempel persönlich unterschreiben – nie blanko.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "v_name",
+   "label": "Name",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "only_copies": [
+    "9a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 6.1,
+    "y": 14.1,
+    "w": 43.8,
+    "h": 2.5
+   },
+   "rules": [
+    {
+     "id": "m09.antrag_versicherte",
+     "text": "Die Rückseite enthält den Antrag der Versicherten auf Auszahlung von Mutterschaftsgeld bzw. Verlängerung der Schutzfrist wegen Behinderung des Kindes sowie ihre Erklärung (Aufdruck).",
+     "source": {
+      "artifact": "mustersammlung",
+      "locator": "PDF-Seite 18, Muster 9 (1.2026)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "v_vorname",
+   "label": "Vorname",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "only_copies": [
+    "9a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 50.7,
+    "y": 14.1,
+    "w": 44.6,
+    "h": 2.5
+   },
+   "rules": []
+  },
+  {
+   "id": "v_geburtsdatum",
+   "label": "Geburtsdatum",
+   "kind": "date",
+   "filled_by": "versicherter",
+   "format": "TTMMJJ",
+   "only_copies": [
+    "9a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 6.3,
+    "y": 18.2,
+    "w": 20.6,
+    "h": 2.5
+   },
+   "rules": []
+  },
+  {
+   "id": "v_versichertennummer",
+   "label": "Versichertennummer",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "only_copies": [
+    "9a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 50.8,
+    "y": 18.2,
+    "w": 34.1,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "v_iban",
+   "label": "IBAN",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "only_copies": [
+    "9a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 6.2,
+    "y": 22.2,
+    "w": 75.3,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "v_bic",
+   "label": "BIC",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "only_copies": [
+    "9a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 6.2,
+    "y": 26.2,
+    "w": 37.6,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "v_kontoinhaber",
+   "label": "Kontoinhaber (falls abweichend von antragstellender Person)",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "only_copies": [
+    "9a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 50.7,
+    "y": 26.2,
+    "w": 44.7,
+    "h": 2.5
+   },
+   "rules": []
+  },
+  {
+   "id": "beschaeftigt",
+   "label": "Ich bin derzeit: beschäftigt",
+   "kind": "checkbox",
+   "filled_by": "versicherter",
+   "group": "beschaeftigung",
+   "only_copies": [
+    "9a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 6.2,
+    "y": 34.3,
+    "w": 3.3,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "v_arbeitgeber",
+   "label": "Arbeitgeber",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "only_copies": [
+    "9a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 11.2,
+    "y": 38.3,
+    "w": 61.9,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "v_gekuendigt_befristet",
+   "label": "gekündigt/befristet zum",
+   "kind": "date",
+   "filled_by": "versicherter",
+   "format": "TTMMJJ",
+   "only_copies": [
+    "9a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 74.8,
+    "y": 38.3,
+    "w": 20.4,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "v_arbeitgeber_anschrift",
+   "label": "Anschrift des Arbeitgebers",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "only_copies": [
+    "9a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 11.2,
+    "y": 42.4,
+    "w": 84.1,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "arbeitslos",
+   "label": "Ich bin derzeit: arbeitslos",
+   "kind": "checkbox",
+   "filled_by": "versicherter",
+   "group": "beschaeftigung",
+   "only_copies": [
+    "9a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 6.2,
+    "y": 46.5,
+    "w": 3.3,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "selbstaendig",
+   "label": "Ich bin derzeit: selbständig",
+   "kind": "checkbox",
+   "filled_by": "versicherter",
+   "group": "beschaeftigung",
+   "only_copies": [
+    "9a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 6.2,
+    "y": 50.5,
+    "w": 3.3,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "kuenstlerin",
+   "label": "Ich bin derzeit: Künstlerin/Publizistin",
+   "kind": "checkbox",
+   "filled_by": "versicherter",
+   "group": "beschaeftigung",
+   "only_copies": [
+    "9a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 6.2,
+    "y": 54.5,
+    "w": 3.3,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "v_datum",
+   "label": "Datum",
+   "kind": "date",
+   "filled_by": "versicherter",
+   "format": "TTMMJJ",
+   "only_copies": [
+    "9a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 40.5,
+    "y": 90.7,
+    "w": 20.4,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "v_unterschrift",
+   "label": "Unterschrift der Versicherten",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "only_copies": [
+    "9a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 63.0,
+    "y": 87.3,
+    "w": 32.2,
+    "h": 5.9
+   },
+   "rules": []
+  }
+ ]
+}

@@ -4,6 +4,7 @@ import { searchCatalog } from './katalog.js';
 import { checkMuster02, proposeMuster02 } from './muster02.js';
 import { checkMuster04, proposeMuster04 } from './muster04.js';
 import { checkMuster06, proposeMuster06 } from './muster06.js';
+import { checkMuster09, proposeMuster09 } from './muster09.js';
 import { checkMuster10, proposeMuster10 } from './muster10.js';
 import { checkMuster10A, labGemeinschaft, proposeMuster10A } from './muster10a.js';
 import { checkMuster12, proposeMuster12 } from './muster12.js';
@@ -11,10 +12,14 @@ import { checkMuster13, proposeMuster13 } from './muster13.js';
 import { checkMuster19, proposeMuster19 } from './muster19.js';
 import { checkMuster20, proposeMuster20 } from './muster20.js';
 import { checkMuster21, proposeMuster21 } from './muster21.js';
+import { checkMuster26, proposeMuster26 } from './muster26.js';
+import { checkMuster27, proposeMuster27 } from './muster27.js';
 import { checkMuster52, proposeMuster52 } from './muster52.js';
 import { checkMuster55, proposeMuster55 } from './muster55.js';
 import { checkMuster61, proposeMuster61 } from './muster61.js';
 import { checkMuster63, proposeMuster63 } from './muster63.js';
+import { checkMuster64, proposeMuster64 } from './muster64.js';
+import { checkMuster65, proposeMuster65 } from './muster65.js';
 import { specialtyIn } from './specialties.js';
 import { cue, headOf, norm, uni } from './text.js';
 import type { Analysis, FormId, FormIssue, FormProposal, FormSuggestion, FormValues, Intent, PatientFacts } from './types.js';
@@ -37,6 +42,11 @@ const INTENTS: [Intent, RegExp][] = [
   ['notfallschein', /\b(notfallschein|vertretungsschein|notfalldienst\w*|bereitschaftsdienst\w*|urlaubsvertretung|krankheitsvertretung|muster\s*19)\b/iu],
   ['au_bericht', /\b(muster\s*52|bericht (?:für|an) die (?:krankenkasse|kasse)|anfrage der (?:krankenkasse|kasse)|fortbestehen der (?:au|arbeitsunfähigkeit)|au-?bericht|kasse fragt)\b/iu],
   ['sapv', /\b(sapv|spezialisierte\w* ambulante\w* palliativ\w*|palliativ-?team|palliativdienst|palliative care team|muster\s*63)\b/iu],
+  ['mutterschaft', /\b(fehlgeburt\w*|frühgeburt\w*|missed abortion|totgeburt\w*|mutterschaftsgeld|behinderung des kindes|muster\s*9)\b/iu],
+  ['soziotherapie', /\b(soziotherapie\w*|muster\s*26)\b/iu],
+  ['betreuungsplan', /\b(soziotherapeutische\w* betreuungsplan|betreuungsplan|muster\s*27)\b/iu],
+  ['attest_kind', /\b(attest kind|ärztliche\w* attest (?:für das )?kind|muster\s*65)\b/iu],
+  ['mutter_vater_vorsorge', /\b((?:mutter|vater)-?kind-?(?:kur|leistung|maßnahme|vorsorge)|mütterkur|mutterkur|väterkur|vaterkur|vorsorge für (?:mütter|väter)|müttergenesung\w*|muster\s*64)\b/iu],
   ['reha', /\b(reha|rehabilitation\w*|anschlussheilbehandlung|ahb|reha-?antrag)\b/iu],
   ['heilmittel', /\b(heilmittel\w*|physiotherap\w*|physio|krankengymnastik|manuelle therapie|lymphdrainage|ergotherap\w*|logopädi\w*|podolog\w*|ernährungstherap\w*|sprachtherap\w*|stimmtherap\w*|schlucktherap\w*)\b/iu],
 ];
@@ -66,7 +76,7 @@ function intents(text: string): { intent: Intent; evidence: string }[] {
   return out;
 }
 
-const FORM_OF: Record<Intent, FormId> = { ueberweisung: 'muster-06', einweisung: 'muster-02', befoerderung: 'muster-04', labor: 'muster-10', heilmittel: 'muster-13', hkp: 'muster-12', reha: 'muster-61', kinderkrank: 'muster-21', wiedereingliederung: 'muster-20', chroniker: 'muster-55', notfallschein: 'muster-19', au_bericht: 'muster-52', sapv: 'muster-63' };
+const FORM_OF: Record<Intent, FormId> = { ueberweisung: 'muster-06', einweisung: 'muster-02', befoerderung: 'muster-04', labor: 'muster-10', heilmittel: 'muster-13', hkp: 'muster-12', reha: 'muster-61', kinderkrank: 'muster-21', wiedereingliederung: 'muster-20', chroniker: 'muster-55', notfallschein: 'muster-19', au_bericht: 'muster-52', sapv: 'muster-63', mutterschaft: 'muster-09', soziotherapie: 'muster-26', betreuungsplan: 'muster-27', mutter_vater_vorsorge: 'muster-64', attest_kind: 'muster-65' };
 
 function suggestion(formId: FormId, role: FormSuggestion['role'], why: string, evidence: string | null, ruleId: string | null): FormSuggestion {
   const form = getForm(formId);
@@ -87,6 +97,11 @@ function suggestions(text: string, facts: PatientFacts): FormSuggestion[] {
     const gl = labGemeinschaft(text);
     if (gl) out.push(suggestion('muster-10a', 'alternativ', `Bezieht die Praxis das Allgemeinlabor über eine Laborgemeinschaft: Muster 10A (${gl}).`, gl, 'm10a.auftragsfeld'));
   }
+  // Soziotherapie: Verordnung (26) und Betreuungsplan (27) gehen zusammen an die Kasse.
+  if (has('muster-26') && !has('muster-27')) out.push(suggestion('muster-27', 'zusaetzlich', 'Der Betreuungsplan (Muster 27) wird zusammen mit der Verordnung der Kasse vorgelegt.', null, 'm27.vorlage'));
+  // Mutter-/Vater-Kind-Vorsorge mit behandlungsbedürftigem Kind: Ärztliches Attest Kind (65).
+  const kindKrank = has('muster-64') && !has('muster-65') ? cue(/\b(kind\w*|sohn|tochter)\b[^.;]{0,40}?\b(asthma|neurodermitis|adipositas|übergewicht\w*|adhs|entwicklungsverzöger\w*|chronisch\w*|behindert\w*|verhaltensauffällig\w*|infekt\w*)/iu, text) : null;
+  if (kindKrank) out.push(suggestion('muster-65', 'zusaetzlich', 'Mitaufgenommenes Kind ist behandlungsbedürftig: Ärztliches Attest Kind (Muster 65).', kindKrank, 'm65.zweck'));
   const b = befoerderungB(facts);
   if (!has('muster-04')) {
     if (has('muster-02') && (facts.ausstattung || (facts.pflegegrad && facts.pflegegrad.value >= 3) || facts.notfall)) {
@@ -138,11 +153,16 @@ export function propose(formId: FormId, description: string, facts: PatientFacts
   if (formId === 'muster-19') return proposeMuster19(text, facts, today);
   if (formId === 'muster-52') return proposeMuster52(text, facts, today);
   if (formId === 'muster-63') return proposeMuster63(text, facts, today);
+  if (formId === 'muster-09') return proposeMuster09(text, facts);
+  if (formId === 'muster-26') return proposeMuster26(text, facts, today);
+  if (formId === 'muster-27') return proposeMuster27(text, facts, today);
+  if (formId === 'muster-64') return proposeMuster64(text, facts, today);
+  if (formId === 'muster-65') return proposeMuster65(text, facts, today);
   return proposeMuster13(text, facts);
 }
 
 const CHECKS: Record<FormId, (values: FormValues, facts: PatientFacts) => FormIssue[]> = {
-  'muster-06': checkMuster06, 'muster-02': checkMuster02, 'muster-04': checkMuster04, 'muster-10': checkMuster10, 'muster-10a': checkMuster10A, 'muster-13': checkMuster13, 'muster-12': checkMuster12, 'muster-61': checkMuster61, 'muster-21': checkMuster21, 'muster-20': checkMuster20, 'muster-55': checkMuster55, 'muster-19': checkMuster19, 'muster-52': checkMuster52, 'muster-63': checkMuster63,
+  'muster-06': checkMuster06, 'muster-02': checkMuster02, 'muster-04': checkMuster04, 'muster-10': checkMuster10, 'muster-10a': checkMuster10A, 'muster-13': checkMuster13, 'muster-12': checkMuster12, 'muster-61': checkMuster61, 'muster-21': checkMuster21, 'muster-20': checkMuster20, 'muster-55': checkMuster55, 'muster-19': checkMuster19, 'muster-52': checkMuster52, 'muster-63': checkMuster63, 'muster-09': checkMuster09, 'muster-26': checkMuster26, 'muster-27': checkMuster27, 'muster-64': checkMuster64, 'muster-65': checkMuster65,
 };
 
 const ORDER = { unzulaessig: 0, fehlt: 1, hinweis: 2 } as const;

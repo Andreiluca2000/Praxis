@@ -1,0 +1,557 @@
+{
+ "schema_version": "1.0.0",
+ "id": "muster-27",
+ "muster": "27",
+ "title": "Soziotherapeutischer Betreuungsplan gemäß § 37a SGB V",
+ "form_version": "10.2014",
+ "released": "2014-09-01",
+ "status": "entwurf",
+ "paper": {
+  "format": "DIN A4 hoch",
+  "width": 595.3,
+  "height": 841.9,
+  "tint": "blau"
+ },
+ "copies": [
+  {
+   "id": "27a",
+   "label": "Original",
+   "recipient": "Krankenkasse (mit Muster 26)"
+  },
+  {
+   "id": "27b",
+   "label": "1. Durchschlag",
+   "recipient": "soziotherapeutischer Leistungserbringer"
+  },
+  {
+   "id": "27c",
+   "label": "2. Durchschlag",
+   "recipient": "verordnender Arzt"
+  }
+ ],
+ "notes": [
+  {
+   "id": "m27.abstimmung",
+   "text": "Der Betreuungsplan ist Ergebnis eines Abstimmungsprozesses zwischen verordnendem Arzt, soziotherapeutischem Leistungserbringer und Patient und Basis der Therapie; Verlauf und Ziele werden regelmäßig beraten und der Plan ggf. angepasst.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 27, Einleitung, S. 76"
+   }
+  },
+  {
+   "id": "m27.vorlage",
+   "text": "Der Plan muss zusammen mit dem ausgefüllten Muster 26 spätestens am 3. Arbeitstag nach Ausstellung der Verordnung der Krankenkasse zur Genehmigung vorgelegt werden.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 27, Einleitung, S. 76"
+   }
+  },
+  {
+   "id": "m27.kostenuebernahme",
+   "text": "Bis zur Entscheidung über die Genehmigung übernimmt die Krankenkasse die Kosten der verordneten und erbrachten Leistungen.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 27, Einleitung, S. 76"
+   }
+  },
+  {
+   "id": "m27.st_rl",
+   "text": "Die Soziotherapie-Richtlinie des G-BA (ST-RL) ist zu beachten; zwei Durchschläge (Original Krankenkasse, 1. Leistungserbringer, 2. Arzt).",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 27, Einleitung, S. 76"
+   }
+  }
+ ],
+ "groups": [],
+ "fields": [
+  {
+   "id": "personalien",
+   "label": "Personalienfeld (Kasse, Name, geb. am, Kostenträgerkennung, Versicherten-Nr., Status, BSNR, LANR, Datum)",
+   "kind": "personalien",
+   "filled_by": "duria",
+   "box": {
+    "x": 4.4,
+    "y": 1.7,
+    "w": 38.0,
+    "h": 15.7
+   },
+   "rules": [
+    {
+     "id": "m27.personalien",
+     "text": "Die Daten der eGK werden maschinell über Kartenterminal und Praxis-EDV übertragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 5 und Nr. 6, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ik",
+   "label": "IK des Leistungserbringers",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❶",
+   "box": {
+    "x": 52.4,
+    "y": 14.7,
+    "w": 42.9,
+    "h": 2.9
+   },
+   "rules": [
+    {
+     "id": "m27.ik",
+     "text": "Einzutragen ist das Institutionskennzeichen des soziotherapeutischen Leistungserbringers.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 27, ❶, S. 76"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ziele",
+   "label": "Therapieziele (Nah- und Fernziele)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 4,
+   "marker": "❷",
+   "box": {
+    "x": 9.5,
+    "y": 21.0,
+    "w": 85.7,
+    "h": 10.6
+   },
+   "rules": [
+    {
+     "id": "m27.therapieziele",
+     "text": "Therapieziele in Nah- und Fernziele unterscheiden (Nahziel z. B. Steigerung der Belastungsfähigkeit, Fernziel z. B. Wiedererlangen der Arbeitsfähigkeit); der Plan soll von allen Beteiligten unterschrieben werden.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 27, ❷, S. 76"
+     }
+    }
+   ]
+  },
+  {
+   "id": "massnahme1",
+   "label": "Maßnahme 1 (verordnet bzw. empfohlen, zu koordinieren)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❸",
+   "box": {
+    "x": 13.0,
+    "y": 33.7,
+    "w": 82.2,
+    "h": 2.4
+   },
+   "rules": [
+    {
+     "id": "m27.massnahmen",
+     "text": "Hier sind die Maßnahmen zu benennen, die zum Erreichen der Ziele befähigen; höchstens 9 Maßnahmen, z. B. psychiatrische Sprechstunde, Ergotherapie oder Psychotherapie.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 27, ❸, S. 76"
+     }
+    }
+   ]
+  },
+  {
+   "id": "massnahme2",
+   "label": "Maßnahme 2 (verordnet bzw. empfohlen, zu koordinieren)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❸",
+   "box": {
+    "x": 13.0,
+    "y": 36.6,
+    "w": 82.2,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "massnahme3",
+   "label": "Maßnahme 3 (verordnet bzw. empfohlen, zu koordinieren)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❸",
+   "box": {
+    "x": 13.0,
+    "y": 39.4,
+    "w": 82.2,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "massnahme4",
+   "label": "Maßnahme 4 (verordnet bzw. empfohlen, zu koordinieren)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❸",
+   "box": {
+    "x": 13.0,
+    "y": 42.3,
+    "w": 82.2,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "massnahme5",
+   "label": "Maßnahme 5 (verordnet bzw. empfohlen, zu koordinieren)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❸",
+   "box": {
+    "x": 13.0,
+    "y": 45.1,
+    "w": 82.2,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "massnahme6",
+   "label": "Maßnahme 6 (verordnet bzw. empfohlen, zu koordinieren)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❸",
+   "box": {
+    "x": 13.0,
+    "y": 48.0,
+    "w": 82.2,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "massnahme7",
+   "label": "Maßnahme 7 (verordnet bzw. empfohlen, zu koordinieren)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❸",
+   "box": {
+    "x": 13.0,
+    "y": 50.8,
+    "w": 82.2,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "massnahme8",
+   "label": "Maßnahme 8 (verordnet bzw. empfohlen, zu koordinieren)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❸",
+   "box": {
+    "x": 13.0,
+    "y": 53.7,
+    "w": 82.2,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "massnahme9",
+   "label": "Maßnahme 9 (verordnet bzw. empfohlen, zu koordinieren)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❸",
+   "box": {
+    "x": 13.0,
+    "y": 56.5,
+    "w": 82.2,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "art1",
+   "label": "Durchführung 1: Art der Maßnahme",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❹",
+   "box": {
+    "x": 9.5,
+    "y": 66.0,
+    "w": 42.9,
+    "h": 2.8
+   },
+   "rules": [
+    {
+     "id": "m27.durchfuehrung",
+     "text": "Zur Art der soziotherapeutischen Maßnahmen sind Frequenz pro Woche/Monat und Zeitraum anzugeben.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 27, ❹, S. 76"
+     }
+    }
+   ]
+  },
+  {
+   "id": "frequenz1",
+   "label": "Durchführung 1: Frequenz pro Woche/Monat",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❹",
+   "box": {
+    "x": 52.4,
+    "y": 66.0,
+    "w": 21.9,
+    "h": 2.8
+   },
+   "rules": [
+    {
+     "id": "m27.durchfuehrung",
+     "text": "Zur Art der soziotherapeutischen Maßnahmen sind Frequenz pro Woche/Monat und Zeitraum anzugeben.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 27, ❹, S. 76"
+     }
+    }
+   ]
+  },
+  {
+   "id": "zeitraum1",
+   "label": "Durchführung 1: Zeitraum",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❹",
+   "box": {
+    "x": 74.3,
+    "y": 66.0,
+    "w": 20.9,
+    "h": 2.8
+   },
+   "rules": [
+    {
+     "id": "m27.durchfuehrung",
+     "text": "Zur Art der soziotherapeutischen Maßnahmen sind Frequenz pro Woche/Monat und Zeitraum anzugeben.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 27, ❹, S. 76"
+     }
+    }
+   ]
+  },
+  {
+   "id": "art2",
+   "label": "Durchführung 2: Art der Maßnahme",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❹",
+   "box": {
+    "x": 9.5,
+    "y": 68.8,
+    "w": 42.9,
+    "h": 2.8
+   },
+   "rules": []
+  },
+  {
+   "id": "frequenz2",
+   "label": "Durchführung 2: Frequenz pro Woche/Monat",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❹",
+   "box": {
+    "x": 52.4,
+    "y": 68.8,
+    "w": 21.9,
+    "h": 2.8
+   },
+   "rules": []
+  },
+  {
+   "id": "zeitraum2",
+   "label": "Durchführung 2: Zeitraum",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❹",
+   "box": {
+    "x": 74.3,
+    "y": 68.8,
+    "w": 20.9,
+    "h": 2.8
+   },
+   "rules": []
+  },
+  {
+   "id": "art3",
+   "label": "Durchführung 3: Art der Maßnahme",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❹",
+   "box": {
+    "x": 9.5,
+    "y": 71.7,
+    "w": 42.9,
+    "h": 2.8
+   },
+   "rules": []
+  },
+  {
+   "id": "frequenz3",
+   "label": "Durchführung 3: Frequenz pro Woche/Monat",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❹",
+   "box": {
+    "x": 52.4,
+    "y": 71.7,
+    "w": 21.9,
+    "h": 2.8
+   },
+   "rules": []
+  },
+  {
+   "id": "zeitraum3",
+   "label": "Durchführung 3: Zeitraum",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❹",
+   "box": {
+    "x": 74.3,
+    "y": 71.7,
+    "w": 20.9,
+    "h": 2.8
+   },
+   "rules": []
+  },
+  {
+   "id": "art4",
+   "label": "Durchführung 4: Art der Maßnahme",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❹",
+   "box": {
+    "x": 9.5,
+    "y": 74.5,
+    "w": 42.9,
+    "h": 2.8
+   },
+   "rules": []
+  },
+  {
+   "id": "frequenz4",
+   "label": "Durchführung 4: Frequenz pro Woche/Monat",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❹",
+   "box": {
+    "x": 52.4,
+    "y": 74.5,
+    "w": 21.9,
+    "h": 2.8
+   },
+   "rules": []
+  },
+  {
+   "id": "zeitraum4",
+   "label": "Durchführung 4: Zeitraum",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❹",
+   "box": {
+    "x": 74.3,
+    "y": 74.5,
+    "w": 20.9,
+    "h": 2.8
+   },
+   "rules": []
+  },
+  {
+   "id": "datum",
+   "label": "Ausstellungsdatum",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "TTMMJJ",
+   "box": {
+    "x": 9.6,
+    "y": 84.5,
+    "w": 23.3,
+    "h": 5.7
+   },
+   "rules": [
+    {
+     "id": "m27.vorlage",
+     "text": "Der Plan muss zusammen mit dem ausgefüllten Muster 26 spätestens am 3. Arbeitstag nach Ausstellung der Verordnung der Krankenkasse zur Genehmigung vorgelegt werden.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 27, Einleitung, S. 76"
+     }
+    }
+   ]
+  },
+  {
+   "id": "stempel",
+   "label": "Vertragsarztstempel / Unterschrift des Arztes",
+   "kind": "stempel",
+   "filled_by": "arzt",
+   "box": {
+    "x": 34.3,
+    "y": 84.5,
+    "w": 22.9,
+    "h": 12.1
+   },
+   "rules": [
+    {
+     "id": "m27.unterschrift",
+     "text": "Erst vollständig ausfüllen, dann mit Vertragsarztstempel persönlich unterschreiben – nie blanko.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "unterschrift_therapeut",
+   "label": "Datum / Unterschrift des Therapeuten",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "box": {
+    "x": 58.6,
+    "y": 84.5,
+    "w": 36.6,
+    "h": 5.7
+   },
+   "rules": [
+    {
+     "id": "m27.therapieziele",
+     "text": "Therapieziele in Nah- und Fernziele unterscheiden (Nahziel z. B. Steigerung der Belastungsfähigkeit, Fernziel z. B. Wiedererlangen der Arbeitsfähigkeit); der Plan soll von allen Beteiligten unterschrieben werden.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 27, ❷, S. 76"
+     }
+    }
+   ]
+  },
+  {
+   "id": "unterschrift_patient",
+   "label": "Datum / Unterschrift des Patienten",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "box": {
+    "x": 58.6,
+    "y": 90.9,
+    "w": 36.6,
+    "h": 5.7
+   },
+   "rules": [
+    {
+     "id": "m27.therapieziele",
+     "text": "Therapieziele in Nah- und Fernziele unterscheiden (Nahziel z. B. Steigerung der Belastungsfähigkeit, Fernziel z. B. Wiedererlangen der Arbeitsfähigkeit); der Plan soll von allen Beteiligten unterschrieben werden.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 27, ❷, S. 76"
+     }
+    }
+   ]
+  }
+ ]
+}

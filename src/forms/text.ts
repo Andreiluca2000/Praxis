@@ -130,6 +130,9 @@ const LABELS = [
   'leitsymptomatik', 'therapieziele?', 'heilmittel', 'einschränkungen?', 'präparate', 'verbandmaterial', 'anamnese', 'kontext', 'lebensumstände', 'rehaziele?', 'ziele?',
   'zuletzt ausgeübte tätigkeit', 'tätigkeit', 'beruf', 'stufenplan', 'plan',
   'funktionseinschränkungen?', 'konservativ', 'operativ', 'sonstiges?', 'beschreibung', 'begründung', 'symptome', 'versorgungsbedarf', 'medikamente', 'ausrichtung',
+  'fähigkeitsstörungen?', 'co-?morbiditäten', 'prognose', 'wohnform', 'betreuer', 'angehörige[rn]?', 'nahziele?', 'fernziele?', 'durchführung',
+  'risikofaktoren?', 'gesundheitsstörungen?', 'beeinträchtigungen?', 'vorsorgeziele?', 'kontextfaktoren?', 'interventionen', 'weitere informationen',
+  'anforderungen', 'bisherige behandlung', 'krankenbehandlung',
 ];
 const LABEL_RE = new RegExp(`(?:^|[\\s.;,(])(${LABELS.join('|')})\\s*:`, 'giu');
 

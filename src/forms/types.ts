@@ -59,7 +59,7 @@ export interface FormDefinition {
   fields: FormField[];
 }
 
-export type FormId = 'muster-06' | 'muster-02' | 'muster-04' | 'muster-10' | 'muster-10a' | 'muster-21' | 'muster-20' | 'muster-55' | 'muster-19' | 'muster-52' | 'muster-63' | 'muster-13' | 'muster-12' | 'muster-61';
+export type FormId = 'muster-06' | 'muster-02' | 'muster-04' | 'muster-10' | 'muster-10a' | 'muster-21' | 'muster-20' | 'muster-55' | 'muster-19' | 'muster-52' | 'muster-63' | 'muster-09' | 'muster-26' | 'muster-27' | 'muster-64' | 'muster-65' | 'muster-13' | 'muster-12' | 'muster-61';
 
 /**
  * Zustand eines Feldes im Vorschlag:
@@ -144,9 +144,13 @@ export interface PatientFacts {
   mitaufnahme: Fact<true> | null;
   /** Unfall in Kita oder Schule bzw. auf dem Weg dorthin (Muster 21: Unfallversicherungsträger) */
   kitaUnfall: Fact<true> | null;
+  /** Schwangerschaftswoche (vollendete Wochen, z. B. „18+3 SSW“ → 18) */
+  ssw: Fact<number> | null;
+  /** Mehrlingsgeburt (Muster 9 nicht auszustellen) */
+  mehrlinge: Fact<true> | null;
 }
 
-export type Intent = 'ueberweisung' | 'einweisung' | 'befoerderung' | 'labor' | 'heilmittel' | 'hkp' | 'reha' | 'kinderkrank' | 'wiedereingliederung' | 'chroniker' | 'notfallschein' | 'au_bericht' | 'sapv';
+export type Intent = 'ueberweisung' | 'einweisung' | 'befoerderung' | 'labor' | 'heilmittel' | 'hkp' | 'reha' | 'kinderkrank' | 'wiedereingliederung' | 'chroniker' | 'notfallschein' | 'au_bericht' | 'sapv' | 'mutterschaft' | 'soziotherapie' | 'betreuungsplan' | 'mutter_vater_vorsorge' | 'attest_kind';
 
 export interface FormSuggestion {
   formId: FormId;

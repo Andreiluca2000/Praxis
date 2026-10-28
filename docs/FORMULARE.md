@@ -30,7 +30,7 @@ Rechte: KBV-Inhalte sind geschützt; Zitieren mit Quellenangabe ist erlaubt. Reg
 
 ## Dateien
 
-- `data/forms/muster-06.json`, `muster-02.json`, `muster-04.json`, `muster-10.json`, `muster-10a.json`, `muster-13.json`, `muster-12.json`, `muster-61.json` (Teil A–E, mehrseitig), `muster-21.json`, `muster-20.json`, `muster-55.json`, `muster-19.json`, `muster-52.json`, `muster-63.json` – ausfüllbare Vordrucke: Felder, Ankreuzgruppen, Lage (Prozent), Regeln mit Fundstelle (`schemas/forms-muster.schema.json`).
+- `data/forms/muster-06.json`, `muster-02.json`, `muster-04.json`, `muster-10.json`, `muster-10a.json`, `muster-13.json`, `muster-12.json`, `muster-61.json` (Teil A–E, mehrseitig), `muster-21.json`, `muster-20.json`, `muster-55.json`, `muster-19.json`, `muster-52.json`, `muster-63.json`, `muster-09.json`, `muster-26.json`, `muster-27.json`, `muster-64.json` (Teil A–B), `muster-65.json` – ausfüllbare Vordrucke: Felder, Ankreuzgruppen, Lage (Prozent), Regeln mit Fundstelle (`schemas/forms-muster.schema.json`).
 - `data/forms/catalog.json` – **alle** Vordrucke (e01 bis Muster 86, 58 Einträge, 548 Regeln) mit Zweck, Stichwörtern, „stattdessen Muster X“ und Ausfüllregeln (`schemas/forms-catalog.schema.json`). Halbautomatisch aus den Erläuterungen erstellt, stichprobenartig gegen die Quelle geprüft; fachliche Freigabe steht aus.
 - `src/forms/` – `facts.ts` (Lage des Patienten), `advisor.ts` (Einstieg: `analyse`, `propose`, `check`), `muster0X.ts` (Vorschlag + Prüfung je Vordruck), `katalog.ts` (Suche im Gesamtkatalog), `text.ts` (Unicode-sichere Texthelfer).
 - Tests: `tests/forms.test.ts`, `tests/forms-10a-20-21.test.ts` u. a. (synthetische Fälle), `tests/forms-data.test.ts` (Schema, Kennungen, SHA-256 der Quellen).
@@ -41,4 +41,4 @@ Rechte: KBV-Inhalte sind geschützt; Zitieren mit Quellenangabe ist erlaubt. Reg
 
 ## Nächste Vordrucke (Vorschlag, nach Häufigkeit in der Hausarztpraxis)
 
-Als Nächstes kämen z. B. Muster 9, 26/27, 64, 65 – jeweils mit eigenem Feldmodell und Tests (Muster 56 bearbeitet gerade eine andere Sitzung). Die Regeln dafür stehen schon im Katalog.
+Als Nächstes: die von der Audit-Sitzung vorbereiteten Daten (u. a. 03, 05, 07, 08, 11, 16, 22, 25, 28, 36, 39, 50, 51, 53, 56, 62a–c, 70, 85, 86) mit Logik und Tests einbinden. Die Regeln dafür stehen schon im Katalog.

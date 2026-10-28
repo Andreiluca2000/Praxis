@@ -1,0 +1,1311 @@
+{
+ "schema_version": "1.0.0",
+ "id": "muster-64",
+ "muster": "64",
+ "title": "Verordnung medizinischer Vorsorge für Mütter oder Väter gemäß § 24 SGB V",
+ "form_version": "10.2018",
+ "released": "2018-03-29",
+ "status": "entwurf",
+ "paper": {
+  "format": "DIN A4 hoch",
+  "width": 595.3,
+  "height": 841.9,
+  "tint": "rot"
+ },
+ "pages": [
+  "Teil A",
+  "Teil B"
+ ],
+ "copies": [
+  {
+   "id": "64a",
+   "label": "Ausfertigung für die Krankenkasse",
+   "recipient": "Krankenkasse"
+  },
+  {
+   "id": "64b",
+   "label": "Ausfertigung",
+   "recipient": "Versicherte/r bzw. Praxis"
+  }
+ ],
+ "notes": [
+  {
+   "id": "m64.vorhalten",
+   "text": "Das Muster wird in der Vertragsarztpraxis vorgehalten. Für die Empfehlung einer Mutter-/Vater-Kind-Leistung ist die Indikation der Mutter bzw. des Vaters maßgebend.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 64, Einleitung, S. 133"
+   }
+  },
+  {
+   "id": "m64.abgrenzung",
+   "text": "Leistungen zur medizinischen Rehabilitation für Mütter und Väter werden auf Muster 61 verordnet; bei der Vorsorge liegen noch keine längerfristigen (über 6 Monate) Aktivitätsbeeinträchtigungen vor.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 64, Einleitung, S. 133"
+   }
+  },
+  {
+   "id": "m64.belastbarkeit",
+   "text": "Die Krankenkasse erbringt Vorsorgeleistungen nur, wenn eine ausreichende physische und psychische Belastbarkeit für die Leistung gegeben ist.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 64, Einleitung, S. 133"
+   }
+  },
+  {
+   "id": "m64.vorsorgebeduerftigkeit",
+   "text": "Vorsorgebedürftigkeit besteht bei beeinflussbaren Risikofaktoren oder Gesundheitsstörungen, die absehbar zu Krankheit führen, oder bei manifester Krankheit zur Verhinderung drohender Beeinträchtigungen bzw. von Rezidiven; nur wenn über die kurative Versorgung hinaus der komplexe Ansatz erforderlich ist.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 64, II. Vorsorgebedürftigkeit, S. 133–134"
+   }
+  },
+  {
+   "id": "m64.ebm",
+   "text": "Für das Ausstellen der ärztlichen Verordnung ist die Nr. 01624 EBM berechnungsfähig (Aufdruck).",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 96, Muster 64 Ba (10.2018)"
+   }
+  }
+ ],
+ "groups": [
+  {
+   "id": "kontext",
+   "label": "II. C. Kontextfaktoren",
+   "select": "beliebig",
+   "rule": {
+    "id": "m64.kontextfaktoren",
+    "text": "Kontextfaktoren (Umwelt- und personbezogene Einflüsse, z. B. ständiger Zeitdruck, finanzielle Sorgen) angeben, die bei Müttern/Vätern aufgrund der Erziehungsverantwortung eine besondere Belastung bilden können.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 64, ❹, S. 135"
+    }
+   }
+  },
+  {
+   "id": "leistungsform",
+   "label": "V. A. Empfohlene Leistungsform",
+   "select": "genau_eins",
+   "rule": {
+    "id": "m64.leistungsform",
+    "text": "Leistungsform empfehlen (Mütter-/Väter-Leistung oder gemeinsame Mutter-/Vater-Kind-Leistung). Eine gemeinsame Leistung kommt bei eigener Vorsorgebedürftigkeit in Betracht, nicht aber bei eigener Reha-Indikation des Kindes.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 64, ❼, S. 137"
+    }
+   }
+  }
+ ],
+ "fields": [
+  {
+   "id": "personalien",
+   "label": "Personalienfeld (Kasse, Name, geb. am, Kostenträgerkennung, Versicherten-Nr., Status, BSNR, LANR, Datum)",
+   "kind": "personalien",
+   "filled_by": "duria",
+   "page": 0,
+   "box": {
+    "x": 4.4,
+    "y": 1.7,
+    "w": 38.0,
+    "h": 15.7
+   },
+   "rules": [
+    {
+     "id": "m64.personalien",
+     "text": "Die Daten der eGK werden maschinell über Kartenterminal und Praxis-EDV übertragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 5 und Nr. 6, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "risiko",
+   "label": "I. A. Vorsorgerelevante Gesundheitsstörungen einschließlich Risikofaktoren",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 2,
+   "marker": "❶",
+   "page": 0,
+   "box": {
+    "x": 11.5,
+    "y": 23.9,
+    "w": 84.7,
+    "h": 4.9
+   },
+   "rules": [
+    {
+     "id": "m64.diagnosen",
+     "text": "Vorsorgerelevante Gesundheitsstörungen einschließlich Risikofaktoren und Erkrankungen in der Reihenfolge ihrer Bedeutung angeben; Diagnosen als ICD-Codes (zusätzlich Klartext möglich), optional Funktionsdiagnosen oder Freitext.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 64, ❶, S. 133"
+     }
+    }
+   ]
+  },
+  {
+   "id": "dx1",
+   "label": "I. B. Vorsorgerelevante Erkrankung 1",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❶",
+   "page": 0,
+   "box": {
+    "x": 11.5,
+    "y": 32.4,
+    "w": 68.9,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m64.diagnosen",
+     "text": "Vorsorgerelevante Gesundheitsstörungen einschließlich Risikofaktoren und Erkrankungen in der Reihenfolge ihrer Bedeutung angeben; Diagnosen als ICD-Codes (zusätzlich Klartext möglich), optional Funktionsdiagnosen oder Freitext.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 64, ❶, S. 133"
+     }
+    }
+   ]
+  },
+  {
+   "id": "icd1",
+   "label": "I. B. Diagnoseschlüssel 1 (ICD-10-GM)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❶",
+   "page": 0,
+   "box": {
+    "x": 82.9,
+    "y": 32.4,
+    "w": 13.3,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m64.diagnosen",
+     "text": "Vorsorgerelevante Gesundheitsstörungen einschließlich Risikofaktoren und Erkrankungen in der Reihenfolge ihrer Bedeutung angeben; Diagnosen als ICD-Codes (zusätzlich Klartext möglich), optional Funktionsdiagnosen oder Freitext.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 64, ❶, S. 133"
+     }
+    }
+   ]
+  },
+  {
+   "id": "dx2",
+   "label": "I. B. Vorsorgerelevante Erkrankung 2",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❶",
+   "page": 0,
+   "box": {
+    "x": 11.5,
+    "y": 35.3,
+    "w": 68.9,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "icd2",
+   "label": "I. B. Diagnoseschlüssel 2 (ICD-10-GM)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❶",
+   "page": 0,
+   "box": {
+    "x": 82.9,
+    "y": 35.3,
+    "w": 13.3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "dx3",
+   "label": "I. B. Vorsorgerelevante Erkrankung 3",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❶",
+   "page": 0,
+   "box": {
+    "x": 11.5,
+    "y": 38.1,
+    "w": 68.9,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "icd3",
+   "label": "I. B. Diagnoseschlüssel 3 (ICD-10-GM)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❶",
+   "page": 0,
+   "box": {
+    "x": 82.9,
+    "y": 38.1,
+    "w": 13.3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "anamnese",
+   "label": "II. A. Kurze Angaben zur Anamnese",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 3,
+   "marker": "❷",
+   "page": 0,
+   "box": {
+    "x": 11.5,
+    "y": 45.3,
+    "w": 84.7,
+    "h": 7.8
+   },
+   "rules": [
+    {
+     "id": "m64.anamnese",
+     "text": "Anamnese und ggf. bisherigen Verlauf der Krankenbehandlung einschließlich der Beschwerden dokumentieren.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 64, ❷, S. 135"
+     }
+    }
+   ]
+  },
+  {
+   "id": "beeintraechtigungen",
+   "label": "II. B. Vorübergehende Beeinträchtigungen der Aktivitäten/Teilhabe",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 3,
+   "marker": "❸",
+   "page": 0,
+   "box": {
+    "x": 11.5,
+    "y": 58.1,
+    "w": 84.7,
+    "h": 7.8
+   },
+   "rules": [
+    {
+     "id": "m64.beeintraechtigungen",
+     "text": "Vorübergehende Beeinträchtigungen der Aktivitäten und der Teilhabe (z. B. Stress, Gesundheit und Ernährung, Familienleben, Erziehung, Arbeit) infolge der genannten Erkrankungen angeben.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 64, ❸, S. 135"
+     }
+    }
+   ]
+  },
+  {
+   "id": "k_mehrfach",
+   "label": "Mehrfachbelastung durch Beruf/Familie",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "kontext",
+   "label_pos": "rechts",
+   "marker": "❹",
+   "page": 0,
+   "box": {
+    "x": 11.6,
+    "y": 69.6,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "k_unterstuetzung",
+   "label": "mangelnde Unterstützung bei der Kindererziehung",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "kontext",
+   "label_pos": "rechts",
+   "marker": "❹",
+   "page": 0,
+   "box": {
+    "x": 11.6,
+    "y": 72.4,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "k_erziehung",
+   "label": "Erziehungsschwierigkeiten",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "kontext",
+   "label_pos": "rechts",
+   "marker": "❹",
+   "page": 0,
+   "box": {
+    "x": 11.6,
+    "y": 75.3,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "k_alltag",
+   "label": "Schwierigkeiten bei der Problembewältigung (Alltagsprobleme)",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "kontext",
+   "label_pos": "rechts",
+   "marker": "❹",
+   "page": 0,
+   "box": {
+    "x": 11.6,
+    "y": 78.1,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "k_grundkompetenz",
+   "label": "mangelnde Grundkompetenzen im Zusammenhang mit den Aufgaben einer Mutter/eines Vaters",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "kontext",
+   "label_pos": "rechts",
+   "marker": "❹",
+   "page": 0,
+   "box": {
+    "x": 11.6,
+    "y": 81.0,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "k_betreuungsaufwand",
+   "label": "erhöhter Betreuungsaufwand durch chronisch erkrankte, verhaltensauffällige oder behinderte Kinder, Frühgeborene, Mehrlinge",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "kontext",
+   "label_pos": "rechts",
+   "marker": "❹",
+   "page": 0,
+   "box": {
+    "x": 11.6,
+    "y": 83.8,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "k_anerkennung",
+   "label": "fehlende Anerkennung der Mutter-/Vaterrolle",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "kontext",
+   "label_pos": "rechts",
+   "marker": "❹",
+   "page": 0,
+   "box": {
+    "x": 34.0,
+    "y": 69.6,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "k_partner",
+   "label": "Partner-/Eheprobleme/Trennung vom Partner",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "kontext",
+   "label_pos": "rechts",
+   "marker": "❹",
+   "page": 0,
+   "box": {
+    "x": 34.0,
+    "y": 72.4,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "k_pflege",
+   "label": "Pflege von Familienangehörigen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "kontext",
+   "label_pos": "rechts",
+   "marker": "❹",
+   "page": 0,
+   "box": {
+    "x": 34.0,
+    "y": 75.3,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "k_tod",
+   "label": "Tod des Partners/naher Angehöriger",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "kontext",
+   "label_pos": "rechts",
+   "marker": "❹",
+   "page": 0,
+   "box": {
+    "x": 54.5,
+    "y": 69.6,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "k_teenager",
+   "label": "Teenagerschwangerschaft",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "kontext",
+   "label_pos": "rechts",
+   "marker": "❹",
+   "page": 0,
+   "box": {
+    "x": 54.5,
+    "y": 72.4,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "k_isolation",
+   "label": "soziale Isolation",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "kontext",
+   "label_pos": "rechts",
+   "marker": "❹",
+   "page": 0,
+   "box": {
+    "x": 54.5,
+    "y": 75.3,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "k_finanzen",
+   "label": "finanzielle Sorgen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "kontext",
+   "label_pos": "rechts",
+   "marker": "❹",
+   "page": 0,
+   "box": {
+    "x": 54.5,
+    "y": 78.1,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "k_zeitdruck",
+   "label": "ständiger Zeitdruck",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "kontext",
+   "label_pos": "rechts",
+   "marker": "❹",
+   "page": 0,
+   "box": {
+    "x": 54.5,
+    "y": 81.0,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "k_allein",
+   "label": "allein erziehend",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "kontext",
+   "label_pos": "rechts",
+   "marker": "❹",
+   "page": 0,
+   "box": {
+    "x": 54.5,
+    "y": 83.8,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "k_beziehung",
+   "label": "beeinträchtigte Mutter-/Vater-Kind-Beziehung",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "kontext",
+   "label_pos": "rechts",
+   "marker": "❹",
+   "page": 0,
+   "box": {
+    "x": 72.1,
+    "y": 69.8,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "k_ueberforderung",
+   "label": "Überforderungssituation am Arbeitsplatz/in der Schule",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "kontext",
+   "label_pos": "rechts",
+   "marker": "❹",
+   "page": 0,
+   "box": {
+    "x": 72.1,
+    "y": 72.6,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "k_sprache",
+   "label": "sprachliche Verständigungsschwierigkeiten",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "kontext",
+   "label_pos": "rechts",
+   "marker": "❹",
+   "page": 0,
+   "box": {
+    "x": 72.1,
+    "y": 75.3,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "k_arbeitszeiten",
+   "label": "besonders belastende/unregelmäßige Arbeitszeiten",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "kontext",
+   "label_pos": "rechts",
+   "marker": "❹",
+   "page": 0,
+   "box": {
+    "x": 72.1,
+    "y": 78.1,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "k_arbeitsplatz",
+   "label": "drohender Arbeitsplatzverlust/Arbeitslosigkeit",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "kontext",
+   "label_pos": "rechts",
+   "marker": "❹",
+   "page": 0,
+   "box": {
+    "x": 72.1,
+    "y": 81.0,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "k_gleichberechtigung",
+   "label": "nicht gleichberechtigte Stellung der Frau/des Mannes in der Familie",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "kontext",
+   "label_pos": "rechts",
+   "marker": "❹",
+   "page": 0,
+   "box": {
+    "x": 72.1,
+    "y": 83.8,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "kontext_text",
+   "label": "andere Kontextfaktoren; ggf. nähere Erläuterungen",
+   "kind": "text",
+   "filled_by": "praxis",
+   "lines": 2,
+   "marker": "❹",
+   "page": 0,
+   "box": {
+    "x": 11.5,
+    "y": 89.5,
+    "w": 84.7,
+    "h": 4.9
+   },
+   "rules": [
+    {
+     "id": "m64.kontextfaktoren",
+     "text": "Kontextfaktoren (Umwelt- und personbezogene Einflüsse, z. B. ständiger Zeitdruck, finanzielle Sorgen) angeben, die bei Müttern/Vätern aufgrund der Erziehungsverantwortung eine besondere Belastung bilden können.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 64, ❹, S. 135"
+     }
+    }
+   ]
+  },
+  {
+   "id": "personalien_b",
+   "label": "Name, Kostenträgerkennung, Versicherten-Nr.",
+   "kind": "personalien",
+   "filled_by": "duria",
+   "page": 1,
+   "box": {
+    "x": 10.4,
+    "y": 1.7,
+    "w": 67.0,
+    "h": 2.8
+   },
+   "rules": [
+    {
+     "id": "m64.personalien",
+     "text": "Die Daten der eGK werden maschinell über Kartenterminal und Praxis-EDV übertragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 5 und Nr. 6, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "interventionen",
+   "label": "III. A. Bisherige ärztliche/psychotherapeutische Interventionen einschließlich Arzneimittel-/Heilmitteltherapie",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 3,
+   "marker": "❺",
+   "page": 1,
+   "box": {
+    "x": 11.5,
+    "y": 9.6,
+    "w": 84.7,
+    "h": 7.8
+   },
+   "rules": [
+    {
+     "id": "m64.krankenbehandlung",
+     "text": "Bisherige Krankenbehandlung und andere Maßnahmen angeben und bestätigen, dass das Behandlungsziel mit weiteren Heilmittelbehandlungen nicht erreichbar ist.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 64, ❺, S. 135"
+     }
+    }
+   ]
+  },
+  {
+   "id": "heilmittel_nicht_ausreichend",
+   "label": "Heilmittel zur Erreichung des Behandlungsziels nicht ausreichend / nicht zielführend",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "label_pos": "rechts",
+   "marker": "❺",
+   "page": 1,
+   "box": {
+    "x": 11.6,
+    "y": 18.2,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": [
+    {
+     "id": "m64.krankenbehandlung",
+     "text": "Bisherige Krankenbehandlung und andere Maßnahmen angeben und bestätigen, dass das Behandlungsziel mit weiteren Heilmittelbehandlungen nicht erreichbar ist.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 64, ❺, S. 135"
+     }
+    }
+   ]
+  },
+  {
+   "id": "andere_massnahmen",
+   "label": "III. B. Bisherige andere Maßnahmen",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 2,
+   "marker": "❺",
+   "page": 1,
+   "box": {
+    "x": 11.5,
+    "y": 23.9,
+    "w": 84.7,
+    "h": 4.9
+   },
+   "rules": [
+    {
+     "id": "m64.krankenbehandlung",
+     "text": "Bisherige Krankenbehandlung und andere Maßnahmen angeben und bestätigen, dass das Behandlungsziel mit weiteren Heilmittelbehandlungen nicht erreichbar ist.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 64, ❺, S. 135"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ziele",
+   "label": "IV. Vorsorgeziele",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 2,
+   "marker": "❻",
+   "page": 1,
+   "box": {
+    "x": 11.5,
+    "y": 33.9,
+    "w": 84.7,
+    "h": 4.9
+   },
+   "rules": [
+    {
+     "id": "m64.vorsorgeziele",
+     "text": "Vorsorgeziele in Bezug auf Gesundheitsstörungen bzw. Kontext- und Risikofaktoren angeben, z. B. Erlernen von Bewältigungsstrategien oder Vermeidung der Chronifizierung.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 64, ❻, S. 136"
+     }
+    }
+   ]
+  },
+  {
+   "id": "muetter",
+   "label": "Mütter-Leistung",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "leistungsform",
+   "label_pos": "rechts",
+   "marker": "❼",
+   "page": 1,
+   "box": {
+    "x": 11.6,
+    "y": 43.9,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "vaeter",
+   "label": "Väter-Leistung",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "leistungsform",
+   "label_pos": "rechts",
+   "marker": "❼",
+   "page": 1,
+   "box": {
+    "x": 34.6,
+    "y": 43.9,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "mutter_kind",
+   "label": "Mutter-Kind-Leistung",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "leistungsform",
+   "label_pos": "rechts",
+   "marker": "❼",
+   "page": 1,
+   "box": {
+    "x": 56.4,
+    "y": 43.9,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "vater_kind",
+   "label": "Vater-Kind-Leistung",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "leistungsform",
+   "label_pos": "rechts",
+   "marker": "❼",
+   "page": 1,
+   "box": {
+    "x": 79.3,
+    "y": 43.9,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "kind1_name",
+   "label": "Kind 1: Name",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❽",
+   "page": 1,
+   "box": {
+    "x": 11.5,
+    "y": 52.4,
+    "w": 36.3,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m64.kinder",
+     "text": "Bei Mutter-/Vater-Kind-Leistung Name und Geburtsdatum des Kindes angeben und den Grund der Aufnahme ankreuzen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 64, ❽, S. 137"
+     }
+    }
+   ]
+  },
+  {
+   "id": "kind1_geb",
+   "label": "Kind 1: Geburtsdatum",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "TTMMJJ",
+   "marker": "❽",
+   "page": 1,
+   "box": {
+    "x": 49.0,
+    "y": 52.4,
+    "w": 14.5,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m64.kinder",
+     "text": "Bei Mutter-/Vater-Kind-Leistung Name und Geburtsdatum des Kindes angeben und den Grund der Aufnahme ankreuzen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 64, ❽, S. 137"
+     }
+    }
+   ]
+  },
+  {
+   "id": "kind1_attest",
+   "label": "Kind 1: s. Attest Kind (Behandlungsnotwendigkeit)",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❽",
+   "page": 1,
+   "box": {
+    "x": 68.5,
+    "y": 52.4,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "kind1_beziehung",
+   "label": "Kind 1: belastete Mutter-/Vater-Kind-Beziehung",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❽",
+   "page": 1,
+   "box": {
+    "x": 79.3,
+    "y": 52.4,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "kind1_psychosozial",
+   "label": "Kind 1: psychosoziale Gründe/Betreuung notwendig",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❽",
+   "page": 1,
+   "box": {
+    "x": 90.2,
+    "y": 52.4,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "kind2_name",
+   "label": "Kind 2: Name",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❽",
+   "page": 1,
+   "box": {
+    "x": 11.5,
+    "y": 55.3,
+    "w": 36.3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "kind2_geb",
+   "label": "Kind 2: Geburtsdatum",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "TTMMJJ",
+   "marker": "❽",
+   "page": 1,
+   "box": {
+    "x": 49.0,
+    "y": 55.3,
+    "w": 14.5,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "kind2_attest",
+   "label": "Kind 2: s. Attest Kind (Behandlungsnotwendigkeit)",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❽",
+   "page": 1,
+   "box": {
+    "x": 68.5,
+    "y": 55.3,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "kind2_beziehung",
+   "label": "Kind 2: belastete Mutter-/Vater-Kind-Beziehung",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❽",
+   "page": 1,
+   "box": {
+    "x": 79.3,
+    "y": 55.3,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "kind2_psychosozial",
+   "label": "Kind 2: psychosoziale Gründe/Betreuung notwendig",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❽",
+   "page": 1,
+   "box": {
+    "x": 90.2,
+    "y": 55.3,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "kind3_name",
+   "label": "Kind 3: Name",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❽",
+   "page": 1,
+   "box": {
+    "x": 11.5,
+    "y": 58.1,
+    "w": 36.3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "kind3_geb",
+   "label": "Kind 3: Geburtsdatum",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "TTMMJJ",
+   "marker": "❽",
+   "page": 1,
+   "box": {
+    "x": 49.0,
+    "y": 58.1,
+    "w": 14.5,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "kind3_attest",
+   "label": "Kind 3: s. Attest Kind (Behandlungsnotwendigkeit)",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❽",
+   "page": 1,
+   "box": {
+    "x": 68.5,
+    "y": 58.1,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "kind3_beziehung",
+   "label": "Kind 3: belastete Mutter-/Vater-Kind-Beziehung",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❽",
+   "page": 1,
+   "box": {
+    "x": 79.3,
+    "y": 58.1,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "kind3_psychosozial",
+   "label": "Kind 3: psychosoziale Gründe/Betreuung notwendig",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❽",
+   "page": 1,
+   "box": {
+    "x": 90.2,
+    "y": 58.1,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "einrichtung_ja",
+   "label": "VI. A. Anforderungen an die Einrichtung: ja, folgende",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❾",
+   "page": 1,
+   "box": {
+    "x": 11.6,
+    "y": 68.1,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": [
+    {
+     "id": "m64.einrichtung",
+     "text": "Anforderungen an die Vorsorgeeinrichtung angeben (z. B. Klima, Barrierefreiheit, spezialisierte Therapieangebote, Kostformen) sowie besondere Hinweise für mitaufzunehmende Kinder.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 64, ❾, S. 137"
+     }
+    }
+   ]
+  },
+  {
+   "id": "einrichtung",
+   "label": "VI. A. Anforderungen an die Einrichtung",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❾",
+   "page": 1,
+   "box": {
+    "x": 26.1,
+    "y": 68.1,
+    "w": 70.1,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m64.einrichtung",
+     "text": "Anforderungen an die Vorsorgeeinrichtung angeben (z. B. Klima, Barrierefreiheit, spezialisierte Therapieangebote, Kostformen) sowie besondere Hinweise für mitaufzunehmende Kinder.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 64, ❾, S. 137"
+     }
+    }
+   ]
+  },
+  {
+   "id": "wartefrist_ja",
+   "label": "VI. B. Vor Ablauf der Wartefrist von 4 Jahren dringend notwendig: ja",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❿",
+   "page": 1,
+   "box": {
+    "x": 11.6,
+    "y": 73.8,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": [
+    {
+     "id": "m64.wartefrist",
+     "text": "Ist die Leistung vor Ablauf der gesetzlichen Wartefrist von vier Jahren zwischen zwei Vorsorgeleistungen dringend medizinisch notwendig, ist die Maßnahme samt Dringlichkeit gesondert zu erläutern.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 64, ❿, S. 137"
+     }
+    }
+   ]
+  },
+  {
+   "id": "wartefrist",
+   "label": "VI. B. Erläuterung der Dringlichkeit",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❿",
+   "page": 1,
+   "box": {
+    "x": 26.1,
+    "y": 73.8,
+    "w": 70.1,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m64.wartefrist",
+     "text": "Ist die Leistung vor Ablauf der gesetzlichen Wartefrist von vier Jahren zwischen zwei Vorsorgeleistungen dringend medizinisch notwendig, ist die Maßnahme samt Dringlichkeit gesondert zu erläutern.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 64, ❿, S. 137"
+     }
+    }
+   ]
+  },
+  {
+   "id": "sonstiges",
+   "label": "VI. C. Sonstiges (z. B. Reisefähigkeit, Schwangerschaft)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 2,
+   "marker": "⓫",
+   "page": 1,
+   "box": {
+    "x": 11.5,
+    "y": 79.5,
+    "w": 59.3,
+    "h": 4.9
+   },
+   "rules": [
+    {
+     "id": "m64.sonstige_rueckruf",
+     "text": "Besondere Hinweise (z. B. Reisefähigkeit, Schwangerschaft) unter ⓫; unter ⓬ kann der Arzt die Krankenkasse um Rückruf bitten, um vor der Entscheidung Informationen auszutauschen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 64, ⓫–⓬, S. 138"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rueckruf",
+   "label": "VI. D. Rückruf erbeten unter Telefon-Nummer",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "⓬",
+   "page": 1,
+   "box": {
+    "x": 11.5,
+    "y": 88.0,
+    "w": 59.3,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m64.sonstige_rueckruf",
+     "text": "Besondere Hinweise (z. B. Reisefähigkeit, Schwangerschaft) unter ⓫; unter ⓬ kann der Arzt die Krankenkasse um Rückruf bitten, um vor der Entscheidung Informationen auszutauschen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 64, ⓫–⓬, S. 138"
+     }
+    }
+   ]
+  },
+  {
+   "id": "datum",
+   "label": "Ausstellungsdatum",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "TTMMJJ",
+   "page": 1,
+   "box": {
+    "x": 56.3,
+    "y": 93.7,
+    "w": 14.5,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "stempel",
+   "label": "Vertragsarztstempel / Unterschrift des Arztes",
+   "kind": "stempel",
+   "filled_by": "arzt",
+   "page": 1,
+   "box": {
+    "x": 73.5,
+    "y": 83.8,
+    "w": 22.7,
+    "h": 12.0
+   },
+   "rules": [
+    {
+     "id": "m64.unterschrift",
+     "text": "Erst vollständig ausfüllen, dann mit Vertragsarztstempel persönlich unterschreiben – nie blanko.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5"
+     }
+    }
+   ]
+  }
+ ]
+}
