@@ -49,7 +49,8 @@ export function extractFacts(description: string): PatientFacts {
   const arbeitsunfall = cue(/\b(arbeitsunfall\w*|berufskrankheit\w*|schul(?:e)?unfall\w*|schülerunfall\w*|kita-?unfall|bg-fall|berufsgenossenschaft\w*|d-arzt\w*|durchgangsarzt\w*)/iu, text);
   const wegeunfall = cue(/\b(wegeunfall\w*|auf dem (?:arbeits)?weg zur arbeit)/iu, text);
   const unfall = arbeitsunfall || wegeunfall ? null : cue(/\b(unfall\w*|sturz|gestürzt|verkehrsunfall\w*|sportunfall\w*|haushaltsunfall\w*)\b/iu, text);
-  const au = dateAfter(/\b(?:AU|arbeitsunfähig(?:keit)?)/i, text);
+  // „AU“ nur großgeschrieben (sonst trifft es „ausziehen“).
+  const au = dateAfter(/(?:\bAU\b|\b[Aa]rbeitsunfähig(?:keit)?)/, text);
   return {
     pflegegrad: pflegegrad(text),
     merkzeichen: merkzeichen(text),

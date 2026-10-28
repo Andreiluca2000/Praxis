@@ -19,13 +19,17 @@ export function stempel(form: FormDefinition): FieldProposal {
  */
 export function diagnose(form: FormDefinition, text: string, fieldId = 'diagnose'): FieldProposal {
   const seg = segment(labeledSegments(text), 'diagnose');
-  // Ein angeschnittener ICD-Kode am Ende („Lumbalgie M54“ aus „M54.5 G“) gehört nicht zum Text.
-  const phrase = (seg ?? reasonPhrase(text))?.replace(/\s+[A-TV-Z]\d{2}$/u, '') ?? null;
+  const phrase = cleanPhrase(seg ?? reasonPhrase(text));
   const codes = icdCodes(text).filter((c) => c.certainty).map((c) => `${c.icd} ${c.certainty}`);
   const value = [phrase, ...codes.filter((c) => !phrase?.includes(c))].filter(Boolean).join(' – ') || null;
   return value
     ? prop(form, fieldId, 'arzt', value, 'Wörtlich aus der Beschreibung übernommen – der Arzt bestätigt Diagnose bzw. Verdachtsdiagnose. ICD nur mit Sicherheit G/V/A/Z.', seg ?? phrase ?? codes.join(', '))
     : prop(form, fieldId, 'arzt', null, 'Diagnose bzw. Verdachtsdiagnose trägt der Arzt ein; die App erfindet keine Diagnose.');
+}
+
+/** Ein angeschnittener ICD-Kode am Ende („Lumbalgie M54“ aus „M54.5 G“) gehört nicht zum Diagnosetext. */
+export function cleanPhrase(phrase: string | null): string | null {
+  return phrase?.replace(/\s+[A-TV-Z]\d{2}$/u, '') ?? null;
 }
 
 /** Textfeld aus einem Abschnitt „Befund: …“ usw.; sonst trägt der Arzt ein. */

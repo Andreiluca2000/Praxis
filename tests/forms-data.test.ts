@@ -26,7 +26,13 @@ describe('Formulardaten (data/forms)', () => {
   it.each(FORM_IDS)('%s: Regel- und Feldkennungen sind eindeutig, Gruppen existieren, Felder liegen auf dem Vordruck', (id) => {
     const form = getForm(id);
     const ruleIds = allRules(form).map((r) => r.id);
-    expect(new Set(ruleIds).size).toBe(ruleIds.length);
+    // Dieselbe Kennung darf mehrfach vorkommen (Gruppe und Feld), muss dann aber dieselbe Regel sein.
+    const byId = new Map<string, string>();
+    for (const r of allRules(form)) {
+      const key = `${r.text}|${r.source.artifact}|${r.source.locator}`;
+      expect(byId.get(r.id) ?? key, r.id).toBe(key);
+      byId.set(r.id, key);
+    }
     const prefix = `m${form.muster.padStart(2, '0')}.`;
     for (const r of ruleIds) expect(r.startsWith(prefix)).toBe(true);
     const fieldIds = form.fields.map((f) => f.id);

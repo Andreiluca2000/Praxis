@@ -1,0 +1,3455 @@
+{
+ "schema_version": "1.0.0",
+ "id": "muster-61",
+ "muster": "61",
+ "title": "Medizinische Rehabilitation (Teil A–E)",
+ "form_version": "7.2022",
+ "released": "2022-03-23",
+ "status": "entwurf",
+ "paper": {
+  "format": "DIN A4 hoch, Teil A–E",
+  "width": 595.3,
+  "height": 841.9,
+  "tint": "gelb"
+ },
+ "pages": [
+  "Teil A",
+  "Teil B",
+  "Teil C",
+  "Teil D",
+  "Teil E"
+ ],
+ "copies": [
+  {
+   "id": "61a",
+   "label": "Ausfertigung für die Krankenkasse",
+   "recipient": "Krankenkasse"
+  },
+  {
+   "id": "61b",
+   "label": "Ausfertigung für den Vertragsarzt",
+   "recipient": "verbleibt in der Praxis"
+  }
+ ],
+ "notes": [
+  {
+   "id": "m61.a_zweck",
+   "text": "Teil A dient der ergänzenden Beratung durch die Krankenkasse (z. B. bei gleichrangiger Zuständigkeit für Kinder-Reha oder onkologische Reha) oder der Ermittlung des zuständigen Reha-Trägers, wenn der Arzt ihn nicht abschließend beurteilen kann.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 61 Teil A, Einleitung, S. 103"
+   }
+  },
+  {
+   "id": "m61.a_nur_teil_a",
+   "text": "In diesem Fall ist ausschließlich Teil A auszufüllen und an die Krankenkasse zu übermitteln; sie informiert den Arzt über den zuständigen Reha-Träger. Ist die Krankenkasse zuständig, werden Teil B–E ebenfalls ausgefüllt und an sie gerichtet.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 61 Teil A, Einleitung, S. 103"
+   }
+  },
+  {
+   "id": "m61.a_klarheit",
+   "text": "Besteht Klarheit über die Zuständigkeit der Krankenkasse, kann auf Teil A verzichtet und direkt Teil B–E ausgefüllt an die Krankenkasse übermittelt werden.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 61 Teil A, Einleitung, S. 103"
+   }
+  },
+  {
+   "id": "m61.be_voraussetzung",
+   "text": "Die Krankenkasse erbringt Leistungen zur medizinischen Rehabilitation nur, wenn kurative Einzelleistungen der ambulanten Krankenbehandlung nicht ausreichen, eine komplexe Reha medizinisch indiziert ist und kein anderer Reha-Träger zuständig ist.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 61 Teil B–E, Einleitung, S. 106"
+   }
+  },
+  {
+   "id": "m61.be_vorsorge",
+   "text": "Für eine medizinische Vorsorgeleistung (nicht Rehabilitation) nach § 24 SGB V ist Muster 61 Teil B–E nicht zu verwenden; dafür dient Muster 64.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 61 Teil B–E, ⓮, S. 113"
+   }
+  },
+  {
+   "id": "m61.be_anlagen",
+   "text": "Anlage I (Übersicht der Funktionstests) und Anlage II (Liste geriatrietypischer Diagnosen) stammen aus den Unterlagen zum G-BA-Beschluss zur Änderung der Rehabilitations-Richtlinie vom 16.12.2021.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 61 Teil B–E, Anlage I und II, S. 116–118"
+   }
+  },
+  {
+   "id": "m61.unterschrift",
+   "text": "Erst vollständig ausfüllen, dann mit Vertragsarztstempel persönlich unterschreiben – nie blanko, nicht mit roter Farbe.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5"
+   }
+  }
+ ],
+ "groups": [
+  {
+   "id": "a_anfrage",
+   "label": "Teil A: Hinweis/Anfrage an die Krankenkasse",
+   "select": "genau_eins",
+   "rule": {
+    "id": "m61.a_nur_teil_a",
+    "text": "In diesem Fall ist ausschließlich Teil A auszufüllen und an die Krankenkasse zu übermitteln; sie informiert den Arzt über den zuständigen Reha-Träger. Ist die Krankenkasse zuständig, werden Teil B–E ebenfalls ausgefüllt und an sie gerichtet.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 61 Teil A, Einleitung, S. 103"
+    }
+   }
+  },
+  {
+   "id": "a_rueckmeldung",
+   "label": "Teil A III: zuständiger Träger (füllt die Krankenkasse aus)",
+   "select": "beliebig",
+   "rule": {
+    "id": "m61.a_rueckmeldung",
+    "text": "Die Krankenkasse teilt im Original mit, ob sie zuständig ist (dann füllt der Arzt noch Teil B–E aus), die Rentenversicherung zuständig ist (dann sendet sie deren Vordruck) oder ein anderer Kostenträger zuständig ist.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 61 Teil A, ❻, S. 105"
+    }
+   }
+  },
+  {
+   "id": "hilfsmittel",
+   "label": "Rehabilitationsrelevante Hilfsmittel",
+   "select": "genau_eins",
+   "rule": {
+    "id": "m61.be_interventionen",
+    "text": "Bisherige ärztliche/psychotherapeutische Interventionen, andere Maßnahmen und – sofern bekannt – Heilmittel der letzten sechs Monate angeben; ist das Behandlungsziel mit weiterer Heilmittelbehandlung nicht erreichbar, Ankreuzfeld nutzen; rehabilitationsrelevante Hilfsmittel unter E.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 61 Teil B–E, ❽, S. 109"
+    }
+   }
+  },
+  {
+   "id": "aktivitaeten",
+   "label": "F. Beeinträchtigungen der Aktivitäten/Teilhabe (je Bereich ein Kreuz)",
+   "select": "beliebig",
+   "rule": {
+    "id": "m61.be_beeintraechtigungen",
+    "text": "Längerfristige (über 6 Monate) alltagsrelevante Beeinträchtigungen von Aktivitäten und Teilhabe sowie Unterstützungsbedarf je Lebensbereich bewerten; bei Mobilität und Selbstversorgung kann ein übergeordnetes Kreuz bei fehlender Beeinträchtigung gesetzt werden.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 61 Teil B–E, ❾, S. 109"
+    }
+   }
+  },
+  {
+   "id": "rehafaehig",
+   "label": "Rehabilitationsfähigkeit",
+   "select": "genau_eins",
+   "rule": {
+    "id": "m61.be_rehafaehigkeit",
+    "text": "Rehabilitationsfähig sind Versicherte, die aufgrund ihrer somatischen und psychischen Verfassung die nötige Belastbarkeit für Durchführung und Mitwirkung besitzen.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 61 Teil B–E, ⓫, S. 111"
+    }
+   }
+  },
+  {
+   "id": "prognose",
+   "label": "Rehabilitationsprognose",
+   "select": "genau_eins",
+   "rule": {
+    "id": "m61.be_prognose",
+    "text": "Aussage, ob die Ziele durch die empfohlene Leistung im vorgesehenen Zeitraum voll oder nur eingeschränkt erreichbar sind; medizinisch begründete Wahrscheinlichkeitsaussage unter Einbeziehung von Kontextfaktoren und Motivation.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 61 Teil B–E, ⓭, S. 111"
+    }
+   }
+  },
+  {
+   "id": "rehaform",
+   "label": "Empfohlene Rehabilitationsform",
+   "select": "genau_eins",
+   "rule": {
+    "id": "m61.be_rehaform",
+    "text": "Empfohlene Rehabilitationsform (ambulant, stationär, Mütter-/Väter-Leistung, geriatrisch), Schwerpunkt/Indikation und Anforderungen an die Einrichtung angeben; bei Mütter-/Väter-Leistung relevante Kontextfaktoren in II. G darstellen; pflegende Angehörige unter C vermerken.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 61 Teil B–E, ⓮, S. 113"
+    }
+   }
+  },
+  {
+   "id": "wartefrist",
+   "label": "Vor Ablauf der Wartefrist (4 Jahre) notwendig wegen",
+   "select": "beliebig",
+   "rule": {
+    "id": "m61.be_wartefrist",
+    "text": "Ist die Leistung vor Ablauf der gesetzlichen Wartefrist von vier Jahren zwischen zwei Reha-Leistungen medizinisch notwendig, sind Maßnahme und Dringlichkeit gesondert zu begründen; für Kinder unter 18 Jahren gilt die Wartefrist nicht.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 61 Teil B–E, ⓯, S. 113"
+    }
+   }
+  },
+  {
+   "id": "reise",
+   "label": "Reisefähigkeit",
+   "select": "beliebig",
+   "rule": {
+    "id": "m61.be_reisefaehigkeit",
+    "text": "Reisefähigkeit erfassen, z. B. ob öffentliche Verkehrsmittel benutzt werden können oder ein PKW bzw. eine Begleitperson erforderlich ist.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 61 Teil B–E, ⓲, S. 114"
+    }
+   }
+  },
+  {
+   "id": "einw1",
+   "label": "Einwilligung 1: MD-Stellungnahme an den Verordner",
+   "select": "genau_eins",
+   "rule": {
+    "id": "m61.be_einwilligungen",
+    "text": "Der Verordner informiert den Versicherten über die Möglichkeit der Einwilligung zur Übermittlung der MD-Stellungnahme an den Verordner und der Kassenentscheidung an Angehörige, Vertrauenspersonen sowie Pflege- und Betreuungseinrichtungen; der Inhalt wird unter Punkt 1 und 2 übermittelt.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 61 Teil B–E, VIII. A, S. 114"
+    }
+   }
+  },
+  {
+   "id": "einw2",
+   "label": "Einwilligung 2: Leistungsentscheidung an Angehörige/Einrichtungen",
+   "select": "genau_eins",
+   "rule": {
+    "id": "m61.be_einwilligungen",
+    "text": "Der Verordner informiert den Versicherten über die Möglichkeit der Einwilligung zur Übermittlung der MD-Stellungnahme an den Verordner und der Kassenentscheidung an Angehörige, Vertrauenspersonen sowie Pflege- und Betreuungseinrichtungen; der Inhalt wird unter Punkt 1 und 2 übermittelt.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 61 Teil B–E, VIII. A, S. 114"
+    }
+   }
+  }
+ ],
+ "fields": [
+  {
+   "id": "personalien_a",
+   "label": "Personalien (Kasse, Name, geb. am, Kostenträgerkennung, Versicherten-Nr., Status, BSNR, LANR, Datum)",
+   "kind": "personalien",
+   "filled_by": "duria",
+   "page": 0,
+   "box": {
+    "x": 4.2,
+    "y": 1.5,
+    "w": 38.2,
+    "h": 15.8
+   },
+   "rules": [
+    {
+     "id": "m61.personalien",
+     "text": "Die Daten der eGK werden maschinell über Kartenterminal und Praxis-EDV übertragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 5 und Nr. 6, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "a_dx1",
+   "label": "Rehabilitationsbegründende Funktionsdiagnose 1",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 0,
+   "marker": "❶",
+   "box": {
+    "x": 12.7,
+    "y": 25.6,
+    "w": 41.2,
+    "h": 2.4
+   },
+   "rules": [
+    {
+     "id": "m61.a_diagnosen",
+     "text": "Rehabilitationsbegründende und weitere einflussnehmende Diagnosen angeben, ggf. mit Seitenlokalisation; die begründenden Diagnosen als Funktionsdiagnosen (z. B. Coxarthrose re. mit eingeschränkter Gehfähigkeit), alle nach ICD-10-GM verschlüsselt.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 61 Teil A, ❶, S. 103"
+     }
+    }
+   ]
+  },
+  {
+   "id": "a_icd1",
+   "label": "Diagnoseschlüssel ICD-10-GM 1",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 0,
+   "marker": "❶",
+   "box": {
+    "x": 57.6,
+    "y": 25.6,
+    "w": 13.3,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "a_urs1",
+   "label": "Ursache 1 (1–5)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 0,
+   "marker": "❷",
+   "box": {
+    "x": 74.5,
+    "y": 25.6,
+    "w": 2.6,
+    "h": 2.4
+   },
+   "rules": [
+    {
+     "id": "m61.a_ursachen",
+     "text": "Sofern bekannt, mögliche Ursachen den Diagnosen zuordnen (z. B. Arbeitsunfall, Berufskrankheit, Schädigungsfolge durch Dritte); nur ankreuzen, wenn eine der aufgeführten Ursachen zutrifft.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 61 Teil A, ❷, S. 103"
+     }
+    }
+   ]
+  },
+  {
+   "id": "a_dx2",
+   "label": "Rehabilitationsbegründende Funktionsdiagnose 2",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 0,
+   "marker": "❶",
+   "box": {
+    "x": 12.7,
+    "y": 28.400000000000002,
+    "w": 41.2,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "a_icd2",
+   "label": "Diagnoseschlüssel ICD-10-GM 2",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 0,
+   "marker": "❶",
+   "box": {
+    "x": 57.6,
+    "y": 28.400000000000002,
+    "w": 13.3,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "a_urs2",
+   "label": "Ursache 2 (1–5)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 0,
+   "marker": "❷",
+   "box": {
+    "x": 74.5,
+    "y": 28.400000000000002,
+    "w": 2.6,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "a_dx3",
+   "label": "Rehabilitationsbegründende Funktionsdiagnose 3",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 0,
+   "marker": "❶",
+   "box": {
+    "x": 12.7,
+    "y": 31.3,
+    "w": 41.2,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "a_icd3",
+   "label": "Diagnoseschlüssel ICD-10-GM 3",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 0,
+   "marker": "❶",
+   "box": {
+    "x": 57.6,
+    "y": 31.3,
+    "w": 13.3,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "a_urs3",
+   "label": "Ursache 3 (1–5)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 0,
+   "marker": "❷",
+   "box": {
+    "x": 74.5,
+    "y": 31.3,
+    "w": 2.6,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "a_dx4",
+   "label": "Weitere rehabilitationsrelevante Diagnose 4",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 0,
+   "marker": "❶",
+   "box": {
+    "x": 12.7,
+    "y": 37,
+    "w": 41.2,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "a_icd4",
+   "label": "Diagnoseschlüssel ICD-10-GM 4",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 0,
+   "marker": "❶",
+   "box": {
+    "x": 57.6,
+    "y": 37,
+    "w": 13.3,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "a_urs4",
+   "label": "Ursache 4 (1–5)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 0,
+   "marker": "❷",
+   "box": {
+    "x": 74.5,
+    "y": 37,
+    "w": 2.6,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "a_dx5",
+   "label": "Weitere rehabilitationsrelevante Diagnose 5",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 0,
+   "marker": "❶",
+   "box": {
+    "x": 12.7,
+    "y": 39.8,
+    "w": 41.2,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "a_icd5",
+   "label": "Diagnoseschlüssel ICD-10-GM 5",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 0,
+   "marker": "❶",
+   "box": {
+    "x": 57.6,
+    "y": 39.8,
+    "w": 13.3,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "a_urs5",
+   "label": "Ursache 5 (1–5)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 0,
+   "marker": "❷",
+   "box": {
+    "x": 74.5,
+    "y": 39.8,
+    "w": 2.6,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "a_dx6",
+   "label": "Weitere rehabilitationsrelevante Diagnose 6",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 0,
+   "marker": "❶",
+   "box": {
+    "x": 12.7,
+    "y": 42.699999999999996,
+    "w": 41.2,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "a_icd6",
+   "label": "Diagnoseschlüssel ICD-10-GM 6",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 0,
+   "marker": "❶",
+   "box": {
+    "x": 57.6,
+    "y": 42.699999999999996,
+    "w": 13.3,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "a_urs6",
+   "label": "Ursache 6 (1–5)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 0,
+   "marker": "❷",
+   "box": {
+    "x": 74.5,
+    "y": 42.699999999999996,
+    "w": 2.6,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "a_beratung",
+   "label": "Beratung der/des Versicherten",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 0,
+   "group": "a_anfrage",
+   "marker": "❸",
+   "box": {
+    "x": 10.4,
+    "y": 50.2,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m61.a_beratung",
+     "text": "Das Kästchen wird angekreuzt, wenn eine Beratung über Reha-Leistungen der Krankenkasse oder eines anderen Trägers (oder weitere Kassenleistungen) angezeigt ist; dann nur Teil A an die Krankenkasse, Teil B–E nicht ausfüllen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 61 Teil A, ❸, S. 103"
+     }
+    }
+   ]
+  },
+  {
+   "id": "a_pruefung",
+   "label": "Prüfung des zuständigen Rehabilitationsträgers",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 0,
+   "group": "a_anfrage",
+   "marker": "❹",
+   "box": {
+    "x": 10.4,
+    "y": 58.8,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m61.a_pruefung",
+     "text": "Bei bestehender oder drohender Minderung der Erwerbsfähigkeit und unklaren versicherungsrechtlichen Voraussetzungen der Rentenversicherung kann die Prüfung des Reha-Trägers erbeten werden; dann nur Teil A übermitteln, Teil B–E nicht ausfüllen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 61 Teil A, ❹, S. 104–105"
+     }
+    }
+   ]
+  },
+  {
+   "id": "a_anmerkungen",
+   "label": "ggf. weitere Anmerkungen",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 0,
+   "marker": "❺",
+   "lines": 2,
+   "box": {
+    "x": 10.3,
+    "y": 70.8,
+    "w": 43.1,
+    "h": 4.6
+   },
+   "rules": [
+    {
+     "id": "m61.a_anmerkungen",
+     "text": "Weitere Angaben wie Bitte um Rückruf oder Hinweise auf andere Teilhabebedarfe (soziale Teilhabe, Teilhabe am Arbeitsleben) können hier benannt werden; die Krankenkasse greift sie zur frühzeitigen Bedarfserkennung auf.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 61 Teil A, ❺, S. 105"
+     }
+    }
+   ]
+  },
+  {
+   "id": "a_datum",
+   "label": "Datum (Teil A)",
+   "kind": "date",
+   "filled_by": "praxis",
+   "page": 0,
+   "format": "TTMMJJ",
+   "box": {
+    "x": 58.1,
+    "y": 73.9,
+    "w": 13.9,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "a_stempel",
+   "label": "Vertragsarztstempel / Unterschrift (Teil A)",
+   "kind": "stempel",
+   "filled_by": "arzt",
+   "page": 0,
+   "box": {
+    "x": 73.6,
+    "y": 64,
+    "w": 22.8,
+    "h": 12.5
+   },
+   "rules": []
+  },
+  {
+   "id": "a_kk_kk",
+   "label": "Zuständig: Krankenkasse (Teil B–E ausfüllen)",
+   "kind": "checkbox",
+   "filled_by": "leistungserbringer",
+   "page": 0,
+   "group": "a_rueckmeldung",
+   "marker": "❻",
+   "box": {
+    "x": 10.4,
+    "y": 82.3,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m61.a_rueckmeldung",
+     "text": "Die Krankenkasse teilt im Original mit, ob sie zuständig ist (dann füllt der Arzt noch Teil B–E aus), die Rentenversicherung zuständig ist (dann sendet sie deren Vordruck) oder ein anderer Kostenträger zuständig ist.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 61 Teil A, ❻, S. 105"
+     }
+    }
+   ]
+  },
+  {
+   "id": "a_kk_rv",
+   "label": "Zuständig: Rentenversicherung",
+   "kind": "checkbox",
+   "filled_by": "leistungserbringer",
+   "page": 0,
+   "group": "a_rueckmeldung",
+   "marker": "❻",
+   "box": {
+    "x": 10.4,
+    "y": 85.2,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "a_kk_sonst",
+   "label": "Zuständig: Sonstiges",
+   "kind": "checkbox",
+   "filled_by": "leistungserbringer",
+   "page": 0,
+   "group": "a_rueckmeldung",
+   "marker": "❻",
+   "box": {
+    "x": 10.4,
+    "y": 88,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "personalien",
+   "label": "Personalien (Kasse, Name, geb. am, Kostenträgerkennung, Versicherten-Nr., Status, BSNR, LANR, Datum)",
+   "kind": "personalien",
+   "filled_by": "duria",
+   "page": 1,
+   "box": {
+    "x": 4.2,
+    "y": 1.5,
+    "w": 38.2,
+    "h": 15.8
+   },
+   "rules": [
+    {
+     "id": "m61.personalien",
+     "text": "Die Daten der eGK werden maschinell über Kartenterminal und Praxis-EDV übertragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 5 und Nr. 6, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "b_erwerb",
+   "label": "Weder Minderung/erhebliche Gefährdung der Erwerbsfähigkeit noch Folge eines Arbeitsunfalls/einer Berufskrankheit",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 1,
+   "marker": "❶",
+   "box": {
+    "x": 44.9,
+    "y": 8.9,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m61.be_zustaendigkeit",
+     "text": "❶ ist anzukreuzen, wenn es weder um Minderung/erhebliche Gefährdung der Erwerbsfähigkeit noch um Folgen eines Arbeitsunfalls oder einer Berufskrankheit geht, da sonst grundsätzlich andere Reha-Träger zuständig sind.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 61 Teil B–E, ❶, S. 106"
+     }
+    }
+   ]
+  },
+  {
+   "id": "b_gleichrangig",
+   "label": "Gleichrangige Zuständigkeit: Versicherte/r wünscht Reha zu Lasten der GKV",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 1,
+   "marker": "❷",
+   "box": {
+    "x": 44.9,
+    "y": 15.3,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m61.be_gleichrangig",
+     "text": "Bei gleichrangiger Zuständigkeit (Kinder-Reha, onkologische Reha für Altersrentner/Angehörige) nur ankreuzen, wenn der Versicherte nach vorheriger Beratung (Muster 61 Teil A) die Durchführung durch die Krankenkasse wünscht; sonst ist der Rentenversicherungs-Vordruck zu verwenden.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 61 Teil B–E, ❷, S. 106"
+     }
+    }
+   ]
+  },
+  {
+   "id": "dx1",
+   "label": "Rehabilitationsbegründende Funktionsdiagnose 1",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❸",
+   "box": {
+    "x": 12.7,
+    "y": 25.6,
+    "w": 41.2,
+    "h": 2.4
+   },
+   "rules": [
+    {
+     "id": "m61.be_diagnosen",
+     "text": "Begründende und weitere Diagnosen angeben, ggf. mit Seitenlokalisation; die begründenden als Funktionsdiagnosen, alle nach ICD-10-GM verschlüsselt.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 61 Teil B–E, ❸, S. 106–107"
+     }
+    }
+   ]
+  },
+  {
+   "id": "icd1",
+   "label": "Diagnoseschlüssel ICD-10-GM 1",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❸",
+   "box": {
+    "x": 57.6,
+    "y": 25.6,
+    "w": 13.3,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "urs1",
+   "label": "Ursache 1 (1–5)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❹",
+   "box": {
+    "x": 74.5,
+    "y": 25.6,
+    "w": 2.6,
+    "h": 2.4
+   },
+   "rules": [
+    {
+     "id": "m61.be_ursachen",
+     "text": "Sofern bekannt, mögliche Ursachen (Arbeitsunfall, Berufskrankheit, Schädigungsfolge durch Dritte) zuordnen; nur angeben, wenn eine aufgeführte Ursache zutrifft.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 61 Teil B–E, ❹, S. 106–107"
+     }
+    }
+   ]
+  },
+  {
+   "id": "dx2",
+   "label": "Rehabilitationsbegründende Funktionsdiagnose 2",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❸",
+   "box": {
+    "x": 12.7,
+    "y": 28.400000000000002,
+    "w": 41.2,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "icd2",
+   "label": "Diagnoseschlüssel ICD-10-GM 2",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❸",
+   "box": {
+    "x": 57.6,
+    "y": 28.400000000000002,
+    "w": 13.3,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "urs2",
+   "label": "Ursache 2 (1–5)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❹",
+   "box": {
+    "x": 74.5,
+    "y": 28.400000000000002,
+    "w": 2.6,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "dx3",
+   "label": "Rehabilitationsbegründende Funktionsdiagnose 3",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❸",
+   "box": {
+    "x": 12.7,
+    "y": 31.3,
+    "w": 41.2,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "icd3",
+   "label": "Diagnoseschlüssel ICD-10-GM 3",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❸",
+   "box": {
+    "x": 57.6,
+    "y": 31.3,
+    "w": 13.3,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "urs3",
+   "label": "Ursache 3 (1–5)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❹",
+   "box": {
+    "x": 74.5,
+    "y": 31.3,
+    "w": 2.6,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "dx4",
+   "label": "Weitere rehabilitationsrelevante Diagnose 4",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❸",
+   "box": {
+    "x": 12.7,
+    "y": 37,
+    "w": 41.2,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "icd4",
+   "label": "Diagnoseschlüssel ICD-10-GM 4",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❸",
+   "box": {
+    "x": 57.6,
+    "y": 37,
+    "w": 13.3,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "urs4",
+   "label": "Ursache 4 (1–5)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❹",
+   "box": {
+    "x": 74.5,
+    "y": 37,
+    "w": 2.6,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "dx5",
+   "label": "Weitere rehabilitationsrelevante Diagnose 5",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❸",
+   "box": {
+    "x": 12.7,
+    "y": 39.8,
+    "w": 41.2,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "icd5",
+   "label": "Diagnoseschlüssel ICD-10-GM 5",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❸",
+   "box": {
+    "x": 57.6,
+    "y": 39.8,
+    "w": 13.3,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "urs5",
+   "label": "Ursache 5 (1–5)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❹",
+   "box": {
+    "x": 74.5,
+    "y": 39.8,
+    "w": 2.6,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "dx6",
+   "label": "Weitere rehabilitationsrelevante Diagnose 6",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❸",
+   "box": {
+    "x": 12.7,
+    "y": 42.699999999999996,
+    "w": 41.2,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "icd6",
+   "label": "Diagnoseschlüssel ICD-10-GM 6",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❸",
+   "box": {
+    "x": 57.6,
+    "y": 42.699999999999996,
+    "w": 13.3,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "urs6",
+   "label": "Ursache 6 (1–5)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❹",
+   "box": {
+    "x": 74.5,
+    "y": 42.699999999999996,
+    "w": 2.6,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "anamnese",
+   "label": "Kurze Angaben zur Anamnese und zu Krankenhaus-/Facharztbehandlung",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❺",
+   "lines": 3,
+   "box": {
+    "x": 12.7,
+    "y": 49.4,
+    "w": 83.5,
+    "h": 8.2
+   },
+   "rules": [
+    {
+     "id": "m61.be_anamnese",
+     "text": "Klinische Anamnese und bisheriger Verlauf der Krankenbehandlung dokumentieren, insbesondere Beginn, Verlauf sowie Behandlungen im Krankenhaus und bei Fachärzten.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 61 Teil B–E, ❺, S. 108"
+     }
+    }
+   ]
+  },
+  {
+   "id": "befunde",
+   "label": "Rehabilitationsrelevante Schädigungen und Befunde",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❻",
+   "lines": 2,
+   "box": {
+    "x": 12.7,
+    "y": 59.4,
+    "w": 83.5,
+    "h": 5.2
+   },
+   "rules": [
+    {
+     "id": "m61.be_schaedigungen",
+     "text": "Schädigungen der Körperfunktionen und -strukturen auflisten, die für die unter II. F angeführten Beeinträchtigungen verantwortlich sind; Assessments wie der Barthel-Index können die Angaben untermauern.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 61 Teil B–E, ❻, S. 108"
+     }
+    }
+   ]
+  },
+  {
+   "id": "t_tug",
+   "label": "Funktionstest TUG (sek)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❼",
+   "box": {
+    "x": 18.8,
+    "y": 69.5,
+    "w": 5,
+    "h": 2.2
+   },
+   "rules": [
+    {
+     "id": "m61.be_funktionstests",
+     "text": "Bei geriatrischer Reha sind mindestens zwei Funktionstests aus unterschiedlichen Schädigungsbereichen nachzuweisen (Übersicht Anlage I); ein Test muss die rehabilitationsbegründende Funktionsdiagnose betreffen, Ergebnisse sind einzutragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 61 Teil B–E, ❼, S. 109"
+     }
+    }
+   ]
+  },
+  {
+   "id": "t_chair",
+   "label": "Funktionstest Chair Rise (sek)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❼",
+   "box": {
+    "x": 33.3,
+    "y": 69.5,
+    "w": 4.9,
+    "h": 2.2
+   },
+   "rules": []
+  },
+  {
+   "id": "t_hand_kg",
+   "label": "Funktionstest Handkraft (kg)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❼",
+   "box": {
+    "x": 18.8,
+    "y": 72.3,
+    "w": 5,
+    "h": 2.2
+   },
+   "rules": []
+  },
+  {
+   "id": "t_hand_kpa",
+   "label": "Funktionstest Handkraft (kpa)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❼",
+   "box": {
+    "x": 33.5,
+    "y": 72.3,
+    "w": 7.3,
+    "h": 2.2
+   },
+   "rules": []
+  },
+  {
+   "id": "t_demmi",
+   "label": "Funktionstest DEMMI (/100)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❼",
+   "box": {
+    "x": 18.8,
+    "y": 75.2,
+    "w": 5,
+    "h": 2.2
+   },
+   "rules": []
+  },
+  {
+   "id": "t_tinetti",
+   "label": "Funktionstest Tinetti (/28)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❼",
+   "box": {
+    "x": 33.3,
+    "y": 75.2,
+    "w": 4.9,
+    "h": 2.2
+   },
+   "rules": []
+  },
+  {
+   "id": "t_mmst",
+   "label": "Funktionstest MMST (/30)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❼",
+   "box": {
+    "x": 48.5,
+    "y": 69.5,
+    "w": 4.8,
+    "h": 2.2
+   },
+   "rules": []
+  },
+  {
+   "id": "t_gds",
+   "label": "Funktionstest GDS 15 (/15)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❼",
+   "box": {
+    "x": 48.5,
+    "y": 72.3,
+    "w": 4.8,
+    "h": 2.2
+   },
+   "rules": []
+  },
+  {
+   "id": "t_uhr",
+   "label": "Funktionstest Uhrentest (/7)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❼",
+   "box": {
+    "x": 48.5,
+    "y": 75.2,
+    "w": 4.8,
+    "h": 2.2
+   },
+   "rules": []
+  },
+  {
+   "id": "t_schmerz",
+   "label": "Funktionstest Schmerzskala (/10)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❼",
+   "box": {
+    "x": 65.3,
+    "y": 69.5,
+    "w": 4.9,
+    "h": 2.2
+   },
+   "rules": []
+  },
+  {
+   "id": "t_ergo",
+   "label": "Funktionstest Ergometrie (Watt)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❼",
+   "box": {
+    "x": 83.6,
+    "y": 69.5,
+    "w": 7.3,
+    "h": 2.2
+   },
+   "rules": []
+  },
+  {
+   "id": "t_fev1",
+   "label": "Funktionstest FEV1 (%)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❼",
+   "box": {
+    "x": 82.6,
+    "y": 72.3,
+    "w": 4.8,
+    "h": 2.2
+   },
+   "rules": []
+  },
+  {
+   "id": "t_vk",
+   "label": "Funktionstest VK (%)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❼",
+   "box": {
+    "x": 89.8,
+    "y": 72.3,
+    "w": 4.9,
+    "h": 2.2
+   },
+   "rules": []
+  },
+  {
+   "id": "t_nyha",
+   "label": "Funktionstest NYHA-Stadium",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❼",
+   "box": {
+    "x": 81.4,
+    "y": 75.2,
+    "w": 2.4,
+    "h": 2.2
+   },
+   "rules": []
+  },
+  {
+   "id": "interventionen",
+   "label": "Bisherige Interventionen/Maßnahmen einschl. Heilmittel (letzte 6 Monate)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❽",
+   "lines": 2,
+   "box": {
+    "x": 12.7,
+    "y": 80.8,
+    "w": 83.5,
+    "h": 4.8
+   },
+   "rules": [
+    {
+     "id": "m61.be_interventionen",
+     "text": "Bisherige ärztliche/psychotherapeutische Interventionen, andere Maßnahmen und – sofern bekannt – Heilmittel der letzten sechs Monate angeben; ist das Behandlungsziel mit weiterer Heilmittelbehandlung nicht erreichbar, Ankreuzfeld nutzen; rehabilitationsrelevante Hilfsmittel unter E.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 61 Teil B–E, ❽, S. 109"
+     }
+    }
+   ]
+  },
+  {
+   "id": "hm_nicht_ausreichend",
+   "label": "Heilmittel zur Erreichung des Behandlungszieles nicht ausreichend",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 1,
+   "marker": "❽",
+   "box": {
+    "x": 12.8,
+    "y": 86.6,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "hilfsmittel_nein",
+   "label": "Rehabilitationsrelevante Hilfsmittel: nein",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 1,
+   "group": "hilfsmittel",
+   "marker": "❽",
+   "box": {
+    "x": 12.8,
+    "y": 90.9,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "hilfsmittel_ja",
+   "label": "Rehabilitationsrelevante Hilfsmittel: ja",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 1,
+   "group": "hilfsmittel",
+   "marker": "❽",
+   "box": {
+    "x": 24.4,
+    "y": 90.9,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "hilfsmittel_text",
+   "label": "Hilfsmittel, welche?",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "marker": "❽",
+   "box": {
+    "x": 36.4,
+    "y": 90.9,
+    "w": 59.8,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "personalien_c",
+   "label": "Name, Kostenträgerkennung, Versicherten-Nr.",
+   "kind": "personalien",
+   "filled_by": "duria",
+   "page": 2,
+   "box": {
+    "x": 10.3,
+    "y": 1.6,
+    "w": 67.1,
+    "h": 3
+   },
+   "rules": [
+    {
+     "id": "m61.personalien",
+     "text": "Die Daten der eGK werden maschinell über Kartenterminal und Praxis-EDV übertragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 5 und Nr. 6, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "f_lernen_k",
+   "label": "Lernen und Wissensanwendung: keine Beeinträchtigungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 62.3,
+    "y": 10.3,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m61.be_beeintraechtigungen",
+     "text": "Längerfristige (über 6 Monate) alltagsrelevante Beeinträchtigungen von Aktivitäten und Teilhabe sowie Unterstützungsbedarf je Lebensbereich bewerten; bei Mobilität und Selbstversorgung kann ein übergeordnetes Kreuz bei fehlender Beeinträchtigung gesetzt werden.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 61 Teil B–E, ❾, S. 109"
+     }
+    }
+   ]
+  },
+  {
+   "id": "f_lernen_e",
+   "label": "Lernen und Wissensanwendung: Einschränkungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 72.1,
+    "y": 10.3,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_lernen_h",
+   "label": "Lernen und Wissensanwendung: personelle Hilfe nötig",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 81.8,
+    "y": 10.3,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_lernen_n",
+   "label": "Lernen und Wissensanwendung: nicht durchführbar",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 92.6,
+    "y": 10.3,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_aufgaben_k",
+   "label": "Allgemeine Aufgaben und Anforderungen: keine Beeinträchtigungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 62.3,
+    "y": 13.2,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_aufgaben_e",
+   "label": "Allgemeine Aufgaben und Anforderungen: Einschränkungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 72.1,
+    "y": 13.2,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_aufgaben_h",
+   "label": "Allgemeine Aufgaben und Anforderungen: personelle Hilfe nötig",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 81.8,
+    "y": 13.2,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_aufgaben_n",
+   "label": "Allgemeine Aufgaben und Anforderungen: nicht durchführbar",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 92.6,
+    "y": 13.2,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_kommunikation_k",
+   "label": "Kommunikation: keine Beeinträchtigungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 62.3,
+    "y": 16,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_kommunikation_e",
+   "label": "Kommunikation: Einschränkungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 72.1,
+    "y": 16,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_kommunikation_h",
+   "label": "Kommunikation: personelle Hilfe nötig",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 81.8,
+    "y": 16,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_kommunikation_n",
+   "label": "Kommunikation: nicht durchführbar",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 92.6,
+    "y": 16,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_transfer_k",
+   "label": "Transfer Bett/Stuhl bzw. Rollstuhl: keine Beeinträchtigungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 62.3,
+    "y": 22.4,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_transfer_e",
+   "label": "Transfer Bett/Stuhl bzw. Rollstuhl: Einschränkungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 72.1,
+    "y": 22.4,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_transfer_h",
+   "label": "Transfer Bett/Stuhl bzw. Rollstuhl: personelle Hilfe nötig",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 81.8,
+    "y": 22.4,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_transfer_n",
+   "label": "Transfer Bett/Stuhl bzw. Rollstuhl: nicht durchführbar",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 92.6,
+    "y": 22.4,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_stehen_k",
+   "label": "Stehen/Gehen: keine Beeinträchtigungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 62.3,
+    "y": 24.5,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_stehen_e",
+   "label": "Stehen/Gehen: Einschränkungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 72.1,
+    "y": 24.5,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_stehen_h",
+   "label": "Stehen/Gehen: personelle Hilfe nötig",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 81.8,
+    "y": 24.5,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_stehen_n",
+   "label": "Stehen/Gehen: nicht durchführbar",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 92.6,
+    "y": 24.5,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_treppen_k",
+   "label": "Treppensteigen: keine Beeinträchtigungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 62.3,
+    "y": 26.7,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_treppen_e",
+   "label": "Treppensteigen: Einschränkungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 72.1,
+    "y": 26.7,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_treppen_h",
+   "label": "Treppensteigen: personelle Hilfe nötig",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 81.8,
+    "y": 26.7,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_treppen_n",
+   "label": "Treppensteigen: nicht durchführbar",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 92.6,
+    "y": 26.7,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_mob_sonst_k",
+   "label": "Mobilität sonstige: keine Beeinträchtigungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 62.3,
+    "y": 28.8,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_mob_sonst_e",
+   "label": "Mobilität sonstige: Einschränkungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 72.1,
+    "y": 28.8,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_mob_sonst_h",
+   "label": "Mobilität sonstige: personelle Hilfe nötig",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 81.8,
+    "y": 28.8,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_mob_sonst_n",
+   "label": "Mobilität sonstige: nicht durchführbar",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 92.6,
+    "y": 28.8,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_essen_k",
+   "label": "Essen/Trinken: keine Beeinträchtigungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 62.3,
+    "y": 35.2,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_essen_e",
+   "label": "Essen/Trinken: Einschränkungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 72.1,
+    "y": 35.2,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_essen_h",
+   "label": "Essen/Trinken: personelle Hilfe nötig",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 81.8,
+    "y": 35.2,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_essen_n",
+   "label": "Essen/Trinken: nicht durchführbar",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 92.6,
+    "y": 35.2,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_kleiden_k",
+   "label": "An-/Auskleiden: keine Beeinträchtigungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 62.3,
+    "y": 37.3,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_kleiden_e",
+   "label": "An-/Auskleiden: Einschränkungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 72.1,
+    "y": 37.3,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_kleiden_h",
+   "label": "An-/Auskleiden: personelle Hilfe nötig",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 81.8,
+    "y": 37.3,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_kleiden_n",
+   "label": "An-/Auskleiden: nicht durchführbar",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 92.6,
+    "y": 37.3,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_waschen_k",
+   "label": "Waschen: keine Beeinträchtigungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 62.3,
+    "y": 39.5,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_waschen_e",
+   "label": "Waschen: Einschränkungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 72.1,
+    "y": 39.5,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_waschen_h",
+   "label": "Waschen: personelle Hilfe nötig",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 81.8,
+    "y": 39.5,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_waschen_n",
+   "label": "Waschen: nicht durchführbar",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 92.6,
+    "y": 39.5,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_baden_k",
+   "label": "Baden/Duschen: keine Beeinträchtigungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 62.3,
+    "y": 41.6,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_baden_e",
+   "label": "Baden/Duschen: Einschränkungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 72.1,
+    "y": 41.6,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_baden_h",
+   "label": "Baden/Duschen: personelle Hilfe nötig",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 81.8,
+    "y": 41.6,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_baden_n",
+   "label": "Baden/Duschen: nicht durchführbar",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 92.6,
+    "y": 41.6,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_toilette_k",
+   "label": "Toilettenbenutzung: keine Beeinträchtigungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 62.3,
+    "y": 43.8,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_toilette_e",
+   "label": "Toilettenbenutzung: Einschränkungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 72.1,
+    "y": 43.8,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_toilette_h",
+   "label": "Toilettenbenutzung: personelle Hilfe nötig",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 81.8,
+    "y": 43.8,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_toilette_n",
+   "label": "Toilettenbenutzung: nicht durchführbar",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 92.6,
+    "y": 43.8,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_sv_sonst_k",
+   "label": "Selbstversorgung sonstige: keine Beeinträchtigungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 62.3,
+    "y": 45.9,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_sv_sonst_e",
+   "label": "Selbstversorgung sonstige: Einschränkungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 72.1,
+    "y": 45.9,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_sv_sonst_h",
+   "label": "Selbstversorgung sonstige: personelle Hilfe nötig",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 81.8,
+    "y": 45.9,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_sv_sonst_n",
+   "label": "Selbstversorgung sonstige: nicht durchführbar",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 92.6,
+    "y": 45.9,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_haeuslich_k",
+   "label": "Häusliches Leben: keine Beeinträchtigungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 62.3,
+    "y": 48.8,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_haeuslich_e",
+   "label": "Häusliches Leben: Einschränkungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 72.1,
+    "y": 48.8,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_haeuslich_h",
+   "label": "Häusliches Leben: personelle Hilfe nötig",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 81.8,
+    "y": 48.8,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_haeuslich_n",
+   "label": "Häusliches Leben: nicht durchführbar",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 92.6,
+    "y": 48.8,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_interpersonell_k",
+   "label": "Interpersonelle Aktivitäten: keine Beeinträchtigungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 62.3,
+    "y": 51.7,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_interpersonell_e",
+   "label": "Interpersonelle Aktivitäten: Einschränkungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 72.1,
+    "y": 51.7,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_interpersonell_h",
+   "label": "Interpersonelle Aktivitäten: personelle Hilfe nötig",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 81.8,
+    "y": 51.7,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_interpersonell_n",
+   "label": "Interpersonelle Aktivitäten: nicht durchführbar",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 92.6,
+    "y": 51.7,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_lebensbereiche_k",
+   "label": "Bedeutende Lebensbereiche: keine Beeinträchtigungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 62.3,
+    "y": 54.5,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_lebensbereiche_e",
+   "label": "Bedeutende Lebensbereiche: Einschränkungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 72.1,
+    "y": 54.5,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_lebensbereiche_h",
+   "label": "Bedeutende Lebensbereiche: personelle Hilfe nötig",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 81.8,
+    "y": 54.5,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_lebensbereiche_n",
+   "label": "Bedeutende Lebensbereiche: nicht durchführbar",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 92.6,
+    "y": 54.5,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_gemeinschaft_k",
+   "label": "Gemeinschaftsleben und soziales Leben: keine Beeinträchtigungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 62.3,
+    "y": 59.5,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_gemeinschaft_e",
+   "label": "Gemeinschaftsleben und soziales Leben: Einschränkungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 72.1,
+    "y": 59.5,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_gemeinschaft_h",
+   "label": "Gemeinschaftsleben und soziales Leben: personelle Hilfe nötig",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 81.8,
+    "y": 59.5,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_gemeinschaft_n",
+   "label": "Gemeinschaftsleben und soziales Leben: nicht durchführbar",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 92.6,
+    "y": 59.5,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_mobilitaet_keine",
+   "label": "Mobilität insgesamt: keine Beeinträchtigungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 62.3,
+    "y": 18.9,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_selbstversorgung_keine",
+   "label": "Selbstversorgung insgesamt: keine Beeinträchtigungen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "aktivitaeten",
+   "marker": "❾",
+   "box": {
+    "x": 62.3,
+    "y": 31.7,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "f_mob_sonst_text",
+   "label": "Mobilität sonstige (Text)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 2,
+   "box": {
+    "x": 22,
+    "y": 28.3,
+    "w": 38,
+    "h": 2.2
+   },
+   "rules": []
+  },
+  {
+   "id": "f_sv_sonst_text",
+   "label": "Selbstversorgung sonstige (Text)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 2,
+   "box": {
+    "x": 22,
+    "y": 45.4,
+    "w": 38,
+    "h": 2.2
+   },
+   "rules": []
+  },
+  {
+   "id": "kontext",
+   "label": "Rehabilitationsrelevante umwelt- und personbezogene Faktoren",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 2,
+   "marker": "❿",
+   "lines": 3,
+   "box": {
+    "x": 15.2,
+    "y": 70.6,
+    "w": 81,
+    "h": 8
+   },
+   "rules": [
+    {
+     "id": "m61.be_kontextfaktoren",
+     "text": "Lebensumstände und Kontextfaktoren (Förderfaktoren und Barrieren in Umwelt und Person) darstellen; auch den Rehabilitationserfolg gefährdende Risikofaktoren benennen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 61 Teil B–E, ❿, S. 109"
+     }
+    }
+   ]
+  },
+  {
+   "id": "r_bewegung",
+   "label": "Risiko: Bewegungsmangel/Fehlhaltung",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "marker": "❿",
+   "box": {
+    "x": 15.3,
+    "y": 80.9,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "r_bmi",
+   "label": "BMI",
+   "kind": "number",
+   "filled_by": "arzt",
+   "page": 2,
+   "marker": "❿",
+   "box": {
+    "x": 39.4,
+    "y": 80.9,
+    "w": 9.1,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "r_ernaehrung",
+   "label": "Risiko: Fehl-/Mangelernährung",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "marker": "❿",
+   "box": {
+    "x": 52.7,
+    "y": 80.9,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "r_medikamente",
+   "label": "Risiko: Medikamente",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "marker": "❿",
+   "box": {
+    "x": 70.9,
+    "y": 80.9,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "r_nikotin",
+   "label": "Risiko: Nikotin",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "marker": "❿",
+   "box": {
+    "x": 87.9,
+    "y": 80.9,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "r_sonst",
+   "label": "Risiko: Sonstiges (z. B. Suchtmittel)",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "marker": "❿",
+   "box": {
+    "x": 15.3,
+    "y": 83.7,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "r_sonst_text",
+   "label": "Risiko sonstiges (Text)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 2,
+   "box": {
+    "x": 35.8,
+    "y": 83.6,
+    "w": 60.4,
+    "h": 2.2
+   },
+   "rules": []
+  },
+  {
+   "id": "rf_ja",
+   "label": "Ausreichende physische und psychische Belastbarkeit: ja",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "rehafaehig",
+   "marker": "⓫",
+   "box": {
+    "x": 76.9,
+    "y": 92.3,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "rf_nein",
+   "label": "Ausreichende physische und psychische Belastbarkeit: nein",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 2,
+   "group": "rehafaehig",
+   "marker": "⓫",
+   "box": {
+    "x": 87.9,
+    "y": 92.3,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "personalien_d",
+   "label": "Name, Kostenträgerkennung, Versicherten-Nr.",
+   "kind": "personalien",
+   "filled_by": "duria",
+   "page": 3,
+   "box": {
+    "x": 10.3,
+    "y": 1.6,
+    "w": 67.1,
+    "h": 3
+   },
+   "rules": [
+    {
+     "id": "m61.personalien",
+     "text": "Die Daten der eGK werden maschinell über Kartenterminal und Praxis-EDV übertragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 5 und Nr. 6, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ziele",
+   "label": "Rehabilitationsziele (Schädigungen und Beeinträchtigungen)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 3,
+   "marker": "⓬",
+   "lines": 2,
+   "box": {
+    "x": 12.7,
+    "y": 9.3,
+    "w": 83.5,
+    "h": 5
+   },
+   "rules": [
+    {
+     "id": "m61.be_ziele",
+     "text": "Realistische, möglichst konkrete Rehabilitationsziele benennen und die mit dem Patienten (bei Pflegebedürftigen auch Angehörigen) vereinbarten Ziele dokumentieren; Abweichungen zwischen Arzt- und Patientenzielen ebenfalls dokumentieren.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 61 Teil B–E, ⓬, S. 111"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ziele_patient",
+   "label": "Rehabilitationsziele aus Sicht der Patientin/des Patienten, sofern abweichend",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 3,
+   "marker": "⓬",
+   "box": {
+    "x": 12.7,
+    "y": 16.6,
+    "w": 83.5,
+    "h": 2.2
+   },
+   "rules": []
+  },
+  {
+   "id": "prog_ja",
+   "label": "Positive Prognose: ja",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 3,
+   "group": "prognose",
+   "marker": "⓭",
+   "box": {
+    "x": 10.4,
+    "y": 25.3,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m61.be_prognose",
+     "text": "Aussage, ob die Ziele durch die empfohlene Leistung im vorgesehenen Zeitraum voll oder nur eingeschränkt erreichbar sind; medizinisch begründete Wahrscheinlichkeitsaussage unter Einbeziehung von Kontextfaktoren und Motivation.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 61 Teil B–E, ⓭, S. 111"
+     }
+    }
+   ]
+  },
+  {
+   "id": "prog_eingeschraenkt",
+   "label": "Positive Prognose: eingeschränkt",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 3,
+   "group": "prognose",
+   "marker": "⓭",
+   "box": {
+    "x": 18.8,
+    "y": 25.3,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "prog_text",
+   "label": "Prognose eingeschränkt hinsichtlich",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 3,
+   "marker": "⓭",
+   "lines": 2,
+   "box": {
+    "x": 52.7,
+    "y": 25.2,
+    "w": 43.5,
+    "h": 5
+   },
+   "rules": []
+  },
+  {
+   "id": "rf_ambulant",
+   "label": "Rehabilitationsform: ambulant",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 3,
+   "group": "rehaform",
+   "marker": "⓮",
+   "box": {
+    "x": 12.8,
+    "y": 35.3,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m61.be_rehaform",
+     "text": "Empfohlene Rehabilitationsform (ambulant, stationär, Mütter-/Väter-Leistung, geriatrisch), Schwerpunkt/Indikation und Anforderungen an die Einrichtung angeben; bei Mütter-/Väter-Leistung relevante Kontextfaktoren in II. G darstellen; pflegende Angehörige unter C vermerken.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 61 Teil B–E, ⓮, S. 113"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rf_mobil",
+   "label": "Rehabilitationsform: ambulant-mobil",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 3,
+   "group": "rehaform",
+   "marker": "⓮",
+   "box": {
+    "x": 32.1,
+    "y": 35.3,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "rf_stationaer",
+   "label": "Rehabilitationsform: stationär",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 3,
+   "group": "rehaform",
+   "marker": "⓮",
+   "box": {
+    "x": 52.7,
+    "y": 35.3,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "rf_muetter",
+   "label": "Rehabilitationsform: Mütter-Leistung",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 3,
+   "group": "rehaform",
+   "marker": "⓮",
+   "box": {
+    "x": 12.8,
+    "y": 38.1,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "rf_vaeter",
+   "label": "Rehabilitationsform: Väter-Leistung",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 3,
+   "group": "rehaform",
+   "marker": "⓮",
+   "box": {
+    "x": 32.1,
+    "y": 38.1,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "rf_mutter_kind",
+   "label": "Rehabilitationsform: als Mutter-Kind-Leistung",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 3,
+   "group": "rehaform",
+   "marker": "⓮",
+   "box": {
+    "x": 52.7,
+    "y": 38.1,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "rf_vater_kind",
+   "label": "Rehabilitationsform: als Vater-Kind-Leistung",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 3,
+   "group": "rehaform",
+   "marker": "⓮",
+   "box": {
+    "x": 76.9,
+    "y": 38.1,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "schwerpunkt",
+   "label": "Inhaltliche Schwerpunkte/Indikationen",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 3,
+   "marker": "⓮",
+   "box": {
+    "x": 12.7,
+    "y": 42.6,
+    "w": 62.3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "geriatrisch",
+   "label": "geriatr. Rehabilitation",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 3,
+   "marker": "⓮",
+   "box": {
+    "x": 76.9,
+    "y": 42.4,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m61.be_geriatrie",
+     "text": "Geriatrische Rehabilitation ohne Prüfung der medizinischen Erforderlichkeit durch die Kasse: Alter mindestens 70 Jahre und mindestens eine rehabilitationsbegründende Funktionsdiagnose sowie zwei geriatrietypische Diagnosen; Schädigungen mit mindestens zwei geeigneten Funktionstests nachweisen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 61 Teil B–E, Besonderheit geriatrische Rehabilitation, S. 108"
+     }
+    }
+   ]
+  },
+  {
+   "id": "bem_pflegend",
+   "label": "Weitere Bemerkungen: pflegende/r Angehörige/r",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 3,
+   "marker": "⓮",
+   "box": {
+    "x": 12.8,
+    "y": 49.5,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "bem_andere",
+   "label": "Weitere Bemerkungen: andere",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 3,
+   "marker": "⓮",
+   "box": {
+    "x": 32.1,
+    "y": 49.5,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "bem_text",
+   "label": "Weitere Bemerkungen/Begründungen",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 3,
+   "marker": "⓮",
+   "box": {
+    "x": 41.2,
+    "y": 49.5,
+    "w": 55,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "wf_neu",
+   "label": "Wartefrist: neue Indikation",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 3,
+   "group": "wartefrist",
+   "marker": "⓯",
+   "box": {
+    "x": 10.4,
+    "y": 56.7,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m61.be_wartefrist",
+     "text": "Ist die Leistung vor Ablauf der gesetzlichen Wartefrist von vier Jahren zwischen zwei Reha-Leistungen medizinisch notwendig, sind Maßnahme und Dringlichkeit gesondert zu begründen; für Kinder unter 18 Jahren gilt die Wartefrist nicht.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 61 Teil B–E, ⓯, S. 113"
+     }
+    }
+   ]
+  },
+  {
+   "id": "wf_verschlimmerung",
+   "label": "Wartefrist: Verschlimmerung bei gleicher Indikation",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 3,
+   "group": "wartefrist",
+   "marker": "⓯",
+   "box": {
+    "x": 29.7,
+    "y": 56.7,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "entlastung",
+   "label": "Zeitweise Entlastung und Distanzierung vom sozialen Umfeld nötig",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 3,
+   "marker": "⓰",
+   "box": {
+    "x": 10.4,
+    "y": 59.5,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m61.be_entlastung",
+     "text": "Kreuz setzen, wenn zeitweilige Entlastung und Distanzierung vom sozialen Umfeld und damit eine wohnortferne Maßnahme zum Erreichen der Reha-Ziele notwendig ist.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 61 Teil B–E, ⓰, S. 113"
+     }
+    }
+   ]
+  },
+  {
+   "id": "haeuslich_gesichert",
+   "label": "Bei ambulanter Reha ist die häusliche Versorgung gesichert",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 3,
+   "marker": "⓱",
+   "box": {
+    "x": 10.4,
+    "y": 62.4,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m61.be_ambulant",
+     "text": "Bei ambulanter Rehabilitation ist anzukreuzen, wenn die häusliche Versorgung gesichert ist.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 61 Teil B–E, ⓱, S. 113"
+     }
+    }
+   ]
+  },
+  {
+   "id": "reise_oeffentlich",
+   "label": "Reisefähigkeit: öffentliche Verkehrsmittel",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 3,
+   "group": "reise",
+   "marker": "⓲",
+   "box": {
+    "x": 10.4,
+    "y": 68.1,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m61.be_reisefaehigkeit",
+     "text": "Reisefähigkeit erfassen, z. B. ob öffentliche Verkehrsmittel benutzt werden können oder ein PKW bzw. eine Begleitperson erforderlich ist.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 61 Teil B–E, ⓲, S. 114"
+     }
+    }
+   ]
+  },
+  {
+   "id": "reise_pkw",
+   "label": "Reisefähigkeit: PKW erforderlich",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 3,
+   "group": "reise",
+   "marker": "⓲",
+   "box": {
+    "x": 29.7,
+    "y": 68.1,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "reise_begleit",
+   "label": "Reisefähigkeit: Begleitperson erforderlich",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 3,
+   "group": "reise",
+   "marker": "⓲",
+   "box": {
+    "x": 51.6,
+    "y": 68.1,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "pb_mitaufnahme",
+   "label": "Mitaufnahme der/des Pflegebedürftigen gewünscht",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 3,
+   "marker": "⓳",
+   "box": {
+    "x": 10.4,
+    "y": 73.8,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m61.be_pflegebeduerftige",
+     "text": "Bei stationärer Reha eines pflegenden Angehörigen angeben, ob Mitaufnahme des Pflegebedürftigen oder Kurzzeitpflege über Kranken- und Pflegekasse gewünscht ist; medizinische Gründe gegen Mitaufnahme unter „Sonstiges“.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 61 Teil B–E, ⓳, S. 114"
+     }
+    }
+   ]
+  },
+  {
+   "id": "pb_koordination",
+   "label": "Koordination der Versorgung der/des Pflegebedürftigen gewünscht",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 3,
+   "marker": "⓳",
+   "box": {
+    "x": 10.4,
+    "y": 76.6,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "sonstiges",
+   "label": "Sonstiges / Rückruf erbeten unter",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 3,
+   "marker": "⓴",
+   "lines": 2,
+   "box": {
+    "x": 10.3,
+    "y": 82.4,
+    "w": 61.7,
+    "h": 4.9
+   },
+   "rules": [
+    {
+     "id": "m61.be_sonstiges",
+     "text": "Besondere Hinweise (z. B. Reisefähigkeit, Schwangerschaft, weitere Teilhabebedarfe) eintragen; hier kann der Arzt auch um Rückruf der Krankenkasse bitten.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 61 Teil B–E, ⓴, S. 114"
+     }
+    }
+   ]
+  },
+  {
+   "id": "personalien_e",
+   "label": "Name, Kostenträgerkennung, Versicherten-Nr.",
+   "kind": "personalien",
+   "filled_by": "duria",
+   "page": 4,
+   "box": {
+    "x": 10.3,
+    "y": 1.6,
+    "w": 67.1,
+    "h": 3
+   },
+   "rules": [
+    {
+     "id": "m61.personalien",
+     "text": "Die Daten der eGK werden maschinell über Kartenterminal und Praxis-EDV übertragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 5 und Nr. 6, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "einw1_ja",
+   "label": "Einwilligung Übermittlung MD-Stellungnahme an den Verordner: ja",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 4,
+   "group": "einw1",
+   "box": {
+    "x": 12.8,
+    "y": 13.9,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m61.be_einwilligungen",
+     "text": "Der Verordner informiert den Versicherten über die Möglichkeit der Einwilligung zur Übermittlung der MD-Stellungnahme an den Verordner und der Kassenentscheidung an Angehörige, Vertrauenspersonen sowie Pflege- und Betreuungseinrichtungen; der Inhalt wird unter Punkt 1 und 2 übermittelt.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 61 Teil B–E, VIII. A, S. 114"
+     }
+    }
+   ]
+  },
+  {
+   "id": "einw1_nein",
+   "label": "Einwilligung Übermittlung MD-Stellungnahme an den Verordner: nein",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 4,
+   "group": "einw1",
+   "box": {
+    "x": 21.3,
+    "y": 13.9,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "einw2_ja",
+   "label": "Einwilligung Übermittlung der Leistungsentscheidung an Angehörige/Einrichtungen: ja",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 4,
+   "group": "einw2",
+   "box": {
+    "x": 12.8,
+    "y": 21,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "einw2_nein",
+   "label": "Einwilligung Übermittlung der Leistungsentscheidung an Angehörige/Einrichtungen: nein",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "page": 4,
+   "group": "einw2",
+   "box": {
+    "x": 21.3,
+    "y": 21,
+    "w": 3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "e_datum",
+   "label": "Datum (Verordnung Teil B–E)",
+   "kind": "date",
+   "filled_by": "praxis",
+   "page": 4,
+   "format": "TTMMJJ",
+   "box": {
+    "x": 57.6,
+    "y": 35.6,
+    "w": 14.5,
+    "h": 2.2
+   },
+   "rules": []
+  },
+  {
+   "id": "stempel",
+   "label": "Vertragsarztstempel / Unterschrift des Arztes",
+   "kind": "stempel",
+   "filled_by": "arzt",
+   "page": 4,
+   "box": {
+    "x": 73.6,
+    "y": 25.4,
+    "w": 22.8,
+    "h": 12.6
+   },
+   "rules": [
+    {
+     "id": "m61.stempel",
+     "text": "Vertragsarztstempel und persönliche Unterschrift erst nach vollständigem Ausfüllen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "versicherte",
+   "label": "Angaben der/des Versicherten (Angehörige, Vertrauenspersonen, Einrichtungen) – füllt die/der Versicherte aus",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "page": 4,
+   "box": {
+    "x": 12.7,
+    "y": 49,
+    "w": 83.5,
+    "h": 28.5
+   },
+   "rules": [
+    {
+     "id": "m61.be_angaben_versicherter",
+     "text": "Willigt der Versicherte in die Weitergabe ein, muss er vor Weitergabe der Verordnung die Angaben zu Angehörigen, Vertrauenspersonen und Einrichtungen auf dem Muster selbst machen und mit Unterschrift bestätigen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 61 Teil B–E, VIII. B, S. 114–115"
+     }
+    }
+   ]
+  }
+ ]
+}

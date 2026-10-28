@@ -53,7 +53,7 @@ export function toTTMMJJ(day: string, month: string, year: string): string | nul
 
 /** Datum direkt hinter einem Stichwort, z. B. „AU bis 31.10.2026“. */
 export function dateAfter(keyword: RegExp, text: string): { value: string | null; evidence: string } | null {
-  const re = uni(new RegExp(`${keyword.source}\\s*(?:bis\\s*(?:zum|einschl(?:\\.|ießlich))?|am|vom)?\\s*(?:(\\d{1,2})\\.(\\d{1,2})\\.(\\d{4}|\\d{2})\\b)?`, 'iu'));
+  const re = uni(new RegExp(`${keyword.source}\\s*(?:bis\\s*(?:zum|einschl(?:\\.|ießlich))?|am|vom)?\\s*(?:(\\d{1,2})\\.(\\d{1,2})\\.(\\d{4}|\\d{2})\\b)?`, keyword.flags.includes('i') ? 'iu' : 'u'));
   const m = re.exec(text);
   if (!m) return null;
   const value = m[1] && m[2] && m[3] ? toTTMMJJ(m[1], m[2], m[3]) : null;
@@ -80,7 +80,7 @@ export function icdCodes(text: string): { icd: string; certainty: Certainty | nu
 const LABELS = [
   'befunde?', 'untersuchungsergebnisse?', 'medikation', 'bisherige therapie', 'bisherige maßnahmen', 'therapie', 'maßnahmen',
   'allergien?', 'fragestellung', 'hinweise?', 'mitgegeben', 'mitgegebene befunde', 'anlagen?', 'auftrag', 'diagnose', 'ekg', 'labor',
-  'leitsymptomatik', 'therapieziele?', 'heilmittel',
+  'leitsymptomatik', 'therapieziele?', 'heilmittel', 'einschränkungen?', 'präparate', 'verbandmaterial', 'anamnese', 'kontext', 'lebensumstände', 'rehaziele?', 'ziele?',
 ];
 const LABEL_RE = new RegExp(`(?:^|[\\s.;,(])(${LABELS.join('|')})\\s*:`, 'giu');
 

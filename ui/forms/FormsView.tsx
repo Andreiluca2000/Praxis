@@ -1,4 +1,4 @@
-import { Activity, Ambulance, CircleAlert, CircleCheck, ClipboardList, Files, FlaskConical, Hospital, Info, Send, Stethoscope, TriangleAlert, WandSparkles } from 'lucide-react';
+import { Activity, Ambulance, HeartHandshake, Mountain, CircleAlert, CircleCheck, ClipboardList, Files, FlaskConical, Hospital, Info, Send, Stethoscope, TriangleAlert, WandSparkles } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import { analyse, check, propose } from '../../src/forms/advisor.js';
 import { valuesOf } from '../../src/forms/build.js';
@@ -8,7 +8,7 @@ import { applyKartei, factSentence, karteiOffer, type KarteiInput, type KarteiIt
 import type { IcdIndex } from '../../src/icd/search.js';
 import { loadIcd } from '../icd-store.js';
 import type { Analysis, FieldProposal, FieldState, FieldValue, FormDefinition, FormField, FormId, FormIssue, FormProposal, FormRule } from '../../src/forms/types.js';
-import { LAYOUTS } from './layouts.js';
+import { pagesOf } from './layouts.js';
 import { badgeText, type Mark, ScheinSvg } from './ScheinSvg.js';
 import './forms.css';
 
@@ -18,7 +18,7 @@ const EXAMPLES: [string, string][] = [
   ['Taxi zur Dialyse', 'Taxi zur Dialyse 3x pro Woche, Hin- und Rückfahrt'],
 ];
 
-const ICON: Record<FormId, typeof Send> = { 'muster-06': Send, 'muster-02': Hospital, 'muster-04': Ambulance, 'muster-10': FlaskConical, 'muster-13': Activity };
+const ICON: Record<FormId, typeof Send> = { 'muster-06': Send, 'muster-02': Hospital, 'muster-04': Ambulance, 'muster-10': FlaskConical, 'muster-13': Activity, 'muster-12': HeartHandshake, 'muster-61': Mountain };
 const STATE_LABEL: Record<Mark['state'], string> = { vorgeschlagen: 'vorgeschlagen', unbekannt: 'bitte wählen', arzt: 'Arzt', duria: 'aus DURIA', leer: 'leer', geaendert: 'geändert', kartei: 'aus Kartei' };
 const SOURCE: Record<string, string> = { erlaeuterungen: 'KBV-Erläuterungen 01/2026', vordruckvereinbarung: 'Vordruckvereinbarung 05/2026', mustersammlung: 'Mustersammlung 05/2026' };
 
@@ -151,6 +151,14 @@ type Props = {
 
 const KARTEI_SENTENCE = /\s*Aus der Kartei: [^.]*\./g;
 
+/** Erste Seite mit Inhalt (bei Muster 61 Teil B–E bleibt Teil A leer). */
+function startPage(formId: FormId | null | undefined, w: Work | undefined): number {
+  if (!formId || !w) return 0;
+  const f = getForm(formId);
+  const first = w.proposal.fields.find((p) => p.state !== 'leer' && p.state !== 'duria');
+  return f.fields.find((x) => x.id === first?.fieldId)?.page ?? 0;
+}
+
 function build(t: string, a: Analysis, chosen: readonly KarteiItem[]): Partial<Record<FormId, Work>> {
   const out: Partial<Record<FormId, Work>> = {};
   for (const s of a.suggestions) {
@@ -167,7 +175,14 @@ export function FormsView({ initial = devText(), kartei = null }: Props) {
   const [analysis, setAnalysis] = useState<Analysis | null>(() => (initial ? analyse(initial) : null));
   const [work, setWork] = useState<Partial<Record<FormId, Work>>>(() => (initial ? build(initial, analyse(initial), []) : {}));
   const [active, setActive] = useState<FormId | null>(() => (initial ? analyse(initial).suggestions[0]?.formId ?? null : null));
-  const [selected, setSelected] = useState<string | null>(null);
+  const [selected, setSelectedRaw] = useState<string | null>(null);
+  const [page, setPage] = useState(() => (initial ? startPage(analyse(initial).suggestions[0]?.formId, build(initial, analyse(initial), [])[analyse(initial).suggestions[0]?.formId ?? 'muster-06']) : 0));
+  /** Feld wählen; bei mehrseitigen Vordrucken auf seine Seite wechseln. */
+  function setSelected(id: string | null) {
+    setSelectedRaw(id);
+    const f = id && active ? getForm(active).fields.find((x) => x.id === id) : undefined;
+    if (f?.page !== undefined) setPage(f.page);
+  }
   const [icd, setIcd] = useState<IcdIndex | null>(null);
   const [taken, setTaken] = useState<readonly KarteiItem[]>([]);
 
@@ -182,10 +197,13 @@ export function FormsView({ initial = devText(), kartei = null }: Props) {
 
   function run(t = text, chosen: readonly KarteiItem[] = taken) {
     const a = analyse(t);
+    const built = build(t, a, chosen);
+    const first = a.suggestions[0]?.formId ?? null;
     setAnalysis(a);
-    setWork(build(t, a, chosen));
-    setActive(a.suggestions[0]?.formId ?? null);
-    setSelected(null);
+    setWork(built);
+    setActive(first);
+    setSelectedRaw(null);
+    setPage(startPage(first, first ? built[first] : undefined));
   }
 
   /** Bestätigte Auswahl aus der Kartei übernehmen: Tatsachen in die Beschreibung, Diagnosen/Befund in die Felder. */
@@ -238,7 +256,8 @@ export function FormsView({ initial = devText(), kartei = null }: Props) {
   const quiet = items.filter((it) => !visible.includes(it) && it.fields.every((f) => props.get(f.id)?.state === 'leer')).map((it) => it.label);
 
   const counts = { unzulaessig: issues.filter((i) => i.level === 'unzulaessig').length, fehlt: issues.filter((i) => i.level === 'fehlt').length };
-  const layout = active ? LAYOUTS[active] : null;
+  const pages = active ? pagesOf(active) : [];
+  const layout = pages[Math.min(page, pages.length - 1)] ?? null;
   const landscape = layout ? layout.width > layout.height : false;
   const factList = analysis ? factPills(analysis) : [];
   const catalog = analysis ? analysis.catalog.filter((h) => !analysis.suggestions.length || h.matched.length >= 2) : [];
@@ -247,7 +266,8 @@ export function FormsView({ initial = devText(), kartei = null }: Props) {
     if (!w) return { text: '', empty: true };
     const checked = it.fields.filter((f) => f.kind === 'checkbox' && w.values[f.id] === true);
     if (it.select === 'genau_eins') return checked[0] ? { text: short(checked[0].label), empty: false } : { text: 'bitte wählen', empty: true };
-    if (it.select === 'beliebig') return checked.length ? { text: checked.map((f) => short(f.label)).join(', '), empty: false } : { text: 'nichts ankreuzen', empty: false };
+    if (it.select === 'beliebig' && !checked.length && marks[it.fields[0]!.id]?.need === 'fehlt') return { text: 'bitte einschätzen', empty: true };
+    if (it.select === 'beliebig') return checked.length ? { text: checked.length > 3 ? `${checked.length} angekreuzt` : checked.map((f) => short(f.label)).join(', '), empty: false } : { text: 'nichts ankreuzen', empty: false };
     const f = it.fields[0]!;
     const v = w.values[f.id];
     if (f.kind === 'checkbox') return { text: v === true ? 'ankreuzen' : 'nicht ankreuzen', empty: false };
@@ -314,7 +334,9 @@ export function FormsView({ initial = devText(), kartei = null }: Props) {
             );
           })}
         </ul>
-        {quiet.length > 0 && <p className="muted fx-quiet"><b>Bleibt leer:</b> {quiet.join(' · ')}</p>}
+        {quiet.length > 0 && (
+          <details className="fx-quiet"><summary>{quiet.length === 1 ? '1 Feld bleibt leer' : `${quiet.length} Felder bleiben leer`}</summary><p className="muted">{quiet.join(' · ')}</p></details>
+        )}
       </div>
     </aside>
   );
@@ -357,7 +379,7 @@ export function FormsView({ initial = devText(), kartei = null }: Props) {
             const f = getForm(s.formId);
             return (
               <button key={s.formId} role="tab" aria-selected={active === s.formId} className={`fx-pick ${active === s.formId ? 'on' : ''}`}
-                onClick={() => { setActive(s.formId); setSelected(null); }}>
+                onClick={() => { setActive(s.formId); setSelectedRaw(null); setPage(startPage(s.formId, work[s.formId])); }}>
                 <span className="ico"><Icon size={19} aria-hidden="true" /></span>
                 <span className="fx-pick-text"><b>Muster {f.muster} · {f.title}</b><span>{s.role === 'hauptsache' ? 'gewünscht' : s.why}</span></span>
                 {s.role === 'zusaetzlich' && <span className="pill not_verifiable">passt dazu</span>}
@@ -386,7 +408,16 @@ export function FormsView({ initial = devText(), kartei = null }: Props) {
                 : counts.fehlt > 0 ? <span className="pill not_verifiable">{counts.fehlt} fehlt</span>
                   : <span className="pill candidate">vollständig</span>}
             </div>
-            <ScheinSvg form={form} layout={layout} values={w.values} marks={marks} selected={selected} onSelect={setSelected} />
+            {form.pages && (
+              <div className="segmented fx-pages" role="tablist" aria-label="Seiten des Vordrucks">
+                {form.pages.map((name, i) => (
+                  <label key={name} className={i === page ? 'on' : ''}>
+                    <input type="radio" name="fx-page" checked={i === page} onChange={() => setPage(i)} />{name}
+                  </label>
+                ))}
+              </div>
+            )}
+            <ScheinSvg form={form} layout={layout} page={page} values={w.values} marks={marks} selected={selected} onSelect={setSelected} />
             <p className="muted fx-foot">Nachbildung zur Orientierung – keine Druckvorlage. Klick auf ein Feld zeigt Grund und Quelle.</p>
           </section>
           {side}

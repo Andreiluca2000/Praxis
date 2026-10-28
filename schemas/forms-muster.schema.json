@@ -25,6 +25,7 @@
         "tint": { "enum": ["gelb", "rot", "blau", "ohne"] }
       }
     },
+    "pages": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 2, "description": "Seitennamen bei mehrseitigen Vordrucken (z. B. Teil A–E)" },
     "copies": {
       "type": "array",
       "items": {
@@ -69,6 +70,7 @@
           "group": { "type": "string", "pattern": "^[a-z0-9_]+$" },
           "marker": { "type": "string", "description": "Nummer in den Erläuterungen, z. B. ❶" },
           "lines": { "type": "integer", "minimum": 1 },
+          "page": { "type": "integer", "minimum": 0, "description": "Seite bei mehrseitigen Vordrucken (0 = erste)" },
           "label_pos": { "enum": ["rechts", "unten"], "description": "Lage der Beschriftung neben einem Ankreuzfeld (Standard rechts)" },
           "only_copies": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
           "box": {

@@ -29,7 +29,7 @@ for d in page.get_drawings():
             if d['type'] in ('s', 'fs') and color:
                 strokes.append({'rect': box, 'w': r2(d.get('width') or .5)})
             elif d['type'] == 'f' and fill and max(fill) > .8 and min(fill) < .5:
-                fills.append(box)  # kleine rote Flächen (z. B. Nummernfeld)
+                fills.append(box + [hexc(fill)])  # farbige Flächen (z. B. Titelbalken) mit ihrer Farbe
         elif it[0] == 'l' and d['type'] in ('s', 'fs') and color:
             a, b = it[1], it[2]
             strokes.append({'line': [r2(a.x), r2(a.y), r2(b.x), r2(b.y)], 'w': r2(d.get('width') or .5)})
@@ -44,11 +44,12 @@ for b in page.get_text('dict')['blocks']:
             if not t or t.startswith('Freigabe') or 'Verbindliches' in t or t == 'Muster':
                 continue
             rgb = ((s['color'] >> 16) & 255, (s['color'] >> 8) & 255, s['color'] & 255)
-            ghost = min(rgb) > 180  # sehr helle Platzhalter („T T M M J J“)
+            white = min(rgb) >= 250  # weiße Schrift auf farbigem Balken („Behandlungspflege“)
+            ghost = min(rgb) > 180 and not white  # sehr helle Platzhalter („T T M M J J“)
             dark = max(rgb) < 90
             labels.append({'t': t, 'x': r2(s['origin'][0]), 'y': r2(s['origin'][1]), 's': r2(s['size']),
                            'b': 'Bold' in s['font'], 'i': 'Italic' in s['font'] or 'Oblique' in s['font'], 'ghost': ghost,
-                           'dark': dark})
+                           'dark': dark, 'white': white})
 
 json.dump({'form': form_id, 'width': r2(W), 'height': r2(H), 'tint': tint, 'bands': bands, 'whites': whites,
            'strokes': strokes, 'fills': fills, 'labels': labels}, open(out, 'w', encoding='utf-8'), ensure_ascii=False)

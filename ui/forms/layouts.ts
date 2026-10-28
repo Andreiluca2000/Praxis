@@ -3,7 +3,9 @@ import muster02 from '../../data/forms/layout/muster-02.json' with { type: 'json
 import muster04 from '../../data/forms/layout/muster-04.json' with { type: 'json' };
 import muster06 from '../../data/forms/layout/muster-06.json' with { type: 'json' };
 import muster10 from '../../data/forms/layout/muster-10.json' with { type: 'json' };
+import muster12 from '../../data/forms/layout/muster-12.json' with { type: 'json' };
 import muster13 from '../../data/forms/layout/muster-13.json' with { type: 'json' };
+import muster61 from '../../data/forms/layout/muster-61.json' with { type: 'json' };
 import type { FormId } from '../../src/forms/types.js';
 
 type Rect = [number, number, number, number];
@@ -15,14 +17,24 @@ export interface FormLayout {
   bands: Rect[];
   whites: Rect[];
   strokes: ({ rect: Rect; w: number } | { line: [number, number, number, number]; w: number })[];
-  fills: Rect[];
-  labels: { t: string; x: number; y: number; s: number; b: boolean; i: boolean; ghost: boolean; dark: boolean }[];
+  fills: (Rect | [number, number, number, number, string])[];
+  labels: { t: string; x: number; y: number; s: number; b: boolean; i: boolean; ghost: boolean; dark: boolean; white?: boolean }[];
 }
 
-export const LAYOUTS: Readonly<Record<FormId, FormLayout>> = {
+type Stored = FormLayout | { pages: FormLayout[] };
+
+/** Seiten eines Vordrucks (einseitige Vordrucke haben genau eine). */
+export function pagesOf(id: FormId): FormLayout[] {
+  const l = LAYOUTS[id];
+  return 'pages' in l ? l.pages : [l];
+}
+
+const LAYOUTS: Readonly<Record<FormId, Stored>> = {
   'muster-06': muster06 as unknown as FormLayout,
   'muster-02': muster02 as unknown as FormLayout,
   'muster-04': muster04 as unknown as FormLayout,
   'muster-10': muster10 as unknown as FormLayout,
   'muster-13': muster13 as unknown as FormLayout,
+  'muster-12': muster12 as unknown as FormLayout,
+  'muster-61': muster61 as unknown as Stored,
 };

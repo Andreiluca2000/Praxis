@@ -69,10 +69,10 @@ describe('Analyse: welcher Vordruck passt', () => {
   it('Laborüberweisung → Muster 10 (nicht Muster 6)', () => {
     expect(analyse('Überweisung ans Labor für Blutbild').suggestions.map((s) => s.formId)).toEqual(['muster-10']);
   });
-  it('Gesamtkatalog: „häusliche Krankenpflege“ findet Muster 12 (nur Regeln, noch keine Vorschau)', () => {
-    const a = analyse('häusliche Krankenpflege Wundversorgung Verbandwechsel');
+  it('Gesamtkatalog: „stufenweise Wiedereingliederung“ findet Muster 20 (nur Regeln, noch keine Vorschau)', () => {
+    const a = analyse('stufenweise Wiedereingliederung Arbeitsplatz Stundenplan');
     expect(a.suggestions).toEqual([]);
-    expect(a.catalog[0]?.entry.muster).toBe('12');
+    expect(a.catalog[0]?.entry.muster).toBe('20');
     expect(a.catalog[0]?.entry.rules.length).toBeGreaterThan(5);
   });
   it('ambulante OP im Krankenhaus ist keine Einweisung', () => {

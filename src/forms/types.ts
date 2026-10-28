@@ -28,6 +28,8 @@ export interface FormField {
   marker?: string;
   lines?: number;
   label_pos?: 'rechts' | 'unten';
+  /** Seite bei mehrseitigen Vordrucken (0 = erste). */
+  page?: number;
   only_copies?: string[];
   box: Box;
   rules: FormRule[];
@@ -49,13 +51,15 @@ export interface FormDefinition {
   released: string;
   status: 'entwurf' | 'geprueft';
   paper: { format: string; width: number; height: number; tint: 'gelb' | 'rot' | 'blau' | 'ohne' };
+  /** Seitennamen bei mehrseitigen Vordrucken (z. B. Teil A–E). */
+  pages?: string[];
   copies: { id: string; label: string; recipient: string }[];
   notes: FormRule[];
   groups: FormGroup[];
   fields: FormField[];
 }
 
-export type FormId = 'muster-06' | 'muster-02' | 'muster-04' | 'muster-10' | 'muster-13';
+export type FormId = 'muster-06' | 'muster-02' | 'muster-04' | 'muster-10' | 'muster-13' | 'muster-12' | 'muster-61';
 
 /**
  * Zustand eines Feldes im Vorschlag:
@@ -134,7 +138,7 @@ export interface PatientFacts {
   auBis: Fact<string | null> | null;
 }
 
-export type Intent = 'ueberweisung' | 'einweisung' | 'befoerderung' | 'labor' | 'heilmittel';
+export type Intent = 'ueberweisung' | 'einweisung' | 'befoerderung' | 'labor' | 'heilmittel' | 'hkp' | 'reha';
 
 export interface FormSuggestion {
   formId: FormId;

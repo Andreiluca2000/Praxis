@@ -1,0 +1,1674 @@
+{
+ "schema_version": "1.0.0",
+ "id": "muster-12",
+ "muster": "12",
+ "title": "Verordnung häuslicher Krankenpflege",
+ "form_version": "7.2024",
+ "released": "2023-11-15",
+ "status": "entwurf",
+ "paper": {
+  "format": "DIN A4 hoch",
+  "width": 595.3,
+  "height": 841.9,
+  "tint": "rot"
+ },
+ "copies": [
+  {
+   "id": "12a",
+   "label": "Ausfertigung für die Krankenkasse",
+   "recipient": "Krankenkasse (Genehmigung; Antrag des Versicherten auf der Rückseite)"
+  },
+  {
+   "id": "12b",
+   "label": "Ausfertigung für den Pflegedienst",
+   "recipient": "Pflegedienst"
+  },
+  {
+   "id": "12c",
+   "label": "Ausfertigung für den Arzt",
+   "recipient": "verbleibt in der Praxis"
+  }
+ ],
+ "notes": [
+  {
+   "id": "m12.grundlage",
+   "text": "Grundlage ist die HKP-Richtlinie des G-BA mit dem Leistungsverzeichnis. Dessen Hinweise (Spalte Bemerkung) zur Verordnungsfähigkeit sind zu beachten, Besonderheiten (z. B. Beeinträchtigung der Sehfähigkeit) in der Verordnung anzugeben.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 12, Einleitung, S. 43"
+   }
+  },
+  {
+   "id": "m12.voraussetzung",
+   "text": "HKP ist nur zulässig, wenn Versicherte wegen einer Krankheit ärztlicher Behandlung bedürfen und die HKP Bestandteil des Behandlungsplans ist. Der Arzt muss sich vom Zustand und der Notwendigkeit persönlich überzeugt haben oder beides aus der laufenden Behandlung kennen.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 12, Einleitung, S. 43"
+   }
+  },
+  {
+   "id": "m12.nicht_zulaessig",
+   "text": "Die Verordnung ist nicht zulässig, wenn dem Arzt bekannt ist, dass die Versicherten oder eine im Haushalt lebende Person die erforderlichen Maßnahmen durchführen können; ist das nur für Teilbereiche möglich, ist für diese keine Verordnung zulässig.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 12, Einleitung, S. 43"
+   }
+  },
+  {
+   "id": "m12.genehmigung",
+   "text": "Die vom Versicherten beantragten Leistungen (Rückseite Muster 12a) bedürfen der Genehmigung durch die Krankenkasse. Bis zur Entscheidung übernimmt die Kasse die Kosten, wenn die Verordnung spätestens am vierten der Ausstellung folgenden Arbeitstag vorgelegt wird.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 12, Einleitung, S. 44–45"
+   }
+  },
+  {
+   "id": "m12.erst_folge",
+   "text": "Insbesondere bei der Erstverordnung soll ein Zeitraum von 14 Tagen nicht überschritten werden; eine längere Dauer soll sich aus Diagnosen und Einschränkungen ergeben. Folgeverordnungen sind innerhalb der letzten drei Arbeitstage vor Ablauf des verordneten Zeitraums auszustellen.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 12, ❸, S. 45"
+   }
+  },
+  {
+   "id": "m12.blankoverordnung",
+   "text": "Bei der HKP-Blankoverordnung legt der Arzt fest, welche Leistung verordnet wird; qualifizierte Pflegefachkräfte bestimmen für bestimmte, im Leistungsverzeichnis gekennzeichnete Leistungen Häufigkeit und Dauer. Gibt es wichtige medizinische Gründe dagegen, gibt der Arzt Häufigkeit und Dauer selbst an.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 12, Einleitung, S. 43"
+   }
+  },
+  {
+   "id": "m12.keine_blanko",
+   "text": "Werden nur Maßnahmen mit ärztlich festgelegter Häufigkeit und Dauer verordnet (keine Blankoverordnung), füllt der Arzt den Zeitraum unter ❻ aus; Pflegefachkräfte können die Felder unter ❽ nicht befüllen.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 12, ❻ (Keine „Blankoverordnung“), S. 45"
+   }
+  },
+  {
+   "id": "m12.psychiatrisch",
+   "text": "Leistungen der psychiatrischen häuslichen Krankenpflege nach § 4 der HKP-Richtlinie werden ebenfalls auf Muster 12 verordnet.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 12, Einleitung, S. 43"
+   }
+  },
+  {
+   "id": "m12.behandlungspflege",
+   "text": "Behandlungspflege umfasst Maßnahmen der ärztlichen Behandlung, die an Pflegefachkräfte delegierbar sind; Behandlungspflege als Sicherungspflege soll die ambulante ärztliche Behandlung ermöglichen. Verordnungsfähig sind die Maßnahmen des Leistungsverzeichnisses.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 12, ❾, S. 47"
+   }
+  },
+  {
+   "id": "m12.grundpflege_hauswirtschaft",
+   "text": "Grundpflege und hauswirtschaftliche Versorgung nur im Rahmen der Unterstützungs- oder Krankenhausvermeidungspflege. Bei Sicherungspflege nur, wenn die Satzung der Kasse sie vorsieht und kein Pflegegrad 2, 3, 4 oder 5 nach SGB XI besteht.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 12, ⓰, S. 48"
+   }
+  },
+  {
+   "id": "m12.rueckseite",
+   "text": "Legt eine Pflegefachkraft Häufigkeit und Dauer fest, ist ihre Beschäftigtennummer auf der Rückseite anzugeben (fachliche Verantwortung). Der Pflegedienst gibt dort zudem eine Jahresangabe für seine Gesamtversorgungszeit an; bei jahresübergreifender Verordnung kann das Ende nur das Folgejahr betreffen.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 12, Rückseite, S. 50"
+   }
+  },
+  {
+   "id": "m12.arbeitsunfall",
+   "text": "Bei Arbeitsunfällen, Berufskrankheiten und Schülerunfällen dürfen nur e01, Muster 4 und Muster 16 verwendet werden – nicht Muster 12.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Allgemeines Nr. 9, S. 7"
+   }
+  },
+  {
+   "id": "m12.unterschrift",
+   "text": "Erst vollständig ausfüllen, dann mit Vertragsarztstempel persönlich unterschreiben – nie blanko, nicht mit roter Farbe.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5"
+   }
+  }
+ ],
+ "groups": [
+  {
+   "id": "art",
+   "label": "Erst- oder Folgeverordnung",
+   "select": "genau_eins",
+   "rule": {
+    "id": "m12.art",
+    "text": "Erst- oder Folgeverordnung kennzeichnen; Folgeverordnungen innerhalb der letzten drei Arbeitstage vor Ablauf des verordneten Zeitraums ausstellen.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 12, ❸, S. 45"
+    }
+   }
+  },
+  {
+   "id": "seite",
+   "label": "Kompression: Seite",
+   "select": "beliebig",
+   "rule": {
+    "id": "m12.seite",
+    "text": "Bei Kompressionsbehandlung die Seite angeben (rechts, links, beidseits).",
+    "source": {
+     "artifact": "mustersammlung",
+     "locator": "PDF-Seite 23, Muster 12a (7.2024), Kompressionsbehandlung"
+    }
+   }
+  },
+  {
+   "id": "rahmen",
+   "label": "Rahmen für Grundpflege/Hauswirtschaft",
+   "select": "beliebig",
+   "rule": {
+    "id": "m12.grundpflege_hauswirtschaft",
+    "text": "Grundpflege und hauswirtschaftliche Versorgung nur im Rahmen der Unterstützungs- oder Krankenhausvermeidungspflege. Bei Sicherungspflege nur, wenn die Satzung der Kasse sie vorsieht und kein Pflegegrad 2, 3, 4 oder 5 nach SGB XI besteht.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 12, ⓰, S. 48"
+    }
+   }
+  }
+ ],
+ "fields": [
+  {
+   "id": "personalien",
+   "label": "Personalienfeld (Kasse, Name, geb. am, Kostenträgerkennung, Versicherten-Nr., Status, BSNR, LANR, Datum)",
+   "kind": "personalien",
+   "filled_by": "duria",
+   "box": {
+    "x": 4.2,
+    "y": 1.5,
+    "w": 38.2,
+    "h": 15.8
+   },
+   "rules": [
+    {
+     "id": "m12.personalien",
+     "text": "Die Daten der eGK werden maschinell über Kartenterminal und Praxis-EDV übertragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 5 und Nr. 6, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "icd1",
+   "label": "Verordnungsrelevante Diagnose 1 (ICD-10-Code)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❶",
+   "box": {
+    "x": 45.4,
+    "y": 5.4,
+    "w": 12.3,
+    "h": 2.3
+   },
+   "rules": [
+    {
+     "id": "m12.diagnosen",
+     "text": "Anzugeben sind die Diagnosen, die die Notwendigkeit der HKP medizinisch begründen, verschlüsselt nach ICD-10-GM.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ❶, S. 45"
+     }
+    }
+   ]
+  },
+  {
+   "id": "icd2",
+   "label": "Verordnungsrelevante Diagnose 2 (ICD-10-Code)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❶",
+   "box": {
+    "x": 58.2,
+    "y": 5.4,
+    "w": 12.3,
+    "h": 2.3
+   },
+   "rules": []
+  },
+  {
+   "id": "icd3",
+   "label": "Verordnungsrelevante Diagnose 3 (ICD-10-Code)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❶",
+   "box": {
+    "x": 71.0,
+    "y": 5.4,
+    "w": 12.3,
+    "h": 2.3
+   },
+   "rules": []
+  },
+  {
+   "id": "icd4",
+   "label": "Verordnungsrelevante Diagnose 4 (ICD-10-Code)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❶",
+   "box": {
+    "x": 83.8,
+    "y": 5.4,
+    "w": 12.3,
+    "h": 2.3
+   },
+   "rules": []
+  },
+  {
+   "id": "einschraenkungen",
+   "label": "Einschränkungen, die häusliche Krankenpflege erforderlich machen",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❷",
+   "lines": 2,
+   "box": {
+    "x": 45.4,
+    "y": 10.9,
+    "w": 50.9,
+    "h": 4.9
+   },
+   "rules": [
+    {
+     "id": "m12.einschraenkungen",
+     "text": "Die Einschränkungen sollen verdeutlichen, warum HKP erforderlich ist; dabei ist das Leistungsverzeichnis der HKP-Richtlinie (Spalte Bemerkung) zu beachten.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ❷, S. 45"
+     }
+    }
+   ]
+  },
+  {
+   "id": "erst",
+   "label": "Erstverordnung",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "art",
+   "marker": "❸",
+   "box": {
+    "x": 4.4,
+    "y": 18.2,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "folge",
+   "label": "Folgeverordnung",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "art",
+   "marker": "❸",
+   "box": {
+    "x": 15.3,
+    "y": 18.2,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "unfall",
+   "label": "Unfall",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "marker": "❹",
+   "box": {
+    "x": 26.7,
+    "y": 18.2,
+    "w": 2.9,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m12.unfall",
+     "text": "Ergibt sich die Notwendigkeit der häuslichen Krankenpflege infolge eines Unfalls, ist dies anzugeben.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ❹, S. 45"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ser",
+   "label": "SER",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "marker": "❺",
+   "box": {
+    "x": 35.8,
+    "y": 18.2,
+    "w": 2.9,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m12.ser",
+     "text": "Zu SER siehe die Erläuterung im Abschnitt „Allgemeines“ unter Nr. 8.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ❺, S. 45"
+     }
+    }
+   ]
+  },
+  {
+   "id": "vom",
+   "label": "vom (nur bei ärztlicher Festlegung von Häufigkeit und Dauer)",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "TTMMJJ",
+   "marker": "❻",
+   "box": {
+    "x": 49.5,
+    "y": 18.3,
+    "w": 13.6,
+    "h": 2.2
+   },
+   "rules": [
+    {
+     "id": "m12.zeitraum",
+     "text": "„vom – bis“: Zeitraum, in dem die Maßnahmen mit ärztlich festgelegter Häufigkeit und Dauer erbracht werden sollen. Pflegefachkräfte dürfen diese Felder nicht befüllen. Rückwirkende Verordnungen sind grundsätzlich nicht zulässig; Ausnahmefälle sind besonders zu begründen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ❻, S. 45"
+     }
+    },
+    {
+     "id": "m12.hybrid",
+     "text": "Bei Hybrid-Verordnungen (ärztlich und durch Pflegefachkraft festgelegte Maßnahmen gemischt) wird der Zeitraum unter ❻ ärztlich festgelegt; er gilt nicht für die Maßnahmen, deren Häufigkeit und Dauer die Pflegefachkraft bestimmt.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ❻ („Hybrid-Verordnungen“), S. 45"
+     }
+    },
+    {
+     "id": "m12.blanko",
+     "text": "Bei reiner Blankoverordnung (nur Maßnahmen mit Festlegung durch die Pflegefachkraft) wird der Zeitraum unter ❻ nicht ärztlich festgelegt; Häufigkeit und Dauer trägt ausschließlich die Pflegefachkraft unter ❽ ein.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ❻ („Blankoverordnung“), S. 46"
+     }
+    }
+   ]
+  },
+  {
+   "id": "bis",
+   "label": "bis",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "TTMMJJ",
+   "marker": "❻",
+   "box": {
+    "x": 70.1,
+    "y": 18.3,
+    "w": 13.6,
+    "h": 2.2
+   },
+   "rules": []
+  },
+  {
+   "id": "praeparate",
+   "label": "Medikamentengabe, Präparate",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❿",
+   "lines": 2,
+   "box": {
+    "x": 24.2,
+    "y": 23.6,
+    "w": 45.0,
+    "h": 4.0
+   },
+   "rules": [
+    {
+     "id": "m12.medikamentengabe",
+     "text": "Bei Medikamentengabe ist Nr. 26 des Leistungsverzeichnisses zu beachten; die einzelnen Präparate sowie Dauer und Häufigkeit müssen aus der Verordnung (oder einer Anlage) hervorgehen. Festlegung durch die Pflegefachkraft ist hier nicht möglich.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ❿, S. 47"
+     }
+    }
+   ]
+  },
+  {
+   "id": "medibox",
+   "label": "Herrichten der Medikamentenbox",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "marker": "❿",
+   "box": {
+    "x": 9.2,
+    "y": 28.2,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "medibox_hf",
+   "label": "Herrichten der Medikamentenbox: Häufigkeit (tgl./wtl./mtl.)",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❽",
+   "box": {
+    "x": 73.6,
+    "y": 28.2,
+    "w": 10.6,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m12.haeufigkeit_dauer",
+     "text": "Je Maßnahme sind Häufigkeit (täglich, wöchentlich, monatlich) und Dauer anzugeben; die Dauer nur bei Abweichung vom Gesamtzeitraum ❻. „tgl.“, „wtl.“, „mtl.“ können kombiniert werden (z. B. „1 x tgl.“ und „5 x wtl.“). Bei Festlegung durch die Pflegefachkraft dürfen keine ärztlichen Angaben erfolgen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ❽, S. 46"
+     }
+    }
+   ]
+  },
+  {
+   "id": "medibox_dauer",
+   "label": "Herrichten der Medikamentenbox: Dauer (TTMM–TTMM), nur bei Abweichung",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❽",
+   "box": {
+    "x": 84.2,
+    "y": 28.2,
+    "w": 12.2,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "medigabe",
+   "label": "Medikamentengabe",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "marker": "❿",
+   "box": {
+    "x": 9.2,
+    "y": 30.3,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "medigabe_hf",
+   "label": "Medikamentengabe: Häufigkeit (tgl./wtl./mtl.)",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❽",
+   "box": {
+    "x": 73.6,
+    "y": 30.3,
+    "w": 10.6,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m12.haeufigkeit_dauer",
+     "text": "Je Maßnahme sind Häufigkeit (täglich, wöchentlich, monatlich) und Dauer anzugeben; die Dauer nur bei Abweichung vom Gesamtzeitraum ❻. „tgl.“, „wtl.“, „mtl.“ können kombiniert werden (z. B. „1 x tgl.“ und „5 x wtl.“). Bei Festlegung durch die Pflegefachkraft dürfen keine ärztlichen Angaben erfolgen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ❽, S. 46"
+     }
+    }
+   ]
+  },
+  {
+   "id": "medigabe_dauer",
+   "label": "Medikamentengabe: Dauer (TTMM–TTMM), nur bei Abweichung",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❽",
+   "box": {
+    "x": 84.2,
+    "y": 30.3,
+    "w": 12.2,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "injektion",
+   "label": "Injektionen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "marker": "❿",
+   "box": {
+    "x": 9.2,
+    "y": 32.4,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "injektion_hf",
+   "label": "Injektionen: Häufigkeit (tgl./wtl./mtl.)",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❽",
+   "box": {
+    "x": 73.6,
+    "y": 32.4,
+    "w": 10.6,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m12.haeufigkeit_dauer",
+     "text": "Je Maßnahme sind Häufigkeit (täglich, wöchentlich, monatlich) und Dauer anzugeben; die Dauer nur bei Abweichung vom Gesamtzeitraum ❻. „tgl.“, „wtl.“, „mtl.“ können kombiniert werden (z. B. „1 x tgl.“ und „5 x wtl.“). Bei Festlegung durch die Pflegefachkraft dürfen keine ärztlichen Angaben erfolgen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ❽, S. 46"
+     }
+    }
+   ]
+  },
+  {
+   "id": "injektion_dauer",
+   "label": "Injektionen: Dauer (TTMM–TTMM), nur bei Abweichung",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❽",
+   "box": {
+    "x": 84.2,
+    "y": 32.4,
+    "w": 12.2,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "inj_herrichten",
+   "label": "Injektionen herrichten",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "marker": "❿",
+   "box": {
+    "x": 23.7,
+    "y": 32.4,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "inj_im",
+   "label": "intramuskulär",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "marker": "❿",
+   "box": {
+    "x": 38.1,
+    "y": 32.4,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "inj_sc",
+   "label": "subkutan",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "marker": "❿",
+   "box": {
+    "x": 56.3,
+    "y": 32.4,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "bz",
+   "label": "Blutzuckermessung: Erst- oder Neueinstellung (max. 4 Wochen und max. 3x täglich)",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "marker": "⓫",
+   "box": {
+    "x": 9.2,
+    "y": 36.7,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m12.blutzucker",
+     "text": "Bei Blutzuckermessung ist Nr. 11 des Leistungsverzeichnisses zu beachten; zu unterscheiden ist Erst-/Neueinstellung oder intensivierte Insulintherapie. Festlegung durch die Pflegefachkraft ist nicht möglich.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ⓫, S. 47"
+     }
+    },
+    {
+     "id": "m12.bz_grenze",
+     "text": "Blutzuckermessung bei Erst- oder Neueinstellung: höchstens 4 Wochen und höchstens 3x täglich (Aufdruck des Vordrucks).",
+     "source": {
+      "artifact": "mustersammlung",
+      "locator": "PDF-Seite 23, Muster 12a (7.2024), Feld Blutzuckermessung"
+     }
+    }
+   ]
+  },
+  {
+   "id": "bz_hf",
+   "label": "Blutzuckermessung: Erst- oder Neueinstellung (max. 4 Wochen und max. 3x täglich): Häufigkeit (tgl./wtl./mtl.)",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❽",
+   "box": {
+    "x": 73.6,
+    "y": 36.7,
+    "w": 10.6,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m12.haeufigkeit_dauer",
+     "text": "Je Maßnahme sind Häufigkeit (täglich, wöchentlich, monatlich) und Dauer anzugeben; die Dauer nur bei Abweichung vom Gesamtzeitraum ❻. „tgl.“, „wtl.“, „mtl.“ können kombiniert werden (z. B. „1 x tgl.“ und „5 x wtl.“). Bei Festlegung durch die Pflegefachkraft dürfen keine ärztlichen Angaben erfolgen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ❽, S. 46"
+     }
+    }
+   ]
+  },
+  {
+   "id": "bz_dauer",
+   "label": "Blutzuckermessung: Erst- oder Neueinstellung (max. 4 Wochen und max. 3x täglich): Dauer (TTMM–TTMM), nur bei Abweichung",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❽",
+   "box": {
+    "x": 84.2,
+    "y": 36.7,
+    "w": 12.2,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "bz_intensiv",
+   "label": "Blutzuckermessung bei intensivierter Insulintherapie",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "marker": "⓫",
+   "box": {
+    "x": 38.1,
+    "y": 36.7,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "k_rechts",
+   "label": "Kompression rechts",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "seite",
+   "marker": "⓬",
+   "box": {
+    "x": 38.1,
+    "y": 39.6,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "k_links",
+   "label": "Kompression links",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "seite",
+   "marker": "⓬",
+   "box": {
+    "x": 47.9,
+    "y": 39.6,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "k_beidseits",
+   "label": "Kompression beidseits",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "seite",
+   "marker": "⓬",
+   "box": {
+    "x": 56.3,
+    "y": 39.6,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "kstrumpf_an",
+   "label": "Kompressionsstrümpfe anziehen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "marker": "⓬",
+   "box": {
+    "x": 9.2,
+    "y": 41.7,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m12.kompression",
+     "text": "Kompressionsbehandlung (Nr. 31b) ist ab Kompressionsklasse I verordnungsfähig. Festlegung von Häufigkeit und Dauer durch die Pflegefachkraft ist möglich.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ⓬, S. 47"
+     }
+    }
+   ]
+  },
+  {
+   "id": "kstrumpf_an_pfk",
+   "label": "Kompressionsstrümpfe anziehen: Häufigkeit/Dauer durch Pflegefachkraft",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "marker": "❼",
+   "box": {
+    "x": 69.7,
+    "y": 41.7,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m12.pflegefachkraft_leistungen",
+     "text": "Soll die Pflegefachkraft Häufigkeit und Dauer bestimmen, kreuzt der Arzt dies an. Möglich ist das nur für die Leistungen Nr. 1–7, 12–14, 21–23, 27, 28, 30, 31, 31b, 31c und 31d des Leistungsverzeichnisses (u. a. Grundpflege, Absaugen obere Luftwege, Wund- und Stomaversorgung, Katheter, PEG, Verbände).",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ❼, S. 46"
+     }
+    }
+   ]
+  },
+  {
+   "id": "kstrumpf_an_hf",
+   "label": "Kompressionsstrümpfe anziehen: Häufigkeit (tgl./wtl./mtl.)",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❽",
+   "box": {
+    "x": 73.6,
+    "y": 41.7,
+    "w": 10.6,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m12.haeufigkeit_dauer",
+     "text": "Je Maßnahme sind Häufigkeit (täglich, wöchentlich, monatlich) und Dauer anzugeben; die Dauer nur bei Abweichung vom Gesamtzeitraum ❻. „tgl.“, „wtl.“, „mtl.“ können kombiniert werden (z. B. „1 x tgl.“ und „5 x wtl.“). Bei Festlegung durch die Pflegefachkraft dürfen keine ärztlichen Angaben erfolgen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ❽, S. 46"
+     }
+    }
+   ]
+  },
+  {
+   "id": "kstrumpf_an_dauer",
+   "label": "Kompressionsstrümpfe anziehen: Dauer (TTMM–TTMM), nur bei Abweichung",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❽",
+   "box": {
+    "x": 84.2,
+    "y": 41.7,
+    "w": 12.2,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "kstrumpf_aus",
+   "label": "Kompressionsstrümpfe ausziehen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "marker": "⓬",
+   "box": {
+    "x": 38.1,
+    "y": 41.7,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "kverband_an",
+   "label": "Kompressionsverbände anlegen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "marker": "⓬",
+   "box": {
+    "x": 9.2,
+    "y": 43.8,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "kverband_an_pfk",
+   "label": "Kompressionsverbände anlegen: Häufigkeit/Dauer durch Pflegefachkraft",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "marker": "❼",
+   "box": {
+    "x": 69.7,
+    "y": 43.8,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m12.pflegefachkraft_leistungen",
+     "text": "Soll die Pflegefachkraft Häufigkeit und Dauer bestimmen, kreuzt der Arzt dies an. Möglich ist das nur für die Leistungen Nr. 1–7, 12–14, 21–23, 27, 28, 30, 31, 31b, 31c und 31d des Leistungsverzeichnisses (u. a. Grundpflege, Absaugen obere Luftwege, Wund- und Stomaversorgung, Katheter, PEG, Verbände).",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ❼, S. 46"
+     }
+    }
+   ]
+  },
+  {
+   "id": "kverband_an_hf",
+   "label": "Kompressionsverbände anlegen: Häufigkeit (tgl./wtl./mtl.)",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❽",
+   "box": {
+    "x": 73.6,
+    "y": 43.8,
+    "w": 10.6,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m12.haeufigkeit_dauer",
+     "text": "Je Maßnahme sind Häufigkeit (täglich, wöchentlich, monatlich) und Dauer anzugeben; die Dauer nur bei Abweichung vom Gesamtzeitraum ❻. „tgl.“, „wtl.“, „mtl.“ können kombiniert werden (z. B. „1 x tgl.“ und „5 x wtl.“). Bei Festlegung durch die Pflegefachkraft dürfen keine ärztlichen Angaben erfolgen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ❽, S. 46"
+     }
+    }
+   ]
+  },
+  {
+   "id": "kverband_an_dauer",
+   "label": "Kompressionsverbände anlegen: Dauer (TTMM–TTMM), nur bei Abweichung",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❽",
+   "box": {
+    "x": 84.2,
+    "y": 43.8,
+    "w": 12.2,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "kverband_ab",
+   "label": "Kompressionsverbände abnehmen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "marker": "⓬",
+   "box": {
+    "x": 38.1,
+    "y": 43.8,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "stuetz",
+   "label": "stützende und stabilisierende Verbände",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "marker": "⓬",
+   "box": {
+    "x": 9.2,
+    "y": 46.7,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "stuetz_pfk",
+   "label": "stützende und stabilisierende Verbände: Häufigkeit/Dauer durch Pflegefachkraft",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "marker": "❼",
+   "box": {
+    "x": 69.7,
+    "y": 46.7,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m12.pflegefachkraft_leistungen",
+     "text": "Soll die Pflegefachkraft Häufigkeit und Dauer bestimmen, kreuzt der Arzt dies an. Möglich ist das nur für die Leistungen Nr. 1–7, 12–14, 21–23, 27, 28, 30, 31, 31b, 31c und 31d des Leistungsverzeichnisses (u. a. Grundpflege, Absaugen obere Luftwege, Wund- und Stomaversorgung, Katheter, PEG, Verbände).",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ❼, S. 46"
+     }
+    }
+   ]
+  },
+  {
+   "id": "stuetz_hf",
+   "label": "stützende und stabilisierende Verbände: Häufigkeit (tgl./wtl./mtl.)",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❽",
+   "box": {
+    "x": 73.6,
+    "y": 46.7,
+    "w": 10.6,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m12.haeufigkeit_dauer",
+     "text": "Je Maßnahme sind Häufigkeit (täglich, wöchentlich, monatlich) und Dauer anzugeben; die Dauer nur bei Abweichung vom Gesamtzeitraum ❻. „tgl.“, „wtl.“, „mtl.“ können kombiniert werden (z. B. „1 x tgl.“ und „5 x wtl.“). Bei Festlegung durch die Pflegefachkraft dürfen keine ärztlichen Angaben erfolgen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ❽, S. 46"
+     }
+    }
+   ]
+  },
+  {
+   "id": "stuetz_dauer",
+   "label": "stützende und stabilisierende Verbände: Dauer (TTMM–TTMM), nur bei Abweichung",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❽",
+   "box": {
+    "x": 84.2,
+    "y": 46.7,
+    "w": 12.2,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "stuetz_art",
+   "label": "stützende/stabilisierende Verbände, Art",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "⓬",
+   "box": {
+    "x": 38.1,
+    "y": 46.4,
+    "w": 31.0,
+    "h": 2.5
+   },
+   "rules": []
+  },
+  {
+   "id": "wundart",
+   "label": "Wundart",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "⓭",
+   "box": {
+    "x": 17.6,
+    "y": 50.9,
+    "w": 51.4,
+    "h": 2.3
+   },
+   "rules": [
+    {
+     "id": "m12.wundversorgung",
+     "text": "Bei Wundversorgung (Nr. 12, 31, 31a) müssen die anzuwendenden Präparate mit Dauer und Häufigkeit sowie Wundart, Lokalisation, aktuelle Größe (Länge, Breite, Tiefe) und bei Dekubitus der Grad aus der Verordnung hervorgehen; Präparate und Wunddokumentation können als Anlage erfolgen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ⓭, S. 47"
+     }
+    },
+    {
+     "id": "m12.dekubitus",
+     "text": "Ab Dekubitus Grad 1 ist zusätzlich fachgerechte Lagerung nötig; „Positionswechsel zur Dekubitusbehandlung“ ist verordnungsfähig, wenn keine im Haushalt lebende Person das übernehmen oder per Anleitung befähigt werden kann. Vorher ist Hilfsmittelunterstützung zu prüfen; vorhandene Ausstattung ist zu nennen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ⓭, S. 48"
+     }
+    }
+   ]
+  },
+  {
+   "id": "lokalisation",
+   "label": "Lokalisation",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "⓭",
+   "box": {
+    "x": 17.6,
+    "y": 53.8,
+    "w": 12.1,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "groesse",
+   "label": "aktuelle Größe (Länge, Breite, Tiefe)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "⓭",
+   "box": {
+    "x": 41.8,
+    "y": 53.8,
+    "w": 12.1,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "grad",
+   "label": "aktueller Grad",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "⓭",
+   "box": {
+    "x": 61.8,
+    "y": 53.8,
+    "w": 7.3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "verbandmaterial",
+   "label": "Präparate, Verbandmaterialien",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "⓭",
+   "box": {
+    "x": 23.0,
+    "y": 56.7,
+    "w": 46.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "wund_akut",
+   "label": "Wundversorgung akut",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "marker": "⓭",
+   "box": {
+    "x": 9.2,
+    "y": 59.5,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m12.wunde_pflegefachkraft",
+     "text": "Festlegung von Häufigkeit und Dauer durch die Pflegefachkraft ist möglich bei „Wundversorgung akut“ und „Positionswechsel zur Dekubitusbehandlung“, nicht bei Wundversorgung chronisch.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ⓭, S. 48"
+     }
+    }
+   ]
+  },
+  {
+   "id": "wund_akut_pfk",
+   "label": "Wundversorgung akut: Häufigkeit/Dauer durch Pflegefachkraft",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "marker": "❼",
+   "box": {
+    "x": 69.7,
+    "y": 59.5,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m12.pflegefachkraft_leistungen",
+     "text": "Soll die Pflegefachkraft Häufigkeit und Dauer bestimmen, kreuzt der Arzt dies an. Möglich ist das nur für die Leistungen Nr. 1–7, 12–14, 21–23, 27, 28, 30, 31, 31b, 31c und 31d des Leistungsverzeichnisses (u. a. Grundpflege, Absaugen obere Luftwege, Wund- und Stomaversorgung, Katheter, PEG, Verbände).",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ❼, S. 46"
+     }
+    }
+   ]
+  },
+  {
+   "id": "wund_akut_hf",
+   "label": "Wundversorgung akut: Häufigkeit (tgl./wtl./mtl.)",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❽",
+   "box": {
+    "x": 73.6,
+    "y": 59.5,
+    "w": 10.6,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m12.haeufigkeit_dauer",
+     "text": "Je Maßnahme sind Häufigkeit (täglich, wöchentlich, monatlich) und Dauer anzugeben; die Dauer nur bei Abweichung vom Gesamtzeitraum ❻. „tgl.“, „wtl.“, „mtl.“ können kombiniert werden (z. B. „1 x tgl.“ und „5 x wtl.“). Bei Festlegung durch die Pflegefachkraft dürfen keine ärztlichen Angaben erfolgen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ❽, S. 46"
+     }
+    }
+   ]
+  },
+  {
+   "id": "wund_akut_dauer",
+   "label": "Wundversorgung akut: Dauer (TTMM–TTMM), nur bei Abweichung",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❽",
+   "box": {
+    "x": 84.2,
+    "y": 59.5,
+    "w": 12.2,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "wund_chronisch",
+   "label": "Wundversorgung chronisch",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "marker": "⓭",
+   "box": {
+    "x": 9.2,
+    "y": 61.6,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m12.wunde_extern",
+     "text": "Kann die Versorgung einer chronischen, schwer heilenden Wunde voraussichtlich nicht im Haushalt erfolgen und ist eine spezialisierte Einrichtung außerhalb der Häuslichkeit nötig, ist dies unter „Weitere Hinweise“ anzugeben.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ⓭, S. 48"
+     }
+    }
+   ]
+  },
+  {
+   "id": "wund_chronisch_hf",
+   "label": "Wundversorgung chronisch: Häufigkeit (tgl./wtl./mtl.)",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❽",
+   "box": {
+    "x": 73.6,
+    "y": 61.6,
+    "w": 10.6,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m12.haeufigkeit_dauer",
+     "text": "Je Maßnahme sind Häufigkeit (täglich, wöchentlich, monatlich) und Dauer anzugeben; die Dauer nur bei Abweichung vom Gesamtzeitraum ❻. „tgl.“, „wtl.“, „mtl.“ können kombiniert werden (z. B. „1 x tgl.“ und „5 x wtl.“). Bei Festlegung durch die Pflegefachkraft dürfen keine ärztlichen Angaben erfolgen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ❽, S. 46"
+     }
+    }
+   ]
+  },
+  {
+   "id": "wund_chronisch_dauer",
+   "label": "Wundversorgung chronisch: Dauer (TTMM–TTMM), nur bei Abweichung",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❽",
+   "box": {
+    "x": 84.2,
+    "y": 61.6,
+    "w": 12.2,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "sonst1",
+   "label": "Sonstige Maßnahme der Behandlungspflege 1",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "⓮",
+   "box": {
+    "x": 9.1,
+    "y": 65.7,
+    "w": 59.9,
+    "h": 2.2
+   },
+   "rules": [
+    {
+     "id": "m12.sonstige",
+     "text": "Unter „Sonstige Maßnahmen der Behandlungspflege“ können weitere Maßnahmen des Leistungsverzeichnisses verordnet werden; Festlegung durch die Pflegefachkraft ist je nach Leistung möglich (siehe ❼).",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ⓮, S. 48"
+     }
+    }
+   ]
+  },
+  {
+   "id": "sonst1_pfk",
+   "label": "Sonstige Maßnahme 1: Häufigkeit/Dauer durch Pflegefachkraft",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "marker": "❼",
+   "box": {
+    "x": 69.7,
+    "y": 65.9,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "sonst1_hf",
+   "label": "Sonstige Maßnahme 1: Häufigkeit",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❽",
+   "box": {
+    "x": 73.6,
+    "y": 65.9,
+    "w": 10.6,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "sonst1_dauer",
+   "label": "Sonstige Maßnahme 1: Dauer (TTMM–TTMM)",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❽",
+   "box": {
+    "x": 84.2,
+    "y": 65.9,
+    "w": 12.2,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "sonst2",
+   "label": "Sonstige Maßnahme der Behandlungspflege 2",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "⓮",
+   "box": {
+    "x": 9.1,
+    "y": 67.89999999999999,
+    "w": 59.9,
+    "h": 2.2
+   },
+   "rules": []
+  },
+  {
+   "id": "sonst2_pfk",
+   "label": "Sonstige Maßnahme 2: Häufigkeit/Dauer durch Pflegefachkraft",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "marker": "❼",
+   "box": {
+    "x": 69.7,
+    "y": 68.1,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "sonst2_hf",
+   "label": "Sonstige Maßnahme 2: Häufigkeit",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❽",
+   "box": {
+    "x": 73.6,
+    "y": 68.1,
+    "w": 10.6,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "sonst2_dauer",
+   "label": "Sonstige Maßnahme 2: Dauer (TTMM–TTMM)",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❽",
+   "box": {
+    "x": 84.2,
+    "y": 68.1,
+    "w": 12.2,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "anleitung",
+   "label": "Anleitung zur Behandlungspflege für Patient/Angehörige",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "⓯",
+   "box": {
+    "x": 9.1,
+    "y": 71.8,
+    "w": 54.6,
+    "h": 2.2
+   },
+   "rules": [
+    {
+     "id": "m12.anleitung",
+     "text": "Soll der Pflegedienst Versicherte/Angehörige zur Behandlungspflege anleiten, sind die einzelnen Leistungen zu nennen (Nr. 7 des Leistungsverzeichnisses) und die Anzahl im Freitextfeld anzugeben. Festlegung durch die Pflegefachkraft ist möglich.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ⓯, S. 48"
+     }
+    }
+   ]
+  },
+  {
+   "id": "anleitung_anzahl",
+   "label": "Anleitung: Anzahl",
+   "kind": "number",
+   "filled_by": "praxis",
+   "marker": "⓯",
+   "box": {
+    "x": 64.2,
+    "y": 71.8,
+    "w": 5.2,
+    "h": 2.2
+   },
+   "rules": []
+  },
+  {
+   "id": "anleitung_pfk",
+   "label": "Anleitung: Häufigkeit/Dauer durch Pflegefachkraft",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "marker": "❼",
+   "box": {
+    "x": 69.7,
+    "y": 71.6,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "unterstuetzung",
+   "label": "Unterstützungspflege nach § 37 (1a) SGB V",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "rahmen",
+   "marker": "⓱",
+   "box": {
+    "x": 9.2,
+    "y": 76.6,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m12.unterstuetzungspflege",
+     "text": "Unterstützungspflege (§ 37 Abs. 1a SGB V) bei schwerer Krankheit oder akuter Verschlimmerung, z. B. nach Krankenhausaufenthalt oder ambulanter OP, wenn kein Pflegegrad 2–5 besteht; gleichzeitiger Bedarf an Behandlungspflege nicht erforderlich. Anspruch bis zu vier Wochen je Krankheitsfall, Verlängerung durch die Kasse nach MD-Einschaltung.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ⓱, S. 48–49"
+     }
+    },
+    {
+     "id": "m12.unterstuetzung_angabe",
+     "text": "Bei Unterstützungspflege ist zusätzlich anzugeben, ob Grundpflege und ggf. hauswirtschaftliche Versorgung erbracht werden sollen. Hauswirtschaft kann nur zusammen mit erforderlicher Grundpflege verordnet werden; Grundpflege auch eigenständig.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ⓱, S. 49"
+     }
+    }
+   ]
+  },
+  {
+   "id": "khvermeidung",
+   "label": "Krankenhausvermeidungspflege nach § 37 (1) SGB V",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "rahmen",
+   "marker": "⓲",
+   "box": {
+    "x": 9.2,
+    "y": 79.5,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m12.kh_vermeidung",
+     "text": "Krankenhausvermeidungspflege (§ 37 Abs. 1 SGB V), wenn Krankenhausbehandlung geboten, aber nicht ausführbar ist (z. B. Verweigerung der Einweisung) oder dadurch vermieden bzw. verkürzt wird. Sie umfasst Behandlungs-, Grundpflege und Hauswirtschaft; Anspruch auf vier Wochen begrenzt, Verlängerung nach MD-Einschaltung.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ⓲, S. 49"
+     }
+    },
+    {
+     "id": "m12.kh_vermeidung_angabe",
+     "text": "Bei Krankenhausvermeidungspflege kann zusätzlich angegeben werden, ob neben der Behandlungspflege auch Grundpflege und/oder hauswirtschaftliche Versorgung notwendig sind.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ⓲, S. 49"
+     }
+    }
+   ]
+  },
+  {
+   "id": "grundpflege",
+   "label": "Grundpflege",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "marker": "⓳",
+   "box": {
+    "x": 12.1,
+    "y": 81.6,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m12.grundpflege",
+     "text": "Grundpflege umfasst Nr. 1–4 des Leistungsverzeichnisses (Anleitung, Ausscheidungen, Ernährung, Körperpflege); erforderliche Maßnahmen ggf. unter „weitere Hinweise“ beschreiben. Festlegung durch die Pflegefachkraft ist möglich, bei Ernährung nur für orale Verabreichung, nicht für Sondennahrung.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ⓳, S. 49"
+     }
+    }
+   ]
+  },
+  {
+   "id": "grundpflege_pfk",
+   "label": "Grundpflege: Häufigkeit/Dauer durch Pflegefachkraft",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "marker": "❼",
+   "box": {
+    "x": 69.7,
+    "y": 81.6,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "grundpflege_hf",
+   "label": "Grundpflege: Häufigkeit",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❽",
+   "box": {
+    "x": 46.4,
+    "y": 81.6,
+    "w": 10.9,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "grundpflege_dauer",
+   "label": "Grundpflege: Dauer (TTMM–TTMM)",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❽",
+   "box": {
+    "x": 57.3,
+    "y": 81.6,
+    "w": 11.8,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "hauswirtschaft",
+   "label": "hauswirtschaftliche Versorgung",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "marker": "⓴",
+   "box": {
+    "x": 12.1,
+    "y": 83.7,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m12.hauswirtschaft",
+     "text": "Hauswirtschaftliche Versorgung (Nr. 5 des Leistungsverzeichnisses) umfasst hauswirtschaftliche Leistungen in der Häuslichkeit; Festlegung durch die Pflegefachkraft ist möglich.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 12, ⓴, S. 49"
+     }
+    }
+   ]
+  },
+  {
+   "id": "hauswirtschaft_pfk",
+   "label": "hauswirtschaftliche Versorgung: Häufigkeit/Dauer durch Pflegefachkraft",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "marker": "❼",
+   "box": {
+    "x": 69.7,
+    "y": 83.7,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "hauswirtschaft_hf",
+   "label": "hauswirtschaftliche Versorgung: Häufigkeit",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❽",
+   "box": {
+    "x": 46.4,
+    "y": 83.7,
+    "w": 10.9,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "hauswirtschaft_dauer",
+   "label": "hauswirtschaftliche Versorgung: Dauer (TTMM–TTMM)",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❽",
+   "box": {
+    "x": 57.3,
+    "y": 83.7,
+    "w": 11.8,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "hinweise",
+   "label": "Weitere Hinweise",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 4,
+   "box": {
+    "x": 9.1,
+    "y": 86.8,
+    "w": 63.6,
+    "h": 9.0
+   },
+   "rules": []
+  },
+  {
+   "id": "stempel",
+   "label": "Vertragsarztstempel / Unterschrift des Arztes",
+   "kind": "stempel",
+   "filled_by": "arzt",
+   "box": {
+    "x": 73.6,
+    "y": 83.7,
+    "w": 22.8,
+    "h": 12.0
+   },
+   "rules": [
+    {
+     "id": "m12.stempel",
+     "text": "Vertragsarztstempel und persönliche Unterschrift erst nach vollständigem Ausfüllen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5"
+     }
+    }
+   ]
+  }
+ ]
+}

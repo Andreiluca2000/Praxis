@@ -5,7 +5,9 @@ import { checkMuster02, proposeMuster02 } from './muster02.js';
 import { checkMuster04, proposeMuster04 } from './muster04.js';
 import { checkMuster06, proposeMuster06 } from './muster06.js';
 import { checkMuster10, proposeMuster10 } from './muster10.js';
+import { checkMuster12, proposeMuster12 } from './muster12.js';
 import { checkMuster13, proposeMuster13 } from './muster13.js';
+import { checkMuster61, proposeMuster61 } from './muster61.js';
 import { specialtyIn } from './specialties.js';
 import { cue, headOf, norm, uni } from './text.js';
 import type { Analysis, FormId, FormIssue, FormProposal, FormSuggestion, FormValues, Intent, PatientFacts } from './types.js';
@@ -21,6 +23,8 @@ const INTENTS: [Intent, RegExp][] = [
   ['einweisung', /\b(einweis\w*|krankenhausbehandlung|stationär\w*|ins krankenhaus|in die klinik|klinikeinweisung|notaufnahme)\b/iu],
   ['ueberweisung', /\b(überweis\w*|facharzt\w*|konsil\w*|mitbehandlung|weiterbehandlung)\b/iu],
   ['labor', /\b(labor\w*|blutbild|blutentnahme|blutabnahme|blutwerte|urinkultur|serologie)\b/iu],
+  ['hkp', /\b(häusliche\w* krankenpflege|hkp|pflegedienst\w*|behandlungspflege|verbandswechsel|verbandwechsel|kompressionsstrümpfe|medikamentengabe|wundversorgung)\b/iu],
+  ['reha', /\b(reha|rehabilitation\w*|anschlussheilbehandlung|ahb|reha-?antrag)\b/iu],
   ['heilmittel', /\b(heilmittel\w*|physiotherap\w*|physio|krankengymnastik|manuelle therapie|lymphdrainage|ergotherap\w*|logopädi\w*|podolog\w*|ernährungstherap\w*|sprachtherap\w*|stimmtherap\w*|schlucktherap\w*)\b/iu],
 ];
 
@@ -47,7 +51,7 @@ function intents(text: string): { intent: Intent; evidence: string }[] {
   return out;
 }
 
-const FORM_OF: Record<Intent, FormId> = { ueberweisung: 'muster-06', einweisung: 'muster-02', befoerderung: 'muster-04', labor: 'muster-10', heilmittel: 'muster-13' };
+const FORM_OF: Record<Intent, FormId> = { ueberweisung: 'muster-06', einweisung: 'muster-02', befoerderung: 'muster-04', labor: 'muster-10', heilmittel: 'muster-13', hkp: 'muster-12', reha: 'muster-61' };
 
 function suggestion(formId: FormId, role: FormSuggestion['role'], why: string, evidence: string | null, ruleId: string | null): FormSuggestion {
   const form = getForm(formId);
@@ -79,8 +83,8 @@ function blockers(text: string, facts: PatientFacts): FormIssue[] {
   if (uni(/\bmammographie-?screening\b/iu).test(text)) {
     out.push({ level: 'hinweis', text: 'Leistungen im Mammographie-Screening-Programm brauchen keine Überweisung.', fieldIds: [], rule: rule(m06, 'm06.mammographie') });
   }
-  if (facts.reha) {
-    out.push({ level: 'hinweis', text: `„${facts.reha.evidence}“: Medizinische Rehabilitation wird mit Muster 61 verordnet (in dieser Version noch nicht hinterlegt), nicht mit Muster 2.`, fieldIds: [], rule: rule(getForm('muster-02'), 'm02.reha') });
+  if (facts.reha && uni(/\b(einweis\w*|krankenhaus\w*)\b/iu).test(text)) {
+    out.push({ level: 'hinweis', text: `„${facts.reha.evidence}“: Medizinische Rehabilitation wird mit Muster 61 verordnet, nicht mit Muster 2.`, fieldIds: [], rule: rule(getForm('muster-02'), 'm02.reha') });
   }
   return out;
 }
@@ -90,7 +94,7 @@ export function analyse(description: string): Analysis {
   const facts = extractFacts(text);
   const sug = suggestions(text, facts);
   const shown = new Set(sug.map((s) => getForm(s.formId).muster));
-  const catalog = searchCatalog(text).filter((h) => !shown.has(h.entry.muster));
+  const catalog = searchCatalog(text).filter((h) => !shown.has(h.entry.muster.split(' ')[0]!));
   return { facts, suggestions: sug, blockers: blockers(text, facts), catalog };
 }
 
@@ -100,11 +104,13 @@ export function propose(formId: FormId, description: string, facts: PatientFacts
   if (formId === 'muster-02') return proposeMuster02(text, facts);
   if (formId === 'muster-04') return proposeMuster04(text, facts);
   if (formId === 'muster-10') return proposeMuster10(text, facts, today);
+  if (formId === 'muster-12') return proposeMuster12(text, facts, today);
+  if (formId === 'muster-61') return proposeMuster61(text, facts, today);
   return proposeMuster13(text, facts);
 }
 
 const CHECKS: Record<FormId, (values: FormValues, facts: PatientFacts) => FormIssue[]> = {
-  'muster-06': checkMuster06, 'muster-02': checkMuster02, 'muster-04': checkMuster04, 'muster-10': checkMuster10, 'muster-13': checkMuster13,
+  'muster-06': checkMuster06, 'muster-02': checkMuster02, 'muster-04': checkMuster04, 'muster-10': checkMuster10, 'muster-13': checkMuster13, 'muster-12': checkMuster12, 'muster-61': checkMuster61,
 };
 
 const ORDER = { unzulaessig: 0, fehlt: 1, hinweis: 2 } as const;

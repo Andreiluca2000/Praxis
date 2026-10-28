@@ -13,6 +13,8 @@ export type Mark = { n: number; first: boolean; state: FieldState | 'geaendert' 
 type Props = {
   form: FormDefinition;
   layout: FormLayout;
+  /** Seite bei mehrseitigen Vordrucken. */
+  page?: number;
   values: Readonly<Record<string, FieldValue>>;
   marks: Readonly<Record<string, Mark>>;
   selected: string | null;
@@ -110,12 +112,12 @@ function Entry({ field, value, layout, box }: { field: FormField; value: FieldVa
   );
 }
 
-export function ScheinSvg({ form, layout, values, marks, selected, onSelect }: Props) {
+export function ScheinSvg({ form, layout, page = 0, values, marks, selected, onSelect }: Props) {
   const W = layout.width;
   const H = layout.height;
   const px = (f: FormField) => ({ x: (f.box.x / 100) * W, y: (f.box.y / 100) * H, w: (f.box.w / 100) * W, h: (f.box.h / 100) * H });
   // Vordruck-Platzhalter („T T M M J J“) ausblenden, wo schon etwas steht.
-  const filled = form.fields.filter((f) => f.format && typeof values[f.id] === 'string' && values[f.id]).map(px);
+  const filled = form.fields.filter((f) => (f.page ?? 0) === page && f.format && typeof values[f.id] === 'string' && values[f.id]).map(px);
   return (
     <svg className="schein" viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`Muster ${form.muster} – ${form.title}, Vorschau`}>
       <rect x={0} y={0} width={W} height={H} rx={10} fill="#fff" />
@@ -124,13 +126,13 @@ export function ScheinSvg({ form, layout, values, marks, selected, onSelect }: P
       {layout.strokes.map((s, i) => ('rect' in s
         ? <rect key={`s${i}`} x={s.rect[0]} y={s.rect[1]} width={s.rect[2]} height={s.rect[3]} fill="none" stroke={LINE} strokeWidth={Math.max(0.5, s.w)} />
         : <line key={`s${i}`} x1={s.line[0]} y1={s.line[1]} x2={s.line[2]} y2={s.line[3]} stroke={LINE} strokeWidth={Math.max(0.5, s.w)} />))}
-      {layout.fills.map(([x, y, w, h], i) => <rect key={`f${i}`} x={x} y={y} width={w} height={h} fill={LINE} />)}
+      {layout.fills.map(([x, y, w, h, c], i) => <rect key={`f${i}`} x={x} y={y} width={w} height={h} fill={c ?? LINE} />)}
       {layout.labels.filter((l) => !(l.ghost && filled.some((b) => l.x >= b.x - 2 && l.x <= b.x + b.w && l.y >= b.y && l.y <= b.y + b.h + 4))).map((l, i) => (
         <text key={`l${i}`} x={l.x} y={l.y} fontSize={l.s} fontWeight={l.b ? 700 : 400} fontStyle={l.i ? 'italic' : 'normal'}
-          fill={l.ghost ? GHOST : l.dark ? '#222' : LINE} className="schein-label">{l.t}</text>
+          fill={l.white ? '#fff' : l.ghost ? GHOST : l.dark ? '#222' : LINE} className="schein-label">{l.t}</text>
       ))}
 
-      {form.fields.map((f) => {
+      {form.fields.filter((f) => (f.page ?? 0) === page).map((f) => {
         const b = px(f);
         const m = marks[f.id];
         const on = selected === f.id;
