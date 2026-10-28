@@ -20,6 +20,8 @@ export interface GenericSpec {
   oneOf?: { ids: string[]; text: string }[];
   /** Weitere Vorschläge, die die allgemeinen überschreiben. */
   propose?: (text: string, facts: PatientFacts, today: Date) => FieldProposal[];
+  /** „genau eins“-Gruppen, die nur unter Bedingungen zu beantworten sind (prüft `extra`). */
+  optionalGroups?: string[];
   /** Weitere Prüfungen. */
   extra?: (values: FormValues, facts: PatientFacts) => FormIssue[];
 }
@@ -77,7 +79,7 @@ export function proposeGeneric(form: FormDefinition, description: string, facts:
   const override = new Map((spec.propose?.(text, facts, today) ?? []).map((p) => [p.fieldId, p]));
   const out = base.map((p) => override.get(p.fieldId) ?? p);
   // „genau eins“ ohne Treffer: alle Felder der Gruppe sind zu entscheiden.
-  for (const g of form.groups.filter((x) => x.select === 'genau_eins')) {
+  for (const g of form.groups.filter((x) => x.select === 'genau_eins' && !spec.optionalGroups?.includes(x.id))) {
     const ids = form.fields.filter((f) => f.group === g.id && practice(f)).map((f) => f.id);
     if (!ids.length || out.some((p) => ids.includes(p.fieldId) && p.value === true)) continue;
     for (const [i, p] of out.entries()) if (ids.includes(p.fieldId)) out[i] = prop(form, p.fieldId, 'unbekannt', null, `${g.label}: nicht aus der Beschreibung erkennbar – bitte wählen.`, null, g.rule.id);
@@ -100,7 +102,7 @@ export function checkGeneric(form: FormDefinition, values: FormValues, facts: Pa
   const add = (i: FormIssue | null) => { if (i) out.push(i); };
   const au = form.notes.find((n) => /arbeitsunfall|arbeitsunfäll/iu.test(`${n.id} ${n.text}`) && /nicht/iu.test(n.text));
   if (facts.arbeitsunfall && au) add(issue(form, 'unzulaessig', `Arbeitsunfall, Berufskrankheit oder Schülerunfall („${facts.arbeitsunfall.evidence}“): ${au.text}`, [], au.id));
-  for (const g of form.groups.filter((x) => x.select === 'genau_eins')) {
+  for (const g of form.groups.filter((x) => x.select === 'genau_eins' && !spec.optionalGroups?.includes(x.id))) {
     if (form.fields.some((f) => f.group === g.id && practice(f))) add(exactlyOne(form, values, g.id, g.rule.id));
   }
   for (const id of spec.required ?? []) {

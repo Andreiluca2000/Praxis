@@ -1,6 +1,7 @@
 import { isChecked, issue, prop, textOf, validTTMMJJ } from './build.js';
 import { getForm } from './catalog.js';
 import { checkGeneric, proposeGeneric, type GenericSpec } from './generic.js';
+import { SPEC_03, SPEC_05, SPEC_07, SPEC_11, SPEC_22, SPEC_28, SPEC_36, SPEC_50, SPEC_51, SPEC_53, SPEC_62A, SPEC_70, SPEC_70A } from './fachregeln.js';
 import { SPEC_08, SPEC_08A } from './muster08.js';
 import { SPEC_15 } from './muster15.js';
 import { SPEC_16 } from './muster16.js';
@@ -54,6 +55,7 @@ const SPECS: Record<WeitereId, Weiterer> = {
       return validTTMMJJ(a) && validTTMMJJ(b) && fromTTMMJJ(b) <= fromTTMMJJ(a)
         ? [issue(getForm('muster-03'), 'unzulaessig', 'Der mutmaßliche Entbindungstag liegt nicht nach dem Untersuchungstag.', ['entbindung_am'], 'm03.daten')] : [];
     },
+    ...SPEC_03,
   },
   'muster-05': {
     intent: /\b(abrechnungsschein|muster\s*5)\b/iu,
@@ -67,11 +69,13 @@ const SPECS: Record<WeitereId, Weiterer> = {
         prop(form, 'leistungen_links', 'leer', null, 'Gebührenordnungspositionen trägt die Praxis über das PVS ein – die Formularhilfe schlägt keine Abrechnungsziffern vor.'),
         prop(form, 'leistungen_rechts', 'leer', null, 'Gebührenordnungspositionen über das PVS.')];
     },
+    ...SPEC_05,
   },
   'muster-07': {
     intent: /\b(muster\s*7|abklärung somatischer ursachen|somatische\w* abklärung|konsiliarüberweisung)\b/iu,
     required: ['diagnosen'],
     text: { diagnosen: ['diagnose', 'indikation'], information: ['befund', 'befunde', 'hinweise', 'hinweis', 'fragestellung'] },
+    ...SPEC_07,
   },
   'muster-08': {
     intent: /\b(brille\w*|sehhilfe\w*|kontaktlinse\w*|brillengläser|muster\s*8)\b/iu,
@@ -87,6 +91,7 @@ const SPECS: Record<WeitereId, Weiterer> = {
     text: { befunde: ['befund', 'befunde'], besondere_hinweise: ['hinweise', 'hinweis'] },
     check: { beigefuegt_ekg: /\bekg\b/iu, beigefuegt_labor: /\blabor\w*/iu, beigefuegt_roentgen: /\b(röntgen\w*|mrt|ct)\b/iu, beigefuegt_ultraschall: /\b(ultraschall\w*|sonographie|sonografie)\b/iu, beigefuegt_bericht: /\b(arztbrief\w*|entlassungsbericht\w*|krankenhausbericht\w*)\b/iu },
     extra: both('muster-11', 'mitbehandlung_ja', 'mitbehandlung_nein', 'Mitbehandlung: entweder ja oder nein.'),
+    ...SPEC_11,
   },
   'muster-15': {
     intent: /\b(hörgerät\w*|hörhilfe\w*|hörsystem\w*|tinnitusmasker|tinnitusinstrument|muster\s*15)\b/iu,
@@ -101,6 +106,7 @@ const SPECS: Record<WeitereId, Weiterer> = {
     required: ['bericht'],
     text: { bericht: ['befund', 'befunde', 'anamnese'], massnahmen: ['maßnahmen'] },
     oneOf: [{ ids: ['psych_erforderlich', 'psych_nicht_erforderlich', 'psych_erfolgt', 'psych_veranlasst'], text: 'Psychiatrische bzw. kinder- und jugendpsychiatrische Abklärung: zutreffendes ankreuzen.' }],
+    ...SPEC_22,
   },
   'muster-25': {
     intent: /\b(ambulante\w* vorsorge\w* (?:in|im) (?:einem |anerkannten )?kurort\w*|badekur|kurarzt\w*|kur (?:in|im) (?:einem )?kurort|muster\s*25)\b/iu,
@@ -111,23 +117,32 @@ const SPECS: Record<WeitereId, Weiterer> = {
     required: ['diagnose'],
     check: { kh_vermieden: /\bvermieden|vermeiden\b/iu, kh_verkuerzt: /\bverkürz\w*/iu, kh_nicht_ausfuehrbar: /\bnicht ausführbar\b/iu },
     oneOf: [{ ids: ['kh_vermieden', 'kh_verkuerzt', 'kh_nicht_ausfuehrbar'], text: 'Krankenhausbehandlung: vermieden, verkürzt oder nicht ausführbar ankreuzen.' }],
+    ...SPEC_28,
   },
   'muster-36': {
     intent: /\b(präventionsempfehlung|primärprävention|präventionskurs\w*|muster\s*36)\b/iu,
     check: { bewegung: /\b(bewegung\w*|sport\w*|rückenschule)\b/iu, ernaehrung: /\b(ernährung\w*|abnehmen|übergewicht\w*|gewichtsreduktion)\b/iu, stress: /\b(stress\w*|entspannung\w*)\b/iu, sucht: /\b(rauch\w*|nikotin\w*|alkohol\w*|sucht\w*)\b/iu },
     text: { hinweise: ['hinweise', 'hinweis'] },
     oneOf: [{ ids: ['bewegung', 'ernaehrung', 'stress', 'sucht', 'sonstiges'], text: 'Mindestens ein Handlungsfeld ankreuzen oder unter „Sonstiges“ angeben.' }],
+    ...SPEC_36,
   },
   'muster-39': {
     intent: /\b(zervix\w*|pap-?abstrich\w*|ko-?test\w*|hpv-?test\w*|gebärmutterhalskrebs\w*|muster\s*39)\b/iu,
     ...SPEC_39,
   },
-  'muster-50': { intent: /\b(zuständigkeit einer anderen krankenkasse|anfrage (?:zum|wegen) kassenwechsel|muster\s*50)\b/iu },
-  'muster-51': { intent: /\b(zuständigkeit eines sonstigen kostenträgers|muster\s*51)\b/iu },
+  'muster-50': {
+    intent: /\b(zuständigkeit einer anderen krankenkasse|anfrage (?:zum|wegen) kassenwechsel|muster\s*50)\b/iu,
+    ...SPEC_50,
+  },
+  'muster-51': {
+    intent: /\b(zuständigkeit eines sonstigen kostenträgers|muster\s*51)\b/iu,
+    ...SPEC_51,
+  },
   'muster-53': {
     intent: /\b(zusammenhang von (?:au|arbeitsunfähigkeits)\w*|vorerkrankung\w*anfrage|dieselbe krankheit|muster\s*53)\b/iu,
     extra: (v) => (isChecked(v, 'dieselbe_ja') && !textOf(v, 'dieselbe_ziffern')
       ? [issue(getForm('muster-53'), 'fehlt', '„Dieselbe Krankheit – ja“: Ziffer(n) der betreffenden Krankheiten angeben.', ['dieselbe_ziffern'], null)] : []),
+    ...SPEC_53,
   },
   'muster-56': {
     intent: /\b(rehasport\w*|rehabilitationssport\w*|funktionstraining\w*|herzsport\w*|herzgruppe\w*|muster\s*56)\b/iu,
@@ -138,6 +153,7 @@ const SPECS: Record<WeitereId, Weiterer> = {
     required: ['datum_erhebung'],
     text: { massnahmen: ['maßnahmen'], begruendung: ['begründung'], erlaeuterungen: ['hinweise', 'hinweis'] },
     oneOf: [{ ids: ['vor_beatmung', 'vor_dekanuelierung', 'persp_beatmung', 'persp_dekanuelierung', 'nicht_beatmung', 'nicht_dekanuelierung'], text: 'Ergebnis ankreuzen: Potenzial liegt vor, kann perspektivisch vorliegen oder liegt nicht vor.' }],
+    ...SPEC_62A,
   },
   'muster-62b': {
     intent: /\b(außerklinische\w* intensivpflege|aki-?verordnung|intensivpflege\w*|muster\s*62\s*b)\b/iu,
@@ -153,6 +169,7 @@ const SPECS: Record<WeitereId, Weiterer> = {
     text: { indikation: ['indikation', 'indikationen', 'diagnose'] },
     check: { ivf: /\bivf\b|in-vitro-fertilisation/iu, icsi: /\bicsi\b/iu, insem_spontan: /\binsemination im spontanzyklus\b/iu, insem_stimulation: /\binsemination nach (?:hormoneller )?stimulation\b/iu, gift: /\bgift\b|gameten-?transfer/iu },
     oneOf: [{ ids: ['insem_spontan', 'insem_stimulation', 'ivf', 'gift', 'icsi'], text: 'Geplante Behandlungsmaßnahme ankreuzen.' }],
+    ...SPEC_70,
   },
   'muster-70a': {
     intent: /\b(folge-?behandlungsplan|muster\s*70\s*a)\b/iu,
@@ -160,6 +177,7 @@ const SPECS: Record<WeitereId, Weiterer> = {
     text: { indikation: ['indikation', 'indikationen', 'diagnose'] },
     check: { ivf: /\bivf\b|in-vitro-fertilisation/iu, icsi: /\bicsi\b/iu, gift: /\bgift\b|gameten-?transfer/iu },
     oneOf: [{ ids: ['insem_spontan', 'insem_stimulation', 'ivf', 'gift', 'icsi'], text: 'Geplante Behandlungsmaßnahme ankreuzen.' }],
+    ...SPEC_70A,
   },
   'muster-85': { intent: /\b(ruhen des (?:leistungs)?anspruchs|ruhende\w* anspruch|muster\s*85)\b/iu },
   'muster-86': { intent: /\b(weiterleitungsbogen|muster\s*86)\b/iu },

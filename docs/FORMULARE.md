@@ -41,4 +41,4 @@ Rechte: KBV-Inhalte sind geschützt; Zitieren mit Quellenangabe ist erlaubt. Reg
 
 ## Nächste Vordrucke (Vorschlag, nach Häufigkeit in der Hausarztpraxis)
 
-Alle Vordrucke des Katalogs außer e01 (eAU über DURIA) sind interaktiv. Fachregeln für 16, 39, 56 und 62B sind ausprogrammiert (`muster16.ts`, `muster39.ts`, `muster56.ts`, `muster62b.ts` als Ergänzung der allgemeinen Ausfüllhilfe). Ebenso für 15, 62C, 8/8A und 25 (`muster15.ts`, `muster62c.ts`, `muster08.ts`, `muster25.ts`). Die Regeln dafür stehen schon im Katalog.
+Alle Vordrucke des Katalogs außer e01 (eAU über DURIA) sind interaktiv. Fachregeln für 16, 39, 56 und 62B sind ausprogrammiert (`muster16.ts`, `muster39.ts`, `muster56.ts`, `muster62b.ts` als Ergänzung der allgemeinen Ausfüllhilfe). Ebenso für 15, 62C, 8/8A und 25 (`muster15.ts`, `muster62c.ts`, `muster08.ts`, `muster25.ts`) und kurz für 3, 5, 7, 11, 22, 28, 36, 50, 51, 53, 62A, 70, 70A (`fachregeln.ts`). Die Regeln dafür stehen schon im Katalog.
