@@ -1,10 +1,14 @@
 import { isChecked, issue, prop, textOf, validTTMMJJ } from './build.js';
 import { getForm } from './catalog.js';
 import { checkGeneric, proposeGeneric, type GenericSpec } from './generic.js';
+import { SPEC_08, SPEC_08A } from './muster08.js';
+import { SPEC_15 } from './muster15.js';
 import { SPEC_16 } from './muster16.js';
+import { SPEC_25 } from './muster25.js';
 import { SPEC_39 } from './muster39.js';
 import { SPEC_56 } from './muster56.js';
 import { SPEC_62B } from './muster62b.js';
+import { SPEC_62C } from './muster62c.js';
 import { cue, fromTTMMJJ, periodIn, toTTMMJJ, ttmmjj, uni } from './text.js';
 import type { FormId, FormIssue, FormProposal, FormValues, PatientFacts } from './types.js';
 
@@ -71,16 +75,11 @@ const SPECS: Record<WeitereId, Weiterer> = {
   },
   'muster-08': {
     intent: /\b(brille\w*|sehhilfe\w*|kontaktlinse\w*|brillengläser|muster\s*8)\b/iu,
-    required: ['menge_art', 'diagnose_begruendung'],
-    text: { menge_art: ['verordnung', 'menge'], diagnose_begruendung: ['diagnose', 'begründung'] },
-    check: { who1: /\bwho\s*(?:stufe\s*)?1\b/iu, reparatur: /\breparatur\b/iu, ersatz: /\bersatz\w*/iu },
-    extra: both('muster-08', 'aenderung_ja', 'aenderung_nein', 'Änderung um mindestens 0,5 Dioptrien: entweder ja oder nein.'),
+    ...SPEC_08,
   },
   'muster-08a': {
     intent: /\b(vergrößernde\w* sehhilfe\w*|lupe\w*|lupenbrille\w*|fernrohrbrille\w*|bildschirmlesegerät\w*|muster\s*8\s*a)\b/iu,
-    required: ['menge_art', 'diagnose_begruendung'],
-    text: { menge_art: ['verordnung', 'menge'], diagnose_begruendung: ['diagnose', 'begründung'] },
-    check: { who1: /\bwho\s*(?:stufe\s*)?1\b/iu, reparatur: /\breparatur\b/iu, ersatz: /\bersatz\w*/iu },
+    ...SPEC_08A,
   },
   'muster-11': {
     intent: /\b(bericht für den (?:medizinischen dienst|md|mdk)|md-?bericht|mdk-?bericht|anfrage (?:des|vom) (?:md|mdk)|muster\s*11)\b/iu,
@@ -91,10 +90,7 @@ const SPECS: Record<WeitereId, Weiterer> = {
   },
   'muster-15': {
     intent: /\b(hörgerät\w*|hörhilfe\w*|hörsystem\w*|tinnitusmasker|tinnitusinstrument|muster\s*15)\b/iu,
-    required: ['diagnose'],
-    text: { diagnose: ['diagnose'] },
-    check: { hoerhilfe_beiderseits: /\b(beidseit\w*|beiderseit\w*|bds\.?)\b/iu, hoerhilfe_rechts: /\brechts\b/iu, hoerhilfe_links: /\blinks\b/iu },
-    oneOf: [{ ids: ['hoerhilfe_rechts', 'hoerhilfe_links', 'hoerhilfe_beiderseits', 'tinnitus_rechts_khz', 'tinnitus_links_khz'], text: 'Seite der Hörhilfe (rechts, links, beiderseits) bzw. Tinnitusinstrument angeben.' }],
+    ...SPEC_15,
   },
   'muster-16': {
     intent: /\b(kassenrezept|rosa rezept|arzneiverordnungsblatt|muster\s*16|rezept (?:für|über))\b/iu,
@@ -108,10 +104,7 @@ const SPECS: Record<WeitereId, Weiterer> = {
   },
   'muster-25': {
     intent: /\b(ambulante\w* vorsorge\w* (?:in|im) (?:einem |anerkannten )?kurort\w*|badekur|kurarzt\w*|kur (?:in|im) (?:einem )?kurort|muster\s*25)\b/iu,
-    required: ['diagnose_1', 'vorsorgeziel'],
-    text: { diagnose_1: ['diagnose'], vorsorgeziel: ['vorsorgeziele', 'vorsorgeziel', 'ziele', 'ziel'], befund: ['befund', 'befunde'], beschwerden: ['beschwerden'], kurort: ['kurort'] },
-    check: { rf_blutdruck: /\b(hypertonie|bluthochdruck|erhöhte\w* blutdruck)\b/iu, rf_bewegungsmangel: /\b(bewegungsmangel|fehlhaltung)\b/iu, rf_uebergewicht: /\b(übergewicht\w*|adipositas)\b/iu, rf_stress: /\bstress\w*/iu, rf_rauchen: /\b(raucher\w*|rauchen|nikotin\w*)\b/iu },
-    oneOf: [{ ids: ['art_schwaechung', 'art_verschlimmerung', 'art_kinder'], text: 'Art der Vorsorge ankreuzen (Schwächung der Gesundheit, Vermeidung der Verschlimmerung, Entwicklung von Kindern).' }],
+    ...SPEC_25,
   },
   'muster-28': {
     intent: /\b(indikationsstellung (?:für )?soziotherapie|überweisung zur soziotherapie|muster\s*28)\b/iu,
@@ -152,8 +145,7 @@ const SPECS: Record<WeitereId, Weiterer> = {
   },
   'muster-62c': {
     intent: /\b(behandlungsplan (?:für die )?(?:außerklinische\w* )?intensivpflege|aki-?behandlungsplan|muster\s*62\s*c)\b/iu,
-    required: ['therapieziele', 'notfallmanagement'],
-    text: { therapieziele: ['therapieziele', 'therapieziel', 'ziele', 'ziel'], bedarfsmedikamente: ['medikation', 'medikamente', 'bedarfsmedikation'] },
+    ...SPEC_62C,
   },
   'muster-70': {
     intent: /\b(künstliche\w* befruchtung|kinderwunschbehandlung|ivf|icsi|insemination|muster\s*70)\b/iu,

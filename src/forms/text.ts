@@ -133,6 +133,7 @@ const LABELS = [
   'fähigkeitsstörungen?', 'co-?morbiditäten', 'prognose', 'wohnform', 'betreuer', 'angehörige[rn]?', 'nahziele?', 'fernziele?', 'durchführung',
   'risikofaktoren?', 'gesundheitsstörungen?', 'beeinträchtigungen?', 'vorsorgeziele?', 'kontextfaktoren?', 'interventionen', 'weitere informationen',
   'anforderungen', 'bisherige behandlung', 'krankenbehandlung',
+  'notfallmanagement', 'notfall', 'vitalparameter', 'bedarfsmedikation', 'kurort', 'verordnung',
 ];
 const LABEL_RE = new RegExp(`(?:^|[\\s.;,(])(${LABELS.join('|')})\\s*:`, 'giu');
 
