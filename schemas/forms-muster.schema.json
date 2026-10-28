@@ -22,7 +22,7 @@
         "format": { "type": "string" },
         "width": { "type": "number", "exclusiveMinimum": 0 },
         "height": { "type": "number", "exclusiveMinimum": 0 },
-        "tint": { "enum": ["gelb", "rot", "blau"] }
+        "tint": { "enum": ["gelb", "rot", "blau", "ohne"] }
       }
     },
     "copies": {
@@ -64,8 +64,8 @@
           "id": { "type": "string", "pattern": "^[a-z0-9_]+$" },
           "label": { "type": "string", "minLength": 1, "description": "Beschriftung wie auf dem Vordruck" },
           "kind": { "enum": ["checkbox", "text", "date", "quarter", "letter", "number", "personalien", "stempel"] },
-          "filled_by": { "enum": ["duria", "praxis", "arzt", "krankenhaus"], "description": "duria = Personalien/eGK aus dem PVS; praxis = Vorschlag der App möglich; arzt = nur der Arzt; krankenhaus = nicht von der Praxis" },
-          "format": { "enum": ["QJJ", "TTMMJJ"] },
+          "filled_by": { "enum": ["duria", "praxis", "arzt", "krankenhaus", "leistungserbringer"], "description": "duria = Personalien/eGK aus dem PVS; praxis = Vorschlag der App möglich; arzt = nur der Arzt; krankenhaus/leistungserbringer = nicht von der Praxis (Krankenhaus, Labor, Therapeut)" },
+          "format": { "enum": ["QJJ", "TTMMJJ", "hhmm"] },
           "group": { "type": "string", "pattern": "^[a-z0-9_]+$" },
           "marker": { "type": "string", "description": "Nummer in den Erläuterungen, z. B. ❶" },
           "lines": { "type": "integer", "minimum": 1 },

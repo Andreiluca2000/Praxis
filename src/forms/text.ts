@@ -80,6 +80,7 @@ export function icdCodes(text: string): { icd: string; certainty: Certainty | nu
 const LABELS = [
   'befunde?', 'untersuchungsergebnisse?', 'medikation', 'bisherige therapie', 'bisherige maßnahmen', 'therapie', 'maßnahmen',
   'allergien?', 'fragestellung', 'hinweise?', 'mitgegeben', 'mitgegebene befunde', 'anlagen?', 'auftrag', 'diagnose', 'ekg', 'labor',
+  'leitsymptomatik', 'therapieziele?', 'heilmittel',
 ];
 const LABEL_RE = new RegExp(`(?:^|[\\s.;,(])(${LABELS.join('|')})\\s*:`, 'giu');
 
@@ -97,6 +98,13 @@ export function labeledSegments(text: string): Map<string, string> {
   return out;
 }
 
+/** Text vor dem ersten Abschnitt „Stichwort: …“ – dort steht der eigentliche Wunsch. */
+export function headOf(text: string): string {
+  // Das erste Stichwort selbst gehört noch dazu („Überweisung ans Labor: …“).
+  const m = new RegExp(LABEL_RE.source, 'iu').exec(text);
+  return m ? text.slice(0, (m.index ?? 0) + m[0].length) : text;
+}
+
 export function segment(segments: Map<string, string>, ...keys: string[]): string | null {
   const parts = keys.map((k) => segments.get(k)).filter((v): v is string => Boolean(v));
   return parts.length ? parts.join('; ') : null;
@@ -107,7 +115,9 @@ export function segment(segments: Map<string, string>, ...keys: string[]): strin
  * Endet am Satzzeichen oder vor Zusätzen wie „dringend“.
  */
 export function reasonPhrase(text: string): string | null {
-  const head = text.split(LABEL_RE)[0] ?? text;
+  // Beginnt die Beschreibung gleich mit „Labor: …“, gilt der ganze Text als Wunsch.
+  const first = text.split(LABEL_RE)[0] ?? '';
+  const head = first.trim() ? first : text;
   const m = uni(/\b(?:wegen|bei|zur abklärung(?:\s+(?:von|einer|eines|der|des))?|abklärung(?:\s+(?:von|einer|eines|der|des))?)\s+((?:v\.\s?a\.|verdacht auf)?\s*[^,.;:()]+)|\b((?:v\.\s?a\.|verdacht auf)\s+[^,.;:()]+)/iu).exec(head);
   const raw = m?.[1] ?? m?.[2];
   if (!raw) return null;

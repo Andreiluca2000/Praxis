@@ -1,4 +1,4 @@
-import { Ambulance, CircleAlert, CircleCheck, ClipboardList, Files, Hospital, Info, Send, Stethoscope, TriangleAlert, WandSparkles } from 'lucide-react';
+import { Activity, Ambulance, CircleAlert, CircleCheck, ClipboardList, Files, FlaskConical, Hospital, Info, Send, Stethoscope, TriangleAlert, WandSparkles } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import { analyse, check, propose } from '../../src/forms/advisor.js';
 import { valuesOf } from '../../src/forms/build.js';
@@ -18,7 +18,7 @@ const EXAMPLES: [string, string][] = [
   ['Taxi zur Dialyse', 'Taxi zur Dialyse 3x pro Woche, Hin- und Rückfahrt'],
 ];
 
-const ICON: Record<FormId, typeof Send> = { 'muster-06': Send, 'muster-02': Hospital, 'muster-04': Ambulance };
+const ICON: Record<FormId, typeof Send> = { 'muster-06': Send, 'muster-02': Hospital, 'muster-04': Ambulance, 'muster-10': FlaskConical, 'muster-13': Activity };
 const STATE_LABEL: Record<Mark['state'], string> = { vorgeschlagen: 'vorgeschlagen', unbekannt: 'bitte wählen', arzt: 'Arzt', duria: 'aus DURIA', leer: 'leer', geaendert: 'geändert', kartei: 'aus Kartei' };
 const SOURCE: Record<string, string> = { erlaeuterungen: 'KBV-Erläuterungen 01/2026', vordruckvereinbarung: 'Vordruckvereinbarung 05/2026', mustersammlung: 'Mustersammlung 05/2026' };
 

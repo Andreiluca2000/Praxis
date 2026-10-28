@@ -14,7 +14,7 @@ export interface FormRule {
 }
 
 export type FieldKind = 'checkbox' | 'text' | 'date' | 'quarter' | 'letter' | 'number' | 'personalien' | 'stempel';
-export type FilledBy = 'duria' | 'praxis' | 'arzt' | 'krankenhaus';
+export type FilledBy = 'duria' | 'praxis' | 'arzt' | 'krankenhaus' | 'leistungserbringer';
 
 export interface Box { x: number; y: number; w: number; h: number }
 
@@ -23,7 +23,7 @@ export interface FormField {
   label: string;
   kind: FieldKind;
   filled_by: FilledBy;
-  format?: 'QJJ' | 'TTMMJJ';
+  format?: 'QJJ' | 'TTMMJJ' | 'hhmm';
   group?: string;
   marker?: string;
   lines?: number;
@@ -48,14 +48,14 @@ export interface FormDefinition {
   form_version: string;
   released: string;
   status: 'entwurf' | 'geprueft';
-  paper: { format: string; width: number; height: number; tint: 'gelb' | 'rot' | 'blau' };
+  paper: { format: string; width: number; height: number; tint: 'gelb' | 'rot' | 'blau' | 'ohne' };
   copies: { id: string; label: string; recipient: string }[];
   notes: FormRule[];
   groups: FormGroup[];
   fields: FormField[];
 }
 
-export type FormId = 'muster-06' | 'muster-02' | 'muster-04';
+export type FormId = 'muster-06' | 'muster-02' | 'muster-04' | 'muster-10' | 'muster-13';
 
 /**
  * Zustand eines Feldes im Vorschlag:
@@ -134,7 +134,7 @@ export interface PatientFacts {
   auBis: Fact<string | null> | null;
 }
 
-export type Intent = 'ueberweisung' | 'einweisung' | 'befoerderung';
+export type Intent = 'ueberweisung' | 'einweisung' | 'befoerderung' | 'labor' | 'heilmittel';
 
 export interface FormSuggestion {
   formId: FormId;

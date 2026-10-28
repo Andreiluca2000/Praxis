@@ -119,7 +119,7 @@ export function ScheinSvg({ form, layout, values, marks, selected, onSelect }: P
   return (
     <svg className="schein" viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`Muster ${form.muster} – ${form.title}, Vorschau`}>
       <rect x={0} y={0} width={W} height={H} rx={10} fill="#fff" />
-      {layout.bands.map(([x, y, w, h], i) => <rect key={`b${i}`} x={x} y={y} width={w} height={h} rx={8} fill={layout.tint} />)}
+      {layout.bands.map(([x, y, w, h], i) => <rect key={`b${i}`} x={x} y={y} width={w} height={h} rx={8} fill={layout.tint ?? '#fff'} />)}
       {layout.whites.map(([x, y, w, h], i) => <rect key={`w${i}`} x={x} y={y} width={w} height={h} fill="#fff" />)}
       {layout.strokes.map((s, i) => ('rect' in s
         ? <rect key={`s${i}`} x={s.rect[0]} y={s.rect[1]} width={s.rect[2]} height={s.rect[3]} fill="none" stroke={LINE} strokeWidth={Math.max(0.5, s.w)} />

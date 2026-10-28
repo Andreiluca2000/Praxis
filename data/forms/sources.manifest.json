@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "retrieved_on": "2026-10-27",
-  "purpose": "Lokale Quellenbelege für die Ausfüllhilfe der KBV-Vordrucke (Muster 6, Muster 2, Muster 4). Nur zur Prüfung der Regeln; keine Druckvorlage.",
+  "purpose": "Lokale Quellenbelege für die Ausfüllhilfe der KBV-Vordrucke (Muster 6, 2, 4, 10, 13). Nur zur Prüfung der Regeln; keine Druckvorlage.",
   "publisher": "Kassenärztliche Bundesvereinigung (KBV), Anlage 2 zum Bundesmantelvertrag-Ärzte (BMV-Ä)",
   "landing_url": "https://www.kbv.de/infothek/rechtsquellen/bundesmantelvertrag",
   "license": {
@@ -54,6 +54,19 @@
       "bytes": 491044,
       "sha256": "676542dc6ca4cb1b1e5f665512a5ed313a7afec24eaa18b4820173764361ce4c",
       "locator": "Anlage 2: Erläuterungen Vertragsdatum/Inkrafttreten 01.01.2026; Vordruckvereinbarung Vertragsdatum 07.04.2026, Inkrafttreten 01.05.2026"
+    },
+    {
+      "id": "heilm_rl",
+      "path": "sources/gba-heilm-rl-2025-08-05.pdf",
+      "title": "Richtlinie des G-BA über die Verordnung von Heilmitteln (Heilmittel-Richtlinie) mit Heilmittelkatalog (Zweiter Teil)",
+      "version": "zuletzt geändert 15.05.2025 (BAnz AT 04.08.2025 B3), in Kraft 05.08.2025",
+      "effective_from": "2025-08-05",
+      "source_url": "https://www.g-ba.de/downloads/62-492-3865/HeilM-RL_2025-05-15_iK-2025-08-05.pdf",
+      "bytes": 893672,
+      "sha256": "6e65437019c17eae23b0a2e80c85e68d46698013a0bfa7167d7ec4d8f933d204",
+      "locator": "Zweiter Teil (Heilmittelkatalog), S. 57 ff.; abgeleitet: data/forms/heilmittelkatalog.json",
+      "license": "Amtliches Werk (Richtlinie des G-BA, im Bundesanzeiger veröffentlicht)",
+      "note": "Beschluss vom 20.08.2026 (Diagnoseliste) tritt erst am 01.01.2027 in Kraft – hier noch nicht berücksichtigt."
     }
   ],
   "references_not_stored": [

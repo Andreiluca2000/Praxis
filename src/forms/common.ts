@@ -19,7 +19,8 @@ export function stempel(form: FormDefinition): FieldProposal {
  */
 export function diagnose(form: FormDefinition, text: string, fieldId = 'diagnose'): FieldProposal {
   const seg = segment(labeledSegments(text), 'diagnose');
-  const phrase = seg ?? reasonPhrase(text);
+  // Ein angeschnittener ICD-Kode am Ende („Lumbalgie M54“ aus „M54.5 G“) gehört nicht zum Text.
+  const phrase = (seg ?? reasonPhrase(text))?.replace(/\s+[A-TV-Z]\d{2}$/u, '') ?? null;
   const codes = icdCodes(text).filter((c) => c.certainty).map((c) => `${c.icd} ${c.certainty}`);
   const value = [phrase, ...codes.filter((c) => !phrase?.includes(c))].filter(Boolean).join(' – ') || null;
   return value

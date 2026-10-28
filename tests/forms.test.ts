@@ -66,13 +66,13 @@ describe('Analyse: welcher Vordruck passt', () => {
   it('„Taxi zum Neurologen“ → nur Muster 4, das Fachgebiet ist das Fahrtziel', () => {
     expect(analyse('Taxi zum Neurologen, Pflegegrad 5').suggestions.map((s) => s.formId)).toEqual(['muster-04']);
   });
-  it('Laborüberweisung → Hinweis auf Muster 10', () => {
-    expect(analyse('Überweisung ans Labor für Blutbild').blockers[0]?.text).toContain('Muster 10');
+  it('Laborüberweisung → Muster 10 (nicht Muster 6)', () => {
+    expect(analyse('Überweisung ans Labor für Blutbild').suggestions.map((s) => s.formId)).toEqual(['muster-10']);
   });
-  it('Gesamtkatalog: „Heilmittel / Physiotherapie“ findet Muster 13 (nur Regeln, noch keine Vorschau)', () => {
-    const a = analyse('Physiotherapie Heilmittel bei Lumbalgie');
+  it('Gesamtkatalog: „häusliche Krankenpflege“ findet Muster 12 (nur Regeln, noch keine Vorschau)', () => {
+    const a = analyse('häusliche Krankenpflege Wundversorgung Verbandwechsel');
     expect(a.suggestions).toEqual([]);
-    expect(a.catalog[0]?.entry.muster).toBe('13');
+    expect(a.catalog[0]?.entry.muster).toBe('12');
     expect(a.catalog[0]?.entry.rules.length).toBeGreaterThan(5);
   });
   it('ambulante OP im Krankenhaus ist keine Einweisung', () => {

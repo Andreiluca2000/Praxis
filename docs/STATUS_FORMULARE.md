@@ -4,7 +4,7 @@
 |---|---|
 | Quellen KBV (Erläuterungen 01/2026, Vordruckvereinbarung 05/2026, Mustersammlung) | gespeichert mit SHA-256, Test prüft Hashes |
 | Gesamtkatalog e01–86 (58 Einträge, 548 Regeln) | Entwurf, Stichprobe geprüft, fachliche Freigabe offen |
-| Muster 6, 2, 4: Datenmodell, Vorschlag, Prüfung | fertig als Logik, 41 Tests grün |
+| Muster 6, 2, 4, 10, 13: Datenmodell, Vorschlag, Prüfung | fertig; Muster 13 mit Heilmittelkatalog (HeilM-RL, in Kraft 05.08.2025) |
 | Oberfläche `ui/forms/` | in der App aktiv (Navigation „Formulare“); nachgebildeter Vordruck + Prüfliste; von Andree freigegeben 27.10.2026 |
 | Lokales Ollama-Modell für die Beschreibung | nicht eingebaut (regelbasiert reicht für MVP) |
 | Druck / Signatur / Übermittlung | bewusst nicht Teil des MVP |

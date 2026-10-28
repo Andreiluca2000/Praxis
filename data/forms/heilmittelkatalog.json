@@ -1,0 +1,1931 @@
+{
+  "source": {
+    "title": "Heilmittel-Richtlinie (HeilM-RL)",
+    "stand": "zuletzt geändert 15.05.2025, in Kraft 05.08.2025"
+  },
+  "bereiche": [
+    {
+      "id": "physiotherapie",
+      "label": "Physiotherapie",
+      "diagnosegruppen": [
+        {
+          "code": "WS",
+          "name": "Wirbelsäulenerkrankungen",
+          "beispiele": [
+            "Blockierungen",
+            "Degenerative WS-Erkrankungen",
+            "Wirbelsäulenverletzungen",
+            "Spondylolisthesis",
+            "Bandscheibenprolaps",
+            "Skoliosen/Kyphosen ohne und mit Korsettversorgung",
+            "behandlungsbedürftige Haltungsstörungen (obligat positiver Mathiass-Test)",
+            "Floride juvenile Hyperkyphosen",
+            "Seronegative Spondarthropathien (z. B. reaktive Arthritis, Psoriasisarthritis)",
+            "Osteoporose",
+            "Myotendopathien",
+            "Entzündlich-rheumatische WS-Erkrankungen",
+            "Muskulärer Schiefhals"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Schädigung der Bewegungssegmente (z. B. discoligamentäre Strukturen, Gelenkbeweglichkeit und -stabilität, lokaler/(pseudo)radikulärer Schmerz)"
+            },
+            {
+              "key": "b",
+              "text": "Schädigung/Störung der Muskelfunktion (z. B. Muskelkraft, -ausdauer, -koordination, Muskeltonus, sekundäre Schmerzen)"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "KG",
+            "KG Gruppe",
+            "KG-Gerät",
+            "KG im Bewegungsbad",
+            "KG im Bewegungsbad Gruppe",
+            "MT",
+            "Übungsbehandlung",
+            "Übungsbehandlung Gruppe",
+            "Übungsbehandlung im Bewegungsbad",
+            "Übungsbehandlung im Bewegungsbad Gruppe",
+            "Chirogymnastik",
+            "KMT",
+            "UWM",
+            "SM",
+            "PM",
+            "BGM"
+          ],
+          "ergaenzend": [
+            "Wärmetherapie",
+            "Kältetherapie",
+            "Traktion",
+            "Elektrotherapie",
+            "Hydroelektrische Bäder"
+          ],
+          "standardisierte_kombination": true,
+          "hoechstmenge_je_vo": 6,
+          "orientierende_menge": 18,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [
+            "Orientierende Menge: davon jeweils bis zu 12 Einheiten für die standardisierte Heilmittelkombination bzw. für Massagetherapien.",
+            "Standardisierte Heilmittelkombination nur bei komplexen Schädigungen gemäß §§ 12 Absatz 4 und 25 HeilM-RL."
+          ],
+          "locator": "HeilM-RL Zweiter Teil, Physiotherapie, Diagnosegruppe WS, S. 60"
+        },
+        {
+          "code": "EX",
+          "name": "Erkrankungen der Extremitäten und des Beckens",
+          "beispiele": [
+            "Verletzungen, Frakturen",
+            "Zustand nach operativen Eingriffen",
+            "Arthrosen",
+            "Periarthropathien, Tendopathien",
+            "Bandersatz, Arthrodesen",
+            "Amputationen",
+            "entzündliche, auch rheumatische Gelenkerkrankungen",
+            "Entzündliche Systemerkrankungen (z. B. Kollagenosen)",
+            "Sympathische Reflexdystrophie Stadium I bis III",
+            "Luxationen (z. B. Hüfte, Patella, Schulter)",
+            "angeborene und erworbene Fehlhaltungen und Fehlstellungen der Füße",
+            "Fehlbildungen",
+            "Stoffwechselerkrankungen des Knochens (z. B. Osteogenesis imperfecta, Morbus Paget)"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Schädigung/Störung der Gelenkfunktion einschließlich Kapsel-Band-Apparat und umgreifender Muskulatur (z. B. Gelenkbeweglichkeit und -stabilität, Schmerz einschließlich Stumpf-/Phantomschmerz)"
+            },
+            {
+              "key": "b",
+              "text": "Schädigung/Störung der Muskelfunktion (z. B. Muskelkraft, -ausdauer, -koordination, Muskeltonus, Schmerzen)"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "KG",
+            "KG Gruppe",
+            "KG-Gerät",
+            "KG im Bewegungsbad",
+            "KG im Bewegungsbad Gruppe",
+            "MT",
+            "Übungsbehandlung",
+            "Übungsbehandlung Gruppe",
+            "Übungsbehandlung im Bewegungsbad",
+            "Übungsbehandlung im Bewegungsbad Gruppe",
+            "Chirogymnastik",
+            "KMT",
+            "UWM",
+            "SM",
+            "PM",
+            "BGM"
+          ],
+          "ergaenzend": [
+            "Wärmetherapie",
+            "Kältetherapie",
+            "Elektrotherapie",
+            "Hydroelektrische Bäder"
+          ],
+          "standardisierte_kombination": true,
+          "hoechstmenge_je_vo": 6,
+          "orientierende_menge": 18,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [
+            "Orientierende Menge: zusätzlich bis zu 50 Einheiten, längstens bis zur Vollendung des 18. Lebensjahres.",
+            "Orientierende Menge: davon jeweils bis zu 12 Einheiten für die standardisierte Heilmittelkombination bzw. für Massagetherapien.",
+            "Standardisierte Heilmittelkombination nur bei komplexen Schädigungen gemäß §§ 12 Absatz 4 und 25 HeilM-RL."
+          ],
+          "locator": "HeilM-RL Zweiter Teil, Physiotherapie, Diagnosegruppe EX, S. 61"
+        },
+        {
+          "code": "CS",
+          "name": "Chronifiziertes Schmerzsyndrom",
+          "beispiele": [
+            "neuropathische Schmerzen",
+            "Neuralgie, Kausalgie",
+            "Komplexes regionales Schmerzsyndrom",
+            "Fibromyalgie",
+            "Phantomschmerzen nach Amputationen"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "chronische Schmerzen"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "KG",
+            "KG Gruppe",
+            "KG im Bewegungsbad",
+            "KG im Bewegungsbad Gruppe",
+            "KG-Gerät",
+            "KMT",
+            "Übungsbehandlung",
+            "Übungsbehandlung Gruppe",
+            "Übungsbehandlung im Bewegungsbad",
+            "Übungsbehandlung im Bewegungsbad Gruppe",
+            "UWM",
+            "PM",
+            "SM",
+            "BGM"
+          ],
+          "ergaenzend": [
+            "Elektrotherapie",
+            "Wärmetherapie",
+            "Kältetherapie",
+            "Hydroelektrische Bäder"
+          ],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 6,
+          "orientierende_menge": 18,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [
+            "Orientierende Menge: davon bis zu 12 Einheiten für Massagetechniken."
+          ],
+          "locator": "HeilM-RL Zweiter Teil, Physiotherapie, Diagnosegruppe CS, S. 62"
+        },
+        {
+          "code": "ZN",
+          "name": "ZNS-Erkrankungen einschließlich des Rückenmarks / Neuromuskuläre Erkrankungen",
+          "beispiele": [
+            "prä-, peri-, postnatale Schädigungen (z. B. infantile Zerebralparese)",
+            "Fehlbildungssyndrome (z. B. Meningomyelocele, Spina bifida)",
+            "zerebrale Ischämie, Blutung, Hypoxie, Tumor",
+            "Schädelhirn- und Rückenmarkverletzungen",
+            "Meningoencephalitis, Poliomyelitis",
+            "Querschnittssyndrome",
+            "Vorderhornerkrankungen des Rückenmarks",
+            "Amyotrophe Lateralsklerose",
+            "M. Parkinson",
+            "Multiple Sklerose",
+            "Syringomyelie",
+            "Spinalis-anterior-Syndrom",
+            "Muskeldystrophie, -atrophie"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Schädigung/Störung der Bewegungs- und Sinnesfunktion (z. B. Kontrolle der Willkürbewegung, unwillkürliche Bewegung, posturale Kontrolle)"
+            },
+            {
+              "key": "b",
+              "text": "Schädigung/Störung der Muskelfunktion (z. B. Muskelkraft, Muskeltonus)"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "KG",
+            "KG Gruppe",
+            "KG im Bewegungsbad",
+            "KG im Bewegungsbad Gruppe",
+            "KG-ZNS",
+            "KG-ZNS-Kinder"
+          ],
+          "ergaenzend": [
+            "Wärmetherapie",
+            "Kältetherapie",
+            "Elektrotherapie",
+            "Elektrostimulation"
+          ],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 10,
+          "orientierende_menge": 30,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [
+            "KG-ZNS-Kinder nur längstens bis zur Vollendung des 18. Lebensjahrs.",
+            "Orientierende Menge: zusätzlich bis zu 50 Einheiten, längstens bis zur Vollendung des 18. Lebensjahres."
+          ],
+          "locator": "HeilM-RL Zweiter Teil, Physiotherapie, Diagnosegruppe ZN, S. 63"
+        },
+        {
+          "code": "PN",
+          "name": "Periphere Nervenläsionen / Muskelerkrankungen",
+          "beispiele": [
+            "periphere Paresen (auch orofazial)",
+            "radikuläre Paresen",
+            "Verletzungen der Nerven",
+            "Polyneuropathien",
+            "Plexusparesen",
+            "Polyneuritis",
+            "Myasthenia gravis",
+            "entzündliche Muskelerkrankungen",
+            "metabolische Muskelerkrankungen"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Schädigung/Störung der Bewegungsfunktion (z. B. Kontrolle der Willkürbewegung, unwillkürliche Bewegungsreaktion, Sensibilitätsstörungen)"
+            },
+            {
+              "key": "b",
+              "text": "Schädigung/Störung der Muskelfunktion (z. B. Muskelkraft, Muskeltonus)"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "KG",
+            "KG Gruppe",
+            "KG im Bewegungsbad",
+            "KG im Bewegungsbad Gruppe"
+          ],
+          "ergaenzend": [
+            "Wärmetherapie",
+            "Kältetherapie",
+            "Elektrotherapie",
+            "Elektrostimulation"
+          ],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 10,
+          "orientierende_menge": 30,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [],
+          "locator": "HeilM-RL Zweiter Teil, Physiotherapie, Diagnosegruppe PN, S. 64"
+        },
+        {
+          "code": "AT",
+          "name": "Störungen der Atmung",
+          "beispiele": [
+            "Pneumonie, Pleuritis",
+            "Asthma bronchiale",
+            "COPD",
+            "Lungenemphysem",
+            "Lungenfibrose",
+            "Thoraxverletzung, -operation einschließlich Tracheostoma",
+            "ZNS- und Erkrankungen des Rückenmarks",
+            "neuromuskuläre Erkrankungen",
+            "chronisch persistierende Atemwegserkrankungen (Mukoviszidose, Bronchiektasie, primäre ziliäre Dyskinesie)"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Schädigung/Störung der Atmungsfunktion (z. B. bronchiale Obstruktion, Atemfrequenz/-rhythmus/-tiefe, Husten, Dyspnoe)"
+            },
+            {
+              "key": "b",
+              "text": "Schädigung der Atemmuskulatur einschließlich Zwerchfell und Atemhilfsmuskulatur (z. B. thorakale Schmerzen)"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "KG (Atemtherapie)",
+            "KG (Atemtherapie) Gruppe",
+            "KG-Muko",
+            "Inhalation",
+            "BGM"
+          ],
+          "ergaenzend": [
+            "KMT",
+            "Wärmetherapie (insbesondere heiße Rolle)",
+            "Inhalation"
+          ],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 6,
+          "orientierende_menge": 18,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [
+            "Orientierende Menge: bis zu 50 Einheiten bei Mukoviszidose oder bei vergleichbaren pulmonalen Erkrankungen.",
+            "Die Begrenzung auf 12 Einheiten je Verordnungsfall für Maßnahmen der Massagetherapie gilt hier nicht (vgl. § 12 Absatz 6 HeilM-RL).",
+            "Unklar: Inhalation steht laut Quelltext sowohl bei den vorrangigen als auch bei den ergänzenden Heilmitteln."
+          ],
+          "locator": "HeilM-RL Zweiter Teil, Physiotherapie, Diagnosegruppe AT, S. 65"
+        },
+        {
+          "code": "GE",
+          "name": "Arterielle Gefäßerkrankungen (bei konservativer Behandlung, nach interventioneller/operativer Behandlung)",
+          "beispiele": [
+            "periphere arterielle Verschlusskrankheit (Stadium IIa und IIb nach Fontaine)",
+            "M. Raynaud",
+            "offene oder perkutane Angioplastie",
+            "peripherer Bypass",
+            "arterielle Embol-/Thrombektomie und Rekonstruktion"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Schmerzen der Extremitäten (unter Belastung, Claudicatio)"
+            },
+            {
+              "key": "b",
+              "text": "Schädigung/Störung der Muskelfunktion (z. B. Muskelkraft, -ausdauer, Muskeltonus)"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "KG",
+            "KG Gruppe",
+            "Übungsbehandlung",
+            "Übungsbehandlung Gruppe"
+          ],
+          "ergaenzend": [
+            "Wärmetherapie",
+            "Kältetherapie"
+          ],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 6,
+          "orientierende_menge": 18,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [],
+          "locator": "HeilM-RL Zweiter Teil, Physiotherapie, Diagnosegruppe GE, S. 66"
+        },
+        {
+          "code": "LY",
+          "name": "Lymphabflussstörungen",
+          "beispiele": [
+            "Stadium I: Ödem von weicher Konsistenz, Hochlagern reduziert Schwellung",
+            "Stadium II: Ödem mit sekundären Gewebeveränderungen, Hochlagern beseitigt die Schwellung nicht",
+            "Stadium III: deformierende harte Schwellung, z. T. lobuläre Form, z. T. mit typischen Hautveränderungen",
+            "Lipödem im Stadium I bis III (auch ohne Lymphödem)",
+            "Primäres hereditäres Lymphödem",
+            "Sekundäre Lymphödeme (z. B. nach operativen Eingriffen, Bestrahlung, malignen Prozessen, traumatisch/posttraumatisch)",
+            "Phlebo-Lymphödem"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Schädigung der Lymphgefäße, Lymphknoten, Kapillaren"
+            },
+            {
+              "key": "b",
+              "text": "Schädigung der Haut (Verdickung von Kutis, Subkutis, trophische Veränderungen der Epidermis)"
+            },
+            {
+              "key": "c",
+              "text": "Schmerzen"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "MLD-30",
+            "MLD-30 + Kompressionsbandagierung",
+            "MLD-45",
+            "MLD-45 + Kompressionsbandagierung",
+            "MLD-60",
+            "MLD-60 + Kompressionsbandagierung",
+            "MLD",
+            "MLD + Kompressionsbandagierung"
+          ],
+          "ergaenzend": [
+            "Wärmetherapie (insbesondere heiße Rolle)",
+            "Kältetherapie",
+            "Elektrotherapie",
+            "Übungsbehandlung",
+            "Übungsbehandlung Gruppe",
+            "Übungsbehandlung im Bewegungsbad",
+            "Übungsbehandlung im Bewegungsbad Gruppe"
+          ],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 6,
+          "orientierende_menge": 30,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [
+            "Erforderliche Kompressionsbinden sind als Verbandmittel gesondert zu verordnen, sofern keine Hilfsmittel zur Kompressionstherapie vorhanden sind.",
+            "Bei MLD ohne Therapiezeit entscheidet die Therapeutin/der Therapeut befundabhängig über die Therapiezeit (30, 45 oder 60 Minuten)."
+          ],
+          "locator": "HeilM-RL Zweiter Teil, Physiotherapie, Diagnosegruppe LY, S. 67"
+        },
+        {
+          "code": "SO1",
+          "name": "Störung der Dickdarmfunktion",
+          "beispiele": [
+            "neurogene Darmlähmungen bei ZNS-/Rückenmarkserkrankungen",
+            "Colon irritable",
+            "Colitis ulcerosa",
+            "M. Crohn",
+            "Megakolon"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Schädigung/Störung der Defäkationsfunktion (z. B. Stuhlhäufigkeit, -konsistenz, Flatulenz)"
+            },
+            {
+              "key": "b",
+              "text": "Schmerzen"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "CM",
+            "BGM"
+          ],
+          "ergaenzend": [
+            "Wärmetherapie"
+          ],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 6,
+          "orientierende_menge": 18,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [
+            "Die Begrenzung auf 12 Einheiten je Verordnungsfall für Maßnahmen der Massagetherapie gilt hier nicht (vgl. § 12 Absatz 6 HeilM-RL)."
+          ],
+          "locator": "HeilM-RL Zweiter Teil, Physiotherapie, Diagnosegruppe SO1, S. 68"
+        },
+        {
+          "code": "SO2",
+          "name": "Störungen der Ausscheidung (Stuhlinkontinenz, Harninkontinenz)",
+          "beispiele": [
+            "Beckenbodeninsuffizienz",
+            "Postoperative und Bestrahlungsfolgen",
+            "ZNS- und Erkrankungen des Rückenmarks"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Schädigung/Störung der Stuhlkontinenz"
+            },
+            {
+              "key": "b",
+              "text": "Schädigung/Störung der Harnkontinenz"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "KG",
+            "KG Gruppe",
+            "Übungsbehandlung",
+            "Übungsbehandlung Gruppe"
+          ],
+          "ergaenzend": [
+            "Elektrotherapie"
+          ],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 6,
+          "orientierende_menge": 18,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [],
+          "locator": "HeilM-RL Zweiter Teil, Physiotherapie, Diagnosegruppe SO2, S. 69"
+        },
+        {
+          "code": "SO3",
+          "name": "Schwindel unterschiedlicher Genese und Ätiologie",
+          "beispiele": [
+            "vestibulärer Schwindel",
+            "benigner paroxysmaler Lagerungsschwindel"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Schädigung/Störung der vestibulären Funktion (z. B. vestibulärer Lagesinn, Gleichgewichtssinn, vestibulärer Bewegungssinn)"
+            },
+            {
+              "key": "b",
+              "text": "Schwindelgefühl, Fallneigung"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "KG",
+            "KG Gruppe",
+            "Übungsbehandlung",
+            "Übungsbehandlung Gruppe"
+          ],
+          "ergaenzend": [],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 6,
+          "orientierende_menge": 18,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [],
+          "locator": "HeilM-RL Zweiter Teil, Physiotherapie, Diagnosegruppe SO3, S. 70"
+        },
+        {
+          "code": "SO4",
+          "name": "Sekundäre periphere trophische Störungen bei Erkrankungen der peripheren Gefäße oder des peripheren Nervensystems",
+          "beispiele": [
+            "Erkrankungen der peripheren Gefäße",
+            "Erkrankungen des peripheren Nervensystems"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Schädigung/Störung der Blutgefäßfunktion"
+            },
+            {
+              "key": "b",
+              "text": "Schädigung des sympathischen Nervensystems"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "CO2-Bad"
+          ],
+          "ergaenzend": [
+            "Wärmetherapie",
+            "Kältetherapie",
+            "Elektrotherapie",
+            "BGM",
+            "SM",
+            "PM"
+          ],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 6,
+          "orientierende_menge": 18,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [
+            "Die Begrenzung auf 12 Einheiten je Verordnungsfall für Maßnahmen der Massagetherapie gilt hier nicht (vgl. § 12 Absatz 6 HeilM-RL)."
+          ],
+          "locator": "HeilM-RL Zweiter Teil, Physiotherapie, Diagnosegruppe SO4, S. 71"
+        },
+        {
+          "code": "SO5",
+          "name": "Chronische Adnexitis, chronische Prostatitis",
+          "beispiele": [
+            "chronische Adnexitis",
+            "chronische Prostatitis"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Schmerzen"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "Wärmetherapie (mittels Peloidbädern / Warmpackungen)"
+          ],
+          "ergaenzend": [
+            "BGM"
+          ],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 6,
+          "orientierende_menge": 18,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [
+            "Die Begrenzung auf 12 Einheiten je Verordnungsfall für Maßnahmen der Massagetherapie gilt hier nicht (vgl. § 12 Absatz 6 HeilM-RL).",
+            "Im Katalog steht kein eigener Gruppentitel; der Name ist aus den dort genannten Diagnosen gebildet."
+          ],
+          "locator": "HeilM-RL Zweiter Teil, Physiotherapie, Diagnosegruppe SO5, S. 72"
+        }
+      ]
+    },
+    {
+      "id": "podologie",
+      "label": "Podologische Therapie",
+      "diagnosegruppen": [
+        {
+          "code": "DF",
+          "name": "Diabetisches Fußsyndrom",
+          "beispiele": [
+            "diabetische Neuropathie mit oder ohne Angiopathie im Stadium Wagner 0"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Hyperkeratose (schmerzlos und schmerzhaft)"
+            },
+            {
+              "key": "b",
+              "text": "Pathologisches Nagelwachstum (Verdickung, Tendenz zum Einwachsen)"
+            },
+            {
+              "key": "c",
+              "text": "Hyperkeratose und pathologisches Nagelwachstum"
+            }
+          ],
+          "vorrangig": [
+            "Hornhautabtragung",
+            "Nagelbearbeitung",
+            "Podologische Komplexbehandlung"
+          ],
+          "ergaenzend": [],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 6,
+          "orientierende_menge": null,
+          "frequenz": "alle 4 bis 6 Wochen",
+          "hinweise": [
+            "Im Katalog sind die vorrangigen Heilmittel mit a) bis c) beschriftet: a) Hornhautabtragung, b) Nagelbearbeitung, c) Podologische Komplexbehandlung.",
+            "Bei allen Maßnahmen erfolgen Instruktionen zur individuell durchführbaren Haut- und Fußpflege sowie Inspektionen von Schuhwerk und Einlagen.",
+            "In dieser Diagnosegruppe sind keine orientierenden Behandlungsmengen gemäß § 7 Absatz 2 festgelegt."
+          ],
+          "locator": "HeilM-RL Zweiter Teil, Podologische Therapie, Diagnosegruppe DF, S. 73"
+        },
+        {
+          "code": "NF",
+          "name": "Krankhafte Schädigung am Fuß als Folge einer sensiblen oder sensomotorischen Neuropathie (primär oder sekundär)",
+          "beispiele": [
+            "hereditäre sensible und autonome Neuropathie",
+            "systemische Autoimmunerkrankungen",
+            "Kollagenosen",
+            "toxische Neuropathie"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Hyperkeratose (schmerzlos und schmerzhaft)"
+            },
+            {
+              "key": "b",
+              "text": "Pathologisches Nagelwachstum (Verdickung, Tendenz zum Einwachsen)"
+            },
+            {
+              "key": "c",
+              "text": "Hyperkeratose und pathologisches Nagelwachstum"
+            }
+          ],
+          "vorrangig": [
+            "Hornhautabtragung",
+            "Nagelbearbeitung",
+            "Podologische Komplexbehandlung"
+          ],
+          "ergaenzend": [],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 6,
+          "orientierende_menge": null,
+          "frequenz": "alle 4 bis 6 Wochen",
+          "hinweise": [
+            "Im Katalog sind die vorrangigen Heilmittel mit a) bis c) beschriftet: a) Hornhautabtragung, b) Nagelbearbeitung, c) Podologische Komplexbehandlung.",
+            "Bei allen Maßnahmen erfolgen Instruktionen zur individuell durchführbaren Haut- und Fußpflege sowie Inspektionen von Schuhwerk und Einlagen.",
+            "In dieser Diagnosegruppe sind keine orientierenden Behandlungsmengen gemäß § 7 Absatz 2 festgelegt."
+          ],
+          "locator": "HeilM-RL Zweiter Teil, Podologische Therapie, Diagnosegruppe NF, S. 74"
+        },
+        {
+          "code": "QF",
+          "name": "Krankhafte Schädigung am Fuß als Folge eines Querschnittsyndroms (komplett oder inkomplett)",
+          "beispiele": [
+            "Spina bifida",
+            "chronische Myelitis",
+            "Syringomyelie",
+            "traumatisch bedingte Schädigungen des Rückenmarks"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Hyperkeratose (schmerzlos und schmerzhaft)"
+            },
+            {
+              "key": "b",
+              "text": "Pathologisches Nagelwachstum (Verdickung, Tendenz zum Einwachsen)"
+            },
+            {
+              "key": "c",
+              "text": "Hyperkeratose und pathologisches Nagelwachstum"
+            }
+          ],
+          "vorrangig": [
+            "Hornhautabtragung",
+            "Nagelbearbeitung",
+            "Podologische Komplexbehandlung"
+          ],
+          "ergaenzend": [],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 6,
+          "orientierende_menge": null,
+          "frequenz": "alle 4 bis 6 Wochen",
+          "hinweise": [
+            "Im Katalog sind die vorrangigen Heilmittel mit a) bis c) beschriftet: a) Hornhautabtragung, b) Nagelbearbeitung, c) Podologische Komplexbehandlung.",
+            "Bei allen Maßnahmen erfolgen Instruktionen zur individuell durchführbaren Haut- und Fußpflege sowie Inspektionen von Schuhwerk und Einlagen.",
+            "In dieser Diagnosegruppe sind keine orientierenden Behandlungsmengen gemäß § 7 Absatz 2 festgelegt."
+          ],
+          "locator": "HeilM-RL Zweiter Teil, Podologische Therapie, Diagnosegruppe QF, S. 75"
+        },
+        {
+          "code": "UI1",
+          "name": "Unguis incarnatus Stadium 1",
+          "beispiele": [
+            "Unguis incarnatus (L60.0)"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Pathologisches Nagelwachstum mit beginnender Entzündung (Nagel wächst seitlich ein, Schmerzen, Rötung, Schwellung)"
+            }
+          ],
+          "vorrangig": [
+            "Nagelspangenbehandlung"
+          ],
+          "ergaenzend": [],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 8,
+          "orientierende_menge": 8,
+          "frequenz": "nach Bedarf",
+          "hinweise": [
+            "Es erfolgen regelmäßig Instruktionen zu individuell durchführbaren Schneidetechniken, Nagel- und Hautpflege sowie Beratung zu geeignetem Schuhwerk."
+          ],
+          "locator": "HeilM-RL Zweiter Teil, Podologische Therapie, Diagnosegruppe UI1, S. 76"
+        },
+        {
+          "code": "UI2",
+          "name": "Unguis incarnatus Stadium 2 oder 3",
+          "beispiele": [
+            "Unguis incarnatus (L60.0)"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Pathologisches Nagelwachstum mit manifester oder chronischer Entzündung (Granulationsgewebe, Wundbildung, Eiterbildung, Rezidivieren der Entzündung)"
+            }
+          ],
+          "vorrangig": [
+            "Nagelspangenbehandlung"
+          ],
+          "ergaenzend": [],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 4,
+          "orientierende_menge": 8,
+          "frequenz": "nach Bedarf",
+          "hinweise": [
+            "Weitere Einheiten erfordern eine Wiedervorstellung beim verordnenden Arzt; je nach Schwere und Komplikationen kann sie auch früher angezeigt sein.",
+            "Es erfolgen regelmäßig Instruktionen zu individuell durchführbaren Schneidetechniken, Nagel- und Hautpflege sowie Beratung zu geeignetem Schuhwerk."
+          ],
+          "locator": "HeilM-RL Zweiter Teil, Podologische Therapie, Diagnosegruppe UI2, S. 77"
+        }
+      ]
+    },
+    {
+      "id": "stimm_sprech_sprach_schluck",
+      "label": "Stimm-, Sprech-, Sprach- und Schlucktherapie",
+      "diagnosegruppen": [
+        {
+          "code": "ST1",
+          "name": "Organisch bedingte Erkrankungen der Stimme",
+          "beispiele": [
+            "Kehlkopffehlbildungen",
+            "Kehlkopfverletzungen",
+            "Periphere oder zentrale neurogene Stimmlippenminderbeweglichkeit (Parese, Paralyse)",
+            "Veränderte Kehlkopfanatomie und -physiologie nach (Tumor-)Operationen",
+            "Hormonelle Stimmstörungen",
+            "Operative Eingriffe an Stimmlippen und Kehlkopf (einschließlich Laryngektomie)",
+            "krankhafter Verlauf des Stimmbruchs",
+            "Zustand nach Laryngektomie"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Schädigung der Stimme mit eingeschränkter stimmlicher Belastbarkeit (z. B. Lautstärke, Ausdauer, Tonhöhe und -umfang, Druck und Schmerz)"
+            },
+            {
+              "key": "b",
+              "text": "Schädigung der Stimme mit Heiserkeit, Beeinträchtigung des Stimmklangs (z. B. Rauigkeit mit Behauchtheit, Heiserkeit bis zur Aphonie)"
+            },
+            {
+              "key": "c",
+              "text": "Schädigung der Stimme mit gestörter Phonationsatmung (z. B. zu hoher Luftverbrauch beim Sprechen)"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "Stimmtherapie-30",
+            "Stimmtherapie-45",
+            "Stimmtherapie-60",
+            "Stimmtherapie-Gruppe-45",
+            "Stimmtherapie-Gruppe-90"
+          ],
+          "ergaenzend": [],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 10,
+          "orientierende_menge": 20,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [
+            "Im Katalog sind die Heilmittel dieses Bereichs ohne Unterteilung in vorrangig/ergänzend aufgeführt; sie stehen hier unter 'vorrangig'."
+          ],
+          "locator": "HeilM-RL Zweiter Teil, Stimm-, Sprech-, Sprach- und Schlucktherapie, Diagnosegruppe ST1, S. 78"
+        },
+        {
+          "code": "ST2",
+          "name": "Funktionell bedingte Erkrankungen der Stimme",
+          "beispiele": [
+            "Glottische Hyper- oder Hypofunktion",
+            "Supraglottische Hyperfunktion (z. B. habituelle Taschenfaltenstimme)",
+            "Extraglottische Hyperfunktion (z. B. Kehlkopfhochstand)"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Schädigung der Stimme mit eingeschränkter stimmlicher Belastbarkeit (z. B. Lautstärke, Ausdauer, Tonhöhe und -umfang, Druck und Schmerz)"
+            },
+            {
+              "key": "b",
+              "text": "Schädigung der Stimme mit Heiserkeit, Beeinträchtigung des Stimmklangs (z. B. Rauigkeit mit Behauchtheit, Heiserkeit bis zur Aphonie)"
+            },
+            {
+              "key": "c",
+              "text": "Schädigung der Stimme mit gestörter Phonationsatmung (z. B. zu hoher Luftverbrauch beim Sprechen)"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "Stimmtherapie-30",
+            "Stimmtherapie-45",
+            "Stimmtherapie-60",
+            "Stimmtherapie-Gruppe-45",
+            "Stimmtherapie-Gruppe-90"
+          ],
+          "ergaenzend": [],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 10,
+          "orientierende_menge": 20,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [],
+          "locator": "HeilM-RL Zweiter Teil, Stimm-, Sprech-, Sprach- und Schlucktherapie, Diagnosegruppe ST2, S. 79"
+        },
+        {
+          "code": "ST3",
+          "name": "Psychogene Aphonie",
+          "beispiele": [],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "plötzlich eingetretene Stimmlosigkeit mit tonalem Husten/Räuspern (z. B. infolge akuter oder chronischer psychischer Belastungen)"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "Stimmtherapie-30",
+            "Stimmtherapie-45",
+            "Stimmtherapie-60",
+            "Stimmtherapie-Gruppe-45",
+            "Stimmtherapie-Gruppe-90"
+          ],
+          "ergaenzend": [],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 10,
+          "orientierende_menge": 10,
+          "frequenz": "täglich, bis zu mehreren Einheiten pro Tag; gegebenenfalls Einleitung einer Psychotherapie",
+          "hinweise": [],
+          "locator": "HeilM-RL Zweiter Teil, Stimm-, Sprech-, Sprach- und Schlucktherapie, Diagnosegruppe ST3, S. 80"
+        },
+        {
+          "code": "ST4",
+          "name": "Psychogene Dysphonie",
+          "beispiele": [],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Schädigung der Stimme mit langsam progredienter Heiserkeit mit tonalem Husten/Räuspern"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "Stimmtherapie-30",
+            "Stimmtherapie-45",
+            "Stimmtherapie-60",
+            "Stimmtherapie-Gruppe-45",
+            "Stimmtherapie-Gruppe-90"
+          ],
+          "ergaenzend": [],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 10,
+          "orientierende_menge": 20,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [],
+          "locator": "HeilM-RL Zweiter Teil, Stimm-, Sprech-, Sprach- und Schlucktherapie, Diagnosegruppe ST4, S. 81"
+        },
+        {
+          "code": "SP1",
+          "name": "Störungen der Sprache vor Abschluss der Sprachentwicklung",
+          "beispiele": [
+            "prä-, peri-, postnatale Hirnschädigungen",
+            "genetisch bedingte Krankheiten",
+            "Sprachentwicklungsstörungen (expressiv oder rezeptiv betont)",
+            "Anomalien der Sprechorgane",
+            "anlagebedingte familiäre Sprachschwäche mit Krankheitswert",
+            "peripheren und zentralen Hörstörungen"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Schädigung der kognitiv-sprachlichen Funktionen (nicht altersgemäßer Wortschatz, Satzbau/morphologische Regelbildung, Sprachverständnis)"
+            },
+            {
+              "key": "b",
+              "text": "Schädigung der Sprechfunktionen (Artikulation, Redefluss)"
+            },
+            {
+              "key": "c",
+              "text": "Schädigung der Hörfunktionen (auditive Merkspanne)"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "Sprech- und Sprachtherapie-30",
+            "Sprech- und Sprachtherapie-45",
+            "Sprech- und Sprachtherapie-60",
+            "Sprech- und Sprachtherapie-Gruppe-45",
+            "Sprech- und Sprachtherapie-Gruppe-90"
+          ],
+          "ergaenzend": [],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 10,
+          "orientierende_menge": 60,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [],
+          "locator": "HeilM-RL Zweiter Teil, Stimm-, Sprech-, Sprach- und Schlucktherapie, Diagnosegruppe SP1, S. 82"
+        },
+        {
+          "code": "SP2",
+          "name": "Störungen der auditiven Wahrnehmung",
+          "beispiele": [
+            "AVWS (Auditive Verarbeitungs- und Wahrnehmungsstörung)"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Störungen der zentralen Hörfunktionen in Form von nicht altersgemäßem Sprachverstehen im Störschall"
+            },
+            {
+              "key": "b",
+              "text": "Störungen der zentralen Hörfunktionen in Form von nicht altersgemäßer Sprachlautunterscheidung/phonologischer Bewusstheit"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "Sprachtherapie-30",
+            "Sprachtherapie-45",
+            "Sprachtherapie-60",
+            "Sprachtherapie-Gruppe-45",
+            "Sprachtherapie-Gruppe-90"
+          ],
+          "ergaenzend": [],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 10,
+          "orientierende_menge": 20,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [
+            "Verordnungsfähig nur aufgrund einer neuropsychologischen Untersuchung und zentralen Hördiagnostik."
+          ],
+          "locator": "HeilM-RL Zweiter Teil, Stimm-, Sprech-, Sprach- und Schlucktherapie, Diagnosegruppe SP2, S. 83"
+        },
+        {
+          "code": "SP3",
+          "name": "Störungen der Artikulation, Dyslalie",
+          "beispiele": [
+            "prä-, peri-, postnatale Hirnschädigungen",
+            "genetisch bedingte Krankheiten",
+            "orofaziale Störungen",
+            "Anomalien der Zahnung oder Dysgnathien",
+            "sprachliche Reifestörung aufgrund von Anomalien der Zahnstellung, des Kiefers und des Gaumens",
+            "peripheren und zentralen Hörstörungen"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Schädigung der Sprechfunktion mit Störung der altersgemäßen Aussprache einzelner/mehrerer Sprachlaute"
+            },
+            {
+              "key": "b",
+              "text": "Schädigung der Sprechfunktion mit Störung der altersgemäßen Mundmotorik/-sensorik"
+            },
+            {
+              "key": "c",
+              "text": "Schädigung der Sprachdifferenzierung (z. B. Störung der rezeptiven Diskrimination und der zentralen phonologischen und expressiv phonetischen Prozesse)"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "Sprech- und Sprachtherapie-30",
+            "Sprech- und Sprachtherapie-45",
+            "Sprech- und Sprachtherapie-60",
+            "Sprech- und Sprachtherapie-Gruppe-45",
+            "Sprech- und Sprachtherapie-Gruppe-90"
+          ],
+          "ergaenzend": [],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 10,
+          "orientierende_menge": 30,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [],
+          "locator": "HeilM-RL Zweiter Teil, Stimm-, Sprech-, Sprach- und Schlucktherapie, Diagnosegruppe SP3, S. 84"
+        },
+        {
+          "code": "SP4",
+          "name": "Störungen des Sprechens/der Sprache bei hochgradiger Schwerhörigkeit oder Taubheit",
+          "beispiele": [
+            "angeborene Fehlbildungen",
+            "Infektionen",
+            "Nebenwirkung ototoxischer Medikamente",
+            "Hörsturz",
+            "Trauma",
+            "Versorgung mit Hörimplantaten (z. B. Mittelohr-, Knochenleitungs-, Cochlea-Implantate)"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Schädigung der Sprech- und Sprachfunktion mit gestörter/fehlender lautsprachlicher Kommunikation"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "Sprech- und Sprachtherapie-30",
+            "Sprech- und Sprachtherapie-45",
+            "Sprech- und Sprachtherapie-60",
+            "Sprech- und Sprachtherapie-Gruppe-45",
+            "Sprech- und Sprachtherapie-Gruppe-90"
+          ],
+          "ergaenzend": [],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 20,
+          "orientierende_menge": 50,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [],
+          "locator": "HeilM-RL Zweiter Teil, Stimm-, Sprech-, Sprach- und Schlucktherapie, Diagnosegruppe SP4, S. 85"
+        },
+        {
+          "code": "SP5",
+          "name": "Störungen der Sprache nach Abschluss der Sprachentwicklung (Aphasien und Dysphasien)",
+          "beispiele": [
+            "zerebrale Ischämie, Blutung, Tumor",
+            "Schädel-Hirn-Trauma",
+            "Zustand nach Hirnoperationen",
+            "infektiöse ZNS-Erkrankungen (Meningitis, Enzephalitis)",
+            "Neurodegenerative und entzündliche ZNS-Erkrankung"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Schädigungen der kognitiv-sprachlichen Funktionen (z. B. Satzbau, Grammatik, Aussprache, Sprachverständnis, Wortfindung, Lesen und Schreiben)"
+            },
+            {
+              "key": "b",
+              "text": "Schädigung der Sprechfunktion mit Störung der Artikulation"
+            },
+            {
+              "key": "c",
+              "text": "Schädigung der Sprechfunktion mit Störung des Redeflusses und des Sprechtempos"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "Sprachtherapie-30",
+            "Sprachtherapie-45",
+            "Sprachtherapie-60",
+            "Sprachtherapie-Gruppe-45",
+            "Sprachtherapie-Gruppe-90"
+          ],
+          "ergaenzend": [],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 20,
+          "orientierende_menge": 60,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [],
+          "locator": "HeilM-RL Zweiter Teil, Stimm-, Sprech-, Sprach- und Schlucktherapie, Diagnosegruppe SP5, S. 86"
+        },
+        {
+          "code": "SP6",
+          "name": "Störungen der Sprechmotorik (Dysarthrie/Dysarthrophonie/Sprechapraxie)",
+          "beispiele": [
+            "zerebrale Ischämie, Blutung, Tumor",
+            "Schädel-Hirn-Trauma",
+            "entzündliche ZNS-Erkrankungen (z. B. Multiple Sklerose)",
+            "neurodegenerative ZNS-Erkrankungen (z. B. Amyotrophe Lateralsklerose, Ataxien, M. Parkinson)",
+            "neuromuskuläre Erkrankungen (z. B. Myasthenia gravis)",
+            "infantile Zerebralparese"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Schädigung der Sprechfunktion mit Störung der Artikulation"
+            },
+            {
+              "key": "b",
+              "text": "Schädigung der Sprechfunktion mit Störung des Redeflusses und des Sprechtempos"
+            },
+            {
+              "key": "c",
+              "text": "Schädigung der Stimmfunktion (z. B. prosodische Störungen, Heiserkeit und Lautstärkeschwankungen)"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "Stimm-, Sprech- und Sprachtherapie-30",
+            "Stimm-, Sprech- und Sprachtherapie-45",
+            "Stimm-, Sprech- und Sprachtherapie-60",
+            "Stimm-, Sprech- und Sprachtherapie-Gruppe-45",
+            "Stimm-, Sprech- und Sprachtherapie-Gruppe-90"
+          ],
+          "ergaenzend": [],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 20,
+          "orientierende_menge": 60,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [],
+          "locator": "HeilM-RL Zweiter Teil, Stimm-, Sprech-, Sprach- und Schlucktherapie, Diagnosegruppe SP6, S. 87"
+        },
+        {
+          "code": "RE1",
+          "name": "Störungen des Redeflusses (Stottern)",
+          "beispiele": [
+            "Erkrankungen des ZNS",
+            "psychische Erkrankungen",
+            "somatisches oder psychisches Trauma",
+            "idiopathisches Stottern"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Störungen des Redeflusses in Form von unfreiwilligen Wiederholungen von Lauten und Silben, Dehnungen und Blockierungen"
+            },
+            {
+              "key": "b",
+              "text": "Störungen des Redeflusses mit ausgeprägter Begleitsymptomatik (z. B. negatives Störungsbewusstsein oder Vermeidungsverhalten)"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "Sprechtherapie-30",
+            "Sprechtherapie-45",
+            "Sprechtherapie-60",
+            "Sprechtherapie-Gruppe-45",
+            "Sprechtherapie-Gruppe-90"
+          ],
+          "ergaenzend": [],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 10,
+          "orientierende_menge": 50,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [
+            "Physiologische Sprechunflüssigkeiten sind keine Indikation für Stimm-, Sprech- und Sprachtherapie."
+          ],
+          "locator": "HeilM-RL Zweiter Teil, Stimm-, Sprech-, Sprach- und Schlucktherapie, Diagnosegruppe RE1, S. 88"
+        },
+        {
+          "code": "RE2",
+          "name": "Störungen des Redeflusses (Poltern)",
+          "beispiele": [
+            "Erkrankungen des ZNS",
+            "konstitutionelle Ursachen"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Störungen des Redeflusses mit überhasteter Sprache/undeutlicher Aussprache"
+            },
+            {
+              "key": "b",
+              "text": "Störungen des Redeflusses mit Temposchwankungen beim Sprechen"
+            },
+            {
+              "key": "c",
+              "text": "Störungen des Redeflusses mit ausgeprägtem Störungsbewusstsein, Vermeidungsverhalten"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "Sprechtherapie-30",
+            "Sprechtherapie-45",
+            "Sprechtherapie-60",
+            "Sprechtherapie-Gruppe-45",
+            "Sprechtherapie-Gruppe-90"
+          ],
+          "ergaenzend": [],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 10,
+          "orientierende_menge": 20,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [],
+          "locator": "HeilM-RL Zweiter Teil, Stimm-, Sprech-, Sprach- und Schlucktherapie, Diagnosegruppe RE2, S. 89"
+        },
+        {
+          "code": "SF",
+          "name": "Störungen der Stimm- und Sprechfunktion (Rhinophonie)",
+          "beispiele": [
+            "Rhinophonia (aperta, clausa, mixta)",
+            "Velopharyngeale Insuffizienz",
+            "Periphere oder zentrale Gaumensegelparesen",
+            "Gaumensegeldefekte (z. B. nach Tumoren, nach OP)",
+            "Lippen-, Kiefer-, Gaumenspalten"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Schädigung des Stimmklangs (z. B. dumpfer farbloser Stimmklang, zu starke/zu schwache Nasenresonanz bis zur nasalen Regurgitation)"
+            },
+            {
+              "key": "b",
+              "text": "Schädigung der Sprechfunktion mit Störung der Artikulation (z. B. verwaschene Sprache)"
+            },
+            {
+              "key": "c",
+              "text": "Schädigung der Sprechfunktion infolge einer Hyperfunktion der Kehlkopf-/Zungenmuskulatur"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "Sprech- und Stimmtherapie-30",
+            "Sprech- und Stimmtherapie-45",
+            "Sprech- und Stimmtherapie-60"
+          ],
+          "ergaenzend": [],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 10,
+          "orientierende_menge": 20,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [
+            "Laut Katalog sind hier nur Einzeltherapie-Einheiten (30/45/60 Minuten) aufgeführt, keine Gruppentherapie."
+          ],
+          "locator": "HeilM-RL Zweiter Teil, Stimm-, Sprech-, Sprach- und Schlucktherapie, Diagnosegruppe SF, S. 90"
+        },
+        {
+          "code": "SC",
+          "name": "Krankhafte Störungen des Schluckaktes (Dysphagie)",
+          "beispiele": [
+            "zerebrale Ischämie, Blutung, Tumor",
+            "prä-, peri-, postnatale Hirnschädigungen",
+            "genetisch bedingte Erkrankungen",
+            "infektiöse ZNS-Erkrankungen (Meningitis, Enzephalitis)",
+            "Neurodegenerative und entzündliche ZNS-Erkrankung (M. Parkinson, Multiple Sklerose, Amyotrophe Lateralsklerose)",
+            "Demenz",
+            "Kopf-Hals-Tumoren",
+            "neuromuskuläre Erkrankungen (Myasthenia gravis, Dystonie, Dystrophie)",
+            "Schädel-Hirn-Trauma",
+            "Operationen oder Bestrahlung"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Schädigung des Schluckaktes in der oralen Phase (z. B. gestörte orale Boluskontrolle, Drooling, Leaking)"
+            },
+            {
+              "key": "b",
+              "text": "Schädigung des Schluckaktes in der pharyngealen Phase (z. B. verzögerte Auslösung des Schluckreflexes)"
+            },
+            {
+              "key": "c",
+              "text": "Schädigung des Schluckaktes in der oesophagealen Phase (z. B. laryngeale Penetration, Aspiration)"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "Schlucktherapie-30",
+            "Schlucktherapie-45",
+            "Schlucktherapie-60"
+          ],
+          "ergaenzend": [],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 10,
+          "orientierende_menge": 60,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [
+            "Laut Katalog sind hier nur Einzeltherapie-Einheiten (30/45/60 Minuten) aufgeführt, keine Gruppentherapie."
+          ],
+          "locator": "HeilM-RL Zweiter Teil, Stimm-, Sprech-, Sprach- und Schlucktherapie, Diagnosegruppe SC, S. 91"
+        }
+      ]
+    },
+    {
+      "id": "ergotherapie",
+      "label": "Ergotherapie",
+      "diagnosegruppen": [
+        {
+          "code": "SB1",
+          "name": "Erkrankungen der Wirbelsäule, Gelenke und Extremitäten (mit motorisch-funktionellen Schädigungen)",
+          "beispiele": [
+            "degenerative Gelenkerkrankungen",
+            "traumatische Gelenkerkrankungen/Operationsfolgen",
+            "Spondyloarthritiden (z. B. M. Bechterew)",
+            "Entzündlich-rheumatische Erkrankungen (z. B. reaktive Arthritis, Arthritis psoriatica, Rheumatoide Arthritis, Arthritis bei Kollagenosen)",
+            "WS-Frakturen (auch postoperativ)",
+            "Schultersteife",
+            "Arthrogryposis multiplex congenita",
+            "Endoprothesenimplantation"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Schädigung der Wirbelsäulen- und Gelenkfunktion (z. B. Beweglichkeit und Stabilität der WS, Haltung und Haltungskontrolle, Gelenkbeweglichkeit und -stabilität)"
+            },
+            {
+              "key": "b",
+              "text": "Schädigung der Muskelfunktion (z. B. Muskelkraft, -ausdauer, -tonus, -koordination, Schmerz)"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "Motorisch-funktionelle Behandlung",
+            "Motorisch-funktionelle Behandlung mit ergotherapeutischer Schiene",
+            "Motorisch-funktionelle Behandlung Gruppe"
+          ],
+          "ergaenzend": [
+            "Thermische Anwendungen"
+          ],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 10,
+          "orientierende_menge": 20,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [],
+          "locator": "HeilM-RL Zweiter Teil, Ergotherapie, Diagnosegruppe SB1, S. 92"
+        },
+        {
+          "code": "SB2",
+          "name": "Erkrankungen der Wirbelsäule, Gelenke und Extremitäten (mit motorisch-funktionellen und sensomotorisch-perzeptiven Schädigungen)",
+          "beispiele": [
+            "Wirbelsäulenerkrankungen mit radikulären Schädigungen",
+            "Arthrodesen/Spondylodesen",
+            "Kontrakturen/Narben nach Verbrennungen/Verätzungen",
+            "Amputationen",
+            "Kompartmentsyndrom",
+            "Traumatisch bedingte Gelenkerkrankungen/Operationsfolgen",
+            "Angeborene Fehlbildungen (z. B. Dysmelie)",
+            "Sympathische Reflexdystrophie Stadium II und III"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Schädigung der Wirbelsäulen- und Gelenkfunktion (z. B. diskoligamentäre Strukturen, Haltung und Haltungskontrolle, Gelenkbeweglichkeit und -stabilität)"
+            },
+            {
+              "key": "b",
+              "text": "Schädigung der Muskelfunktion (z. B. Muskelkraft, -ausdauer, -tonus, -koordination, Schmerz)"
+            },
+            {
+              "key": "c",
+              "text": "Schädigung der Sinnes- und Bewegungsfunktionen (z. B. Körperwahrnehmung/Sensibilität, Koordination, Grob- und Feinmotorik)"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "Motorisch-funktionelle Behandlung",
+            "Motorisch-funktionelle Behandlung mit ergotherapeutischer Schiene",
+            "Motorisch-funktionelle Behandlung Gruppe",
+            "Sensomotorisch-perzeptive Behandlung",
+            "Sensomotorisch-perzeptive Behandlung mit ergotherapeutischer Schiene",
+            "Sensomotorisch-perzeptive Behandlung Gruppe"
+          ],
+          "ergaenzend": [
+            "Thermische Anwendungen"
+          ],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 10,
+          "orientierende_menge": 30,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [],
+          "locator": "HeilM-RL Zweiter Teil, Ergotherapie, Diagnosegruppe SB2, S. 93"
+        },
+        {
+          "code": "SB3",
+          "name": "System- und Autoimmunerkrankungen mit Bindegewebe-, Muskel- und Gefäßbeteiligung (mit motorisch-funktionellen/sensomotorisch-perzeptiven Schädigungen)",
+          "beispiele": [
+            "Sklerodermie",
+            "Systemischer Lupus erythematodes",
+            "Polymyositis",
+            "Mischkollagenosen (Sharp-Syndrom)",
+            "Myasthenie",
+            "Myotonie",
+            "Muskeldystrophie"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Schädigung der Gelenkfunktionen (z. B. Gelenkbeweglichkeit und -stabilität)"
+            },
+            {
+              "key": "b",
+              "text": "Schädigung der Muskelfunktion (z. B. Muskelkraft, -ausdauer, -tonus, -koordination, Schmerz)"
+            },
+            {
+              "key": "c",
+              "text": "Schädigung der Sinnes- und Bewegungsfunktionen (z. B. Körperwahrnehmung/Sensibilität, Koordination, Grob- und Feinmotorik)"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "Motorisch-funktionelle Behandlung",
+            "Motorisch-funktionelle Behandlung mit ergotherapeutischer Schiene",
+            "Motorisch-funktionelle Behandlung Gruppe",
+            "Sensomotorisch-perzeptive Behandlung",
+            "Sensomotorisch-perzeptive Behandlung mit ergotherapeutischer Schiene",
+            "Sensomotorisch-perzeptive Behandlung Gruppe"
+          ],
+          "ergaenzend": [
+            "Thermische Anwendungen"
+          ],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 10,
+          "orientierende_menge": 30,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [],
+          "locator": "HeilM-RL Zweiter Teil, Ergotherapie, Diagnosegruppe SB3, S. 94"
+        },
+        {
+          "code": "EN1",
+          "name": "ZNS-Erkrankungen (Gehirn), Entwicklungsstörungen",
+          "beispiele": [
+            "prä-, peri-, postnatale Schädigungen (z. B. infantile Zerebralparese)",
+            "Fehlbildungssyndrome (z. B. Hydrozephalus)",
+            "Genetische Syndrome (z. B. Trisomie 21)",
+            "zerebrale Ischämie, Blutung, Hypoxie, Tumor",
+            "Schädel-Hirn-Trauma",
+            "Meningoenzephalitis",
+            "M. Parkinson",
+            "Multiple Sklerose",
+            "Amyotrophe Lateralsklerose"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Schädigung der Bewegungsfunktionen (z. B. unwillkürliche Bewegungsreaktion, Kontrolle von Willkürbewegungen, Muskelkraft, -tonus)"
+            },
+            {
+              "key": "b",
+              "text": "Schädigung der Sinnesfunktionen (z. B. Gesichtsfeld, Körperwahrnehmung, Sensibilität, Propriozeption)"
+            },
+            {
+              "key": "c",
+              "text": "Schädigung der mentalen Funktionen (z. B. Aufmerksamkeit, Gedächtnis, Psychomotorik, Wahrnehmung, höhere kognitive Funktionen)"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "Sensomotorisch-perzeptive Behandlung",
+            "Sensomotorisch-perzeptive Behandlung mit ergotherapeutischer Schiene",
+            "Sensomotorisch-perzeptive Behandlung Gruppe",
+            "Motorisch-funktionelle Behandlung",
+            "Motorisch-funktionelle Behandlung mit ergotherapeutischer Schiene",
+            "Motorisch-funktionelle Behandlung Gruppe",
+            "Hirnleistungstraining/neuropsychologisch orientierte Behandlung",
+            "Hirnleistungstraining Gruppe",
+            "Psychisch-funktionelle Behandlung",
+            "Psychisch-funktionelle Behandlung Gruppe"
+          ],
+          "ergaenzend": [
+            "Thermische Anwendungen"
+          ],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 10,
+          "orientierende_menge": 40,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [
+            "Orientierende Menge: bis zu 60 Einheiten, längstens bis zur Vollendung des 18. Lebensjahres."
+          ],
+          "locator": "HeilM-RL Zweiter Teil, Ergotherapie, Diagnosegruppe EN1, S. 95"
+        },
+        {
+          "code": "EN2",
+          "name": "ZNS-Erkrankungen (Rückenmark) / Neuromuskuläre Erkrankungen",
+          "beispiele": [
+            "Fehlbildungssyndrome (z. B. Spina bifida)",
+            "Querschnittssyndrome, komplett/inkomplett",
+            "Vorderhornschädigungen (z. B. Poliomyelitis, spinale Muskelatrophie)",
+            "Amyotrophe Lateralsklerose",
+            "Multiple Sklerose",
+            "spinale Muskelatrophie"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Schädigung der Bewegungsfunktionen (z. B. Muskelkraft, -tonus, Kontrolle von Willkürbewegungen)"
+            },
+            {
+              "key": "b",
+              "text": "Schädigung der Sinnesfunktionen (z. B. Sensibilität, Propriozeption, Temperatur, Tiefensensibilität)"
+            },
+            {
+              "key": "c",
+              "text": "Schädigung der mentalen Funktionen (z. B. psychosoziale und emotionale Funktionen)"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "Sensomotorisch-perzeptive Behandlung",
+            "Sensomotorisch-perzeptive Behandlung mit ergotherapeutischer Schiene",
+            "Sensomotorisch-perzeptive Behandlung Gruppe",
+            "Motorisch-funktionelle Behandlung",
+            "Motorisch-funktionelle Behandlung mit ergotherapeutischer Schiene",
+            "Motorisch-funktionelle Behandlung Gruppe",
+            "Psychisch-funktionelle Behandlung",
+            "Psychisch-funktionelle Behandlung Gruppe"
+          ],
+          "ergaenzend": [
+            "Thermische Anwendungen"
+          ],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 10,
+          "orientierende_menge": 40,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [],
+          "locator": "HeilM-RL Zweiter Teil, Ergotherapie, Diagnosegruppe EN2, S. 96"
+        },
+        {
+          "code": "EN3",
+          "name": "Periphere Nervenläsionen / Muskelerkrankungen",
+          "beispiele": [
+            "periphere Paresen",
+            "Plexusparesen",
+            "Polyneuropathien",
+            "Myopathien (z. B. metabolische, entzündliche Myopathien)"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Schädigung der Bewegungsfunktionen (z. B. Muskelkraft, -tonus, Kontrolle von Willkürbewegungen, Grob- und Feinmotorik)"
+            },
+            {
+              "key": "b",
+              "text": "Schädigung der Sinnesfunktionen (z. B. Sensibilität: Temperatur, Druck)"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "Sensomotorisch-perzeptive Behandlung",
+            "Sensomotorisch-perzeptive Behandlung mit ergotherapeutischer Schiene",
+            "Sensomotorisch-perzeptive Behandlung Gruppe",
+            "Motorisch-funktionelle Behandlung",
+            "Motorisch-funktionelle Behandlung mit ergotherapeutischer Schiene",
+            "Motorisch-funktionelle Behandlung Gruppe"
+          ],
+          "ergaenzend": [
+            "Thermische Anwendungen"
+          ],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 10,
+          "orientierende_menge": 20,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [],
+          "locator": "HeilM-RL Zweiter Teil, Ergotherapie, Diagnosegruppe EN3, S. 97"
+        },
+        {
+          "code": "PS1",
+          "name": "Entwicklungs-, Verhaltens- und emotionale Störungen mit Beginn in Kindheit und Jugend",
+          "beispiele": [
+            "ADS/ADHS",
+            "frühkindlicher Autismus",
+            "Störung des Sozialverhaltens",
+            "Essstörung (z. B. Anorexie, Bulimie)",
+            "Emotionale Störung im Kindesalter"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Schädigung der globalen mentalen Funktionen (z. B. psychosoziale Funktionen, Temperament und Persönlichkeit, Antrieb)"
+            },
+            {
+              "key": "b",
+              "text": "Schädigung der spezifischen mentalen Funktionen (z. B. Aufmerksamkeit, Gedächtnis, Psychomotorik, Verhalten, emotionale Funktionen, Selbstwahrnehmung, Denken)"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "Psychisch-funktionelle Behandlung",
+            "Psychisch-funktionelle Behandlung Gruppe",
+            "Hirnleistungstraining/neuropsychologisch orientierte Behandlung",
+            "Hirnleistungstraining Gruppe",
+            "Sensomotorisch-perzeptive Behandlung",
+            "Sensomotorisch-perzeptive Behandlung Gruppe"
+          ],
+          "ergaenzend": [],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 10,
+          "orientierende_menge": 40,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [
+            "Verordnung nur aufgrund einer kinder- und jugendpsychiatrischen, neuropädiatrischen oder kinder- und jugendlichenpsychotherapeutischen Eingangsdiagnostik."
+          ],
+          "locator": "HeilM-RL Zweiter Teil, Ergotherapie, Diagnosegruppe PS1, S. 98"
+        },
+        {
+          "code": "PS2",
+          "name": "Neurotische, Belastungs-, somatoforme und Persönlichkeitsstörungen",
+          "beispiele": [
+            "Angststörungen",
+            "Zwangsstörungen",
+            "Essstörungen",
+            "Borderline-Störung"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Schädigung der globalen mentalen Funktionen (z. B. psychische Stabilität, Selbstvertrauen, Impulskontrolle, Temperament und Persönlichkeit)"
+            },
+            {
+              "key": "b",
+              "text": "Schädigung der spezifischen mentalen Funktionen (z. B. emotionale Funktionen, Selbstwahrnehmung, Körperschema)"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "Psychisch-funktionelle Behandlung",
+            "Psychisch-funktionelle Behandlung Gruppe"
+          ],
+          "ergaenzend": [],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 20,
+          "orientierende_menge": 40,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [
+            "Verordnung nur aufgrund einer psychiatrischen, neurologischen oder psychotherapeutischen Eingangsdiagnostik."
+          ],
+          "locator": "HeilM-RL Zweiter Teil, Ergotherapie, Diagnosegruppe PS2, S. 99"
+        },
+        {
+          "code": "PS3",
+          "name": "Wahnhafte und affektive Störungen / Abhängigkeitserkrankungen",
+          "beispiele": [
+            "Schizophrenes Residuum",
+            "Sonstige Schizophrenie",
+            "depressive Störungen",
+            "Abhängigkeitssyndrom"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Schädigung der globalen mentalen Funktionen (z. B. Qualität des Bewusstseins, psychosoziale Funktionen, Antrieb, Temperament und Persönlichkeit)"
+            },
+            {
+              "key": "b",
+              "text": "Schädigung der spezifischen mentalen Funktionen (z. B. Aufmerksamkeit, Gedächtnis, Psychomotorik, Verhalten, emotionale Funktionen, höhere kognitive Funktionen)"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "Psychisch-funktionelle Behandlung",
+            "Psychisch-funktionelle Behandlung Gruppe",
+            "Hirnleistungstraining/neuropsychologisch orientierte Behandlung",
+            "Hirnleistungstraining Gruppe"
+          ],
+          "ergaenzend": [],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 20,
+          "orientierende_menge": 40,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [
+            "Verordnung nur aufgrund einer psychiatrischen, neurologischen oder psychotherapeutischen Eingangsdiagnostik.",
+            "Im Katalog genannte Oberbegriffe: Schizophrenie, schizotype und wahnhafte Störungen; affektive Störungen; Störungen durch psychotrope Substanzen."
+          ],
+          "locator": "HeilM-RL Zweiter Teil, Ergotherapie, Diagnosegruppe PS3, S. 100"
+        },
+        {
+          "code": "PS4",
+          "name": "Dementielle Syndrome",
+          "beispiele": [
+            "Morbus Alzheimer, insbesondere im Stadium der leichten Demenz (Clinical Dementia Rating [CDR] 0,5 und 1,0)"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Schädigung der globalen mentalen Funktionen (z. B. Orientierung, Antrieb)"
+            },
+            {
+              "key": "b",
+              "text": "Schädigung der spezifischen mentalen Funktionen (z. B. Aufmerksamkeit, Gedächtnis, Schlaf, Psychomotorik, Verhalten, emotionale Funktionen, höhere kognitive Funktionen)"
+            },
+            {
+              "key": "x",
+              "text": "patientenindividuelle Symptomatik"
+            }
+          ],
+          "vorrangig": [
+            "Hirnleistungstraining/neuropsychologisch orientierte Behandlung",
+            "Hirnleistungstraining Gruppe",
+            "Psychisch-funktionelle Behandlung",
+            "Psychisch-funktionelle Behandlung Gruppe"
+          ],
+          "ergaenzend": [],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": 10,
+          "orientierende_menge": 40,
+          "frequenz": "1-3x wöchentlich",
+          "hinweise": [
+            "Verordnung nur aufgrund einer psychiatrischen, neurologischen oder neuropsychologischen Eingangsdiagnostik."
+          ],
+          "locator": "HeilM-RL Zweiter Teil, Ergotherapie, Diagnosegruppe PS4, S. 101"
+        }
+      ]
+    },
+    {
+      "id": "ernaehrungstherapie",
+      "label": "Ernährungstherapie",
+      "diagnosegruppen": [
+        {
+          "code": "SAS",
+          "name": "Seltene angeborene Stoffwechselerkrankungen",
+          "beispiele": [
+            "Angeborene Enzymdefekte des Eiweißstoffwechsels: Phenylketonurie (PKU), Tyrosinämie, Ahornsirupkrankheit, Ornithinämie, Propionazidurie, Methylmalonylazidurie, Isovalerianazidurie, Homocystinurie, Harnstoffzyklusdefekte, Glutarazidurie I",
+            "Störungen des Kohlenhydratstoffwechsels: Glykogenose I, III, VI/IX, Hereditäre Fructoseintoleranz, Galaktosämie, Glucose-Galactose-Malabsorption, Pyruvatdehydrogenase-Mangel, GLUT-I-Defekt",
+            "Fett- und Energiestoffwechselstörungen: Glutarazidurie II, MCAD-, VLCAD-, LCAD-, MTP-Mangel, CPT I, CPT II, Carnitintransportdefekt, Abetalipoproteinämie"
+          ],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "Störungen des Eiweißstoffwechsels"
+            },
+            {
+              "key": "b",
+              "text": "Störung des Kohlenhydratstoffwechsels"
+            },
+            {
+              "key": "c",
+              "text": "Störung des Fett-/Energiestoffwechsels"
+            }
+          ],
+          "vorrangig": [
+            "Ernährungstherapie",
+            "Ernährungstherapie Gruppe"
+          ],
+          "ergaenzend": [],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": null,
+          "orientierende_menge": null,
+          "frequenz": "nach Bedarf",
+          "hinweise": [
+            "Höchstmenge je VO laut Katalog: je nach Bedarf für maximal 12 Wochen (keine Einheitenzahl).",
+            "Voraussetzung: Ernährungstherapie ist als medizinische Maßnahme (ggf. in Kombination mit anderen) alternativlos, da sonst Tod oder Behinderung drohen.",
+            "In der Ernährungstherapie sind keine orientierenden Behandlungsmengen gemäß § 7 Absatz 2 festgelegt."
+          ],
+          "locator": "HeilM-RL Zweiter Teil, Ernährungstherapie, Diagnosegruppe SAS, S. 102-103"
+        },
+        {
+          "code": "CF",
+          "name": "Mukoviszidose (Cystische Fibrose)",
+          "beispiele": [],
+          "leitsymptomatik": [
+            {
+              "key": "a",
+              "text": "kompensierter normaler Ernährungszustand"
+            },
+            {
+              "key": "b",
+              "text": "(drohende) Gedeihstörung oder (drohender) Gewichtsverlust"
+            },
+            {
+              "key": "c",
+              "text": "Gedeihstörung oder Gewichtsverlust im Zusammenhang mit sonstigen Organmanifestationen/-Komplikationen (Pankreas, Leber und Gallenwege, Organtransplantation)"
+            }
+          ],
+          "vorrangig": [
+            "Ernährungstherapie",
+            "Ernährungstherapie Gruppe"
+          ],
+          "ergaenzend": [],
+          "standardisierte_kombination": false,
+          "hoechstmenge_je_vo": null,
+          "orientierende_menge": null,
+          "frequenz": "nach Bedarf",
+          "hinweise": [
+            "Höchstmenge je VO laut Katalog: je nach Bedarf für maximal 12 Wochen (keine Einheitenzahl).",
+            "In der Ernährungstherapie sind keine orientierenden Behandlungsmengen gemäß § 7 Absatz 2 festgelegt."
+          ],
+          "locator": "HeilM-RL Zweiter Teil, Ernährungstherapie, Diagnosegruppe CF, S. 104"
+        }
+      ]
+    }
+  ],
+  "abkuerzungen": {
+    "VO": "Verordnung",
+    "/VO": "pro Verordnung",
+    "+": "und (zusätzlich)",
+    "/": "oder (alternativ)",
+    "BGM": "Bindegewebsmassage",
+    "CM": "Colonmassage",
+    "KG": "allgemeine Krankengymnastik; auch als Atemtherapie erbringbar",
+    "KG-Gerät": "Gerätegestützte Krankengymnastik mit Sequenztrainingsgeräten und/oder Hebel- und Seilzugapparaten",
+    "KG-Muko": "Krankengymnastik zur Behandlung von schweren Erkrankungen der Atmungsorgane z. B. bei Mukoviszidose oder bei Lungenerkrankungen, die der Mukoviszidose vergleichbare pulmonale Schädigungen aufweisen",
+    "KG-ZNS": "spezielle Krankengymnastik zur Behandlung von Erkrankungen des ZNS bzw. des Rückenmarks nach Vollendung des 18. Lebensjahrs unter Einsatz der neurophysiologischen Techniken nach Bobath, Vojta oder PNF (Propriozeptive Neuromuskuläre Fazilitation)",
+    "KG-ZNS-Kinder": "spezielle Krankengymnastik zur Behandlung von Erkrankungen des ZNS bzw. des Rückenmarks längstens bis Vollendung des 18. Lebensjahrs unter Einsatz der neurophysiologischen Techniken nach Bobath oder Vojta",
+    "KMT": "Klassische Massagetherapie",
+    "MLD-30": "Manuelle Lymphdrainage, Therapiedauer 30 Min. an der Patientin oder dem Patienten",
+    "MLD-45": "Manuelle Lymphdrainage, Therapiedauer 45 Min. an der Patientin oder dem Patienten",
+    "MLD-60": "Manuelle Lymphdrainage, Therapiedauer 60 Min. an der Patientin oder dem Patienten",
+    "MLD": "Manuelle Lymphdrainage ohne Angabe der Therapiezeit; die Therapeutin oder der Therapeut entscheidet befundabhängig über die erforderliche Therapiezeit (MLD-30, MLD-45 oder MLD-60)",
+    "MT": "Manuelle Therapie",
+    "PM": "Periostmassage",
+    "SM": "Segmentmassage",
+    "UWM": "Unterwasserdruckstrahlmassage"
+  }
+}

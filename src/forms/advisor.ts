@@ -4,8 +4,10 @@ import { searchCatalog } from './katalog.js';
 import { checkMuster02, proposeMuster02 } from './muster02.js';
 import { checkMuster04, proposeMuster04 } from './muster04.js';
 import { checkMuster06, proposeMuster06 } from './muster06.js';
+import { checkMuster10, proposeMuster10 } from './muster10.js';
+import { checkMuster13, proposeMuster13 } from './muster13.js';
 import { specialtyIn } from './specialties.js';
-import { cue, norm, uni } from './text.js';
+import { cue, headOf, norm, uni } from './text.js';
 import type { Analysis, FormId, FormIssue, FormProposal, FormSuggestion, FormValues, Intent, PatientFacts } from './types.js';
 
 /**
@@ -18,13 +20,22 @@ const INTENTS: [Intent, RegExp][] = [
   ['befoerderung', /\b(taxi\w*|mietwagen|transport\w*|krankenfahrt\w*|krankenbeförderung|beförderung|fahrt(?:en)?|KTW|RTW|NAW|liegendtransport)\b/iu],
   ['einweisung', /\b(einweis\w*|krankenhausbehandlung|stationär\w*|ins krankenhaus|in die klinik|klinikeinweisung|notaufnahme)\b/iu],
   ['ueberweisung', /\b(überweis\w*|facharzt\w*|konsil\w*|mitbehandlung|weiterbehandlung)\b/iu],
+  ['labor', /\b(labor\w*|blutbild|blutentnahme|blutabnahme|blutwerte|urinkultur|serologie)\b/iu],
+  ['heilmittel', /\b(heilmittel\w*|physiotherap\w*|physio|krankengymnastik|manuelle therapie|lymphdrainage|ergotherap\w*|logopädi\w*|podolog\w*|ernährungstherap\w*|sprachtherap\w*|stimmtherap\w*|schlucktherap\w*)\b/iu],
 ];
 
 function intents(text: string): { intent: Intent; evidence: string }[] {
   const out: { intent: Intent; evidence: string }[] = [];
+  // Nur der Wunsch zählt, nicht Abschnitte wie „Befund: Laborwerte unauffällig“.
+  const head = headOf(text);
   for (const [intent, re] of INTENTS) {
-    const m = cue(re, text);
+    const m = cue(re, head);
     if (m) out.push({ intent, evidence: m });
+  }
+  // „Überweisung ans Labor“ ist Muster 10, nicht Muster 6 – außer es ist auch ein anderes Fachgebiet genannt.
+  if (out.some((o) => o.intent === 'labor') && !specialtyIn(head)) {
+    const i = out.findIndex((o) => o.intent === 'ueberweisung');
+    if (i >= 0) out.splice(i, 1);
   }
   // „zum Kardiologen“ ohne das Wort Überweisung – bei „Taxi zum Neurologen“ ist es nur das Fahrtziel
   if (!out.some((o) => o.intent === 'ueberweisung' || o.intent === 'befoerderung')) {
@@ -36,7 +47,7 @@ function intents(text: string): { intent: Intent; evidence: string }[] {
   return out;
 }
 
-const FORM_OF: Record<Intent, FormId> = { ueberweisung: 'muster-06', einweisung: 'muster-02', befoerderung: 'muster-04' };
+const FORM_OF: Record<Intent, FormId> = { ueberweisung: 'muster-06', einweisung: 'muster-02', befoerderung: 'muster-04', labor: 'muster-10', heilmittel: 'muster-13' };
 
 function suggestion(formId: FormId, role: FormSuggestion['role'], why: string, evidence: string | null, ruleId: string | null): FormSuggestion {
   const form = getForm(formId);
@@ -65,9 +76,6 @@ function suggestions(text: string, facts: PatientFacts): FormSuggestion[] {
 function blockers(text: string, facts: PatientFacts): FormIssue[] {
   const out: FormIssue[] = [];
   const m06 = getForm('muster-06');
-  if (uni(/\b(labor\w*|blutbild|blutentnahme|serologie|mikrobiolog\w*)\b/iu).test(text) && uni(/\büberweis\w*/iu).test(text)) {
-    out.push({ level: 'hinweis', text: 'Für Laboruntersuchungen (In-vitro-Diagnostik) gilt Muster 10, nicht Muster 6. Muster 10 ist in dieser Version noch nicht als Formular hinterlegt.', fieldIds: [], rule: rule(m06, 'm06.labor') });
-  }
   if (uni(/\bmammographie-?screening\b/iu).test(text)) {
     out.push({ level: 'hinweis', text: 'Leistungen im Mammographie-Screening-Programm brauchen keine Überweisung.', fieldIds: [], rule: rule(m06, 'm06.mammographie') });
   }
@@ -90,13 +98,19 @@ export function propose(formId: FormId, description: string, facts: PatientFacts
   const text = norm(description);
   if (formId === 'muster-06') return proposeMuster06(text, facts, today);
   if (formId === 'muster-02') return proposeMuster02(text, facts);
-  return proposeMuster04(text, facts);
+  if (formId === 'muster-04') return proposeMuster04(text, facts);
+  if (formId === 'muster-10') return proposeMuster10(text, facts, today);
+  return proposeMuster13(text, facts);
 }
+
+const CHECKS: Record<FormId, (values: FormValues, facts: PatientFacts) => FormIssue[]> = {
+  'muster-06': checkMuster06, 'muster-02': checkMuster02, 'muster-04': checkMuster04, 'muster-10': checkMuster10, 'muster-13': checkMuster13,
+};
 
 const ORDER = { unzulaessig: 0, fehlt: 1, hinweis: 2 } as const;
 
 /** Prüft einen Vordruck – auch nach Änderungen von Hand. Sortiert: unzulässig, fehlt, Hinweis. */
 export function check(formId: FormId, values: FormValues, facts: PatientFacts): FormIssue[] {
-  const issues = formId === 'muster-06' ? checkMuster06(values, facts) : formId === 'muster-02' ? checkMuster02(values, facts) : checkMuster04(values, facts);
+  const issues = CHECKS[formId](values, facts);
   return [...issues].sort((a, b) => ORDER[a.level] - ORDER[b.level]);
 }
