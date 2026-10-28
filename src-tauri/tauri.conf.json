@@ -29,7 +29,7 @@
     "targets": ["nsis"],
     "icon": ["icons/icon.ico"],
     "windows": {
-      "webviewInstallMode": { "type": "skip" }
+      "webviewInstallMode": { "type": "offlineInstaller", "silent": true }
     }
   }
 }
