@@ -1,6 +1,10 @@
 import { isChecked, issue, prop, textOf, validTTMMJJ } from './build.js';
 import { getForm } from './catalog.js';
 import { checkGeneric, proposeGeneric, type GenericSpec } from './generic.js';
+import { SPEC_16 } from './muster16.js';
+import { SPEC_39 } from './muster39.js';
+import { SPEC_56 } from './muster56.js';
+import { SPEC_62B } from './muster62b.js';
 import { cue, fromTTMMJJ, periodIn, toTTMMJJ, ttmmjj, uni } from './text.js';
 import type { FormId, FormIssue, FormProposal, FormValues, PatientFacts } from './types.js';
 
@@ -94,18 +98,7 @@ const SPECS: Record<WeitereId, Weiterer> = {
   },
   'muster-16': {
     intent: /\b(kassenrezept|rosa rezept|arzneiverordnungsblatt|muster\s*16|rezept (?:für|über))\b/iu,
-    required: ['verordnung_1'],
-    text: { verordnung_1: ['präparate', 'medikation', 'medikamente'] },
-    check: { noctu: /\bnoctu\b|\bnotdienst\w*/iu },
-    propose: (_t, facts) => {
-      const form = getForm('muster-16');
-      return facts.zuzahlungsbefreit ? [prop(form, 'gebuehr_frei', 'vorgeschlagen', true, 'Zuzahlungsbefreit.', facts.zuzahlungsbefreit.evidence), prop(form, 'geb_pfl', 'leer', false, 'Zuzahlungsbefreit.')] : [];
-    },
-    extra: (v) => [
-      ...both('muster-16', 'gebuehr_frei', 'geb_pfl', 'Entweder „Gebühr frei“ oder „Geb.-pfl.“ ankreuzen.')(v),
-      ...(isChecked(v, 'arbeitsunfall') && (!textOf(v, 'unfalltag') || !textOf(v, 'unfallbetrieb'))
-        ? [issue(getForm('muster-16'), 'fehlt', 'Arbeitsunfall: Unfalltag und Unfallbetrieb bzw. Arbeitgebernummer angeben.', ['unfalltag', 'unfallbetrieb'], getForm('muster-16').fields.find((f) => f.id === 'unfalltag')?.rules[0]?.id ?? null)] : []),
-    ],
+    ...SPEC_16,
   },
   'muster-22': {
     intent: /\b(konsiliarbericht\w*|muster\s*22)\b/iu,
@@ -134,17 +127,7 @@ const SPECS: Record<WeitereId, Weiterer> = {
   },
   'muster-39': {
     intent: /\b(zervix\w*|pap-?abstrich\w*|ko-?test\w*|hpv-?test\w*|gebärmutterhalskrebs\w*|muster\s*39)\b/iu,
-    text: { erlaeuterungen: ['befund', 'befunde', 'hinweise'] },
-    check: { auftrag_primaer: /\bprimärscreening\b/iu, auftrag_abklaerung: /\babklärung\w*/iu, auftrag_ko: /\bko-?test\w*/iu, auftrag_hpv: /\bhpv-?test\b/iu, gravid_ja: /\b(schwanger\w*|gravid\w*)\b/iu },
-    propose: (text) => {
-      const form = getForm('muster-39');
-      const m = uni(/\b(\d{2})\s*(?:j\.|jahre?|jährig\w*)/iu).exec(text);
-      if (!m) return [];
-      const a = Number(m[1]);
-      const id = a >= 35 ? 'alter_ab_35' : a >= 30 ? 'alter_30_34' : a >= 20 ? 'alter_20_29' : null;
-      return id ? ['alter_20_29', 'alter_30_34', 'alter_ab_35'].map((x) => (x === id ? prop(form, x, 'vorgeschlagen', true, `Alter ${a} Jahre.`, m[0]) : prop(form, x, 'leer', false, 'Andere Alterskategorie.'))) : [];
-    },
-    oneOf: [{ ids: ['auftrag_primaer', 'auftrag_abklaerung', 'auftrag_zytologie', 'auftrag_hpv', 'auftrag_ko'], text: 'Auftrag ankreuzen (Primärscreening, Abklärungsdiagnostik, Zytologie, HPV-Test, Ko-Testung).' }],
+    ...SPEC_39,
   },
   'muster-50': { intent: /\b(zuständigkeit einer anderen krankenkasse|anfrage (?:zum|wegen) kassenwechsel|muster\s*50)\b/iu },
   'muster-51': { intent: /\b(zuständigkeit eines sonstigen kostenträgers|muster\s*51)\b/iu },
@@ -155,19 +138,7 @@ const SPECS: Record<WeitereId, Weiterer> = {
   },
   'muster-56': {
     intent: /\b(rehasport\w*|rehabilitationssport\w*|funktionstraining\w*|herzsport\w*|herzgruppe\w*|muster\s*56)\b/iu,
-    required: ['diagnose1', 'icd1', 'ziel'],
-    text: { ziel: ['ziel', 'ziele', 'therapieziele', 'therapieziel'], schaedigung: ['befund', 'befunde', 'einschränkungen', 'funktionseinschränkungen'] },
-    check: { reha_sport: /\b(rehasport\w*|rehabilitationssport\w*|herzsport\w*|herzgruppe\w*)\b/iu, funktionstraining: /\bfunktionstraining\w*/iu, ft_wasser: /\bwasser\w*/iu, ft_trocken: /\btrocken\w*/iu, herzgruppe: /\bherzgruppe\b|\bherzsport\w*/iu, folgeverordnung: /\bfolgeverordnung\b/iu },
-    extra: (v) => {
-      const form = getForm('muster-56');
-      const sport = ['sport_50', 'sport_120', 'sport_28', 'sport_laenger'].some((id) => isChecked(v, id));
-      const ft = ['ft_12', 'ft_24', 'ft_laenger'].some((id) => isChecked(v, id));
-      const out: FormIssue[] = [];
-      if (isChecked(v, 'funktionstraining') && sport) out.push(issue(form, 'hinweis', 'Funktionstraining angekreuzt, Umfang aber für Rehabilitationssport gewählt.', ['funktionstraining'], form.groups.find((g) => g.id === 'art')?.rule.id ?? null));
-      if (isChecked(v, 'reha_sport') && ft) out.push(issue(form, 'hinweis', 'Rehabilitationssport angekreuzt, Dauer aber für Funktionstraining gewählt.', ['reha_sport'], form.groups.find((g) => g.id === 'art')?.rule.id ?? null));
-      if (isChecked(v, 'folgeverordnung') && !textOf(v, 'folge_begruendung')) out.push(issue(form, 'fehlt', 'Folgeverordnung: begründen, warum die erlernten Übungen nicht selbstständig durchgeführt werden können.', ['folge_begruendung'], form.fields.find((f) => f.id === 'folge_begruendung')?.rules[0]?.id ?? null));
-      return out;
-    },
+    ...SPEC_56,
   },
   'muster-62a': {
     intent: /\b(beatmungsentwöhnung\w*|dekanülierung\w*|potenzialerhebung|weaning-?potenzial|muster\s*62\s*a)\b/iu,
@@ -177,21 +148,7 @@ const SPECS: Record<WeitereId, Weiterer> = {
   },
   'muster-62b': {
     intent: /\b(außerklinische\w* intensivpflege|aki-?verordnung|intensivpflege\w*|muster\s*62\s*b)\b/iu,
-    required: ['diagnose_1', 'vom', 'bis', 'stunden_je_tag'],
-    check: { erstverordnung: /\berstverordnung\b/iu, folgeverordnung: /\bfolgeverordnung\b/iu, beatmung: /\bbeatm\w*/iu, tracheostoma: /\btracheostoma\b/iu, form_invasiv: /\binvasiv\w*/iu },
-    propose: (text, _f, today) => {
-      const form = getForm('muster-62b');
-      const zr = periodIn(text, today);
-      const ev = zr.evidence.join(', ') || null;
-      return [zr.vom ? prop(form, 'vom', 'vorgeschlagen', zr.vom, 'Beginn des Verordnungszeitraums.', ev) : prop(form, 'vom', 'unbekannt', null, 'Verordnungszeitraum: Beginn angeben.'),
-        zr.bis ? prop(form, 'bis', 'vorgeschlagen', zr.bis, 'Ende des Verordnungszeitraums.', ev) : prop(form, 'bis', 'unbekannt', null, 'Verordnungszeitraum: Ende angeben.')];
-    },
-    oneOf: [{ ids: ['erstverordnung', 'folgeverordnung'], text: 'Erst- oder Folgeverordnung ankreuzen.' }],
-    extra: (v) => [
-      ...both('muster-62b', 'erstverordnung', 'folgeverordnung', 'Entweder Erst- oder Folgeverordnung.')(v),
-      ...(validTTMMJJ(textOf(v, 'vom')) && validTTMMJJ(textOf(v, 'bis')) && fromTTMMJJ(textOf(v, 'bis')) < fromTTMMJJ(textOf(v, 'vom'))
-        ? [issue(getForm('muster-62b'), 'unzulaessig', '„bis“ liegt vor „vom“.', ['vom', 'bis'], getForm('muster-62b').fields.find((f) => f.id === 'vom')?.rules[0]?.id ?? null)] : []),
-    ],
+    ...SPEC_62B,
   },
   'muster-62c': {
     intent: /\b(behandlungsplan (?:für die )?(?:außerklinische\w* )?intensivpflege|aki-?behandlungsplan|muster\s*62\s*c)\b/iu,
