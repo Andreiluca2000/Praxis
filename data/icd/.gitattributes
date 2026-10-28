@@ -1,0 +1,7 @@
+# Die SHA-256-Werte in manifest.json gelten für die BfArM-Originale mit CRLF-Zeilenenden.
+# Damit 'pnpm import:icd' auf jedem Rechner (auch GitHub Actions) dieselben Bytes prüft, hier fest CRLF.
+*.txt text eol=crlf
+icd10gm2026syst_claml_20250912.xml text eol=crlf
+corrigenda-20260128.json text eol=crlf
+*.zip binary
+*.pdf binary
