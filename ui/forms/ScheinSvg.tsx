@@ -1,3 +1,4 @@
+import { type KeyboardEvent, useRef, useState } from 'react';
 import type { Need } from '../../src/forms/gaps.js';
 import type { FieldState, FieldValue, FormDefinition, FormField, IssueLevel } from '../../src/forms/types.js';
 import type { FormLayout } from './layouts.js';
@@ -19,7 +20,12 @@ type Props = {
   marks: Readonly<Record<string, Mark>>;
   selected: string | null;
   onSelect: (fieldId: string) => void;
+  /** Direkt auf dem Vordruck ankreuzen oder schreiben – dieselbe Quelle wie die Prüfliste. */
+  onChange: (fieldId: string, value: FieldValue) => void;
 };
+
+/** Auf dem Vordruck bearbeitbar: alles außer Personalien, Stempel und Angaben aus DURIA. */
+const editable = (f: FormField) => f.kind !== 'personalien' && f.kind !== 'stempel' && f.filled_by !== 'duria';
 
 const INK = '#1c2b5c';
 const LINE = '#e3342f';
@@ -118,16 +124,85 @@ function Entry({ field, value, layout, box }: { field: FormField; value: FieldVa
   );
 }
 
-export function ScheinSvg({ form, layout, page = 0, values, marks, selected, onSelect }: Props) {
+/** Schreibfeld über dem Feld des Vordrucks: Enter oder Verlassen speichert, Esc bricht ab, Tab springt weiter. */
+function InlineInput({ field, box, value, W, onDone }: {
+  field: FormField; box: PxBox; value: string; W: number;
+  /** move: Tab-Richtung, 0 = auf dem Feld bleiben, null = Fokus ging woandershin. */
+  onDone: (next: string | null, move: 0 | 1 | -1 | null) => void;
+}) {
+  const [draft, setDraft] = useState(value);
+  const done = useRef(false);
+  const finish = (next: string | null, move: 0 | 1 | -1 | null) => {
+    if (done.current) return;
+    done.current = true;
+    onDone(next, move);
+  };
+  const multi = (field.lines ?? 1) > 1;
+  const w = Math.max(box.w, 70);
+  const h = multi ? Math.max(box.h, 30) : Math.max(box.h, 15);
+  const x = Math.max(2, Math.min(box.x, W - w - 2));
+  const onKeyDown = (e: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    if (e.key === 'Escape') { e.preventDefault(); finish(null, 0); }
+    else if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); finish(draft, 0); }
+    else if (e.key === 'Tab') { e.preventDefault(); finish(draft, e.shiftKey ? -1 : 1); }
+  };
+  const common = {
+    className: 'schein-input', autoFocus: true, value: draft, 'aria-label': field.label,
+    onChange: (e: { target: { value: string } }) => setDraft(e.target.value),
+    onKeyDown, onBlur: () => finish(draft, null),
+    style: { fontSize: multi ? 9 : Math.min(10, Math.max(8, box.h * 0.62)) },
+  };
+  return (
+    <foreignObject x={x} y={box.y + (box.h - h) / 2} width={w} height={h} className="schein-edit">
+      {multi
+        ? <textarea {...common} />
+        : <input {...common} maxLength={field.format?.length} placeholder={field.format ?? ''} inputMode={field.format ? 'numeric' : undefined} />}
+    </foreignObject>
+  );
+}
+
+export function ScheinSvg({ form, layout, page = 0, values, marks, selected, onSelect, onChange }: Props) {
   const W = layout.width;
   const H = layout.height;
+  const svgRef = useRef<SVGSVGElement>(null);
+  const [editing, setEditing] = useState<string | null>(null);
   const px = (f: FormField) => ({ x: (f.box.x / 100) * W, y: (f.box.y / 100) * H, w: (f.box.w / 100) * W, h: (f.box.h / 100) * H });
-  // Vordruck-Platzhalter („T T M M J J“) ausblenden, wo schon etwas steht.
-  const onPage = form.fields.filter((f) => (f.page ?? 0) === page);
+  // Lesereihenfolge (wie die Prüfliste) – so springt Tab Zeile für Zeile durch den Vordruck.
+  const onPage = form.fields.filter((f) => (f.page ?? 0) === page).sort((a, b) => a.box.y - b.box.y || a.box.x - b.box.x);
   const boxes = onPage.map(px);
+
+  /** Kreuz setzen oder entfernen; in „genau eins“-Gruppen fallen die anderen Kreuze weg. */
+  function toggle(f: FormField) {
+    const on = values[f.id] !== true;
+    const g = f.group ? form.groups.find((x) => x.id === f.group) : undefined;
+    if (on && g?.select === 'genau_eins') form.fields.filter((o) => o.group === g.id && o.id !== f.id && values[o.id] === true).forEach((o) => onChange(o.id, false));
+    onChange(f.id, on);
+  }
+
+  function focusField(id: string, move: 1 | -1) {
+    const all = [...(svgRef.current?.querySelectorAll<SVGGElement>('.schein-field[tabindex="0"]') ?? [])];
+    const i = all.findIndex((el) => el.dataset.fid === id);
+    all[i + move]?.focus();
+  }
+
+  function activate(f: FormField) {
+    onSelect(f.id);
+    if (!editable(f)) return;
+    if (f.kind === 'checkbox') toggle(f);
+    else setEditing(f.id);
+  }
+
+  function onFieldKey(e: KeyboardEvent<SVGGElement>, f: FormField) {
+    if (e.key !== ' ' && e.key !== 'Enter' && e.key !== 'F2') return;
+    e.preventDefault();
+    activate(f);
+  }
+
+  const editField = onPage.find((f) => f.id === editing);
+  const editBox = editField ? boxes[onPage.indexOf(editField)]! : null;
   const filled = form.fields.filter((f) => (f.page ?? 0) === page && f.format && typeof values[f.id] === 'string' && values[f.id]).map(px);
   return (
-    <svg className="schein" viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`Muster ${form.muster} – ${form.title}, Vorschau`}>
+    <svg ref={svgRef} className="schein" viewBox={`0 0 ${W} ${H}`} role="group" aria-label={`Muster ${form.muster} – ${form.title}, direkt ausfüllbar`}>
       <rect x={0} y={0} width={W} height={H} rx={10} fill="#fff" />
       {layout.bands.map(([x, y, w, h], i) => <rect key={`b${i}`} x={x} y={y} width={w} height={h} rx={8} fill={layout.tint ?? '#fff'} />)}
       {layout.whites.map(([x, y, w, h], i) => <rect key={`w${i}`} x={x} y={y} width={w} height={h} fill="#fff" />)}
@@ -144,8 +219,13 @@ export function ScheinSvg({ form, layout, page = 0, values, marks, selected, onS
         const b = boxes[i]!;
         const m = marks[f.id];
         const on = selected === f.id;
+        const canEdit = editable(f);
+        const box = f.kind === 'checkbox';
         return (
-          <g key={f.id} className={`schein-field ${markClass(m)} ${on ? 'on' : ''}`} onClick={() => onSelect(f.id)}>
+          <g key={f.id} data-fid={f.id} className={`schein-field ${markClass(m)} ${on ? 'on' : ''} ${canEdit ? 'edit' : ''}`}
+            tabIndex={canEdit ? 0 : -1} role={canEdit ? (box ? 'checkbox' : 'textbox') : undefined}
+            aria-checked={canEdit && box ? values[f.id] === true : undefined} aria-label={f.label}
+            onClick={() => activate(f)} onKeyDown={(e) => onFieldKey(e, f)}>
             <rect className="hit" x={b.x - 2} y={b.y - 2} width={b.w + 4} height={b.h + 4} rx={4} />
             {f.kind === 'personalien' && (
               <g className="duria">
@@ -163,6 +243,18 @@ export function ScheinSvg({ form, layout, page = 0, values, marks, selected, onS
           </g>
         );
       })}
+      {editField && editBox && (
+        <InlineInput key={editField.id} field={editField} box={editBox} W={W}
+          value={typeof values[editField.id] === 'string' ? values[editField.id] as string : ''}
+          onDone={(next, move) => {
+            const id = editField.id;
+            const cur = typeof values[id] === 'string' ? values[id] : '';
+            if (next !== null && next.trim() !== cur) onChange(id, next.trim());
+            setEditing(null);
+            if (move) requestAnimationFrame(() => focusField(id, move));
+            else if (move === 0) requestAnimationFrame(() => svgRef.current?.querySelector<SVGGElement>(`[data-fid="${id}"]`)?.focus({ preventScroll: true }));
+          }} />
+      )}
     </svg>
   );
 }

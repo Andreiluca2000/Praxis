@@ -1,5 +1,5 @@
 import { Activity, Ambulance, Baby, BriefcaseMedical, ClipboardPen, FileText, FileHeart, Flower, HandHeart, Handshake, HeartPulse, Siren, UsersRound, HeartHandshake, Mountain, CircleAlert, CircleCheck, ClipboardList, Files, FlaskConical, Hospital, Info, Send, Stethoscope, TestTubes, TriangleAlert, WandSparkles } from 'lucide-react';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { analyse, check, propose } from '../../src/forms/advisor.js';
 import { valuesOf } from '../../src/forms/build.js';
 import { getForm } from '../../src/forms/catalog.js';
@@ -117,8 +117,10 @@ function KarteiCard({ offer, taken, onTake }: { offer: readonly KarteiItem[]; ta
 
 function Editor({ item, values, onChange }: { item: Item; values: Record<string, FieldValue>; onChange: (id: string, v: FieldValue) => void }) {
   if (item.select === 'genau_eins') {
+    // Lange Auswahltexte (Muster 4, a–f) als volle Zeilen statt Pillen – sonst werden sie zu Ovalen.
+    const long = item.fields.some((f) => short(f.label).length > 32);
     return (
-      <div className="fx-choices" role="radiogroup" aria-label={item.label}>
+      <div className={`fx-choices ${long ? 'long' : ''}`} role="radiogroup" aria-label={item.label}>
         {item.fields.map((f) => (
           <label key={f.id} className={`fx-choice ${values[f.id] === true ? 'on' : ''}`}>
             <input type="radio" name={item.key} checked={values[f.id] === true}
@@ -187,6 +189,7 @@ export function FormsView({ initial = devText(), kartei = null }: Props) {
     if (f?.page !== undefined) setPage(f.page);
   }
   const [icd, setIcd] = useState<IcdIndex | null>(null);
+  const sideRef = useRef<HTMLElement>(null);
   const [taken, setTaken] = useState<readonly KarteiItem[]>([]);
 
   useEffect(() => {
@@ -216,6 +219,17 @@ export function FormsView({ initial = devText(), kartei = null }: Props) {
     setText(t);
     run(t, chosen);
   }
+
+  // Geöffnete Zeile in der Prüfliste sichtbar halten – nur die Liste rollt, nicht die Seite.
+  useEffect(() => {
+    const side = sideRef.current;
+    const row = side?.querySelector<HTMLElement>('.fx-row.on');
+    if (!side || !row || side.scrollHeight <= side.clientHeight) return;
+    const s = side.getBoundingClientRect();
+    const r = row.getBoundingClientRect();
+    if (r.top < s.top + 8) side.scrollTop += r.top - s.top - 8;
+    else if (r.bottom > s.bottom - 8) side.scrollTop += Math.min(r.bottom - s.bottom + 8, r.top - s.top - 8);
+  }, [selected]);
 
   const w = active ? work[active] : undefined;
   const form = active ? getForm(active) : null;
@@ -284,7 +298,7 @@ export function FormsView({ initial = devText(), kartei = null }: Props) {
   const jump = (items: Item[]) => { const f = items[0]?.fields[0]; if (f) setSelected(f.id); };
 
   const side = form && w && (
-    <aside className={`card fx-side ${landscape ? 'wide' : ''}`}>
+    <aside ref={sideRef} className={`card fx-side ${landscape ? 'wide' : ''}`}>
       <div>
         <h3>Prüfung</h3>
         {(gaps.fehlt.length > 0 || gaps.entscheidung.length > 0 || gaps.empfohlen.length > 0) && (
@@ -421,8 +435,8 @@ export function FormsView({ initial = devText(), kartei = null }: Props) {
                 ))}
               </div>
             )}
-            <ScheinSvg form={form} layout={layout} page={page} values={w.values} marks={marks} selected={selected} onSelect={setSelected} />
-            <p className="muted fx-foot">Nachbildung zur Orientierung – keine Druckvorlage. Klick auf ein Feld zeigt Grund und Quelle.</p>
+            <ScheinSvg form={form} layout={layout} page={page} values={w.values} marks={marks} selected={selected} onSelect={setSelected} onChange={change} />
+            <p className="muted fx-foot">Nachbildung zur Orientierung – keine Druckvorlage. Direkt auf dem Vordruck ankreuzen oder schreiben: Enter speichert, Esc bricht ab, Tab springt zum nächsten Feld, Leertaste kreuzt an. Grund und Quelle stehen rechts.</p>
           </section>
           {side}
         </div>
