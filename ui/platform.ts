@@ -18,7 +18,15 @@ export interface AppConfig {
   mode: 'simulation' | 'operational';
   ollama_model: string | null;
   voice: { threads: number; language: string };
+  /** KI-Assistent über die Claude API – standardmäßig aus. */
+  ai: AiConfig;
 }
+
+export interface AiConfig { provider: 'aus' | 'claude'; model: string; effort: 'low' | 'medium' | 'high' }
+export interface AiAuditEntry { at: number; user: string; feature: string; model: string; input_tokens: number; output_tokens: number; ok: boolean; note: string }
+export interface AiStatus { config: AiConfig; models: string[]; key_present: boolean; audit: AiAuditEntry[] }
+export interface AiPreview { body: string; redactions: number; truncated: boolean; chars: number }
+export interface AiTestResult { ok: boolean; model: string; answer: string; input_tokens: number; output_tokens: number }
 
 export interface Status {
   needs_setup: boolean;
@@ -39,6 +47,12 @@ export const api = {
   /** Praxisregeln (praxisweit). Lesen: jeder Angemeldete; Speichern: nur Ärzte, auf dem Server nur als Administrator. */
   rulesRead: () => invoke<string | null>('rules_read'),
   rulesWrite: (json: string) => invoke<void>('rules_write', { json }),
+  /** KI-Assistent: der Schlüssel geht nur hinein (Credential Manager), nie zurück ins Fenster. */
+  aiStatus: () => invoke<AiStatus>('ai_status'),
+  aiSetKey: (key: string) => invoke<void>('ai_set_key', { key }),
+  aiDeleteKey: () => invoke<void>('ai_delete_key'),
+  aiTest: () => invoke<AiTestResult>('ai_test'),
+  aiPreview: (text: string) => invoke<AiPreview>('ai_preview', { text }),
   setAccountActive: (kuerzel: string, active: boolean) => invoke<void>('set_account_active', { kuerzel, active }),
   login: (kuerzel: string, password: string) => invoke<PublicAccount>('login', { kuerzel, password }),
   logout: () => invoke<void>('logout'),

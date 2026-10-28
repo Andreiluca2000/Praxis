@@ -3,6 +3,9 @@
 //! Fachlogik (Prüfmotor, xDT, Fertig) läuft als TypeScript im Fenster und ist dort getestet.
 
 mod accounts;
+mod ai;
+#[cfg(test)]
+mod ai_tests;
 #[cfg(test)]
 mod accounts_tests;
 mod commands;
@@ -32,6 +35,10 @@ pub struct AppState {
     /// Letzte bereinigte Übergabe aus DURIA, bis das Fenster sie abholt (nur im Arbeitsspeicher).
     /// Das Ereignis ist nur ein Hinweis – so geht nichts verloren, wenn das Fenster gerade erst lädt.
     pub pending: Mutex<Option<SanitizedExport>>,
+    /// Ablage des Claude-API-Schlüssels (Windows-Anmeldeinformationsverwaltung).
+    pub keys: Box<dyn ai::KeyStore>,
+    /// KI-Protokoll ohne Inhalte (je Windows-Benutzer).
+    pub ai_audit_file: PathBuf,
 }
 
 /// Bereinigte Daten für das Fenster (ohne Identität, Patientennummer pseudonymisiert).
@@ -178,6 +185,8 @@ pub fn run() {
                 config_file,
                 vault: Mutex::new(PatientVault::new()),
                 pending: Mutex::new(None),
+                keys: Box::new(ai::CredentialManager),
+                ai_audit_file: user_dir.join("ki-protokoll.jsonl"),
             });
             start_inbox(app.handle().clone());
             Ok(())
@@ -197,6 +206,11 @@ pub fn run() {
             commands::transcribe,
             commands::update_config,
             commands::rules_read,
+            commands::ai_status,
+            commands::ai_set_key,
+            commands::ai_delete_key,
+            commands::ai_test,
+            commands::ai_preview,
             commands::rules_write,
         ])
         .run(tauri::generate_context!())

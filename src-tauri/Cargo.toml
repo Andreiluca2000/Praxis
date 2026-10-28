@@ -22,6 +22,9 @@ password-hash = { version = "0.5", features = ["getrandom"] }
 hmac = "0.12"
 sha2 = "0.10"
 getrandom = "0.2"
+# KI-Assistent (optional): HTTP zur Claude API und Schlüssel in der Windows-Anmeldeinformationsverwaltung
+reqwest = { version = "0.13", features = ["json"] }
+keyring = { version = "3", features = ["windows-native"] }
 
 [profile.release]
 # Klein und sparsam: wichtig auf dem Terminalserver (eine Instanz je RDP-Sitzung).

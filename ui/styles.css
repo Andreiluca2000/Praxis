@@ -185,3 +185,7 @@ main.login::after { width:520px; height:520px; right:-180px; bottom:-200px; back
 .window-findings { margin-top:18px; padding-top:16px; border-top:1px solid var(--line); }
 .window-findings h3 { display:flex; gap:8px; align-items:center; margin:0 0 6px; font-size:15.5px; font-weight:650; }
 .window-findings h3 svg { color:var(--accent); }
+
+/* KI-Assistent: Vorschau des Anfragekörpers und Unterüberschriften (auch außerhalb von ui/rules). */
+pre.ai-preview { margin:10px 0 0; padding:12px 14px; max-height:280px; overflow:auto; border-radius:14px; background:#f2f5f2; border:1px solid var(--line); font:12.5px/1.5 Consolas, "Cascadia Mono", monospace; white-space:pre-wrap; word-break:break-word; }
+h3.sub { display:flex; gap:8px; align-items:center; margin:18px 0 8px; font-size:15px; font-weight:650; }

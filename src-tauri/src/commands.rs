@@ -178,6 +178,88 @@ pub async fn transcribe(state: State<'_, AppState>, audio: Vec<u8>) -> Result<St
     tauri::async_runtime::spawn_blocking(move || voice::transcribe(&audio, &cfg)).await.map_err(|e| e.to_string())?
 }
 
+#[derive(serde::Serialize)]
+pub struct AiStatus {
+    config: crate::ai::AiConfig,
+    models: Vec<&'static str>,
+    key_present: bool,
+    audit: Vec<crate::ai::AuditEntry>,
+}
+
+/// Zustand des KI-Assistenten: Einstellung, ob ein Schlüssel hinterlegt ist (nie der Schlüssel selbst), Protokoll.
+#[tauri::command]
+pub fn ai_status(state: State<AppState>) -> Result<AiStatus, String> {
+    require_user(&state)?;
+    Ok(AiStatus {
+        config: state.config.lock().unwrap().ai.clone(),
+        models: crate::ai::MODELS.to_vec(),
+        key_present: state.keys.get()?.is_some(),
+        audit: crate::ai::read_audit(&state.ai_audit_file, 10),
+    })
+}
+
+/// Schlüssel hinterlegen (nur Arzt). Er verlässt Rust nie wieder in Richtung Fenster.
+#[tauri::command]
+pub fn ai_set_key(state: State<AppState>, key: String) -> Result<(), String> {
+    require_arzt(&state)?;
+    if !crate::ai::key_looks_valid(&key) {
+        return Err("Das sieht nicht wie ein Claude-API-Schlüssel aus (beginnt mit „sk-ant-“).".into());
+    }
+    state.keys.set(key.trim())
+}
+
+#[tauri::command]
+pub fn ai_delete_key(state: State<AppState>) -> Result<(), String> {
+    require_arzt(&state)?;
+    state.keys.delete()
+}
+
+#[derive(serde::Serialize)]
+pub struct AiTestResult {
+    ok: bool,
+    model: String,
+    answer: String,
+    input_tokens: u64,
+    output_tokens: u64,
+}
+
+/// Verbindungstest mit festem, synthetischem Text (Stufe 1 sendet nichts aus der Kartei). Nur Arzt.
+#[tauri::command]
+pub async fn ai_test(state: State<'_, AppState>) -> Result<AiTestResult, String> {
+    let user = require_arzt(&state)?;
+    let cfg = state.config.lock().unwrap().ai.clone();
+    let key = state.keys.get()?.ok_or("Kein Claude-API-Schlüssel hinterlegt.")?;
+    let body = crate::ai::build_request(&cfg, crate::ai::TEST_TASK, crate::ai::TEST_DATA, 1024);
+    let result = crate::ai::send(&key, &body).await;
+    let entry = crate::ai::AuditEntry {
+        at: crate::ai::now_secs(), user: user.kuerzel.clone(), feature: "verbindungstest".into(), model: cfg.model.clone(),
+        input_tokens: result.as_ref().map(|r| r.input_tokens).unwrap_or(0),
+        output_tokens: result.as_ref().map(|r| r.output_tokens).unwrap_or(0),
+        ok: result.is_ok(), note: result.as_ref().err().cloned().unwrap_or_default(),
+    };
+    crate::ai::append_audit(&state.ai_audit_file, &entry)?;
+    let r = result?;
+    Ok(AiTestResult { ok: true, model: cfg.model, answer: r.text.chars().take(200).collect(), input_tokens: r.input_tokens, output_tokens: r.output_tokens })
+}
+
+#[derive(serde::Serialize)]
+pub struct AiPreview {
+    body: String,
+    redactions: usize,
+    truncated: bool,
+    chars: usize,
+}
+
+/// „Was würde gesendet?“ – baut den Körper mit derselben Funktion wie der echte Aufruf, sendet aber nichts.
+#[tauri::command]
+pub fn ai_preview(state: State<AppState>, text: String) -> Result<AiPreview, String> {
+    require_user(&state)?;
+    let cfg = state.config.lock().unwrap().ai.clone();
+    let (data, redactions, truncated) = crate::ai::minimize(&text);
+    let body = crate::ai::build_request(&cfg, "Fakten aus dem Auszug als Vorschlag zusammenstellen (Stufe 2).", &data, 4096);
+    Ok(AiPreview { chars: data.chars().count(), body: serde_json::to_string_pretty(&body).map_err(|e| e.to_string())?, redactions, truncated })
+}
+
 /// Praxisregeln lesen (jeder angemeldete Benutzer). `None` = noch keine Datei.
 #[tauri::command]
 pub fn rules_read(state: State<AppState>) -> Result<Option<String>, String> {
@@ -198,7 +280,9 @@ pub fn update_config(state: State<AppState>, patch: serde_json::Value) -> Result
     let mut cfg = state.config.lock().unwrap();
     let mut value = serde_json::to_value(&*cfg).map_err(|e| e.to_string())?;
     config::merge(&mut value, &patch);
-    *cfg = serde_json::from_value(value).map_err(|e| format!("Ungültige Einstellung: {e}"))?;
+    let next: AppConfig = serde_json::from_value(value).map_err(|e| format!("Ungültige Einstellung: {e}"))?;
+    crate::ai::validate_config(&next.ai)?;
+    *cfg = next;
     save_config(&state.config_file, &cfg)?;
     Ok(cfg.clone())
 }

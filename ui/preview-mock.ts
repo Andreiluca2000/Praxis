@@ -42,11 +42,13 @@ export function installPreviewMock() {
     outbox_dir: 'C:\\ProgramData\\Praxis-Assistent\\gdt\\%CLIENTNAME%\\ausgang',
     outbox_file: 'PRAX_DUR.gdt', writeback_enabled: false, billing_writeback_enabled: false, billing_channel: 'gdt',
     mode: 'simulation', ollama_model: null, voice: { threads: 4, language: 'de' },
+    ai: { provider: 'aus', model: 'claude-opus-5-5', effort: 'low' },
   };
   // ?preview=login bzw. ?preview=setup zeigt die Anmeldung bzw. Ersteinrichtung.
   const screen = new URLSearchParams(location.search).get('preview');
   const loggedOut = screen === 'login' || screen === 'setup';
   let delivered = false;
+  let aiKey = false;
   let practiceRules: string | null = samplePracticeRules();
   mockIPC((cmd, args) => {
     if (cmd === 'status') {
@@ -54,6 +56,11 @@ export function installPreviewMock() {
     }
     if (cmd.startsWith('plugin:event')) return 0;
     if (cmd === 'rules_read') return practiceRules;
+    if (cmd === 'ai_status') return { config: config.ai, models: ['claude-opus-5-5', 'claude-sonnet-5-5', 'claude-haiku-5-5'], key_present: aiKey, audit: aiKey ? [{ at: 1793170000, user: 'AL', feature: 'verbindungstest', model: 'claude-opus-5-5', input_tokens: 61, output_tokens: 2, ok: true, note: '' }] : [] };
+    if (cmd === 'ai_set_key') { aiKey = true; return null; }
+    if (cmd === 'ai_delete_key') { aiKey = false; return null; }
+    if (cmd === 'ai_preview') return { body: JSON.stringify({ model: config.ai.model, max_tokens: 4096, system: '…', messages: [{ role: 'user', content: `<daten>\n${String((args as { text: string }).text).replace(/P-[0-9a-f]{20}|\d{3,4}\/\d{5,}/g, '[entfernt]')}\n</daten>` }], output_config: { effort: config.ai.effort } }, null, 2), redactions: 2, truncated: false, chars: 180 };
+    if (cmd === 'update_config') { Object.assign(config, (args as { patch: Record<string, unknown> }).patch); return config; }
     if (cmd === 'rules_write') { practiceRules = (args as { json: string }).json; return null; }
     if (cmd === 'take_incoming' && screen === 'patient' && !delivered) { delivered = true; return syntheticExport(); }
     return null;

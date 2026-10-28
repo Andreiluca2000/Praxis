@@ -1,4 +1,24 @@
 # Stadiul programării (Claude)
+## Etapa (28.10.2026): KI-Assistent prin Claude API – etapa 1 (doar date sintetice), plan în `docs/CLAUDE_INTEGRATION_PLAN.md`
+- **Abonamentul Claude nu se poate lega în program:** Anthropic nu permite login claude.ai sau limitele unui abonament în produse terțe fără aprobare (Agent SDK overview, verificat). Se folosește Claude API.
+- **Rust `src-tauri/src/ai.rs`:**
+  - **cererea:** doar spre `https://api.anthropic.com/v1/messages`, `anthropic-version: 2026-10-21`, fără `temperature`/`top_p`/`top_k`, cu `output_config.effort`; modele permise `claude-opus-5-5` (implicit), `claude-sonnet-5-5`, `claude-haiku-5-5`;
+  - **instrucțiunea de sistem:** textul e date între `<daten>`, nu instrucțiuni (protecție la prompt injection);
+  - **`minimize()`:** înlocuiește pseudonimele `P-…`, e-mailurile, numerele de ≥ 7 cifre (telefon) și formatul KVNR cu „[entfernt]”, limită 8000 de caractere; datele clinice și datele calendaristice rămân;
+  - **`parse_response()`:** erorile HTTP devin mesaje clare, `stop_reason: refusal` e tratat ca refuz;
+  - **jurnalul `ki-protokoll.jsonl`:** fără conținut;
+  - **cheia:** în Windows Credential Manager (`keyring`, per utilizator Windows), niciodată în fișier sau în fereastră.
+- **Comenzi:**
+  - `ai_status` (niciodată cheia);
+  - `ai_set_key` și `ai_delete_key` (doar medic; formatul `sk-ant-…` e verificat);
+  - `ai_test` (doar medic; **un singur text sintetic fix**; etapa 1 nu trimite nimic din fișă);
+  - `ai_preview`, care construiește corpul cererii cu aceeași funcție, dar nu trimite nimic.
+- **Setări:** `AppConfig.ai` (`provider` aus/claude, implicit „aus”), validate la `update_config`. CSP-ul ferestrei rămâne fără acces la internet.
+- **UI `ui/AiSettings.tsx`** în Einstellungen: furnizor, model, effort, cheie (doar intrare), „Verbindung testen”, previzualizarea „Was würde gesendet?”, jurnalul ultimelor 10 apeluri.
+- **Teste:** Rust 33 (6 noi în `ai_tests.rs`, cu KeyStore în memorie). În release: cheie de test inventată → Credential Manager → nu apare în fereastră → previzualizare fără identificatori → setare invalidă refuzată → MFA refuzat la cheie și test → curățenie (fără cheie, KI pe „aus”). **Testul de conexiune cu Anthropic nu e verificat** (cere cheia reală a cabinetului).
+- **Urmează:** etapa 2, extracția faptelor din dictare (ieșire structurată, „unsicher”, confirmare de medic), după DPA/ZDR/DPIA. Cheia e acum per utilizator Windows; pentru tot cabinetul trebuie decis (fiecare medic cu cheia lui sau o cheie comună prin serviciu/admin).
+
+
 ## Etapa (28.10.2026): Praxisregeln (după macheta aprobată, salvare doar ca admin)
 - **Motor** (`src/rules/`):
   - `model.ts`: 4 tipuri (Erinnerung, Pflichtangabe uhrzeit/dauer/pflichtinhalte, Hausregel Kombination zi/Behandlungsfall, Vorschlag zurückhalten). Validarea conținutului e strictă: câmp necunoscut sau tip necunoscut înseamnă eroare. Versiuni imuabile `entwurf → aktiv → archiv`: activarea e doar de medic, cu motiv obligatoriu, iar versiunea activă anterioară trece în arhivă. „Gültig ab” e respectat. `praxisregeln.json` se citește fail-closed: un fișier stricat înseamnă nicio regulă, cu mesaj vizibil.

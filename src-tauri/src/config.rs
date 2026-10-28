@@ -23,6 +23,9 @@ pub struct AppConfig {
     pub mode: String, // "simulation" | "operational"
     pub ollama_model: Option<String>,
     pub voice: VoiceConfig,
+    /// KI-Assistent über die Claude API – standardmäßig aus.
+    #[serde(default)]
+    pub ai: crate::ai::AiConfig,
 }
 
 fn default_channel() -> String {
@@ -94,6 +97,7 @@ fn defaults(resource_root: &Path) -> AppConfig {
         billing_channel: default_channel(),
         mode: "simulation".into(),
         ollama_model: None,
+        ai: crate::ai::AiConfig::default(),
         voice: VoiceConfig {
             whisper_exe: tools.join("whisper").join("Release").join("whisper-cli.exe"),
             model: tools.join("models").join("ggml-large-v3-turbo-q5_0.bin"),

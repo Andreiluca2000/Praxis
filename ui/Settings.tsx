@@ -1,5 +1,6 @@
 import { Building2, Monitor, Users } from 'lucide-react';
 import { useState, type FormEvent } from 'react';
+import { AiSettings } from './AiSettings.js';
 import { api, type Status } from './platform.js';
 
 /** Konten (nur Arzt), Arbeitsplatz, KV. Keine Patientendaten. */
@@ -46,6 +47,8 @@ export function Settings({ status, kv, onKv, onChanged }: {
         </div>
         <p className="muted">Ohne KV werden regionale Regeln nicht geprüft. Ein Wechsel macht frühere Ergebnisse ungültig.</p>
       </section>
+
+      <AiSettings isArzt={isArzt} config={status.config.ai} onChanged={onChanged} />
 
       <section className="card">
         <h2><Monitor size={22} aria-hidden="true" />Arbeitsplatz <span className="muted">{status.session}</span></h2>
