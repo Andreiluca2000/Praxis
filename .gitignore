@@ -24,3 +24,22 @@ src-tauri/gen/
 data/icd/catalog-*.json
 data/icd/*.tmp
 
+
+# Geheimnisse und Zugangsdaten – nie ins Repository
+.env
+.env.*
+*.pem
+*.key
+*.pfx
+*.p12
+
+# Laufzeitdaten der Praxis (Konten, Praxisregeln) und KVDT-Abrechnungsdateien
+konten.json
+praxisregeln.json
+*.con
+*.CON
+
+# lokale Werkzeuge und Entwürfe
+.claude/
+ui/mock/
+*.tmp
