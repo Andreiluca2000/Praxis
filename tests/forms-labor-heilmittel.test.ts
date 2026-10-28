@@ -16,10 +16,10 @@ const texts = (issues: FormIssue[], level: FormIssue['level']) => issues.filter(
 
 describe('Analyse: Labor und Heilmittel', () => {
   it('„Überweisung ans Labor“ → Muster 10 statt Muster 6', () => {
-    expect(analyse('Überweisung ans Labor: Blutbild, CRP').suggestions.map((s) => s.formId)).toEqual(['muster-10']);
+    expect(analyse('Überweisung ans Labor: Blutbild, CRP').suggestions.map((s) => s.formId)).toEqual(['muster-10', 'muster-10a']);
   });
   it('Kardiologie und Labor zusammen → Muster 6 und Muster 10', () => {
-    expect(analyse('Überweisung zum Kardiologen, vorher Blutbild und TSH ins Labor').suggestions.map((s) => s.formId)).toEqual(['muster-06', 'muster-10']);
+    expect(analyse('Überweisung zum Kardiologen, vorher Blutbild und TSH ins Labor').suggestions.map((s) => s.formId)).toEqual(['muster-06', 'muster-10', 'muster-10a']);
   });
   it('„Laborwerte“ nur im Befund-Abschnitt löst kein Muster 10 aus', () => {
     expect(analyse('Überweisung Kardiologie wegen Palpitationen. Befund: Laborwerte unauffällig').suggestions.map((s) => s.formId)).toEqual(['muster-06']);

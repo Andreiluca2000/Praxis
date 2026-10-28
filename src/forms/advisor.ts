@@ -5,8 +5,11 @@ import { checkMuster02, proposeMuster02 } from './muster02.js';
 import { checkMuster04, proposeMuster04 } from './muster04.js';
 import { checkMuster06, proposeMuster06 } from './muster06.js';
 import { checkMuster10, proposeMuster10 } from './muster10.js';
+import { checkMuster10A, labGemeinschaft, proposeMuster10A } from './muster10a.js';
 import { checkMuster12, proposeMuster12 } from './muster12.js';
 import { checkMuster13, proposeMuster13 } from './muster13.js';
+import { checkMuster20, proposeMuster20 } from './muster20.js';
+import { checkMuster21, proposeMuster21 } from './muster21.js';
 import { checkMuster61, proposeMuster61 } from './muster61.js';
 import { specialtyIn } from './specialties.js';
 import { cue, headOf, norm, uni } from './text.js';
@@ -24,6 +27,8 @@ const INTENTS: [Intent, RegExp][] = [
   ['ueberweisung', /\b(überweis\w*|facharzt\w*|konsil\w*|mitbehandlung|weiterbehandlung)\b/iu],
   ['labor', /\b(labor\w*|blutbild|blutentnahme|blutabnahme|blutwerte|urinkultur|serologie)\b/iu],
   ['hkp', /\b(häusliche\w* krankenpflege|hkp|pflegedienst\w*|behandlungspflege|verbandswechsel|verbandwechsel|kompressionsstrümpfe|medikamentengabe|wundversorgung)\b/iu],
+  ['kinderkrank', /\b(kind(?:er)?krank\w*|krankes kind|kind(?:es)? (?:ist )?krank|kinderkrankengeld|krankengeld (?:bei|wegen) (?:erkrankung|krankheit) (?:des|eines) kindes|betreuung des (?:kranken |erkrankten )?kindes|muster\s*21)\b/iu],
+  ['wiedereingliederung', /\b(wiedereingliederung\w*|hamburger modell|stufenweise\w* (?:wieder)?(?:eingliederung|wiederaufnahme)|muster\s*20)\b/iu],
   ['reha', /\b(reha|rehabilitation\w*|anschlussheilbehandlung|ahb|reha-?antrag)\b/iu],
   ['heilmittel', /\b(heilmittel\w*|physiotherap\w*|physio|krankengymnastik|manuelle therapie|lymphdrainage|ergotherap\w*|logopädi\w*|podolog\w*|ernährungstherap\w*|sprachtherap\w*|stimmtherap\w*|schlucktherap\w*)\b/iu],
 ];
@@ -51,7 +56,7 @@ function intents(text: string): { intent: Intent; evidence: string }[] {
   return out;
 }
 
-const FORM_OF: Record<Intent, FormId> = { ueberweisung: 'muster-06', einweisung: 'muster-02', befoerderung: 'muster-04', labor: 'muster-10', heilmittel: 'muster-13', hkp: 'muster-12', reha: 'muster-61' };
+const FORM_OF: Record<Intent, FormId> = { ueberweisung: 'muster-06', einweisung: 'muster-02', befoerderung: 'muster-04', labor: 'muster-10', heilmittel: 'muster-13', hkp: 'muster-12', reha: 'muster-61', kinderkrank: 'muster-21', wiedereingliederung: 'muster-20' };
 
 function suggestion(formId: FormId, role: FormSuggestion['role'], why: string, evidence: string | null, ruleId: string | null): FormSuggestion {
   const form = getForm(formId);
@@ -62,6 +67,16 @@ function suggestions(text: string, facts: PatientFacts): FormSuggestion[] {
   const found = intents(text);
   const out: FormSuggestion[] = found.map((f) => suggestion(FORM_OF[f.intent], 'hauptsache', `Gewünscht: „${f.evidence}“.`, f.evidence, null));
   const has = (id: FormId) => out.some((s) => s.formId === id);
+  // Allgemeinlabor über die Laborgemeinschaft: Muster 10A statt Muster 10.
+  const lg = cue(/\b(laborgemeinschaft|muster\s*10\s*a|anforderungsschein)\b/iu, text);
+  const m10 = out.findIndex((s) => s.formId === 'muster-10');
+  if (lg) {
+    if (m10 >= 0) out.splice(m10, 1);
+    if (!has('muster-10a')) out.push(suggestion('muster-10a', 'hauptsache', `Gewünscht: „${lg}“.`, lg, null));
+  } else if (m10 >= 0) {
+    const gl = labGemeinschaft(text);
+    if (gl) out.push(suggestion('muster-10a', 'alternativ', `Bezieht die Praxis das Allgemeinlabor über eine Laborgemeinschaft: Muster 10A (${gl}).`, gl, 'm10a.auftragsfeld'));
+  }
   const b = befoerderungB(facts);
   if (!has('muster-04')) {
     if (has('muster-02') && (facts.ausstattung || (facts.pflegegrad && facts.pflegegrad.value >= 3) || facts.notfall)) {
@@ -104,13 +119,16 @@ export function propose(formId: FormId, description: string, facts: PatientFacts
   if (formId === 'muster-02') return proposeMuster02(text, facts);
   if (formId === 'muster-04') return proposeMuster04(text, facts);
   if (formId === 'muster-10') return proposeMuster10(text, facts, today);
+  if (formId === 'muster-10a') return proposeMuster10A(text, facts, today);
   if (formId === 'muster-12') return proposeMuster12(text, facts, today);
   if (formId === 'muster-61') return proposeMuster61(text, facts, today);
+  if (formId === 'muster-21') return proposeMuster21(text, facts, today);
+  if (formId === 'muster-20') return proposeMuster20(text, facts, today);
   return proposeMuster13(text, facts);
 }
 
 const CHECKS: Record<FormId, (values: FormValues, facts: PatientFacts) => FormIssue[]> = {
-  'muster-06': checkMuster06, 'muster-02': checkMuster02, 'muster-04': checkMuster04, 'muster-10': checkMuster10, 'muster-13': checkMuster13, 'muster-12': checkMuster12, 'muster-61': checkMuster61,
+  'muster-06': checkMuster06, 'muster-02': checkMuster02, 'muster-04': checkMuster04, 'muster-10': checkMuster10, 'muster-10a': checkMuster10A, 'muster-13': checkMuster13, 'muster-12': checkMuster12, 'muster-61': checkMuster61, 'muster-21': checkMuster21, 'muster-20': checkMuster20,
 };
 
 const ORDER = { unzulaessig: 0, fehlt: 1, hinweis: 2 } as const;

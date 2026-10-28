@@ -1,7 +1,7 @@
 import { checkbox, exactlyOne, formatIssues, isChecked, issue, pickOne, prop, textOf } from './build.js';
 import { getForm } from './catalog.js';
 import { diagnose, icdIssues, labeled, personalien, stempel } from './common.js';
-import { cue, dateAfter, labeledSegments, quarterQJJ, reasonPhrase, segment, uni } from './text.js';
+import { cue, dateAfter, timeAfter, labeledSegments, quarterQJJ, reasonPhrase, segment, uni } from './text.js';
 import type { FieldProposal, FormIssue, FormProposal, FormValues, PatientFacts } from './types.js';
 
 /** Muster 10 – Überweisungsschein für in-vitro-diagnostische Auftragsleistungen (Stand 4.2024). Erläuterungen 01/2026, S. 36–39. */
@@ -70,7 +70,7 @@ export function proposeMuster10(text: string, facts: PatientFacts, today: Date):
   const tests = labTests(text);
   const abnahme = dateAfter(/\b(?:abnahme|abgenommen|entnahme|blutentnahme)\b/i, text);
   const todayTTMMJJ = `${String(today.getDate()).padStart(2, '0')}${String(today.getMonth() + 1).padStart(2, '0')}${String(today.getFullYear()).slice(2)}`;
-  const zeit = uni(/\b(?:abnahme|abgenommen|entnahme)\w*[^.;]{0,20}?\b(\d{1,2})[:.](\d{2})\s*(?:uhr)?/iu).exec(text);
+  const zeit = timeAfter(/\b(?:abnahme|abgenommen|entnahme|blutentnahme)\w*/, text);
   const ssw = uni(/\b(\d{1,2})\s*\.?\s*ssw\b|\bssw\s*(\d{1,2})\b/iu).exec(text);
   const schwanger = cue(/\b(schwanger\w*|gravid\w*)\b/iu, text);
   const eilt = cue(/\b(eilt|eilig|cito|notfalllabor|sofort)\b/iu, text) ?? facts.dringend?.evidence ?? null;
@@ -93,7 +93,7 @@ export function proposeMuster10(text: string, facts: PatientFacts, today: Date):
     abnahme?.value && abnahme.value !== todayTTMMJJ
       ? prop(form, 'abnahmedatum', 'vorgeschlagen', abnahme.value, 'Entnahme an einem anderen Tag als die Ausstellung.', abnahme.evidence)
       : prop(form, 'abnahmedatum', 'leer', null, 'Nur wenn die Entnahme nicht am Ausstellungstag ist.'),
-    zeit ? prop(form, 'abnahmezeit', 'vorgeschlagen', `${zeit[1]!.padStart(2, '0')}${zeit[2]}`, 'Abnahmezeit, falls für die Befundung nötig.', zeit[0])
+    zeit ? prop(form, 'abnahmezeit', 'vorgeschlagen', zeit.value, 'Abnahmezeit, falls für die Befundung nötig.', zeit.evidence)
       : prop(form, 'abnahmezeit', 'leer', null, 'Nur falls für die Befundung erforderlich (z. B. Cortisol-Tagesprofil).'),
     ...[['eilt', eilt, 'Befund eilt.'], ['telefon', tel, 'Übermittlung per Telefon.'], ['fax', fax, 'Übermittlung per Fax.']].map(([id, ev, why]) => checkbox(form, id!, ev ?? null, why!)),
     eilt && (tel || fax) ? prop(form, 'nr', 'unbekannt', null, 'Telefon- bzw. Faxnummer der Praxis für den eiligen Befund ergänzen.', null, 'm10.eilt')

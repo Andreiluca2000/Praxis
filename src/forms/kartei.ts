@@ -104,9 +104,12 @@ const TARGETS: Record<FormId, { diagnose: string | null; eintrag: string | null 
   'muster-02': { diagnose: 'diagnose', eintrag: 'untersuchungsergebnisse' },
   'muster-04': { diagnose: null, eintrag: null },
   'muster-10': { diagnose: 'diagnose', eintrag: 'befund' },
+  'muster-10a': { diagnose: null, eintrag: 'zusatzangaben' },
   'muster-13': { diagnose: 'diagnose', eintrag: 'therapieziele' },
   'muster-12': { diagnose: null, eintrag: 'hinweise' },
   'muster-61': { diagnose: 'dx1', eintrag: 'anamnese' },
+  'muster-21': { diagnose: null, eintrag: null },
+  'muster-20': { diagnose: null, eintrag: null },
 };
 
 /** Satz, der der Beschreibung angehängt wird, damit die gewählten Tatsachen in die Regeln eingehen. */

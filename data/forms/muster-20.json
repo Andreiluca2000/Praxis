@@ -1,0 +1,487 @@
+{
+ "schema_version": "1.0.0",
+ "id": "muster-20",
+ "muster": "20",
+ "title": "Stufenweise Wiedereingliederung in das Erwerbsleben (Wiedereingliederungsplan)",
+ "form_version": "1.2019",
+ "released": "2018-10-15",
+ "status": "entwurf",
+ "paper": {
+  "format": "DIN A4 hoch",
+  "width": 595.3,
+  "height": 841.9,
+  "tint": "gelb"
+ },
+ "copies": [
+  {
+   "id": "20a",
+   "label": "Ausfertigung für den Arbeitgeber",
+   "recipient": "Arbeitgeber"
+  },
+  {
+   "id": "20b",
+   "label": "Ausfertigung für die Krankenkasse",
+   "recipient": "Krankenkasse"
+  },
+  {
+   "id": "20c",
+   "label": "Ausfertigung für den Versicherten",
+   "recipient": "Versicherte/r"
+  },
+  {
+   "id": "20d",
+   "label": "Ausfertigung für den Vertragsarzt",
+   "recipient": "Praxis"
+  }
+ ],
+ "notes": [
+  {
+   "id": "m20.au_besteht",
+   "text": "Auch während der stufenweisen Wiedereingliederung besteht Arbeitsunfähigkeit; die Fortdauer wird weiterhin auf der AU-Bescheinigung attestiert (im Erläuterungstext als „Muster 1“ bezeichnet).",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 20, Einleitung, S. 64–65"
+   }
+  },
+  {
+   "id": "m20.zusammenarbeit",
+   "text": "Die stufenweise Wiedereingliederung soll in vertrauensvoller Zusammenarbeit von Versichertem, behandelndem Arzt, Arbeitnehmervertretung, Arbeitgeber, Betriebsarzt, Krankenkasse und ggf. MD sowie Rehabilitationsträger erfolgen.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 20, Einleitung, S. 65"
+   }
+  },
+  {
+   "id": "m20.grundlage",
+   "text": "Grundlage der Beurteilung sind die Empfehlungen zur Umsetzung der stufenweisen Wiedereingliederung in der Anlage der AU-Richtlinie des G-BA.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 20, Einleitung, S. 65"
+   }
+  },
+  {
+   "id": "m20.aenderungen",
+   "text": "Ergeben sich Änderungen am vereinbarten Ablauf, sind die Beteiligten unverzüglich zu informieren; ggf. ist ein neuer Wiedereingliederungsplan zu erstellen.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 20, ❷, S. 65"
+   }
+  },
+  {
+   "id": "m20.ebm",
+   "text": "Für die Erstellung des ärztlichen Wiedereingliederungsplanes ist die Nr. 01622 EBM berechnungsfähig (Aufdruck auf dem Vordruck).",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 36, Muster 20a (1.2019)"
+   }
+  }
+ ],
+ "groups": [],
+ "fields": [
+  {
+   "id": "personalien",
+   "label": "Personalienfeld (Kasse, Name, geb. am, Kostenträgerkennung, Versicherten-Nr., BSNR, LANR, Datum)",
+   "kind": "personalien",
+   "filled_by": "duria",
+   "box": {
+    "x": 4.4,
+    "y": 1.7,
+    "w": 38.0,
+    "h": 15.7
+   },
+   "rules": [
+    {
+     "id": "m20.personalien",
+     "text": "Die Daten der eGK werden maschinell über Kartenterminal und Praxis-EDV übertragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 5 und Nr. 6, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "taetigkeit",
+   "label": "zuletzt ausgeübte Tätigkeit",
+   "kind": "text",
+   "filled_by": "praxis",
+   "lines": 3,
+   "marker": "❶",
+   "box": {
+    "x": 44.2,
+    "y": 9.6,
+    "w": 52.0,
+    "h": 7.8
+   },
+   "rules": [
+    {
+     "id": "m20.letzte_taetigkeit",
+     "text": "Anzugeben sind die zuletzt ausgeübte Tätigkeit und die Zahl der täglichen Arbeitsstunden vor Beginn der Arbeitsunfähigkeit.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 20, ❶, S. 65"
+     }
+    }
+   ]
+  },
+  {
+   "id": "stunden_vorher",
+   "label": "Stunden täglich (vor Beginn der AU)",
+   "kind": "number",
+   "filled_by": "praxis",
+   "marker": "❶",
+   "box": {
+    "x": 89.6,
+    "y": 15.3,
+    "w": 6.7,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m20.letzte_taetigkeit",
+     "text": "Anzugeben sind die zuletzt ausgeübte Tätigkeit und die Zahl der täglichen Arbeitsstunden vor Beginn der Arbeitsunfähigkeit.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 20, ❶, S. 65"
+     }
+    }
+   ]
+  },
+  {
+   "id": "vom1",
+   "label": "Stufe 1: vom",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "TTMMJJ",
+   "marker": "❷",
+   "box": {
+    "x": 9.2,
+    "y": 28.2,
+    "w": 14.4,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m20.gestaltung",
+     "text": "Anzugeben ist die mit dem Patienten abgestimmte Ausgestaltung: Zeitraum (vom–bis), tägliche Stunden und Art der Tätigkeit samt Belastungseinschränkungen (z. B. „nur im Sitzen“, „darf nicht heben“). Das ist eine prognostische Einschätzung zum Zeitpunkt der Ausstellung, auch zum letzten Tag.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 20, ❷, S. 65"
+     }
+    }
+   ]
+  },
+  {
+   "id": "bis1",
+   "label": "Stufe 1: bis",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "TTMMJJ",
+   "marker": "❷",
+   "box": {
+    "x": 26.1,
+    "y": 28.2,
+    "w": 14.4,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m20.dauer",
+     "text": "Die Wiedereingliederung sollte in der Regel einen Zeitraum von sechs Monaten nicht überschreiten.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 20, ❷, S. 65"
+     }
+    }
+   ]
+  },
+  {
+   "id": "art1",
+   "label": "Stufe 1: Art der Tätigkeit (ggf. Einschränkungen)",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❷",
+   "box": {
+    "x": 44.2,
+    "y": 28.2,
+    "w": 43.5,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m20.gestaltung",
+     "text": "Anzugeben ist die mit dem Patienten abgestimmte Ausgestaltung: Zeitraum (vom–bis), tägliche Stunden und Art der Tätigkeit samt Belastungseinschränkungen (z. B. „nur im Sitzen“, „darf nicht heben“). Das ist eine prognostische Einschätzung zum Zeitpunkt der Ausstellung, auch zum letzten Tag.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 20, ❷, S. 65"
+     }
+    }
+   ]
+  },
+  {
+   "id": "std1",
+   "label": "Stufe 1: Stunden täglich",
+   "kind": "number",
+   "filled_by": "praxis",
+   "marker": "❷",
+   "box": {
+    "x": 89.6,
+    "y": 28.2,
+    "w": 6.7,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m20.gestaltung",
+     "text": "Anzugeben ist die mit dem Patienten abgestimmte Ausgestaltung: Zeitraum (vom–bis), tägliche Stunden und Art der Tätigkeit samt Belastungseinschränkungen (z. B. „nur im Sitzen“, „darf nicht heben“). Das ist eine prognostische Einschätzung zum Zeitpunkt der Ausstellung, auch zum letzten Tag.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 20, ❷, S. 65"
+     }
+    }
+   ]
+  },
+  {
+   "id": "vom2",
+   "label": "Stufe 2: vom",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "TTMMJJ",
+   "marker": "❷",
+   "box": {
+    "x": 9.2,
+    "y": 31.0,
+    "w": 14.4,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "bis2",
+   "label": "Stufe 2: bis",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "TTMMJJ",
+   "marker": "❷",
+   "box": {
+    "x": 26.1,
+    "y": 31.0,
+    "w": 14.4,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "art2",
+   "label": "Stufe 2: Art der Tätigkeit (ggf. Einschränkungen)",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❷",
+   "box": {
+    "x": 44.2,
+    "y": 31.0,
+    "w": 43.5,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "std2",
+   "label": "Stufe 2: Stunden täglich",
+   "kind": "number",
+   "filled_by": "praxis",
+   "marker": "❷",
+   "box": {
+    "x": 89.6,
+    "y": 31.0,
+    "w": 6.7,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "vom3",
+   "label": "Stufe 3: vom",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "TTMMJJ",
+   "marker": "❷",
+   "box": {
+    "x": 9.2,
+    "y": 33.9,
+    "w": 14.4,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "bis3",
+   "label": "Stufe 3: bis",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "TTMMJJ",
+   "marker": "❷",
+   "box": {
+    "x": 26.1,
+    "y": 33.9,
+    "w": 14.4,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "art3",
+   "label": "Stufe 3: Art der Tätigkeit (ggf. Einschränkungen)",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❷",
+   "box": {
+    "x": 44.2,
+    "y": 33.9,
+    "w": 43.5,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "std3",
+   "label": "Stufe 3: Stunden täglich",
+   "kind": "number",
+   "filled_by": "praxis",
+   "marker": "❷",
+   "box": {
+    "x": 89.6,
+    "y": 33.9,
+    "w": 6.7,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "vom4",
+   "label": "Stufe 4: vom",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "TTMMJJ",
+   "marker": "❷",
+   "box": {
+    "x": 9.2,
+    "y": 36.7,
+    "w": 14.4,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "bis4",
+   "label": "Stufe 4: bis",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "TTMMJJ",
+   "marker": "❷",
+   "box": {
+    "x": 26.1,
+    "y": 36.7,
+    "w": 14.4,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "art4",
+   "label": "Stufe 4: Art der Tätigkeit (ggf. Einschränkungen)",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❷",
+   "box": {
+    "x": 44.2,
+    "y": 36.7,
+    "w": 43.5,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "std4",
+   "label": "Stufe 4: Stunden täglich",
+   "kind": "number",
+   "filled_by": "praxis",
+   "marker": "❷",
+   "box": {
+    "x": 89.6,
+    "y": 36.7,
+    "w": 6.7,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "stempel",
+   "label": "Vertragsarztstempel / Unterschrift des Arztes",
+   "kind": "stempel",
+   "filled_by": "arzt",
+   "box": {
+    "x": 73.4,
+    "y": 41.0,
+    "w": 22.7,
+    "h": 12.0
+   },
+   "rules": [
+    {
+     "id": "m20.unterschrift",
+     "text": "Erst vollständig ausfüllen, dann mit Vertragsarztstempel persönlich unterschreiben – nie blanko.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "erklaerung_versicherter",
+   "label": "Erklärung des Versicherten (Einverständnis, Datum, Unterschrift)",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "marker": "❸",
+   "box": {
+    "x": 9.1,
+    "y": 55.4,
+    "w": 87.0,
+    "h": 9.4
+   },
+   "rules": [
+    {
+     "id": "m20.einverstaendnis_versicherter",
+     "text": "Voraussetzung der stufenweisen Wiedereingliederung ist das Einverständnis des Versicherten (Erklärung des Versicherten).",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 20, ❸, S. 65"
+     }
+    }
+   ]
+  },
+  {
+   "id": "erklaerung_arbeitgeber",
+   "label": "Erklärung des Arbeitgebers (Einverständnis, Voraussetzungen, Arbeitsentgelt, Stempel)",
+   "kind": "text",
+   "filled_by": "arbeitgeber",
+   "marker": "❹",
+   "box": {
+    "x": 9.1,
+    "y": 66.8,
+    "w": 87.0,
+    "h": 28.6
+   },
+   "rules": [
+    {
+     "id": "m20.zustimmung_arbeitgeber",
+     "text": "Die Durchführung erfordert die Zustimmung des Arbeitgebers; er gibt an, ob er mit dem Plan einverstanden ist oder unter welchen Voraussetzungen, und ob für die geleisteten Stunden ein (Teil-)Arbeitsentgelt gezahlt wird.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 20, ❹, S. 65"
+     }
+    }
+   ]
+  }
+ ]
+}

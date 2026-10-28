@@ -14,7 +14,7 @@ export interface FormRule {
 }
 
 export type FieldKind = 'checkbox' | 'text' | 'date' | 'quarter' | 'letter' | 'number' | 'personalien' | 'stempel';
-export type FilledBy = 'duria' | 'praxis' | 'arzt' | 'krankenhaus' | 'leistungserbringer';
+export type FilledBy = 'duria' | 'praxis' | 'arzt' | 'krankenhaus' | 'leistungserbringer' | 'versicherter' | 'arbeitgeber';
 
 export interface Box { x: number; y: number; w: number; h: number }
 
@@ -59,7 +59,7 @@ export interface FormDefinition {
   fields: FormField[];
 }
 
-export type FormId = 'muster-06' | 'muster-02' | 'muster-04' | 'muster-10' | 'muster-13' | 'muster-12' | 'muster-61';
+export type FormId = 'muster-06' | 'muster-02' | 'muster-04' | 'muster-10' | 'muster-10a' | 'muster-21' | 'muster-20' | 'muster-13' | 'muster-12' | 'muster-61';
 
 /**
  * Zustand eines Feldes im Vorschlag:
@@ -136,14 +136,22 @@ export interface PatientFacts {
   /** Fahrt ohne zwingenden medizinischen Grund oder zu einer Pflegeversicherungsleistung (Muster 4) */
   fahrtOhneGrund: Fact<true> | null;
   auBis: Fact<string | null> | null;
+  /** Alter des erkrankten Kindes in Jahren (Muster 21) */
+  kindAlter: Fact<number> | null;
+  /** Kind mit Behinderung, auf Hilfe angewiesen (Muster 21 auch nach dem 12. Lebensjahr) */
+  kindBehindert: Fact<true> | null;
+  /** Mitaufnahme als Begleitperson bei stationärer Behandlung des Kindes (kein Muster 21) */
+  mitaufnahme: Fact<true> | null;
+  /** Unfall in Kita oder Schule bzw. auf dem Weg dorthin (Muster 21: Unfallversicherungsträger) */
+  kitaUnfall: Fact<true> | null;
 }
 
-export type Intent = 'ueberweisung' | 'einweisung' | 'befoerderung' | 'labor' | 'heilmittel' | 'hkp' | 'reha';
+export type Intent = 'ueberweisung' | 'einweisung' | 'befoerderung' | 'labor' | 'heilmittel' | 'hkp' | 'reha' | 'kinderkrank' | 'wiedereingliederung';
 
 export interface FormSuggestion {
   formId: FormId;
   /** hauptsache = ausdrücklich gewünscht; zusaetzlich = passt zur Lage, z. B. Fahrt zur Überweisung */
-  role: 'hauptsache' | 'zusaetzlich';
+  role: 'hauptsache' | 'zusaetzlich' | 'alternativ';
   title: string;
   why: string;
   evidence: string | null;

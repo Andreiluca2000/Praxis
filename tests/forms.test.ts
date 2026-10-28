@@ -67,12 +67,12 @@ describe('Analyse: welcher Vordruck passt', () => {
     expect(analyse('Taxi zum Neurologen, Pflegegrad 5').suggestions.map((s) => s.formId)).toEqual(['muster-04']);
   });
   it('Laborüberweisung → Muster 10 (nicht Muster 6)', () => {
-    expect(analyse('Überweisung ans Labor für Blutbild').suggestions.map((s) => s.formId)).toEqual(['muster-10']);
+    expect(analyse('Überweisung ans Labor für Blutbild').suggestions.map((s) => s.formId)).toEqual(['muster-10', 'muster-10a']);
   });
-  it('Gesamtkatalog: „stufenweise Wiedereingliederung“ findet Muster 20 (nur Regeln, noch keine Vorschau)', () => {
-    const a = analyse('stufenweise Wiedereingliederung Arbeitsplatz Stundenplan');
+  it('Gesamtkatalog: „SAPV“ findet Muster 63 (nur Regeln, noch keine Vorschau)', () => {
+    const a = analyse('spezialisierte ambulante Palliativversorgung SAPV');
     expect(a.suggestions).toEqual([]);
-    expect(a.catalog[0]?.entry.muster).toBe('20');
+    expect(a.catalog[0]?.entry.muster).toBe('63');
     expect(a.catalog[0]?.entry.rules.length).toBeGreaterThan(5);
   });
   it('ambulante OP im Krankenhaus ist keine Einweisung', () => {

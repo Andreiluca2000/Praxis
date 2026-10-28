@@ -60,6 +60,53 @@ export function dateAfter(keyword: RegExp, text: string): { value: string | null
   return { value, evidence: m[0].trim() };
 }
 
+export const ttmmjj = (d: Date): string => `${String(d.getDate()).padStart(2, '0')}${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getFullYear()).slice(2)}`;
+export const fromTTMMJJ = (v: string): Date => new Date(2000 + Number(v.slice(4, 6)), Number(v.slice(2, 4)) - 1, Number(v.slice(0, 2)));
+
+/**
+ * Zeitraum aus der Beschreibung: „vom 27.10. bis 30.10.26“, „27.10.–30.10.2026“, „ab heute für 3 Tage“, „bis einschließlich 30.10.“.
+ * Fehlt die Jahreszahl, gilt das Jahr von `today`. Nur Genanntes – „vom“ ohne Angabe bleibt leer.
+ */
+export function periodIn(text: string, today: Date): { vom: string | null; bis: string | null; evidence: string[] } {
+  const D = String.raw`(\d{1,2})\.(\d{1,2})\.(\d{4}|\d{2})?`;
+  const day = (d: string, m: string, y: string | undefined) => toTTMMJJ(d, m, y ?? String(today.getFullYear()));
+  const range = uni(new RegExp(String.raw`\b(?:vom\s+|ab\s+(?:dem\s+)?|seit\s+(?:dem\s+)?)?${D}\s*(?:bis(?:\s+einschl(?:\.|ießlich))?(?:\s+zum)?|-|–)\s*${D}`, 'iu')).exec(text);
+  if (range) {
+    const y = range[3] ?? range[6];
+    return { vom: day(range[1]!, range[2]!, y), bis: day(range[4]!, range[5]!, range[6] ?? y), evidence: [range[0].trim()] };
+  }
+  const ev: string[] = [];
+  const start = uni(new RegExp(String.raw`\b(?:vom|ab|seit)\s+(?:dem\s+)?${D}`, 'iu')).exec(text);
+  const heute = cue(/\b(?:ab|seit)\s+heute\b/iu, text);
+  let vom = start ? day(start[1]!, start[2]!, start[3]) : heute ? ttmmjj(today) : null;
+  if (start) ev.push(start[0]); else if (heute) ev.push(heute);
+  const end = uni(new RegExp(String.raw`\bbis\s+(?:einschl(?:\.|ießlich)\s+|zum\s+)?${D}`, 'iu')).exec(text);
+  let bis = end ? day(end[1]!, end[2]!, end[3]) : null;
+  if (end) ev.push(end[0]);
+  const dauer = uni(/\b(?:für|über)\s+(\d{1,2})\s*(tage?|wochen?)\b/iu).exec(text);
+  if (dauer && !bis) {
+    vom ??= ttmmjj(today);
+    const d = fromTTMMJJ(vom);
+    d.setDate(d.getDate() + Number(dauer[1]) * (/woche/iu.test(dauer[2]!) ? 7 : 1) - 1);
+    bis = ttmmjj(d);
+    ev.push(dauer[0]);
+  }
+  return { vom, bis, evidence: ev };
+}
+
+/** Uhrzeit (hhmm) kurz nach einem Stichwort: „Abnahme 28.10.26 um 7:45“, „Entnahme 8.30 Uhr“ – ein Datum zählt nicht. */
+export function timeAfter(keyword: RegExp, text: string): { value: string; evidence: string } | null {
+  const k = uni(new RegExp(keyword.source, 'iu')).exec(text);
+  if (!k) return null;
+  const rest = text.slice((k.index ?? 0) + k[0].length).split(/[;]/u)[0]!.slice(0, 40);
+  const m = /(?:\bum\s+)?\b(\d{1,2}):(\d{2})\b|\bum\s+(\d{1,2})\.(\d{2})\b(?!\.)|\b(\d{1,2})\.(\d{2})\s*uhr\b/iu.exec(rest);
+  if (!m) return null;
+  const h = m[1] ?? m[3] ?? m[5]!;
+  const min = m[2] ?? m[4] ?? m[6]!;
+  if (Number(h) > 23 || Number(min) > 59) return null;
+  return { value: `${h.padStart(2, '0')}${min}`, evidence: `${k[0]}${rest.slice(0, (m.index ?? 0) + m[0].length)}`.trim() };
+}
+
 /** Quartal der Ausstellung in der Form QJJ (Muster 6, ❷). */
 export function quarterQJJ(date: Date): string {
   const q = Math.floor(date.getMonth() / 3) + 1;
@@ -81,6 +128,7 @@ const LABELS = [
   'befunde?', 'untersuchungsergebnisse?', 'medikation', 'bisherige therapie', 'bisherige maßnahmen', 'therapie', 'maßnahmen',
   'allergien?', 'fragestellung', 'hinweise?', 'mitgegeben', 'mitgegebene befunde', 'anlagen?', 'auftrag', 'diagnose', 'ekg', 'labor',
   'leitsymptomatik', 'therapieziele?', 'heilmittel', 'einschränkungen?', 'präparate', 'verbandmaterial', 'anamnese', 'kontext', 'lebensumstände', 'rehaziele?', 'ziele?',
+  'zuletzt ausgeübte tätigkeit', 'tätigkeit', 'beruf', 'stufenplan', 'plan',
 ];
 const LABEL_RE = new RegExp(`(?:^|[\\s.;,(])(${LABELS.join('|')})\\s*:`, 'giu');
 

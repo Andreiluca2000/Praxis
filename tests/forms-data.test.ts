@@ -33,7 +33,7 @@ describe('Formulardaten (data/forms)', () => {
       expect(byId.get(r.id) ?? key, r.id).toBe(key);
       byId.set(r.id, key);
     }
-    const prefix = `m${form.muster.padStart(2, '0')}.`;
+    const prefix = `m${form.muster.padStart(2, '0').toLowerCase()}.`;
     for (const r of ruleIds) expect(r.startsWith(prefix)).toBe(true);
     const fieldIds = form.fields.map((f) => f.id);
     expect(new Set(fieldIds).size).toBe(fieldIds.length);

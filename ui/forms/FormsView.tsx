@@ -1,4 +1,4 @@
-import { Activity, Ambulance, HeartHandshake, Mountain, CircleAlert, CircleCheck, ClipboardList, Files, FlaskConical, Hospital, Info, Send, Stethoscope, TriangleAlert, WandSparkles } from 'lucide-react';
+import { Activity, Ambulance, Baby, BriefcaseMedical, HeartHandshake, Mountain, CircleAlert, CircleCheck, ClipboardList, Files, FlaskConical, Hospital, Info, Send, Stethoscope, TestTubes, TriangleAlert, WandSparkles } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import { analyse, check, propose } from '../../src/forms/advisor.js';
 import { valuesOf } from '../../src/forms/build.js';
@@ -18,7 +18,7 @@ const EXAMPLES: [string, string][] = [
   ['Taxi zur Dialyse', 'Taxi zur Dialyse 3x pro Woche, Hin- und Rückfahrt'],
 ];
 
-const ICON: Record<FormId, typeof Send> = { 'muster-06': Send, 'muster-02': Hospital, 'muster-04': Ambulance, 'muster-10': FlaskConical, 'muster-13': Activity, 'muster-12': HeartHandshake, 'muster-61': Mountain };
+const ICON: Record<FormId, typeof Send> = { 'muster-06': Send, 'muster-02': Hospital, 'muster-04': Ambulance, 'muster-10': FlaskConical, 'muster-10a': TestTubes, 'muster-13': Activity, 'muster-12': HeartHandshake, 'muster-61': Mountain, 'muster-21': Baby, 'muster-20': BriefcaseMedical };
 const STATE_LABEL: Record<Mark['state'], string> = { vorgeschlagen: 'vorgeschlagen', unbekannt: 'bitte wählen', arzt: 'Arzt', duria: 'aus DURIA', leer: 'leer', geaendert: 'geändert', kartei: 'aus Kartei' };
 const SOURCE: Record<string, string> = { erlaeuterungen: 'KBV-Erläuterungen 01/2026', vordruckvereinbarung: 'Vordruckvereinbarung 05/2026', mustersammlung: 'Mustersammlung 05/2026' };
 
@@ -42,6 +42,9 @@ function factPills(a: Analysis): string[] {
   if (f.versorgungsleiden) out.push('Versorgungsleiden');
   if (f.dringend) out.push('dringend');
   if (f.auBis) out.push(f.auBis.value ? `AU bis ${f.auBis.value}` : 'AU');
+  if (f.kindAlter) out.push(f.kindAlter.value ? `Kind ${f.kindAlter.value} J.` : 'Säugling/Kleinkind');
+  if (f.kindBehindert) out.push('Kind mit Behinderung');
+  if (f.mitaufnahme) out.push('Mitaufnahme');
   return out;
 }
 
@@ -383,6 +386,7 @@ export function FormsView({ initial = devText(), kartei = null }: Props) {
                 <span className="ico"><Icon size={19} aria-hidden="true" /></span>
                 <span className="fx-pick-text"><b>Muster {f.muster} · {f.title}</b><span>{s.role === 'hauptsache' ? 'gewünscht' : s.why}</span></span>
                 {s.role === 'zusaetzlich' && <span className="pill not_verifiable">passt dazu</span>}
+                {s.role === 'alternativ' && <span className="pill not_verifiable">alternativ</span>}
               </button>
             );
           })}

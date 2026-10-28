@@ -44,6 +44,15 @@ function hochfrequent(text: string): PatientFacts['hochfrequent'] {
   return c ? { value: 'chemotherapie', evidence: c } : null;
 }
 
+function kindAlter(text: string): PatientFacts['kindAlter'] {
+  const KIND = String.raw`(?:kind\w*|sohn|tochter|junge|mädchen|enkel\w*)`;
+  const JAHRE = String.raw`(?:j\.|jahre?n?|jährig\w*|lj\.?)`;
+  const m = uni(new RegExp(String.raw`\b${KIND}\b[^.;]{0,25}?\b(\d{1,2})\s*-?\s*${JAHRE}|\b(\d{1,2})\s*-?\s*${JAHRE}\s+(?:alte[rsn]?\s+)?${KIND}`, 'iu')).exec(text);
+  if (m) return { value: Number(m[1] ?? m[2]), evidence: m[0].trim() };
+  const baby = cue(/\b(säugling\w*|baby\w*|neugeboren\w*|kleinkind\w*)/iu, text);
+  return baby ? { value: 0, evidence: baby } : null;
+}
+
 export function extractFacts(description: string): PatientFacts {
   const text = norm(description);
   const arbeitsunfall = cue(/\b(arbeitsunfall\w*|berufskrankheit\w*|schul(?:e)?unfall\w*|schülerunfall\w*|kita-?unfall|bg-fall|berufsgenossenschaft\w*|d-arzt\w*|durchgangsarzt\w*)/iu, text);
@@ -70,6 +79,10 @@ export function extractFacts(description: string): PatientFacts {
     dringend: yes(cue(URGENT, text)),
     fahrtOhneGrund: yes(cue(/\b((?:rezept|verordnung|befund\w*|überweisung)\s+(?:abholen|holen)|termin\w*\s+(?:abstimmen|vereinbaren)|befunde? erfragen|(?:ins|zum|in das) pflegeheim|tagespflege)/iu, text)),
     auBis: au ? { value: au.value, evidence: au.evidence } : null,
+    kindAlter: kindAlter(text),
+    kindBehindert: yes(cue(/\b(behindert\w*|behinderung\w*|mehrfachbehindert\w*|schwerbehindert\w*)/iu, text)),
+    mitaufnahme: yes(cue(/\b(mitaufnahme|mit aufgenommen|begleitperson|rooming-?in)\b/iu, text)),
+    kitaUnfall: yes(cue(/\b(kita-?unfall\w*|schulunfall\w*|schülerunfall\w*|kindergartenunfall\w*|unfall (?:in|im|auf) (?:der|dem)?\s*(?:kita|schule|kindergarten|schulweg|pausenhof|sportunterricht))/iu, text)),
   };
 }
 

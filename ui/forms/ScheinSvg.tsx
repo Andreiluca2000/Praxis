@@ -26,13 +26,15 @@ const LINE = '#e3342f';
 const GHOST = '#f6c8c1';
 const MONO = '"Cascadia Mono", Consolas, "Courier New", monospace';
 
-/** Platz für das Nummern-Abzeichen: links vom Feld, sonst rechts, sonst innen oben – ohne Beschriftungen zu verdecken. */
-function badgeAt(layout: FormLayout, b: { x: number; y: number; w: number; h: number }): [number, number] {
+type PxBox = { x: number; y: number; w: number; h: number };
+
+/** Platz für das Nummern-Abzeichen: links vom Feld, sonst rechts, sonst innen oben – ohne Beschriftungen oder andere Felder zu verdecken. */
+function badgeAt(layout: FormLayout, b: PxBox, others: readonly PxBox[]): [number, number] {
   const cy = b.y + Math.min(b.h, 14) / 2;
   const free = (x: number, y: number) => x > 7 && x < layout.width - 7 && layout.labels.every((l) => {
     const lw = l.t.length * l.s * 0.52;
     return x + 6.5 < l.x || x - 6.5 > l.x + lw || y + 6.5 < l.y - l.s * 0.8 || y - 6.5 > l.y + 1;
-  });
+  }) && others.every((o) => o === b || x < o.x || x > o.x + o.w || y < o.y || y > o.y + o.h);
   const options: [number, number][] = [[b.x - 9, cy], [b.x + b.w + 9, cy], [b.x - 9, b.y - 6], [b.x + 7, b.y + 7]];
   return options.find(([x, y]) => free(x, y)) ?? options[options.length - 1]!;
 }
@@ -63,6 +65,8 @@ export const badgeText = (m: Mark) => (m.issue === 'unzulaessig' ? '✕' : m.nee
 function Entry({ field, value, layout, box }: { field: FormField; value: FieldValue; layout: FormLayout; box: { x: number; y: number; w: number; h: number } }) {
   if (field.kind === 'checkbox') {
     if (value !== true) return null;
+    // Ovale (Muster 10A) werden „durch Striche“ markiert, nicht angekreuzt.
+    if (box.w > box.h * 2) return <line x1={box.x - 1} y1={box.y + box.h / 2} x2={box.x + box.w + 1} y2={box.y + box.h / 2} stroke={INK} strokeWidth={2.2} strokeLinecap="round" />;
     const p = Math.min(box.w, box.h) * 0.22;
     return (
       <g stroke={INK} strokeWidth={1.7} strokeLinecap="round">
@@ -94,7 +98,9 @@ function Entry({ field, value, layout, box }: { field: FormField; value: FieldVa
   const rows = layout.whites
     .filter(([x, y, w, h]) => x >= box.x - 2 && y >= box.y - 2 && x + w <= box.x + box.w + 2 && y + h <= box.y + box.h + 2 && h < 40)
     .sort((a, b) => a[1] - b[1])
-    .map(([, y, , h]) => y + h - 4.5);
+    .map(([, y, , h]) => y + h - 4.5)
+    // Zwei Schreibflächen auf derselben Zeile (z. B. „Stunden täglich“ daneben) sind eine Zeile.
+    .filter((y, i, all) => i === 0 || Math.abs(y - all[i - 1]!) > 2);
   const ruled = layout.strokes
     .flatMap((s) => ('line' in s && s.line[1] === s.line[3] && s.line[1] > box.y + 9 && s.line[1] < box.y + box.h + 1 && s.line[0] < box.x + box.w && s.line[2] > box.x ? [s.line[1]] : []))
     // Linien in Höhe einer Beschriftung („Untersuchungsergebnisse ____“) sind keine Schreibzeilen.
@@ -117,6 +123,8 @@ export function ScheinSvg({ form, layout, page = 0, values, marks, selected, onS
   const H = layout.height;
   const px = (f: FormField) => ({ x: (f.box.x / 100) * W, y: (f.box.y / 100) * H, w: (f.box.w / 100) * W, h: (f.box.h / 100) * H });
   // Vordruck-Platzhalter („T T M M J J“) ausblenden, wo schon etwas steht.
+  const onPage = form.fields.filter((f) => (f.page ?? 0) === page);
+  const boxes = onPage.map(px);
   const filled = form.fields.filter((f) => (f.page ?? 0) === page && f.format && typeof values[f.id] === 'string' && values[f.id]).map(px);
   return (
     <svg className="schein" viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`Muster ${form.muster} – ${form.title}, Vorschau`}>
@@ -124,7 +132,7 @@ export function ScheinSvg({ form, layout, page = 0, values, marks, selected, onS
       {layout.bands.map(([x, y, w, h], i) => <rect key={`b${i}`} x={x} y={y} width={w} height={h} rx={8} fill={layout.tint ?? '#fff'} />)}
       {layout.whites.map(([x, y, w, h], i) => <rect key={`w${i}`} x={x} y={y} width={w} height={h} fill="#fff" />)}
       {layout.strokes.map((s, i) => ('rect' in s
-        ? <rect key={`s${i}`} x={s.rect[0]} y={s.rect[1]} width={s.rect[2]} height={s.rect[3]} fill="none" stroke={LINE} strokeWidth={Math.max(0.5, s.w)} />
+        ? <rect key={`s${i}`} x={s.rect[0]} y={s.rect[1]} width={s.rect[2]} height={s.rect[3]} rx={s.r} fill="none" stroke={LINE} strokeWidth={Math.max(0.5, s.w)} />
         : <line key={`s${i}`} x1={s.line[0]} y1={s.line[1]} x2={s.line[2]} y2={s.line[3]} stroke={LINE} strokeWidth={Math.max(0.5, s.w)} />))}
       {layout.fills.map(([x, y, w, h, c], i) => <rect key={`f${i}`} x={x} y={y} width={w} height={h} fill={c ?? LINE} />)}
       {layout.labels.filter((l) => !(l.ghost && filled.some((b) => l.x >= b.x - 2 && l.x <= b.x + b.w && l.y >= b.y && l.y <= b.y + b.h + 4))).map((l, i) => (
@@ -132,8 +140,8 @@ export function ScheinSvg({ form, layout, page = 0, values, marks, selected, onS
           fill={l.white ? '#fff' : l.ghost ? GHOST : l.dark ? '#222' : LINE} className="schein-label">{l.t}</text>
       ))}
 
-      {form.fields.filter((f) => (f.page ?? 0) === page).map((f) => {
-        const b = px(f);
+      {onPage.map((f, i) => {
+        const b = boxes[i]!;
         const m = marks[f.id];
         const on = selected === f.id;
         return (
@@ -147,7 +155,7 @@ export function ScheinSvg({ form, layout, page = 0, values, marks, selected, onS
             )}
             <Entry field={f} value={values[f.id] ?? null} layout={layout} box={b} />
             {m && m.first && (
-              <g className="badge" transform={`translate(${badgeAt(layout, b).join(' ')})`}>
+              <g className="badge" transform={`translate(${badgeAt(layout, b, boxes).join(' ')})`}>
                 <circle r={6.4} />
                 <text y={2.6} textAnchor="middle">{badgeText(m)}</text>
               </g>

@@ -65,7 +65,7 @@
           "id": { "type": "string", "pattern": "^[a-z0-9_]+$" },
           "label": { "type": "string", "minLength": 1, "description": "Beschriftung wie auf dem Vordruck" },
           "kind": { "enum": ["checkbox", "text", "date", "quarter", "letter", "number", "personalien", "stempel"] },
-          "filled_by": { "enum": ["duria", "praxis", "arzt", "krankenhaus", "leistungserbringer"], "description": "duria = Personalien/eGK aus dem PVS; praxis = Vorschlag der App möglich; arzt = nur der Arzt; krankenhaus/leistungserbringer = nicht von der Praxis (Krankenhaus, Labor, Therapeut)" },
+          "filled_by": { "enum": ["duria", "praxis", "arzt", "krankenhaus", "leistungserbringer", "versicherter", "arbeitgeber"], "description": "duria = Personalien/eGK aus dem PVS; praxis = Vorschlag der App möglich; arzt = nur der Arzt; krankenhaus/leistungserbringer = nicht von der Praxis (Krankenhaus, Labor, Therapeut); versicherter/arbeitgeber = Erklärung der/des Versicherten bzw. des Arbeitgebers" },
           "format": { "enum": ["QJJ", "TTMMJJ", "hhmm"] },
           "group": { "type": "string", "pattern": "^[a-z0-9_]+$" },
           "marker": { "type": "string", "description": "Nummer in den Erläuterungen, z. B. ❶" },
@@ -95,7 +95,7 @@
       "additionalProperties": false,
       "required": ["id", "text", "source"],
       "properties": {
-        "id": { "type": "string", "pattern": "^m[0-9]{2}\\.[a-z0-9_.]+$" },
+        "id": { "type": "string", "pattern": "^m[0-9]{2}[a-z]?\\.[a-z0-9_.]+$" },
         "text": { "type": "string", "minLength": 1, "description": "Kurze sinngemäße Wiedergabe (kein Volltext)" },
         "source": {
           "type": "object",

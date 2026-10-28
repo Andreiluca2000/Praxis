@@ -20,6 +20,8 @@ for d in page.get_drawings():
         r = d['rect']
         bands.append([r2(r.x0), r2(r.y0), r2(r.width), r2(r.height)])
         continue
+    if d['type'] == 's' and color and max(color) < .1 and (d.get('width') or 0) > 3:
+        continue  # schwarze Lesemarken am Rand (Belegleser), nicht Teil des Vordrucks
     for it in d['items']:
         if it[0] == 're':
             r = it[1]
@@ -28,20 +30,31 @@ for d in page.get_drawings():
                 whites.append(box)
             if d['type'] in ('s', 'fs') and color:
                 strokes.append({'rect': box, 'w': r2(d.get('width') or .5)})
-            elif d['type'] == 'f' and fill and max(fill) > .8 and min(fill) < .5:
+            elif d['type'] == 'f' and fill and max(fill) > .7 and min(fill) < .5:
                 fills.append(box + [hexc(fill)])  # farbige Flächen (z. B. Titelbalken) mit ihrer Farbe
         elif it[0] == 'l' and d['type'] in ('s', 'fs') and color:
             a, b = it[1], it[2]
             strokes.append({'line': [r2(a.x), r2(a.y), r2(b.x), r2(b.y)], 'w': r2(d.get('width') or .5)})
 
+# Ankreuz-Ovale aus einer Symbolschrift (Muster 10A, Glyphe „f“) als abgerundete Rahmen
+OVAL_FONTS = ('Rieco13',)
+for b in page.get_text('rawdict')['blocks']:
+    for l in b.get('lines', []):
+        for s in l['spans']:
+            if s['font'] in OVAL_FONTS:
+                for c in s['chars']:
+                    if c['c'] == 'f':
+                        x0, x1, base = c['bbox'][0], c['bbox'][2], c['origin'][1]
+                        strokes.append({'rect': [r2(x0 + .8), r2(base - 4.6), r2(x1 - x0 - 1.6), 4.6], 'w': .6, 'r': 2.3})
+
 labels = []
 for b in page.get_text('dict')['blocks']:
     for l in b.get('lines', []):
-        if l['dir'][1] != 0:
+        if abs(l['dir'][1]) > 0.01:
             continue  # gedrehte Schrift (Druckerei, „Verbindliches Muster“)
         for s in l['spans']:
             t = s['text'].strip()
-            if not t or t.startswith('Freigabe') or 'Verbindliches' in t or t == 'Muster':
+            if not t or s['font'] in OVAL_FONTS or t.startswith('Freigabe') or 'Verbindliches' in t or t == 'Muster':
                 continue
             rgb = ((s['color'] >> 16) & 255, (s['color'] >> 8) & 255, s['color'] & 255)
             white = min(rgb) >= 250  # weiße Schrift auf farbigem Balken („Behandlungspflege“)

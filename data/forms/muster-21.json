@@ -1,0 +1,232 @@
+{
+ "schema_version": "1.0.0",
+ "id": "muster-21",
+ "muster": "21",
+ "title": "Ärztliche Bescheinigung für den Bezug von Krankengeld bei Erkrankung eines Kindes",
+ "form_version": "7.2024",
+ "released": "2023-11-15",
+ "status": "entwurf",
+ "paper": {
+  "format": "DIN A5 hoch",
+  "width": 419.5,
+  "height": 595.3,
+  "tint": "blau"
+ },
+ "copies": [
+  {
+   "id": "21",
+   "label": "Bescheinigung mit Antrag",
+   "recipient": "Krankenkasse der betreuenden Person (über die Versicherte/den Versicherten)"
+  }
+ ],
+ "notes": [
+  {
+   "id": "m21.voraussetzung",
+   "text": "Für Krankengeld bei Erkrankung eines noch nicht 12-jährigen Kindes, das der Beaufsichtigung, Betreuung oder Pflege durch die Versicherte/den Versicherten bedarf, ist Muster 21 nötig. Gleiches gilt bei einem erkrankten behinderten, auf Hilfe angewiesenen Kind, auch nach dem 12. Lebensjahr.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 21, Einleitung, S. 66"
+   }
+  },
+  {
+   "id": "m21.begleitung_behandlung",
+   "text": "Das kommt in Betracht, wenn das Kind zu Hause betreut werden muss, aber auch, wenn es zur ärztlichen Behandlung begleitet und währenddessen betreut werden muss (z. B. ambulante Operation, vor- und nachstationäre Behandlung).",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 21, Einleitung, S. 67"
+   }
+  },
+  {
+   "id": "m21.mitaufnahme",
+   "text": "Bei medizinisch notwendiger Mitaufnahme als Begleitperson während stationärer (voll-, tages- oder teilstationärer) Behandlung des Kindes ist kein Muster 21 auszustellen; die stationäre Einrichtung stellt eine Bescheinigung aus.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 21, Einleitung, S. 67"
+   }
+  }
+ ],
+ "groups": [],
+ "fields": [
+  {
+   "id": "personalien",
+   "label": "Personalienfeld des Kindes (Kasse bzw. Kostenträger, Name, geb. am, Versicherten-Nr., BSNR, LANR, Datum)",
+   "kind": "personalien",
+   "filled_by": "duria",
+   "box": {
+    "x": 6.2,
+    "y": 2.5,
+    "w": 53.9,
+    "h": 22.2
+   },
+   "rules": [
+    {
+     "id": "m21.personalienfeld",
+     "text": "Im Personalienfeld ist die Krankenkasse des Kindes bzw. der zuständige Kostenträger (z. B. Unfallversicherungsträger) anzugeben.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 21, Einleitung, S. 67"
+     }
+    }
+   ]
+  },
+  {
+   "id": "vom",
+   "label": "Beaufsichtigung, Betreuung oder Pflege vom",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "TTMMJJ",
+   "box": {
+    "x": 21.6,
+    "y": 29.8,
+    "w": 20.4,
+    "h": 3.0
+   },
+   "rules": [
+    {
+     "id": "m21.zeitraum",
+     "text": "In „vom“ / „bis einschließlich“ wird der Zeitraum eingetragen, in dem das erkrankte Kind der Beaufsichtigung, Betreuung oder Pflege bedarf bzw. bedurfte.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 21, „vom“/„bis einschließlich“, S. 67"
+     }
+    }
+   ]
+  },
+  {
+   "id": "bis",
+   "label": "bis einschließlich",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "TTMMJJ",
+   "box": {
+    "x": 21.6,
+    "y": 33.8,
+    "w": 20.4,
+    "h": 3.0
+   },
+   "rules": [
+    {
+     "id": "m21.zeitraum",
+     "text": "In „vom“ / „bis einschließlich“ wird der Zeitraum eingetragen, in dem das erkrankte Kind der Beaufsichtigung, Betreuung oder Pflege bedarf bzw. bedurfte.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 21, „vom“/„bis einschließlich“, S. 67"
+     }
+    }
+   ]
+  },
+  {
+   "id": "kita_unfall",
+   "label": "Kita- oder Schulunfall / -folgen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "label_pos": "rechts",
+   "box": {
+    "x": 6.2,
+    "y": 38.4,
+    "w": 3.2,
+    "h": 2.4
+   },
+   "rules": [
+    {
+     "id": "m21.kita_schulunfall",
+     "text": "„Kita- oder Schulunfall/-folgen“ ist bei Unfall in Kinderbetreuungseinrichtung oder Schule (auch auf dem Weg) oder deren Folgen anzukreuzen; die Bescheinigung wird dann zu Lasten eines Unfallversicherungsträgers ausgestellt, der im Personalienfeld zu benennen ist.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 21, Kita- oder Schulunfall /-folgen, S. 67"
+     }
+    }
+   ]
+  },
+  {
+   "id": "sonstiger_unfall",
+   "label": "sonstiger Unfall, Unfallfolgen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "label_pos": "rechts",
+   "box": {
+    "x": 6.2,
+    "y": 42.4,
+    "w": 3.2,
+    "h": 2.4
+   },
+   "rules": [
+    {
+     "id": "m21.sonstiger_unfall",
+     "text": "„Sonstiger Unfall, Unfallfolgen“ ist anzukreuzen, wenn kein Kita- oder Schulunfall, sondern ein sonstiger Unfall oder eine Unfallfolge vorliegt.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 21, sonstiger Unfall, Unfallfolgen, S. 67"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ser",
+   "label": "SER",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "label_pos": "rechts",
+   "box": {
+    "x": 6.2,
+    "y": 46.5,
+    "w": 3.2,
+    "h": 2.4
+   },
+   "rules": [
+    {
+     "id": "m21.ser",
+     "text": "Nur bei behördlich anerkannter Schädigungsfolge nach dem SER (bisher BVG u. a.); der Nachweis wird vorgelegt.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 21, SER, S. 67; Allgemeines Nr. 8, S. 6"
+     }
+    }
+   ]
+  },
+  {
+   "id": "stempel",
+   "label": "Vertragsarztstempel / Unterschrift des Arztes",
+   "kind": "stempel",
+   "filled_by": "arzt",
+   "box": {
+    "x": 63.0,
+    "y": 29.8,
+    "w": 32.2,
+    "h": 17.0
+   },
+   "rules": [
+    {
+     "id": "m21.unterschrift",
+     "text": "Erst vollständig ausfüllen, dann mit Vertragsarztstempel persönlich unterschreiben – nie blanko.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "antrag",
+   "label": "Antrag der/des Versicherten (Name, Anschrift, IBAN, Erklärungen, Unterschrift)",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "box": {
+    "x": 6.1,
+    "y": 55.5,
+    "w": 89.2,
+    "h": 38.5
+   },
+   "rules": [
+    {
+     "id": "m21.antrag",
+     "text": "Den Antrag füllt die betreuende Person aus und stellt ihn bei ihrer eigenen Krankenkasse.",
+     "source": {
+      "artifact": "mustersammlung",
+      "locator": "PDF-Seite 40, Muster 21 (7.2024), Antrag der/des Versicherten"
+     }
+    }
+   ]
+  }
+ ]
+}
