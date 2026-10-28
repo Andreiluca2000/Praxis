@@ -1,0 +1,981 @@
+{
+ "schema_version": "1.0.0",
+ "id": "muster-25",
+ "muster": "25",
+ "title": "Anregung einer ambulanten Vorsorgeleistung in anerkannten Kurorten gemäß § 23 Abs. 2 SGB V",
+ "form_version": "7.2009",
+ "released": "2009-07-01",
+ "status": "entwurf",
+ "paper": {
+  "format": "DIN A4 hoch (Rückseite mit den Angaben des Vertragsarztes)",
+  "width": 595.3,
+  "height": 841.9,
+  "tint": "ohne"
+ },
+ "copies": [
+  {
+   "id": "25",
+   "label": "Anregung mit Angaben des Vertragsarztes (Rückseite)",
+   "recipient": "Krankenkasse (prüft die Leistungspflicht und stellt den Kurarztschein aus)"
+  }
+ ],
+ "notes": [
+  {
+   "id": "m25.vorhalten",
+   "text": "Das Muster 25 wird von den Krankenkassen vorgehalten; die Gestaltung der Vorderseite bleibt der Krankenkasse überlassen.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 25, Nr. 1–2, S. 70"
+   }
+  },
+  {
+   "id": "m25.rueckseite",
+   "text": "Die erforderlichen Auskünfte gibt der Vertragsarzt auf der Rückseite. Anzugeben ist, ob die Leistung bei Schwächung der Gesundheit bzw. zur Krankheitsverhütung, zur Vermeidung der Verschlimmerung behandlungsbedürftiger Krankheiten oder bei Gefährdung der gesundheitlichen Entwicklung von Kindern erfolgen soll.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 25, Nr. 3, S. 70"
+   }
+  },
+  {
+   "id": "m25.kurarztschein",
+   "text": "Die Krankenkasse prüft anhand der Angaben ihre Leistungspflicht und stellt den Kurarztschein aus. Der Versicherte legt ihn vor Beginn der Maßnahme vor; der Vertragsarzt ergänzt ihn auf der rechten Seite.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 25, Nr. 8, S. 70"
+   }
+  },
+  {
+   "id": "m25.ebm_01623",
+   "text": "Für die Angaben des Arztes ist die Nr. 01623 EBM berechnungsfähig (Aufdruck auf dem Vordruck).",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 45, Muster 25 (7.2009)"
+   }
+  },
+  {
+   "id": "m25.auskunftspflicht",
+   "text": "Hinweis auf dem Vordruck: Die erfragten Angaben werden für die Entscheidung über den Antrag des Versicherten benötigt; nach §§ 100 SGB X und 73 Abs. 2 Ziff. 9 SGB V besteht eine Pflicht zur Berichterteilung.",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 45, Muster 25 (7.2009)"
+   }
+  },
+  {
+   "id": "m25.gueltig",
+   "text": "Die Mustersammlung nennt „gültig seit Juli 2009“ und kein Freigabedatum; released ist deshalb der 01.07.2009.",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 45, Muster 25 (7.2009)"
+   }
+  }
+ ],
+ "groups": [
+  {
+   "id": "vorsorgeart",
+   "label": "Art der anzuregenden Vorsorgeleistung",
+   "select": "beliebig",
+   "rule": {
+    "id": "m25.rueckseite",
+    "text": "Die erforderlichen Auskünfte gibt der Vertragsarzt auf der Rückseite. Anzugeben ist, ob die Leistung bei Schwächung der Gesundheit bzw. zur Krankheitsverhütung, zur Vermeidung der Verschlimmerung behandlungsbedürftiger Krankheiten oder bei Gefährdung der gesundheitlichen Entwicklung von Kindern erfolgen soll.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 25, Nr. 3, S. 70"
+    }
+   }
+  },
+  {
+   "id": "risikofaktoren",
+   "label": "Risikofaktoren/Gefährdung, Regulations-/Befindlichkeitsstörungen, Beschwerden",
+   "select": "beliebig",
+   "rule": {
+    "id": "m25.risikofaktoren",
+    "text": "Abschnitt „Risikofaktoren/Gefährdung, Regulations-/Befindlichkeitsstörungen, Beschwerden“: zutreffende Risikofaktoren ankreuzen, unter „Sonstige“ und „aktuelle Beschwerden“ im Klartext ergänzen.",
+    "source": {
+     "artifact": "mustersammlung",
+     "locator": "PDF-Seite 45, Muster 25 (7.2009)"
+    }
+   }
+  },
+  {
+   "id": "befunde",
+   "label": "Aktuelle Befunde / Untersuchungsberichte",
+   "select": "beliebig",
+   "rule": {
+    "id": "m25.befunde",
+    "text": "Aktuelle Befunde (z. B. Röntgen, EKG, Labor) / Untersuchungsberichte: ankreuzen, ob sie bei Bedarf durch den MDK angefordert werden können oder nicht vorliegen.",
+    "source": {
+     "artifact": "mustersammlung",
+     "locator": "PDF-Seite 45, Muster 25 (7.2009)"
+    }
+   }
+  },
+  {
+   "id": "massnahmen",
+   "label": "Behandlungen, Maßnahmen/Hilfen in den letzten 12 Monaten",
+   "select": "beliebig",
+   "rule": {
+    "id": "m25.massnahmen",
+    "text": "Abschnitt „Welche Behandlungen, Maßnahmen/Hilfen wurden in den letzten 12 Monaten durchgeführt?“: Zutreffendes ankreuzen, unter „Sonstige“ im Klartext ergänzen.",
+    "source": {
+     "artifact": "mustersammlung",
+     "locator": "PDF-Seite 45, Muster 25 (7.2009)"
+    }
+   }
+  },
+  {
+   "id": "kurort_anforderungen",
+   "label": "Besondere Anforderungen an den Kurort",
+   "select": "genau_eins",
+   "rule": {
+    "id": "m25.kurort",
+    "text": "Besondere Anforderungen an den Kurort sind separat zu nennen. Erscheint ein Kurort geeignet, kann er vorgeschlagen werden; die Krankenkasse ist an den Vorschlag nicht gebunden.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 25, Nr. 5–6, S. 70"
+    }
+   }
+  },
+  {
+   "id": "kompaktkur",
+   "label": "Durchführung in kompakter Form (Kompaktkur)",
+   "select": "genau_eins",
+   "rule": {
+    "id": "m25.kompaktkur",
+    "text": "Der Vertragsarzt kann anregen, die Leistung als Kompaktkur durchzuführen (indikationsspezifische, stabile Gruppen mit gleichen oder ähnlichen Krankheitsbildern, getrennt nach Indikation).",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 25, Nr. 7, S. 70"
+    }
+   }
+  }
+ ],
+ "fields": [
+  {
+   "id": "art_schwaechung",
+   "label": "bei Schwächung der Gesundheit / zur Krankheitsverhütung",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "vorsorgeart",
+   "box": {
+    "x": 52.0,
+    "y": 4.2,
+    "w": 1.8,
+    "h": 1.3
+   },
+   "rules": [
+    {
+     "id": "m25.rueckseite",
+     "text": "Die erforderlichen Auskünfte gibt der Vertragsarzt auf der Rückseite. Anzugeben ist, ob die Leistung bei Schwächung der Gesundheit bzw. zur Krankheitsverhütung, zur Vermeidung der Verschlimmerung behandlungsbedürftiger Krankheiten oder bei Gefährdung der gesundheitlichen Entwicklung von Kindern erfolgen soll.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 25, Nr. 3, S. 70"
+     }
+    }
+   ]
+  },
+  {
+   "id": "art_verschlimmerung",
+   "label": "zur Vermeidung der Verschlimmerung behandlungsbedürftiger Krankheiten",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "vorsorgeart",
+   "box": {
+    "x": 52.0,
+    "y": 7.1,
+    "w": 1.8,
+    "h": 1.3
+   },
+   "rules": []
+  },
+  {
+   "id": "art_kinder",
+   "label": "bei Gefährdung der gesundheitlichen Entwicklung von Kindern",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "vorsorgeart",
+   "box": {
+    "x": 52.0,
+    "y": 10.0,
+    "w": 1.8,
+    "h": 1.3
+   },
+   "rules": []
+  },
+  {
+   "id": "behandlung_seit",
+   "label": "Der/die Versicherte ist bei mir in Behandlung seit:",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "TTMMJJ",
+   "box": {
+    "x": 38.1,
+    "y": 13.2,
+    "w": 14.2,
+    "h": 1.6
+   },
+   "rules": []
+  },
+  {
+   "id": "rf_blutdruck",
+   "label": "erhöhter Blutdruck",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "risikofaktoren",
+   "box": {
+    "x": 4.3,
+    "y": 17.4,
+    "w": 1.8,
+    "h": 1.3
+   },
+   "rules": [
+    {
+     "id": "m25.risikofaktoren",
+     "text": "Abschnitt „Risikofaktoren/Gefährdung, Regulations-/Befindlichkeitsstörungen, Beschwerden“: zutreffende Risikofaktoren ankreuzen, unter „Sonstige“ und „aktuelle Beschwerden“ im Klartext ergänzen.",
+     "source": {
+      "artifact": "mustersammlung",
+      "locator": "PDF-Seite 45, Muster 25 (7.2009)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rf_bewegungsmangel",
+   "label": "Bewegungsmangel/Fehlhaltung",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "risikofaktoren",
+   "box": {
+    "x": 25.8,
+    "y": 17.4,
+    "w": 1.8,
+    "h": 1.3
+   },
+   "rules": []
+  },
+  {
+   "id": "rf_uebergewicht",
+   "label": "Übergewicht/Fehlernährung",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "risikofaktoren",
+   "box": {
+    "x": 52.0,
+    "y": 17.4,
+    "w": 1.8,
+    "h": 1.3
+   },
+   "rules": []
+  },
+  {
+   "id": "rf_stress",
+   "label": "Stress",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "risikofaktoren",
+   "box": {
+    "x": 71.5,
+    "y": 17.4,
+    "w": 1.8,
+    "h": 1.3
+   },
+   "rules": []
+  },
+  {
+   "id": "rf_rauchen",
+   "label": "Rauchen",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "risikofaktoren",
+   "box": {
+    "x": 89.1,
+    "y": 17.4,
+    "w": 1.8,
+    "h": 1.3
+   },
+   "rules": []
+  },
+  {
+   "id": "rf_sonstige",
+   "label": "Sonstige Risikofaktoren",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "risikofaktoren",
+   "box": {
+    "x": 4.3,
+    "y": 20.2,
+    "w": 1.8,
+    "h": 1.3
+   },
+   "rules": []
+  },
+  {
+   "id": "rf_sonstige_text",
+   "label": "Sonstige Risikofaktoren (Text)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 21.4,
+    "y": 19.4,
+    "w": 75.3,
+    "h": 1.9
+   },
+   "rules": []
+  },
+  {
+   "id": "beschwerden_cb",
+   "label": "aktuelle Beschwerden (ggf. auch Regulations-/Befindlichkeitsstörungen):",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "risikofaktoren",
+   "box": {
+    "x": 4.3,
+    "y": 23.1,
+    "w": 1.8,
+    "h": 1.3
+   },
+   "rules": []
+  },
+  {
+   "id": "beschwerden",
+   "label": "aktuelle Beschwerden (ggf. auch Regulations-/Befindlichkeitsstörungen), Zeile 1",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 52.4,
+    "y": 22.6,
+    "w": 44.3,
+    "h": 1.7
+   },
+   "rules": []
+  },
+  {
+   "id": "beschwerden_2",
+   "label": "aktuelle Beschwerden, Zeile 2",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 4.3,
+    "y": 26.4,
+    "w": 92.4,
+    "h": 1.9
+   },
+   "rules": []
+  },
+  {
+   "id": "diagnose_1",
+   "label": "Relevante Diagnose 1. (in der Reihenfolge ihrer med. Bedeutung; Klarschrift)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 6.0,
+    "y": 30.3,
+    "w": 63.1,
+    "h": 2.4
+   },
+   "rules": [
+    {
+     "id": "m25.diagnose_klartext",
+     "text": "Die Diagnose(n) werden in Klarschrift angegeben, nicht nach ICD-10-SGB V.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 25, Nr. 4, S. 70"
+     }
+    }
+   ]
+  },
+  {
+   "id": "seit_1",
+   "label": "Diagnose 1.: seit wann?",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 69.1,
+    "y": 30.3,
+    "w": 9.5,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "ursache_1",
+   "label": "Diagnose 1.: Ursache (1 = Unfallfolgen; 2 = Berufskrankheit; 3 = Gesundheitsschäden nach dem BVG)",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 78.6,
+    "y": 30.3,
+    "w": 9.5,
+    "h": 2.4
+   },
+   "rules": [
+    {
+     "id": "m25.ursache_ser",
+     "text": "Zur Ursache „Gesundheitsschäden nach dem BVG“ (jetzt SER) gilt die Erläuterung im Abschnitt „Allgemeines“ unter Nr. 8.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 25, Nr. 4, S. 70"
+     }
+    }
+   ]
+  },
+  {
+   "id": "verlauf_1",
+   "label": "Diagnose 1.: Verlauf (1 = chronisch rezidivierend; 2 = chronisch progredient; 3 = konstitutionell/umweltbedingte Neigung zu rezidivierenden somatischen Erkrankungen)",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 88.1,
+    "y": 30.3,
+    "w": 9.6,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "diagnose_2",
+   "label": "Relevante Diagnose 2. (in der Reihenfolge ihrer med. Bedeutung; Klarschrift)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 6.0,
+    "y": 32.7,
+    "w": 63.1,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "seit_2",
+   "label": "Diagnose 2.: seit wann?",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 69.1,
+    "y": 32.7,
+    "w": 9.5,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "ursache_2",
+   "label": "Diagnose 2.: Ursache (1 = Unfallfolgen; 2 = Berufskrankheit; 3 = Gesundheitsschäden nach dem BVG)",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 78.6,
+    "y": 32.7,
+    "w": 9.5,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "verlauf_2",
+   "label": "Diagnose 2.: Verlauf (1 = chronisch rezidivierend; 2 = chronisch progredient; 3 = konstitutionell/umweltbedingte Neigung zu rezidivierenden somatischen Erkrankungen)",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 88.1,
+    "y": 32.7,
+    "w": 9.6,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "diagnose_3",
+   "label": "Relevante Diagnose 3. (in der Reihenfolge ihrer med. Bedeutung; Klarschrift)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 6.0,
+    "y": 35.0,
+    "w": 63.1,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "seit_3",
+   "label": "Diagnose 3.: seit wann?",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 69.1,
+    "y": 35.0,
+    "w": 9.5,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "ursache_3",
+   "label": "Diagnose 3.: Ursache (1 = Unfallfolgen; 2 = Berufskrankheit; 3 = Gesundheitsschäden nach dem BVG)",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 78.6,
+    "y": 35.0,
+    "w": 9.5,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "verlauf_3",
+   "label": "Diagnose 3.: Verlauf (1 = chronisch rezidivierend; 2 = chronisch progredient; 3 = konstitutionell/umweltbedingte Neigung zu rezidivierenden somatischen Erkrankungen)",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 88.1,
+    "y": 35.0,
+    "w": 9.6,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "befund",
+   "label": "Schädigungen/Funktionsstörungen/Befund",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 3,
+   "box": {
+    "x": 4.3,
+    "y": 44.0,
+    "w": 92.4,
+    "h": 5.4
+   },
+   "rules": []
+  },
+  {
+   "id": "letzte_untersuchung",
+   "label": "Datum der letzten Untersuchung",
+   "kind": "date",
+   "filled_by": "arzt",
+   "format": "TTMMJJ",
+   "box": {
+    "x": 85.3,
+    "y": 42.6,
+    "w": 11.4,
+    "h": 1.3
+   },
+   "rules": []
+  },
+  {
+   "id": "befunde_mdk",
+   "label": "können bei Bedarf durch den MDK angefordert werden",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "befunde",
+   "box": {
+    "x": 4.3,
+    "y": 51.5,
+    "w": 1.8,
+    "h": 1.3
+   },
+   "rules": [
+    {
+     "id": "m25.befunde",
+     "text": "Aktuelle Befunde (z. B. Röntgen, EKG, Labor) / Untersuchungsberichte: ankreuzen, ob sie bei Bedarf durch den MDK angefordert werden können oder nicht vorliegen.",
+     "source": {
+      "artifact": "mustersammlung",
+      "locator": "PDF-Seite 45, Muster 25 (7.2009)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "befunde_nicht_vorhanden",
+   "label": "liegen nicht vor",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "befunde",
+   "box": {
+    "x": 52.0,
+    "y": 51.5,
+    "w": 1.8,
+    "h": 1.3
+   },
+   "rules": []
+  },
+  {
+   "id": "vorsorgeziel",
+   "label": "Angestrebtes Vorsorgeziel (z. B. Schmerzlinderung, Verbesserung der Beweglichkeit, Abbau von Risikofaktoren, Verhaltensänderung)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 1,
+   "box": {
+    "x": 4.3,
+    "y": 55.2,
+    "w": 92.4,
+    "h": 2.3
+   },
+   "rules": []
+  },
+  {
+   "id": "m_krankengymnastik",
+   "label": "Krankengymnastik",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "massnahmen",
+   "box": {
+    "x": 4.3,
+    "y": 60.0,
+    "w": 1.8,
+    "h": 1.3
+   },
+   "rules": [
+    {
+     "id": "m25.massnahmen",
+     "text": "Abschnitt „Welche Behandlungen, Maßnahmen/Hilfen wurden in den letzten 12 Monaten durchgeführt?“: Zutreffendes ankreuzen, unter „Sonstige“ im Klartext ergänzen.",
+     "source": {
+      "artifact": "mustersammlung",
+      "locator": "PDF-Seite 45, Muster 25 (7.2009)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "m_psychotherapie",
+   "label": "Psychotherapie",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "massnahmen",
+   "box": {
+    "x": 4.3,
+    "y": 61.2,
+    "w": 1.8,
+    "h": 1.3
+   },
+   "rules": []
+  },
+  {
+   "id": "m_physik",
+   "label": "Physik. Therapie",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "massnahmen",
+   "box": {
+    "x": 31.0,
+    "y": 60.0,
+    "w": 1.8,
+    "h": 1.3
+   },
+   "rules": []
+  },
+  {
+   "id": "m_patientenschulung",
+   "label": "Patientenschulung",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "massnahmen",
+   "box": {
+    "x": 31.0,
+    "y": 61.2,
+    "w": 1.8,
+    "h": 1.3
+   },
+   "rules": []
+  },
+  {
+   "id": "m_sprachtherapie",
+   "label": "Stimm-, Sprech- oder Sprachtherapie",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "massnahmen",
+   "box": {
+    "x": 52.0,
+    "y": 60.0,
+    "w": 1.8,
+    "h": 1.3
+   },
+   "rules": []
+  },
+  {
+   "id": "m_rehasport",
+   "label": "Rehasport/Funktionstraining",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "massnahmen",
+   "box": {
+    "x": 52.0,
+    "y": 61.2,
+    "w": 1.8,
+    "h": 1.3
+   },
+   "rules": []
+  },
+  {
+   "id": "m_ergotherapie",
+   "label": "Ergotherapie",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "massnahmen",
+   "box": {
+    "x": 80.1,
+    "y": 60.0,
+    "w": 1.8,
+    "h": 1.3
+   },
+   "rules": []
+  },
+  {
+   "id": "m_selbsthilfe",
+   "label": "Selbsthilfegruppe",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "massnahmen",
+   "box": {
+    "x": 80.1,
+    "y": 61.2,
+    "w": 1.8,
+    "h": 1.3
+   },
+   "rules": []
+  },
+  {
+   "id": "m_sonstige",
+   "label": "Sonstige (z.B. Hilfsmittelversorgung):",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "massnahmen",
+   "box": {
+    "x": 4.3,
+    "y": 64.0,
+    "w": 1.8,
+    "h": 1.3
+   },
+   "rules": []
+  },
+  {
+   "id": "m_sonstige_text",
+   "label": "Sonstige (z.B. Hilfsmittelversorgung), Text",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 31.0,
+    "y": 63.7,
+    "w": 65.7,
+    "h": 1.6
+   },
+   "rules": []
+  },
+  {
+   "id": "wartezeit_begruendung",
+   "label": "Die Vorsorgeleistung ist vor Ablauf der gesetzlichen Wartezeit von 3 Jahren medizinisch dringend erforderlich (z.B. Verschlimmerung durch akuten Schub, andere Krankheit), weil",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 2,
+   "box": {
+    "x": 4.3,
+    "y": 70.3,
+    "w": 92.4,
+    "h": 5.1
+   },
+   "rules": [
+    {
+     "id": "m25.wartezeit",
+     "text": "Nur ausfüllen, sofern in den letzten 3 Jahren eine medizinische Vorsorgeleistung durchgeführt wurde (Aufdruck); dann Begründung der dringenden Erforderlichkeit vor Ablauf der Wartezeit von 3 Jahren.",
+     "source": {
+      "artifact": "mustersammlung",
+      "locator": "PDF-Seite 45, Muster 25 (7.2009)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "kurort_anf_nein",
+   "label": "Besondere Anforderungen an den Kurort: nein",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "kurort_anforderungen",
+   "box": {
+    "x": 4.3,
+    "y": 77.8,
+    "w": 1.8,
+    "h": 1.3
+   },
+   "rules": [
+    {
+     "id": "m25.kurort",
+     "text": "Besondere Anforderungen an den Kurort sind separat zu nennen. Erscheint ein Kurort geeignet, kann er vorgeschlagen werden; die Krankenkasse ist an den Vorschlag nicht gebunden.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 25, Nr. 5–6, S. 70"
+     }
+    }
+   ]
+  },
+  {
+   "id": "kurort_anf_ja",
+   "label": "Besondere Anforderungen an den Kurort: ja, welche",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "kurort_anforderungen",
+   "box": {
+    "x": 11.5,
+    "y": 77.8,
+    "w": 1.8,
+    "h": 1.3
+   },
+   "rules": []
+  },
+  {
+   "id": "kurort_anf_text",
+   "label": "Besondere Anforderungen an den Kurort (z.B. Klima, Allergiefaktoren): welche",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 20.5,
+    "y": 77.4,
+    "w": 50.3,
+    "h": 1.5
+   },
+   "rules": [
+    {
+     "id": "m25.kurort",
+     "text": "Besondere Anforderungen an den Kurort sind separat zu nennen. Erscheint ein Kurort geeignet, kann er vorgeschlagen werden; die Krankenkasse ist an den Vorschlag nicht gebunden.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 25, Nr. 5–6, S. 70"
+     }
+    }
+   ]
+  },
+  {
+   "id": "kurort",
+   "label": "empfohlener Kurort",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 16.7,
+    "y": 80.3,
+    "w": 38.1,
+    "h": 1.5
+   },
+   "rules": [
+    {
+     "id": "m25.kurort",
+     "text": "Besondere Anforderungen an den Kurort sind separat zu nennen. Erscheint ein Kurort geeignet, kann er vorgeschlagen werden; die Krankenkasse ist an den Vorschlag nicht gebunden.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 25, Nr. 5–6, S. 70"
+     }
+    }
+   ]
+  },
+  {
+   "id": "dauer_wochen",
+   "label": "Dauer (Wochen)",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 60.5,
+    "y": 80.3,
+    "w": 4.8,
+    "h": 1.5
+   },
+   "rules": []
+  },
+  {
+   "id": "kompaktkur_ja",
+   "label": "Durchführung der Vorsorgeleistung in kompakter Form (Kompaktkur): ja",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "kompaktkur",
+   "box": {
+    "x": 56.2,
+    "y": 83.2,
+    "w": 1.8,
+    "h": 1.3
+   },
+   "rules": [
+    {
+     "id": "m25.kompaktkur",
+     "text": "Der Vertragsarzt kann anregen, die Leistung als Kompaktkur durchzuführen (indikationsspezifische, stabile Gruppen mit gleichen oder ähnlichen Krankheitsbildern, getrennt nach Indikation).",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 25, Nr. 7, S. 70"
+     }
+    }
+   ]
+  },
+  {
+   "id": "kompaktkur_nein",
+   "label": "Durchführung der Vorsorgeleistung in kompakter Form (Kompaktkur): nein",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "kompaktkur",
+   "box": {
+    "x": 65.8,
+    "y": 83.2,
+    "w": 1.8,
+    "h": 1.3
+   },
+   "rules": []
+  },
+  {
+   "id": "bemerkungen",
+   "label": "Ggf. weitere Bemerkungen",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 22.4,
+    "y": 86.4,
+    "w": 51.4,
+    "h": 1.5
+   },
+   "rules": []
+  },
+  {
+   "id": "bemerkungen_2",
+   "label": "Ggf. weitere Bemerkungen, Zeile 2",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 4.3,
+    "y": 89.0,
+    "w": 69.5,
+    "h": 1.6
+   },
+   "rules": []
+  },
+  {
+   "id": "ort_datum",
+   "label": "Ort und Datum",
+   "kind": "text",
+   "filled_by": "praxis",
+   "box": {
+    "x": 58.6,
+    "y": 93.1,
+    "w": 15.2,
+    "h": 1.5
+   },
+   "rules": []
+  },
+  {
+   "id": "stempel",
+   "label": "Unterschrift und Stempel des Vertragsarztes",
+   "kind": "stempel",
+   "filled_by": "arzt",
+   "box": {
+    "x": 74.8,
+    "y": 86.2,
+    "w": 22.8,
+    "h": 11.7
+   },
+   "rules": [
+    {
+     "id": "m25.unterschrift",
+     "text": "Erst vollständig ausfüllen, dann mit Vertragsarztstempel persönlich unterschreiben – nie blanko.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5"
+     }
+    }
+   ]
+  }
+ ]
+}

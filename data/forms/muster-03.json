@@ -1,0 +1,524 @@
+{
+ "schema_version": "1.0.0",
+ "id": "muster-03",
+ "muster": "3",
+ "title": "Zeugnis über den mutmaßlichen Tag der Entbindung",
+ "form_version": "10.2014",
+ "released": "2014-09-01",
+ "status": "entwurf",
+ "paper": {
+  "format": "DIN A6 quer, Vorder- und Rückseite (Rückseite nur 3a)",
+  "width": 419.5,
+  "height": 297.6,
+  "tint": "gelb"
+ },
+ "pages": [
+  "Vorderseite",
+  "Rückseite"
+ ],
+ "copies": [
+  {
+   "id": "3a",
+   "label": "Ausfertigung für die Krankenkasse",
+   "recipient": "Krankenkasse (Beantragung von Mutterschaftsgeld; Rückseite von der Versicherten auszufüllen)"
+  },
+  {
+   "id": "3b",
+   "label": "Ausfertigung für die Versicherte (z. B. zur Vorlage beim Arbeitgeber)",
+   "recipient": "Versicherte (z. B. Arbeitgeber)"
+  }
+ ],
+ "notes": [
+  {
+   "id": "m03.untersuchung",
+   "text": "Das Zeugnis darf nur aufgrund einer ärztlichen Untersuchung der Schwangeren ausgestellt werden.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 3, Nr. 1, S. 16"
+   }
+  },
+  {
+   "id": "m03.daten",
+   "text": "Wichtig sind zwei Daten: Ausstellungsdatum und Untersuchungsdatum. Das Mutterschaftsgeld wird vor der Entbindung nur aufgrund dieses Zeugnisses gezahlt, das bei Feststellung der Schwangerschaft ausgestellt werden soll.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 3, Nr. 2, S. 16"
+   }
+  },
+  {
+   "id": "m03.dokumentation",
+   "text": "Für spätere Streitfälle bei erheblicher Abweichung vom tatsächlichen Termin empfiehlt sich, in der Kartei Zeitpunkt der letzten Periode, erste Kindsbewegung und Stand des Fundus uteri festzuhalten.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 3, Nr. 3, S. 16"
+   }
+  },
+  {
+   "id": "m03.abgegolten",
+   "text": "Die Ausstellung ist mit der im zeitlichen Zusammenhang durchgeführten Vorsorgeuntersuchung abgegolten. Sucht die Schwangere den Arzt deshalb besonders auf, kann eine Beratung berechnet werden.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 3, Nr. 4, S. 16"
+   }
+  },
+  {
+   "id": "m03.ausfertigung_3b",
+   "text": "Muster 3b hat keine Rückseite; die Zeile „voraussichtlich entbinden wird am“ trägt dort keine Beschriftung (Datumsfeld T T M M J J ist vorhanden).",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 7, Muster 3 (10.2014)"
+   }
+  }
+ ],
+ "groups": [
+  {
+   "id": "beschaeftigung",
+   "label": "Ich bin derzeit (Angaben zum Beschäftigungsverhältnis, Versicherte)",
+   "select": "beliebig",
+   "rule": {
+    "id": "m03.beschaeftigung",
+    "text": "Die Versicherte kreuzt ihr Beschäftigungsverhältnis an (beschäftigt, selbständig, arbeitslos, Künstlerin/Publizistin).",
+    "source": {
+     "artifact": "mustersammlung",
+     "locator": "PDF-Seite 6, Muster 3 (10.2014)"
+    }
+   }
+  }
+ ],
+ "fields": [
+  {
+   "id": "personalien",
+   "label": "Personalienfeld (Krankenkasse bzw. Kostenträger, Name, Vorname, geb. am, Kostenträgerkennung, Versicherten-Nr., Status, Betriebsstätten-Nr., Arzt-Nr., Datum)",
+   "kind": "personalien",
+   "filled_by": "duria",
+   "box": {
+    "x": 6.2,
+    "y": 4.9,
+    "w": 53.9,
+    "h": 44.5
+   },
+   "rules": [
+    {
+     "id": "m03.personalien",
+     "text": "Die Daten der eGK werden maschinell über Kartenterminal und Praxis-EDV übertragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 5 und Nr. 6, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "entbindung_am",
+   "label": "dass die oben bezeichnete Versicherte voraussichtlich entbinden wird am",
+   "kind": "date",
+   "filled_by": "arzt",
+   "format": "TTMMJJ",
+   "box": {
+    "x": 39.5,
+    "y": 56.5,
+    "w": 20.6,
+    "h": 5.0
+   },
+   "rules": [
+    {
+     "id": "m03.daten",
+     "text": "Wichtig sind zwei Daten: Ausstellungsdatum und Untersuchungsdatum. Das Mutterschaftsgeld wird vor der Entbindung nur aufgrund dieses Zeugnisses gezahlt, das bei Feststellung der Schwangerschaft ausgestellt werden soll.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 3, Nr. 2, S. 16"
+     }
+    }
+   ]
+  },
+  {
+   "id": "untersuchung_am",
+   "label": "Die Bescheinigung erteile ich auf Grund der von mir vorgenommenen Untersuchung am",
+   "kind": "date",
+   "filled_by": "arzt",
+   "format": "TTMMJJ",
+   "box": {
+    "x": 39.5,
+    "y": 64.6,
+    "w": 20.6,
+    "h": 5.0
+   },
+   "rules": [
+    {
+     "id": "m03.untersuchung",
+     "text": "Das Zeugnis darf nur aufgrund einer ärztlichen Untersuchung der Schwangeren ausgestellt werden.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 3, Nr. 1, S. 16"
+     }
+    },
+    {
+     "id": "m03.daten",
+     "text": "Wichtig sind zwei Daten: Ausstellungsdatum und Untersuchungsdatum. Das Mutterschaftsgeld wird vor der Entbindung nur aufgrund dieses Zeugnisses gezahlt, das bei Feststellung der Schwangerschaft ausgestellt werden soll.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 3, Nr. 2, S. 16"
+     }
+    }
+   ]
+  },
+  {
+   "id": "feststellungen",
+   "label": "Ggf. besondere Feststellungen",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 3,
+   "box": {
+    "x": 6.2,
+    "y": 73.8,
+    "w": 54.2,
+    "h": 19.9
+   },
+   "rules": []
+  },
+  {
+   "id": "stempel",
+   "label": "Vertragsarztstempel / Unterschrift des Arztes",
+   "kind": "stempel",
+   "filled_by": "arzt",
+   "box": {
+    "x": 63.0,
+    "y": 59.7,
+    "w": 32.2,
+    "h": 34.0
+   },
+   "rules": [
+    {
+     "id": "m03.unterschrift",
+     "text": "Erst vollständig ausfüllen, dann mit Vertragsarztstempel persönlich unterschreiben – nie blanko.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "v_name",
+   "label": "Name, Vorname",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "only_copies": [
+    "3a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 4.4,
+    "y": 12.2,
+    "w": 69.5,
+    "h": 5.0
+   },
+   "rules": [
+    {
+     "id": "m03.rueckseite",
+     "text": "Die Rückseite füllt die Versicherte vor der Weitergabe des Vordrucks an die Krankenkasse aus (Aufdruck); sie gibt es nur bei Muster 3a.",
+     "source": {
+      "artifact": "mustersammlung",
+      "locator": "PDF-Seite 6, Muster 3 (10.2014)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "v_geburtsdatum",
+   "label": "Geburtsdatum",
+   "kind": "date",
+   "filled_by": "versicherter",
+   "format": "TTMMJJ",
+   "only_copies": [
+    "3a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 74.7,
+    "y": 12.1,
+    "w": 20.6,
+    "h": 5.0
+   },
+   "rules": []
+  },
+  {
+   "id": "v_plz",
+   "label": "PLZ",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "only_copies": [
+    "3a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 4.5,
+    "y": 20.2,
+    "w": 17.2,
+    "h": 5.0
+   },
+   "rules": []
+  },
+  {
+   "id": "v_wohnort",
+   "label": "Wohnort",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "only_copies": [
+    "3a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 22.4,
+    "y": 20.2,
+    "w": 26.6,
+    "h": 5.0
+   },
+   "rules": []
+  },
+  {
+   "id": "v_strasse",
+   "label": "Straße, Haus-Nr.",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "only_copies": [
+    "3a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 49.8,
+    "y": 20.2,
+    "w": 45.5,
+    "h": 5.0
+   },
+   "rules": []
+  },
+  {
+   "id": "v_kontoinhaber",
+   "label": "Kontoinhaber",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "only_copies": [
+    "3a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 4.4,
+    "y": 28.3,
+    "w": 91.0,
+    "h": 5.0
+   },
+   "rules": []
+  },
+  {
+   "id": "v_iban",
+   "label": "IBAN",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "only_copies": [
+    "3a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 4.4,
+    "y": 36.4,
+    "w": 75.3,
+    "h": 5.0
+   },
+   "rules": []
+  },
+  {
+   "id": "v_geldinstitut",
+   "label": "Geldinstitut",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "only_copies": [
+    "3a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 4.4,
+    "y": 44.4,
+    "w": 52.3,
+    "h": 5.0
+   },
+   "rules": []
+  },
+  {
+   "id": "v_bic",
+   "label": "BIC",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "only_copies": [
+    "3a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 57.7,
+    "y": 44.4,
+    "w": 37.6,
+    "h": 5.0
+   },
+   "rules": []
+  },
+  {
+   "id": "beschaeftigt",
+   "label": "Ich bin derzeit: beschäftigt, bei",
+   "kind": "checkbox",
+   "filled_by": "versicherter",
+   "group": "beschaeftigung",
+   "only_copies": [
+    "3a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 4.5,
+    "y": 56.4,
+    "w": 3.3,
+    "h": 5.0
+   },
+   "rules": []
+  },
+  {
+   "id": "selbstaendig",
+   "label": "Ich bin derzeit: selbständig",
+   "kind": "checkbox",
+   "filled_by": "versicherter",
+   "group": "beschaeftigung",
+   "only_copies": [
+    "3a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 4.5,
+    "y": 68.5,
+    "w": 3.3,
+    "h": 5.0
+   },
+   "rules": []
+  },
+  {
+   "id": "arbeitslos",
+   "label": "Ich bin derzeit: arbeitslos",
+   "kind": "checkbox",
+   "filled_by": "versicherter",
+   "group": "beschaeftigung",
+   "only_copies": [
+    "3a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 4.5,
+    "y": 76.6,
+    "w": 3.3,
+    "h": 5.0
+   },
+   "rules": []
+  },
+  {
+   "id": "kuenstlerin",
+   "label": "Ich bin derzeit: Künstlerin / Publizistin",
+   "kind": "checkbox",
+   "filled_by": "versicherter",
+   "group": "beschaeftigung",
+   "only_copies": [
+    "3a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 4.5,
+    "y": 84.7,
+    "w": 3.3,
+    "h": 5.0
+   },
+   "rules": []
+  },
+  {
+   "id": "v_arbeitgeber",
+   "label": "beschäftigt, bei",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "only_copies": [
+    "3a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 21.5,
+    "y": 56.5,
+    "w": 52.3,
+    "h": 4.9
+   },
+   "rules": []
+  },
+  {
+   "id": "v_arbeitgeber_anschrift",
+   "label": "Anschrift des Arbeitgebers",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "only_copies": [
+    "3a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 21.5,
+    "y": 64.6,
+    "w": 73.8,
+    "h": 4.9
+   },
+   "rules": []
+  },
+  {
+   "id": "v_gekuendigt_befristet",
+   "label": "gekündigt / befristet zum",
+   "kind": "date",
+   "filled_by": "versicherter",
+   "format": "TTMMJJ",
+   "only_copies": [
+    "3a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 74.7,
+    "y": 56.4,
+    "w": 20.6,
+    "h": 5.0
+   },
+   "rules": []
+  },
+  {
+   "id": "v_datum",
+   "label": "Datum",
+   "kind": "date",
+   "filled_by": "versicherter",
+   "format": "TTMMJJ",
+   "only_copies": [
+    "3a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 40.5,
+    "y": 87.8,
+    "w": 20.5,
+    "h": 5.9
+   },
+   "rules": []
+  },
+  {
+   "id": "v_unterschrift",
+   "label": "Unterschrift der Versicherten",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "only_copies": [
+    "3a"
+   ],
+   "page": 1,
+   "box": {
+    "x": 63.0,
+    "y": 83.9,
+    "w": 32.2,
+    "h": 9.8
+   },
+   "rules": []
+  }
+ ]
+}

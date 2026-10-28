@@ -1,0 +1,498 @@
+{
+ "schema_version": "1.0.0",
+ "id": "muster-05",
+ "muster": "5",
+ "title": "Abrechnungsschein ambulante Behandlung, belegärztliche Behandlung, Abklärung somatischer Ursachen vor Aufnahme einer Psychotherapie, anerkannte Psychotherapie",
+ "form_version": "10.2014",
+ "released": "2014-09-01",
+ "status": "entwurf",
+ "paper": {
+  "format": "DIN A5 quer",
+  "width": 595.3,
+  "height": 419.5,
+  "tint": "blau"
+ },
+ "copies": [
+  {
+   "id": "5",
+   "label": "Abrechnungsschein",
+   "recipient": "Kassenärztliche Vereinigung (Quartalsabrechnung)"
+  }
+ ],
+ "notes": [
+  {
+   "id": "m05.arbeitsunfall",
+   "text": "Bei Arbeitsunfällen, Berufskrankheiten und Schülerunfällen (auch Kindergarten, Studium) ist der Vordruck nicht zu verwenden; die Behandlung wird mit dem Unfallversicherungsträger auf Vordruck A13 nach dem Abkommen Ärzte/Unfallversicherungsträger abgerechnet.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 5, Nr. 2, S. 24"
+   }
+  },
+  {
+   "id": "m05.datentraeger",
+   "text": "Bei Abrechnung auf Datenträger kann die KV von der Ausstellung eines Abrechnungsscheins befreien, wenn im Quartal das nicht veränderbare Einlesedatum der elektronischen Gesundheitskarte festgehalten wird und Bestandteil des Behandlungsfalls ist.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 5, Nr. 12, S. 25"
+   }
+  },
+  {
+   "id": "m05.aufdruck",
+   "text": "Aufdruck: Nicht zu verwenden bei Arbeitsunfällen, Berufskrankheiten und Schülerunfällen.",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 10, Muster 5 (10.2014)"
+   }
+  }
+ ],
+ "groups": [
+  {
+   "id": "behandlungsart",
+   "label": "Ambulante oder belegärztliche Behandlung",
+   "select": "genau_eins",
+   "rule": {
+    "id": "m05.ambulant_beleg",
+    "text": "Der Vertragsarzt kennzeichnet, ob ambulante oder belegärztliche Behandlung vorliegt. Behandelt der Belegarzt denselben Patienten im Quartal ambulant und stationär, sind zwei Abrechnungsscheine auszustellen, jeweils entsprechend angekreuzt.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 5, Nr. 1, S. 24"
+    }
+   }
+  }
+ ],
+ "fields": [
+  {
+   "id": "personalien",
+   "label": "Personalienfeld (Krankenkasse bzw. Kostenträger, Name, geb. am, Kostenträgerkennung, Versicherten-Nr., Status, BSNR, LANR, Datum)",
+   "kind": "personalien",
+   "filled_by": "duria",
+   "box": {
+    "x": 4.3,
+    "y": 3.4,
+    "w": 38.0,
+    "h": 31.7
+   },
+   "rules": [
+    {
+     "id": "m05.personalien",
+     "text": "Die Daten der eGK werden maschinell über Kartenterminal und Praxis-EDV übertragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 5 und Nr. 6, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ambulant",
+   "label": "ambulante Behandlung",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "behandlungsart",
+   "box": {
+    "x": 44.2,
+    "y": 6.5,
+    "w": 2.3,
+    "h": 3.3
+   },
+   "rules": [
+    {
+     "id": "m05.ambulant_beleg",
+     "text": "Der Vertragsarzt kennzeichnet, ob ambulante oder belegärztliche Behandlung vorliegt. Behandelt der Belegarzt denselben Patienten im Quartal ambulant und stationär, sind zwei Abrechnungsscheine auszustellen, jeweils entsprechend angekreuzt.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 5, Nr. 1, S. 24"
+     }
+    }
+   ]
+  },
+  {
+   "id": "belegaerztlich",
+   "label": "bei belegärztlicher Behandlung",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "behandlungsart",
+   "box": {
+    "x": 55.1,
+    "y": 6.5,
+    "w": 2.3,
+    "h": 3.3
+   },
+   "rules": []
+  },
+  {
+   "id": "unfall",
+   "label": "Unfall, Unfallfolgen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "box": {
+    "x": 68.4,
+    "y": 6.5,
+    "w": 2.3,
+    "h": 3.3
+   },
+   "rules": [
+    {
+     "id": "m05.unfall",
+     "text": "Bei Behandlung aufgrund oder als Folge eines Unfalls ist das Unfallfeld anzukreuzen, damit Krankenkassen Kosten gegenüber Dritten geltend machen können; ein fehlendes Kreuz belastet die vertragsärztliche Versorgung unnötig.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 5, Nr. 2, S. 24"
+     }
+    },
+    {
+     "id": "m05.arbeitsunfall",
+     "text": "Bei Arbeitsunfällen, Berufskrankheiten und Schülerunfällen (auch Kindergarten, Studium) ist der Vordruck nicht zu verwenden; die Behandlung wird mit dem Unfallversicherungsträger auf Vordruck A13 nach dem Abkommen Ärzte/Unfallversicherungsträger abgerechnet.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 5, Nr. 2, S. 24"
+     }
+    }
+   ]
+  },
+  {
+   "id": "quartal",
+   "label": "Quartal",
+   "kind": "quarter",
+   "filled_by": "praxis",
+   "format": "QJJ",
+   "box": {
+    "x": 88.1,
+    "y": 6.5,
+    "w": 7.5,
+    "h": 3.2
+   },
+   "rules": [
+    {
+     "id": "m05.quartal",
+     "text": "Das Quartal der Leistungserbringung wird in der Form „Q JJ“ in das Feld eingetragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 5, Nr. 3, S. 24"
+     }
+    }
+   ]
+  },
+  {
+   "id": "konsiliar",
+   "label": "Abklärung somatischer Ursachen vor Aufnahme einer Psychotherapie",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "box": {
+    "x": 44.2,
+    "y": 11.8,
+    "w": 2.3,
+    "h": 3.3
+   },
+   "rules": [
+    {
+     "id": "m05.konsiliar",
+     "text": "Dient die Behandlung der Abklärung somatischer Ursachen vor Aufnahme einer Psychotherapie durch einen Psychologischen oder Kinder- und Jugendlichenpsychotherapeuten, kreuzt der Konsiliararzt das betreffende Feld an.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 5, Nr. 4, S. 24"
+     }
+    }
+   ]
+  },
+  {
+   "id": "psychotherapie",
+   "label": "anerkannte Psychotherapie",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "box": {
+    "x": 68.4,
+    "y": 11.8,
+    "w": 2.3,
+    "h": 3.3
+   },
+   "rules": [
+    {
+     "id": "m05.psychotherapie",
+     "text": "Die Behandlung als anerkannte Psychotherapie wird durch Ankreuzen gekennzeichnet; zusätzlich ist das Datum des Anerkennungsbescheids der Krankenkasse einzutragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 5, Nr. 5, S. 24"
+     }
+    }
+   ]
+  },
+  {
+   "id": "geschlecht",
+   "label": "Geschlecht",
+   "kind": "letter",
+   "filled_by": "duria",
+   "box": {
+    "x": 93.8,
+    "y": 11.8,
+    "w": 1.8,
+    "h": 3.3
+   },
+   "rules": [
+    {
+     "id": "m05.geschlecht",
+     "text": "Das Geschlecht wird durch einen Buchstaben angegeben (D = divers, M = männlich, W = weiblich, X = unbestimmt); die Bedruckung erfolgt durch Auslesen der elektronischen Gesundheitskarte.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 5, Nr. 6, S. 24"
+     }
+    }
+   ]
+  },
+  {
+   "id": "diagnose1",
+   "label": "Diagnosen / ggf. Abrechnungsbegründungen, 1. Zeile",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 44.2,
+    "y": 20.4,
+    "w": 51.4,
+    "h": 3.3
+   },
+   "rules": [
+    {
+     "id": "m05.diagnosen",
+     "text": "Im Diagnosefeld stehen Diagnosen, ggf. auch andere Abrechnungsbegründungen, kurz, aber so präzise, dass sich die Plausibilität der abgerechneten Leistungen erkennen lässt.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 5, Nr. 7, S. 24"
+     }
+    },
+    {
+     "id": "m05.platzmangel",
+     "text": "Reicht das Leistungs- oder Diagnosefeld nicht aus, sind die Abrechnungsempfehlungen der zuständigen KV zu beachten.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 5, Nr. 8, S. 25"
+     }
+    }
+   ]
+  },
+  {
+   "id": "diagnose2",
+   "label": "Diagnosen / ggf. Abrechnungsbegründungen, 2. Zeile",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 44.2,
+    "y": 26.1,
+    "w": 51.4,
+    "h": 3.3
+   },
+   "rules": []
+  },
+  {
+   "id": "anerkennungsbescheid",
+   "label": "Bei Psychotherapie: Datum des Anerkennungsbescheides",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "TTMMJJ",
+   "box": {
+    "x": 84.2,
+    "y": 31.9,
+    "w": 11.3,
+    "h": 3.2
+   },
+   "rules": [
+    {
+     "id": "m05.psychotherapie",
+     "text": "Die Behandlung als anerkannte Psychotherapie wird durch Ankreuzen gekennzeichnet; zusätzlich ist das Datum des Anerkennungsbescheids der Krankenkasse einzutragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 5, Nr. 5, S. 24"
+     }
+    }
+   ]
+  },
+  {
+   "id": "leistungen_links",
+   "label": "Leistungen (linke Spalte): Tag, Mon., Gebührenordnungsposition",
+   "kind": "text",
+   "filled_by": "praxis",
+   "lines": 10,
+   "box": {
+    "x": 4.3,
+    "y": 40.4,
+    "w": 33.1,
+    "h": 54.8
+   },
+   "rules": [
+    {
+     "id": "m05.leistungen",
+     "text": "Im Leistungsfeld folgt auf das Datum je Arzt-Patienten-Kontakt die Gebührenordnungsposition (oder regionale Abrechnungsnummer der KV). Folgezeilen desselben Kontakts ohne Datum; bei mehreren Kontakten am selben Tag wird hinter der ersten Leistung jedes weiteren Kontakts die Uhrzeit eingetragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 5, Nr. 8, S. 24–25"
+     }
+    },
+    {
+     "id": "m05.begruendung_op",
+     "text": "Eine Leistung wird in Klammern hinter der GOP begründet, wenn EBM oder KV das vorgeben. Bei ambulanten/belegärztlichen Operationen nach Abschnitt 31.2 EBM gehören OPS-Schlüssel, ggf. Erst-OP-Datum, Komplikationen mit ICD-10, Gesamt-Schnitt-Naht-Zeit und bei Simultaneingriffen die Diagnosen dazu.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 5, Nr. 8, S. 25"
+     }
+    },
+    {
+     "id": "m05.labor_datum",
+     "text": "Laboruntersuchungen nach Kapitel 32 EBM am selben Körpermaterial werden unter dem Datum der letzten Einzeluntersuchung eingetragen, wenn das Material an einem Tag oder an zwei aufeinanderfolgenden Tagen entnommen wurde.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 5, Nr. 8, S. 25"
+     }
+    },
+    {
+     "id": "m05.platzmangel",
+     "text": "Reicht das Leistungs- oder Diagnosefeld nicht aus, sind die Abrechnungsempfehlungen der zuständigen KV zu beachten.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 5, Nr. 8, S. 25"
+     }
+    }
+   ]
+  },
+  {
+   "id": "leistungen_rechts",
+   "label": "Leistungen (rechte Spalte): Tag, Mon., Gebührenordnungsposition",
+   "kind": "text",
+   "filled_by": "praxis",
+   "lines": 10,
+   "box": {
+    "x": 38.2,
+    "y": 40.4,
+    "w": 33.1,
+    "h": 54.8
+   },
+   "rules": [
+    {
+     "id": "m05.leistungen",
+     "text": "Im Leistungsfeld folgt auf das Datum je Arzt-Patienten-Kontakt die Gebührenordnungsposition (oder regionale Abrechnungsnummer der KV). Folgezeilen desselben Kontakts ohne Datum; bei mehreren Kontakten am selben Tag wird hinter der ersten Leistung jedes weiteren Kontakts die Uhrzeit eingetragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 5, Nr. 8, S. 24–25"
+     }
+    }
+   ]
+  },
+  {
+   "id": "entbindung",
+   "label": "Mutmaßlicher Tag der Entbindung",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "TTMMJJ",
+   "box": {
+    "x": 75.7,
+    "y": 46.1,
+    "w": 13.4,
+    "h": 3.3
+   },
+   "rules": [
+    {
+     "id": "m05.mutterschaft",
+     "text": "Werden Leistungen der Mutterschaftsvorsorge abgerechnet, wird der mutmaßliche Tag der Entbindung im Format „TTMMJJ“ angegeben.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 5, Nr. 9, S. 25"
+     }
+    }
+   ]
+  },
+  {
+   "id": "belegarzt_von",
+   "label": "Stationäre belegärztliche Behandlung von (Tag, Monat)",
+   "kind": "text",
+   "filled_by": "praxis",
+   "box": {
+    "x": 75.7,
+    "y": 57.5,
+    "w": 8.5,
+    "h": 3.3
+   },
+   "rules": [
+    {
+     "id": "m05.belegarzt_zeitraum",
+     "text": "Bei belegärztlicher Behandlung ist der Zeitraum des stationären Aufenthalts im betreffenden Feld anzugeben.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 5, Nr. 10, S. 25"
+     }
+    }
+   ]
+  },
+  {
+   "id": "belegarzt_bis",
+   "label": "Stationäre belegärztliche Behandlung bis (Tag, Monat)",
+   "kind": "text",
+   "filled_by": "praxis",
+   "box": {
+    "x": 87.8,
+    "y": 57.5,
+    "w": 8.5,
+    "h": 3.3
+   },
+   "rules": [
+    {
+     "id": "m05.belegarzt_zeitraum",
+     "text": "Bei belegärztlicher Behandlung ist der Zeitraum des stationären Aufenthalts im betreffenden Feld anzugeben.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 5, Nr. 10, S. 25"
+     }
+    }
+   ]
+  },
+  {
+   "id": "versicherung_bestaetigung",
+   "label": "Ich bin bei der oben genannten Krankenkasse versichert (Datum, Unterschrift)",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "box": {
+    "x": 72.6,
+    "y": 67.8,
+    "w": 23.8,
+    "h": 5.8
+   },
+   "rules": [
+    {
+     "id": "m05.patient_unterschrift",
+     "text": "Der Patient bestätigt oberhalb des Stempelfelds mit Datum und Unterschrift, dass er bei der angegebenen Krankenkasse versichert ist.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 5, Nr. 11, S. 25"
+     }
+    },
+    {
+     "id": "m05.unterschrift_entfaellt",
+     "text": "Die Patientenunterschrift entfällt bei gesetzlichem Vertreter (z. B. vor dem 15. Lebensjahr) oder Unfähigkeit zur Unterschrift sowie wenn im Quartal nur Kosten, Berichte/Kassenanfragen, GOP 01430, 01435, 01820 und/oder telefonische Beratungen nach GOP 01214, 01216, 01218 abgerechnet werden.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 5, Nr. 11, S. 25"
+     }
+    }
+   ]
+  },
+  {
+   "id": "stempel",
+   "label": "Stempel des Vertragsarztes/Therapeuten",
+   "kind": "stempel",
+   "filled_by": "arzt",
+   "box": {
+    "x": 72.2,
+    "y": 77.1,
+    "w": 24.6,
+    "h": 18.0
+   },
+   "rules": [
+    {
+     "id": "m05.unterschrift",
+     "text": "Erst vollständig ausfüllen, dann mit Vertragsarztstempel persönlich unterschreiben – nie blanko.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5"
+     }
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,591 @@
+{
+ "schema_version": "1.0.0",
+ "id": "muster-70",
+ "muster": "70",
+ "title": "Behandlungsplan für Maßnahmen zur künstlichen Befruchtung gemäß § 27a SGB V sowie der „Richtlinien über künstliche Befruchtung“ des Gemeinsamen Bundesausschusses für die hier genannten Ehegatten",
+ "form_version": "10.2014",
+ "released": "2014-09-01",
+ "status": "entwurf",
+ "paper": {
+  "format": "DIN A4 hoch",
+  "width": 595.3,
+  "height": 841.9,
+  "tint": "rot"
+ },
+ "copies": [
+  {
+   "id": "70a",
+   "label": "Original (nach Genehmigung zum Verbleib beim Vertragsarzt)",
+   "recipient": "Ehepaar (legt es nacheinander beiden Krankenkassen zur Genehmigung vor), danach durchführender Arzt"
+  },
+  {
+   "id": "70b",
+   "label": "Durchschlag für die Kassenärztliche Vereinigung",
+   "recipient": "Kassenärztliche Vereinigung (mit der ersten Abrechnung)"
+  }
+ ],
+ "notes": [
+  {
+   "id": "m70.verfahrensweg",
+   "text": "Der ausgefüllte Plan mit Durchschlag geht an das Ehepaar, das ihn nacheinander beiden Krankenkassen zur Genehmigung vorlegt. Das genehmigte Formular erhält der durchführende Arzt, der das Original behält und den Durchschlag mit der ersten Abrechnung an die KV weiterleitet.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 70, Positionen I–III, Nr. 5, S. 143"
+   }
+  },
+  {
+   "id": "m70.vorbehalt",
+   "text": "Alle Angaben stehen unter dem Vorbehalt einer nachträglichen Änderung der diagnostischen und therapeutischen Einzelfallerfordernisse; Auflistung der Positionen ggf. auf separatem Beiblatt (Hinweis auf dem Vordruck).",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 100, Muster 70a (10.2014)"
+   }
+  },
+  {
+   "id": "m70.genehmigung_kasse",
+   "text": "Abschnitt IV „Genehmigung durch die Krankenkasse(n)“ (genehmigte Zyklen, nicht genehmigt, Ort, Datum, Stempel und Unterschrift der Krankenkasse, getrennt für ♀ und ♂) füllt die Krankenkasse aus, nicht die Praxis.",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 100, Muster 70a (10.2014)"
+   }
+  },
+  {
+   "id": "m70.neuer_plan",
+   "text": "Bei Änderung der Behandlungsmethode (siehe Abschnitt II) sowie spätestens nach Ablauf eines Jahres seit der Genehmigung ist ein neuer Behandlungsplan vorzulegen (Hinweis auf dem Vordruck).",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 100, Muster 70a (10.2014)"
+   }
+  }
+ ],
+ "groups": [
+  {
+   "id": "massnahme",
+   "label": "Geplante Behandlungsmaßnahme (gemäß Nr. 10.1–10.5)",
+   "select": "beliebig",
+   "rule": {
+    "id": "m70.massnahme",
+    "text": "Geplante Behandlungsmaßnahme nach Nr. 10.1 bis 10.5 der Richtlinien über künstliche Befruchtung (Auswahl auf dem Vordruck).",
+    "source": {
+     "artifact": "mustersammlung",
+     "locator": "PDF-Seite 100, Muster 70a (10.2014)"
+    }
+   }
+  }
+ ],
+ "fields": [
+  {
+   "id": "personalien_frau",
+   "label": "Personalienfeld (♀) (Krankenkasse bzw. Kostenträger, Name, geb. am, Kostenträgerkennung, Versicherten-Nr., Status, Betriebsstätten-Nr., Arzt-Nr., Datum)",
+   "kind": "personalien",
+   "filled_by": "duria",
+   "box": {
+    "x": 4.3,
+    "y": 1.7,
+    "w": 38.1,
+    "h": 15.8
+   },
+   "rules": [
+    {
+     "id": "m70.formularkopf",
+     "text": "Die Daten der Ehepartner sind in die mit den Geschlechtssymbolen gekennzeichneten Felder einzusetzen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 70, Formularkopf, S. 142"
+     }
+    },
+    {
+     "id": "m70.personalien",
+     "text": "Die Daten der eGK werden maschinell über Kartenterminal und Praxis-EDV übertragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 5 und Nr. 6, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "personalien_mann",
+   "label": "Personalienfeld (♂, an dieser Stelle nicht bedruckbar: von Hand ausfüllen oder Personalfeldaufkleber verwenden) (Krankenkasse bzw. Kostenträger, Name, geb. am, Kostenträgerkennung, Versicherten-Nr., Status, Betriebsstätten-Nr., Arzt-Nr., Datum)",
+   "kind": "personalien",
+   "filled_by": "praxis",
+   "box": {
+    "x": 4.4,
+    "y": 20.4,
+    "w": 38.0,
+    "h": 15.7
+   },
+   "rules": [
+    {
+     "id": "m70.formularkopf",
+     "text": "Die Daten der Ehepartner sind in die mit den Geschlechtssymbolen gekennzeichneten Felder einzusetzen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 70, Formularkopf, S. 142"
+     }
+    },
+    {
+     "id": "m70.personalfeld_mann",
+     "text": "Das zweite Personalfeld ist an dieser Stelle nicht bedruckbar: von Hand ausfüllen oder Personalfeldaufkleber verwenden (auch auf dem Durchschlag).",
+     "source": {
+      "artifact": "mustersammlung",
+      "locator": "PDF-Seite 100, Muster 70a (10.2014)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "indikation",
+   "label": "I Indikation(en) gemäß Nummern 11.1-11.5 der Richtlinien über künstliche Befruchtung",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 2,
+   "marker": "1",
+   "box": {
+    "x": 46.0,
+    "y": 13.2,
+    "w": 52.0,
+    "h": 4.3
+   },
+   "rules": [
+    {
+     "id": "m70.indikationen",
+     "text": "Indikationen sind in den vorgegebenen Formulierungen abzubilden, getrennt nach IVF/EIFT (Nr. 11.3), GIFT (11.4), ICSI (11.5: männliche Fertilitätsstörung) sowie Inseminationen nach 10.1 und 10.2 der Richtlinien über künstliche Befruchtung.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 70, Positionen I–III, Nr. 1, S. 142"
+     }
+    }
+   ]
+  },
+  {
+   "id": "insem_spontan",
+   "label": "II Geplante Behandlungsmaßnahme: Insemination im Spontanzyklus (gemäß Nr. 10.1)",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "massnahme",
+   "box": {
+    "x": 46.0,
+    "y": 22.5,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m70.massnahme",
+     "text": "Geplante Behandlungsmaßnahme nach Nr. 10.1 bis 10.5 der Richtlinien über künstliche Befruchtung (Auswahl auf dem Vordruck).",
+     "source": {
+      "artifact": "mustersammlung",
+      "locator": "PDF-Seite 100, Muster 70a (10.2014)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "insem_stimulation",
+   "label": "II Geplante Behandlungsmaßnahme: Insemination nach hormoneller Stimulation (gemäß Nr. 10.2)",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "massnahme",
+   "box": {
+    "x": 46.0,
+    "y": 24.6,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "ivf",
+   "label": "II Geplante Behandlungsmaßnahme: In-Vitro-Fertilisation mit Embryotransfer (gemäß Nr. 10.3)",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "massnahme",
+   "box": {
+    "x": 46.0,
+    "y": 26.7,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "gift",
+   "label": "II Geplante Behandlungsmaßnahme: Intratubarer-Gameten-Transfer (gemäß Nr. 10.4)",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "massnahme",
+   "box": {
+    "x": 46.0,
+    "y": 28.9,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "icsi",
+   "label": "II Geplante Behandlungsmaßnahme: Intracytoplasmatische Spermieninjektion (gemäß Nr. 10.5)",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "massnahme",
+   "box": {
+    "x": 46.0,
+    "y": 31.0,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "bisherige_behandlungen",
+   "label": "Anzahl und Art bereits erfolgter Behandlungen (gemäß Nr. 10.1-10.5)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "2",
+   "box": {
+    "x": 72.6,
+    "y": 33.9,
+    "w": 25.4,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m70.bisherige_behandlungen",
+     "text": "Anzahl und Art bereits erfolgter Behandlungen mit Anzahl der Versuche und Methode nach 10.1–10.5 der Richtlinien angeben (z. B. 5 x 10.1).",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 70, Positionen I–III, Nr. 2, S. 142"
+     }
+    }
+   ]
+  },
+  {
+   "id": "kosten_a_ebm_f",
+   "label": "III a Kosten für einmalig im Reproduktionsfall anfallende Leistungen: Ärztliche Behandlung (EBM-Positionen) ♀",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "4",
+   "box": {
+    "x": 9.7,
+    "y": 46.7,
+    "w": 32.6,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m70.kosten",
+     "text": "Kostenschätzungen als durchschnittliche Kostenspanne in Euro getrennt für Mann und Frau; einmalig im Reproduktionsfall anfallende Leistungen (z. B. HIV-Test, humangenetische Untersuchungen) unter III a, pro Zyklus anfallende Kosten unter III b.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 70, Positionen I–III, Nr. 3, S. 143"
+     }
+    },
+    {
+     "id": "m70.ebm",
+     "text": "Für die Kostenschätzung der ärztlichen Behandlung sind die EBM-Positionen anzugeben; die Gesamtkostenspanne in Euro beruht auf dem regional vereinbarten Punktwert. Die zulässigen EBM-Positionen ergeben sich abschließend aus der Bundesempfehlung nach § 86 SGB V.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 70, Positionen I–III, Nr. 4, S. 143"
+     }
+    }
+   ]
+  },
+  {
+   "id": "kosten_a_ebm_m",
+   "label": "III a Kosten für einmalig im Reproduktionsfall anfallende Leistungen: Ärztliche Behandlung (EBM-Positionen) ♂",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "4",
+   "box": {
+    "x": 9.7,
+    "y": 48.8,
+    "w": 32.6,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "kosten_a_summe_f",
+   "label": "III a Kosten für einmalig im Reproduktionsfall anfallende Leistungen: Summe Ärztliche Behandlung (Euro) ♀",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "3",
+   "box": {
+    "x": 23.0,
+    "y": 51.0,
+    "w": 19.3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "kosten_a_summe_m",
+   "label": "III a Kosten für einmalig im Reproduktionsfall anfallende Leistungen: Summe Ärztliche Behandlung (Euro) ♂",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "3",
+   "box": {
+    "x": 23.0,
+    "y": 53.1,
+    "w": 19.3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "kosten_a_sach_f",
+   "label": "III a Kosten für einmalig im Reproduktionsfall anfallende Leistungen: Sachkosten und Sprechstundenbedarf (Euro) ♀",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "3",
+   "box": {
+    "x": 23.0,
+    "y": 55.2,
+    "w": 19.3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "kosten_a_sach_m",
+   "label": "III a Kosten für einmalig im Reproduktionsfall anfallende Leistungen: Sachkosten und Sprechstundenbedarf (Euro) ♂",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "3",
+   "box": {
+    "x": 23.0,
+    "y": 57.3,
+    "w": 19.3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "kosten_a_gesamt_f",
+   "label": "III a Kosten für einmalig im Reproduktionsfall anfallende Leistungen: Gesamtsumme für einmalig im Reproduktionsfall anfallende Leistungen (Euro) ♀",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "3",
+   "box": {
+    "x": 23.0,
+    "y": 59.5,
+    "w": 19.3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "kosten_a_gesamt_m",
+   "label": "III a Kosten für einmalig im Reproduktionsfall anfallende Leistungen: Gesamtsumme für einmalig im Reproduktionsfall anfallende Leistungen (Euro) ♂",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "3",
+   "box": {
+    "x": 23.0,
+    "y": 61.6,
+    "w": 19.3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "kosten_b_ebm_f",
+   "label": "III b Kosten pro Zyklusfall (ohne einmalig im Reproduktionsfall anfallende Leistungen): Ärztliche Behandlung (EBM-Positionen) ♀",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "4",
+   "box": {
+    "x": 46.0,
+    "y": 46.7,
+    "w": 31.3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "kosten_b_ebm_m",
+   "label": "III b Kosten pro Zyklusfall (ohne einmalig im Reproduktionsfall anfallende Leistungen): Ärztliche Behandlung (EBM-Positionen) ♂",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "4",
+   "box": {
+    "x": 46.0,
+    "y": 48.8,
+    "w": 31.3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "kosten_b_summe_f",
+   "label": "III b Kosten pro Zyklusfall (ohne einmalig im Reproduktionsfall anfallende Leistungen): Summe Ärztliche Behandlung (Euro) ♀",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "3",
+   "box": {
+    "x": 58.1,
+    "y": 51.0,
+    "w": 19.2,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "kosten_b_summe_m",
+   "label": "III b Kosten pro Zyklusfall (ohne einmalig im Reproduktionsfall anfallende Leistungen): Summe Ärztliche Behandlung (Euro) ♂",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "3",
+   "box": {
+    "x": 58.1,
+    "y": 53.1,
+    "w": 19.2,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "kosten_b_med_f",
+   "label": "III b Kosten pro Zyklusfall (ohne einmalig im Reproduktionsfall anfallende Leistungen): Medikamentenkosten (Euro) ♀",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "3",
+   "box": {
+    "x": 58.1,
+    "y": 55.2,
+    "w": 19.2,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "kosten_b_med_m",
+   "label": "III b Kosten pro Zyklusfall (ohne einmalig im Reproduktionsfall anfallende Leistungen): Medikamentenkosten (Euro) ♂",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "3",
+   "box": {
+    "x": 58.1,
+    "y": 57.3,
+    "w": 19.2,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "kosten_b_sach_f",
+   "label": "III b Kosten pro Zyklusfall (ohne einmalig im Reproduktionsfall anfallende Leistungen): Sachkosten und Sprechstundenbedarf (Euro) ♀",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "3",
+   "box": {
+    "x": 58.1,
+    "y": 59.5,
+    "w": 19.2,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "kosten_b_sach_m",
+   "label": "III b Kosten pro Zyklusfall (ohne einmalig im Reproduktionsfall anfallende Leistungen): Sachkosten und Sprechstundenbedarf (Euro) ♂",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "3",
+   "box": {
+    "x": 58.1,
+    "y": 61.6,
+    "w": 19.2,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "kosten_b_gesamt_f",
+   "label": "III b Kosten pro Zyklusfall (ohne einmalig im Reproduktionsfall anfallende Leistungen): Gesamtsumme pro Zyklusfall (Euro) ♀",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "3",
+   "box": {
+    "x": 58.1,
+    "y": 63.8,
+    "w": 19.2,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "kosten_b_gesamt_m",
+   "label": "III b Kosten pro Zyklusfall (ohne einmalig im Reproduktionsfall anfallende Leistungen): Gesamtsumme pro Zyklusfall (Euro) ♂",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "3",
+   "box": {
+    "x": 58.1,
+    "y": 65.9,
+    "w": 19.2,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "ort",
+   "label": "Ort",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 9.7,
+    "y": 66.0,
+    "w": 20.6,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "datum",
+   "label": "Datum",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "TTMMJJ",
+   "box": {
+    "x": 31.5,
+    "y": 65.9,
+    "w": 10.8,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m70.datum",
+     "text": "Ausstellungsdatum des Behandlungsplans (Feld „Datum“ neben „Ort“).",
+     "source": {
+      "artifact": "mustersammlung",
+      "locator": "PDF-Seite 100, Muster 70a (10.2014)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "stempel",
+   "label": "Vertragsarztstempel / Unterschrift des Arztes",
+   "kind": "stempel",
+   "filled_by": "arzt",
+   "box": {
+    "x": 78.7,
+    "y": 56.0,
+    "w": 19.2,
+    "h": 12.0
+   },
+   "rules": [
+    {
+     "id": "m70.unterschrift",
+     "text": "Erst vollständig ausfüllen, dann mit Vertragsarztstempel persönlich unterschreiben – nie blanko.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5"
+     }
+    }
+   ]
+  }
+ ]
+}

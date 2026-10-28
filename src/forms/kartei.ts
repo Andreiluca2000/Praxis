@@ -99,7 +99,7 @@ export function karteiOffer(input: KarteiInput): KarteiItem[] {
 }
 
 /** Felder, in die Diagnosen bzw. Karteitext eines Vordrucks gehören. */
-const TARGETS: Record<FormId, { diagnose: string | null; eintrag: string | null }> = {
+const TARGETS: Partial<Record<FormId, { diagnose: string | null; eintrag: string | null }>> = {
   'muster-06': { diagnose: 'diagnose', eintrag: 'befund' },
   'muster-02': { diagnose: 'diagnose', eintrag: 'untersuchungsergebnisse' },
   'muster-04': { diagnose: null, eintrag: null },
@@ -132,7 +132,7 @@ export function factSentence(chosen: readonly KarteiItem[]): string {
  * (nichts wird überschrieben). Gibt nur die geänderten Felder zurück.
  */
 export function applyKartei(formId: FormId, values: Readonly<Record<string, FieldValue>>, chosen: readonly KarteiItem[]): Record<string, string> {
-  const t = TARGETS[formId];
+  const t = TARGETS[formId] ?? { diagnose: null, eintrag: null };
   const out: Record<string, string> = {};
   const join = (field: string, parts: string[]) => {
     if (!parts.length) return;

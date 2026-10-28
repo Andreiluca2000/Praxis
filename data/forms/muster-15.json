@@ -1,0 +1,1129 @@
+{
+ "schema_version": "1.0.0",
+ "id": "muster-15",
+ "muster": "15",
+ "title": "Ohrenärztliche Verordnung einer Hörhilfe",
+ "form_version": "10.2014",
+ "released": "2014-09-01",
+ "status": "entwurf",
+ "paper": {
+  "format": "DIN A4 hoch, Vorder- und Rückseite",
+  "width": 595.3,
+  "height": 841.9,
+  "tint": "ohne"
+ },
+ "pages": [
+  "Vorderseite",
+  "Rückseite"
+ ],
+ "copies": [
+  {
+   "id": "15",
+   "label": "Ohrenärztliche Verordnung einer Hörhilfe",
+   "recipient": "Leistungserbringer (Hörgeräteakustiker); Leistung der Krankenkasse auf der Rückseite"
+  }
+ ],
+ "notes": [
+  {
+   "id": "m15.verwendung",
+   "text": "Die Verordnung einer Hörhilfe bzw. eines Tinnitusmaskers/Tinnitusinstruments erfolgt grundsätzlich mit Muster 15.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 15, Nr. 1, S. 56"
+   }
+  },
+  {
+   "id": "m15.versicherung_audiometrie",
+   "text": "Aufdruck: Die audiometrischen Untersuchungen wurden vom Arzt bzw. unter seiner Verantwortung vorgenommen.",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 29, Muster 15 (10.2014)"
+   }
+  },
+  {
+   "id": "m15.festbetrag",
+   "text": "Aufdruck „Wichtiger Hinweis für den Versicherten“: Die Krankenkassen übernehmen die Kosten für Hörgeräte/Tinnitusmasker/Tinnitusinstrumente bis zu einem Festbetrag.",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 30, Muster 15 (10.2014)"
+   }
+  },
+  {
+   "id": "m15.nicht_praxis",
+   "text": "Nicht von der Praxis auszufüllen: IK des Leistungserbringers, Rechnungs- und Belegnummer, Kostenvoranschlag des Hörgeräteakustikers, Kostenvoranschlag für Tinnitusmasker/Tinnitusinstrument, Leistung der Krankenkasse, Empfangsbestätigung und Vermerkraum der Krankenkasse.",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seiten 29–30, Muster 15 (10.2014)"
+   }
+  }
+ ],
+ "groups": [
+  {
+   "id": "vorversorgung",
+   "label": "War der Anspruchsberechtigte schon Träger eines Gerätes (Erst- oder Nachversorgung)",
+   "select": "genau_eins",
+   "rule": {
+    "id": "m15.erst_nachversorgung",
+    "text": "Anzukreuzen ist, ob es sich um Erst- oder Nachversorgung handelt. Eine Nachversorgung ist zu begründen.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 15, Nr. 3, S. 56"
+    }
+   }
+  },
+  {
+   "id": "hoerhilfe_seite",
+   "label": "Hörhilfe ist notwendig: rechts, links oder beiderseits",
+   "select": "beliebig",
+   "rule": {
+    "id": "m15.seite",
+    "text": "Bei Hörhilfen bzw. Tinnitusmasker/-instrument ist durch Ankreuzen kenntlich zu machen, ob die Versorgung rechts, links oder beidseitig notwendig ist.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 15, Nr. 4, S. 56"
+    }
+   }
+  },
+  {
+   "id": "gehoergang_r",
+   "label": "Ohrbefund rechtes Ohr: Gehörgang",
+   "select": "beliebig",
+   "rule": {
+    "id": "m15.ohrbefund",
+    "text": "Ohrbefund je Ohr: Gehörgang (normal, operativ erweitert, eng) und Trommelfell (intakt, durchlöchert, feucht); die linke Vordruckhälfte (Beschriftung „Rechts“/R) gilt dem rechten, die rechte Hälfte (L) dem linken Ohr.",
+    "source": {
+     "artifact": "mustersammlung",
+     "locator": "PDF-Seite 29, Muster 15 (10.2014)"
+    }
+   }
+  },
+  {
+   "id": "trommelfell_r",
+   "label": "Ohrbefund rechtes Ohr: Trommelfell",
+   "select": "beliebig",
+   "rule": {
+    "id": "m15.ohrbefund",
+    "text": "Ohrbefund je Ohr: Gehörgang (normal, operativ erweitert, eng) und Trommelfell (intakt, durchlöchert, feucht); die linke Vordruckhälfte (Beschriftung „Rechts“/R) gilt dem rechten, die rechte Hälfte (L) dem linken Ohr.",
+    "source": {
+     "artifact": "mustersammlung",
+     "locator": "PDF-Seite 29, Muster 15 (10.2014)"
+    }
+   }
+  },
+  {
+   "id": "gehoergang_l",
+   "label": "Ohrbefund linkes Ohr: Gehörgang",
+   "select": "beliebig",
+   "rule": {
+    "id": "m15.ohrbefund",
+    "text": "Ohrbefund je Ohr: Gehörgang (normal, operativ erweitert, eng) und Trommelfell (intakt, durchlöchert, feucht); die linke Vordruckhälfte (Beschriftung „Rechts“/R) gilt dem rechten, die rechte Hälfte (L) dem linken Ohr.",
+    "source": {
+     "artifact": "mustersammlung",
+     "locator": "PDF-Seite 29, Muster 15 (10.2014)"
+    }
+   }
+  },
+  {
+   "id": "trommelfell_l",
+   "label": "Ohrbefund linkes Ohr: Trommelfell",
+   "select": "beliebig",
+   "rule": {
+    "id": "m15.ohrbefund",
+    "text": "Ohrbefund je Ohr: Gehörgang (normal, operativ erweitert, eng) und Trommelfell (intakt, durchlöchert, feucht); die linke Vordruckhälfte (Beschriftung „Rechts“/R) gilt dem rechten, die rechte Hälfte (L) dem linken Ohr.",
+    "source": {
+     "artifact": "mustersammlung",
+     "locator": "PDF-Seite 29, Muster 15 (10.2014)"
+    }
+   }
+  }
+ ],
+ "fields": [
+  {
+   "id": "personalien",
+   "label": "Personalienfeld (Krankenkasse bzw. Kostenträger, Name, geb. am, Kostenträgerkennung, Versicherten-Nr., Status, BSNR, LANR, Datum)",
+   "kind": "personalien",
+   "filled_by": "duria",
+   "box": {
+    "x": 4.4,
+    "y": 1.7,
+    "w": 38.0,
+    "h": 15.7
+   },
+   "rules": [
+    {
+     "id": "m15.personalien",
+     "text": "Die Daten der eGK werden maschinell über Kartenterminal und Praxis-EDV übertragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 5 und Nr. 6, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "traeger_ja",
+   "label": "Der Anspruchsberechtigte war schon Träger eines Gerätes: ja",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "vorversorgung",
+   "box": {
+    "x": 84.2,
+    "y": 8.8,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": [
+    {
+     "id": "m15.erst_nachversorgung",
+     "text": "Anzukreuzen ist, ob es sich um Erst- oder Nachversorgung handelt. Eine Nachversorgung ist zu begründen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 15, Nr. 3, S. 56"
+     }
+    }
+   ]
+  },
+  {
+   "id": "traeger_nein",
+   "label": "Der Anspruchsberechtigte war schon Träger eines Gerätes: nein",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "vorversorgung",
+   "box": {
+    "x": 92.6,
+    "y": 8.8,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "nachversorgung_begruendung",
+   "label": "Falls ja, warum entspricht das bisher getragene Gerät nicht mehr den Anforderungen?",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 2,
+   "box": {
+    "x": 45.3,
+    "y": 13.2,
+    "w": 50.2,
+    "h": 4.3
+   },
+   "rules": [
+    {
+     "id": "m15.erst_nachversorgung",
+     "text": "Anzukreuzen ist, ob es sich um Erst- oder Nachversorgung handelt. Eine Nachversorgung ist zu begründen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 15, Nr. 3, S. 56"
+     }
+    }
+   ]
+  },
+  {
+   "id": "gehoergang_normal_r",
+   "label": "Ohrbefund rechts: Gehörgang normal",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "gehoergang_r",
+   "box": {
+    "x": 17.9,
+    "y": 19.6,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": [
+    {
+     "id": "m15.ohrbefund",
+     "text": "Ohrbefund je Ohr: Gehörgang (normal, operativ erweitert, eng) und Trommelfell (intakt, durchlöchert, feucht); die linke Vordruckhälfte (Beschriftung „Rechts“/R) gilt dem rechten, die rechte Hälfte (L) dem linken Ohr.",
+     "source": {
+      "artifact": "mustersammlung",
+      "locator": "PDF-Seite 29, Muster 15 (10.2014)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "gehoergang_erweitert_r",
+   "label": "Ohrbefund rechts: Gehörgang operativ erweitert",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "gehoergang_r",
+   "box": {
+    "x": 30.2,
+    "y": 19.6,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "gehoergang_eng_r",
+   "label": "Ohrbefund rechts: Gehörgang eng",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "gehoergang_r",
+   "box": {
+    "x": 39.8,
+    "y": 19.6,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "trommelfell_intakt_r",
+   "label": "Ohrbefund rechts: Trommelfell intakt",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "trommelfell_r",
+   "box": {
+    "x": 17.9,
+    "y": 21.7,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "trommelfell_durchloechert_r",
+   "label": "Ohrbefund rechts: Trommelfell durchlöchert",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "trommelfell_r",
+   "box": {
+    "x": 30.2,
+    "y": 21.7,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "trommelfell_feucht_r",
+   "label": "Ohrbefund rechts: Trommelfell feucht",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "trommelfell_r",
+   "box": {
+    "x": 39.8,
+    "y": 21.7,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "gehoergang_normal_l",
+   "label": "Ohrbefund links: Gehörgang normal",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "gehoergang_l",
+   "box": {
+    "x": 70.8,
+    "y": 19.6,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "gehoergang_erweitert_l",
+   "label": "Ohrbefund links: Gehörgang operativ erweitert",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "gehoergang_l",
+   "box": {
+    "x": 83.1,
+    "y": 19.6,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "gehoergang_eng_l",
+   "label": "Ohrbefund links: Gehörgang eng",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "gehoergang_l",
+   "box": {
+    "x": 92.6,
+    "y": 19.6,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "trommelfell_intakt_l",
+   "label": "Ohrbefund links: Trommelfell intakt",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "trommelfell_l",
+   "box": {
+    "x": 70.8,
+    "y": 21.7,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "trommelfell_durchloechert_l",
+   "label": "Ohrbefund links: Trommelfell durchlöchert",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "trommelfell_l",
+   "box": {
+    "x": 83.1,
+    "y": 21.7,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "trommelfell_feucht_l",
+   "label": "Ohrbefund links: Trommelfell feucht",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "trommelfell_l",
+   "box": {
+    "x": 92.6,
+    "y": 21.7,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "tonaudiogramm_r",
+   "label": "Rechts: Frequenz in kHz / Hörverlust in dB (Unbehaglichkeitsschwelle bitte eintragen)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 14.4,
+    "y": 27.7,
+    "w": 29.5,
+    "h": 23.4
+   },
+   "rules": [
+    {
+     "id": "m15.audiometrie",
+     "text": "Voraussetzung sind eine ton- und eine sprachaudiometrische Untersuchung; bei Tinnitusmasker auch Frequenz und Verdeckbarkeit. Nur Ärzte, die die Befunde vollständig erheben und die Indikation stellen können, dürfen verordnen; Hörgeräteakustiker dürfen nicht beauftragt werden, nach deren Angaben auszufüllen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 15, Nr. 2, S. 56"
+     }
+    }
+   ]
+  },
+  {
+   "id": "tonaudiogramm_l",
+   "label": "Links: Frequenz in kHz / Hörverlust in dB (Unbehaglichkeitsschwelle bitte eintragen)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 67.3,
+    "y": 27.7,
+    "w": 29.5,
+    "h": 23.4
+   },
+   "rules": [
+    {
+     "id": "m15.audiometrie",
+     "text": "Voraussetzung sind eine ton- und eine sprachaudiometrische Untersuchung; bei Tinnitusmasker auch Frequenz und Verdeckbarkeit. Nur Ärzte, die die Befunde vollständig erheben und die Indikation stellen können, dürfen verordnen; Hörgeräteakustiker dürfen nicht beauftragt werden, nach deren Angaben auszufüllen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 15, Nr. 2, S. 56"
+     }
+    }
+   ]
+  },
+  {
+   "id": "sprachaudiogramm_r",
+   "label": "Rechts: Verständlichkeit in % / Sprachschallpegel in dB",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 14.4,
+    "y": 55.3,
+    "w": 28.3,
+    "h": 24.1
+   },
+   "rules": [
+    {
+     "id": "m15.audiometrie",
+     "text": "Voraussetzung sind eine ton- und eine sprachaudiometrische Untersuchung; bei Tinnitusmasker auch Frequenz und Verdeckbarkeit. Nur Ärzte, die die Befunde vollständig erheben und die Indikation stellen können, dürfen verordnen; Hörgeräteakustiker dürfen nicht beauftragt werden, nach deren Angaben auszufüllen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 15, Nr. 2, S. 56"
+     }
+    }
+   ]
+  },
+  {
+   "id": "sprachaudiogramm_l",
+   "label": "Links: Verständlichkeit in % / Sprachschallpegel in dB",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 67.3,
+    "y": 55.3,
+    "w": 28.3,
+    "h": 24.1
+   },
+   "rules": [
+    {
+     "id": "m15.audiometrie",
+     "text": "Voraussetzung sind eine ton- und eine sprachaudiometrische Untersuchung; bei Tinnitusmasker auch Frequenz und Verdeckbarkeit. Nur Ärzte, die die Befunde vollständig erheben und die Indikation stellen können, dürfen verordnen; Hörgeräteakustiker dürfen nicht beauftragt werden, nach deren Angaben auszufüllen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 15, Nr. 2, S. 56"
+     }
+    }
+   ]
+  },
+  {
+   "id": "diskrimination_r",
+   "label": "Rechts: Diskriminationsverlust in %",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 34.2,
+    "y": 79.4,
+    "w": 8.6,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m15.audiometrie",
+     "text": "Voraussetzung sind eine ton- und eine sprachaudiometrische Untersuchung; bei Tinnitusmasker auch Frequenz und Verdeckbarkeit. Nur Ärzte, die die Befunde vollständig erheben und die Indikation stellen können, dürfen verordnen; Hörgeräteakustiker dürfen nicht beauftragt werden, nach deren Angaben auszufüllen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 15, Nr. 2, S. 56"
+     }
+    }
+   ]
+  },
+  {
+   "id": "diskrimination_l",
+   "label": "Links: Diskriminationsverlust in %",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 87.1,
+    "y": 79.4,
+    "w": 8.6,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m15.audiometrie",
+     "text": "Voraussetzung sind eine ton- und eine sprachaudiometrische Untersuchung; bei Tinnitusmasker auch Frequenz und Verdeckbarkeit. Nur Ärzte, die die Befunde vollständig erheben und die Indikation stellen können, dürfen verordnen; Hörgeräteakustiker dürfen nicht beauftragt werden, nach deren Angaben auszufüllen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 15, Nr. 2, S. 56"
+     }
+    }
+   ]
+  },
+  {
+   "id": "mo_druck_r",
+   "label": "Impedanz, MO-Druck mm H2O: rechts",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 45.2,
+    "y": 58.0,
+    "w": 5.8,
+    "h": 2.6
+   },
+   "rules": []
+  },
+  {
+   "id": "mo_druck_l",
+   "label": "Impedanz, MO-Druck mm H2O: links",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 56.7,
+    "y": 58.0,
+    "w": 5.6,
+    "h": 2.6
+   },
+   "rules": []
+  },
+  {
+   "id": "stapedius_0_5_r_hl",
+   "label": "Stapedius-Reflex 0,5 kHz, rechts: dB HL",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 45.2,
+    "y": 63.0,
+    "w": 2.9,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "stapedius_0_5_r_sl",
+   "label": "Stapedius-Reflex 0,5 kHz, rechts: dB SL",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 48.1,
+    "y": 63.0,
+    "w": 2.9,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "stapedius_0_5_l_hl",
+   "label": "Stapedius-Reflex 0,5 kHz, links: dB HL",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 56.7,
+    "y": 63.0,
+    "w": 2.8,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "stapedius_0_5_l_sl",
+   "label": "Stapedius-Reflex 0,5 kHz, links: dB SL",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 59.5,
+    "y": 63.0,
+    "w": 2.8,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "stapedius_1_r_hl",
+   "label": "Stapedius-Reflex 1 kHz, rechts: dB HL",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 45.2,
+    "y": 65.4,
+    "w": 2.9,
+    "h": 2.3
+   },
+   "rules": []
+  },
+  {
+   "id": "stapedius_1_r_sl",
+   "label": "Stapedius-Reflex 1 kHz, rechts: dB SL",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 48.1,
+    "y": 65.4,
+    "w": 2.9,
+    "h": 2.3
+   },
+   "rules": []
+  },
+  {
+   "id": "stapedius_1_l_hl",
+   "label": "Stapedius-Reflex 1 kHz, links: dB HL",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 56.7,
+    "y": 65.4,
+    "w": 2.8,
+    "h": 2.3
+   },
+   "rules": []
+  },
+  {
+   "id": "stapedius_1_l_sl",
+   "label": "Stapedius-Reflex 1 kHz, links: dB SL",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 59.5,
+    "y": 65.4,
+    "w": 2.8,
+    "h": 2.3
+   },
+   "rules": []
+  },
+  {
+   "id": "stapedius_2_r_hl",
+   "label": "Stapedius-Reflex 2 kHz, rechts: dB HL",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 45.2,
+    "y": 67.7,
+    "w": 2.9,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "stapedius_2_r_sl",
+   "label": "Stapedius-Reflex 2 kHz, rechts: dB SL",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 48.1,
+    "y": 67.7,
+    "w": 2.9,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "stapedius_2_l_hl",
+   "label": "Stapedius-Reflex 2 kHz, links: dB HL",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 56.7,
+    "y": 67.7,
+    "w": 2.8,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "stapedius_2_l_sl",
+   "label": "Stapedius-Reflex 2 kHz, links: dB SL",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 59.5,
+    "y": 67.7,
+    "w": 2.8,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "stapedius_4_r_hl",
+   "label": "Stapedius-Reflex 4 kHz, rechts: dB HL",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 45.2,
+    "y": 70.1,
+    "w": 2.9,
+    "h": 2.3
+   },
+   "rules": []
+  },
+  {
+   "id": "stapedius_4_r_sl",
+   "label": "Stapedius-Reflex 4 kHz, rechts: dB SL",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 48.1,
+    "y": 70.1,
+    "w": 2.9,
+    "h": 2.3
+   },
+   "rules": []
+  },
+  {
+   "id": "stapedius_4_l_hl",
+   "label": "Stapedius-Reflex 4 kHz, links: dB HL",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 56.7,
+    "y": 70.1,
+    "w": 2.8,
+    "h": 2.3
+   },
+   "rules": []
+  },
+  {
+   "id": "stapedius_4_l_sl",
+   "label": "Stapedius-Reflex 4 kHz, links: dB SL",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 59.5,
+    "y": 70.1,
+    "w": 2.8,
+    "h": 2.3
+   },
+   "rules": []
+  },
+  {
+   "id": "fluestersprache_r",
+   "label": "Fl. Spr. (Zahlen): rechts",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 45.2,
+    "y": 76.1,
+    "w": 5.8,
+    "h": 2.7
+   },
+   "rules": []
+  },
+  {
+   "id": "fluestersprache_l",
+   "label": "Fl. Spr. (Zahlen): links",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 56.7,
+    "y": 76.1,
+    "w": 5.6,
+    "h": 2.7
+   },
+   "rules": []
+  },
+  {
+   "id": "umgangssprache_r",
+   "label": "Um. Spr. (Zahlen): rechts",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 45.2,
+    "y": 78.8,
+    "w": 5.8,
+    "h": 2.7
+   },
+   "rules": []
+  },
+  {
+   "id": "umgangssprache_l",
+   "label": "Um. Spr. (Zahlen): links",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 56.7,
+    "y": 78.8,
+    "w": 5.6,
+    "h": 2.7
+   },
+   "rules": []
+  },
+  {
+   "id": "diagnose",
+   "label": "Diagnose",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 2,
+   "box": {
+    "x": 9.5,
+    "y": 82.7,
+    "w": 63.8,
+    "h": 4.2
+   },
+   "rules": []
+  },
+  {
+   "id": "hoerhilfe_rechts",
+   "label": "Hörhilfe ist notwendig: rechts",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "hoerhilfe_seite",
+   "box": {
+    "x": 32.9,
+    "y": 87.0,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": [
+    {
+     "id": "m15.seite",
+     "text": "Bei Hörhilfen bzw. Tinnitusmasker/-instrument ist durch Ankreuzen kenntlich zu machen, ob die Versorgung rechts, links oder beidseitig notwendig ist.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 15, Nr. 4, S. 56"
+     }
+    }
+   ]
+  },
+  {
+   "id": "hoerhilfe_links",
+   "label": "Hörhilfe ist notwendig: links",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "hoerhilfe_seite",
+   "box": {
+    "x": 43.4,
+    "y": 87.0,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "hoerhilfe_beiderseits",
+   "label": "Hörhilfe ist notwendig: beiderseits",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "hoerhilfe_seite",
+   "box": {
+    "x": 62.2,
+    "y": 87.0,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "tinnitus_rechts_khz",
+   "label": "Tinnitusmasker / Tinnitusinstrument notwendig, rechts: kHz",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 14.0,
+    "y": 91.2,
+    "w": 3.8,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m15.audiometrie",
+     "text": "Voraussetzung sind eine ton- und eine sprachaudiometrische Untersuchung; bei Tinnitusmasker auch Frequenz und Verdeckbarkeit. Nur Ärzte, die die Befunde vollständig erheben und die Indikation stellen können, dürfen verordnen; Hörgeräteakustiker dürfen nicht beauftragt werden, nach deren Angaben auszufüllen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 15, Nr. 2, S. 56"
+     }
+    },
+    {
+     "id": "m15.seite",
+     "text": "Bei Hörhilfen bzw. Tinnitusmasker/-instrument ist durch Ankreuzen kenntlich zu machen, ob die Versorgung rechts, links oder beidseitig notwendig ist.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 15, Nr. 4, S. 56"
+     }
+    }
+   ]
+  },
+  {
+   "id": "tinnitus_rechts_db",
+   "label": "Tinnitusmasker / Tinnitusinstrument notwendig, rechts: verdeckbar dB",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 32.9,
+    "y": 91.2,
+    "w": 3.8,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m15.audiometrie",
+     "text": "Voraussetzung sind eine ton- und eine sprachaudiometrische Untersuchung; bei Tinnitusmasker auch Frequenz und Verdeckbarkeit. Nur Ärzte, die die Befunde vollständig erheben und die Indikation stellen können, dürfen verordnen; Hörgeräteakustiker dürfen nicht beauftragt werden, nach deren Angaben auszufüllen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 15, Nr. 2, S. 56"
+     }
+    }
+   ]
+  },
+  {
+   "id": "tinnitus_links_khz",
+   "label": "Tinnitusmasker / Tinnitusinstrument notwendig, links: kHz",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 43.3,
+    "y": 91.2,
+    "w": 3.8,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m15.audiometrie",
+     "text": "Voraussetzung sind eine ton- und eine sprachaudiometrische Untersuchung; bei Tinnitusmasker auch Frequenz und Verdeckbarkeit. Nur Ärzte, die die Befunde vollständig erheben und die Indikation stellen können, dürfen verordnen; Hörgeräteakustiker dürfen nicht beauftragt werden, nach deren Angaben auszufüllen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 15, Nr. 2, S. 56"
+     }
+    }
+   ]
+  },
+  {
+   "id": "tinnitus_links_db",
+   "label": "Tinnitusmasker / Tinnitusinstrument notwendig, links: verdeckbar dB",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 62.1,
+    "y": 91.2,
+    "w": 3.8,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m15.audiometrie",
+     "text": "Voraussetzung sind eine ton- und eine sprachaudiometrische Untersuchung; bei Tinnitusmasker auch Frequenz und Verdeckbarkeit. Nur Ärzte, die die Befunde vollständig erheben und die Indikation stellen können, dürfen verordnen; Hörgeräteakustiker dürfen nicht beauftragt werden, nach deren Angaben auszufüllen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 15, Nr. 2, S. 56"
+     }
+    }
+   ]
+  },
+  {
+   "id": "unfall",
+   "label": "Die Schwerhörigkeit ist Folge von Unfall, Unfallfolgen",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "box": {
+    "x": 43.4,
+    "y": 94.1,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": [
+    {
+     "id": "m15.unfall",
+     "text": "Durch Ankreuzen ist zu kennzeichnen, ob die Versorgung aufgrund eines Unfalls bzw. von Unfallfolgen notwendig ist. Zu SER siehe „Allgemeines“ Nr. 8.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 15, Nr. 5, S. 56"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ser",
+   "label": "Die Schwerhörigkeit ist Folge von Versorgungsleiden (BVG)",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "box": {
+    "x": 62.2,
+    "y": 94.1,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": [
+    {
+     "id": "m15.unfall",
+     "text": "Durch Ankreuzen ist zu kennzeichnen, ob die Versorgung aufgrund eines Unfalls bzw. von Unfallfolgen notwendig ist. Zu SER siehe „Allgemeines“ Nr. 8.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 15, Nr. 5, S. 56"
+     }
+    }
+   ]
+  },
+  {
+   "id": "stempel",
+   "label": "Vertragsarztstempel / Unterschrift des Arztes",
+   "kind": "stempel",
+   "filled_by": "arzt",
+   "box": {
+    "x": 76.2,
+    "y": 87.1,
+    "w": 21.8,
+    "h": 10.6
+   },
+   "rules": [
+    {
+     "id": "m15.unterschrift",
+     "text": "Erst vollständig ausfüllen, dann mit Vertragsarztstempel persönlich unterschreiben – nie blanko.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "bescheinigung_hoerhilfe",
+   "label": "Ich habe mich davon überzeugt, dass durch die vorgeschlagene Hörhilfe eine ausreichende Hörverbesserung erzielt wird. Das vorgeschlagene Gerät ist zweckmäßig",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "page": 1,
+   "box": {
+    "x": 2.9,
+    "y": 61.3,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": [
+    {
+     "id": "m15.zweckmaessigkeit",
+     "text": "Nach Anpassung hat sich der Vertragsarzt zu überzeugen, dass eine ausreichende Hörverbesserung erzielt wird, und die Zweckmäßigkeit des Geräts auf dem Vordruck zu bestätigen. Bei Tinnitusmasker/-instrument bestätigt er die ausreichende Zweckmäßigkeit für den Versicherten.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 15, Nr. 6, S. 56"
+     }
+    }
+   ]
+  },
+  {
+   "id": "bescheinigung_tinnitus",
+   "label": "Ich habe mich davon überzeugt, dass der Tinnitusmasker/das Tinnitusinstrument ausreichend zweckmäßig ist",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "page": 1,
+   "box": {
+    "x": 2.9,
+    "y": 66.0,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": [
+    {
+     "id": "m15.zweckmaessigkeit",
+     "text": "Nach Anpassung hat sich der Vertragsarzt zu überzeugen, dass eine ausreichende Hörverbesserung erzielt wird, und die Zweckmäßigkeit des Geräts auf dem Vordruck zu bestätigen. Bei Tinnitusmasker/-instrument bestätigt er die ausreichende Zweckmäßigkeit für den Versicherten.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 15, Nr. 6, S. 56"
+     }
+    }
+   ]
+  },
+  {
+   "id": "bescheinigung_datum",
+   "label": "Ausgestellt am (Ärztliche Bescheinigung)",
+   "kind": "date",
+   "filled_by": "praxis",
+   "page": 1,
+   "box": {
+    "x": 37.7,
+    "y": 65.7,
+    "w": 19.5,
+    "h": 4.0
+   },
+   "rules": [
+    {
+     "id": "m15.zweckmaessigkeit",
+     "text": "Nach Anpassung hat sich der Vertragsarzt zu überzeugen, dass eine ausreichende Hörverbesserung erzielt wird, und die Zweckmäßigkeit des Geräts auf dem Vordruck zu bestätigen. Bei Tinnitusmasker/-instrument bestätigt er die ausreichende Zweckmäßigkeit für den Versicherten.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 15, Nr. 6, S. 56"
+     }
+    }
+   ]
+  },
+  {
+   "id": "stempel_bescheinigung",
+   "label": "Vertragsarztstempel/Unterschrift des Arztes (Ärztliche Bescheinigung)",
+   "kind": "stempel",
+   "filled_by": "arzt",
+   "page": 1,
+   "box": {
+    "x": 57.2,
+    "y": 57.9,
+    "w": 33.2,
+    "h": 11.8
+   },
+   "rules": []
+  }
+ ]
+}

@@ -1,0 +1,433 @@
+{
+ "schema_version": "1.0.0",
+ "id": "muster-11",
+ "muster": "11",
+ "title": "Bericht für den Medizinischen Dienst",
+ "form_version": "1.2015",
+ "released": "2014-10-31",
+ "status": "entwurf",
+ "paper": {
+  "format": "DIN A5 hoch",
+  "width": 419.5,
+  "height": 595.3,
+  "tint": "ohne"
+ },
+ "copies": [
+  {
+   "id": "11",
+   "label": "Bericht",
+   "recipient": "Medizinischer Dienst (in der Regel über den zum MD bestellten Versicherten)"
+  }
+ ],
+ "notes": [
+  {
+   "id": "m11.zweck",
+   "text": "Für die Begutachtung durch den Medizinischen Dienst bzw. die Beurteilung, ob eine Vorstellung beim MD angebracht ist, erteilt der Vertragsarzt die erforderlichen Auskünfte auf dem Vordruck Muster 11.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 11, Nr. 1, S. 42"
+   }
+  },
+  {
+   "id": "m11.beurteilung",
+   "text": "In der Regel ist von der Beurteilung des Krankheitszustands an diesem Tag auszugehen und deren Ergebnis zu vermerken.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 11, Nr. 3, S. 42"
+   }
+  },
+  {
+   "id": "m11.uebergabe",
+   "text": "In der Regel gibt der Arzt den Bericht dem zum MD bestellten Versicherten mit. Bei Postversand im Ausnahmefall kann er das Porto abrechnen, sofern die Kasse keinen Freiumschlag zur Verfügung gestellt hat.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 11, Nr. 5, S. 42"
+   }
+  },
+  {
+   "id": "m11.meinungsverschiedenheit",
+   "text": "Bei Meinungsverschiedenheiten mit dem MD über Arbeitsunfähigkeit o. Ä. unterrichtet der Vertragsarzt die Krankenkasse schriftlich unter Darlegung seiner Gründe und kann ein Zweitgutachten beantragen. Bei AU-Bescheinigung durch einen Gebietsarzt soll ein Arzt dieses Gebiets das Zweitgutachten erstellen.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 11, Nr. 7, S. 42"
+   }
+  },
+  {
+   "id": "m11.nicht_ausfuellen",
+   "text": "Der Vordruck ist nicht auszufüllen, wenn die Arbeitsunfähigkeit spätestens am Tag der Begutachtung durch den Medizinischen Dienst beendet ist (Hinweis auf dem Vordruck).",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 22, Muster 11 (1.2015)"
+   }
+  },
+  {
+   "id": "m11.ebm_01621",
+   "text": "Für den Bericht des Arztes ist die Nr. 01621 EBM berechnungsfähig (Hinweis auf dem Vordruck).",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 22, Muster 11 (1.2015)"
+   }
+  }
+ ],
+ "groups": [
+  {
+   "id": "beigefuegt",
+   "label": "Folgendes ist mit der Bitte um Rückgabe beigefügt",
+   "select": "beliebig",
+   "rule": {
+    "id": "m11.befunde",
+    "text": "Alle vorhandenen Befunde sollen übermittelt werden, um Wiederholungsuntersuchungen zu vermeiden; aktuelle Röntgenbefunde usw. werden gegen Rückgabe beigefügt (Grundlage § 276 SGB V).",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 11, Nr. 4, S. 42"
+    }
+   }
+  }
+ ],
+ "fields": [
+  {
+   "id": "datum_untersuchung",
+   "label": "Datum der letzten Untersuchung",
+   "kind": "date",
+   "filled_by": "arzt",
+   "format": "TTMMJJ",
+   "box": {
+    "x": 35.3,
+    "y": 16.2,
+    "w": 20.5,
+    "h": 2.4
+   },
+   "rules": [
+    {
+     "id": "m11.rueckruf",
+     "text": "Legt der Arzt ausnahmsweise Wert auf telefonische Rücksprache mit dem MD-Arzt, vermerkt er das Symbol „F“ hinter dem „Datum der letzten Untersuchung“.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 11, Nr. 6, S. 42"
+     }
+    }
+   ]
+  },
+  {
+   "id": "diagnose",
+   "label": "Diagnose",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 2,
+   "box": {
+    "x": 14.7,
+    "y": 19.4,
+    "w": 80.7,
+    "h": 5.3
+   },
+   "rules": [
+    {
+     "id": "m11.diagnose",
+     "text": "Kann der Arzt noch keine Diagnose angeben, vermerkt er stattdessen die Befunde.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 11, Nr. 2, S. 42"
+     }
+    }
+   ]
+  },
+  {
+   "id": "befunde",
+   "label": "Befunde",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 4,
+   "box": {
+    "x": 14.7,
+    "y": 26.5,
+    "w": 80.7,
+    "h": 11.6
+   },
+   "rules": [
+    {
+     "id": "m11.befunde",
+     "text": "Alle vorhandenen Befunde sollen übermittelt werden, um Wiederholungsuntersuchungen zu vermeiden; aktuelle Röntgenbefunde usw. werden gegen Rückgabe beigefügt (Grundlage § 276 SGB V).",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 11, Nr. 4, S. 42"
+     }
+    }
+   ]
+  },
+  {
+   "id": "mitbehandlung_nein",
+   "label": "Mitbehandlung: nein",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "box": {
+    "x": 21.6,
+    "y": 39.4,
+    "w": 3.3,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "mitbehandlung_ja",
+   "label": "Mitbehandlung: ja, im Fachbereich",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "box": {
+    "x": 31.9,
+    "y": 39.4,
+    "w": 3.3,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "mitbehandlung_fachbereich",
+   "label": "Mitbehandlung im Fachbereich",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 53.3,
+    "y": 39.4,
+    "w": 42.0,
+    "h": 2.5
+   },
+   "rules": []
+  },
+  {
+   "id": "droht_verschlimmerung",
+   "label": "Es droht eine Verschlimmerung des Leidens",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "box": {
+    "x": 21.6,
+    "y": 43.4,
+    "w": 3.3,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "droht_behinderung",
+   "label": "Es droht Behinderung",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "box": {
+    "x": 79.9,
+    "y": 43.4,
+    "w": 3.3,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "besondere_hinweise",
+   "label": "Besondere Hinweise",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 2,
+   "box": {
+    "x": 24.1,
+    "y": 47.4,
+    "w": 71.2,
+    "h": 5.5
+   },
+   "rules": []
+  },
+  {
+   "id": "nicht_aufsuchen",
+   "label": "Patientin / Patient kann den Medizinischen Dienst nicht aufsuchen, weil",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 67.9,
+    "y": 54.6,
+    "w": 27.4,
+    "h": 2.6
+   },
+   "rules": []
+  },
+  {
+   "id": "nicht_aufsuchen_2",
+   "label": "Patientin / Patient kann den Medizinischen Dienst nicht aufsuchen, weil (weitere Zeilen)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 2,
+   "box": {
+    "x": 6.1,
+    "y": 57.5,
+    "w": 89.2,
+    "h": 5.8
+   },
+   "rules": []
+  },
+  {
+   "id": "begutachtung_nach",
+   "label": "Eine Begutachtung ist voraussichtlich nach … Tagen / Wochen möglich (Nichtzutreffendes streichen)",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 43.9,
+    "y": 64.6,
+    "w": 6.8,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "arbeitsfaehig_ab",
+   "label": "Arbeitsfähig ab",
+   "kind": "date",
+   "filled_by": "arzt",
+   "format": "TTMMJJ",
+   "box": {
+    "x": 40.5,
+    "y": 68.6,
+    "w": 20.5,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "voraussichtlich_arbeitsfaehig_ab",
+   "label": "Voraussichtlich arbeitsfähig ab",
+   "kind": "date",
+   "filled_by": "arzt",
+   "format": "TTMMJJ",
+   "box": {
+    "x": 40.5,
+    "y": 72.6,
+    "w": 20.5,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "beigefuegt_roentgen",
+   "label": "Folgendes ist mit der Bitte um Rückgabe beigefügt: Röntgenbefund",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "beigefuegt",
+   "box": {
+    "x": 6.1,
+    "y": 78.7,
+    "w": 3.3,
+    "h": 2.4
+   },
+   "rules": [
+    {
+     "id": "m11.befunde",
+     "text": "Alle vorhandenen Befunde sollen übermittelt werden, um Wiederholungsuntersuchungen zu vermeiden; aktuelle Röntgenbefunde usw. werden gegen Rückgabe beigefügt (Grundlage § 276 SGB V).",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 11, Nr. 4, S. 42"
+     }
+    }
+   ]
+  },
+  {
+   "id": "beigefuegt_ultraschall",
+   "label": "Folgendes ist mit der Bitte um Rückgabe beigefügt: Ultraschallbefund",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "beigefuegt",
+   "box": {
+    "x": 23.3,
+    "y": 78.7,
+    "w": 3.3,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "beigefuegt_ekg",
+   "label": "Folgendes ist mit der Bitte um Rückgabe beigefügt: EKG-Befund",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "beigefuegt",
+   "box": {
+    "x": 40.5,
+    "y": 78.7,
+    "w": 3.3,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "beigefuegt_labor",
+   "label": "Folgendes ist mit der Bitte um Rückgabe beigefügt: Laborbefund",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "beigefuegt",
+   "box": {
+    "x": 6.1,
+    "y": 82.7,
+    "w": 3.3,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "beigefuegt_bericht",
+   "label": "Folgendes ist mit der Bitte um Rückgabe beigefügt: Arzt- oder Krankenhausbericht",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "beigefuegt",
+   "box": {
+    "x": 23.3,
+    "y": 82.7,
+    "w": 3.3,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "beigefuegt_sonstiges",
+   "label": "Folgendes ist mit der Bitte um Rückgabe beigefügt: Sonstiges",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 15.4,
+    "y": 85.7,
+    "w": 45.6,
+    "h": 2.5
+   },
+   "rules": []
+  },
+  {
+   "id": "ausstellungsdatum",
+   "label": "Ausstellungsdatum",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "TTMMJJ",
+   "box": {
+    "x": 40.5,
+    "y": 90.8,
+    "w": 20.5,
+    "h": 2.4
+   },
+   "rules": []
+  },
+  {
+   "id": "stempel",
+   "label": "Vertragsarztstempel / Unterschrift des Arztes",
+   "kind": "stempel",
+   "filled_by": "arzt",
+   "box": {
+    "x": 63.0,
+    "y": 76.1,
+    "w": 32.3,
+    "h": 17.1
+   },
+   "rules": [
+    {
+     "id": "m11.unterschrift",
+     "text": "Erst vollständig ausfüllen, dann mit Vertragsarztstempel persönlich unterschreiben – nie blanko.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5"
+     }
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,385 @@
+{
+ "schema_version": "1.0.0",
+ "id": "muster-86",
+ "muster": "86",
+ "title": "Weiterleitungsbogen für angeforderte Informationen an den MD",
+ "form_version": "5.2026",
+ "released": "2026-04-13",
+ "status": "entwurf",
+ "paper": {
+  "format": "DIN A4 hoch",
+  "width": 595.3,
+  "height": 841.9,
+  "tint": "ohne"
+ },
+ "copies": [
+  {
+   "id": "86",
+   "label": "Weiterleitungsbogen (von der Krankenkasse vorausgefüllt)",
+   "recipient": "Medizinischer Dienst (MD), im Freiumschlag der Krankenkasse"
+  }
+ ],
+ "notes": [
+  {
+   "id": "m86.anlass",
+   "text": "Haben Krankenkassen für eine gutachtliche Stellungnahme oder Prüfung nach § 275 Abs. 1 bis 3 SGB V Unterlagen beim Vertragsarzt angefordert, übermittelt dieser sie unmittelbar an den MD; die Kasse legt ihrem Schreiben den vorausgefüllten Bogen bei.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 86, Einleitung, S. 146"
+   }
+  },
+  {
+   "id": "m86.ausfuellen_kasse",
+   "text": "Der Bogen dient der korrekten Adressierung des zuständigen MD und der automatisierten Zuordnung zum Versicherten und ist vollständig von der Krankenkasse auszufüllen.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 86, Einleitung, S. 146"
+   }
+  },
+  {
+   "id": "m86.beilage",
+   "text": "Der Arzt fügt dem Bogen die angeforderten Unterlagen in Kopie bei. Liegen sie nicht vor, wird der Bogen ohne Anlage oder gesonderte Kennzeichnung direkt an den MD gesendet.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 86, Einleitung, S. 146"
+   }
+  },
+  {
+   "id": "m86.versand",
+   "text": "Versand im von den Krankenkassen nach § 62 Abs. 2 BMV-Ä gestellten Freiumschlag (mindestens Format C5); er darf ausschließlich im Zusammenhang mit Muster 86 genutzt werden, eine abweichende Nutzung ist unzulässig.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 86, Einleitung, S. 146"
+   }
+  },
+  {
+   "id": "m86.pflicht_bogen",
+   "text": "Für den Versand an den MD ist zwingend der vorausgefüllte Bogen zu nutzen, außer die Anforderung erfolgt direkt durch den MD oder Adressierung und Zuordnung sind anderweitig gesichert; Versand ohne diese Informationen ist unzulässig.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 86, Einleitung, S. 146"
+   }
+  },
+  {
+   "id": "m86.zusatzinfos",
+   "text": "Weitere für die Beurteilung relevante Informationen oder Besonderheiten können formlos dem Bogen für den Gutachter beigefügt werden.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 86, Einleitung, S. 146"
+   }
+  }
+ ],
+ "groups": [],
+ "fields": [
+  {
+   "id": "mima",
+   "label": "Aktenzeichen Mitteilungsmanagement (MiMa)",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "box": {
+    "x": 63.5,
+    "y": 13.8,
+    "w": 32.7,
+    "h": 2.2
+   },
+   "rules": [
+    {
+     "id": "m86.ausfuellen_kasse",
+     "text": "Der Bogen dient der korrekten Adressierung des zuständigen MD und der automatisierten Zuordnung zum Versicherten und ist vollständig von der Krankenkasse auszufüllen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 86, Einleitung, S. 146"
+     }
+    }
+   ]
+  },
+  {
+   "id": "kk_adresse",
+   "label": "Krankenkasse: Name der Krankenkasse, Straße, PLZ, Ort",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "lines": 3,
+   "box": {
+    "x": 63.5,
+    "y": 19.0,
+    "w": 32.7,
+    "h": 8.5
+   },
+   "rules": [
+    {
+     "id": "m86.ausfuellen_kasse",
+     "text": "Der Bogen dient der korrekten Adressierung des zuständigen MD und der automatisierten Zuordnung zum Versicherten und ist vollständig von der Krankenkasse auszufüllen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 86, Einleitung, S. 146"
+     }
+    }
+   ]
+  },
+  {
+   "id": "leistungsbereich",
+   "label": "Leistungsbereich",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "box": {
+    "x": 63.5,
+    "y": 29.3,
+    "w": 32.7,
+    "h": 2.4
+   },
+   "rules": [
+    {
+     "id": "m86.ausfuellen_kasse",
+     "text": "Der Bogen dient der korrekten Adressierung des zuständigen MD und der automatisierten Zuordnung zum Versicherten und ist vollständig von der Krankenkasse auszufüllen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 86, Einleitung, S. 146"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ap_name",
+   "label": "Ansprechpartner Krankenkasse: Vorname, Name",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "box": {
+    "x": 63.6,
+    "y": 35.0,
+    "w": 32.6,
+    "h": 2.4
+   },
+   "rules": [
+    {
+     "id": "m86.ausfuellen_kasse",
+     "text": "Der Bogen dient der korrekten Adressierung des zuständigen MD und der automatisierten Zuordnung zum Versicherten und ist vollständig von der Krankenkasse auszufüllen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 86, Einleitung, S. 146"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ap_telefon",
+   "label": "Ansprechpartner Krankenkasse: Telefon",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "box": {
+    "x": 63.6,
+    "y": 37.8,
+    "w": 32.6,
+    "h": 2.5
+   },
+   "rules": [
+    {
+     "id": "m86.ausfuellen_kasse",
+     "text": "Der Bogen dient der korrekten Adressierung des zuständigen MD und der automatisierten Zuordnung zum Versicherten und ist vollständig von der Krankenkasse auszufüllen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 86, Einleitung, S. 146"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ap_fax",
+   "label": "Ansprechpartner Krankenkasse: Fax",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "box": {
+    "x": 63.6,
+    "y": 40.7,
+    "w": 32.6,
+    "h": 2.4
+   },
+   "rules": [
+    {
+     "id": "m86.ausfuellen_kasse",
+     "text": "Der Bogen dient der korrekten Adressierung des zuständigen MD und der automatisierten Zuordnung zum Versicherten und ist vollständig von der Krankenkasse auszufüllen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 86, Einleitung, S. 146"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ap_email",
+   "label": "Ansprechpartner Krankenkasse: E-Mail",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "box": {
+    "x": 63.6,
+    "y": 43.6,
+    "w": 32.6,
+    "h": 2.4
+   },
+   "rules": [
+    {
+     "id": "m86.ausfuellen_kasse",
+     "text": "Der Bogen dient der korrekten Adressierung des zuständigen MD und der automatisierten Zuordnung zum Versicherten und ist vollständig von der Krankenkasse auszufüllen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 86, Einleitung, S. 146"
+     }
+    }
+   ]
+  },
+  {
+   "id": "v_name",
+   "label": "Daten des Versicherten: Name, Vorname",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "box": {
+    "x": 10.3,
+    "y": 59.4,
+    "w": 69.0,
+    "h": 2.3
+   },
+   "rules": [
+    {
+     "id": "m86.ausfuellen_kasse",
+     "text": "Der Bogen dient der korrekten Adressierung des zuständigen MD und der automatisierten Zuordnung zum Versicherten und ist vollständig von der Krankenkasse auszufüllen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 86, Einleitung, S. 146"
+     }
+    }
+   ]
+  },
+  {
+   "id": "v_geburtsdatum",
+   "label": "Daten des Versicherten: Geburtsdatum",
+   "kind": "date",
+   "filled_by": "leistungserbringer",
+   "format": "TTMMJJ",
+   "box": {
+    "x": 81.7,
+    "y": 59.9,
+    "w": 14.5,
+    "h": 1.8
+   },
+   "rules": [
+    {
+     "id": "m86.ausfuellen_kasse",
+     "text": "Der Bogen dient der korrekten Adressierung des zuständigen MD und der automatisierten Zuordnung zum Versicherten und ist vollständig von der Krankenkasse auszufüllen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 86, Einleitung, S. 146"
+     }
+    }
+   ]
+  },
+  {
+   "id": "v_strasse",
+   "label": "Daten des Versicherten: Straße",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "box": {
+    "x": 10.3,
+    "y": 62.2,
+    "w": 85.9,
+    "h": 2.3
+   },
+   "rules": [
+    {
+     "id": "m86.ausfuellen_kasse",
+     "text": "Der Bogen dient der korrekten Adressierung des zuständigen MD und der automatisierten Zuordnung zum Versicherten und ist vollständig von der Krankenkasse auszufüllen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 86, Einleitung, S. 146"
+     }
+    }
+   ]
+  },
+  {
+   "id": "v_plz",
+   "label": "Daten des Versicherten: PLZ",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "box": {
+    "x": 10.4,
+    "y": 65.6,
+    "w": 12.1,
+    "h": 1.8
+   },
+   "rules": [
+    {
+     "id": "m86.ausfuellen_kasse",
+     "text": "Der Bogen dient der korrekten Adressierung des zuständigen MD und der automatisierten Zuordnung zum Versicherten und ist vollständig von der Krankenkasse auszufüllen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 86, Einleitung, S. 146"
+     }
+    }
+   ]
+  },
+  {
+   "id": "v_ort",
+   "label": "Daten des Versicherten: Ort",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "box": {
+    "x": 22.5,
+    "y": 65.6,
+    "w": 73.7,
+    "h": 1.8
+   },
+   "rules": [
+    {
+     "id": "m86.ausfuellen_kasse",
+     "text": "Der Bogen dient der korrekten Adressierung des zuständigen MD und der automatisierten Zuordnung zum Versicherten und ist vollständig von der Krankenkasse auszufüllen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 86, Einleitung, S. 146"
+     }
+    }
+   ]
+  },
+  {
+   "id": "v_kv_nummer",
+   "label": "Daten des Versicherten: KV-Nummer",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "box": {
+    "x": 10.3,
+    "y": 67.9,
+    "w": 42.4,
+    "h": 2.3
+   },
+   "rules": [
+    {
+     "id": "m86.ausfuellen_kasse",
+     "text": "Der Bogen dient der korrekten Adressierung des zuständigen MD und der automatisierten Zuordnung zum Versicherten und ist vollständig von der Krankenkasse auszufüllen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 86, Einleitung, S. 146"
+     }
+    }
+   ]
+  },
+  {
+   "id": "v_aktenzeichen",
+   "label": "Daten des Versicherten: Aktenzeichen Krankenkasse",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "box": {
+    "x": 10.3,
+    "y": 70.8,
+    "w": 42.4,
+    "h": 2.3
+   },
+   "rules": [
+    {
+     "id": "m86.ausfuellen_kasse",
+     "text": "Der Bogen dient der korrekten Adressierung des zuständigen MD und der automatisierten Zuordnung zum Versicherten und ist vollständig von der Krankenkasse auszufüllen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 86, Einleitung, S. 146"
+     }
+    }
+   ]
+  }
+ ]
+}

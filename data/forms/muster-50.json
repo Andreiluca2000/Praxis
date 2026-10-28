@@ -1,0 +1,598 @@
+{
+ "schema_version": "1.0.0",
+ "id": "muster-50",
+ "muster": "50",
+ "title": "Anfrage zur Zuständigkeit einer anderen Krankenkasse",
+ "form_version": "10.2005",
+ "released": "2005-08-04",
+ "status": "entwurf",
+ "paper": {
+  "format": "DIN A4 hoch, Vorder- und Rückseite",
+  "width": 595.3,
+  "height": 841.9,
+  "tint": "ohne"
+ },
+ "pages": [
+  "Vorderseite (Anfrage der Krankenkasse)",
+  "Rückseite (Antwort des Vertragsarztes)"
+ ],
+ "copies": [
+  {
+   "id": "50",
+   "label": "Anfrage mit Antwortseite",
+   "recipient": "Krankenkasse (Rücksendung im Freiumschlag)"
+  }
+ ],
+ "notes": [
+  {
+   "id": "m50.anlass",
+   "text": "Die Krankenkassen benötigen die Anfrage, wenn sie aus vorliegenden ärztlichen Bescheinigungen, z. B. wegen unvollständiger oder fehlerhafter Angaben im Personalienfeld, eine Mitgliedschaft nicht feststellen können.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 50, Nr. 1, S. 86"
+   }
+  },
+  {
+   "id": "m50.vorderseite",
+   "text": "Die Vorderseite füllt die Krankenkasse aus: Anrede, Datum der Bescheinigung/Verordnung, Name, Geburtsdatum, Anschrift und Versichertennummer, Art der ausgestellten Unterlage (Arbeitsunfähigkeitsbescheinigung, Verordnung(en), Verordnung von Krankenhausbehandlung) und Ende der Mitgliedschaft. Der Arzt füllt nur die Rückseite („Vom Vertragsarzt auszufüllen!“) aus.",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 58, Muster 50 (10.2005)"
+   }
+  },
+  {
+   "id": "m50.ebm_01620",
+   "text": "Für die Beantwortung dieser Anfrage ist die Nr. 01620 EBM berechnungsfähig (Aufdruck).",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 58, Muster 50 (10.2005)"
+   }
+  }
+ ],
+ "groups": [
+  {
+   "id": "name_richtig",
+   "label": "Name und Geburtsdatum richtig wiedergegeben?",
+   "select": "genau_eins",
+   "rule": {
+    "id": "m50.frage_name",
+    "text": "Frage der Krankenkasse: „Wurde der Name und das Geburtsdatum von uns richtig wiedergegeben?“ – ja oder nein; bei nein berichtigen.",
+    "source": {
+     "artifact": "mustersammlung",
+     "locator": "PDF-Seite 59, Muster 50 (10.2005)"
+    }
+   }
+  },
+  {
+   "id": "behandlungsausweis",
+   "label": "Behandlungsausweis zum Zeitpunkt der Behandlung vorgelegen?",
+   "select": "genau_eins",
+   "rule": {
+    "id": "m50.frage_behandlungsausweis",
+    "text": "Frage der Krankenkasse: „Hat ein Behandlungsausweis zum Zeitpunkt der Behandlung vorgelegen?“ – ja oder nein.",
+    "source": {
+     "artifact": "mustersammlung",
+     "locator": "PDF-Seite 59, Muster 50 (10.2005)"
+    }
+   }
+  }
+ ],
+ "fields": [
+  {
+   "id": "name_richtig_ja",
+   "label": "Wurde der Name und das Geburtsdatum von uns richtig wiedergegeben? ja",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "page": 1,
+   "group": "name_richtig",
+   "box": {
+    "x": 62.4,
+    "y": 8.2,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m50.personalien",
+     "text": "Der Arzt vergleicht die Personalien auf der Vorderseite mit seinen Unterlagen und berichtigt bei Abweichungen Name, Vorname und Geburtsdatum.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 50, Nr. 2, S. 86"
+     }
+    }
+   ]
+  },
+  {
+   "id": "name_richtig_nein",
+   "label": "Wurde der Name und das Geburtsdatum von uns richtig wiedergegeben? nein",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "page": 1,
+   "group": "name_richtig",
+   "box": {
+    "x": 75.7,
+    "y": 8.2,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "name_berichtigt",
+   "label": "Wenn nein, bitte berichtigen: Name und Vorname des Versicherten",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "box": {
+    "x": 6.7,
+    "y": 15.3,
+    "w": 67.2,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m50.personalien",
+     "text": "Der Arzt vergleicht die Personalien auf der Vorderseite mit seinen Unterlagen und berichtigt bei Abweichungen Name, Vorname und Geburtsdatum.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 50, Nr. 2, S. 86"
+     }
+    }
+   ]
+  },
+  {
+   "id": "geburtsdatum_berichtigt",
+   "label": "Wenn nein, bitte berichtigen: Geburtsdatum",
+   "kind": "date",
+   "filled_by": "arzt",
+   "page": 1,
+   "format": "TTMMJJ",
+   "box": {
+    "x": 75.7,
+    "y": 15.3,
+    "w": 14.5,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m50.personalien",
+     "text": "Der Arzt vergleicht die Personalien auf der Vorderseite mit seinen Unterlagen und berichtigt bei Abweichungen Name, Vorname und Geburtsdatum.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 50, Nr. 2, S. 86"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ausweis_ja",
+   "label": "Hat ein Behandlungsausweis zum Zeitpunkt der Behandlung vorgelegen? ja",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "page": 1,
+   "group": "behandlungsausweis",
+   "box": {
+    "x": 62.4,
+    "y": 21.1,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m50.kassenname",
+     "text": "Der Arzt prüft, ob ein Behandlungsausweis der anfragenden Kasse vorliegt und ob der Kassenname präzise angegeben ist. Bei Kassenwechsel den genauen Namen der neuen Kasse angeben und das Feld mit Behandlungsdaten und Leistungsnummern ausfüllen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 50, Nr. 3, S. 86"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ausweis_nein",
+   "label": "Hat ein Behandlungsausweis zum Zeitpunkt der Behandlung vorgelegen? nein",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "page": 1,
+   "group": "behandlungsausweis",
+   "box": {
+    "x": 75.7,
+    "y": 21.1,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "krankenkasse_name",
+   "label": "Name der Krankenkasse",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "box": {
+    "x": 6.7,
+    "y": 26.7,
+    "w": 83.5,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m50.kassenname",
+     "text": "Der Arzt prüft, ob ein Behandlungsausweis der anfragenden Kasse vorliegt und ob der Kassenname präzise angegeben ist. Bei Kassenwechsel den genauen Namen der neuen Kasse angeben und das Feld mit Behandlungsdaten und Leistungsnummern ausfüllen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 50, Nr. 3, S. 86"
+     }
+    }
+   ]
+  },
+  {
+   "id": "neue_krankenkasse_name",
+   "label": "Bei Kassenwechsel: Name der neuen Krankenkasse",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "box": {
+    "x": 6.7,
+    "y": 35.3,
+    "w": 83.5,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m50.kassenname",
+     "text": "Der Arzt prüft, ob ein Behandlungsausweis der anfragenden Kasse vorliegt und ob der Kassenname präzise angegeben ist. Bei Kassenwechsel den genauen Namen der neuen Kasse angeben und das Feld mit Behandlungsdaten und Leistungsnummern ausfüllen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 50, Nr. 3, S. 86"
+     }
+    }
+   ]
+  },
+  {
+   "id": "behandlungstag_01",
+   "label": "Behandlungstag 1",
+   "kind": "date",
+   "filled_by": "arzt",
+   "page": 1,
+   "format": "TTMMJJ",
+   "box": {
+    "x": 6.7,
+    "y": 42.4,
+    "w": 14.5,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m50.nur_neue_kasse",
+     "text": "Aufdruck: „Bitte nur bei Angabe einer neuen Krankenkasse ausfüllen!“ – Behandlungstage mit EBM-Nr. nur bei Kassenwechsel.",
+     "source": {
+      "artifact": "mustersammlung",
+      "locator": "PDF-Seite 59, Muster 50 (10.2005)"
+     }
+    },
+    {
+     "id": "m50.kassenname",
+     "text": "Der Arzt prüft, ob ein Behandlungsausweis der anfragenden Kasse vorliegt und ob der Kassenname präzise angegeben ist. Bei Kassenwechsel den genauen Namen der neuen Kasse angeben und das Feld mit Behandlungsdaten und Leistungsnummern ausfüllen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 50, Nr. 3, S. 86"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ebm_01",
+   "label": "EBM-Nr. zu Behandlungstag 1",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "box": {
+    "x": 23.0,
+    "y": 42.4,
+    "w": 23.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "behandlungstag_02",
+   "label": "Behandlungstag 2",
+   "kind": "date",
+   "filled_by": "arzt",
+   "page": 1,
+   "format": "TTMMJJ",
+   "box": {
+    "x": 6.7,
+    "y": 45.3,
+    "w": 14.5,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "ebm_02",
+   "label": "EBM-Nr. zu Behandlungstag 2",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "box": {
+    "x": 23.0,
+    "y": 45.3,
+    "w": 23.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "behandlungstag_03",
+   "label": "Behandlungstag 3",
+   "kind": "date",
+   "filled_by": "arzt",
+   "page": 1,
+   "format": "TTMMJJ",
+   "box": {
+    "x": 6.7,
+    "y": 48.1,
+    "w": 14.5,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "ebm_03",
+   "label": "EBM-Nr. zu Behandlungstag 3",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "box": {
+    "x": 23.0,
+    "y": 48.1,
+    "w": 23.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "behandlungstag_04",
+   "label": "Behandlungstag 4",
+   "kind": "date",
+   "filled_by": "arzt",
+   "page": 1,
+   "format": "TTMMJJ",
+   "box": {
+    "x": 6.7,
+    "y": 51.0,
+    "w": 14.5,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "ebm_04",
+   "label": "EBM-Nr. zu Behandlungstag 4",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "box": {
+    "x": 23.0,
+    "y": 51.0,
+    "w": 23.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "behandlungstag_05",
+   "label": "Behandlungstag 5",
+   "kind": "date",
+   "filled_by": "arzt",
+   "page": 1,
+   "format": "TTMMJJ",
+   "box": {
+    "x": 6.7,
+    "y": 53.8,
+    "w": 14.5,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "ebm_05",
+   "label": "EBM-Nr. zu Behandlungstag 5",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "box": {
+    "x": 23.0,
+    "y": 53.8,
+    "w": 23.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "behandlungstag_06",
+   "label": "Behandlungstag 6",
+   "kind": "date",
+   "filled_by": "arzt",
+   "page": 1,
+   "format": "TTMMJJ",
+   "box": {
+    "x": 50.3,
+    "y": 42.4,
+    "w": 14.5,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "ebm_06",
+   "label": "EBM-Nr. zu Behandlungstag 6",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "box": {
+    "x": 66.6,
+    "y": 42.4,
+    "w": 23.6,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "behandlungstag_07",
+   "label": "Behandlungstag 7",
+   "kind": "date",
+   "filled_by": "arzt",
+   "page": 1,
+   "format": "TTMMJJ",
+   "box": {
+    "x": 50.3,
+    "y": 45.3,
+    "w": 14.5,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "ebm_07",
+   "label": "EBM-Nr. zu Behandlungstag 7",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "box": {
+    "x": 66.6,
+    "y": 45.3,
+    "w": 23.6,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "behandlungstag_08",
+   "label": "Behandlungstag 8",
+   "kind": "date",
+   "filled_by": "arzt",
+   "page": 1,
+   "format": "TTMMJJ",
+   "box": {
+    "x": 50.3,
+    "y": 48.1,
+    "w": 14.5,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "ebm_08",
+   "label": "EBM-Nr. zu Behandlungstag 8",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "box": {
+    "x": 66.6,
+    "y": 48.1,
+    "w": 23.6,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "behandlungstag_09",
+   "label": "Behandlungstag 9",
+   "kind": "date",
+   "filled_by": "arzt",
+   "page": 1,
+   "format": "TTMMJJ",
+   "box": {
+    "x": 50.3,
+    "y": 51.0,
+    "w": 14.5,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "ebm_09",
+   "label": "EBM-Nr. zu Behandlungstag 9",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "box": {
+    "x": 66.6,
+    "y": 51.0,
+    "w": 23.6,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "behandlungstag_10",
+   "label": "Behandlungstag 10",
+   "kind": "date",
+   "filled_by": "arzt",
+   "page": 1,
+   "format": "TTMMJJ",
+   "box": {
+    "x": 50.3,
+    "y": 53.8,
+    "w": 14.5,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "ebm_10",
+   "label": "EBM-Nr. zu Behandlungstag 10",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "box": {
+    "x": 66.6,
+    "y": 53.8,
+    "w": 23.6,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "ausstellungsdatum",
+   "label": "Ausstellungsdatum",
+   "kind": "date",
+   "filled_by": "praxis",
+   "page": 1,
+   "format": "TTMMJJ",
+   "box": {
+    "x": 50.3,
+    "y": 73.8,
+    "w": 14.5,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "stempel",
+   "label": "Vertragsarztstempel / Unterschrift des Arztes",
+   "kind": "stempel",
+   "filled_by": "arzt",
+   "page": 1,
+   "box": {
+    "x": 67.4,
+    "y": 63.8,
+    "w": 22.8,
+    "h": 12.1
+   },
+   "rules": [
+    {
+     "id": "m50.unterschrift",
+     "text": "Erst vollständig ausfüllen, dann mit Vertragsarztstempel persönlich unterschreiben – nie blanko.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5"
+     }
+    }
+   ]
+  }
+ ]
+}

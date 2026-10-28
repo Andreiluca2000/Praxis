@@ -1,0 +1,446 @@
+{
+ "schema_version": "1.0.0",
+ "id": "muster-53",
+ "muster": "53",
+ "title": "Anfrage zum Zusammenhang von Arbeitsunfähigkeitszeiten",
+ "form_version": "10.2005",
+ "released": "2005-08-04",
+ "status": "entwurf",
+ "paper": {
+  "format": "DIN A4 hoch, Vorder- und Rückseite",
+  "width": 595.3,
+  "height": 841.9,
+  "tint": "ohne"
+ },
+ "pages": [
+  "Vorderseite (Anfrage der Krankenkasse)",
+  "Rückseite (Angaben der Krankenkasse und Antwort des Vertragsarztes)"
+ ],
+ "copies": [
+  {
+   "id": "53",
+   "label": "Anfrage mit Antwortteil",
+   "recipient": "Krankenkasse (Rücksendung im Freiumschlag)"
+  }
+ ],
+ "notes": [
+  {
+   "id": "m53.zweck",
+   "text": "Die Anfrage dient den Krankenversicherungsträgern zur Prüfung des Leistungsanspruchs auf Lohnfortzahlung oder Krankengeld.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 53, Nr. 1, S. 92"
+   }
+  },
+  {
+   "id": "m53.abschnitt_1_2",
+   "text": "Abschnitt I auf der Rückseite betrifft die derzeitige bzw. letzte Arbeitsunfähigkeit. Unter II bis laufende Nr. 6 nennt die Krankenkasse die Zeiten, die nach ihrer Meinung im Zusammenhang stehen können.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 53, Nr. 2, S. 92"
+   }
+  },
+  {
+   "id": "m53.vorderseite",
+   "text": "Die Vorderseite füllt die Krankenkasse aus: Anrede, Name, Geburtsdatum, Anschrift, Versichertennummer, „ist seit … arbeitsunfähig erkrankt / in stationärer Behandlung“ und die Frage nach dem ursächlichen Zusammenhang der Arbeitsunfähigkeitszeiten.",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 63, Muster 53 (10.2005)"
+   }
+  },
+  {
+   "id": "m53.kasse_teil",
+   "text": "Der Teil „Von der Krankenkasse auszufüllen!“ (I. Arbeitsunfähig vom/bis wegen; II. Vorher bestand Arbeitsunfähigkeit wegen 1–6 mit vom/bis und behandelndem Arzt) steht über dem ärztlichen Teil und wird nicht von der Praxis ausgefüllt.",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 64, Muster 53 (10.2005)"
+   }
+  },
+  {
+   "id": "m53.erlaeuterung_krankheit",
+   "text": "Aufdruck „Versicherungsrechtliche Erläuterungen“ zum Begriff „dieselbe Krankheit“: Fortlaufende Behandlungsbedürftigkeit ist nicht Voraussetzung; maßgeblich ist, ob die neue und die frühere Arbeitsunfähigkeit auf derselben Krankheitsursache beruhen oder in einem inneren Zusammenhang stehen.",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 64, Muster 53 (10.2005)"
+   }
+  },
+  {
+   "id": "m53.ebm_01621",
+   "text": "Für die Beantwortung dieser Anfrage ist die Nr. 01621 EBM berechnungsfähig (Aufdruck).",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 63, Muster 53 (10.2005)"
+   }
+  }
+ ],
+ "groups": [
+  {
+   "id": "dieselbe_krankheit",
+   "label": "Dieselbe Krankheit (I. und II.)",
+   "select": "genau_eins",
+   "rule": {
+    "id": "m53.frage_i_ii",
+    "text": "Frage: Handelt es sich bei der unter I. angegebenen Krankheit und einer der unter II. genannten Krankheiten um dieselbe Krankheit (im Sinne der abgedruckten versicherungsrechtlichen Erläuterungen)? – nein oder ja, bei der/den Ziffer(n).",
+    "source": {
+     "artifact": "mustersammlung",
+     "locator": "PDF-Seite 64, Muster 53 (10.2005)"
+    }
+   }
+  },
+  {
+   "id": "weitere_krankheiten",
+   "label": "III. Weitere Krankheiten hinzugetreten",
+   "select": "genau_eins",
+   "rule": {
+    "id": "m53.frage_iii",
+    "text": "Frage III.: Sind während der unter I. genannten Arbeitsunfähigkeit weitere Krankheiten hinzugetreten? – nein oder ja, und zwar … am …",
+    "source": {
+     "artifact": "mustersammlung",
+     "locator": "PDF-Seite 64, Muster 53 (10.2005)"
+    }
+   }
+  },
+  {
+   "id": "nur_hinzugetreten",
+   "label": "Arbeitsunfähigkeit nur noch von hinzugetretenen Krankheiten bedingt",
+   "select": "genau_eins",
+   "rule": {
+    "id": "m53.frage_nur_hinzugetreten",
+    "text": "Frage: Wird die Arbeitsunfähigkeit nur noch von der/den hinzugetretenen Krankheit(en) bedingt? – nein oder ja, und zwar … ab …",
+    "source": {
+     "artifact": "mustersammlung",
+     "locator": "PDF-Seite 64, Muster 53 (10.2005)"
+    }
+   }
+  },
+  {
+   "id": "hinzu_dieselbe",
+   "label": "Hinzugetretene Krankheit und frühere Erkrankung (II.) dieselbe Krankheit",
+   "select": "genau_eins",
+   "rule": {
+    "id": "m53.frage_hinzugetreten_ii",
+    "text": "Frage: Handelt es sich bei der hinzugetretenen Krankheit und einer unter II. genannten früheren Erkrankung um dieselbe Krankheit? – nein oder ja, bei der/den Ziffer(n).",
+    "source": {
+     "artifact": "mustersammlung",
+     "locator": "PDF-Seite 64, Muster 53 (10.2005)"
+    }
+   }
+  }
+ ],
+ "fields": [
+  {
+   "id": "dieselbe_nein",
+   "label": "Dieselbe Krankheit (I. und II.)? nein",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "page": 1,
+   "group": "dieselbe_krankheit",
+   "box": {
+    "x": 6.7,
+    "y": 45.2,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "dieselbe_ja",
+   "label": "Dieselbe Krankheit (I. und II.)? ja, und zwar bei der/den unter Ziffer(n)",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "page": 1,
+   "group": "dieselbe_krankheit",
+   "box": {
+    "x": 17.0,
+    "y": 45.2,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "dieselbe_ziffern",
+   "label": "ja, und zwar bei der/den unter Ziffer(n) … genannten Krankheit(en)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "box": {
+    "x": 47.2,
+    "y": 45.3,
+    "w": 24.8,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "hinzu_nein",
+   "label": "III. Weitere Krankheiten hinzugetreten? nein",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "page": 1,
+   "group": "weitere_krankheiten",
+   "box": {
+    "x": 6.7,
+    "y": 51.0,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m53.diagnosen",
+     "text": "Bei III werden nicht sämtliche Diagnosen verlangt, sondern nur diejenigen, die für sich allein betrachtet eine Arbeitsunfähigkeit ausgelöst hätten.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 53, Nr. 3, S. 92"
+     }
+    }
+   ]
+  },
+  {
+   "id": "hinzu_ja",
+   "label": "III. Weitere Krankheiten hinzugetreten? ja, und zwar",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "page": 1,
+   "group": "weitere_krankheiten",
+   "box": {
+    "x": 17.0,
+    "y": 51.0,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m53.diagnosen",
+     "text": "Bei III werden nicht sämtliche Diagnosen verlangt, sondern nur diejenigen, die für sich allein betrachtet eine Arbeitsunfähigkeit ausgelöst hätten.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 53, Nr. 3, S. 92"
+     }
+    }
+   ]
+  },
+  {
+   "id": "hinzu_krankheiten",
+   "label": "ja, und zwar (weitere Krankheiten), Zeile 1",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "box": {
+    "x": 29.7,
+    "y": 51.0,
+    "w": 60.5,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m53.diagnosen",
+     "text": "Bei III werden nicht sämtliche Diagnosen verlangt, sondern nur diejenigen, die für sich allein betrachtet eine Arbeitsunfähigkeit ausgelöst hätten.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 53, Nr. 3, S. 92"
+     }
+    }
+   ]
+  },
+  {
+   "id": "hinzu_krankheiten_2",
+   "label": "ja, und zwar (weitere Krankheiten), Zeile 2",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "box": {
+    "x": 6.7,
+    "y": 53.8,
+    "w": 65.3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "hinzu_am",
+   "label": "weitere Krankheiten hinzugetreten am",
+   "kind": "date",
+   "filled_by": "arzt",
+   "page": 1,
+   "format": "TTMMJJ",
+   "box": {
+    "x": 75.7,
+    "y": 53.8,
+    "w": 14.5,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "nur_nein",
+   "label": "Arbeitsunfähigkeit nur noch von hinzugetretenen Krankheit(en) bedingt? nein",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "page": 1,
+   "group": "nur_hinzugetreten",
+   "box": {
+    "x": 6.7,
+    "y": 59.5,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "nur_ja",
+   "label": "Arbeitsunfähigkeit nur noch von hinzugetretenen Krankheit(en) bedingt? ja, und zwar",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "page": 1,
+   "group": "nur_hinzugetreten",
+   "box": {
+    "x": 17.0,
+    "y": 59.5,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "nur_krankheiten",
+   "label": "ja, und zwar (nur noch bedingt von), Zeile 1",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "box": {
+    "x": 29.7,
+    "y": 59.5,
+    "w": 60.5,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "nur_krankheiten_2",
+   "label": "ja, und zwar (nur noch bedingt von), Zeile 2",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "box": {
+    "x": 6.7,
+    "y": 62.4,
+    "w": 65.3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "nur_ab",
+   "label": "Arbeitsunfähigkeit nur noch bedingt ab",
+   "kind": "date",
+   "filled_by": "arzt",
+   "page": 1,
+   "format": "TTMMJJ",
+   "box": {
+    "x": 75.7,
+    "y": 62.4,
+    "w": 14.5,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "hinzu_dieselbe_nein",
+   "label": "Hinzugetretene Krankheit und frühere Erkrankung (II.) dieselbe Krankheit? nein",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "page": 1,
+   "group": "hinzu_dieselbe",
+   "box": {
+    "x": 6.7,
+    "y": 69.5,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "hinzu_dieselbe_ja",
+   "label": "Hinzugetretene Krankheit und frühere Erkrankung (II.) dieselbe Krankheit? ja, und zwar bei der/den unter Ziffer(n)",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "page": 1,
+   "group": "hinzu_dieselbe",
+   "box": {
+    "x": 17.0,
+    "y": 69.5,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "hinzu_dieselbe_ziffern",
+   "label": "ja, und zwar bei der/den unter Ziffer(n) … genannten Krankheit(en)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "box": {
+    "x": 47.2,
+    "y": 69.5,
+    "w": 24.8,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "bemerkungen",
+   "label": "Ergänzende Bemerkungen",
+   "kind": "text",
+   "filled_by": "arzt",
+   "page": 1,
+   "lines": 4,
+   "box": {
+    "x": 6.7,
+    "y": 75.2,
+    "w": 59.3,
+    "h": 10.7
+   },
+   "rules": []
+  },
+  {
+   "id": "ausstellungsdatum",
+   "label": "Ausstellungsdatum",
+   "kind": "date",
+   "filled_by": "praxis",
+   "page": 1,
+   "format": "TTMMJJ",
+   "box": {
+    "x": 51.5,
+    "y": 89.5,
+    "w": 14.5,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "stempel",
+   "label": "Vertragsarztstempel / Unterschrift des Arztes",
+   "kind": "stempel",
+   "filled_by": "arzt",
+   "page": 1,
+   "box": {
+    "x": 67.4,
+    "y": 79.5,
+    "w": 22.8,
+    "h": 12.1
+   },
+   "rules": [
+    {
+     "id": "m53.unterschrift",
+     "text": "Erst vollständig ausfüllen, dann mit Vertragsarztstempel persönlich unterschreiben – nie blanko.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5"
+     }
+    }
+   ]
+  }
+ ]
+}

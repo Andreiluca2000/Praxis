@@ -1,0 +1,617 @@
+{
+ "schema_version": "1.0.0",
+ "id": "muster-16",
+ "muster": "16",
+ "title": "Arzneiverordnungsblatt",
+ "form_version": "10.2014",
+ "released": "2014-09-01",
+ "status": "entwurf",
+ "paper": {
+  "format": "DIN A6 quer, Vorder- und Rückseite",
+  "width": 419.5,
+  "height": 297.6,
+  "tint": "rot"
+ },
+ "copies": [
+  {
+   "id": "16",
+   "label": "Arzneiverordnungsblatt",
+   "recipient": "Apotheke bzw. Lieferant (über die Versicherte/den Versicherten); Abrechnung mit der Krankenkasse"
+  }
+ ],
+ "notes": [
+  {
+   "id": "m16.diga_psychotherapeuten",
+   "text": "Für die Verordnung Digitaler Gesundheitsanwendungen durch psychologische Psychotherapeuten sind Arzneiverordnungsblätter zu verwenden, in deren Codierleiste „999999999“ (9 x 9) eingedruckt ist.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 16, Einleitung, S. 57"
+   }
+  },
+  {
+   "id": "m16.rezeptur",
+   "text": "Bei Rezepturen grundsätzlich nur die Vorderseite benutzen; pro Rezeptur ein Verordnungsblatt.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 16, Einleitung, S. 57"
+   }
+  },
+  {
+   "id": "m16.rezeptur_menge",
+   "text": "Parenterale Rezepturen können für bis zu eine Woche verordnet werden, wenn die Einzelzubereitungen nach Art und Menge identisch sind. Patientenindividuelle Teilmengen aus Fertigarzneimitteln (z. B. Wochenblister) können bei Dauermedikation für bis zu vier Wochen verordnet werden.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 16, Einleitung, S. 57"
+   }
+  },
+  {
+   "id": "m16.aenderungen",
+   "text": "Änderungen und Ergänzungen von Verordnungen bedürfen einer erneuten Arztunterschrift mit Datumsangabe.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 16, Einleitung, S. 57"
+   }
+  },
+  {
+   "id": "m16.betaeubungsmittel",
+   "text": "Nicht für Betäubungsmittel: Diese dürfen nach der BtM-Verschreibungsverordnung nur auf dem dreiteiligen amtlichen Formblatt des BfArM verordnet werden.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 16, Einleitung, S. 57"
+   }
+  },
+  {
+   "id": "m16.t_rezept",
+   "text": "Nicht für Arzneimittel mit den Wirkstoffen Lenalidomid, Pomalidomid oder Thalidomid: Hierfür ist der zweiteilige amtliche Vordruck („T-Rezept“) des BfArM zu verwenden.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 16, Einleitung, S. 57"
+   }
+  },
+  {
+   "id": "m16.privatrezept",
+   "text": "Nicht für Mittel und Maßnahmen, die für die Behandlung nicht notwendig sind oder nicht zur Leistungspflicht der GKV gehören (z. B. empfängnisverhütende Mittel ab dem vollendeten 22. Lebensjahr); dafür ist ein Privatrezept zu verwenden.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 16, Einleitung, S. 57"
+   }
+  },
+  {
+   "id": "m16.kuenstliche_befruchtung",
+   "text": "Bei Arzneimittelverordnung im Rahmen von Leistungen nach § 27a SGB V (künstliche Befruchtung) ist auf dem Blatt „Verordnung nach § 27a SGB V“ anzugeben; die Kasse trägt nur 50 % der Kosten, die anderen 50 % der Versicherte.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 16, ⓫, S. 59–60"
+   }
+  },
+  {
+   "id": "m16.ersatzverordnung",
+   "text": "Muss wegen Rückruf oder behördlich bekannt gemachter Verwendungseinschränkung erneut ein Arzneimittel verordnet werden, erfolgt dies auf einem separaten Blatt mit dem Aufdruck „Ersatzverordnung gemäß § 31 Absatz 3 Satz 7 SGB V“.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 16, ⓫, S. 60"
+   }
+  },
+  {
+   "id": "m16.begruendungspflicht",
+   "text": "Das Feld „Begründungspflicht“ ist derzeit nicht besetzt und wird vorerst zur Kennzeichnung zahnärztlicher Verordnungen verwendet.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 16, ❽, S. 59"
+   }
+  },
+  {
+   "id": "m16.abrechnungsfelder",
+   "text": "Die Abrechnungsfelder rechts oben werden von der abgebenden Stelle (Apotheke, Sanitätshaus) ausgefüllt.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 16, ❾, S. 59"
+   }
+  },
+  {
+   "id": "m16.erezept_ausdruck",
+   "text": "Bei elektronischer Arzneimittelverordnung (Anlage 2b BMV-Ä) erhält der Patient auf Wunsch einen Patientenausdruck (§ 360 Abs. 9 SGB V) mit Data-Matrix-Codes zur Einlösung. Ihn erzeugt die Verordnungssoftware (DIN A5); Unterschrift oder Stempel sind nicht erforderlich.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 16, Patientenausdruck eRezept, S. 61"
+   }
+  },
+  {
+   "id": "m16.abgabedatum",
+   "text": "Das Feld „Abgabedatum in der Apotheke“ füllt die abgebende Apotheke aus, nicht die Praxis.",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 31, Muster 16 (10.2014)"
+   }
+  },
+  {
+   "id": "m16.rueckseite",
+   "text": "Die Rückseite (Empfangsbestätigung für Hilfsmittel, Vermerke der Krankenkasse, Stempel der Apotheke / des Lieferanten) füllen Empfänger, Krankenkasse bzw. Apotheke/Lieferant aus, nicht die Praxis; sie ist hier nicht abgebildet.",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 32, Muster 16 (10.2014)"
+   }
+  }
+ ],
+ "groups": [
+  {
+   "id": "gebuehr",
+   "label": "Gebühr frei oder gebührenpflichtig",
+   "select": "beliebig",
+   "rule": {
+    "id": "m16.gebuehr",
+    "text": "Grundsätzlich ist „Geb.-pfl.“ anzukreuzen. „Gebühr frei“ nur bei Versicherten unter 18 Jahren, Schwangerschaftsbeschwerden/Entbindung, Verordnung zu Lasten eines Unfallversicherungsträgers, Versorgungsleiden, digitalen Gesundheitsanwendungen und nachgewiesener Zuzahlungsbefreiung (z. B. Härtefall).",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 16, ❷, S. 57–58"
+    }
+   }
+  },
+  {
+   "id": "unfallart",
+   "label": "Unfall oder Arbeitsunfall",
+   "select": "beliebig",
+   "rule": {
+    "id": "m16.unfall",
+    "text": "Zu Lasten eines Unfallversicherungsträgers sind Träger, Unfalltag und Unfallbetrieb anzugeben und „Arbeitsunfall“ anzukreuzen; bei eGK-Befüllung ist die Kostenträgerkennung zu streichen. Bei sonstigem Unfall (Haus-, Sport-, Verkehrsunfall) wird „Unfall“ angekreuzt.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 16, ❺, S. 58–59"
+    }
+   }
+  }
+ ],
+ "fields": [
+  {
+   "id": "personalien",
+   "label": "Personalienfeld (Krankenkasse bzw. Kostenträger, Name, Vorname, geb. am, Kostenträgerkennung, Versicherten-Nr., Status, Betriebsstätten-Nr., Arzt-Nr., Datum)",
+   "kind": "personalien",
+   "filled_by": "duria",
+   "box": {
+    "x": 6.2,
+    "y": 4.9,
+    "w": 53.9,
+    "h": 44.5
+   },
+   "rules": [
+    {
+     "id": "m16.betriebsstaette",
+     "text": "Es dürfen nur Arzneiverordnungsblätter verwendet werden, deren Codierleiste ❶ die Betriebsstätten-Nr. der Betriebsstätte enthält, an der die Leistung erbracht wurde. Ist die Arzt-Nr. bereits eingedruckt, ist eine aushilfsweise Weitergabe an einen anderen Vertragsarzt nicht statthaft.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 16, Einleitung, S. 57"
+     }
+    }
+   ]
+  },
+  {
+   "id": "gebuehr_frei",
+   "label": "Gebühr frei",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "gebuehr",
+   "marker": "❷",
+   "box": {
+    "x": 2.1,
+    "y": 8.2,
+    "w": 3.3,
+    "h": 4.6
+   },
+   "rules": [
+    {
+     "id": "m16.gebuehr",
+     "text": "Grundsätzlich ist „Geb.-pfl.“ anzukreuzen. „Gebühr frei“ nur bei Versicherten unter 18 Jahren, Schwangerschaftsbeschwerden/Entbindung, Verordnung zu Lasten eines Unfallversicherungsträgers, Versorgungsleiden, digitalen Gesundheitsanwendungen und nachgewiesener Zuzahlungsbefreiung (z. B. Härtefall).",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 16, ❷, S. 57–58"
+     }
+    }
+   ]
+  },
+  {
+   "id": "geb_pfl",
+   "label": "Geb.-pfl.",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "gebuehr",
+   "marker": "❷",
+   "box": {
+    "x": 2.1,
+    "y": 14.3,
+    "w": 3.3,
+    "h": 4.6
+   },
+   "rules": []
+  },
+  {
+   "id": "noctu",
+   "label": "noctu",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❸",
+   "box": {
+    "x": 2.1,
+    "y": 20.4,
+    "w": 3.3,
+    "h": 4.6
+   },
+   "rules": [
+    {
+     "id": "m16.noctu",
+     "text": "Wird das Arzneimittel im Apotheken-Notdienst abgeholt, zahlt der Patient 2,50 EUR Gebühr, sofern der Arzt nicht das Feld „noctu“ ankreuzt.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 16, ❸, S. 58"
+     }
+    }
+   ]
+  },
+  {
+   "id": "sonstige",
+   "label": "Sonstige",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❹",
+   "box": {
+    "x": 2.1,
+    "y": 28.5,
+    "w": 3.3,
+    "h": 4.6
+   },
+   "rules": [
+    {
+     "id": "m16.sonstige",
+     "text": "Bei Verordnung zu Lasten eines sonstigen Kostenträgers (z. B. Postbeamtenkrankenkasse A, Freie Heilfürsorge der Polizei, Bundespolizei, Bundeswehr) ist „Sonstige“ anzukreuzen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 16, ❹, S. 58"
+     }
+    }
+   ]
+  },
+  {
+   "id": "unfall",
+   "label": "Unfall",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "unfallart",
+   "marker": "❺",
+   "box": {
+    "x": 2.1,
+    "y": 36.6,
+    "w": 3.3,
+    "h": 4.6
+   },
+   "rules": [
+    {
+     "id": "m16.unfall",
+     "text": "Zu Lasten eines Unfallversicherungsträgers sind Träger, Unfalltag und Unfallbetrieb anzugeben und „Arbeitsunfall“ anzukreuzen; bei eGK-Befüllung ist die Kostenträgerkennung zu streichen. Bei sonstigem Unfall (Haus-, Sport-, Verkehrsunfall) wird „Unfall“ angekreuzt.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 16, ❺, S. 58–59"
+     }
+    }
+   ]
+  },
+  {
+   "id": "arbeitsunfall",
+   "label": "Arbeitsunfall",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "unfallart",
+   "marker": "❺",
+   "box": {
+    "x": 2.1,
+    "y": 44.7,
+    "w": 3.3,
+    "h": 4.6
+   },
+   "rules": []
+  },
+  {
+   "id": "unfalltag",
+   "label": "Unfalltag",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❺",
+   "box": {
+    "x": 2.1,
+    "y": 90.0,
+    "w": 13.4,
+    "h": 6.7
+   },
+   "rules": [
+    {
+     "id": "m16.unfall",
+     "text": "Zu Lasten eines Unfallversicherungsträgers sind Träger, Unfalltag und Unfallbetrieb anzugeben und „Arbeitsunfall“ anzukreuzen; bei eGK-Befüllung ist die Kostenträgerkennung zu streichen. Bei sonstigem Unfall (Haus-, Sport-, Verkehrsunfall) wird „Unfall“ angekreuzt.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 16, ❺, S. 58–59"
+     }
+    }
+   ]
+  },
+  {
+   "id": "unfallbetrieb",
+   "label": "Unfallbetrieb oder Arbeitgebernummer",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❺",
+   "box": {
+    "x": 15.5,
+    "y": 90.0,
+    "w": 32.3,
+    "h": 6.7
+   },
+   "rules": [
+    {
+     "id": "m16.unfall",
+     "text": "Zu Lasten eines Unfallversicherungsträgers sind Träger, Unfalltag und Unfallbetrieb anzugeben und „Arbeitsunfall“ anzukreuzen; bei eGK-Befüllung ist die Kostenträgerkennung zu streichen. Bei sonstigem Unfall (Haus-, Sport-, Verkehrsunfall) wird „Unfall“ angekreuzt.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 16, ❺, S. 58–59"
+     }
+    }
+   ]
+  },
+  {
+   "id": "sk_bvg",
+   "label": "BVG (Feld 6)",
+   "kind": "number",
+   "filled_by": "arzt",
+   "marker": "❻",
+   "box": {
+    "x": 61.6,
+    "y": 8.7,
+    "w": 3.3,
+    "h": 5.4
+   },
+   "rules": [
+    {
+     "id": "m16.ser",
+     "text": "Zu SER siehe die Erläuterung im Abschnitt „Allgemeines“ unter Nr. 8.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 16, ❻, S. 59"
+     }
+    }
+   ]
+  },
+  {
+   "id": "sk_hilfsmittel",
+   "label": "Hilfsmittel (Feld 7)",
+   "kind": "number",
+   "filled_by": "arzt",
+   "marker": "❼",
+   "box": {
+    "x": 64.9,
+    "y": 8.7,
+    "w": 3.3,
+    "h": 5.4
+   },
+   "rules": [
+    {
+     "id": "m16.sonderkennzeichen",
+     "text": "Impfstoffe (Impfvereinbarung): Ziffer 8 in Feld 8. Hilfsmittel: Ziffer 7 in Feld 7. Sprechstundenbedarf: bei Arznei-/Verbandmitteln Ziffer 9 in Feld 9, bei Hilfsmitteln 9 und 7, bei Impfstoffen 8 und 9.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 16, ❼, S. 59"
+     }
+    }
+   ]
+  },
+  {
+   "id": "sk_impfstoff",
+   "label": "Impfstoff (Feld 8)",
+   "kind": "number",
+   "filled_by": "arzt",
+   "marker": "❼",
+   "box": {
+    "x": 68.2,
+    "y": 8.7,
+    "w": 3.3,
+    "h": 5.4
+   },
+   "rules": [
+    {
+     "id": "m16.sonderkennzeichen",
+     "text": "Impfstoffe (Impfvereinbarung): Ziffer 8 in Feld 8. Hilfsmittel: Ziffer 7 in Feld 7. Sprechstundenbedarf: bei Arznei-/Verbandmitteln Ziffer 9 in Feld 9, bei Hilfsmitteln 9 und 7, bei Impfstoffen 8 und 9.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 16, ❼, S. 59"
+     }
+    }
+   ]
+  },
+  {
+   "id": "sk_spr_st_bedarf",
+   "label": "Spr.-St.-Bedarf (Feld 9)",
+   "kind": "number",
+   "filled_by": "arzt",
+   "marker": "❼",
+   "box": {
+    "x": 71.6,
+    "y": 8.7,
+    "w": 3.3,
+    "h": 5.4
+   },
+   "rules": [
+    {
+     "id": "m16.sonderkennzeichen",
+     "text": "Impfstoffe (Impfvereinbarung): Ziffer 8 in Feld 8. Hilfsmittel: Ziffer 7 in Feld 7. Sprechstundenbedarf: bei Arznei-/Verbandmitteln Ziffer 9 in Feld 9, bei Hilfsmitteln 9 und 7, bei Impfstoffen 8 und 9.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 16, ❼, S. 59"
+     }
+    }
+   ]
+  },
+  {
+   "id": "verordnung_1",
+   "label": "Rp. (Bitte Leerräume durchstreichen): 1. Verordnung",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 2,
+   "marker": "⓬",
+   "box": {
+    "x": 8.0,
+    "y": 54.0,
+    "w": 52.5,
+    "h": 7.9
+   },
+   "rules": [
+    {
+     "id": "m16.anzahl",
+     "text": "Auf einem Blatt können bis zu drei verschiedene Arznei- und Verbandmittel sowie Hilfsmittel (außer Seh- und Hörhilfen) verordnet werden. Für zeitgleiche Verordnung von Arznei- und Hilfsmitteln sowie digitalen Gesundheitsanwendungen sind getrennte Blätter zu verwenden.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 16, Einleitung, S. 57"
+     }
+    },
+    {
+     "id": "m16.dosierung",
+     "text": "Bei verschreibungspflichtigen Arzneimitteln muss eine Dosierung angegeben werden, außer ein Medikationsplan oder eine schriftliche Dosierungsanweisung liegt vor und ist in der Verschreibung gekennzeichnet, oder das Mittel wird direkt an die verschreibende Person abgegeben.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 16, ⓬, S. 60"
+     }
+    },
+    {
+     "id": "m16.dosierung_kennzeichnung",
+     "text": "Mit Verordnungssoftware erfolgt die Kennzeichnung am Zeilenende hinter dem Arzneimittel mit „≫…≪“ (z. B. „≫0-0-1≪“) oder „≫Dj≪“ (schriftliche Dosierungsanweisung liegt vor). Handschriftlich genügt die Angabe ohne Umrahmung, z. B. „0-0-1“, „Dj“ oder „siehe Medikationsplan“.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 16, ⓬, S. 60"
+     }
+    },
+    {
+     "id": "m16.diga",
+     "text": "Digitale Gesundheitsanwendung (§ 73 Abs. 2 Satz 1 Nr. 7a SGB V): Zeile 1 „Digitale Gesundheitsanwendung“, Zeile 3 PZN, Zeilen 5 und 6 Bezeichnung; Zeilen 2 und 4 unbesetzt. Leerräume durchstreichen; nur eine Anwendung je Blatt.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 16, ⓭, S. 60"
+     }
+    }
+   ]
+  },
+  {
+   "id": "aut_idem_1",
+   "label": "aut idem (1. Verordnung)",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❿",
+   "box": {
+    "x": 2.1,
+    "y": 56.8,
+    "w": 3.3,
+    "h": 4.6
+   },
+   "rules": [
+    {
+     "id": "m16.aut_idem",
+     "text": "Soll die Apotheke kein preisgünstigeres wirkstoffgleiches Mittel abgeben, ist das Aut-idem-Feld anzukreuzen. Ohne Kreuz kann nach dem Rahmenvertrag (§ 129 SGB V) substituiert werden; Wirkstoffe der Substitutionsausschlussliste werden auch ohne Kreuz nicht ausgetauscht.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 16, ❿, S. 59"
+     }
+    }
+   ]
+  },
+  {
+   "id": "verordnung_2",
+   "label": "Rp. (Bitte Leerräume durchstreichen): 2. Verordnung",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 2,
+   "box": {
+    "x": 8.0,
+    "y": 62.0,
+    "w": 52.5,
+    "h": 7.9
+   },
+   "rules": []
+  },
+  {
+   "id": "aut_idem_2",
+   "label": "aut idem (2. Verordnung)",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❿",
+   "box": {
+    "x": 2.1,
+    "y": 64.9,
+    "w": 3.3,
+    "h": 4.6
+   },
+   "rules": []
+  },
+  {
+   "id": "verordnung_3",
+   "label": "Rp. (Bitte Leerräume durchstreichen): 3. Verordnung",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 2,
+   "box": {
+    "x": 8.0,
+    "y": 70.0,
+    "w": 52.5,
+    "h": 7.9
+   },
+   "rules": [
+    {
+     "id": "m16.faelschungssicher",
+     "text": "Es dürfen keine Leerräume verbleiben, die für Manipulationen genutzt werden können; die Unterschrift gehört unmittelbar unter die letzte Verordnung.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 16, ⓮, S. 60–61"
+     }
+    }
+   ]
+  },
+  {
+   "id": "aut_idem_3",
+   "label": "aut idem (3. Verordnung)",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❿",
+   "box": {
+    "x": 2.1,
+    "y": 73.0,
+    "w": 3.3,
+    "h": 4.6
+   },
+   "rules": []
+  },
+  {
+   "id": "stempel",
+   "label": "Vertragsarztstempel / Unterschrift des Arztes",
+   "kind": "stempel",
+   "filled_by": "arzt",
+   "marker": "⓯",
+   "box": {
+    "x": 61.8,
+    "y": 53.4,
+    "w": 34.4,
+    "h": 24.8
+   },
+   "rules": [
+    {
+     "id": "m16.stempel",
+     "text": "Sofern der Stempelinhalt nicht eingedruckt ist, ist der Vertragsarztstempel im Verordnungsfeld an der vorgesehenen Stelle abzudrucken; keine Überstempelung in das darüber oder darunter liegende Feld (maschinelle Lesung).",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 16, ⓯, S. 61"
+     }
+    },
+    {
+     "id": "m16.unterschrift",
+     "text": "Erst vollständig ausfüllen, dann mit Vertragsarztstempel persönlich unterschreiben – nie blanko.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5"
+     }
+    }
+   ]
+  }
+ ]
+}

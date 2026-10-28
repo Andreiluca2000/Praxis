@@ -1,0 +1,611 @@
+{
+ "schema_version": "1.0.0",
+ "id": "muster-28",
+ "muster": "28",
+ "title": "Verordnung bei Überweisung zur Indikationsstellung für Soziotherapie gemäß § 37a SGB V im Umfang von maximal 5 Therapieeinheiten",
+ "form_version": "10.2017",
+ "released": "2017-07-07",
+ "status": "entwurf",
+ "paper": {
+  "format": "DIN A4 hoch",
+  "width": 595.3,
+  "height": 841.9,
+  "tint": "blau"
+ },
+ "copies": [
+  {
+   "id": "28a",
+   "label": "Ausfertigung für die Krankenkasse (Original)",
+   "recipient": "Krankenkasse (vom soziotherapeutischen Leistungserbringer weiterzuleiten)"
+  },
+  {
+   "id": "28b",
+   "label": "Ausfertigung für den soziotherapeutischen Leistungserbringer (1. Durchschlag)",
+   "recipient": "soziotherapeutischer Leistungserbringer"
+  },
+  {
+   "id": "28c",
+   "label": "Ausfertigung für den verordnenden Arzt (2. Durchschlag)",
+   "recipient": "verbleibt in der Praxis"
+  }
+ ],
+ "notes": [
+  {
+   "id": "m28.voraussetzung",
+   "text": "Andere als die nach ST-RL berechtigten Ärzte können mit Muster 28 zu einem verordnungsberechtigten Facharzt bzw. Psychotherapeuten überweisen, wenn sie begründeten Verdacht auf eine Soziotherapie-Indikation haben.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 28, Einleitung, S. 77"
+   }
+  },
+  {
+   "id": "m28.st_rl_durchschlaege",
+   "text": "Die Soziotherapie-Richtlinie (ST-RL) ist zu beachten; zwei Durchschläge: Original Krankenkasse, 1. Durchschlag soziotherapeutischer Leistungserbringer, 2. Durchschlag Arzt.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 28, Einleitung, S. 77"
+   }
+  },
+  {
+   "id": "m28.keine_genehmigung",
+   "text": "Verordnungen auf Muster 28 bedürfen nicht der Genehmigung durch die Krankenkasse des Patienten.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 28, ❻, S. 79"
+   }
+  },
+  {
+   "id": "m28.ebm_30800",
+   "text": "Für das Ausstellen dieses Vordrucks ist die Nr. 30800 EBM berechnungsfähig (Hinweis auf dem Vordruck).",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 52, Muster 28a (10.2017)"
+   }
+  },
+  {
+   "id": "m28.le_erklaerung",
+   "text": "Der soziotherapeutische Leistungserbringer erklärt auf dem Vordruck, dass er einen Vertrag gem. § 132b SGB V geschlossen hat oder eine vergleichbare Abrechnungsgenehmigung der zuständigen Krankenkasse vorliegt.",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 52, Muster 28a (10.2017)"
+   }
+  },
+  {
+   "id": "m28.weiterleitung",
+   "text": "Die Ausfertigung für die Krankenkasse ist vom soziotherapeutischen Leistungserbringer an die Krankenkasse weiterzuleiten (Hinweis auf dem Vordruck).",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 52, Muster 28a (10.2017)"
+   }
+  }
+ ],
+ "groups": [
+  {
+   "id": "krankenhaus",
+   "label": "Krankenhausbehandlung wird vermieden / wird verkürzt / ist nicht ausführbar",
+   "select": "beliebig",
+   "rule": {
+    "id": "m28.krankenhaus",
+    "text": "Soziotherapie ist nur verordnungsfähig, wenn Krankenhausbehandlung vermieden oder verkürzt wird oder geboten, aber nicht ausführbar ist; die zutreffende Angabe ist anzukreuzen.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 28, ❸, S. 77"
+    }
+   }
+  }
+ ],
+ "fields": [
+  {
+   "id": "personalien",
+   "label": "Personalienfeld (Krankenkasse bzw. Kostenträger, Name, geb. am, Kostenträgerkennung, Versicherten-Nr., Status, Betriebsstätten-Nr., Arzt-Nr., Datum)",
+   "kind": "personalien",
+   "filled_by": "duria",
+   "box": {
+    "x": 4.4,
+    "y": 1.7,
+    "w": 38.0,
+    "h": 15.7
+   },
+   "rules": [
+    {
+     "id": "m28.personalien",
+     "text": "Die Daten der eGK werden maschinell über Kartenterminal und Praxis-EDV übertragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 5 und Nr. 6, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "diagnose",
+   "label": "Diagnose (ICD-10-Code)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❶",
+   "box": {
+    "x": 54.5,
+    "y": 12.5,
+    "w": 33.3,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m28.diagnose",
+     "text": "Die (Verdachts-)Diagnose ist als ICD-10-GM-Code einzutragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 28, ❶, S. 77"
+     }
+    }
+   ]
+  },
+  {
+   "id": "erkrankung_seit",
+   "label": "Erkrankung besteht seit (falls bekannt)",
+   "kind": "date",
+   "filled_by": "arzt",
+   "format": "TTMMJJ",
+   "marker": "❷",
+   "box": {
+    "x": 73.2,
+    "y": 15.3,
+    "w": 14.5,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m28.erkrankung_seit",
+     "text": "Falls bekannt, das Datum, seit dem die Erkrankung besteht, im Format TTMMJJ eintragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 28, ❷, S. 77"
+     }
+    }
+   ]
+  },
+  {
+   "id": "kh_vermieden",
+   "label": "Krankenhausbehandlung wird vermieden",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "krankenhaus",
+   "marker": "❸",
+   "box": {
+    "x": 30.4,
+    "y": 18.9,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m28.krankenhaus",
+     "text": "Soziotherapie ist nur verordnungsfähig, wenn Krankenhausbehandlung vermieden oder verkürzt wird oder geboten, aber nicht ausführbar ist; die zutreffende Angabe ist anzukreuzen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 28, ❸, S. 77"
+     }
+    }
+   ]
+  },
+  {
+   "id": "kh_verkuerzt",
+   "label": "Krankenhausbehandlung wird verkürzt",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "krankenhaus",
+   "marker": "❸",
+   "box": {
+    "x": 44.9,
+    "y": 18.9,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "kh_nicht_ausfuehrbar",
+   "label": "Krankenhausbehandlung ist nicht ausführbar",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "krankenhaus",
+   "marker": "❸",
+   "box": {
+    "x": 59.3,
+    "y": 18.9,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "le_name",
+   "label": "Name des soziotherapeutischen Leistungserbringers (Erklärung des Arztes: ziehe ich folgenden soziotherapeutischen Leistungserbringer hinzu)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❹",
+   "box": {
+    "x": 10.4,
+    "y": 28.4,
+    "w": 42.9,
+    "h": 1.9
+   },
+   "rules": [
+    {
+     "id": "m28.erklaerung",
+     "text": "Name und Adresse des Soziotherapeuten werden angegeben. Ihm stehen höchstens 5 Therapieeinheiten zur Verfügung; sie werden auf das Gesamtkontingent angerechnet, wenn später nach § 2 ST-RL Soziotherapie verordnet wird.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 28, ❹, S. 77"
+     }
+    },
+    {
+     "id": "m28.leistungserbringer",
+     "text": "Hält der Arzt den Patienten für unfähig, die Überweisung selbständig wahrzunehmen, kann er mit der Verordnung einen soziotherapeutischen Leistungserbringer hinzuziehen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 28, Einleitung, S. 77"
+     }
+    }
+   ]
+  },
+  {
+   "id": "le_strasse",
+   "label": "Straße (soziotherapeutischer Leistungserbringer)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❹",
+   "box": {
+    "x": 10.4,
+    "y": 31.3,
+    "w": 42.9,
+    "h": 1.8
+   },
+   "rules": []
+  },
+  {
+   "id": "le_plz",
+   "label": "PLZ (soziotherapeutischer Leistungserbringer)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❹",
+   "box": {
+    "x": 10.4,
+    "y": 34.2,
+    "w": 12.1,
+    "h": 1.8
+   },
+   "rules": []
+  },
+  {
+   "id": "le_ort",
+   "label": "Ort (soziotherapeutischer Leistungserbringer)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❹",
+   "box": {
+    "x": 23.0,
+    "y": 34.2,
+    "w": 30.3,
+    "h": 1.8
+   },
+   "rules": []
+  },
+  {
+   "id": "datum",
+   "label": "Datum",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "TTMMJJ",
+   "box": {
+    "x": 57.6,
+    "y": 38.1,
+    "w": 14.4,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m28.datum",
+     "text": "Ausstellungsdatum der Verordnung (Feld „Datum“ neben dem Vertragsarztstempel).",
+     "source": {
+      "artifact": "mustersammlung",
+      "locator": "PDF-Seite 52, Muster 28a (10.2017)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "stempel",
+   "label": "Vertragsarztstempel / Unterschrift des Arztes",
+   "kind": "stempel",
+   "filled_by": "arzt",
+   "box": {
+    "x": 73.5,
+    "y": 28.2,
+    "w": 22.7,
+    "h": 12.0
+   },
+   "rules": [
+    {
+     "id": "m28.unterschrift",
+     "text": "Erst vollständig ausfüllen, dann mit Vertragsarztstempel persönlich unterschreiben – nie blanko.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ik",
+   "label": "IK des Leistungserbringers",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "marker": "❺",
+   "box": {
+    "x": 29.8,
+    "y": 46.8,
+    "w": 21.6,
+    "h": 2.0
+   },
+   "rules": [
+    {
+     "id": "m28.ik",
+     "text": "Die Felder ab ❺ füllt der soziotherapeutische Leistungserbringer aus; ❺ ist sein Institutionskennzeichen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 28, ❺, S. 79"
+     }
+    }
+   ]
+  },
+  {
+   "id": "leistung_datum_1",
+   "label": "Abrechnung des soziotherapeutischen Leistungserbringers, Zeile 1: Datum",
+   "kind": "date",
+   "filled_by": "leistungserbringer",
+   "format": "TTMMJJ",
+   "marker": "❻",
+   "box": {
+    "x": 10.4,
+    "y": 55.3,
+    "w": 14.4,
+    "h": 2.0
+   },
+   "rules": [
+    {
+     "id": "m28.abrechnung",
+     "text": "Der Leistungserbringer trägt Daten und Beschreibung der Maßnahmen ein (höchstens 5 Behandlungseinheiten, auf das Gesamtkontingent angerechnet); abgerechnet wird auf Muster 28, auch wenn der Patient den Facharzt nicht aufsucht.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 28, ❻, S. 79"
+     }
+    }
+   ]
+  },
+  {
+   "id": "leistung_1",
+   "label": "Abrechnung des soziotherapeutischen Leistungserbringers, Zeile 1: Leistung",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "marker": "❻",
+   "box": {
+    "x": 26.1,
+    "y": 55.3,
+    "w": 70.2,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "leistung_datum_2",
+   "label": "Abrechnung des soziotherapeutischen Leistungserbringers, Zeile 2: Datum",
+   "kind": "date",
+   "filled_by": "leistungserbringer",
+   "format": "TTMMJJ",
+   "marker": "❻",
+   "box": {
+    "x": 10.4,
+    "y": 58.2,
+    "w": 14.4,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "leistung_2",
+   "label": "Abrechnung des soziotherapeutischen Leistungserbringers, Zeile 2: Leistung",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "marker": "❻",
+   "box": {
+    "x": 26.1,
+    "y": 58.2,
+    "w": 70.2,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "leistung_datum_3",
+   "label": "Abrechnung des soziotherapeutischen Leistungserbringers, Zeile 3: Datum",
+   "kind": "date",
+   "filled_by": "leistungserbringer",
+   "format": "TTMMJJ",
+   "marker": "❻",
+   "box": {
+    "x": 10.4,
+    "y": 61.0,
+    "w": 14.4,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "leistung_3",
+   "label": "Abrechnung des soziotherapeutischen Leistungserbringers, Zeile 3: Leistung",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "marker": "❻",
+   "box": {
+    "x": 26.1,
+    "y": 61.0,
+    "w": 70.2,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "leistung_datum_4",
+   "label": "Abrechnung des soziotherapeutischen Leistungserbringers, Zeile 4: Datum",
+   "kind": "date",
+   "filled_by": "leistungserbringer",
+   "format": "TTMMJJ",
+   "marker": "❻",
+   "box": {
+    "x": 10.4,
+    "y": 63.9,
+    "w": 14.4,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "leistung_4",
+   "label": "Abrechnung des soziotherapeutischen Leistungserbringers, Zeile 4: Leistung",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "marker": "❻",
+   "box": {
+    "x": 26.1,
+    "y": 63.9,
+    "w": 70.2,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "leistung_datum_5",
+   "label": "Abrechnung des soziotherapeutischen Leistungserbringers, Zeile 5: Datum",
+   "kind": "date",
+   "filled_by": "leistungserbringer",
+   "format": "TTMMJJ",
+   "marker": "❻",
+   "box": {
+    "x": 10.4,
+    "y": 66.7,
+    "w": 14.4,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "leistung_5",
+   "label": "Abrechnung des soziotherapeutischen Leistungserbringers, Zeile 5: Leistung",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "marker": "❻",
+   "box": {
+    "x": 26.1,
+    "y": 66.7,
+    "w": 70.2,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "kontoinhaber",
+   "label": "Bemerkungen zur Abrechnung: Kontoinhaber",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "marker": "❼",
+   "box": {
+    "x": 10.3,
+    "y": 75.2,
+    "w": 61.7,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m28.bemerkungen",
+     "text": "Unter Bemerkungen zur Abrechnung werden die Kontodaten des soziotherapeutischen Leistungserbringers eingetragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 28, ❼, S. 79"
+     }
+    }
+   ]
+  },
+  {
+   "id": "iban",
+   "label": "Bemerkungen zur Abrechnung: IBAN",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "marker": "❼",
+   "box": {
+    "x": 10.4,
+    "y": 79.5,
+    "w": 53.1,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "bic",
+   "label": "Bemerkungen zur Abrechnung: BIC",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "marker": "❼",
+   "box": {
+    "x": 10.4,
+    "y": 83.8,
+    "w": 26.5,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "geldinstitut",
+   "label": "Bemerkungen zur Abrechnung: Geldinstitut",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "marker": "❼",
+   "box": {
+    "x": 38.1,
+    "y": 83.8,
+    "w": 33.9,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "datum_le",
+   "label": "Datum (soziotherapeutischer Leistungserbringer)",
+   "kind": "date",
+   "filled_by": "leistungserbringer",
+   "format": "TTMMJJ",
+   "marker": "❼",
+   "box": {
+    "x": 57.5,
+    "y": 93.7,
+    "w": 14.5,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "stempel_le",
+   "label": "Stempel und Unterschrift des soziotherapeutischen Leistungserbringers",
+   "kind": "stempel",
+   "filled_by": "leistungserbringer",
+   "marker": "❼",
+   "box": {
+    "x": 73.5,
+    "y": 83.8,
+    "w": 22.7,
+    "h": 12.0
+   },
+   "rules": []
+  }
+ ]
+}

@@ -1,0 +1,490 @@
+{
+ "schema_version": "1.0.0",
+ "id": "muster-62a",
+ "muster": "62A",
+ "title": "Ergebnis der Erhebung des Beatmungsentwöhnungs- bzw. Dekanülierungspotenzials gemäß AKI-Richtlinie des G-BA",
+ "form_version": "1.2023",
+ "released": "2022-05-10",
+ "status": "entwurf",
+ "paper": {
+  "format": "DIN A4 hoch",
+  "width": 595.3,
+  "height": 841.9,
+  "tint": "rot"
+ },
+ "copies": [
+  {
+   "id": "62Aa",
+   "label": "Ausfertigung für die Krankenkasse",
+   "recipient": "Krankenkasse"
+  },
+  {
+   "id": "62Ab",
+   "label": "Ausfertigung für den verordnenden Arzt",
+   "recipient": "verordnende Ärztin / verordnender Arzt"
+  },
+  {
+   "id": "62Ac",
+   "label": "Ausfertigung für den potenzialerhebenden Arzt",
+   "recipient": "verbleibt beim potenzialerhebenden Arzt"
+  }
+ ],
+ "notes": [
+  {
+   "id": "m62a.voraussetzung",
+   "text": "AKI bei beatmeten oder trachealkanülierten Versicherten kann nur verordnet werden, wenn vorab das Potenzial zur Beatmungsentwöhnung und Dekanülierung geprüft wurde.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 62A, Einleitung, S. 119"
+   }
+  },
+  {
+   "id": "m62a.qualifikation",
+   "text": "Die Erhebung darf nur durch besonders qualifizierte Ärztinnen und Ärzte (§ 5 AKI-RL) erfolgen und bedarf einer Genehmigung der zuständigen Kassenärztlichen Vereinigung.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 62A, Einleitung, S. 119"
+   }
+  },
+  {
+   "id": "m62a.persoenlich",
+   "text": "Die Erhebung muss mindestens einmal jährlich unmittelbar persönlich erfolgen; ist das im Einzelfall nicht möglich (z. B. nicht transportfähig), ist eine telemedizinische Erhebung zulässig, die dokumentiert und begründet werden muss.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 62A, Einleitung, S. 119"
+   }
+  },
+  {
+   "id": "m62a.intervall",
+   "text": "Die Erhebung erfolgt alle sechs Monate; nur bei nachweislich dauerhaft fehlendem Potenzial mindestens alle 12 Monate. Wurde in einem Gesamtzeitraum von mindestens zwei Jahren zweimal in Folge persönlich kein Potenzial festgestellt, kann sie entfallen.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 62A, Einleitung, S. 119"
+   }
+  },
+  {
+   "id": "m62a.empfaenger",
+   "text": "Das Ergebnis erhalten die verordnende Ärztin bzw. der verordnende Arzt sowie die Krankenkasse.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 62A, Einleitung, S. 119"
+   }
+  }
+ ],
+ "groups": [
+  {
+   "id": "potenzial_vor",
+   "label": "Potenzial liegt vor",
+   "select": "beliebig",
+   "rule": {
+    "id": "m62a.ergebnis",
+    "text": "Anzukreuzen ist je nach Ergebnis (nach § 5 Abs. 8, 9, 10 AKI-RL): Potenzial liegt vor (Empfehlung einer spezialisierten Einrichtung, geplanter Aufnahmetermin), kann perspektivisch vorliegen (vorbereitende Maßnahmen) oder liegt nicht vor (Begründung).",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 62A, ❸, S. 119–121"
+    }
+   }
+  },
+  {
+   "id": "potenzial_perspektivisch",
+   "label": "Potenzial kann perspektivisch vorliegen",
+   "select": "beliebig",
+   "rule": {
+    "id": "m62a.ergebnis",
+    "text": "Anzukreuzen ist je nach Ergebnis (nach § 5 Abs. 8, 9, 10 AKI-RL): Potenzial liegt vor (Empfehlung einer spezialisierten Einrichtung, geplanter Aufnahmetermin), kann perspektivisch vorliegen (vorbereitende Maßnahmen) oder liegt nicht vor (Begründung).",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 62A, ❸, S. 119–121"
+    }
+   }
+  },
+  {
+   "id": "potenzial_nicht",
+   "label": "Potenzial liegt nicht vor",
+   "select": "beliebig",
+   "rule": {
+    "id": "m62a.ergebnis",
+    "text": "Anzukreuzen ist je nach Ergebnis (nach § 5 Abs. 8, 9, 10 AKI-RL): Potenzial liegt vor (Empfehlung einer spezialisierten Einrichtung, geplanter Aufnahmetermin), kann perspektivisch vorliegen (vorbereitende Maßnahmen) oder liegt nicht vor (Begründung).",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 62A, ❸, S. 119–121"
+    }
+   }
+  }
+ ],
+ "fields": [
+  {
+   "id": "personalien",
+   "label": "Personalienfeld (Krankenkasse bzw. Kostenträger, Name, geb. am, Kostenträgerkennung, Versicherten-Nr., Status, Betriebsstätten-Nr., Arzt-Nr., Datum)",
+   "kind": "personalien",
+   "filled_by": "duria",
+   "box": {
+    "x": 4.4,
+    "y": 1.7,
+    "w": 38.0,
+    "h": 15.7
+   },
+   "rules": [
+    {
+     "id": "m62a.personalien",
+     "text": "Die Daten der eGK werden maschinell über Kartenterminal und Praxis-EDV übertragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 5 und Nr. 6, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "massnahmen",
+   "label": "Maßnahmen zur Prüfung des Potenzials oder der Therapieoptimierung (z.B. Spontanatmungstest durchgeführt, NIV-Versuch, FEES, Entblockungsversuche)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 3,
+   "marker": "❶",
+   "box": {
+    "x": 10.3,
+    "y": 21.0,
+    "w": 85.9,
+    "h": 7.8
+   },
+   "rules": [
+    {
+     "id": "m62a.massnahmen",
+     "text": "Anzugeben sind die durchgeführten Untersuchungen und erhobenen Befunde, die zum Ergebnis geführt haben (Nachvollziehbarkeit für Verordner, Krankenkassen und Medizinischen Dienst).",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 62A, ❶, S. 119"
+     }
+    }
+   ]
+  },
+  {
+   "id": "schluckdiagnostik",
+   "label": "Befunde der ärztlichen Schluckdiagnostik",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❷",
+   "box": {
+    "x": 10.3,
+    "y": 31.0,
+    "w": 85.9,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m62a.schluck",
+     "text": "Der differenzierte Befund der Schluckdiagnostik mit diagnostischen und therapeutischen Maßnahmen zur Wiederherstellung von Schluck- bzw. Sprechfunktion ist anzugeben.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 62A, ❷, S. 119"
+     }
+    }
+   ]
+  },
+  {
+   "id": "vor_beatmung",
+   "label": "Potenzial liegt vor: zur Beatmungsentwöhnung",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "potenzial_vor",
+   "marker": "❸",
+   "box": {
+    "x": 45.5,
+    "y": 38.2,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": [
+    {
+     "id": "m62a.ergebnis",
+     "text": "Anzukreuzen ist je nach Ergebnis (nach § 5 Abs. 8, 9, 10 AKI-RL): Potenzial liegt vor (Empfehlung einer spezialisierten Einrichtung, geplanter Aufnahmetermin), kann perspektivisch vorliegen (vorbereitende Maßnahmen) oder liegt nicht vor (Begründung).",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 62A, ❸, S. 119–121"
+     }
+    }
+   ]
+  },
+  {
+   "id": "vor_dekanuelierung",
+   "label": "Potenzial liegt vor: zur Dekanülierung",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "potenzial_vor",
+   "marker": "❸",
+   "box": {
+    "x": 70.9,
+    "y": 38.2,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "empfehlung_einrichtung",
+   "label": "Empfehlung zur Beatmungsentwöhnung bzw. Dekanülierung in folgenden spezialisierten Einrichtungen",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 2,
+   "marker": "❸",
+   "box": {
+    "x": 10.3,
+    "y": 42.4,
+    "w": 72.0,
+    "h": 5.0
+   },
+   "rules": []
+  },
+  {
+   "id": "termin",
+   "label": "geplanter Termin",
+   "kind": "date",
+   "filled_by": "arzt",
+   "format": "MMJJ",
+   "marker": "❸",
+   "box": {
+    "x": 84.2,
+    "y": 42.4,
+    "w": 9.5,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "persp_beatmung",
+   "label": "Potenzial kann perspektivisch vorliegen: zur Beatmungsentwöhnung",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "potenzial_perspektivisch",
+   "marker": "❸",
+   "box": {
+    "x": 45.5,
+    "y": 48.2,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "persp_dekanuelierung",
+   "label": "Potenzial kann perspektivisch vorliegen: zur Dekanülierung",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "potenzial_perspektivisch",
+   "marker": "❸",
+   "box": {
+    "x": 70.9,
+    "y": 48.2,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "vorbereitende_massnahmen",
+   "label": "erforderliche vorbereitende Maßnahmen (bspw. Lagerungstherapie, Mobilisation, Physiotherapie, Logopädie, Atmungstherapie)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 2,
+   "marker": "❸",
+   "box": {
+    "x": 10.3,
+    "y": 52.4,
+    "w": 85.9,
+    "h": 5.0
+   },
+   "rules": []
+  },
+  {
+   "id": "nicht_beatmung",
+   "label": "Potenzial liegt nicht vor: zur Beatmungsentwöhnung",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "potenzial_nicht",
+   "marker": "❸",
+   "box": {
+    "x": 45.5,
+    "y": 58.2,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "nicht_dekanuelierung",
+   "label": "Potenzial liegt nicht vor: zur Dekanülierung",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "potenzial_nicht",
+   "marker": "❸",
+   "box": {
+    "x": 70.9,
+    "y": 58.1,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "begruendung",
+   "label": "Begründung (Potenzial liegt nicht vor)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❸",
+   "box": {
+    "x": 10.3,
+    "y": 62.4,
+    "w": 85.9,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "therapieoptimierung",
+   "label": "Maßnahmen der Therapieoptimierung (ggf. Einweisung in spezialisierte Einrichtung) sowie weitere Hinweise zum klinischen Status",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 2,
+   "marker": "❹",
+   "box": {
+    "x": 10.3,
+    "y": 68.1,
+    "w": 85.9,
+    "h": 4.9
+   },
+   "rules": [
+    {
+     "id": "m62a.therapieoptimierung",
+     "text": "Die Prüfung der Therapieoptimierung ist bei allen Versicherten notwendig; ärztlich notwendige Maßnahmen zur Optimierung der Therapie sind anzugeben.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 62A, ❹, S. 121"
+     }
+    }
+   ]
+  },
+  {
+   "id": "entfall_erhebung",
+   "label": "Innerhalb von mindestens zwei Jahren wurde zweimal in Folge im Rahmen einer unmittelbar persönlichen Erhebung festgestellt, dass keine Aussicht auf nachhaltige Besserung der zu Grunde liegenden Funktionsstörung besteht und eine Entwöhnung oder Dekanülierung dauerhaft nicht möglich ist. Eine regelmäßige Erhebung des Beatmungsentwöhnungs- bzw. Dekanülierungspotenzials ist nicht mehr angezeigt.",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❺",
+   "box": {
+    "x": 10.4,
+    "y": 73.8,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": [
+    {
+     "id": "m62a.entfall_erhebung",
+     "text": "Ankreuzen, wenn innerhalb von mindestens zwei Jahren zweimal in Folge persönlich ein dauerhaft fehlendes Potenzial festgestellt wurde; bei telemedizinischen Erhebungen kann diese Entscheidung nicht getroffen werden.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 62A, ❺, S. 121"
+     }
+    }
+   ]
+  },
+  {
+   "id": "entfall_therapieoptimierung",
+   "label": "Eine Erhebung zum Zwecke der Therapieoptimierung und zur Verbesserung der Lebensqualität ist nicht mehr angezeigt.",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❻",
+   "box": {
+    "x": 10.4,
+    "y": 79.5,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": [
+    {
+     "id": "m62a.therapieoptimierung_entfall",
+     "text": "Ergänzend kann empfohlen werden, dass auch eine Erhebung zum Zweck der Therapieoptimierung nicht mehr angezeigt und erforderlich ist.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 62A, ❻, S. 121–122"
+     }
+    }
+   ]
+  },
+  {
+   "id": "erlaeuterungen",
+   "label": "Weitere Erläuterungen",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 4,
+   "marker": "❼",
+   "box": {
+    "x": 10.3,
+    "y": 85.2,
+    "w": 42.9,
+    "h": 10.6
+   },
+   "rules": [
+    {
+     "id": "m62a.erlaeuterungen_datum",
+     "text": "Weitere Hinweise für Verordner und Krankenkasse unter ❼; ❽ ist das Datum der (abgeschlossenen) Erhebung; ❾ der Termin der nächsten Erhebung, den die verordnende Ärztin bei Ausstellung von Muster 62B berücksichtigt.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 62A, ❼–❾, S. 122"
+     }
+    }
+   ]
+  },
+  {
+   "id": "datum_erhebung",
+   "label": "Ergebnis der Erhebung festgestellt am",
+   "kind": "date",
+   "filled_by": "arzt",
+   "format": "TTMMJJ",
+   "marker": "❽",
+   "box": {
+    "x": 56.4,
+    "y": 88.0,
+    "w": 14.4,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "datum_naechste",
+   "label": "Erneute Erhebung geplant am",
+   "kind": "date",
+   "filled_by": "arzt",
+   "format": "TTMMJJ",
+   "marker": "❾",
+   "box": {
+    "x": 56.4,
+    "y": 93.7,
+    "w": 14.4,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "stempel",
+   "label": "Vertragsarztstempel / ärztliche Unterschrift",
+   "kind": "stempel",
+   "filled_by": "arzt",
+   "box": {
+    "x": 73.5,
+    "y": 83.8,
+    "w": 22.7,
+    "h": 12.0
+   },
+   "rules": [
+    {
+     "id": "m62a.unterschrift",
+     "text": "Erst vollständig ausfüllen, dann mit Vertragsarztstempel persönlich unterschreiben – nie blanko.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5"
+     }
+    }
+   ]
+  }
+ ]
+}

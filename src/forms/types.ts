@@ -59,7 +59,8 @@ export interface FormDefinition {
   fields: FormField[];
 }
 
-export type FormId = 'muster-06' | 'muster-02' | 'muster-04' | 'muster-10' | 'muster-10a' | 'muster-21' | 'muster-20' | 'muster-55' | 'muster-19' | 'muster-52' | 'muster-63' | 'muster-09' | 'muster-26' | 'muster-27' | 'muster-64' | 'muster-65' | 'muster-13' | 'muster-12' | 'muster-61';
+export type FormId = 'muster-06' | 'muster-02' | 'muster-04' | 'muster-10' | 'muster-10a' | 'muster-21' | 'muster-20' | 'muster-55' | 'muster-19' | 'muster-52' | 'muster-63' | 'muster-09' | 'muster-26' | 'muster-27' | 'muster-64' | 'muster-65'
+  | 'muster-03' | 'muster-05' | 'muster-07' | 'muster-08' | 'muster-08a' | 'muster-11' | 'muster-15' | 'muster-16' | 'muster-22' | 'muster-25' | 'muster-28' | 'muster-36' | 'muster-39' | 'muster-50' | 'muster-51' | 'muster-53' | 'muster-56' | 'muster-62a' | 'muster-62b' | 'muster-62c' | 'muster-70' | 'muster-70a' | 'muster-85' | 'muster-86' | 'muster-13' | 'muster-12' | 'muster-61';
 
 /**
  * Zustand eines Feldes im Vorschlag:

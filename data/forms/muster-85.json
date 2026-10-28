@@ -1,0 +1,133 @@
+{
+ "schema_version": "1.0.0",
+ "id": "muster-85",
+ "muster": "85",
+ "title": "Nachweis der Anspruchsberechtigung bei Ruhen des Anspruchs gemäß § 16 Absatz 3a SGB V",
+ "form_version": "10.2014",
+ "released": "2014-09-01",
+ "status": "entwurf",
+ "paper": {
+  "format": "DIN A5 quer",
+  "width": 419.5,
+  "height": 297.6,
+  "tint": "ohne"
+ },
+ "copies": [
+  {
+   "id": "85",
+   "label": "Nachweis der Krankenkasse",
+   "recipient": "Versicherte/Versicherter (zur Vorlage in der Praxis)"
+  }
+ ],
+ "notes": [
+  {
+   "id": "m85.ohne_erlaeuterung",
+   "text": "Zu Muster 85 enthalten die Erläuterungen keine Ausfüllhinweise („ohne Erläuterung“); der Vordruck ist von den Krankenkassen zu verwenden.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 85, Einleitung, S. 145"
+   }
+  },
+  {
+   "id": "m85.geltung",
+   "text": "Der Nachweis gilt im Rahmen der Kostenübernahme durch die unterzeichnende Krankenkasse bei Früherkennungsuntersuchungen nach §§ 25 und 26 SGB V und bei Leistungen, die zur Behandlung akuter Erkrankungen und Schmerzzustände sowie bei Schwangerschaft und Mutterschaft erforderlich sind (Text auf dem Vordruck).",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 104, Muster 85 (10.2014)"
+   }
+  }
+ ],
+ "groups": [],
+ "fields": [
+  {
+   "id": "versichertendaten",
+   "label": "Krankenkasse, Name, Vorname, Geburtsdatum, Anschrift, Kostenträgerkennung, Versicherten-Nr., Status",
+   "kind": "personalien",
+   "filled_by": "leistungserbringer",
+   "box": {
+    "x": 6.1,
+    "y": 4.8,
+    "w": 54.0,
+    "h": 48.7
+   },
+   "rules": [
+    {
+     "id": "m85.ohne_erlaeuterung",
+     "text": "Zu Muster 85 enthalten die Erläuterungen keine Ausfüllhinweise („ohne Erläuterung“); der Vordruck ist von den Krankenkassen zu verwenden.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 85, Einleitung, S. 145"
+     }
+    }
+   ]
+  },
+  {
+   "id": "quartal",
+   "label": "gültig für (Quartal)",
+   "kind": "quarter",
+   "filled_by": "leistungserbringer",
+   "format": "QJJ",
+   "box": {
+    "x": 85.0,
+    "y": 28.3,
+    "w": 10.3,
+    "h": 5.0
+   },
+   "rules": [
+    {
+     "id": "m85.ohne_erlaeuterung",
+     "text": "Zu Muster 85 enthalten die Erläuterungen keine Ausfüllhinweise („ohne Erläuterung“); der Vordruck ist von den Krankenkassen zu verwenden.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 85, Einleitung, S. 145"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ausstellungsdatum",
+   "label": "Ausstellungsdatum",
+   "kind": "date",
+   "filled_by": "leistungserbringer",
+   "format": "TTMMJJ",
+   "box": {
+    "x": 40.4,
+    "y": 88.8,
+    "w": 20.6,
+    "h": 5.0
+   },
+   "rules": [
+    {
+     "id": "m85.ohne_erlaeuterung",
+     "text": "Zu Muster 85 enthalten die Erläuterungen keine Ausfüllhinweise („ohne Erläuterung“); der Vordruck ist von den Krankenkassen zu verwenden.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 85, Einleitung, S. 145"
+     }
+    }
+   ]
+  },
+  {
+   "id": "stempel",
+   "label": "Stempel / Unterschrift der Krankenkasse",
+   "kind": "stempel",
+   "filled_by": "leistungserbringer",
+   "box": {
+    "x": 63.0,
+    "y": 59.6,
+    "w": 32.3,
+    "h": 34.1
+   },
+   "rules": [
+    {
+     "id": "m85.stempel_kasse",
+     "text": "Der Nachweis trägt Stempel und Unterschrift der Krankenkasse (Beschriftung des Stempelfeldes auf dem Vordruck).",
+     "source": {
+      "artifact": "mustersammlung",
+      "locator": "PDF-Seite 104, Muster 85 (10.2014)"
+     }
+    }
+   ]
+  }
+ ]
+}

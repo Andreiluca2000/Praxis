@@ -1,0 +1,217 @@
+{
+ "schema_version": "1.0.0",
+ "id": "muster-36",
+ "muster": "36",
+ "title": "Empfehlung zur verhaltensbezogenen Primärprävention gem. § 20 Abs. 5 SGB V",
+ "form_version": "7.2017",
+ "released": "2017-05-09",
+ "status": "entwurf",
+ "paper": {
+  "format": "DIN A6 quer",
+  "width": 419.5,
+  "height": 297.6,
+  "tint": "ohne"
+ },
+ "copies": [
+  {
+   "id": "36",
+   "label": "Präventionsempfehlung",
+   "recipient": "Patient (beantragt damit bei seiner Krankenkasse einen Kurs zur Primärprävention)"
+  }
+ ],
+ "notes": [
+  {
+   "id": "m36.zweck",
+   "text": "Die Empfehlung bescheinigt Bewegungsgewohnheiten, Ernährung, Stressmanagement, Suchtmittelkonsum oder sonstige Bereiche. Ein Anspruch besteht dadurch nicht; die Krankenkasse soll die Empfehlung bei ihrer Entscheidung berücksichtigen.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 36, Einleitung, S. 80"
+   }
+  },
+  {
+   "id": "m36.hinweis_kasse",
+   "text": "Aufdruck: Der Patient soll sich bei seiner Krankenkasse über die geprüften und anerkannten Präventionsangebote und die Fördervoraussetzungen informieren.",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 55, Muster 36 (7.2017)"
+   }
+  }
+ ],
+ "groups": [
+  {
+   "id": "handlungsfelder",
+   "label": "Empfohlene Handlungsfelder",
+   "select": "beliebig",
+   "rule": {
+    "id": "m36.handlungsfelder",
+    "text": "Ein oder mehrere Handlungsfelder werden ausgewählt; unter „Sonstiges“ sind nähere Angaben zu nicht aufgeführten Handlungsfeldern zu machen.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 36, ❶, S. 80"
+    }
+   }
+  }
+ ],
+ "fields": [
+  {
+   "id": "personalien",
+   "label": "Personalienfeld (Krankenkasse bzw. Kostenträger, Name, Vorname des Versicherten, geb. am, Kostenträgerkennung, Versicherten-Nr., Status, Betriebsstätten-Nr., Arzt-Nr., Datum)",
+   "kind": "personalien",
+   "filled_by": "duria",
+   "box": {
+    "x": 6.2,
+    "y": 4.9,
+    "w": 53.9,
+    "h": 44.5
+   },
+   "rules": [
+    {
+     "id": "m36.personalien",
+     "text": "Die Daten der eGK werden maschinell über Kartenterminal und Praxis-EDV übertragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 5 und Nr. 6, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "bewegung",
+   "label": "Bewegungsgewohnheiten",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "handlungsfelder",
+   "marker": "❶",
+   "box": {
+    "x": 62.8,
+    "y": 17.3,
+    "w": 2.8,
+    "h": 4.0
+   },
+   "rules": [
+    {
+     "id": "m36.handlungsfelder",
+     "text": "Ein oder mehrere Handlungsfelder werden ausgewählt; unter „Sonstiges“ sind nähere Angaben zu nicht aufgeführten Handlungsfeldern zu machen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 36, ❶, S. 80"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ernaehrung",
+   "label": "Ernährung",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "handlungsfelder",
+   "marker": "❶",
+   "box": {
+    "x": 62.8,
+    "y": 21.2,
+    "w": 2.8,
+    "h": 4.0
+   },
+   "rules": []
+  },
+  {
+   "id": "stress",
+   "label": "Stressmanagement",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "handlungsfelder",
+   "marker": "❶",
+   "box": {
+    "x": 62.8,
+    "y": 25.3,
+    "w": 2.8,
+    "h": 4.0
+   },
+   "rules": []
+  },
+  {
+   "id": "sucht",
+   "label": "Suchtmittelkonsum",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "handlungsfelder",
+   "marker": "❶",
+   "box": {
+    "x": 62.8,
+    "y": 29.3,
+    "w": 2.8,
+    "h": 4.0
+   },
+   "rules": []
+  },
+  {
+   "id": "sonstiges",
+   "label": "Sonstiges",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❶",
+   "box": {
+    "x": 72.1,
+    "y": 33.3,
+    "w": 23.2,
+    "h": 4.0
+   },
+   "rules": [
+    {
+     "id": "m36.handlungsfelder",
+     "text": "Ein oder mehrere Handlungsfelder werden ausgewählt; unter „Sonstiges“ sind nähere Angaben zu nicht aufgeführten Handlungsfeldern zu machen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 36, ❶, S. 80"
+     }
+    }
+   ]
+  },
+  {
+   "id": "hinweise",
+   "label": "Hinweise des behandelnden Arztes (z.B. Kontraindikationen, Konkretisierung zur Präventionsempfehlung)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❷",
+   "lines": 4,
+   "box": {
+    "x": 6.1,
+    "y": 69.6,
+    "w": 54.1,
+    "h": 24.2
+   },
+   "rules": [
+    {
+     "id": "m36.hinweise",
+     "text": "Hinweise für Patient oder Krankenkasse, nähere Angaben zu den Maßnahmen sowie bestehende Kontraindikationen für bestimmte Maßnahmen aufführen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 36, ❷, S. 80"
+     }
+    }
+   ]
+  },
+  {
+   "id": "stempel",
+   "label": "Vertragsarztstempel / Unterschrift des Arztes",
+   "kind": "stempel",
+   "filled_by": "arzt",
+   "box": {
+    "x": 62.8,
+    "y": 59.7,
+    "w": 32.5,
+    "h": 34.0
+   },
+   "rules": [
+    {
+     "id": "m36.unterschrift",
+     "text": "Erst vollständig ausfüllen, dann mit Vertragsarztstempel persönlich unterschreiben – nie blanko.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5"
+     }
+    }
+   ]
+  }
+ ]
+}

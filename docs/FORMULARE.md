@@ -32,7 +32,7 @@ Rechte: KBV-Inhalte sind geschützt; Zitieren mit Quellenangabe ist erlaubt. Reg
 
 - `data/forms/muster-06.json`, `muster-02.json`, `muster-04.json`, `muster-10.json`, `muster-10a.json`, `muster-13.json`, `muster-12.json`, `muster-61.json` (Teil A–E, mehrseitig), `muster-21.json`, `muster-20.json`, `muster-55.json`, `muster-19.json`, `muster-52.json`, `muster-63.json`, `muster-09.json`, `muster-26.json`, `muster-27.json`, `muster-64.json` (Teil A–B), `muster-65.json` – ausfüllbare Vordrucke: Felder, Ankreuzgruppen, Lage (Prozent), Regeln mit Fundstelle (`schemas/forms-muster.schema.json`).
 - `data/forms/catalog.json` – **alle** Vordrucke (e01 bis Muster 86, 58 Einträge, 548 Regeln) mit Zweck, Stichwörtern, „stattdessen Muster X“ und Ausfüllregeln (`schemas/forms-catalog.schema.json`). Halbautomatisch aus den Erläuterungen erstellt, stichprobenartig gegen die Quelle geprüft; fachliche Freigabe steht aus.
-- `src/forms/` – `facts.ts` (Lage des Patienten), `advisor.ts` (Einstieg: `analyse`, `propose`, `check`), `muster0X.ts` (Vorschlag + Prüfung je Vordruck), `katalog.ts` (Suche im Gesamtkatalog), `text.ts` (Unicode-sichere Texthelfer).
+- `src/forms/` – `facts.ts` (Lage des Patienten), `advisor.ts` (Einstieg: `analyse`, `propose`, `check`), `musterNN.ts` (Vorschlag + Prüfung je Vordruck), `generic.ts` + `weitere.ts` (allgemeine Ausfüllhilfe mit Stichwörtern, Pflichtfeldern und Zusatzprüfungen je Vordruck), `katalog.ts` (Suche im Gesamtkatalog), `text.ts` (Unicode-sichere Texthelfer).
 - Tests: `tests/forms.test.ts`, `tests/forms-10a-20-21.test.ts` u. a. (synthetische Fälle), `tests/forms-data.test.ts` (Schema, Kennungen, SHA-256 der Quellen).
 
 - `data/forms/heilmittelkatalog.json` – Heilmittelkatalog (5 Bereiche, 44 Diagnosegruppen) aus der HeilM-RL; Muster 13 prüft damit Diagnosegruppe, Leitsymptomatik, Heilmittel und Höchstmenge je Verordnung. Der G-BA-Beschluss vom 20.08.2026 (in Kraft 01.01.2027) ist noch nicht eingearbeitet.
@@ -41,4 +41,4 @@ Rechte: KBV-Inhalte sind geschützt; Zitieren mit Quellenangabe ist erlaubt. Reg
 
 ## Nächste Vordrucke (Vorschlag, nach Häufigkeit in der Hausarztpraxis)
 
-Als Nächstes: die von der Audit-Sitzung vorbereiteten Daten (u. a. 03, 05, 07, 08, 11, 16, 22, 25, 28, 36, 39, 50, 51, 53, 56, 62a–c, 70, 85, 86) mit Logik und Tests einbinden. Die Regeln dafür stehen schon im Katalog.
+Alle Vordrucke des Katalogs außer e01 (eAU über DURIA) sind interaktiv. Als Nächstes: Fachregeln der Vordrucke auf der allgemeinen Ausfüllhilfe vertiefen (zuerst 16, 39, 56, 62B). Die Regeln dafür stehen schon im Katalog.

@@ -21,6 +21,7 @@ import { checkMuster63, proposeMuster63 } from './muster63.js';
 import { checkMuster64, proposeMuster64 } from './muster64.js';
 import { checkMuster65, proposeMuster65 } from './muster65.js';
 import { specialtyIn } from './specialties.js';
+import { checkWeitere, isWeitere, proposeWeitere, weitereIntents } from './weitere.js';
 import { cue, headOf, norm, uni } from './text.js';
 import type { Analysis, FormId, FormIssue, FormProposal, FormSuggestion, FormValues, Intent, PatientFacts } from './types.js';
 
@@ -87,6 +88,11 @@ function suggestions(text: string, facts: PatientFacts): FormSuggestion[] {
   const found = intents(text);
   const out: FormSuggestion[] = found.map((f) => suggestion(FORM_OF[f.intent], 'hauptsache', `Gewünscht: „${f.evidence}“.`, f.evidence, null));
   const has = (id: FormId) => out.some((s) => s.formId === id);
+  for (const w of weitereIntents(headOf(text))) if (!has(w.formId)) out.push(suggestion(w.formId, 'hauptsache', `Gewünscht: „${w.evidence}“.`, w.evidence, null));
+  // „Überweisung zur Indikationsstellung für Soziotherapie“ ist Muster 28, nicht die Verordnung (26/27).
+  if (has('muster-28')) for (const id of ['muster-06', 'muster-26', 'muster-27'] as const) { const i = out.findIndex((s) => s.formId === id); if (i >= 0) out.splice(i, 1); }
+  // Intensivpflege: der Behandlungsplan (62C) liegt der Verordnung (62B) bei.
+  if (has('muster-62b') && !has('muster-62c')) out.push(suggestion('muster-62c', 'zusaetzlich', 'Der Behandlungsplan (Muster 62C) ist der Verordnung beizufügen.', null, 'm62c.beilage'));
   // Allgemeinlabor über die Laborgemeinschaft: Muster 10A statt Muster 10.
   const lg = cue(/\b(laborgemeinschaft|muster\s*10\s*a|anforderungsschein)\b/iu, text);
   const m10 = out.findIndex((s) => s.formId === 'muster-10');
@@ -140,6 +146,7 @@ export function analyse(description: string): Analysis {
 
 export function propose(formId: FormId, description: string, facts: PatientFacts, today: Date): FormProposal {
   const text = norm(description);
+  if (isWeitere(formId)) return proposeWeitere(formId, text, facts, today);
   if (formId === 'muster-06') return proposeMuster06(text, facts, today);
   if (formId === 'muster-02') return proposeMuster02(text, facts);
   if (formId === 'muster-04') return proposeMuster04(text, facts);
@@ -161,7 +168,7 @@ export function propose(formId: FormId, description: string, facts: PatientFacts
   return proposeMuster13(text, facts);
 }
 
-const CHECKS: Record<FormId, (values: FormValues, facts: PatientFacts) => FormIssue[]> = {
+const CHECKS: Partial<Record<FormId, (values: FormValues, facts: PatientFacts) => FormIssue[]>> = {
   'muster-06': checkMuster06, 'muster-02': checkMuster02, 'muster-04': checkMuster04, 'muster-10': checkMuster10, 'muster-10a': checkMuster10A, 'muster-13': checkMuster13, 'muster-12': checkMuster12, 'muster-61': checkMuster61, 'muster-21': checkMuster21, 'muster-20': checkMuster20, 'muster-55': checkMuster55, 'muster-19': checkMuster19, 'muster-52': checkMuster52, 'muster-63': checkMuster63, 'muster-09': checkMuster09, 'muster-26': checkMuster26, 'muster-27': checkMuster27, 'muster-64': checkMuster64, 'muster-65': checkMuster65,
 };
 
@@ -169,6 +176,6 @@ const ORDER = { unzulaessig: 0, fehlt: 1, hinweis: 2 } as const;
 
 /** Prüft einen Vordruck – auch nach Änderungen von Hand. Sortiert: unzulässig, fehlt, Hinweis. */
 export function check(formId: FormId, values: FormValues, facts: PatientFacts): FormIssue[] {
-  const issues = CHECKS[formId](values, facts);
+  const issues = isWeitere(formId) ? checkWeitere(formId, values, facts) : CHECKS[formId]?.(values, facts) ?? [];
   return [...issues].sort((a, b) => ORDER[a.level] - ORDER[b.level]);
 }

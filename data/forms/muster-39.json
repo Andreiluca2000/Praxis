@@ -1,0 +1,1341 @@
+{
+ "schema_version": "1.0.0",
+ "id": "muster-39",
+ "muster": "39",
+ "title": "Krebsfrüherkennung Zervix-Karzinom",
+ "form_version": "1.2021",
+ "released": "2020-11-10",
+ "status": "entwurf",
+ "paper": {
+  "format": "DIN A4 hoch",
+  "width": 595.3,
+  "height": 841.9,
+  "tint": "ohne"
+ },
+ "copies": [
+  {
+   "id": "39a",
+   "label": "Ausfertigung für den untersuchenden Arzt",
+   "recipient": "untersuchender Arzt (kommt mit dem Befund vom Zytologen zurück)"
+  },
+  {
+   "id": "39b",
+   "label": "Ausfertigung für den zytologisch tätigen Arzt",
+   "recipient": "verbleibt beim zytologisch tätigen Arzt"
+  }
+ ],
+ "notes": [
+  {
+   "id": "m39.zweck",
+   "text": "Der Vordruck dient der Beauftragung von Primärscreening oder Abklärungsdiagnostik und der Übermittlung der Befunde; die Angaben folgen den Dokumentationsvorgaben der oKFE-Richtlinie des G-BA.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 39, Einleitung, S. 83"
+   }
+  },
+  {
+   "id": "m39.arbeitsteilung",
+   "text": "Der Gynäkologe füllt den linken Bereich (❶–❻) aus und sendet das Formular mit der Probe an den Zytologen, der rechts Ergebnisse und Empfehlung ergänzt. Muster 39a geht an den Gynäkologen zurück, 39b verbleibt beim Zytologen.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 39, Einleitung, S. 83"
+   }
+  },
+  {
+   "id": "m39.digital",
+   "text": "Muster 39 kann auch digital genutzt werden (Anlage 2b BMV-Ä). Die Rückmeldung kann in Abstimmung beider Parteien digital erfolgen (z. B. eArztbrief), auch wenn die Beauftragung in Papierform erfolgte.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 39, Einleitung, S. 83"
+   }
+  },
+  {
+   "id": "m39.behandlungstag",
+   "text": "Für die Definition des Behandlungstages gelten die Bestimmungen des EBM (Ziffer I, Abschnitt 3.8.5).",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 39, Einleitung, S. 83"
+   }
+  }
+ ],
+ "groups": [
+  {
+   "id": "alterskategorie",
+   "label": "Alterskategorie",
+   "select": "genau_eins",
+   "rule": {
+    "id": "m39.alterskategorie",
+    "text": "Die Alterskategorie ergibt sich aus dem Geburtsdatum im Verhältnis zum Ausstellungsdatum (Behandlungstag) im Personalienfeld; sie bestimmt Untersuchungen und Abklärungsalgorithmus.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 39, ❶, S. 83"
+    }
+   }
+  },
+  {
+   "id": "auftrag",
+   "label": "Auftrag (Primärscreening / Abklärungsdiagnostik; Zytologie / HPV-Test / Ko-Testung)",
+   "select": "beliebig",
+   "rule": {
+    "id": "m39.auftrag",
+    "text": "Differenzierte Beauftragung von Primärscreening oder Abklärung. Wird der HPV-Test selbst erbracht oder an Dritte überwiesen, ist das im Freitextfeld 6 anzuzeigen und der Befund zugänglich zu machen; bei aufgespaltener Ko-Testung wird nur Zytologie angekreuzt.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 39, ❷, S. 83–84"
+    }
+   }
+  },
+  {
+   "id": "vorunters",
+   "label": "Wurde bereits eine Krebsfrüherkennungsuntersuchung durchgeführt?",
+   "select": "beliebig",
+   "rule": {
+    "id": "m39.anamnese",
+    "text": "Erfasst werden Vorbefunde zu Screening und HPV-Status (Jahr eines früheren HPV-Tests ggf. als Anmerkung in Feld 6) sowie Voroperationen, Strahlen- oder Chemotherapie. Der zytologische Vorbefund wird nach den Schlüsseln der München-III-Klassifikation eingetragen.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 39, ❸, S. 84"
+    }
+   }
+  },
+  {
+   "id": "hpv_impfung",
+   "label": "HPV-Impfung",
+   "select": "beliebig",
+   "rule": {
+    "id": "m39.anamnese",
+    "text": "Erfasst werden Vorbefunde zu Screening und HPV-Status (Jahr eines früheren HPV-Tests ggf. als Anmerkung in Feld 6) sowie Voroperationen, Strahlen- oder Chemotherapie. Der zytologische Vorbefund wird nach den Schlüsseln der München-III-Klassifikation eingetragen.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 39, ❸, S. 84"
+    }
+   }
+  },
+  {
+   "id": "vor_hpv",
+   "label": "Vorbefund HPV-HR-Testergebnis",
+   "select": "beliebig",
+   "rule": {
+    "id": "m39.anamnese",
+    "text": "Erfasst werden Vorbefunde zu Screening und HPV-Status (Jahr eines früheren HPV-Tests ggf. als Anmerkung in Feld 6) sowie Voroperationen, Strahlen- oder Chemotherapie. Der zytologische Vorbefund wird nach den Schlüsseln der München-III-Klassifikation eingetragen.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 39, ❸, S. 84"
+    }
+   }
+  },
+  {
+   "id": "op",
+   "label": "Gynäkologische OP, Strahlen- oder Chemotherapie des Genitales",
+   "select": "beliebig",
+   "rule": {
+    "id": "m39.anamnese",
+    "text": "Erfasst werden Vorbefunde zu Screening und HPV-Status (Jahr eines früheren HPV-Tests ggf. als Anmerkung in Feld 6) sowie Voroperationen, Strahlen- oder Chemotherapie. Der zytologische Vorbefund wird nach den Schlüsseln der München-III-Klassifikation eingetragen.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 39, ❸, S. 84"
+    }
+   }
+  },
+  {
+   "id": "gravid",
+   "label": "Gravidität",
+   "select": "beliebig",
+   "rule": {
+    "id": "m39.jetzt",
+    "text": "Aktuelle Symptome, Beschwerden oder Behandlungen angeben, die Abstrichqualität und Befundung beeinflussen können; die Art einer Hormonanwendung kann im Freitext (Feld 6) stehen.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 39, ❹, S. 84"
+    }
+   }
+  },
+  {
+   "id": "ausfluss",
+   "label": "Ausfluss / pathologische Blutung",
+   "select": "beliebig",
+   "rule": {
+    "id": "m39.jetzt",
+    "text": "Aktuelle Symptome, Beschwerden oder Behandlungen angeben, die Abstrichqualität und Befundung beeinflussen können; die Art einer Hormonanwendung kann im Freitext (Feld 6) stehen.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 39, ❹, S. 84"
+    }
+   }
+  },
+  {
+   "id": "iup",
+   "label": "IUP",
+   "select": "beliebig",
+   "rule": {
+    "id": "m39.jetzt",
+    "text": "Aktuelle Symptome, Beschwerden oder Behandlungen angeben, die Abstrichqualität und Befundung beeinflussen können; die Art einer Hormonanwendung kann im Freitext (Feld 6) stehen.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 39, ❹, S. 84"
+    }
+   }
+  },
+  {
+   "id": "hormon",
+   "label": "Einnahme von Ovulationshemmer / sonstige Hormonanwendung",
+   "select": "beliebig",
+   "rule": {
+    "id": "m39.jetzt",
+    "text": "Aktuelle Symptome, Beschwerden oder Behandlungen angeben, die Abstrichqualität und Befundung beeinflussen können; die Art einer Hormonanwendung kann im Freitext (Feld 6) stehen.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 39, ❹, S. 84"
+    }
+   }
+  },
+  {
+   "id": "klinischer_befund",
+   "label": "Klinischer Befund",
+   "select": "beliebig",
+   "rule": {
+    "id": "m39.klinischer_befund",
+    "text": "Auffälligkeiten bei der gynäkologischen Untersuchung angeben und im Freitextfeld 6 erläutern; eine Diagnose kann dort als Freitext erfolgen.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 39, ❺, S. 84"
+    }
+   }
+  },
+  {
+   "id": "endozervikal",
+   "label": "Endozervikale Zellen",
+   "select": "beliebig",
+   "rule": {
+    "id": "m39.zytologie_befund",
+    "text": "Unter 35 Jahren nur Zytologie, ab 35 Ko-Test (Zytologie plus HPV); bei Abklärung auch 30–34 Jahre HPV-Test möglich. HPV 16/18 positiv = „ja“, ausgeschlossen = „nein“, keine Differenzierung = „nicht differenzierbar“. Untersuchungsnummer ggf. im Bemerkungsfeld.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 39, ❼, S. 85"
+    }
+   }
+  },
+  {
+   "id": "z_hpv",
+   "label": "HPV-HR-Testergebnis (zytologischer Befund)",
+   "select": "beliebig",
+   "rule": {
+    "id": "m39.zytologie_befund",
+    "text": "Unter 35 Jahren nur Zytologie, ab 35 Ko-Test (Zytologie plus HPV); bei Abklärung auch 30–34 Jahre HPV-Test möglich. HPV 16/18 positiv = „ja“, ausgeschlossen = „nein“, keine Differenzierung = „nicht differenzierbar“. Untersuchungsnummer ggf. im Bemerkungsfeld.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 39, ❼, S. 85"
+    }
+   }
+  },
+  {
+   "id": "z_typ",
+   "label": "Liegt HPV-Typ 16 oder HPV-Typ 18 vor?",
+   "select": "beliebig",
+   "rule": {
+    "id": "m39.zytologie_befund",
+    "text": "Unter 35 Jahren nur Zytologie, ab 35 Ko-Test (Zytologie plus HPV); bei Abklärung auch 30–34 Jahre HPV-Test möglich. HPV 16/18 positiv = „ja“, ausgeschlossen = „nein“, keine Differenzierung = „nicht differenzierbar“. Untersuchungsnummer ggf. im Bemerkungsfeld.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 39, ❼, S. 85"
+    }
+   }
+  },
+  {
+   "id": "e_zeitraum",
+   "label": "Zeitraum der empfohlenen Folgeuntersuchung",
+   "select": "beliebig",
+   "rule": {
+    "id": "m39.empfehlung",
+    "text": "Angabe der nach Richtlinie indizierten Folgeuntersuchungen mit Zeitraum; bei unauffälligem Befund ohne weitere Maßnahmen werden keine Kreuze gesetzt.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 39, ❽, S. 85"
+    }
+   }
+  }
+ ],
+ "fields": [
+  {
+   "id": "personalien",
+   "label": "Personalienfeld (Krankenkasse bzw. Kostenträger, Name, geb. am, Kostenträgerkennung, Versicherten-Nr., Status, Betriebsstätten-Nr., Arzt-Nr., Datum)",
+   "kind": "personalien",
+   "filled_by": "duria",
+   "box": {
+    "x": 4.3,
+    "y": 1.7,
+    "w": 38.1,
+    "h": 15.8
+   },
+   "rules": [
+    {
+     "id": "m39.personalien",
+     "text": "Die Daten der eGK werden maschinell über Kartenterminal und Praxis-EDV übertragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 5 und Nr. 6, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "alter_20_29",
+   "label": "Alterskategorie 20-29 Jahre",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "alterskategorie",
+   "marker": "❶",
+   "box": {
+    "x": 9.2,
+    "y": 19.6,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m39.alterskategorie",
+     "text": "Die Alterskategorie ergibt sich aus dem Geburtsdatum im Verhältnis zum Ausstellungsdatum (Behandlungstag) im Personalienfeld; sie bestimmt Untersuchungen und Abklärungsalgorithmus.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 39, ❶, S. 83"
+     }
+    }
+   ]
+  },
+  {
+   "id": "alter_30_34",
+   "label": "Alterskategorie 30-34 Jahre",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "alterskategorie",
+   "marker": "❶",
+   "box": {
+    "x": 23.7,
+    "y": 19.6,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "alter_ab_35",
+   "label": "Alterskategorie ab 35 Jahre",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "alterskategorie",
+   "marker": "❶",
+   "box": {
+    "x": 37.0,
+    "y": 19.6,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "auftrag_primaer",
+   "label": "Auftrag: Primärscreening",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "auftrag",
+   "marker": "❷",
+   "box": {
+    "x": 9.2,
+    "y": 24.6,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m39.auftrag",
+     "text": "Differenzierte Beauftragung von Primärscreening oder Abklärung. Wird der HPV-Test selbst erbracht oder an Dritte überwiesen, ist das im Freitextfeld 6 anzuzeigen und der Befund zugänglich zu machen; bei aufgespaltener Ko-Testung wird nur Zytologie angekreuzt.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 39, ❷, S. 83–84"
+     }
+    }
+   ]
+  },
+  {
+   "id": "auftrag_abklaerung",
+   "label": "Auftrag: Abklärungsdiagnostik",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "auftrag",
+   "marker": "❷",
+   "box": {
+    "x": 23.7,
+    "y": 24.6,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "auftrag_zytologie",
+   "label": "Auftrag: Zytologie",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "auftrag",
+   "marker": "❷",
+   "box": {
+    "x": 9.2,
+    "y": 26.8,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "auftrag_hpv",
+   "label": "Auftrag: HPV-Test",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "auftrag",
+   "marker": "❷",
+   "box": {
+    "x": 23.7,
+    "y": 26.8,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "auftrag_ko",
+   "label": "Auftrag: Ko-Testung (Zyt.+HPV)",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "auftrag",
+   "marker": "❷",
+   "box": {
+    "x": 37.0,
+    "y": 26.8,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "vor_nein",
+   "label": "Wurde bereits eine Krebsfrüherkennungsuntersuchung durchgeführt? nein",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "vorunters",
+   "marker": "❸",
+   "box": {
+    "x": 9.2,
+    "y": 33.9,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m39.anamnese",
+     "text": "Erfasst werden Vorbefunde zu Screening und HPV-Status (Jahr eines früheren HPV-Tests ggf. als Anmerkung in Feld 6) sowie Voroperationen, Strahlen- oder Chemotherapie. Der zytologische Vorbefund wird nach den Schlüsseln der München-III-Klassifikation eingetragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 39, ❸, S. 84"
+     }
+    }
+   ]
+  },
+  {
+   "id": "vor_ja",
+   "label": "Wurde bereits eine Krebsfrüherkennungsuntersuchung durchgeführt? ja, zuletzt",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "vorunters",
+   "marker": "❸",
+   "box": {
+    "x": 23.7,
+    "y": 33.9,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "vor_datum",
+   "label": "ja, zuletzt (Monat/Jahr)",
+   "kind": "date",
+   "filled_by": "arzt",
+   "format": "MMJJ",
+   "marker": "❸",
+   "box": {
+    "x": 37.0,
+    "y": 33.9,
+    "w": 9.6,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "vor_gruppe",
+   "label": "Gruppe (zytologischer Vorbefund)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❸",
+   "box": {
+    "x": 14.6,
+    "y": 37.2,
+    "w": 4.8,
+    "h": 1.8
+   },
+   "rules": []
+  },
+  {
+   "id": "impf_vollstaendig",
+   "label": "HPV-Impfung vollständig",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "hpv_impfung",
+   "marker": "❸",
+   "box": {
+    "x": 9.2,
+    "y": 41.0,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m39.anamnese",
+     "text": "Erfasst werden Vorbefunde zu Screening und HPV-Status (Jahr eines früheren HPV-Tests ggf. als Anmerkung in Feld 6) sowie Voroperationen, Strahlen- oder Chemotherapie. Der zytologische Vorbefund wird nach den Schlüsseln der München-III-Klassifikation eingetragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 39, ❸, S. 84"
+     }
+    }
+   ]
+  },
+  {
+   "id": "impf_unvollstaendig",
+   "label": "HPV-Impfung unvollständig",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "hpv_impfung",
+   "marker": "❸",
+   "box": {
+    "x": 9.2,
+    "y": 43.2,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "impf_keine",
+   "label": "HPV-Impfung keine",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "hpv_impfung",
+   "marker": "❸",
+   "box": {
+    "x": 9.2,
+    "y": 45.3,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "impf_unklar",
+   "label": "HPV-Impfung unklar",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "hpv_impfung",
+   "marker": "❸",
+   "box": {
+    "x": 9.2,
+    "y": 47.4,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "vor_hpv_nicht_vor",
+   "label": "HPV-HR-Testergebnis liegt nicht vor",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "vor_hpv",
+   "marker": "❸",
+   "box": {
+    "x": 23.7,
+    "y": 41.0,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "vor_hpv_vor",
+   "label": "HPV-HR-Testergebnis liegt vor",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "vor_hpv",
+   "marker": "❸",
+   "box": {
+    "x": 23.7,
+    "y": 43.2,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "vor_hpv_positiv",
+   "label": "HPV-HR-Testergebnis positiv",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "vor_hpv",
+   "marker": "❸",
+   "box": {
+    "x": 27.3,
+    "y": 45.3,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "vor_hpv_negativ",
+   "label": "HPV-HR-Testergebnis negativ",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "vor_hpv",
+   "marker": "❸",
+   "box": {
+    "x": 27.3,
+    "y": 47.4,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "vor_hpv_nicht_verwertbar",
+   "label": "HPV-HR-Testergebnis nicht verwertbar",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "vor_hpv",
+   "marker": "❸",
+   "box": {
+    "x": 27.3,
+    "y": 49.6,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "op_nein",
+   "label": "Gynäkologische OP, Strahlen- oder Chemotherapie des Genitales: nein",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "op",
+   "marker": "❸",
+   "box": {
+    "x": 9.2,
+    "y": 53.9,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "op_ja",
+   "label": "Gynäkologische OP, Strahlen- oder Chemotherapie des Genitales: ja",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "op",
+   "marker": "❸",
+   "box": {
+    "x": 18.8,
+    "y": 53.9,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "op_welche",
+   "label": "Welche?",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❸",
+   "box": {
+    "x": 30.9,
+    "y": 54.2,
+    "w": 16.3,
+    "h": 1.8
+   },
+   "rules": []
+  },
+  {
+   "id": "op_wann",
+   "label": "Wann?",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❸",
+   "box": {
+    "x": 30.9,
+    "y": 56.3,
+    "w": 16.3,
+    "h": 1.8
+   },
+   "rules": []
+  },
+  {
+   "id": "letzte_periode",
+   "label": "Jetzt: Letzte Periode",
+   "kind": "date",
+   "filled_by": "arzt",
+   "format": "TTMMJJ",
+   "marker": "❹",
+   "box": {
+    "x": 15.2,
+    "y": 59.5,
+    "w": 14.4,
+    "h": 2.2
+   },
+   "rules": [
+    {
+     "id": "m39.jetzt",
+     "text": "Aktuelle Symptome, Beschwerden oder Behandlungen angeben, die Abstrichqualität und Befundung beeinflussen können; die Art einer Hormonanwendung kann im Freitext (Feld 6) stehen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 39, ❹, S. 84"
+     }
+    }
+   ]
+  },
+  {
+   "id": "gravid_nein",
+   "label": "Gravidität: nein",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "gravid",
+   "marker": "❹",
+   "box": {
+    "x": 38.2,
+    "y": 62.4,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "gravid_ja",
+   "label": "Gravidität: ja",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "gravid",
+   "marker": "❹",
+   "box": {
+    "x": 44.2,
+    "y": 62.4,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "ausfluss_nein",
+   "label": "Ausfluss / pathologische Blutung: nein",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "ausfluss",
+   "marker": "❹",
+   "box": {
+    "x": 38.2,
+    "y": 64.5,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "ausfluss_ja",
+   "label": "Ausfluss / pathologische Blutung: ja",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "ausfluss",
+   "marker": "❹",
+   "box": {
+    "x": 44.2,
+    "y": 64.5,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "iup_nein",
+   "label": "IUP: nein",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "iup",
+   "marker": "❹",
+   "box": {
+    "x": 38.2,
+    "y": 66.7,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "iup_ja",
+   "label": "IUP: ja",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "iup",
+   "marker": "❹",
+   "box": {
+    "x": 44.2,
+    "y": 66.7,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "hormon_nein",
+   "label": "Einnahme von Ovulationshemmer / sonstige Hormonanwendung: nein",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "hormon",
+   "marker": "❹",
+   "box": {
+    "x": 38.2,
+    "y": 68.8,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "hormon_ja",
+   "label": "Einnahme von Ovulationshemmer / sonstige Hormonanwendung: ja",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "hormon",
+   "marker": "❹",
+   "box": {
+    "x": 44.2,
+    "y": 68.8,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "befund_unauffaellig",
+   "label": "Klinischer Befund unauffällig",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "klinischer_befund",
+   "marker": "❺",
+   "box": {
+    "x": 24.9,
+    "y": 73.1,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m39.klinischer_befund",
+     "text": "Auffälligkeiten bei der gynäkologischen Untersuchung angeben und im Freitextfeld 6 erläutern; eine Diagnose kann dort als Freitext erfolgen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 39, ❺, S. 84"
+     }
+    }
+   ]
+  },
+  {
+   "id": "befund_auffaellig",
+   "label": "Klinischer Befund auffällig",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "klinischer_befund",
+   "marker": "❺",
+   "box": {
+    "x": 38.2,
+    "y": 73.1,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "erlaeuterungen",
+   "label": "Erläuterungen (ggf. gyn. Befunde (Vulva, Vagina, Portio); Diagnosen; sonstige Anmerkungen)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 8,
+   "marker": "❻",
+   "box": {
+    "x": 9.2,
+    "y": 76.7,
+    "w": 38.0,
+    "h": 16.3
+   },
+   "rules": [
+    {
+     "id": "m39.erlaeuterungen",
+     "text": "Freitextfeld für zusätzliche Aspekte der zuvor ausgefüllten Felder; ohne relevante Informationen kann es leer bleiben.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 39, ❻, S. 84"
+     }
+    }
+   ]
+  },
+  {
+   "id": "stempel",
+   "label": "Vertragsarztstempel / Unterschrift des Arztes",
+   "kind": "stempel",
+   "filled_by": "arzt",
+   "box": {
+    "x": 72.8,
+    "y": 83.8,
+    "w": 22.8,
+    "h": 12.1
+   },
+   "rules": [
+    {
+     "id": "m39.unterschrift",
+     "text": "Erst vollständig ausfüllen, dann mit Vertragsarztstempel persönlich unterschreiben – nie blanko.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "z_eingangsdatum",
+   "label": "Eingangsdatum",
+   "kind": "date",
+   "filled_by": "leistungserbringer",
+   "format": "TTMMJJ",
+   "marker": "❼",
+   "box": {
+    "x": 50.9,
+    "y": 15.4,
+    "w": 14.4,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m39.zytologie_befund",
+     "text": "Unter 35 Jahren nur Zytologie, ab 35 Ko-Test (Zytologie plus HPV); bei Abklärung auch 30–34 Jahre HPV-Test möglich. HPV 16/18 positiv = „ja“, ausgeschlossen = „nein“, keine Differenzierung = „nicht differenzierbar“. Untersuchungsnummer ggf. im Bemerkungsfeld.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 39, ❼, S. 85"
+     }
+    }
+   ]
+  },
+  {
+   "id": "z_endozervikal_vorhanden",
+   "label": "Endozervikale Zellen vorhanden",
+   "kind": "checkbox",
+   "filled_by": "leistungserbringer",
+   "group": "endozervikal",
+   "marker": "❼",
+   "box": {
+    "x": 50.9,
+    "y": 19.6,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "z_endozervikal_nicht",
+   "label": "Endozervikale Zellen nicht vorhanden",
+   "kind": "checkbox",
+   "filled_by": "leistungserbringer",
+   "group": "endozervikal",
+   "marker": "❼",
+   "box": {
+    "x": 67.2,
+    "y": 19.6,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "z_proliferationsgrad",
+   "label": "Proliferationsgrad",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "marker": "❼",
+   "box": {
+    "x": 63.5,
+    "y": 22.2,
+    "w": 20.0,
+    "h": 1.8
+   },
+   "rules": []
+  },
+  {
+   "id": "z_doederlein",
+   "label": "Döderleinflora",
+   "kind": "checkbox",
+   "filled_by": "leistungserbringer",
+   "marker": "❼",
+   "box": {
+    "x": 50.9,
+    "y": 24.6,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "z_misch",
+   "label": "Mischflora",
+   "kind": "checkbox",
+   "filled_by": "leistungserbringer",
+   "marker": "❼",
+   "box": {
+    "x": 67.2,
+    "y": 24.6,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "z_kokken",
+   "label": "Kokkenflora",
+   "kind": "checkbox",
+   "filled_by": "leistungserbringer",
+   "marker": "❼",
+   "box": {
+    "x": 81.1,
+    "y": 24.6,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "z_trichomonaden",
+   "label": "Trichomonaden",
+   "kind": "checkbox",
+   "filled_by": "leistungserbringer",
+   "marker": "❼",
+   "box": {
+    "x": 50.9,
+    "y": 26.8,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "z_candida",
+   "label": "Candida",
+   "kind": "checkbox",
+   "filled_by": "leistungserbringer",
+   "marker": "❼",
+   "box": {
+    "x": 67.2,
+    "y": 26.8,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "z_gardnerella",
+   "label": "Gardnerella",
+   "kind": "checkbox",
+   "filled_by": "leistungserbringer",
+   "marker": "❼",
+   "box": {
+    "x": 81.1,
+    "y": 26.8,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "z_gruppe",
+   "label": "Gruppe",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "marker": "❼",
+   "box": {
+    "x": 56.3,
+    "y": 30.0,
+    "w": 4.8,
+    "h": 1.8
+   },
+   "rules": []
+  },
+  {
+   "id": "z_hpv_positiv",
+   "label": "HPV-HR-Testergebnis positiv, wenn ja: Liegt HPV-Typ 16 oder HPV-Typ 18 vor?",
+   "kind": "checkbox",
+   "filled_by": "leistungserbringer",
+   "group": "z_hpv",
+   "marker": "❼",
+   "box": {
+    "x": 50.9,
+    "y": 33.9,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "z_typ_ja",
+   "label": "Liegt HPV-Typ 16 oder HPV-Typ 18 vor? ja",
+   "kind": "checkbox",
+   "filled_by": "leistungserbringer",
+   "group": "z_typ",
+   "marker": "❼",
+   "box": {
+    "x": 54.4,
+    "y": 36.0,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "z_typ_nein",
+   "label": "Liegt HPV-Typ 16 oder HPV-Typ 18 vor? nein",
+   "kind": "checkbox",
+   "filled_by": "leistungserbringer",
+   "group": "z_typ",
+   "marker": "❼",
+   "box": {
+    "x": 67.2,
+    "y": 36.0,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "z_typ_nicht_diff",
+   "label": "Liegt HPV-Typ 16 oder HPV-Typ 18 vor? nicht differenzierbar",
+   "kind": "checkbox",
+   "filled_by": "leistungserbringer",
+   "group": "z_typ",
+   "marker": "❼",
+   "box": {
+    "x": 81.1,
+    "y": 36.1,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "z_hpv_negativ",
+   "label": "HPV-HR-Testergebnis negativ",
+   "kind": "checkbox",
+   "filled_by": "leistungserbringer",
+   "group": "z_hpv",
+   "marker": "❼",
+   "box": {
+    "x": 50.9,
+    "y": 38.2,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "z_hpv_nicht_verwertbar",
+   "label": "HPV-HR-Testergebnis nicht verwertbar",
+   "kind": "checkbox",
+   "filled_by": "leistungserbringer",
+   "group": "z_hpv",
+   "marker": "❼",
+   "box": {
+    "x": 50.9,
+    "y": 40.3,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "z_bemerkungen",
+   "label": "Bemerkungen",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "lines": 10,
+   "marker": "❼",
+   "box": {
+    "x": 50.9,
+    "y": 43.5,
+    "w": 43.5,
+    "h": 21.0
+   },
+   "rules": []
+  },
+  {
+   "id": "e_zytologische_kontrolle",
+   "label": "Zusammenfassende Empfehlung: zytologische Kontrolle",
+   "kind": "checkbox",
+   "filled_by": "leistungserbringer",
+   "marker": "❽",
+   "box": {
+    "x": 50.9,
+    "y": 62.4,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m39.empfehlung",
+     "text": "Angabe der nach Richtlinie indizierten Folgeuntersuchungen mit Zeitraum; bei unauffälligem Befund ohne weitere Maßnahmen werden keine Kreuze gesetzt.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 39, ❽, S. 85"
+     }
+    }
+   ]
+  },
+  {
+   "id": "e_nach_entzuendung",
+   "label": "zytologische Kontrolle nach Entzündungsbehandlung",
+   "kind": "checkbox",
+   "filled_by": "leistungserbringer",
+   "marker": "❽",
+   "box": {
+    "x": 54.5,
+    "y": 64.5,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "e_nach_oestrogen",
+   "label": "zytologische Kontrolle nach Östrogenbehandlung",
+   "kind": "checkbox",
+   "filled_by": "leistungserbringer",
+   "marker": "❽",
+   "box": {
+    "x": 54.5,
+    "y": 66.7,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "e_hpv",
+   "label": "Zusammenfassende Empfehlung: HPV-Test",
+   "kind": "checkbox",
+   "filled_by": "leistungserbringer",
+   "marker": "❽",
+   "box": {
+    "x": 50.9,
+    "y": 68.8,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "e_ko",
+   "label": "Zusammenfassende Empfehlung: Ko-Test",
+   "kind": "checkbox",
+   "filled_by": "leistungserbringer",
+   "marker": "❽",
+   "box": {
+    "x": 50.9,
+    "y": 71.0,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "e_kolposkopie",
+   "label": "Zusammenfassende Empfehlung: Abklärungskolposkopie",
+   "kind": "checkbox",
+   "filled_by": "leistungserbringer",
+   "marker": "❽",
+   "box": {
+    "x": 50.9,
+    "y": 73.1,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "e_zeitraum_in",
+   "label": "Zeitraum: in … Monaten",
+   "kind": "checkbox",
+   "filled_by": "leistungserbringer",
+   "group": "e_zeitraum",
+   "marker": "❽",
+   "box": {
+    "x": 50.9,
+    "y": 77.4,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "e_monate",
+   "label": "Zeitraum: in … Monaten (Anzahl)",
+   "kind": "number",
+   "filled_by": "leistungserbringer",
+   "marker": "❽",
+   "box": {
+    "x": 56.3,
+    "y": 77.5,
+    "w": 4.2,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "e_zeitraum_sofort",
+   "label": "Zeitraum: sofort",
+   "kind": "checkbox",
+   "filled_by": "leistungserbringer",
+   "group": "e_zeitraum",
+   "marker": "❽",
+   "box": {
+    "x": 50.9,
+    "y": 79.5,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "stempel_zytologe",
+   "label": "Vertragsarztstempel / Unterschrift des zytologisch tätigen Arztes",
+   "kind": "stempel",
+   "filled_by": "leistungserbringer",
+   "marker": "❽",
+   "box": {
+    "x": 72.8,
+    "y": 71.0,
+    "w": 22.8,
+    "h": 12.1
+   },
+   "rules": []
+  }
+ ]
+}

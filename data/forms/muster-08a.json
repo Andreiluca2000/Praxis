@@ -1,0 +1,855 @@
+{
+ "schema_version": "1.0.0",
+ "id": "muster-08a",
+ "muster": "8A",
+ "title": "Verordnung von vergrößernden Sehhilfen",
+ "form_version": "10.2014",
+ "released": "2014-09-01",
+ "status": "entwurf",
+ "paper": {
+  "format": "DIN A5 hoch, Vorder- und Rückseite",
+  "width": 419.5,
+  "height": 595.3,
+  "tint": "ohne"
+ },
+ "pages": [
+  "Vorderseite",
+  "Rückseite"
+ ],
+ "copies": [
+  {
+   "id": "8A",
+   "label": "Verordnung von vergrößernden Sehhilfen",
+   "recipient": "Leistungserbringer (Abgabe der Sehhilfe); Entscheidung der Krankenkasse auf der Rückseite"
+  }
+ ],
+ "notes": [
+  {
+   "id": "m08a.augenarzt",
+   "text": "Verordnung nur aufgrund augenärztlicher Untersuchung und nur durch Vertragsärzte, die Notwendigkeit und Art selbst bestimmen können; Optiker dürfen nicht beauftragt werden. Der Augenarzt prüft vor der Verordnung, ob der Versicherte das Hilfsmittel zielführend nutzen kann.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 8A, Einleitung, S. 31"
+   }
+  },
+  {
+   "id": "m08a.therapeutisch",
+   "text": "Eine therapeutische Sehhilfe ist verordnungsfähig, wenn sie der Behandlung von Augenverletzungen oder -erkrankungen dient, die als zugelassene Indikationen in den Hilfsmittelrichtlinien (Punkt 60) aufgeführt sind.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 8A, Nr. 3, S. 31"
+   }
+  },
+  {
+   "id": "m08a.folgeversorgung",
+   "text": "Ab 14 Jahren besteht ein erneuter Anspruch auf Sehhilfen zur Verbesserung der Sehschärfe nur bei Änderung der Sehfähigkeit um mindestens 0,5 Dioptrien; bei Kurzsichtigkeit auch bei Verbesserung um mindestens 20 Prozentpunkte. Bei therapeutischen Sehhilfen ergibt sich die Wiederversorgung aus Verlauf bzw. Behandlungskonzept.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 8A, Nr. 4, S. 31"
+   }
+  },
+  {
+   "id": "m08a.nicht_praxis",
+   "text": "Nicht von der Praxis auszufüllen: IK des Leistungserbringers, Kostenrechnung des Leistungserbringers, Entscheidung der Krankenkasse, Empfangsbestätigung und Bescheinigung des Leistungserbringers (Rückseite).",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seiten 15–16, Muster 8A (10.2014)"
+   }
+  },
+  {
+   "id": "m08a.hinweis",
+   "text": "Aufdruck für den Versicherten: Die Verordnung ist kein Gutschein für einen bestimmten Betrag; die Lieferung anderer Ware anstelle der verordneten vergrößernden Sehhilfen ist nicht gestattet.",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 16, Muster 8A (10.2014)"
+   }
+  }
+ ],
+ "groups": [
+  {
+   "id": "versorgung",
+   "label": "Erst- oder Folgeversorgung",
+   "select": "genau_eins",
+   "rule": {
+    "id": "m08a.ankreuzen",
+    "text": "Anzukreuzen sind: Erst- oder Folgeversorgung, die festgestellte Änderung im Hinblick auf die genannten Grenzen und ob eine Sehbeeinträchtigung mindestens WHO-Stufe 1 vorliegt. Bei Kindern und Jugendlichen bis 18 und bei therapeutischen Sehhilfen sind dazu keine Angaben nötig.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 8A, Nr. 5, S. 31–32"
+    }
+   }
+  },
+  {
+   "id": "visus_sehhilfe",
+   "label": "Fernvisus bestimmt mit (Brille und/oder Kontaktlinse)",
+   "select": "beliebig",
+   "rule": {
+    "id": "m08a.visus_vergroesserung",
+    "text": "Bei vergrößernden Sehhilfen sind der bestkorrigierte Fernvisus für rechtes und linkes Auge unter Angabe der verwendeten Sehhilfe (Brille und/oder Kontaktlinse) sowie der benötigte Vergrößerungsbedarf anzugeben.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 8A, Nr. 2, S. 31"
+    }
+   }
+  },
+  {
+   "id": "erklaerung",
+   "label": "Erklärung des Versicherten (bei Erstversorgung oder Verlust der Sehhilfe)",
+   "select": "beliebig",
+   "rule": {
+    "id": "m08a.erklaerung",
+    "text": "Bei Erstversorgung oder Verlust der Sehhilfe erklärt der Versicherte, dass er bisher noch keine Sehhilfe gehabt hat bzw. dass seine bisherige Sehhilfe verlorengegangen ist.",
+    "source": {
+     "artifact": "mustersammlung",
+     "locator": "PDF-Seite 16, Muster 8A (10.2014)"
+    }
+   }
+  }
+ ],
+ "fields": [
+  {
+   "id": "personalien",
+   "label": "Personalienfeld (Krankenkasse bzw. Kostenträger, Name, geb. am, Kostenträgerkennung, Versicherten-Nr., Status, BSNR, LANR, Datum)",
+   "kind": "personalien",
+   "filled_by": "duria",
+   "box": {
+    "x": 6.2,
+    "y": 2.5,
+    "w": 53.9,
+    "h": 22.2
+   },
+   "rules": [
+    {
+     "id": "m08a.personalien",
+     "text": "Die Daten der eGK werden maschinell über Kartenterminal und Praxis-EDV übertragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 5 und Nr. 6, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "erstversorgung",
+   "label": "Erstversorgung",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "versorgung",
+   "box": {
+    "x": 77.3,
+    "y": 25.9,
+    "w": 4.1,
+    "h": 2.9
+   },
+   "rules": [
+    {
+     "id": "m08a.ankreuzen",
+     "text": "Anzukreuzen sind: Erst- oder Folgeversorgung, die festgestellte Änderung im Hinblick auf die genannten Grenzen und ob eine Sehbeeinträchtigung mindestens WHO-Stufe 1 vorliegt. Bei Kindern und Jugendlichen bis 18 und bei therapeutischen Sehhilfen sind dazu keine Angaben nötig.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 8A, Nr. 5, S. 31–32"
+     }
+    }
+   ]
+  },
+  {
+   "id": "folgeversorgung",
+   "label": "Folgeversorgung",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "versorgung",
+   "box": {
+    "x": 93.6,
+    "y": 25.9,
+    "w": 4.1,
+    "h": 2.9
+   },
+   "rules": []
+  },
+  {
+   "id": "fernvisus_rechts",
+   "label": "Bestkorrigierter Fernvisus rechts",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 19.7,
+    "y": 29.8,
+    "w": 12.0,
+    "h": 3.0
+   },
+   "rules": [
+    {
+     "id": "m08a.visus_vergroesserung",
+     "text": "Bei vergrößernden Sehhilfen sind der bestkorrigierte Fernvisus für rechtes und linkes Auge unter Angabe der verwendeten Sehhilfe (Brille und/oder Kontaktlinse) sowie der benötigte Vergrößerungsbedarf anzugeben.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 8A, Nr. 2, S. 31"
+     }
+    }
+   ]
+  },
+  {
+   "id": "fernvisus_links",
+   "label": "Bestkorrigierter Fernvisus links",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 46.3,
+    "y": 29.8,
+    "w": 12.0,
+    "h": 3.0
+   },
+   "rules": [
+    {
+     "id": "m08a.visus_vergroesserung",
+     "text": "Bei vergrößernden Sehhilfen sind der bestkorrigierte Fernvisus für rechtes und linkes Auge unter Angabe der verwendeten Sehhilfe (Brille und/oder Kontaktlinse) sowie der benötigte Vergrößerungsbedarf anzugeben.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 8A, Nr. 2, S. 31"
+     }
+    }
+   ]
+  },
+  {
+   "id": "unfall",
+   "label": "Unfall, Unfallfolgen",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "box": {
+    "x": 77.3,
+    "y": 29.9,
+    "w": 4.1,
+    "h": 2.9
+   },
+   "rules": []
+  },
+  {
+   "id": "ser",
+   "label": "Versorgungsleiden (BVG)",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "box": {
+    "x": 93.6,
+    "y": 29.9,
+    "w": 4.1,
+    "h": 2.9
+   },
+   "rules": [
+    {
+     "id": "m08a.ser",
+     "text": "Zu „SER – bisher Versorgungsleiden (BVG)“ siehe die Erläuterung im Abschnitt „Allgemeines“ unter Nr. 8.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 8A, Nr. 1, S. 31"
+     }
+    }
+   ]
+  },
+  {
+   "id": "who1",
+   "label": "Sehbehinderung mindestens WHO 1",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "box": {
+    "x": 21.6,
+    "y": 33.9,
+    "w": 4.1,
+    "h": 2.9
+   },
+   "rules": [
+    {
+     "id": "m08a.indikation_ab_18",
+     "text": "Ab 18 Jahren ist eine Sehhilfe zur Verbesserung der Sehschärfe nur verordnungsfähig bei schwerer Sehbeeinträchtigung beider Augen, mindestens WHO-Stufe 1 (bestkorrigierter Visus auf dem besseren Auge maximal 0,3, maßgeblich der Fernvisus).",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 8A, Nr. 2, S. 31"
+     }
+    },
+    {
+     "id": "m08a.ankreuzen",
+     "text": "Anzukreuzen sind: Erst- oder Folgeversorgung, die festgestellte Änderung im Hinblick auf die genannten Grenzen und ob eine Sehbeeinträchtigung mindestens WHO-Stufe 1 vorliegt. Bei Kindern und Jugendlichen bis 18 und bei therapeutischen Sehhilfen sind dazu keine Angaben nötig.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 8A, Nr. 5, S. 31–32"
+     }
+    }
+   ]
+  },
+  {
+   "id": "mit_brille",
+   "label": "mit Brille",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "visus_sehhilfe",
+   "box": {
+    "x": 37.1,
+    "y": 33.9,
+    "w": 4.1,
+    "h": 2.9
+   },
+   "rules": [
+    {
+     "id": "m08a.visus_vergroesserung",
+     "text": "Bei vergrößernden Sehhilfen sind der bestkorrigierte Fernvisus für rechtes und linkes Auge unter Angabe der verwendeten Sehhilfe (Brille und/oder Kontaktlinse) sowie der benötigte Vergrößerungsbedarf anzugeben.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 8A, Nr. 2, S. 31"
+     }
+    }
+   ]
+  },
+  {
+   "id": "mit_kontaktlinsen",
+   "label": "mit Kontaktlinsen",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "visus_sehhilfe",
+   "box": {
+    "x": 54.2,
+    "y": 33.9,
+    "w": 4.1,
+    "h": 2.9
+   },
+   "rules": []
+  },
+  {
+   "id": "vergroesserungsbedarf",
+   "label": "Vergrößerungsbedarf (fach)",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 77.3,
+    "y": 33.9,
+    "w": 4.9,
+    "h": 2.9
+   },
+   "rules": [
+    {
+     "id": "m08a.visus_vergroesserung",
+     "text": "Bei vergrößernden Sehhilfen sind der bestkorrigierte Fernvisus für rechtes und linkes Auge unter Angabe der verwendeten Sehhilfe (Brille und/oder Kontaktlinse) sowie der benötigte Vergrößerungsbedarf anzugeben.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 8A, Nr. 2, S. 31"
+     }
+    }
+   ]
+  },
+  {
+   "id": "reparatur",
+   "label": "Reparatur",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "box": {
+    "x": 77.3,
+    "y": 38.0,
+    "w": 4.1,
+    "h": 2.9
+   },
+   "rules": [
+    {
+     "id": "m08a.reparatur_ersatz",
+     "text": "„Reparatur“ und „Ersatz“ werden angekreuzt, wenn eine Reparatur notwendig ist oder eine Ersatzbeschaffung nach Abschnitt E der Hilfsmittel-Richtlinien möglich ist.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 8A, Nr. 6, S. 32"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ersatz",
+   "label": "Ersatz",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "box": {
+    "x": 93.6,
+    "y": 38.0,
+    "w": 4.1,
+    "h": 2.9
+   },
+   "rules": [
+    {
+     "id": "m08a.reparatur_ersatz",
+     "text": "„Reparatur“ und „Ersatz“ werden angekreuzt, wenn eine Reparatur notwendig ist oder eine Ersatzbeschaffung nach Abschnitt E der Hilfsmittel-Richtlinien möglich ist.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 8A, Nr. 6, S. 32"
+     }
+    }
+   ]
+  },
+  {
+   "id": "menge_art",
+   "label": "Menge und Art der Verordnung",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 1,
+   "box": {
+    "x": 6.1,
+    "y": 42.3,
+    "w": 91.4,
+    "h": 3.0
+   },
+   "rules": [
+    {
+     "id": "m08a.menge_art",
+     "text": "Menge und Art der Verordnung sind mit genauer Bezeichnung anzugeben (z. B. elektronisch vergrößernde Sehhilfe, Lupen, Lupenbrillen, Fernrohrlupenbrillen).",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 8A, Nr. 8, S. 32"
+     }
+    }
+   ]
+  },
+  {
+   "id": "diagnose_begruendung",
+   "label": "Diagnose/Begründung",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 2,
+   "box": {
+    "x": 6.1,
+    "y": 47.4,
+    "w": 91.4,
+    "h": 6.0
+   },
+   "rules": [
+    {
+     "id": "m08a.diagnose_begruendung",
+     "text": "Unter Diagnose/Begründung ist nach Abschnitt E der Hilfsmittel-Richtlinien die zugrunde liegende Indikation und die Begründung der Art der Sehhilfe anzugeben. Bei Keratokonus zusätzlich mindestens die zentralen Hornhautradien.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 8A, Nr. 9, S. 32"
+     }
+    },
+    {
+     "id": "m08a.binokular",
+     "text": "Bei Verordnung vergrößernder Sehhilfen ist die Notwendigkeit einer binokularen Versorgung zu begründen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 8A, Nr. 10, S. 32"
+     }
+    }
+   ]
+  },
+  {
+   "id": "sphaere_f_r",
+   "label": "F (Fern) R: Sphäre",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 13.5,
+    "y": 59.5,
+    "w": 9.8,
+    "h": 3.0
+   },
+   "rules": []
+  },
+  {
+   "id": "zylinder_f_r",
+   "label": "F (Fern) R: Zylinder",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 23.3,
+    "y": 59.5,
+    "w": 9.8,
+    "h": 3.0
+   },
+   "rules": []
+  },
+  {
+   "id": "achse_f_r",
+   "label": "F (Fern) R: Achse",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 33.1,
+    "y": 59.5,
+    "w": 5.4,
+    "h": 3.0
+   },
+   "rules": []
+  },
+  {
+   "id": "prisma_f_r",
+   "label": "F (Fern) R: Prisma",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 38.5,
+    "y": 59.5,
+    "w": 5.4,
+    "h": 3.0
+   },
+   "rules": []
+  },
+  {
+   "id": "basis_f_r",
+   "label": "F (Fern) R: Basis",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 43.9,
+    "y": 59.5,
+    "w": 9.8,
+    "h": 3.0
+   },
+   "rules": []
+  },
+  {
+   "id": "scheitelabstand_f_r",
+   "label": "F (Fern) R: Scheitelabstand",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 53.7,
+    "y": 59.5,
+    "w": 6.8,
+    "h": 3.0
+   },
+   "rules": []
+  },
+  {
+   "id": "sphaere_f_l",
+   "label": "F (Fern) L: Sphäre",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 13.5,
+    "y": 62.5,
+    "w": 9.8,
+    "h": 3.0
+   },
+   "rules": []
+  },
+  {
+   "id": "zylinder_f_l",
+   "label": "F (Fern) L: Zylinder",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 23.3,
+    "y": 62.5,
+    "w": 9.8,
+    "h": 3.0
+   },
+   "rules": []
+  },
+  {
+   "id": "achse_f_l",
+   "label": "F (Fern) L: Achse",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 33.1,
+    "y": 62.5,
+    "w": 5.4,
+    "h": 3.0
+   },
+   "rules": []
+  },
+  {
+   "id": "prisma_f_l",
+   "label": "F (Fern) L: Prisma",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 38.5,
+    "y": 62.5,
+    "w": 5.4,
+    "h": 3.0
+   },
+   "rules": []
+  },
+  {
+   "id": "basis_f_l",
+   "label": "F (Fern) L: Basis",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 43.9,
+    "y": 62.5,
+    "w": 9.8,
+    "h": 3.0
+   },
+   "rules": []
+  },
+  {
+   "id": "scheitelabstand_f_l",
+   "label": "F (Fern) L: Scheitelabstand",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 53.7,
+    "y": 62.5,
+    "w": 6.8,
+    "h": 3.0
+   },
+   "rules": []
+  },
+  {
+   "id": "sphaere_n_r",
+   "label": "N (Nah) R: Sphäre",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 13.5,
+    "y": 65.5,
+    "w": 9.8,
+    "h": 3.0
+   },
+   "rules": []
+  },
+  {
+   "id": "zylinder_n_r",
+   "label": "N (Nah) R: Zylinder",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 23.3,
+    "y": 65.5,
+    "w": 9.8,
+    "h": 3.0
+   },
+   "rules": []
+  },
+  {
+   "id": "achse_n_r",
+   "label": "N (Nah) R: Achse",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 33.1,
+    "y": 65.5,
+    "w": 5.4,
+    "h": 3.0
+   },
+   "rules": []
+  },
+  {
+   "id": "prisma_n_r",
+   "label": "N (Nah) R: Prisma",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 38.5,
+    "y": 65.5,
+    "w": 5.4,
+    "h": 3.0
+   },
+   "rules": []
+  },
+  {
+   "id": "basis_n_r",
+   "label": "N (Nah) R: Basis",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 43.9,
+    "y": 65.5,
+    "w": 9.8,
+    "h": 3.0
+   },
+   "rules": []
+  },
+  {
+   "id": "scheitelabstand_n_r",
+   "label": "N (Nah) R: Scheitelabstand",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 53.7,
+    "y": 65.5,
+    "w": 6.8,
+    "h": 3.0
+   },
+   "rules": []
+  },
+  {
+   "id": "sphaere_n_l",
+   "label": "N (Nah) L: Sphäre",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 13.5,
+    "y": 68.5,
+    "w": 9.8,
+    "h": 3.0
+   },
+   "rules": []
+  },
+  {
+   "id": "zylinder_n_l",
+   "label": "N (Nah) L: Zylinder",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 23.3,
+    "y": 68.5,
+    "w": 9.8,
+    "h": 3.0
+   },
+   "rules": []
+  },
+  {
+   "id": "achse_n_l",
+   "label": "N (Nah) L: Achse",
+   "kind": "number",
+   "filled_by": "arzt",
+   "box": {
+    "x": 33.1,
+    "y": 68.5,
+    "w": 5.4,
+    "h": 3.0
+   },
+   "rules": []
+  },
+  {
+   "id": "prisma_n_l",
+   "label": "N (Nah) L: Prisma",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 38.5,
+    "y": 68.5,
+    "w": 5.4,
+    "h": 3.0
+   },
+   "rules": []
+  },
+  {
+   "id": "basis_n_l",
+   "label": "N (Nah) L: Basis",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 43.9,
+    "y": 68.5,
+    "w": 9.8,
+    "h": 3.0
+   },
+   "rules": []
+  },
+  {
+   "id": "scheitelabstand_n_l",
+   "label": "N (Nah) L: Scheitelabstand",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 53.7,
+    "y": 68.5,
+    "w": 6.8,
+    "h": 3.0
+   },
+   "rules": []
+  },
+  {
+   "id": "stempel",
+   "label": "Vertragsarztstempel / Unterschrift des Arztes",
+   "kind": "stempel",
+   "filled_by": "arzt",
+   "box": {
+    "x": 6.2,
+    "y": 84.2,
+    "w": 50.5,
+    "h": 13.0
+   },
+   "rules": [
+    {
+     "id": "m08a.unterschrift",
+     "text": "Erst vollständig ausfüllen, dann mit Vertragsarztstempel persönlich unterschreiben – nie blanko.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "erklaerung_keine_sehhilfe",
+   "label": "Ich erkläre, dass ich bisher noch keine Sehhilfe gehabt habe",
+   "kind": "checkbox",
+   "filled_by": "versicherter",
+   "group": "erklaerung",
+   "page": 1,
+   "box": {
+    "x": 14.6,
+    "y": 7.3,
+    "w": 4.1,
+    "h": 2.9
+   },
+   "rules": [
+    {
+     "id": "m08a.erklaerung",
+     "text": "Bei Erstversorgung oder Verlust der Sehhilfe erklärt der Versicherte, dass er bisher noch keine Sehhilfe gehabt hat bzw. dass seine bisherige Sehhilfe verlorengegangen ist.",
+     "source": {
+      "artifact": "mustersammlung",
+      "locator": "PDF-Seite 16, Muster 8A (10.2014)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "erklaerung_verloren",
+   "label": "Ich erkläre, dass meine bisherige Sehhilfe verlorengegangen ist",
+   "kind": "checkbox",
+   "filled_by": "versicherter",
+   "group": "erklaerung",
+   "page": 1,
+   "box": {
+    "x": 14.6,
+    "y": 10.3,
+    "w": 4.1,
+    "h": 2.9
+   },
+   "rules": []
+  },
+  {
+   "id": "erklaerung_datum",
+   "label": "Datum (Erklärung des Versicherten)",
+   "kind": "date",
+   "filled_by": "versicherter",
+   "page": 1,
+   "box": {
+    "x": 2.7,
+    "y": 13.3,
+    "w": 41.2,
+    "h": 5.7
+   },
+   "rules": [
+    {
+     "id": "m08a.erklaerung",
+     "text": "Bei Erstversorgung oder Verlust der Sehhilfe erklärt der Versicherte, dass er bisher noch keine Sehhilfe gehabt hat bzw. dass seine bisherige Sehhilfe verlorengegangen ist.",
+     "source": {
+      "artifact": "mustersammlung",
+      "locator": "PDF-Seite 16, Muster 8A (10.2014)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "erklaerung_unterschrift",
+   "label": "Unterschrift des Versicherten",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "page": 1,
+   "box": {
+    "x": 43.9,
+    "y": 13.3,
+    "w": 53.4,
+    "h": 5.7
+   },
+   "rules": [
+    {
+     "id": "m08a.erklaerung",
+     "text": "Bei Erstversorgung oder Verlust der Sehhilfe erklärt der Versicherte, dass er bisher noch keine Sehhilfe gehabt hat bzw. dass seine bisherige Sehhilfe verlorengegangen ist.",
+     "source": {
+      "artifact": "mustersammlung",
+      "locator": "PDF-Seite 16, Muster 8A (10.2014)"
+     }
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,1287 @@
+{
+ "schema_version": "1.0.0",
+ "id": "muster-56",
+ "muster": "56",
+ "title": "Antrag auf Kostenübernahme für Rehabilitationssport / für Funktionstraining",
+ "form_version": "1.2023",
+ "released": "2022-09-09",
+ "status": "entwurf",
+ "paper": {
+  "format": "DIN A4 hoch, Vorder- und Rückseite",
+  "width": 595.3,
+  "height": 841.9,
+  "tint": "ohne"
+ },
+ "pages": [
+  "Vorderseite",
+  "Rückseite"
+ ],
+ "copies": [
+  {
+   "id": "56",
+   "label": "Verordnung mit Antrag",
+   "recipient": "Krankenkasse (über die Versicherte/den Versicherten, vor Beginn)"
+  }
+ ],
+ "notes": [
+  {
+   "id": "m56.genehmigung",
+   "text": "Die beantragten Leistungen bedürfen der Genehmigung der Krankenkasse, die der Versicherte vor Beginn (auch bei Folgeverordnungen) einholt. Mit Muster 56 nimmt der Arzt zum Antrag des Versicherten Stellung.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 56, Einleitung, S. 95"
+   }
+  },
+  {
+   "id": "m56.rahmenvereinbarung",
+   "text": "Muster 56 und die Erläuterungen basieren auf der aktuellen BAR-Rahmenvereinbarung über Rehabilitationssport und Funktionstraining.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 56, Einleitung, S. 95"
+   }
+  },
+  {
+   "id": "m56.ebm_01621",
+   "text": "Für die ärztliche Verordnung ist die Nr. 01621 EBM berechnungsfähig (Hinweis auf dem Vordruck).",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 68, Muster 56 (1.2023)"
+   }
+  },
+  {
+   "id": "m56.kasse",
+   "text": "Die Kostenübernahmeerklärung auf der Rückseite füllt die Krankenkasse aus, nicht die Praxis.",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 68, Muster 56 (1.2023)"
+   }
+  }
+ ],
+ "groups": [
+  {
+   "id": "art",
+   "label": "Rehabilitationssport oder Funktionstraining",
+   "select": "genau_eins",
+   "rule": {
+    "id": "m56.auswahl",
+    "text": "Anzugeben ist, ob Rehabilitationssport oder Funktionstraining beantragt wird; beides kann nicht gleichzeitig auf einem Vordruck beantragt werden.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 56, ❶, S. 95"
+    }
+   }
+  },
+  {
+   "id": "sportart",
+   "label": "Empfohlene Rehabilitationssportart (nur eine)",
+   "select": "beliebig",
+   "rule": {
+    "id": "m56.sportart",
+    "text": "Es kann nur eine Rehabilitationssportart angekreuzt werden; im Feld „Sonstige“ weitere Arten, z. B. Bogenschießen für Rollstuhlfahrer.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 56, ❻, S. 97"
+    }
+   }
+  },
+  {
+   "id": "funktionsart",
+   "label": "Empfohlene Funktionstrainingsarten (Trocken- und/oder Wassergymnastik)",
+   "select": "beliebig",
+   "rule": {
+    "id": "m56.funktionstrainingsart",
+    "text": "Zur Auswahl stehen Trocken- und Wassergymnastik; beide können bei medizinischer Notwendigkeit zeitgleich verordnet werden.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 56, ❾, S. 98"
+    }
+   }
+  },
+  {
+   "id": "sport_umfang",
+   "label": "Rehabilitationssport ist notwendig für (Richtwerte)",
+   "select": "beliebig",
+   "rule": {
+    "id": "m56.uebungseinheiten",
+    "text": "Richtwerte: in der Regel 50 Übungseinheiten in 18 Monaten; bei den auf dem Muster genannten Krankheiten ggf. 120 Einheiten in 36 Monaten. Abweichungen werden unter ⓱ eingetragen.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 56, ❼, S. 97"
+    }
+   }
+  },
+  {
+   "id": "ft_dauer",
+   "label": "Funktionstraining ist notwendig für (Richtwert)",
+   "select": "beliebig",
+   "rule": {
+    "id": "m56.funktionstraining_dauer",
+    "text": "Richtwert 12 Monate; bei schwerer Beeinträchtigung durch chronisch entzündlich rheumatische Erkrankungen 24 Monate. Abweichungen werden unter ⓱ eingetragen.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 56, ❿, S. 98–99"
+    }
+   }
+  },
+  {
+   "id": "herzform",
+   "label": "Herzgruppe oder Herzinsuffizienzgruppe",
+   "select": "beliebig",
+   "rule": {
+    "id": "m56.herzgruppe",
+    "text": "Die erforderliche Form angeben: Herzgruppe (Visite mindestens alle sechs Wochen) oder Herzinsuffizienzgruppe bei hohem kardiovaskulärem Ereignisrisiko (ständige persönliche Anwesenheit der Herzgruppenärztin/des Herzgruppenarztes zwingend).",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 56, ⓭, S. 100"
+    }
+   }
+  },
+  {
+   "id": "herz_umfang",
+   "label": "Umfang Herzgruppe (Richtwerte)",
+   "select": "beliebig",
+   "rule": {
+    "id": "m56.herzgruppe_umfang",
+    "text": "Erstverordnung 90 Einheiten in 24 Monaten; Folgeverordnung 45 Einheiten in 12 Monaten (bei Belastungsgrenze unter 1,4 Watt/kg mit Nachweis höchstens sechs Monate alt oder Ischämiekriterien); Kinderherzgruppen 120 Einheiten in 24 Monaten (nur dieses Feld ankreuzen).",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 56, ⓮–⓯, S. 100–101"
+    }
+   }
+  },
+  {
+   "id": "woche_sport",
+   "label": "Wöchentliche Übungseinheiten Rehabilitationssport",
+   "select": "beliebig",
+   "rule": {
+    "id": "m56.wochenfrequenz",
+    "text": "Pro Woche können eine, zwei oder mit Begründung höchstens drei Übungsveranstaltungen verordnet werden; auch bei kombinierter Wasser- und Trockengymnastik höchstens drei pro Woche.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 56, ⓰, S. 101"
+    }
+   }
+  },
+  {
+   "id": "woche_trocken",
+   "label": "Wöchentliche Übungseinheiten Trockengymnastik",
+   "select": "beliebig",
+   "rule": {
+    "id": "m56.wochenfrequenz",
+    "text": "Pro Woche können eine, zwei oder mit Begründung höchstens drei Übungsveranstaltungen verordnet werden; auch bei kombinierter Wasser- und Trockengymnastik höchstens drei pro Woche.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 56, ⓰, S. 101"
+    }
+   }
+  },
+  {
+   "id": "woche_wasser",
+   "label": "Wöchentliche Übungseinheiten Wassergymnastik",
+   "select": "beliebig",
+   "rule": {
+    "id": "m56.wochenfrequenz",
+    "text": "Pro Woche können eine, zwei oder mit Begründung höchstens drei Übungsveranstaltungen verordnet werden; auch bei kombinierter Wasser- und Trockengymnastik höchstens drei pro Woche.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 56, ⓰, S. 101"
+    }
+   }
+  }
+ ],
+ "fields": [
+  {
+   "id": "personalien",
+   "label": "Personalienfeld (Krankenkasse bzw. Kostenträger, Name, geb. am, Versicherten-Nr., BSNR, LANR, Datum)",
+   "kind": "personalien",
+   "filled_by": "duria",
+   "box": {
+    "x": 4.4,
+    "y": 1.7,
+    "w": 38.0,
+    "h": 15.7
+   },
+   "rules": [
+    {
+     "id": "m56.personalien",
+     "text": "Personalien über das Praxisverwaltungssystem (eGK).",
+     "source": {
+      "artifact": "mustersammlung",
+      "locator": "PDF-Seite 67, Muster 56 (1.2023)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "reha_sport",
+   "label": "für Rehabilitationssport",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "art",
+   "marker": "❶",
+   "box": {
+    "x": 44.9,
+    "y": 5.3,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m56.auswahl",
+     "text": "Anzugeben ist, ob Rehabilitationssport oder Funktionstraining beantragt wird; beides kann nicht gleichzeitig auf einem Vordruck beantragt werden.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 56, ❶, S. 95"
+     }
+    }
+   ]
+  },
+  {
+   "id": "funktionstraining",
+   "label": "für Funktionstraining",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "art",
+   "marker": "❶",
+   "box": {
+    "x": 44.9,
+    "y": 9.6,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "diagnose1",
+   "label": "verordnungsrelevante Diagnose(n), gegebenenfalls relevante Nebendiagnose",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❷",
+   "box": {
+    "x": 9.1,
+    "y": 22.5,
+    "w": 72.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m56.diagnosen",
+     "text": "Verordnungsrelevante Diagnose(n), ggf. ergänzt um eine relevante Nebendiagnose, als ICD-10-GM-Codes angeben; hinterlegter ICD-Klartext soll möglichst übernommen, ergänzt oder durch Freitext ersetzt werden.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 56, ❷, S. 95–96"
+     }
+    }
+   ]
+  },
+  {
+   "id": "diagnose2",
+   "label": "verordnungsrelevante Diagnose(n), 2. Zeile",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❷",
+   "box": {
+    "x": 9.1,
+    "y": 25.3,
+    "w": 72.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "icd1",
+   "label": "Diagnoseschlüssel ICD-10-GM",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❷",
+   "box": {
+    "x": 82.9,
+    "y": 22.5,
+    "w": 13.3,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m56.diagnosen",
+     "text": "Verordnungsrelevante Diagnose(n), ggf. ergänzt um eine relevante Nebendiagnose, als ICD-10-GM-Codes angeben; hinterlegter ICD-Klartext soll möglichst übernommen, ergänzt oder durch Freitext ersetzt werden.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 56, ❷, S. 95–96"
+     }
+    }
+   ]
+  },
+  {
+   "id": "icd2",
+   "label": "Diagnoseschlüssel ICD-10-GM, 2. Zeile",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❷",
+   "box": {
+    "x": 82.9,
+    "y": 25.3,
+    "w": 13.3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "schaedigung",
+   "label": "Schädigung der Körperfunktionen und Körperstrukturen für die verordnungsrelevante(n) Beeinträchtigung(en) der Aktivität(en) und Teilhabe",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❸",
+   "box": {
+    "x": 9.1,
+    "y": 31.0,
+    "w": 87.1,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m56.funktionsdiagnose",
+     "text": "Die aus den Schädigungen resultierenden Beeinträchtigungen von Aktivitäten und Teilhabe dokumentieren, z. B. eingeschränkte Gehfähigkeit aufgrund Coxarthrose.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 56, ❸, S. 97"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ziel",
+   "label": "Ziel des Rehabilitationssports/Funktionstrainings",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❹",
+   "box": {
+    "x": 9.1,
+    "y": 35.3,
+    "w": 87.1,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m56.ziel",
+     "text": "Anzugeben ist, welches Ziel der Patient erreichen soll (Ziele siehe Hinweise zu Rehabilitationssport bzw. Funktionstraining unter ❶).",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 56, ❹, S. 97"
+     }
+    }
+   ]
+  },
+  {
+   "id": "teilhabebedarf",
+   "label": "erhöhter Teilhabebedarf für schwerstbehinderte Menschen (z. B. Blindheit, Doppelamputation oder Hirnverletzung)",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❺",
+   "box": {
+    "x": 9.2,
+    "y": 38.1,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m56.teilhabebedarf",
+     "text": "Erhöhter Teilhabebedarf bei schwersten Behinderungen (z. B. Blindheit, Doppelamputation, Hirnverletzung, schwere Lähmungen) wird mit Kreuz kenntlich gemacht; dafür gibt es spezifische Übungsgruppen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 56, ❺, S. 97"
+     }
+    }
+   ]
+  },
+  {
+   "id": "sport_gymnastik",
+   "label": "Gymnastik (auch im Wasser)",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "sportart",
+   "marker": "❻",
+   "box": {
+    "x": 9.2,
+    "y": 43.8,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m56.sportart",
+     "text": "Es kann nur eine Rehabilitationssportart angekreuzt werden; im Feld „Sonstige“ weitere Arten, z. B. Bogenschießen für Rollstuhlfahrer.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 56, ❻, S. 97"
+     }
+    }
+   ]
+  },
+  {
+   "id": "sport_schwimmen",
+   "label": "Schwimmen",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "sportart",
+   "marker": "❻",
+   "box": {
+    "x": 28.6,
+    "y": 43.8,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "sport_ausdauer",
+   "label": "Ausdauer- und Kraftausdauerübungen",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "sportart",
+   "marker": "❻",
+   "box": {
+    "x": 44.2,
+    "y": 43.8,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "sport_bewegungsspiele",
+   "label": "Bewegungsspiele",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "sportart",
+   "marker": "❻",
+   "box": {
+    "x": 9.2,
+    "y": 46.7,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "sport_sonstige",
+   "label": "Sonstige",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "sportart",
+   "marker": "❻",
+   "box": {
+    "x": 28.6,
+    "y": 46.7,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "sport_sonstige_text",
+   "label": "Sonstige Rehabilitationssportart",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❻",
+   "box": {
+    "x": 38.8,
+    "y": 46.7,
+    "w": 26.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m56.sportart",
+     "text": "Es kann nur eine Rehabilitationssportart angekreuzt werden; im Feld „Sonstige“ weitere Arten, z. B. Bogenschießen für Rollstuhlfahrer.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 56, ❻, S. 97"
+     }
+    }
+   ]
+  },
+  {
+   "id": "selbstbewusstsein",
+   "label": "Übungen zur Stärkung des Selbstbewusstseins behinderter oder von Behinderung bedrohter Frauen und Mädchen erforderlich",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "sportart",
+   "marker": "❻",
+   "box": {
+    "x": 9.2,
+    "y": 49.5,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m56.selbstbewusstsein",
+     "text": "Übungen zur Stärkung des Selbstbewusstseins behinderter oder von Behinderung bedrohter Frauen und Mädchen werden in der Regel im Umfang von 28 Übungseinheiten übernommen; Ausweitung auf andere Geschlechter prüfen die Kassen im Einzelfall.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 56, ❼, S. 98"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ft_trocken",
+   "label": "Trockengymnastik",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "funktionsart",
+   "marker": "❾",
+   "box": {
+    "x": 67.2,
+    "y": 43.8,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m56.funktionstrainingsart",
+     "text": "Zur Auswahl stehen Trocken- und Wassergymnastik; beide können bei medizinischer Notwendigkeit zeitgleich verordnet werden.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 56, ❾, S. 98"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ft_wasser",
+   "label": "Wassergymnastik",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "funktionsart",
+   "marker": "❾",
+   "box": {
+    "x": 67.2,
+    "y": 46.7,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "sport_50",
+   "label": "Rehabilitationssport: 50 Übungseinheiten in 18 Monaten (Richtwerte)",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "sport_umfang",
+   "marker": "❼",
+   "box": {
+    "x": 9.2,
+    "y": 53.8,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m56.uebungseinheiten",
+     "text": "Richtwerte: in der Regel 50 Übungseinheiten in 18 Monaten; bei den auf dem Muster genannten Krankheiten ggf. 120 Einheiten in 36 Monaten. Abweichungen werden unter ⓱ eingetragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 56, ❼, S. 97"
+     }
+    }
+   ]
+  },
+  {
+   "id": "sport_120",
+   "label": "Rehabilitationssport: 120 Übungseinheiten in 36 Monaten (Richtwerte) bei den genannten Krankheiten mit schweren Beeinträchtigungen",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "sport_umfang",
+   "marker": "❼",
+   "box": {
+    "x": 9.2,
+    "y": 56.7,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m56.uebungseinheiten",
+     "text": "Richtwerte: in der Regel 50 Übungseinheiten in 18 Monaten; bei den auf dem Muster genannten Krankheiten ggf. 120 Einheiten in 36 Monaten. Abweichungen werden unter ⓱ eingetragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 56, ❼, S. 97"
+     }
+    }
+   ]
+  },
+  {
+   "id": "sport_vergleichbar",
+   "label": "andere vergl. Krankheit(en) (vgl. Diagnose/Nebendiagnose)",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❼",
+   "box": {
+    "x": 40.7,
+    "y": 79.5,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m56.vergleichbare_krankheit",
+     "text": "Wird „andere vergleichbare Krankheit(en)“ angekreuzt, muss unter ❷ und ❸ angegeben werden, aus welcher Erkrankung und schweren Beeinträchtigung der Mehrbedarf resultiert.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 56, ❼, S. 98"
+     }
+    }
+   ]
+  },
+  {
+   "id": "sport_28",
+   "label": "28 Übungseinheiten (Richtwert) zur Stärkung des Selbstbewusstseins behinderter oder von Behinderung bedrohter Frauen und Mädchen",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "sport_umfang",
+   "marker": "❼",
+   "box": {
+    "x": 9.2,
+    "y": 82.3,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m56.selbstbewusstsein",
+     "text": "Übungen zur Stärkung des Selbstbewusstseins behinderter oder von Behinderung bedrohter Frauen und Mädchen werden in der Regel im Umfang von 28 Übungseinheiten übernommen; Ausweitung auf andere Geschlechter prüfen die Kassen im Einzelfall.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 56, ❼, S. 98"
+     }
+    }
+   ]
+  },
+  {
+   "id": "sport_laenger",
+   "label": "Längere Leistungsdauer Rehabilitationssport: 120 Übungseinheiten in 36 Monaten (Richtwerte) bei kognitiven oder psychischen Beeinträchtigungen",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "sport_umfang",
+   "marker": "❽",
+   "box": {
+    "x": 9.2,
+    "y": 88.0,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m56.laengere_dauer_sport",
+     "text": "Längere Leistungsdauer (120 Einheiten in 36 Monaten) bei kognitiven oder psychischen Beeinträchtigungen im Einzelfall möglich; Angaben dazu unter ❸, Abweichung unter ⓱. Der Richtwert soll nicht überschritten werden.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 56, ❽, S. 98"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ft_12",
+   "label": "Funktionstraining: 12 Monate (Richtwert)",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "ft_dauer",
+   "marker": "❿",
+   "box": {
+    "x": 67.2,
+    "y": 53.8,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m56.funktionstraining_dauer",
+     "text": "Richtwert 12 Monate; bei schwerer Beeinträchtigung durch chronisch entzündlich rheumatische Erkrankungen 24 Monate. Abweichungen werden unter ⓱ eingetragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 56, ❿, S. 98–99"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ft_24",
+   "label": "Funktionstraining: 24 Monate (Richtwert) nur bei den genannten chronischen Krankheiten mit schwerer Beeinträchtigung der Beweglichkeit/Mobilität",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "ft_dauer",
+   "marker": "❿",
+   "box": {
+    "x": 67.2,
+    "y": 56.7,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m56.funktionstraining_dauer",
+     "text": "Richtwert 12 Monate; bei schwerer Beeinträchtigung durch chronisch entzündlich rheumatische Erkrankungen 24 Monate. Abweichungen werden unter ⓱ eingetragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 56, ❿, S. 98–99"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ft_laenger",
+   "label": "Längere Leistungsdauer Funktionstraining: 24 Monate (Richtwert) bei kognitiven oder psychischen Beeinträchtigungen",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "ft_dauer",
+   "marker": "⓫",
+   "box": {
+    "x": 67.2,
+    "y": 88.0,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m56.laengere_dauer_funktion",
+     "text": "Bei kognitiven oder psychischen Beeinträchtigungen kann eine längere Dauer (24 Monate) notwendig sein; Angaben unter ❸, Abweichung unter ⓱. Der Richtwert soll je Verordnung nicht überschritten werden.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 56, ⓫, S. 100"
+     }
+    }
+   ]
+  },
+  {
+   "id": "folgeverordnung",
+   "label": "Folgeverordnung mit Begründung, warum erlernte Übungen nicht oder noch nicht selbstständig durchgeführt werden können",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "⓬",
+   "box": {
+    "x": 9.2,
+    "y": 90.9,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m56.folge_sport",
+     "text": "Folgeverordnungen werden mit Kreuz kenntlich gemacht; im Freitext ist zu begründen, warum der Versicherte die Übungen noch nicht selbständig und eigenverantwortlich durchführen kann.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 56, ⓬ (Rehabilitationssport), S. 98"
+     }
+    },
+    {
+     "id": "m56.folge_funktion",
+     "text": "Folgeverordnungen werden mit Kreuz kenntlich gemacht und im Freitext begründet (Versicherter noch nicht in der Lage, die Übungen selbständig durchzuführen).",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 56, ⓬ (Funktionstraining), S. 100"
+     }
+    }
+   ]
+  },
+  {
+   "id": "folge_begruendung",
+   "label": "Begründung der Folgeverordnung",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "⓬",
+   "box": {
+    "x": 12.7,
+    "y": 93.7,
+    "w": 83.5,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m56.folge_sport",
+     "text": "Folgeverordnungen werden mit Kreuz kenntlich gemacht; im Freitext ist zu begründen, warum der Versicherte die Übungen noch nicht selbständig und eigenverantwortlich durchführen kann.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 56, ⓬ (Rehabilitationssport), S. 98"
+     }
+    }
+   ]
+  },
+  {
+   "id": "herzgruppe",
+   "label": "Herzgruppe",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "herzform",
+   "marker": "⓭",
+   "page": 1,
+   "box": {
+    "x": 32.1,
+    "y": 5.3,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m56.herzgruppe",
+     "text": "Die erforderliche Form angeben: Herzgruppe (Visite mindestens alle sechs Wochen) oder Herzinsuffizienzgruppe bei hohem kardiovaskulärem Ereignisrisiko (ständige persönliche Anwesenheit der Herzgruppenärztin/des Herzgruppenarztes zwingend).",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 56, ⓭, S. 100"
+     }
+    }
+   ]
+  },
+  {
+   "id": "herzinsuffizienzgruppe",
+   "label": "Herzinsuffizienzgruppe (bei hohem kardiovaskulären Ereignisrisiko)",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "herzform",
+   "marker": "⓭",
+   "page": 1,
+   "box": {
+    "x": 45.5,
+    "y": 5.3,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "herz_erst",
+   "label": "Erstverordnung 90 Übungseinheiten in 24 Monaten (Richtwerte)",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "herz_umfang",
+   "marker": "⓮",
+   "page": 1,
+   "box": {
+    "x": 4.4,
+    "y": 8.2,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m56.herzgruppe_umfang",
+     "text": "Erstverordnung 90 Einheiten in 24 Monaten; Folgeverordnung 45 Einheiten in 12 Monaten (bei Belastungsgrenze unter 1,4 Watt/kg mit Nachweis höchstens sechs Monate alt oder Ischämiekriterien); Kinderherzgruppen 120 Einheiten in 24 Monaten (nur dieses Feld ankreuzen).",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 56, ⓮–⓯, S. 100–101"
+     }
+    }
+   ]
+  },
+  {
+   "id": "herz_folge",
+   "label": "Folgeverordnung 45 Übungseinheiten in 12 Monaten (Richtwerte)",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "herz_umfang",
+   "marker": "⓯",
+   "page": 1,
+   "box": {
+    "x": 4.4,
+    "y": 11.0,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m56.herzgruppe_umfang",
+     "text": "Erstverordnung 90 Einheiten in 24 Monaten; Folgeverordnung 45 Einheiten in 12 Monaten (bei Belastungsgrenze unter 1,4 Watt/kg mit Nachweis höchstens sechs Monate alt oder Ischämiekriterien); Kinderherzgruppen 120 Einheiten in 24 Monaten (nur dieses Feld ankreuzen).",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 56, ⓮–⓯, S. 100–101"
+     }
+    }
+   ]
+  },
+  {
+   "id": "herz_folge_watt",
+   "label": "nur bei Belastungsgrenze < 1,4 Watt/kg Körpergewicht",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "⓯",
+   "page": 1,
+   "box": {
+    "x": 7.9,
+    "y": 13.2,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "herz_folge_kognitiv",
+   "label": "wenn bei kognitiven oder psychischen Beeinträchtigungen die langfristige Durchführung des Übungsprogramms in Eigenverantwortung nicht oder noch nicht möglich ist",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "⓯",
+   "page": 1,
+   "box": {
+    "x": 7.9,
+    "y": 15.3,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "herz_kinder",
+   "label": "Kinderherzgruppen 120 Übungseinheiten in 24 Monaten (Richtwerte)",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "herz_umfang",
+   "marker": "⓯",
+   "page": 1,
+   "box": {
+    "x": 4.4,
+    "y": 18.2,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "woche_sport_1",
+   "label": "Rehabilitationssport: 1x wöchentlich",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "woche_sport",
+   "marker": "⓰",
+   "page": 1,
+   "box": {
+    "x": 4.4,
+    "y": 25.3,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m56.wochenfrequenz",
+     "text": "Pro Woche können eine, zwei oder mit Begründung höchstens drei Übungsveranstaltungen verordnet werden; auch bei kombinierter Wasser- und Trockengymnastik höchstens drei pro Woche.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 56, ⓰, S. 101"
+     }
+    }
+   ]
+  },
+  {
+   "id": "woche_sport_2",
+   "label": "Rehabilitationssport: 2x wöchentlich",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "woche_sport",
+   "marker": "⓰",
+   "page": 1,
+   "box": {
+    "x": 11.6,
+    "y": 25.3,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "woche_sport_3",
+   "label": "Rehabilitationssport: 3x wöchentlich",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "woche_sport",
+   "marker": "⓰",
+   "page": 1,
+   "box": {
+    "x": 18.8,
+    "y": 25.3,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "woche_trocken_1",
+   "label": "Funktionstraining als Trockengymnastik: 1x wöchentlich",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "woche_trocken",
+   "marker": "⓰",
+   "page": 1,
+   "box": {
+    "x": 44.9,
+    "y": 23.9,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "woche_trocken_2",
+   "label": "Funktionstraining als Trockengymnastik: 2x wöchentlich",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "woche_trocken",
+   "marker": "⓰",
+   "page": 1,
+   "box": {
+    "x": 52.1,
+    "y": 23.9,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "woche_trocken_3",
+   "label": "Funktionstraining als Trockengymnastik: 3x wöchentlich",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "woche_trocken",
+   "marker": "⓰",
+   "page": 1,
+   "box": {
+    "x": 59.3,
+    "y": 23.9,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "woche_wasser_1",
+   "label": "Funktionstraining als Wassergymnastik: 1x wöchentlich",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "woche_wasser",
+   "marker": "⓰",
+   "page": 1,
+   "box": {
+    "x": 44.9,
+    "y": 26.7,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "woche_wasser_2",
+   "label": "Funktionstraining als Wassergymnastik: 2x wöchentlich",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "woche_wasser",
+   "marker": "⓰",
+   "page": 1,
+   "box": {
+    "x": 52.1,
+    "y": 26.7,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "woche_wasser_3",
+   "label": "Funktionstraining als Wassergymnastik: 3x wöchentlich",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "woche_wasser",
+   "marker": "⓰",
+   "page": 1,
+   "box": {
+    "x": 59.3,
+    "y": 26.7,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "woche_begruendung",
+   "label": "Begründung bei insgesamt 3x",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "⓰",
+   "lines": 2,
+   "page": 1,
+   "box": {
+    "x": 4.3,
+    "y": 31.0,
+    "w": 62.9,
+    "h": 5.0
+   },
+   "rules": [
+    {
+     "id": "m56.wochenfrequenz",
+     "text": "Pro Woche können eine, zwei oder mit Begründung höchstens drei Übungsveranstaltungen verordnet werden; auch bei kombinierter Wasser- und Trockengymnastik höchstens drei pro Woche.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 56, ⓰, S. 101"
+     }
+    }
+   ]
+  },
+  {
+   "id": "abweichung",
+   "label": "Abweichung von oben genannten Richtwerten: Übungseinheiten bei Rehabilitationssport / Monate bei Funktionstraining",
+   "kind": "number",
+   "filled_by": "arzt",
+   "marker": "⓱",
+   "page": 1,
+   "box": {
+    "x": 4.4,
+    "y": 38.1,
+    "w": 7.1,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m56.abweichung",
+     "text": "Abweichungen von den Richtwerten werden in ⓱ eingetragen (Anzahl Übungseinheiten beim Rehabilitationssport, Anzahl Monate beim Funktionstraining).",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 56, ⓱, S. 101"
+     }
+    }
+   ]
+  },
+  {
+   "id": "datum",
+   "label": "Datum",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "TTMMJJ",
+   "page": 1,
+   "box": {
+    "x": 52.7,
+    "y": 42.4,
+    "w": 14.4,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m56.datum",
+     "text": "Ausstellungsdatum der ärztlichen Verordnung.",
+     "source": {
+      "artifact": "mustersammlung",
+      "locator": "PDF-Seite 68, Muster 56 (1.2023)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "stempel",
+   "label": "Vertragsarztstempel / Unterschrift des Arztes",
+   "kind": "stempel",
+   "filled_by": "arzt",
+   "page": 1,
+   "box": {
+    "x": 68.6,
+    "y": 32.5,
+    "w": 22.7,
+    "h": 12.0
+   },
+   "rules": [
+    {
+     "id": "m56.unterschrift",
+     "text": "Erst vollständig ausfüllen, dann mit Vertragsarztstempel persönlich unterschreiben – nie blanko.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "leistungserbringer",
+   "label": "Rehabilitationssport/Funktionstraining soll bei folgendem Leistungserbringer durchgeführt werden (Verein, Träger usw., Postleitzahl, Ort)",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "marker": "⓲",
+   "page": 1,
+   "box": {
+    "x": 4.3,
+    "y": 52.4,
+    "w": 87.1,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m56.antrag_versicherter",
+     "text": "Der Antrag auf Kostenübernahme ist vom Versicherten auszufüllen (Leistungserbringer, Beginn einer bisherigen Teilnahme) und vor Weiterleitung an die Krankenkasse von ihm zu unterschreiben.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 56, ⓲, S. 101"
+     }
+    }
+   ]
+  },
+  {
+   "id": "teilnahme_bisher",
+   "label": "Ich nehme am Rehabilitationssport/Funktionstraining bereits teil seit",
+   "kind": "checkbox",
+   "filled_by": "versicherter",
+   "marker": "⓲",
+   "page": 1,
+   "box": {
+    "x": 4.4,
+    "y": 55.2,
+    "w": 3.0,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m56.antrag_versicherter",
+     "text": "Der Antrag auf Kostenübernahme ist vom Versicherten auszufüllen (Leistungserbringer, Beginn einer bisherigen Teilnahme) und vor Weiterleitung an die Krankenkasse von ihm zu unterschreiben.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 56, ⓲, S. 101"
+     }
+    }
+   ]
+  },
+  {
+   "id": "teilnahme_seit",
+   "label": "bereits teil seit (Monat/Jahr)",
+   "kind": "date",
+   "filled_by": "versicherter",
+   "format": "MMJJ",
+   "marker": "⓲",
+   "page": 1,
+   "box": {
+    "x": 37.0,
+    "y": 55.3,
+    "w": 9.5,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "unterschrift_versicherter",
+   "label": "Datum / Unterschrift des Versicherten",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "marker": "⓲",
+   "page": 1,
+   "box": {
+    "x": 52.7,
+    "y": 55.3,
+    "w": 38.6,
+    "h": 4.9
+   },
+   "rules": [
+    {
+     "id": "m56.antrag_versicherter",
+     "text": "Der Antrag auf Kostenübernahme ist vom Versicherten auszufüllen (Leistungserbringer, Beginn einer bisherigen Teilnahme) und vor Weiterleitung an die Krankenkasse von ihm zu unterschreiben.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 56, ⓲, S. 101"
+     }
+    }
+   ]
+  }
+ ]
+}

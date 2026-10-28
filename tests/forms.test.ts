@@ -69,10 +69,10 @@ describe('Analyse: welcher Vordruck passt', () => {
   it('Laborüberweisung → Muster 10 (nicht Muster 6)', () => {
     expect(analyse('Überweisung ans Labor für Blutbild').suggestions.map((s) => s.formId)).toEqual(['muster-10', 'muster-10a']);
   });
-  it('Gesamtkatalog: „Hörhilfe“ findet Muster 15 (nur Regeln, noch keine Vorschau)', () => {
-    const a = analyse('Hörhilfe verordnen, Schwerhörigkeit');
+  it('Gesamtkatalog: „Arbeitsunfähigkeitsbescheinigung“ findet e01 (nur Regeln – die eAU stellt DURIA aus)', () => {
+    const a = analyse('Arbeitsunfähigkeitsbescheinigung ausstellen');
     expect(a.suggestions).toEqual([]);
-    expect(a.catalog[0]?.entry.muster).toBe('15');
+    expect(a.catalog[0]?.entry.muster).toBe('e01');
     expect(a.catalog[0]?.entry.rules.length).toBeGreaterThan(3);
   });
   it('ambulante OP im Krankenhaus ist keine Einweisung', () => {

@@ -1,0 +1,1175 @@
+{
+ "schema_version": "1.0.0",
+ "id": "muster-62c",
+ "muster": "62C",
+ "title": "Behandlungsplan (außerklinische Intensivpflege)",
+ "form_version": "1.2023",
+ "released": "2022-05-30",
+ "status": "entwurf",
+ "paper": {
+  "format": "DIN A4 hoch",
+  "width": 595.3,
+  "height": 841.9,
+  "tint": "rot"
+ },
+ "copies": [
+  {
+   "id": "62Ca",
+   "label": "Ausfertigung für die Krankenkasse",
+   "recipient": "Krankenkasse"
+  },
+  {
+   "id": "62Cb",
+   "label": "Ausfertigung für den Leistungserbringer nach § 132l",
+   "recipient": "Leistungserbringer nach § 132l Abs. 5 SGB V"
+  },
+  {
+   "id": "62Cc",
+   "label": "Ausfertigung für den verordnenden Arzt",
+   "recipient": "verbleibt in der Praxis"
+  }
+ ],
+ "notes": [
+  {
+   "id": "m62c.beilage",
+   "text": "Der Behandlungsplan wird der Verordnung beigelegt und von der verordnenden Vertragsärztin/dem verordnenden Vertragsarzt erstellt, ggf. unter Mitwirkung der potenzialerhebenden Ärztin/des Arztes; er soll die Informationsweitergabe zwischen den Beteiligten unterstützen.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 62C, Einleitung, S. 128"
+   }
+  },
+  {
+   "id": "m62c.aktualisierung",
+   "text": "Bei erforderlichen Änderungen von Therapiezielen, AKI-Maßnahmen oder Behandlungspflege wird der Plan aktualisiert; weicht der Inhalt oder Umfang der AKI von der Verordnung nach 62B ab, wird er der Krankenkasse erneut vorgelegt.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 62C, Einleitung, S. 128"
+   }
+  },
+  {
+   "id": "m62c.exemplare",
+   "text": "Exemplare erhalten die verordnende Ärztin/der verordnende Arzt, der Leistungserbringer nach § 132l Abs. 5 SGB V und die Krankenkasse.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 62C, Einleitung, S. 128"
+   }
+  }
+ ],
+ "groups": [
+  {
+   "id": "mre",
+   "label": "MRE-Besiedelung",
+   "select": "beliebig",
+   "rule": {
+    "id": "m62c.therapieziele",
+    "text": "Individuelle, patientenzentrierte Therapieziele der AKI angeben; außerdem MRE-Besiedlung (ggf. Keim) vermerken und relevante Heilmittelmaßnahmen ankreuzen.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 62C, ❸, S. 128"
+    }
+   }
+  },
+  {
+   "id": "heilmittel",
+   "label": "Maßnahmen der Heilmitteltherapie zur Unterstützung der Therapieziele im Rahmen der AKI",
+   "select": "beliebig",
+   "rule": {
+    "id": "m62c.therapieziele",
+    "text": "Individuelle, patientenzentrierte Therapieziele der AKI angeben; außerdem MRE-Besiedlung (ggf. Keim) vermerken und relevante Heilmittelmaßnahmen ankreuzen.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 62C, ❸, S. 128"
+    }
+   }
+  },
+  {
+   "id": "tracheotomie",
+   "label": "Tracheotomie",
+   "select": "beliebig",
+   "rule": {
+    "id": "m62c.fachmassnahmen",
+    "text": "Angaben zu Tracheostoma/Kanülenmanagement, Sekretmanagement, Dysphagiemanagement, Bedienung des Beatmungsgeräts, Sauerstoffinsufflation (Flow, Dauer) und speziellen Hygienemaßnahmen; sonstige Maßnahmen und weitere Behandlungsaspekte können ergänzt werden.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 62C, ❹, S. 130"
+    }
+   }
+  },
+  {
+   "id": "befeuchtung",
+   "label": "Befeuchtung",
+   "select": "beliebig",
+   "rule": {
+    "id": "m62c.fachmassnahmen",
+    "text": "Angaben zu Tracheostoma/Kanülenmanagement, Sekretmanagement, Dysphagiemanagement, Bedienung des Beatmungsgeräts, Sauerstoffinsufflation (Flow, Dauer) und speziellen Hygienemaßnahmen; sonstige Maßnahmen und weitere Behandlungsaspekte können ergänzt werden.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 62C, ❹, S. 130"
+    }
+   }
+  },
+  {
+   "id": "absauggeraet",
+   "label": "Absauggerät",
+   "select": "beliebig",
+   "rule": {
+    "id": "m62c.fachmassnahmen",
+    "text": "Angaben zu Tracheostoma/Kanülenmanagement, Sekretmanagement, Dysphagiemanagement, Bedienung des Beatmungsgeräts, Sauerstoffinsufflation (Flow, Dauer) und speziellen Hygienemaßnahmen; sonstige Maßnahmen und weitere Behandlungsaspekte können ergänzt werden.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 62C, ❹, S. 130"
+    }
+   }
+  },
+  {
+   "id": "inhalationsgeraet",
+   "label": "Inhalationsgerät",
+   "select": "beliebig",
+   "rule": {
+    "id": "m62c.fachmassnahmen",
+    "text": "Angaben zu Tracheostoma/Kanülenmanagement, Sekretmanagement, Dysphagiemanagement, Bedienung des Beatmungsgeräts, Sauerstoffinsufflation (Flow, Dauer) und speziellen Hygienemaßnahmen; sonstige Maßnahmen und weitere Behandlungsaspekte können ergänzt werden.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 62C, ❹, S. 130"
+    }
+   }
+  },
+  {
+   "id": "sauerstoff_art",
+   "label": "Sauerstoffinsufflation (ja / nein / Notfallversorgung)",
+   "select": "beliebig",
+   "rule": {
+    "id": "m62c.fachmassnahmen",
+    "text": "Angaben zu Tracheostoma/Kanülenmanagement, Sekretmanagement, Dysphagiemanagement, Bedienung des Beatmungsgeräts, Sauerstoffinsufflation (Flow, Dauer) und speziellen Hygienemaßnahmen; sonstige Maßnahmen und weitere Behandlungsaspekte können ergänzt werden.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 62C, ❹, S. 130"
+    }
+   }
+  }
+ ],
+ "fields": [
+  {
+   "id": "personalien",
+   "label": "Personalienfeld (Krankenkasse bzw. Kostenträger, Name, geb. am, Kostenträgerkennung, Versicherten-Nr., Status, Betriebsstätten-Nr., Arzt-Nr., Datum)",
+   "kind": "personalien",
+   "filled_by": "duria",
+   "box": {
+    "x": 4.4,
+    "y": 1.7,
+    "w": 38.0,
+    "h": 15.7
+   },
+   "rules": [
+    {
+     "id": "m62c.personalien",
+     "text": "Die Daten der eGK werden maschinell über Kartenterminal und Praxis-EDV übertragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 5 und Nr. 6, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "bedarfsmedikamente",
+   "label": "Bedarfsmedikamente für AKI",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 2,
+   "marker": "❶",
+   "box": {
+    "x": 45.4,
+    "y": 5.4,
+    "w": 50.8,
+    "h": 4.9
+   },
+   "rules": [
+    {
+     "id": "m62c.bedarfsmedikamente",
+     "text": "Bedarfsmedikamente mit Namen und Dosierung angeben; der Bedarfsgrund soll möglichst präzise sein.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 62C, ❶, S. 128"
+     }
+    }
+   ]
+  },
+  {
+   "id": "notfallmanagement",
+   "label": "Notfallmanagement",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 2,
+   "marker": "❷",
+   "box": {
+    "x": 45.4,
+    "y": 12.5,
+    "w": 50.8,
+    "h": 5.0
+   },
+   "rules": [
+    {
+     "id": "m62c.notfall",
+     "text": "Sofortmaßnahmen beschreiben, die bei einem Notfall (z. B. Atmungs- und Kreislaufversagen, Stoffwechselentgleisung) umzusetzen sind.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 62C, ❷, S. 128"
+     }
+    }
+   ]
+  },
+  {
+   "id": "therapieziele",
+   "label": "Therapieziele",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 2,
+   "marker": "❸",
+   "box": {
+    "x": 10.3,
+    "y": 21.0,
+    "w": 85.9,
+    "h": 5.0
+   },
+   "rules": [
+    {
+     "id": "m62c.therapieziele",
+     "text": "Individuelle, patientenzentrierte Therapieziele der AKI angeben; außerdem MRE-Besiedlung (ggf. Keim) vermerken und relevante Heilmittelmaßnahmen ankreuzen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 62C, ❸, S. 128"
+     }
+    }
+   ]
+  },
+  {
+   "id": "mre_nein",
+   "label": "MRE-Besiedelung: nein",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "mre",
+   "marker": "❸",
+   "box": {
+    "x": 23.7,
+    "y": 26.8,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "mre_ja",
+   "label": "MRE-Besiedelung: ja, folgender Keim",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "mre",
+   "marker": "❸",
+   "box": {
+    "x": 33.4,
+    "y": 26.8,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "mre_keim",
+   "label": "MRE-Besiedelung: folgender Keim",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❸",
+   "box": {
+    "x": 51.5,
+    "y": 26.7,
+    "w": 44.7,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "heilmittel_logopaedie",
+   "label": "Maßnahmen der Heilmitteltherapie zur Unterstützung der Therapieziele im Rahmen der AKI: Logopädie",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "heilmittel",
+   "marker": "❸",
+   "box": {
+    "x": 51.5,
+    "y": 29.6,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "heilmittel_physiotherapie",
+   "label": "Maßnahmen der Heilmitteltherapie zur Unterstützung der Therapieziele im Rahmen der AKI: Physiotherapie",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "heilmittel",
+   "marker": "❸",
+   "box": {
+    "x": 67.2,
+    "y": 29.6,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "heilmittel_ergotherapie",
+   "label": "Maßnahmen der Heilmitteltherapie zur Unterstützung der Therapieziele im Rahmen der AKI: Ergotherapie",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "heilmittel",
+   "marker": "❸",
+   "box": {
+    "x": 83.0,
+    "y": 29.6,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "vitalparameter",
+   "label": "Benennung der zu erfassenden und zu bewertenden Vitalparameter",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❹",
+   "box": {
+    "x": 10.4,
+    "y": 35.4,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": [
+    {
+     "id": "m62c.massnahmen_aki",
+     "text": "AKI-Maßnahmen zählen zur medizinischen Behandlungspflege und können an geeignete Pflegefachkräfte delegiert werden; Voraussetzung ist permanente Interventionsbereitschaft mit Anwesenheit einer geeigneten Pflegefachkraft.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 62C, ❹, S. 128"
+     }
+    },
+    {
+     "id": "m62c.vitalparameter",
+     "text": "Zu erfassende und zu bewertende Vitalparameter angeben; wenn indiziert, Grenzwerte festlegen, bei deren Über- oder Unterschreitung der Verordner zu informieren ist. Pflegefachkräfte informieren zusätzlich nach eigenem Ermessen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 62C, ❹, S. 129–130"
+     }
+    }
+   ]
+  },
+  {
+   "id": "vitalparameter_1",
+   "label": "Benennung der zu erfassenden und zu bewertenden Vitalparameter",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❹",
+   "box": {
+    "x": 64.1,
+    "y": 35.4,
+    "w": 32.1,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "vitalparameter_2",
+   "label": "Benennung der zu erfassenden und zu bewertenden Vitalparameter (2. Zeile)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❹",
+   "box": {
+    "x": 14.6,
+    "y": 37.4,
+    "w": 81.6,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "trachealkanuele",
+   "label": "Tracheostoma/Trachealkanülenmanagement",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❹",
+   "box": {
+    "x": 10.4,
+    "y": 39.7,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": [
+    {
+     "id": "m62c.fachmassnahmen",
+     "text": "Angaben zu Tracheostoma/Kanülenmanagement, Sekretmanagement, Dysphagiemanagement, Bedienung des Beatmungsgeräts, Sauerstoffinsufflation (Flow, Dauer) und speziellen Hygienemaßnahmen; sonstige Maßnahmen und weitere Behandlungsaspekte können ergänzt werden.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 62C, ❹, S. 130"
+     }
+    }
+   ]
+  },
+  {
+   "id": "tracheotomie_dilatativ",
+   "label": "Tracheotomie: dilatativ",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "tracheotomie",
+   "marker": "❹",
+   "box": {
+    "x": 15.2,
+    "y": 43.9,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "tracheotomie_chirurgisch",
+   "label": "Tracheotomie: chirurgisch",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "tracheotomie",
+   "marker": "❹",
+   "box": {
+    "x": 24.9,
+    "y": 43.9,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "kanuele_hersteller",
+   "label": "Trachealkanüle: Hersteller",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❹",
+   "box": {
+    "x": 44.4,
+    "y": 43.9,
+    "w": 13.1,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "kanuele_durchmesser",
+   "label": "Trachealkanüle: Innendurchmesser in mm",
+   "kind": "number",
+   "filled_by": "arzt",
+   "marker": "❹",
+   "box": {
+    "x": 68.5,
+    "y": 43.9,
+    "w": 8.4,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "befeuchtung_passiv",
+   "label": "Befeuchtung: passiv",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "befeuchtung",
+   "marker": "❹",
+   "box": {
+    "x": 78.1,
+    "y": 43.9,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "befeuchtung_aktiv",
+   "label": "Befeuchtung: aktiv",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "befeuchtung",
+   "marker": "❹",
+   "box": {
+    "x": 87.7,
+    "y": 43.9,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "sekretmanagement",
+   "label": "Sekretmanagement",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❹",
+   "box": {
+    "x": 10.4,
+    "y": 46.8,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "absaug_ja",
+   "label": "Absauggerät: ja",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "absauggeraet",
+   "marker": "❹",
+   "box": {
+    "x": 15.2,
+    "y": 51.0,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "absaug_nein",
+   "label": "Absauggerät: nein",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "absauggeraet",
+   "marker": "❹",
+   "box": {
+    "x": 21.3,
+    "y": 51.0,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "absaug_haeufigkeit",
+   "label": "Absauggerät: Häufigkeit pro Tag",
+   "kind": "number",
+   "filled_by": "arzt",
+   "marker": "❹",
+   "box": {
+    "x": 37.0,
+    "y": 51.0,
+    "w": 4.7,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "inhalation_ja",
+   "label": "Inhalationsgerät: ja",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "inhalationsgeraet",
+   "marker": "❹",
+   "box": {
+    "x": 43.1,
+    "y": 51.0,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "inhalation_nein",
+   "label": "Inhalationsgerät: nein",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "inhalationsgeraet",
+   "marker": "❹",
+   "box": {
+    "x": 49.1,
+    "y": 51.0,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "inhalation_haeufigkeit",
+   "label": "Inhalationsgerät: Häufigkeit pro Tag",
+   "kind": "number",
+   "filled_by": "arzt",
+   "marker": "❹",
+   "box": {
+    "x": 64.8,
+    "y": 51.0,
+    "w": 4.7,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "inhalation_medikament",
+   "label": "Inhalationsgerät: Medikament/Substanz",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❹",
+   "box": {
+    "x": 79.9,
+    "y": 51.0,
+    "w": 15.7,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "dysphagie",
+   "label": "Dysphagiemanagement",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❹",
+   "box": {
+    "x": 10.4,
+    "y": 53.9,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "dysphagie_text",
+   "label": "Dysphagiemanagement (Angaben)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❹",
+   "box": {
+    "x": 14.6,
+    "y": 56.0,
+    "w": 81.6,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "beatmungsgeraet",
+   "label": "Bedienung und Überwachung des Beatmungsgerätes",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❹",
+   "box": {
+    "x": 10.4,
+    "y": 58.2,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "beatmungsgeraet_einstellungen",
+   "label": "Beatmungsgeräteinstellungen",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❹",
+   "box": {
+    "x": 14.6,
+    "y": 61.0,
+    "w": 81.6,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "sauerstoff",
+   "label": "Sauerstoffinsufflation",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❹",
+   "box": {
+    "x": 10.4,
+    "y": 63.9,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "sauerstoff_ja",
+   "label": "Sauerstoffinsufflation: ja",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "sauerstoff_art",
+   "marker": "❹",
+   "box": {
+    "x": 32.6,
+    "y": 63.8,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "sauerstoff_nein",
+   "label": "Sauerstoffinsufflation: nein",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "sauerstoff_art",
+   "marker": "❹",
+   "box": {
+    "x": 42.3,
+    "y": 63.8,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "sauerstoff_notfall",
+   "label": "Sauerstoffinsufflation: Notfallversorgung",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "sauerstoff_art",
+   "marker": "❹",
+   "box": {
+    "x": 52.0,
+    "y": 63.8,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "o2_beatmung_flow",
+   "label": "Sauerstoffinsufflation mit Beatmung: Flow (l/min)",
+   "kind": "number",
+   "filled_by": "arzt",
+   "marker": "❹",
+   "box": {
+    "x": 18.9,
+    "y": 68.1,
+    "w": 4.7,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "o2_beatmung_dauer",
+   "label": "Sauerstoffinsufflation mit Beatmung: Dauer (h/tgl.)",
+   "kind": "number",
+   "filled_by": "arzt",
+   "marker": "❹",
+   "box": {
+    "x": 35.8,
+    "y": 68.1,
+    "w": 4.7,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "o2_spontan_flow",
+   "label": "Sauerstoffinsufflation unter Spontanatmung: Flow (l/min)",
+   "kind": "number",
+   "filled_by": "arzt",
+   "marker": "❹",
+   "box": {
+    "x": 46.1,
+    "y": 68.1,
+    "w": 4.7,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "o2_spontan_dauer",
+   "label": "Sauerstoffinsufflation unter Spontanatmung: Dauer (h/tgl.)",
+   "kind": "number",
+   "filled_by": "arzt",
+   "marker": "❹",
+   "box": {
+    "x": 63.0,
+    "y": 68.1,
+    "w": 4.7,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "o2_mobilitaet_flow",
+   "label": "Sauerstoffinsufflation Mobilität: Flow (l/min)",
+   "kind": "number",
+   "filled_by": "arzt",
+   "marker": "❹",
+   "box": {
+    "x": 73.3,
+    "y": 68.1,
+    "w": 4.7,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "o2_mobilitaet_dauer",
+   "label": "Sauerstoffinsufflation Mobilität: Dauer (h/tgl.)",
+   "kind": "number",
+   "filled_by": "arzt",
+   "marker": "❹",
+   "box": {
+    "x": 90.2,
+    "y": 68.1,
+    "w": 4.7,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "hygiene",
+   "label": "Spezielle Hygienemaßnahmen",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❹",
+   "box": {
+    "x": 10.4,
+    "y": 71.0,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "hygiene_text",
+   "label": "Spezielle Hygienemaßnahmen (Angaben)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❹",
+   "box": {
+    "x": 38.1,
+    "y": 70.9,
+    "w": 58.1,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "sonstige_massnahmen",
+   "label": "Sonstige eingeleitete Maßnahmen (einschließlich weiterer Maßnahmen der AKI)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 2,
+   "marker": "❹",
+   "box": {
+    "x": 10.3,
+    "y": 75.2,
+    "w": 85.9,
+    "h": 5.0
+   },
+   "rules": [
+    {
+     "id": "m62c.fachmassnahmen",
+     "text": "Angaben zu Tracheostoma/Kanülenmanagement, Sekretmanagement, Dysphagiemanagement, Bedienung des Beatmungsgeräts, Sauerstoffinsufflation (Flow, Dauer) und speziellen Hygienemaßnahmen; sonstige Maßnahmen und weitere Behandlungsaspekte können ergänzt werden.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 62C, ❹, S. 130"
+     }
+    }
+   ]
+  },
+  {
+   "id": "pflege_leistung_1",
+   "label": "Medizinische Behandlungspflege, Zeile 1: Leistung",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❺",
+   "box": {
+    "x": 10.3,
+    "y": 85.2,
+    "w": 62.9,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m62c.behandlungspflege",
+     "text": "Weitere im zeitlichen Zusammenhang mit der AKI anfallende Maßnahmen der medizinischen Behandlungspflege sind Teil der AKI und können nicht separat als Häusliche Krankenpflege auf Muster 12 verordnet werden; Leistungen, Häufigkeit und Dauer unter ❺ angeben.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 62C, ❺, S. 130"
+     }
+    }
+   ]
+  },
+  {
+   "id": "pflege_tgl_1",
+   "label": "Medizinische Behandlungspflege, Zeile 1: Häufigkeit tgl.",
+   "kind": "number",
+   "filled_by": "arzt",
+   "marker": "❺",
+   "box": {
+    "x": 73.2,
+    "y": 85.2,
+    "w": 3.7,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "pflege_wtl_1",
+   "label": "Medizinische Behandlungspflege, Zeile 1: Häufigkeit wtl.",
+   "kind": "number",
+   "filled_by": "arzt",
+   "marker": "❺",
+   "box": {
+    "x": 76.9,
+    "y": 85.2,
+    "w": 3.6,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "pflege_mtl_1",
+   "label": "Medizinische Behandlungspflege, Zeile 1: Häufigkeit mtl.",
+   "kind": "number",
+   "filled_by": "arzt",
+   "marker": "❺",
+   "box": {
+    "x": 80.5,
+    "y": 85.2,
+    "w": 3.6,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "pflege_vom_1",
+   "label": "Medizinische Behandlungspflege, Zeile 1: Dauer vom",
+   "kind": "date",
+   "filled_by": "arzt",
+   "format": "TTMMJJ",
+   "marker": "❺",
+   "box": {
+    "x": 84.1,
+    "y": 85.2,
+    "w": 6.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "pflege_bis_1",
+   "label": "Medizinische Behandlungspflege, Zeile 1: Dauer bis",
+   "kind": "date",
+   "filled_by": "arzt",
+   "format": "TTMMJJ",
+   "marker": "❺",
+   "box": {
+    "x": 90.1,
+    "y": 85.2,
+    "w": 6.1,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "pflege_leistung_2",
+   "label": "Medizinische Behandlungspflege, Zeile 2: Leistung",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❺",
+   "box": {
+    "x": 10.3,
+    "y": 87.3,
+    "w": 62.9,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "pflege_tgl_2",
+   "label": "Medizinische Behandlungspflege, Zeile 2: Häufigkeit tgl.",
+   "kind": "number",
+   "filled_by": "arzt",
+   "marker": "❺",
+   "box": {
+    "x": 73.2,
+    "y": 87.3,
+    "w": 3.7,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "pflege_wtl_2",
+   "label": "Medizinische Behandlungspflege, Zeile 2: Häufigkeit wtl.",
+   "kind": "number",
+   "filled_by": "arzt",
+   "marker": "❺",
+   "box": {
+    "x": 76.9,
+    "y": 87.3,
+    "w": 3.6,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "pflege_mtl_2",
+   "label": "Medizinische Behandlungspflege, Zeile 2: Häufigkeit mtl.",
+   "kind": "number",
+   "filled_by": "arzt",
+   "marker": "❺",
+   "box": {
+    "x": 80.5,
+    "y": 87.3,
+    "w": 3.6,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "pflege_vom_2",
+   "label": "Medizinische Behandlungspflege, Zeile 2: Dauer vom",
+   "kind": "date",
+   "filled_by": "arzt",
+   "format": "TTMMJJ",
+   "marker": "❺",
+   "box": {
+    "x": 84.1,
+    "y": 87.3,
+    "w": 6.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "pflege_bis_2",
+   "label": "Medizinische Behandlungspflege, Zeile 2: Dauer bis",
+   "kind": "date",
+   "filled_by": "arzt",
+   "format": "TTMMJJ",
+   "marker": "❺",
+   "box": {
+    "x": 90.1,
+    "y": 87.3,
+    "w": 6.1,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "pflege_leistung_3",
+   "label": "Medizinische Behandlungspflege, Zeile 3: Leistung",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❺",
+   "box": {
+    "x": 10.3,
+    "y": 89.5,
+    "w": 62.9,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "pflege_tgl_3",
+   "label": "Medizinische Behandlungspflege, Zeile 3: Häufigkeit tgl.",
+   "kind": "number",
+   "filled_by": "arzt",
+   "marker": "❺",
+   "box": {
+    "x": 73.2,
+    "y": 89.5,
+    "w": 3.7,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "pflege_wtl_3",
+   "label": "Medizinische Behandlungspflege, Zeile 3: Häufigkeit wtl.",
+   "kind": "number",
+   "filled_by": "arzt",
+   "marker": "❺",
+   "box": {
+    "x": 76.9,
+    "y": 89.5,
+    "w": 3.6,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "pflege_mtl_3",
+   "label": "Medizinische Behandlungspflege, Zeile 3: Häufigkeit mtl.",
+   "kind": "number",
+   "filled_by": "arzt",
+   "marker": "❺",
+   "box": {
+    "x": 80.5,
+    "y": 89.5,
+    "w": 3.6,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "pflege_vom_3",
+   "label": "Medizinische Behandlungspflege, Zeile 3: Dauer vom",
+   "kind": "date",
+   "filled_by": "arzt",
+   "format": "TTMMJJ",
+   "marker": "❺",
+   "box": {
+    "x": 84.1,
+    "y": 89.5,
+    "w": 6.0,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "pflege_bis_3",
+   "label": "Medizinische Behandlungspflege, Zeile 3: Dauer bis",
+   "kind": "date",
+   "filled_by": "arzt",
+   "format": "TTMMJJ",
+   "marker": "❺",
+   "box": {
+    "x": 90.1,
+    "y": 89.5,
+    "w": 6.1,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "arzt_name",
+   "label": "Name des Arztes / der Ärztin",
+   "kind": "text",
+   "filled_by": "arzt",
+   "box": {
+    "x": 10.3,
+    "y": 93.7,
+    "w": 62.3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "unterschrift",
+   "label": "ärztliche Unterschrift",
+   "kind": "stempel",
+   "filled_by": "arzt",
+   "box": {
+    "x": 73.3,
+    "y": 92.4,
+    "w": 22.7,
+    "h": 3.5
+   },
+   "rules": [
+    {
+     "id": "m62c.unterschrift",
+     "text": "Erst vollständig ausfüllen, dann persönlich unterschreiben – nie blanko.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5"
+     }
+    }
+   ]
+  }
+ ]
+}

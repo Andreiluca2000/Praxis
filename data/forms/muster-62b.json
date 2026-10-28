@@ -1,0 +1,1890 @@
+{
+ "schema_version": "1.0.0",
+ "id": "muster-62b",
+ "muster": "62B",
+ "title": "Verordnung außerklinischer Intensivpflege",
+ "form_version": "1.2023",
+ "released": "2022-05-30",
+ "status": "entwurf",
+ "paper": {
+  "format": "DIN A4 hoch, Vorder- und Rückseite (Rückseite nur bei 62Ba)",
+  "width": 595.3,
+  "height": 841.9,
+  "tint": "rot"
+ },
+ "pages": [
+  "Vorderseite",
+  "Rückseite"
+ ],
+ "copies": [
+  {
+   "id": "62Ba",
+   "label": "Ausfertigung für die Krankenkasse (rückseitig der Antrag des Versicherten)",
+   "recipient": "Krankenkasse"
+  },
+  {
+   "id": "62Bb",
+   "label": "Ausfertigung für den Leistungserbringer nach § 132l",
+   "recipient": "Leistungserbringer nach § 132l Abs. 5 SGB V"
+  },
+  {
+   "id": "62Bc",
+   "label": "Ausfertigung für den verordnenden Arzt",
+   "recipient": "verbleibt in der Praxis"
+  }
+ ],
+ "notes": [
+  {
+   "id": "m62b.potenzialerhebung",
+   "text": "Bei beatmeten und trachealkanülierten Versicherten ist die Verordnung grundsätzlich nur möglich, wenn eine aktuelle Potenzialerhebung (Muster 62A) vorliegt, die bei Verordnung nicht älter als 3 Monate ist.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 62B, Einleitung, S. 123"
+   }
+  },
+  {
+   "id": "m62b.folgeverordnung_dauer",
+   "text": "Folgeverordnungen dürfen längstens für sechs Monate ausgestellt werden. Erhebungen sind alle 6 Monate nötig, bei dauerhaft fehlendem Potenzial alle 12 Monate; nach zweimal in Folge persönlich festgestelltem fehlendem Potenzial in mindestens zwei Jahren kann die Erhebung entfallen.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 62B, Einleitung, S. 123"
+   }
+  },
+  {
+   "id": "m62b.exemplare",
+   "text": "Exemplare erhalten die verordnende Ärztin/der verordnende Arzt, der Leistungserbringer nach § 132l Abs. 5 SGB V und die Krankenkasse.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 62B, Einleitung, S. 123"
+   }
+  }
+ ],
+ "groups": [
+  {
+   "id": "verordnungsart",
+   "label": "Erstverordnung oder Folgeverordnung",
+   "select": "beliebig",
+   "rule": {
+    "id": "m62b.erst_folge",
+    "text": "Erstverordnung soll 5 Wochen nicht überschreiten; bei nahtloser Versorgung nach Entlassmanagement ist die erste Verordnung der Vertragsarztpraxis eine Folgeverordnung. Folgeverordnungen bis 6 Monate (bis 12 Monate bei dauerhaft fehlendem Potenzial), spätestens drei Arbeitstage vor Ablauf auszustellen.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 62B, ❹, S. 123"
+    }
+   }
+  },
+  {
+   "id": "beatmungsform",
+   "label": "Beatmungsform",
+   "select": "beliebig",
+   "rule": {
+    "id": "m62b.klinischer_status",
+    "text": "Konkrete klinische Parameter und lebensbedrohliche Einschränkungen der Vitalfunktionen sowie Mitwirkungsmöglichkeiten angeben: u. a. Beatmung (seit, Form, Dauer), Spontanatmungszeit, Tracheostoma und Kanüle, Entblockungszeiten, Absaugpflicht, Bewusstsein, Mitwirkung, Kommunikation, Orientierung, Mobilität, orale Ernährung.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 62B, ❼, S. 125–126"
+    }
+   }
+  },
+  {
+   "id": "trachealkanuele",
+   "label": "Trachealkanüle",
+   "select": "beliebig",
+   "rule": {
+    "id": "m62b.klinischer_status",
+    "text": "Konkrete klinische Parameter und lebensbedrohliche Einschränkungen der Vitalfunktionen sowie Mitwirkungsmöglichkeiten angeben: u. a. Beatmung (seit, Form, Dauer), Spontanatmungszeit, Tracheostoma und Kanüle, Entblockungszeiten, Absaugpflicht, Bewusstsein, Mitwirkung, Kommunikation, Orientierung, Mobilität, orale Ernährung.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 62B, ❼, S. 125–126"
+    }
+   }
+  },
+  {
+   "id": "absaugzeiten",
+   "label": "Absaugung zu regelmäßigen / unregelmäßigen Zeiten",
+   "select": "beliebig",
+   "rule": {
+    "id": "m62b.klinischer_status",
+    "text": "Konkrete klinische Parameter und lebensbedrohliche Einschränkungen der Vitalfunktionen sowie Mitwirkungsmöglichkeiten angeben: u. a. Beatmung (seit, Form, Dauer), Spontanatmungszeit, Tracheostoma und Kanüle, Entblockungszeiten, Absaugpflicht, Bewusstsein, Mitwirkung, Kommunikation, Orientierung, Mobilität, orale Ernährung.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 62B, ❼, S. 125–126"
+    }
+   }
+  },
+  {
+   "id": "mitwirkung",
+   "label": "Mitwirkung bei AKI",
+   "select": "beliebig",
+   "rule": {
+    "id": "m62b.klinischer_status",
+    "text": "Konkrete klinische Parameter und lebensbedrohliche Einschränkungen der Vitalfunktionen sowie Mitwirkungsmöglichkeiten angeben: u. a. Beatmung (seit, Form, Dauer), Spontanatmungszeit, Tracheostoma und Kanüle, Entblockungszeiten, Absaugpflicht, Bewusstsein, Mitwirkung, Kommunikation, Orientierung, Mobilität, orale Ernährung.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 62B, ❼, S. 125–126"
+    }
+   }
+  },
+  {
+   "id": "kommunikation",
+   "label": "Kommunikation/Verständigung",
+   "select": "beliebig",
+   "rule": {
+    "id": "m62b.klinischer_status",
+    "text": "Konkrete klinische Parameter und lebensbedrohliche Einschränkungen der Vitalfunktionen sowie Mitwirkungsmöglichkeiten angeben: u. a. Beatmung (seit, Form, Dauer), Spontanatmungszeit, Tracheostoma und Kanüle, Entblockungszeiten, Absaugpflicht, Bewusstsein, Mitwirkung, Kommunikation, Orientierung, Mobilität, orale Ernährung.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 62B, ❼, S. 125–126"
+    }
+   }
+  },
+  {
+   "id": "orientierung",
+   "label": "Orientierung vorhanden, zu",
+   "select": "beliebig",
+   "rule": {
+    "id": "m62b.klinischer_status",
+    "text": "Konkrete klinische Parameter und lebensbedrohliche Einschränkungen der Vitalfunktionen sowie Mitwirkungsmöglichkeiten angeben: u. a. Beatmung (seit, Form, Dauer), Spontanatmungszeit, Tracheostoma und Kanüle, Entblockungszeiten, Absaugpflicht, Bewusstsein, Mitwirkung, Kommunikation, Orientierung, Mobilität, orale Ernährung.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 62B, ❼, S. 125–126"
+    }
+   }
+  },
+  {
+   "id": "mobilitaet",
+   "label": "Mobilität vorhanden",
+   "select": "beliebig",
+   "rule": {
+    "id": "m62b.klinischer_status",
+    "text": "Konkrete klinische Parameter und lebensbedrohliche Einschränkungen der Vitalfunktionen sowie Mitwirkungsmöglichkeiten angeben: u. a. Beatmung (seit, Form, Dauer), Spontanatmungszeit, Tracheostoma und Kanüle, Entblockungszeiten, Absaugpflicht, Bewusstsein, Mitwirkung, Kommunikation, Orientierung, Mobilität, orale Ernährung.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 62B, ❼, S. 125–126"
+    }
+   }
+  },
+  {
+   "id": "ernaehrung",
+   "label": "Orale Ernährung",
+   "select": "beliebig",
+   "rule": {
+    "id": "m62b.klinischer_status",
+    "text": "Konkrete klinische Parameter und lebensbedrohliche Einschränkungen der Vitalfunktionen sowie Mitwirkungsmöglichkeiten angeben: u. a. Beatmung (seit, Form, Dauer), Spontanatmungszeit, Tracheostoma und Kanüle, Entblockungszeiten, Absaugpflicht, Bewusstsein, Mitwirkung, Kommunikation, Orientierung, Mobilität, orale Ernährung.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 62B, ❼, S. 125–126"
+    }
+   }
+  },
+  {
+   "id": "therapieoptimierung",
+   "label": "Erhebungen nach Muster 62A zum Zwecke der Therapieoptimierung",
+   "select": "beliebig",
+   "rule": {
+    "id": "m62b.therapieoptimierung",
+    "text": "Unter Einbeziehung von Muster 62A und Beratung mit dem Versicherten ankreuzen, ob eine regelmäßige Erhebung zur Therapieoptimierung weiter angezeigt ist; es kann auch angegeben werden, ob der Versicherte sie ablehnt.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 62B, ❿, S. 127"
+    }
+   }
+  },
+  {
+   "id": "leistungsort",
+   "label": "Leistungsort (Antrag des Versicherten)",
+   "select": "beliebig",
+   "rule": {
+    "id": "m62b.antrag_vorabinfo",
+    "text": "Der Antrag des Versicherten ist bei Vorabinformation aus dem Krankenhaus nicht auszufüllen (Hinweis auf dem Vordruck).",
+    "source": {
+     "artifact": "mustersammlung",
+     "locator": "PDF-Seite 83, Muster 62Ba (1.2023)"
+    }
+   }
+  },
+  {
+   "id": "angehoerige_uebernahme",
+   "label": "Übernahme von Maßnahmen durch An- und Zugehörige",
+   "select": "beliebig",
+   "rule": {
+    "id": "m62b.antrag_vorabinfo",
+    "text": "Der Antrag des Versicherten ist bei Vorabinformation aus dem Krankenhaus nicht auszufüllen (Hinweis auf dem Vordruck).",
+    "source": {
+     "artifact": "mustersammlung",
+     "locator": "PDF-Seite 83, Muster 62Ba (1.2023)"
+    }
+   }
+  }
+ ],
+ "fields": [
+  {
+   "id": "personalien",
+   "label": "Personalienfeld (Krankenkasse bzw. Kostenträger, Name, geb. am, Kostenträgerkennung, Versicherten-Nr., Status, Betriebsstätten-Nr., Arzt-Nr., Datum)",
+   "kind": "personalien",
+   "filled_by": "duria",
+   "box": {
+    "x": 4.4,
+    "y": 1.7,
+    "w": 38.0,
+    "h": 15.7
+   },
+   "rules": [
+    {
+     "id": "m62b.personalien",
+     "text": "Die Daten der eGK werden maschinell über Kartenterminal und Praxis-EDV übertragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 5 und Nr. 6, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "diagnose_1",
+   "label": "Verordnungsrelevante Diagnose(n) (ICD-10-Code) 1",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❶",
+   "box": {
+    "x": 45.4,
+    "y": 6.8,
+    "w": 12.1,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m62b.diagnosen",
+     "text": "Anzugeben sind die Diagnosen, die die Notwendigkeit der außerklinischen Intensivpflege medizinisch begründen, nach ICD-10 verschlüsselt.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 62B, ❶, S. 123"
+     }
+    }
+   ]
+  },
+  {
+   "id": "diagnose_2",
+   "label": "Verordnungsrelevante Diagnose(n) (ICD-10-Code) 2",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❶",
+   "box": {
+    "x": 58.1,
+    "y": 6.8,
+    "w": 12.1,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "diagnose_3",
+   "label": "Verordnungsrelevante Diagnose(n) (ICD-10-Code) 3",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❶",
+   "box": {
+    "x": 70.8,
+    "y": 6.8,
+    "w": 12.1,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "diagnose_4",
+   "label": "Verordnungsrelevante Diagnose(n) (ICD-10-Code) 4",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❶",
+   "box": {
+    "x": 83.5,
+    "y": 6.8,
+    "w": 12.7,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "vom",
+   "label": "vom",
+   "kind": "date",
+   "filled_by": "arzt",
+   "format": "TTMMJJ",
+   "marker": "❷",
+   "box": {
+    "x": 49.1,
+    "y": 9.6,
+    "w": 14.4,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m62b.zeitraum",
+     "text": "Zeitraum der Leistung angeben. Rückwirkende Verordnungen sind grundsätzlich nicht zulässig; Ausnahmefälle sind besonders zu begründen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 62B, ❷, S. 123"
+     }
+    }
+   ]
+  },
+  {
+   "id": "bis",
+   "label": "bis",
+   "kind": "date",
+   "filled_by": "arzt",
+   "format": "TTMMJJ",
+   "marker": "❷",
+   "box": {
+    "x": 68.5,
+    "y": 9.6,
+    "w": 14.4,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "entlassdatum",
+   "label": "Voraussichtliches Entlassdatum (nur durch Krankenhaus anzugeben)",
+   "kind": "date",
+   "filled_by": "krankenhaus",
+   "format": "TTMMJJ",
+   "marker": "❸",
+   "box": {
+    "x": 68.5,
+    "y": 12.5,
+    "w": 14.4,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m62b.entlassdatum",
+     "text": "Voraussichtliches Entlassdatum ist nur durch das Krankenhaus anzugeben, wenn Muster 62B vor der Entlassung ausgestellt wird, um die Entlassung in die AKI vorzubereiten.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 62B, ❸, S. 123"
+     }
+    }
+   ]
+  },
+  {
+   "id": "erstverordnung",
+   "label": "Erstverordnung",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "verordnungsart",
+   "marker": "❹",
+   "box": {
+    "x": 4.4,
+    "y": 18.2,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": [
+    {
+     "id": "m62b.erst_folge",
+     "text": "Erstverordnung soll 5 Wochen nicht überschreiten; bei nahtloser Versorgung nach Entlassmanagement ist die erste Verordnung der Vertragsarztpraxis eine Folgeverordnung. Folgeverordnungen bis 6 Monate (bis 12 Monate bei dauerhaft fehlendem Potenzial), spätestens drei Arbeitstage vor Ablauf auszustellen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 62B, ❹, S. 123"
+     }
+    }
+   ]
+  },
+  {
+   "id": "folgeverordnung",
+   "label": "Folgeverordnung",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "verordnungsart",
+   "marker": "❹",
+   "box": {
+    "x": 17.7,
+    "y": 18.2,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "vorabinformation",
+   "label": "Vorabinformation aus dem Krankenhaus vor Entlassung gemäß § 10 Abs. 4 Satz 1 AKI-Richtlinie (fakultativ I bis III)",
+   "kind": "checkbox",
+   "filled_by": "krankenhaus",
+   "marker": "❺",
+   "box": {
+    "x": 32.2,
+    "y": 18.2,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": [
+    {
+     "id": "m62b.vorabinfo",
+     "text": "Die Vorabinformation vor Entlassung ist nur durch das Krankenhaus vorgesehen: Sobald AKI-Erforderlichkeit feststellbar ist, informiert es die Krankenkasse unverzüglich, in der Regel mindestens 14 Tage vor Entlassung; Angaben in den Abschnitten I–III sind dabei nicht verpflichtend.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 62B, ❺, S. 124–125"
+     }
+    }
+   ]
+  },
+  {
+   "id": "unfall",
+   "label": "Unfall",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❻",
+   "box": {
+    "x": 85.4,
+    "y": 18.2,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": [
+    {
+     "id": "m62b.unfall",
+     "text": "Ergibt sich die Notwendigkeit der AKI infolge eines Unfalls, ist dies anzugeben.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 62B, ❻, S. 125"
+     }
+    }
+   ]
+  },
+  {
+   "id": "beatmung",
+   "label": "Beatmung, seit",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❼",
+   "box": {
+    "x": 10.4,
+    "y": 23.9,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": [
+    {
+     "id": "m62b.klinischer_status",
+     "text": "Konkrete klinische Parameter und lebensbedrohliche Einschränkungen der Vitalfunktionen sowie Mitwirkungsmöglichkeiten angeben: u. a. Beatmung (seit, Form, Dauer), Spontanatmungszeit, Tracheostoma und Kanüle, Entblockungszeiten, Absaugpflicht, Bewusstsein, Mitwirkung, Kommunikation, Orientierung, Mobilität, orale Ernährung.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 62B, ❼, S. 125–126"
+     }
+    }
+   ]
+  },
+  {
+   "id": "beatmung_seit",
+   "label": "Beatmung, seit",
+   "kind": "date",
+   "filled_by": "arzt",
+   "format": "TTMMJJ",
+   "marker": "❼",
+   "box": {
+    "x": 31.0,
+    "y": 23.9,
+    "w": 14.4,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "form_invasiv",
+   "label": "Beatmungsform: invasiv",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "beatmungsform",
+   "marker": "❼",
+   "box": {
+    "x": 14.0,
+    "y": 28.2,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "form_nicht_invasiv",
+   "label": "Beatmungsform: nicht invasiv, Maskentyp",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "beatmungsform",
+   "marker": "❼",
+   "box": {
+    "x": 14.0,
+    "y": 31.1,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "maskentyp",
+   "label": "nicht invasiv, Maskentyp",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❼",
+   "box": {
+    "x": 30.9,
+    "y": 31.0,
+    "w": 14.5,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "dauer_tag",
+   "label": "Beatmungsdauer: Stunden pro Tag",
+   "kind": "number",
+   "filled_by": "arzt",
+   "marker": "❼",
+   "box": {
+    "x": 62.4,
+    "y": 28.2,
+    "w": 4.7,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "dauer_nacht",
+   "label": "Beatmungsdauer: Stunden pro Nacht",
+   "kind": "number",
+   "filled_by": "arzt",
+   "marker": "❼",
+   "box": {
+    "x": 62.4,
+    "y": 31.0,
+    "w": 4.7,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "spontan_tag",
+   "label": "Spontanatmungszeit: Stunden pro Tag",
+   "kind": "number",
+   "filled_by": "arzt",
+   "marker": "❼",
+   "box": {
+    "x": 79.3,
+    "y": 28.2,
+    "w": 4.7,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "spontan_nacht",
+   "label": "Spontanatmungszeit: Stunden pro Nacht",
+   "kind": "number",
+   "filled_by": "arzt",
+   "marker": "❼",
+   "box": {
+    "x": 79.3,
+    "y": 31.0,
+    "w": 4.7,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "tracheostoma",
+   "label": "Tracheostoma, seit",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❼",
+   "box": {
+    "x": 10.4,
+    "y": 33.9,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "tracheostoma_seit",
+   "label": "Tracheostoma, seit",
+   "kind": "date",
+   "filled_by": "arzt",
+   "format": "TTMMJJ",
+   "marker": "❼",
+   "box": {
+    "x": 31.0,
+    "y": 33.9,
+    "w": 14.4,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "kanuele_geblockt",
+   "label": "Trachealkanüle: geblockt",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "trachealkanuele",
+   "marker": "❼",
+   "box": {
+    "x": 14.0,
+    "y": 38.2,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "kanuele_ungeblockt",
+   "label": "Trachealkanüle: ungeblockt",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "trachealkanuele",
+   "marker": "❼",
+   "box": {
+    "x": 31.0,
+    "y": 38.2,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "kanuele_sprechventil",
+   "label": "Trachealkanüle: Sprechventil",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "trachealkanuele",
+   "marker": "❼",
+   "box": {
+    "x": 47.9,
+    "y": 38.2,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "entblockungszeiten",
+   "label": "Entblockungszeiten",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❼",
+   "box": {
+    "x": 62.3,
+    "y": 38.1,
+    "w": 33.3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "absaugpflicht",
+   "label": "Endotracheale Absaugpflicht",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❼",
+   "box": {
+    "x": 10.4,
+    "y": 41.1,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "absaugfrequenz",
+   "label": "durchschnittliche tgl. Absaugfrequenz",
+   "kind": "number",
+   "filled_by": "arzt",
+   "marker": "❼",
+   "box": {
+    "x": 53.9,
+    "y": 41.0,
+    "w": 6.3,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "absaug_regelmaessig",
+   "label": "zu regelmäßigen Zeiten",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "absaugzeiten",
+   "marker": "❼",
+   "box": {
+    "x": 62.4,
+    "y": 41.1,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "absaug_unregelmaessig",
+   "label": "zu unregelmäßigen Zeiten",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "absaugzeiten",
+   "marker": "❼",
+   "box": {
+    "x": 79.3,
+    "y": 41.1,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "vitale_einschraenkung",
+   "label": "Sonstige vitale Funktionseinschränkungen, Art und Häufigkeit",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❼",
+   "box": {
+    "x": 10.4,
+    "y": 43.9,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "vitale_art_1",
+   "label": "Sonstige vitale Funktionseinschränkungen, Art und Häufigkeit",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❼",
+   "box": {
+    "x": 58.7,
+    "y": 43.9,
+    "w": 37.5,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "vitale_art_2",
+   "label": "Sonstige vitale Funktionseinschränkungen, Art und Häufigkeit (2. Zeile)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❼",
+   "box": {
+    "x": 10.3,
+    "y": 46.7,
+    "w": 85.9,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "bewusstseinsstoerung",
+   "label": "Bewusstseinsstörung, Art",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❼",
+   "box": {
+    "x": 10.4,
+    "y": 49.6,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "bewusstseinsstoerung_art",
+   "label": "Bewusstseinsstörung, Art",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❼",
+   "box": {
+    "x": 34.5,
+    "y": 49.6,
+    "w": 61.7,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "mitwirkung_uneingeschraenkt",
+   "label": "Mitwirkung bei AKI: uneingeschränkt",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "mitwirkung",
+   "marker": "❼",
+   "box": {
+    "x": 11.0,
+    "y": 54.6,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "kommunikation_uneingeschraenkt",
+   "label": "Kommunikation/Verständigung: uneingeschränkt",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "kommunikation",
+   "marker": "❼",
+   "box": {
+    "x": 27.3,
+    "y": 54.6,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "mitwirkung_eingeschraenkt",
+   "label": "Mitwirkung bei AKI: eingeschränkt",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "mitwirkung",
+   "marker": "❼",
+   "box": {
+    "x": 11.0,
+    "y": 56.7,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "kommunikation_eingeschraenkt",
+   "label": "Kommunikation/Verständigung: eingeschränkt",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "kommunikation",
+   "marker": "❼",
+   "box": {
+    "x": 27.3,
+    "y": 56.7,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "mitwirkung_nicht_moeglich",
+   "label": "Mitwirkung bei AKI: nicht möglich",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "mitwirkung",
+   "marker": "❼",
+   "box": {
+    "x": 11.0,
+    "y": 58.9,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "kommunikation_nicht_moeglich",
+   "label": "Kommunikation/Verständigung: nicht möglich",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "kommunikation",
+   "marker": "❼",
+   "box": {
+    "x": 27.3,
+    "y": 58.9,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "orientierung_ort",
+   "label": "Orientierung vorhanden, zu: Ort",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "orientierung",
+   "marker": "❼",
+   "box": {
+    "x": 43.7,
+    "y": 54.6,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "orientierung_zeit",
+   "label": "Orientierung vorhanden, zu: Zeit",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "orientierung",
+   "marker": "❼",
+   "box": {
+    "x": 43.7,
+    "y": 56.7,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "orientierung_person",
+   "label": "Orientierung vorhanden, zu: Person",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "orientierung",
+   "marker": "❼",
+   "box": {
+    "x": 43.7,
+    "y": 58.9,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "orientierung_situation",
+   "label": "Orientierung vorhanden, zu: Situation",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "orientierung",
+   "marker": "❼",
+   "box": {
+    "x": 43.7,
+    "y": 61.0,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "orientierung_nicht_vorhanden",
+   "label": "Orientierung vorhanden, zu: nicht vorhanden",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "orientierung",
+   "marker": "❼",
+   "box": {
+    "x": 43.7,
+    "y": 63.1,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "mobilitaet_uneingeschraenkt",
+   "label": "Mobilität vorhanden: uneingeschränkt",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "mobilitaet",
+   "marker": "❼",
+   "box": {
+    "x": 54.5,
+    "y": 54.6,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "mobilitaet_bettkante",
+   "label": "Mobilität vorhanden: bis an die Bettkante in den Rollstuhl",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "mobilitaet",
+   "marker": "❼",
+   "box": {
+    "x": 54.5,
+    "y": 56.7,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "mobilitaet_stehfaehig",
+   "label": "Mobilität vorhanden: stehfähig, gehfähig",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "mobilitaet",
+   "marker": "❼",
+   "box": {
+    "x": 54.5,
+    "y": 58.9,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "mobilitaet_immobil",
+   "label": "Mobilität vorhanden: immobil",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "mobilitaet",
+   "marker": "❼",
+   "box": {
+    "x": 54.5,
+    "y": 61.0,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "mobilitaet_nackengriff",
+   "label": "Mobilität vorhanden: Nackengriff",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "mobilitaet",
+   "marker": "❼",
+   "box": {
+    "x": 72.1,
+    "y": 54.6,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "mobilitaet_schuerzengriff",
+   "label": "Mobilität vorhanden: Schürzengriff",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "mobilitaet",
+   "marker": "❼",
+   "box": {
+    "x": 72.1,
+    "y": 56.7,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "mobilitaet_faustschluss",
+   "label": "Mobilität vorhanden: Faustschluss",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "mobilitaet",
+   "marker": "❼",
+   "box": {
+    "x": 72.1,
+    "y": 58.9,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "mobilitaet_pinzettengriff",
+   "label": "Mobilität vorhanden: Pinzettengriff",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "mobilitaet",
+   "marker": "❼",
+   "box": {
+    "x": 72.1,
+    "y": 61.0,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "ernaehrung_nein",
+   "label": "Orale Ernährung: nein",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "ernaehrung",
+   "marker": "❼",
+   "box": {
+    "x": 86.0,
+    "y": 54.6,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "ernaehrung_ja",
+   "label": "Orale Ernährung: ja",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "ernaehrung",
+   "marker": "❼",
+   "box": {
+    "x": 86.0,
+    "y": 56.7,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "ernaehrung_teilweise",
+   "label": "Orale Ernährung: teilweise",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "ernaehrung",
+   "marker": "❼",
+   "box": {
+    "x": 86.0,
+    "y": 58.9,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "stunden_je_tag",
+   "label": "Erforderlicher Leistungsumfang der AKI: Stunden je Tag",
+   "kind": "number",
+   "filled_by": "arzt",
+   "marker": "❽",
+   "box": {
+    "x": 49.1,
+    "y": 65.9,
+    "w": 4.7,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m62b.leistungsumfang",
+     "text": "Anzugeben ist die täglich erforderliche Stundenzahl, in der die ständige Anwesenheit einer geeigneten Pflegefachkraft zur permanenten Interventionsbereitschaft zwingend erforderlich ist (bis 24 Stunden oder zeitlich begrenzt).",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 62B, ❽, S. 126"
+     }
+    }
+   ]
+  },
+  {
+   "id": "entfall_erhebung",
+   "label": "Innerhalb von mindestens zwei Jahren wurde zweimal in Folge im Rahmen einer unmittelbar persönlichen Erhebung festgestellt, dass keine Aussicht auf nachhaltige Besserung der zu Grunde liegenden Funktionsstörung besteht und eine Entwöhnung oder Dekanülierung dauerhaft nicht möglich ist. Eine regelmäßige Erhebung des Beatmungsentwöhnungs- bzw. Dekanülierungspotenzials ist nicht mehr angezeigt.",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❾",
+   "box": {
+    "x": 10.4,
+    "y": 71.7,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": [
+    {
+     "id": "m62b.erhebung_entfall",
+     "text": "Das Feld zum Entfall der regelmäßigen Erhebung (zweimal in Folge persönlich kein Potenzial in mindestens zwei Jahren) ist anzukreuzen, wenn dies zutrifft; bei telemedizinischen Erhebungen kann diese Entscheidung nicht getroffen werden.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 62B, ❾, S. 127"
+     }
+    }
+   ]
+  },
+  {
+   "id": "opt_angezeigt",
+   "label": "Erhebungen nach Muster 62A zum Zwecke der Therapieoptimierung und zur Verbesserung der Lebensqualität sind weiterhin angezeigt",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "therapieoptimierung",
+   "marker": "❿",
+   "box": {
+    "x": 10.4,
+    "y": 79.5,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": [
+    {
+     "id": "m62b.therapieoptimierung",
+     "text": "Unter Einbeziehung von Muster 62A und Beratung mit dem Versicherten ankreuzen, ob eine regelmäßige Erhebung zur Therapieoptimierung weiter angezeigt ist; es kann auch angegeben werden, ob der Versicherte sie ablehnt.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 62B, ❿, S. 127"
+     }
+    }
+   ]
+  },
+  {
+   "id": "opt_nicht_angezeigt",
+   "label": "Erhebungen nach Muster 62A zum Zwecke der Therapieoptimierung und zur Verbesserung der Lebensqualität sind nicht mehr angezeigt",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "therapieoptimierung",
+   "marker": "❿",
+   "box": {
+    "x": 27.3,
+    "y": 79.5,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "opt_abgelehnt",
+   "label": "Erhebungen nach Muster 62A zum Zwecke der Therapieoptimierung und zur Verbesserung der Lebensqualität werden durch den Patienten nicht mehr gewünscht",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "therapieoptimierung",
+   "marker": "❿",
+   "box": {
+    "x": 47.9,
+    "y": 79.5,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "erlaeuterungen",
+   "label": "Weitere Erläuterungen",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "⓫",
+   "box": {
+    "x": 10.3,
+    "y": 83.8,
+    "w": 62.3,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m62b.erlaeuterungen",
+     "text": "Weitere Hinweise für die Krankenkasse und den Leistungserbringer nach § 132l Abs. 5 SGB V können angegeben werden.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 62B, ⓫, S. 127"
+     }
+    }
+   ]
+  },
+  {
+   "id": "konsilpartner",
+   "label": "Konsilpartner bei nicht beatmungspflichtigen oder nicht trachealkanülierten Versicherten, wenn die Verordnung durch eine nicht auf die Erkrankung spezialisierte Fachärztin oder Facharzt erfolgt",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "⓬",
+   "box": {
+    "x": 10.3,
+    "y": 89.5,
+    "w": 62.3,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m62b.konsilpartner",
+     "text": "Bei weder beatmungspflichtigen noch trachealkanülierten Versicherten wird AKI grundsätzlich von auf die Erkrankung spezialisierten Fachärzten verordnet; andere Vertragsärzte können nur im (ggf. telemedizinischen) Konsil verordnen, der Konsilpartner ist anzugeben.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 62B, ⓬, S. 127"
+     }
+    }
+   ]
+  },
+  {
+   "id": "sonstige_hinweise",
+   "label": "Sonstige Hinweise (z.B. zu Kommunikation, Mitwirkung, Mobilität, Ernährung)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "⓭",
+   "box": {
+    "x": 10.3,
+    "y": 93.7,
+    "w": 62.3,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m62b.sonstige_hinweise",
+     "text": "Weitere relevante Hinweise, insbesondere zu eingeschränkter Kommunikation, Mitwirkungsfähigkeit oder Nahrungsaufnahme, können angegeben werden.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 62B, ⓭, S. 127"
+     }
+    }
+   ]
+  },
+  {
+   "id": "stempel",
+   "label": "Vertragsarztstempel/Unterschrift des verordnenden Arztes",
+   "kind": "stempel",
+   "filled_by": "arzt",
+   "box": {
+    "x": 73.5,
+    "y": 83.8,
+    "w": 22.7,
+    "h": 12.0
+   },
+   "rules": [
+    {
+     "id": "m62b.unterschrift",
+     "text": "Erst vollständig ausfüllen, dann mit Vertragsarztstempel persönlich unterschreiben – nie blanko.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "personalien_rueck",
+   "label": "Name, Vorname des Versicherten / Kostenträgerkennung / Versicherten-Nr.",
+   "kind": "personalien",
+   "filled_by": "duria",
+   "only_copies": [
+    "62Ba"
+   ],
+   "page": 1,
+   "box": {
+    "x": 4.4,
+    "y": 1.7,
+    "w": 67.0,
+    "h": 2.8
+   },
+   "rules": [
+    {
+     "id": "m62b.personalien",
+     "text": "Die Daten der eGK werden maschinell über Kartenterminal und Praxis-EDV übertragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 5 und Nr. 6, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "antrag_vom",
+   "label": "Ich beantrage außerklinische Intensivpflege für die Zeit vom",
+   "kind": "date",
+   "filled_by": "versicherter",
+   "format": "TTMMJJ",
+   "only_copies": [
+    "62Ba"
+   ],
+   "page": 1,
+   "box": {
+    "x": 45.5,
+    "y": 8.2,
+    "w": 14.4,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m62b.antrag_vorabinfo",
+     "text": "Der Antrag des Versicherten ist bei Vorabinformation aus dem Krankenhaus nicht auszufüllen (Hinweis auf dem Vordruck).",
+     "source": {
+      "artifact": "mustersammlung",
+      "locator": "PDF-Seite 83, Muster 62Ba (1.2023)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "antrag_bis",
+   "label": "bis",
+   "kind": "date",
+   "filled_by": "versicherter",
+   "format": "TTMMJJ",
+   "only_copies": [
+    "62Ba"
+   ],
+   "page": 1,
+   "box": {
+    "x": 64.8,
+    "y": 8.2,
+    "w": 14.4,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "ort_haushalt",
+   "label": "Leistungsort: in meinem Haushalt",
+   "kind": "checkbox",
+   "filled_by": "versicherter",
+   "group": "leistungsort",
+   "only_copies": [
+    "62Ba"
+   ],
+   "page": 1,
+   "box": {
+    "x": 4.4,
+    "y": 11.1,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "ort_pflegeeinrichtung",
+   "label": "Leistungsort: in einer vollstationären Pflegeeinrichtung",
+   "kind": "checkbox",
+   "filled_by": "versicherter",
+   "group": "leistungsort",
+   "only_copies": [
+    "62Ba"
+   ],
+   "page": 1,
+   "box": {
+    "x": 4.4,
+    "y": 13.3,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "ort_fremder_haushalt",
+   "label": "Leistungsort: im Haushalt einer sonstigen Person",
+   "kind": "checkbox",
+   "filled_by": "versicherter",
+   "group": "leistungsort",
+   "only_copies": [
+    "62Ba"
+   ],
+   "page": 1,
+   "box": {
+    "x": 27.3,
+    "y": 11.1,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "ort_schule",
+   "label": "Leistungsort: in einer Schule, Kindergarten",
+   "kind": "checkbox",
+   "filled_by": "versicherter",
+   "group": "leistungsort",
+   "only_copies": [
+    "62Ba"
+   ],
+   "page": 1,
+   "box": {
+    "x": 27.3,
+    "y": 13.3,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "ort_wohnform",
+   "label": "Leistungsort: in einer betreuten Wohnform",
+   "kind": "checkbox",
+   "filled_by": "versicherter",
+   "group": "leistungsort",
+   "only_copies": [
+    "62Ba"
+   ],
+   "page": 1,
+   "box": {
+    "x": 27.3,
+    "y": 15.4,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "ort_werkstatt",
+   "label": "Leistungsort: in einer Werkstatt für behinderte Menschen",
+   "kind": "checkbox",
+   "filled_by": "versicherter",
+   "group": "leistungsort",
+   "only_copies": [
+    "62Ba"
+   ],
+   "page": 1,
+   "box": {
+    "x": 62.4,
+    "y": 11.1,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "ort_wohneinheit",
+   "label": "Leistungsort: in einer Wohneinheit",
+   "kind": "checkbox",
+   "filled_by": "versicherter",
+   "group": "leistungsort",
+   "only_copies": [
+    "62Ba"
+   ],
+   "page": 1,
+   "box": {
+    "x": 62.4,
+    "y": 13.3,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "ort_sonstige_einrichtung",
+   "label": "Leistungsort: in einer sonstigen Einrichtung",
+   "kind": "checkbox",
+   "filled_by": "versicherter",
+   "group": "leistungsort",
+   "only_copies": [
+    "62Ba"
+   ],
+   "page": 1,
+   "box": {
+    "x": 62.4,
+    "y": 15.4,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "leistungsort",
+   "label": "Leistungsort: Name des Leistungsortes, Straße, Haus-Nr, PLZ, Ort",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "lines": 3,
+   "only_copies": [
+    "62Ba"
+   ],
+   "page": 1,
+   "box": {
+    "x": 4.3,
+    "y": 18.9,
+    "w": 85.9,
+    "h": 8.6
+   },
+   "rules": []
+  },
+  {
+   "id": "angehoerige_ja",
+   "label": "Ja, es wird die Übernahme folgender Maßnahmen der außerklinischen Intensivpflege durch An- und Zugehörige angestrebt",
+   "kind": "checkbox",
+   "filled_by": "versicherter",
+   "group": "angehoerige_uebernahme",
+   "only_copies": [
+    "62Ba"
+   ],
+   "page": 1,
+   "box": {
+    "x": 4.4,
+    "y": 29.6,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "angehoerige_massnahmen",
+   "label": "Übernahme folgender Maßnahmen der außerklinischen Intensivpflege durch An- und Zugehörige",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "lines": 2,
+   "only_copies": [
+    "62Ba"
+   ],
+   "page": 1,
+   "box": {
+    "x": 7.9,
+    "y": 31.7,
+    "w": 82.2,
+    "h": 4.3
+   },
+   "rules": []
+  },
+  {
+   "id": "angehoerige_nein",
+   "label": "Nein, es wird keine Übernahme von Maßnahmen der außerklinischen Intensivpflege durch An- und Zugehörige angestrebt",
+   "kind": "checkbox",
+   "filled_by": "versicherter",
+   "group": "angehoerige_uebernahme",
+   "only_copies": [
+    "62Ba"
+   ],
+   "page": 1,
+   "box": {
+    "x": 4.4,
+    "y": 36.8,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "angehoerige",
+   "label": "An der Versorgung beteiligte An- und Zugehörige: Name, Straße, Haus-Nr, PLZ, Ort",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "lines": 3,
+   "only_copies": [
+    "62Ba"
+   ],
+   "page": 1,
+   "box": {
+    "x": 4.3,
+    "y": 41.7,
+    "w": 61.7,
+    "h": 8.6
+   },
+   "rules": []
+  },
+  {
+   "id": "datum_versicherter",
+   "label": "Datum (Versicherte/r)",
+   "kind": "date",
+   "filled_by": "versicherter",
+   "format": "TTMMJJ",
+   "only_copies": [
+    "62Ba"
+   ],
+   "page": 1,
+   "box": {
+    "x": 75.7,
+    "y": 49.6,
+    "w": 14.4,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "bevollmaechtigte",
+   "label": "Bevollmächtigte/r bzw. Betreuer/in: Name, Straße, Haus-Nr, PLZ, Ort, Telefonnummer (freiwillige Angabe)",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "lines": 4,
+   "only_copies": [
+    "62Ba"
+   ],
+   "page": 1,
+   "box": {
+    "x": 4.3,
+    "y": 53.1,
+    "w": 61.7,
+    "h": 11.4
+   },
+   "rules": []
+  },
+  {
+   "id": "unterschrift_versicherter",
+   "label": "Unterschrift des Versicherten oder des gesetzlichen Vertreters",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "only_copies": [
+    "62Ba"
+   ],
+   "page": 1,
+   "box": {
+    "x": 67.4,
+    "y": 52.5,
+    "w": 22.7,
+    "h": 12.0
+   },
+   "rules": []
+  },
+  {
+   "id": "le_vom",
+   "label": "Die außerklinische Intensivpflege wird täglich in der Zeit vom",
+   "kind": "date",
+   "filled_by": "leistungserbringer",
+   "format": "TTMMJJ",
+   "only_copies": [
+    "62Ba"
+   ],
+   "page": 1,
+   "box": {
+    "x": 8.0,
+    "y": 70.9,
+    "w": 14.4,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m62b.le_vorabinfo",
+     "text": "Die Angaben des Leistungserbringers nach § 132l Abs. 5 SGB V sind bei Vorabinformation aus dem Krankenhaus nicht auszufüllen (Hinweis auf dem Vordruck).",
+     "source": {
+      "artifact": "mustersammlung",
+      "locator": "PDF-Seite 83, Muster 62Ba (1.2023)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "le_bis",
+   "label": "bis",
+   "kind": "date",
+   "filled_by": "leistungserbringer",
+   "format": "TTMMJJ",
+   "only_copies": [
+    "62Ba"
+   ],
+   "page": 1,
+   "box": {
+    "x": 26.1,
+    "y": 70.9,
+    "w": 14.4,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "le_stunden",
+   "label": "im Umfang von … Stunden erbracht",
+   "kind": "number",
+   "filled_by": "leistungserbringer",
+   "only_copies": [
+    "62Ba"
+   ],
+   "page": 1,
+   "box": {
+    "x": 52.7,
+    "y": 70.9,
+    "w": 4.7,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "le_adresse",
+   "label": "Zugelassener Leistungserbringer (§ 132l Abs. 5 SGB V): Name, Straße, Haus-Nr, PLZ, Ort",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "lines": 3,
+   "only_copies": [
+    "62Ba"
+   ],
+   "page": 1,
+   "box": {
+    "x": 4.3,
+    "y": 75.9,
+    "w": 61.7,
+    "h": 8.6
+   },
+   "rules": []
+  },
+  {
+   "id": "le_ik",
+   "label": "Institutionskennzeichen",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "only_copies": [
+    "62Ba"
+   ],
+   "page": 1,
+   "box": {
+    "x": 4.3,
+    "y": 84.5,
+    "w": 21.8,
+    "h": 2.9
+   },
+   "rules": []
+  },
+  {
+   "id": "le_ansprechpartner",
+   "label": "Ansprechpartner (Name)",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "only_copies": [
+    "62Ba"
+   ],
+   "page": 1,
+   "box": {
+    "x": 4.3,
+    "y": 87.3,
+    "w": 61.7,
+    "h": 2.9
+   },
+   "rules": []
+  },
+  {
+   "id": "le_telefon",
+   "label": "Telefonnummer",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "only_copies": [
+    "62Ba"
+   ],
+   "page": 1,
+   "box": {
+    "x": 4.3,
+    "y": 90.2,
+    "w": 30.8,
+    "h": 2.9
+   },
+   "rules": []
+  },
+  {
+   "id": "le_fax",
+   "label": "Fax-Nr.",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "only_copies": [
+    "62Ba"
+   ],
+   "page": 1,
+   "box": {
+    "x": 35.1,
+    "y": 90.2,
+    "w": 30.9,
+    "h": 2.9
+   },
+   "rules": []
+  },
+  {
+   "id": "le_email",
+   "label": "E-Mail-Adresse",
+   "kind": "text",
+   "filled_by": "leistungserbringer",
+   "only_copies": [
+    "62Ba"
+   ],
+   "page": 1,
+   "box": {
+    "x": 4.3,
+    "y": 93.0,
+    "w": 61.7,
+    "h": 2.9
+   },
+   "rules": []
+  },
+  {
+   "id": "le_datum",
+   "label": "Datum (Leistungserbringer)",
+   "kind": "date",
+   "filled_by": "leistungserbringer",
+   "format": "TTMMJJ",
+   "only_copies": [
+    "62Ba"
+   ],
+   "page": 1,
+   "box": {
+    "x": 75.7,
+    "y": 80.9,
+    "w": 14.4,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "le_stempel",
+   "label": "Stempel / Unterschrift des Leistungserbringers",
+   "kind": "stempel",
+   "filled_by": "leistungserbringer",
+   "only_copies": [
+    "62Ba"
+   ],
+   "page": 1,
+   "box": {
+    "x": 67.4,
+    "y": 83.8,
+    "w": 22.7,
+    "h": 12.0
+   },
+   "rules": []
+  }
+ ]
+}
