@@ -143,3 +143,86 @@ describe('Muster 20 – Wiedereingliederungsplan', () => {
     expect(texts(issues, 'hinweis')).toContain('sechs Monate');
   });
 });
+
+describe('Muster 55 – Chroniker', () => {
+  it('„Chroniker-Bescheinigung“ → Muster 55, Diagnosen mit Sicherheit, unbefristet', () => {
+    expect(analyse('Chroniker-Bescheinigung für die Zuzahlungsbefreiung').suggestions[0]?.formId).toBe('muster-55');
+    const { p, issues } = run('muster-55', 'Chronikerbescheinigung: Diabetes mellitus E11.9 G, Hypertonie I10.90 G, Dauerbehandlung seit 15.01.2019, Behandlung weiterhin erforderlich, dauerhaft');
+    expect(field(p, 'seit').value).toBe('150119');
+    expect([field(p, 'icd1').value, field(p, 'icd2').value]).toEqual(['E11.9 G', 'I10.90 G']);
+    expect(field(p, 'versorgung_unbefristet').value).toBe(true);
+    expect(texts(issues, 'fehlt')).toBe('');
+    expect(texts(issues, 'hinweis')).toContain('Kalenderjahr');
+  });
+  it('„seit 2019“ ohne Tag → Datum aus der Kartei ergänzen; Dauerbehandlung unter einem Jahr unzulässig', () => {
+    const { p, facts } = run('muster-55', 'Chroniker, in Behandlung seit 2019, E11.9 G');
+    expect(field(p, 'seit').state).toBe('unbekannt');
+    const issues = check('muster-55', { ...valuesOf(p.fields), seit: '010926', versorgung_unbefristet: true }, facts);
+    expect(texts(issues, 'unzulaessig')).toContain('mindestens ein Jahr');
+  });
+  it('„voraussichtlich bis 12/27“ → MMJJ; falsches Format unzulässig', () => {
+    const { p, facts } = run('muster-55', 'Chroniker E11.9 G seit 01.02.2020, voraussichtlich bis 12/2027');
+    expect([field(p, 'versorgung_bis').value, field(p, 'bis').value]).toEqual([true, '1227']);
+    expect(texts(check('muster-55', { ...valuesOf(p.fields), bis: '1327' }, facts), 'unzulaessig')).toContain('MMJJ');
+  });
+});
+
+describe('Muster 19 – Notfall-/Vertretungsschein', () => {
+  it('Bereitschaftsdienst → Muster 19, Notfalldienst angekreuzt, Quartal, AU bis', () => {
+    expect(analyse('Notfallschein im Bereitschaftsdienst, Gastroenteritis').suggestions[0]?.formId).toBe('muster-19');
+    const { p, issues } = run('muster-19', 'Notfallschein im Bereitschaftsdienst wegen Gastroenteritis A09.9 G, AU bis 30.10.2026. Befund: Exsikkose leicht. Therapie: Flüssigkeit');
+    expect(field(p, 'notfalldienst').value).toBe(true);
+    expect(field(p, 'quartal').value).toBe('426');
+    expect(field(p, 'au_bis').value).toBe('301026');
+    expect(field(p, 'leistungen').state).toBe('leer');
+    expect(texts(issues, 'unzulaessig')).toBe('');
+    expect(texts(issues, 'fehlt')).toBe('');
+  });
+  it('Arbeitsunfall → nicht zu verwenden', () => {
+    expect(texts(run('muster-19', 'Vertretungsschein, Arbeitsunfall auf der Baustelle').issues, 'unzulaessig')).toContain('nicht zu verwenden');
+  });
+});
+
+describe('Muster 52 – Bericht bei Fortbestehen der AU', () => {
+  it('Anfrage der Kasse → Muster 52, Diagnosen, Tätigkeit, Maßnahmen, Überweisung, keine Erwerbsminderung', () => {
+    expect(analyse('Anfrage der Krankenkasse, Bericht bei Fortbestehen der AU').suggestions[0]?.formId).toBe('muster-52');
+    expect(analyse('Bericht für die Krankenkasse: M51.2 G, Überweisung zum Orthopäden, Reha beantragt').suggestions.map((x) => x.formId)).toEqual(['muster-52']);
+    const { p, issues } = run('muster-52', 'Bericht für die Krankenkasse: M51.2 G, arbeitet als Lagerist, 40 Stunden pro Woche. Physiotherapie seit 01.10. Reha beantragt. Überweisung zum Orthopäden. Kein Hinweis auf Erwerbsminderung.');
+    expect(field(p, 'icd1').value).toBe('M51.2 G');
+    expect([field(p, 'taetigkeit').value, field(p, 'stunden_woche').value]).toEqual(['Lagerist', '40']);
+    expect(field(p, 'heilmittel').value).toContain('Physiotherapie');
+    expect(field(p, 'reha_beantragt').value).toBe(true);
+    expect(field(p, 'ueberw_ja').value).toBe(true);
+    expect(field(p, 'em_nein').value).toBe(true);
+    expect(texts(issues, 'unzulaessig')).toBe('');
+    expect(texts(issues, 'fehlt')).toBe('');
+  });
+  it('Arbeitslosengeld: 2.2 statt 2.1; Wiedereingliederung gilt nicht für Arbeitslose; „keine“ braucht Begründung', () => {
+    const { p, facts } = run('muster-52', 'Bericht für die Kasse, F32.1 G, bezieht Arbeitslosengeld, steht der Vermittlung 30 Stunden zur Verfügung');
+    expect(field(p, 'alg').value).toBe(true);
+    expect(field(p, 'alg_stunden').value).toBe('30');
+    expect(field(p, 'taetigkeit').state).toBe('leer');
+    const issues = check('muster-52', { ...valuesOf(p.fields), stw_geplant: true, keine: true }, facts);
+    expect(texts(issues, 'unzulaessig')).toContain('nicht für Arbeitslose');
+    expect(texts(issues, 'fehlt')).toContain('Begründung');
+  });
+});
+
+describe('Muster 63 – SAPV', () => {
+  it('SAPV-Erstverordnung: Symptome, Zeitraum, Maßnahmen', () => {
+    expect(analyse('SAPV verordnen, Pankreaskarzinom').suggestions[0]?.formId).toBe('muster-63');
+    const { p, issues } = run('muster-63', 'SAPV Erstverordnung vom 28.10. bis 10.11.2026 wegen Pankreaskarzinom C25.9 G mit Lebermetastasen. Tumorschmerz therapierefraktär, Erbrechen. Beschreibung: therapierefraktäre Schmerzen trotz Opioid, nicht beherrschbares Erbrechen. Medikation: Hydromorphon 4 mg retard 2x tgl. (BtM), Metoclopramid. Koordination und additive Teilversorgung, Beratung der Angehörigen.');
+    expect(field(p, 'erst').value).toBe(true);
+    expect([field(p, 'vom').value, field(p, 'bis').value]).toEqual(['281026', '101126']);
+    expect([field(p, 'schmerz').value, field(p, 'gastro').value]).toEqual([true, true]);
+    expect([field(p, 'koordination').value, field(p, 'teilversorgung').value, field(p, 'beratung').value, field(p, 'beratung_patient').value]).toEqual([true, true, true, true]);
+    expect(texts(issues, 'unzulaessig')).toBe('');
+    expect(texts(issues, 'fehlt')).toBe('');
+  });
+  it('ohne Symptomgeschehen und Maßnahmen: fehlt; Teil- und Vollversorgung zugleich unzulässig', () => {
+    const { p, facts } = run('muster-63', 'SAPV bitte');
+    const issues = check('muster-63', { ...valuesOf(p.fields), teilversorgung: true, vollversorgung: true }, facts);
+    expect(texts(issues, 'fehlt')).toContain('komplexes Symptomgeschehen');
+    expect(texts(issues, 'unzulaessig')).toContain('Teilversorgung');
+  });
+});

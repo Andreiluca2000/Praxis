@@ -64,7 +64,8 @@ export function formatIssues(form: FormDefinition, values: FormValues): FormIssu
     if (f.format === 'TTMMJJ' && !validTTMMJJ(v)) out.push(issue(form, 'unzulaessig', `${f.label}: Datum als TTMMJJ eintragen (z. B. 311026), „${v}“ ist kein gültiges Datum.`, [f.id], f.rules[0]?.id ?? null));
     if (f.format === 'QJJ' && !/^[1-4]\d{2}$/.test(v)) out.push(issue(form, 'unzulaessig', `${f.label}: Quartal als QJJ eintragen (z. B. 426 für 4/2026).`, [f.id], f.rules[0]?.id ?? null));
     if (f.format === 'hhmm' && !/^([01]\d|2[0-3])[0-5]\d$/.test(v)) out.push(issue(form, 'unzulaessig', `${f.label}: Uhrzeit als hhmm eintragen (z. B. 0815).`, [f.id], f.rules[0]?.id ?? null));
-    if (f.kind === 'number' && !/^\d{1,2}$/.test(v)) out.push(issue(form, 'unzulaessig', `${f.label}: nur eine Zahl eintragen.`, [f.id], null));
+    if (f.format === 'MMJJ' && !/^(0[1-9]|1[0-2])\d{2}$/.test(v)) out.push(issue(form, 'unzulaessig', `${f.label}: Monat und Jahr als MMJJ eintragen (z. B. 1227).`, [f.id], f.rules[0]?.id ?? null));
+    if (f.kind === 'number' && !/^\d{1,2}(,5)?$/.test(v)) out.push(issue(form, 'unzulaessig', `${f.label}: nur eine Zahl eintragen.`, [f.id], null));
   }
   return out;
 }

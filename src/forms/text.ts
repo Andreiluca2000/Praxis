@@ -129,6 +129,7 @@ const LABELS = [
   'allergien?', 'fragestellung', 'hinweise?', 'mitgegeben', 'mitgegebene befunde', 'anlagen?', 'auftrag', 'diagnose', 'ekg', 'labor',
   'leitsymptomatik', 'therapieziele?', 'heilmittel', 'einschränkungen?', 'präparate', 'verbandmaterial', 'anamnese', 'kontext', 'lebensumstände', 'rehaziele?', 'ziele?',
   'zuletzt ausgeübte tätigkeit', 'tätigkeit', 'beruf', 'stufenplan', 'plan',
+  'funktionseinschränkungen?', 'konservativ', 'operativ', 'sonstiges?', 'beschreibung', 'begründung', 'symptome', 'versorgungsbedarf', 'medikamente', 'ausrichtung',
 ];
 const LABEL_RE = new RegExp(`(?:^|[\\s.;,(])(${LABELS.join('|')})\\s*:`, 'giu');
 

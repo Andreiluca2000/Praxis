@@ -23,7 +23,7 @@ export interface FormField {
   label: string;
   kind: FieldKind;
   filled_by: FilledBy;
-  format?: 'QJJ' | 'TTMMJJ' | 'hhmm';
+  format?: 'QJJ' | 'TTMMJJ' | 'MMJJ' | 'hhmm';
   group?: string;
   marker?: string;
   lines?: number;
@@ -59,7 +59,7 @@ export interface FormDefinition {
   fields: FormField[];
 }
 
-export type FormId = 'muster-06' | 'muster-02' | 'muster-04' | 'muster-10' | 'muster-10a' | 'muster-21' | 'muster-20' | 'muster-13' | 'muster-12' | 'muster-61';
+export type FormId = 'muster-06' | 'muster-02' | 'muster-04' | 'muster-10' | 'muster-10a' | 'muster-21' | 'muster-20' | 'muster-55' | 'muster-19' | 'muster-52' | 'muster-63' | 'muster-13' | 'muster-12' | 'muster-61';
 
 /**
  * Zustand eines Feldes im Vorschlag:
@@ -146,7 +146,7 @@ export interface PatientFacts {
   kitaUnfall: Fact<true> | null;
 }
 
-export type Intent = 'ueberweisung' | 'einweisung' | 'befoerderung' | 'labor' | 'heilmittel' | 'hkp' | 'reha' | 'kinderkrank' | 'wiedereingliederung';
+export type Intent = 'ueberweisung' | 'einweisung' | 'befoerderung' | 'labor' | 'heilmittel' | 'hkp' | 'reha' | 'kinderkrank' | 'wiedereingliederung' | 'chroniker' | 'notfallschein' | 'au_bericht' | 'sapv';
 
 export interface FormSuggestion {
   formId: FormId;

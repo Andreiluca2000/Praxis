@@ -1,0 +1,782 @@
+{
+ "schema_version": "1.0.0",
+ "id": "muster-52",
+ "muster": "52",
+ "title": "Bericht für die Krankenkasse bei Fortbestehen der Arbeitsunfähigkeit",
+ "form_version": "4.2025",
+ "released": "2024-11-06",
+ "status": "entwurf",
+ "paper": {
+  "format": "DIN A4 hoch",
+  "width": 595.3,
+  "height": 841.9,
+  "tint": "rot"
+ },
+ "copies": [
+  {
+   "id": "52",
+   "label": "Bericht",
+   "recipient": "Krankenkasse (Freiumschlag der Kasse)"
+  }
+ ],
+ "notes": [
+  {
+   "id": "m52.anforderung",
+   "text": "Das Muster wird nur auf Anfrage der Krankenkasse ausgefüllt. Die Kasse fordert es in der Regel frühestens nach kumulativ 21 Tagen Arbeitsunfähigkeit an und stellt einen Freiumschlag zur Verfügung.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 52, Einleitung, S. 88"
+   }
+  },
+  {
+   "id": "m52.frist",
+   "text": "Der Vertragsarzt übermittelt die Informationen auf Anforderung in der Regel innerhalb von drei Werktagen.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 52, Einleitung, S. 88"
+   }
+  },
+  {
+   "id": "m52.au_rl",
+   "text": "Umfang der Daten und Beurteilungsmaßstäbe regelt die AU-Richtlinie; nach § 2 AU-RL gelten je nach Beschäftigung, Arbeitslosigkeit oder Bürgergeld-Bezug unterschiedliche Maßstäbe für Arbeitsunfähigkeit.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 52, Einleitung, S. 88"
+   }
+  },
+  {
+   "id": "m52.einleitung",
+   "text": "Entsprechende Maßnahmen sollen möglichst gleichzeitig mit dem Versicherten eingeleitet und Angaben zur Antragstellung gemacht werden; ist eine direkte Einleitung nicht möglich, wird die Empfehlung angegeben.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 52, ❸, S. 90"
+   }
+  },
+  {
+   "id": "m52.erwerbsminderung",
+   "text": "Anzugeben ist, ob Hinweise auf eine bestehende oder drohende Erwerbsminderung vorliegen; die Krankenkasse benötigt dies für ihre Prüfung nach § 51 SGB V.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 52, ❺, S. 91"
+   }
+  },
+  {
+   "id": "m52.ebm",
+   "text": "Für das Ausstellen dieses Berichts ist die Nr. 01622 EBM berechnungsfähig (Aufdruck auf dem Vordruck).",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 62, Muster 52 (4.2025)"
+   }
+  }
+ ],
+ "groups": [
+  {
+   "id": "alg_leicht",
+   "label": "2.2 Leichte Tätigkeiten im angegebenen Umfang möglich",
+   "select": "genau_eins",
+   "rule": {
+    "id": "m52.taetigkeit",
+    "text": "Bei Erwerbstätigen Art und zeitlichen Umfang der zuletzt ausgeübten Beschäftigung angeben; bei Arbeitslosengeld-Beziehern den Umfang, für den sie der Agentur für Arbeit zur Verfügung stehen, und ob sie leichte Tätigkeiten in diesem Umfang ausüben können.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 52, ❷, S. 90"
+    }
+   }
+  },
+  {
+   "id": "stw",
+   "label": "Stufenweise Wiedereingliederung",
+   "select": "beliebig",
+   "rule": {
+    "id": "m52.einleitung",
+    "text": "Entsprechende Maßnahmen sollen möglichst gleichzeitig mit dem Versicherten eingeleitet und Angaben zur Antragstellung gemacht werden; ist eine direkte Einleitung nicht möglich, wird die Empfehlung angegeben.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 52, ❸, S. 90"
+    }
+   }
+  },
+  {
+   "id": "reha",
+   "label": "Medizinische Rehabilitation",
+   "select": "beliebig",
+   "rule": {
+    "id": "m52.einleitung",
+    "text": "Entsprechende Maßnahmen sollen möglichst gleichzeitig mit dem Versicherten eingeleitet und Angaben zur Antragstellung gemacht werden; ist eine direkte Einleitung nicht möglich, wird die Empfehlung angegeben.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 52, ❸, S. 90"
+    }
+   }
+  },
+  {
+   "id": "schulung",
+   "label": "Patientenschulung",
+   "select": "beliebig",
+   "rule": {
+    "id": "m52.einleitung",
+    "text": "Entsprechende Maßnahmen sollen möglichst gleichzeitig mit dem Versicherten eingeleitet und Angaben zur Antragstellung gemacht werden; ist eine direkte Einleitung nicht möglich, wird die Empfehlung angegeben.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 52, ❸, S. 90"
+    }
+   }
+  },
+  {
+   "id": "ueberweisung",
+   "label": "4. Überweisung zur fachärztlichen Mitbehandlung",
+   "select": "genau_eins",
+   "rule": {
+    "id": "m52.ueberweisung",
+    "text": "Angaben zu Überweisungen zu weiteren behandelnden Ärztinnen und Ärzten (fachärztliche Mitbehandlung) machen.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 52, ❹, S. 90–91"
+    }
+   }
+  },
+  {
+   "id": "erwerbsminderung",
+   "label": "5. Bestehende oder drohende Erwerbsminderung",
+   "select": "genau_eins",
+   "rule": {
+    "id": "m52.erwerbsminderung",
+    "text": "Anzugeben ist, ob Hinweise auf eine bestehende oder drohende Erwerbsminderung vorliegen; die Krankenkasse benötigt dies für ihre Prüfung nach § 51 SGB V.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 52, ❺, S. 91"
+    }
+   }
+  }
+ ],
+ "fields": [
+  {
+   "id": "personalien",
+   "label": "Personalienfeld (Kasse, Name, geb. am, Kostenträgerkennung, Versicherten-Nr., Status, BSNR, LANR, Datum)",
+   "kind": "personalien",
+   "filled_by": "duria",
+   "box": {
+    "x": 4.4,
+    "y": 1.7,
+    "w": 38.0,
+    "h": 15.7
+   },
+   "rules": [
+    {
+     "id": "m52.personalien",
+     "text": "Die Daten der eGK werden maschinell über Kartenterminal und Praxis-EDV übertragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 5 und Nr. 6, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "icd1",
+   "label": "1. Diagnose 1 (ICD-10-Code)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❶",
+   "box": {
+    "x": 9.1,
+    "y": 21.0,
+    "w": 13.9,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m52.diagnosen",
+     "text": "Alle die aktuelle Arbeitsunfähigkeit begründenden Diagnosen im ICD-10-Format angeben; Funktionseinschränkungen können im Freitext stehen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 52, ❶, S. 88"
+     }
+    }
+   ]
+  },
+  {
+   "id": "icd2",
+   "label": "1. Diagnose 2 (ICD-10-Code)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❶",
+   "box": {
+    "x": 23.6,
+    "y": 21.0,
+    "w": 13.9,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "icd3",
+   "label": "1. Diagnose 3 (ICD-10-Code)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❶",
+   "box": {
+    "x": 38.1,
+    "y": 21.0,
+    "w": 13.9,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "icd4",
+   "label": "1. Diagnose 4 (ICD-10-Code)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❶",
+   "box": {
+    "x": 52.7,
+    "y": 21.0,
+    "w": 13.9,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "icd5",
+   "label": "1. Diagnose 5 (ICD-10-Code)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❶",
+   "box": {
+    "x": 67.2,
+    "y": 21.0,
+    "w": 13.9,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "icd6",
+   "label": "1. Diagnose 6 (ICD-10-Code)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❶",
+   "box": {
+    "x": 81.7,
+    "y": 21.0,
+    "w": 14.5,
+    "h": 2.1
+   },
+   "rules": []
+  },
+  {
+   "id": "funktion",
+   "label": "1. ggf. sich daraus ergebende Funktionseinschränkungen",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 3,
+   "marker": "❶",
+   "box": {
+    "x": 9.1,
+    "y": 25.3,
+    "w": 87.1,
+    "h": 6.4
+   },
+   "rules": [
+    {
+     "id": "m52.diagnosen",
+     "text": "Alle die aktuelle Arbeitsunfähigkeit begründenden Diagnosen im ICD-10-Format angeben; Funktionseinschränkungen können im Freitext stehen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 52, ❶, S. 88"
+     }
+    }
+   ]
+  },
+  {
+   "id": "taetigkeit",
+   "label": "2.1 erwerbstätig als",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❷",
+   "box": {
+    "x": 24.8,
+    "y": 35.3,
+    "w": 71.4,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m52.taetigkeit",
+     "text": "Bei Erwerbstätigen Art und zeitlichen Umfang der zuletzt ausgeübten Beschäftigung angeben; bei Arbeitslosengeld-Beziehern den Umfang, für den sie der Agentur für Arbeit zur Verfügung stehen, und ob sie leichte Tätigkeiten in diesem Umfang ausüben können.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 52, ❷, S. 90"
+     }
+    }
+   ]
+  },
+  {
+   "id": "stunden_woche",
+   "label": "2.1 regelmäßige Arbeitszeit (Stunden pro Woche)",
+   "kind": "number",
+   "filled_by": "praxis",
+   "marker": "❷",
+   "box": {
+    "x": 24.9,
+    "y": 38.1,
+    "w": 4.7,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m52.taetigkeit",
+     "text": "Bei Erwerbstätigen Art und zeitlichen Umfang der zuletzt ausgeübten Beschäftigung angeben; bei Arbeitslosengeld-Beziehern den Umfang, für den sie der Agentur für Arbeit zur Verfügung stehen, und ob sie leichte Tätigkeiten in diesem Umfang ausüben können.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 52, ❷, S. 90"
+     }
+    }
+   ]
+  },
+  {
+   "id": "alg",
+   "label": "2.2 Empfänger von Arbeitslosengeld",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "marker": "❷",
+   "box": {
+    "x": 12.8,
+    "y": 42.5,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": [
+    {
+     "id": "m52.taetigkeit",
+     "text": "Bei Erwerbstätigen Art und zeitlichen Umfang der zuletzt ausgeübten Beschäftigung angeben; bei Arbeitslosengeld-Beziehern den Umfang, für den sie der Agentur für Arbeit zur Verfügung stehen, und ob sie leichte Tätigkeiten in diesem Umfang ausüben können.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 52, ❷, S. 90"
+     }
+    }
+   ]
+  },
+  {
+   "id": "alg_stunden",
+   "label": "2.2 der Arbeitsvermittlung zur Verfügung gestellt (Stunden pro Woche)",
+   "kind": "number",
+   "filled_by": "praxis",
+   "marker": "❷",
+   "box": {
+    "x": 80.6,
+    "y": 42.4,
+    "w": 4.7,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m52.taetigkeit",
+     "text": "Bei Erwerbstätigen Art und zeitlichen Umfang der zuletzt ausgeübten Beschäftigung angeben; bei Arbeitslosengeld-Beziehern den Umfang, für den sie der Agentur für Arbeit zur Verfügung stehen, und ob sie leichte Tätigkeiten in diesem Umfang ausüben können.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 52, ❷, S. 90"
+     }
+    }
+   ]
+  },
+  {
+   "id": "alg_leicht_nein",
+   "label": "2.2 leichte Tätigkeiten in diesem Umfang: nein",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "alg_leicht",
+   "marker": "❷",
+   "box": {
+    "x": 80.6,
+    "y": 45.3,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "alg_leicht_ja",
+   "label": "2.2 leichte Tätigkeiten in diesem Umfang: ja",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "alg_leicht",
+   "marker": "❷",
+   "box": {
+    "x": 89.0,
+    "y": 45.3,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "konservativ",
+   "label": "3. konservativ (ggf. wann und welche)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❸",
+   "box": {
+    "x": 24.8,
+    "y": 51.0,
+    "w": 71.4,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m52.massnahmen",
+     "text": "Vorgesehene diagnostische, therapeutische und rehabilitative Maßnahmen angeben (z. B. Heilmittel, stufenweise Wiedereingliederung, Rehabilitation, Patientenschulung). Sind keine Maßnahmen angezeigt, ist dies anzukreuzen und zu begründen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 52, ❸, S. 90"
+     }
+    }
+   ]
+  },
+  {
+   "id": "operativ",
+   "label": "3. operativ (ggf. wann und welche)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❸",
+   "box": {
+    "x": 24.8,
+    "y": 53.8,
+    "w": 71.4,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m52.massnahmen",
+     "text": "Vorgesehene diagnostische, therapeutische und rehabilitative Maßnahmen angeben (z. B. Heilmittel, stufenweise Wiedereingliederung, Rehabilitation, Patientenschulung). Sind keine Maßnahmen angezeigt, ist dies anzukreuzen und zu begründen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 52, ❸, S. 90"
+     }
+    }
+   ]
+  },
+  {
+   "id": "heilmittel",
+   "label": "3. Heilmittel (ggf. seit wann und welche)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❸",
+   "box": {
+    "x": 24.8,
+    "y": 56.7,
+    "w": 71.4,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m52.massnahmen",
+     "text": "Vorgesehene diagnostische, therapeutische und rehabilitative Maßnahmen angeben (z. B. Heilmittel, stufenweise Wiedereingliederung, Rehabilitation, Patientenschulung). Sind keine Maßnahmen angezeigt, ist dies anzukreuzen und zu begründen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 52, ❸, S. 90"
+     }
+    }
+   ]
+  },
+  {
+   "id": "stw_geplant",
+   "label": "3. Stufenweise Wiedereingliederung geplant",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "stw",
+   "marker": "❸",
+   "box": {
+    "x": 34.6,
+    "y": 59.6,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": [
+    {
+     "id": "m52.wiedereingliederung",
+     "text": "Stufenweise Wiedereingliederung „gilt nicht für Arbeitslose“ (Aufdruck auf dem Vordruck).",
+     "source": {
+      "artifact": "mustersammlung",
+      "locator": "PDF-Seite 62, Muster 52 (4.2025)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "stw_eingeleitet",
+   "label": "3. Stufenweise Wiedereingliederung eingeleitet",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "stw",
+   "marker": "❸",
+   "box": {
+    "x": 46.7,
+    "y": 59.6,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "reha_geplant",
+   "label": "3. Medizinische Rehabilitation geplant",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "reha",
+   "marker": "❸",
+   "box": {
+    "x": 34.6,
+    "y": 62.4,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "reha_beantragt",
+   "label": "3. Medizinische Rehabilitation beantragt",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "reha",
+   "marker": "❸",
+   "box": {
+    "x": 46.7,
+    "y": 62.4,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "schulung_geplant",
+   "label": "3. Patientenschulung geplant",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "schulung",
+   "marker": "❸",
+   "box": {
+    "x": 34.6,
+    "y": 65.3,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "schulung_eingeleitet",
+   "label": "3. Patientenschulung eingeleitet",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "schulung",
+   "marker": "❸",
+   "box": {
+    "x": 46.7,
+    "y": 65.3,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "sonstige",
+   "label": "3. Sonstige (therapeutische) Maßnahmen (ggf. wann und welche)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 3,
+   "marker": "❸",
+   "box": {
+    "x": 9.1,
+    "y": 70.9,
+    "w": 61.7,
+    "h": 6.4
+   },
+   "rules": [
+    {
+     "id": "m52.massnahmen",
+     "text": "Vorgesehene diagnostische, therapeutische und rehabilitative Maßnahmen angeben (z. B. Heilmittel, stufenweise Wiedereingliederung, Rehabilitation, Patientenschulung). Sind keine Maßnahmen angezeigt, ist dies anzukreuzen und zu begründen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 52, ❸, S. 90"
+     }
+    }
+   ]
+  },
+  {
+   "id": "keine",
+   "label": "3. keine Maßnahmen",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "marker": "❸",
+   "box": {
+    "x": 9.2,
+    "y": 78.1,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": [
+    {
+     "id": "m52.massnahmen",
+     "text": "Vorgesehene diagnostische, therapeutische und rehabilitative Maßnahmen angeben (z. B. Heilmittel, stufenweise Wiedereingliederung, Rehabilitation, Patientenschulung). Sind keine Maßnahmen angezeigt, ist dies anzukreuzen und zu begründen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 52, ❸, S. 90"
+     }
+    }
+   ]
+  },
+  {
+   "id": "keine_begruendung",
+   "label": "3. Begründung, warum keine Maßnahmen",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 2,
+   "marker": "❸",
+   "box": {
+    "x": 24.8,
+    "y": 78.1,
+    "w": 46.0,
+    "h": 4.3
+   },
+   "rules": [
+    {
+     "id": "m52.massnahmen",
+     "text": "Vorgesehene diagnostische, therapeutische und rehabilitative Maßnahmen angeben (z. B. Heilmittel, stufenweise Wiedereingliederung, Rehabilitation, Patientenschulung). Sind keine Maßnahmen angezeigt, ist dies anzukreuzen und zu begründen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 52, ❸, S. 90"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ueberw_nein",
+   "label": "4. Überweisung zur fachärztlichen Mitbehandlung: nein",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "ueberweisung",
+   "marker": "❹",
+   "box": {
+    "x": 9.2,
+    "y": 85.2,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "ueberw_ja",
+   "label": "4. Überweisung zur fachärztlichen Mitbehandlung: ja",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "ueberweisung",
+   "marker": "❹",
+   "box": {
+    "x": 18.9,
+    "y": 85.2,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "fachrichtung",
+   "label": "4. Fachrichtung",
+   "kind": "text",
+   "filled_by": "praxis",
+   "marker": "❹",
+   "box": {
+    "x": 34.5,
+    "y": 85.2,
+    "w": 36.3,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m52.ueberweisung",
+     "text": "Angaben zu Überweisungen zu weiteren behandelnden Ärztinnen und Ärzten (fachärztliche Mitbehandlung) machen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 52, ❹, S. 90–91"
+     }
+    }
+   ]
+  },
+  {
+   "id": "em_nein",
+   "label": "5. Erwerbsminderung: nein",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "erwerbsminderung",
+   "marker": "❺",
+   "box": {
+    "x": 9.2,
+    "y": 90.9,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "em_ja",
+   "label": "5. Erwerbsminderung besteht oder droht: ja",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "erwerbsminderung",
+   "marker": "❺",
+   "box": {
+    "x": 18.9,
+    "y": 90.9,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "datum",
+   "label": "Ausstellungsdatum",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "TTMMJJ",
+   "box": {
+    "x": 56.3,
+    "y": 93.7,
+    "w": 14.5,
+    "h": 2.1
+   },
+   "rules": [
+    {
+     "id": "m52.frist",
+     "text": "Der Vertragsarzt übermittelt die Informationen auf Anforderung in der Regel innerhalb von drei Werktagen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 52, Einleitung, S. 88"
+     }
+    }
+   ]
+  },
+  {
+   "id": "stempel",
+   "label": "Vertragsarztstempel / ärztliche Unterschrift",
+   "kind": "stempel",
+   "filled_by": "arzt",
+   "box": {
+    "x": 73.5,
+    "y": 83.8,
+    "w": 22.7,
+    "h": 12.0
+   },
+   "rules": [
+    {
+     "id": "m52.unterschrift",
+     "text": "Erst vollständig ausfüllen, dann mit Vertragsarztstempel persönlich unterschreiben – nie blanko.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5"
+     }
+    }
+   ]
+  }
+ ]
+}

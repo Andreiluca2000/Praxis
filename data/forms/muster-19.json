@@ -1,0 +1,384 @@
+{
+ "schema_version": "1.0.0",
+ "id": "muster-19",
+ "muster": "19",
+ "title": "Notfall-/Vertretungsschein",
+ "form_version": "10.2014",
+ "released": "2014-09-01",
+ "status": "entwurf",
+ "paper": {
+  "format": "DIN A5 quer",
+  "width": 595.3,
+  "height": 419.5,
+  "tint": "gelb"
+ },
+ "copies": [
+  {
+   "id": "19a",
+   "label": "Teil a – Abrechnung",
+   "recipient": "Kassenärztliche Vereinigung (über die Abrechnung)"
+  },
+  {
+   "id": "19b",
+   "label": "Teil b – Mitteilung",
+   "recipient": "weiterbehandelnder Arzt"
+  },
+  {
+   "id": "19c",
+   "label": "Teil c",
+   "recipient": "vertretender Arzt (verbleibt in der Praxis)"
+  }
+ ],
+ "notes": [
+  {
+   "id": "m19.teil_a_schwaerzung",
+   "text": "Teil a (Abrechnung bei der KV) ist aus Datenschutzgründen teilweise geschwärzt; diese Teile sind nach Hochklappen des ersten Blattes ab Blatt 2 auszufüllen. Beim EDV-Ausdruck erfolgt die Beschriftung ab Blatt 1 im geschwärzten Feld.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 19, Nr. 1, S. 63"
+   }
+  },
+  {
+   "id": "m19.teil_b",
+   "text": "Muster 19b ist vom behandelnden Arzt zu unterschreiben und dem weiterbehandelnden Arzt als Mitteilung zuzustellen. Die weitere Durchschrift (19c) verbleibt beim vertretenden Arzt.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 19, Nr. 2, S. 63"
+   }
+  },
+  {
+   "id": "m19.teil_b_entfaellt",
+   "text": "Muster 19b kann entfallen, wenn keine Informationsübermittlung an einen weiterbehandelnden Arzt nötig ist oder diese auf geeignete Weise, z. B. per Arztbrief, erfolgt.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 19, Nr. 4, S. 63"
+   }
+  },
+  {
+   "id": "m19.arbeitsunfall",
+   "text": "Nicht zu verwenden bei Arbeitsunfällen, Berufskrankheiten und Schülerunfällen.",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 33, Muster 19a (10.2014)"
+   }
+  }
+ ],
+ "groups": [
+  {
+   "id": "art",
+   "label": "Art der Inanspruchnahme",
+   "select": "genau_eins",
+   "rule": {
+    "id": "m19.art",
+    "text": "Anzukreuzen ist, ob die Behandlung im ärztlichen Notfalldienst, als Urlaubs- bzw. Krankheitsvertretung oder als Notfall erfolgt.",
+    "source": {
+     "artifact": "mustersammlung",
+     "locator": "PDF-Seite 33, Muster 19a (10.2014)"
+    }
+   }
+  }
+ ],
+ "fields": [
+  {
+   "id": "personalien",
+   "label": "Personalienfeld (Kasse, Name, geb. am, Kostenträgerkennung, Versicherten-Nr., Status, BSNR, LANR, Datum)",
+   "kind": "personalien",
+   "filled_by": "duria",
+   "box": {
+    "x": 4.4,
+    "y": 3.5,
+    "w": 38.0,
+    "h": 31.6
+   },
+   "rules": [
+    {
+     "id": "m19.personalien",
+     "text": "Die Daten der eGK werden maschinell über Kartenterminal und Praxis-EDV übertragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 5 und Nr. 6, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "notfalldienst",
+   "label": "ärztlicher Notfalldienst",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "art",
+   "label_pos": "rechts",
+   "box": {
+    "x": 44.3,
+    "y": 6.9,
+    "w": 2.2,
+    "h": 3.2
+   },
+   "rules": []
+  },
+  {
+   "id": "vertretung",
+   "label": "Urlaubs- bzw. Krankheitsvertretung",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "art",
+   "label_pos": "rechts",
+   "box": {
+    "x": 56.4,
+    "y": 6.9,
+    "w": 2.2,
+    "h": 3.2
+   },
+   "rules": []
+  },
+  {
+   "id": "notfall",
+   "label": "Notfall",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "art",
+   "label_pos": "rechts",
+   "box": {
+    "x": 73.3,
+    "y": 6.9,
+    "w": 2.2,
+    "h": 3.2
+   },
+   "rules": []
+  },
+  {
+   "id": "quartal",
+   "label": "Quartal",
+   "kind": "quarter",
+   "filled_by": "praxis",
+   "format": "QJJ",
+   "box": {
+    "x": 88.1,
+    "y": 6.9,
+    "w": 7.5,
+    "h": 3.2
+   },
+   "rules": [
+    {
+     "id": "m19.quartal",
+     "text": "Quartal der Behandlung in der Form QJJ (Kästchen „Quartal“ auf dem Vordruck).",
+     "source": {
+      "artifact": "mustersammlung",
+      "locator": "PDF-Seite 33, Muster 19a (10.2014)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "unfall",
+   "label": "Unfall, Unfallfolgen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "label_pos": "rechts",
+   "box": {
+    "x": 44.3,
+    "y": 11.8,
+    "w": 2.2,
+    "h": 3.2
+   },
+   "rules": [
+    {
+     "id": "m19.unfall",
+     "text": "Ankreuzen, wenn die Behandlung wegen eines Unfalls oder seiner Folgen erfolgt; bei Arbeitsunfällen, Berufskrankheiten und Schülerunfällen ist der Vordruck nicht zu verwenden.",
+     "source": {
+      "artifact": "mustersammlung",
+      "locator": "PDF-Seite 33, Muster 19a (10.2014)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "geschlecht",
+   "label": "Geschlecht",
+   "kind": "letter",
+   "filled_by": "duria",
+   "box": {
+    "x": 90.0,
+    "y": 11.8,
+    "w": 5.6,
+    "h": 3.2
+   },
+   "rules": [
+    {
+     "id": "m19.geschlecht",
+     "text": "Geschlecht als Buchstabe (D = divers, M = männlich, W = weiblich, X = unbestimmt); die Bedruckung erfolgt aus der elektronischen Gesundheitskarte.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 19, Nr. 3, S. 63"
+     }
+    }
+   ]
+  },
+  {
+   "id": "diagnosen",
+   "label": "Diagnosen / ggf. Abrechnungsbegründungen",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 3,
+   "box": {
+    "x": 44.3,
+    "y": 20.4,
+    "w": 51.3,
+    "h": 14.7
+   },
+   "rules": [
+    {
+     "id": "m19.diagnosen",
+     "text": "Diagnosen bzw. ggf. Abrechnungsbegründungen eintragen; ICD-10-Kodes mit Diagnosesicherheit.",
+     "source": {
+      "artifact": "mustersammlung",
+      "locator": "PDF-Seite 33, Muster 19a (10.2014)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "au_bis",
+   "label": "Arbeitsunfähigkeit bescheinigt bis",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "TTMMJJ",
+   "box": {
+    "x": 56.4,
+    "y": 37.6,
+    "w": 13.3,
+    "h": 3.2
+   },
+   "rules": [
+    {
+     "id": "m19.au_bis",
+     "text": "Wurde Arbeitsunfähigkeit bescheinigt, das Enddatum eintragen (TT MM JJ).",
+     "source": {
+      "artifact": "mustersammlung",
+      "locator": "PDF-Seite 33, Muster 19a (10.2014)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "befunde",
+   "label": "Befunde/Therapie",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 3,
+   "box": {
+    "x": 3.1,
+    "y": 43.0,
+    "w": 66.8,
+    "h": 15.0
+   },
+   "rules": [
+    {
+     "id": "m19.befunde",
+     "text": "Befunde und Therapie auf Teil b eintragen („bitte auf Teil b eintragen!“) – auf Teil a ist das Feld aus Datenschutzgründen geschwärzt.",
+     "source": {
+      "artifact": "mustersammlung",
+      "locator": "PDF-Seite 33, Muster 19a (10.2014)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "weiterbehandelnder_arzt",
+   "label": "Teil b erhält weiterbehandelnder Arzt",
+   "kind": "text",
+   "filled_by": "praxis",
+   "lines": 3,
+   "box": {
+    "x": 72.7,
+    "y": 37.6,
+    "w": 22.9,
+    "h": 20.3
+   },
+   "rules": [
+    {
+     "id": "m19.teil_b",
+     "text": "Muster 19b ist vom behandelnden Arzt zu unterschreiben und dem weiterbehandelnden Arzt als Mitteilung zuzustellen. Die weitere Durchschrift (19c) verbleibt beim vertretenden Arzt.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 19, Nr. 2, S. 63"
+     }
+    },
+    {
+     "id": "m19.teil_b_entfaellt",
+     "text": "Muster 19b kann entfallen, wenn keine Informationsübermittlung an einen weiterbehandelnden Arzt nötig ist oder diese auf geeignete Weise, z. B. per Arztbrief, erfolgt.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 19, Nr. 4, S. 63"
+     }
+    }
+   ]
+  },
+  {
+   "id": "leistungen",
+   "label": "Tag, Monat und Gebührenordnungspositionen (Abrechnung)",
+   "kind": "text",
+   "filled_by": "praxis",
+   "box": {
+    "x": 3.1,
+    "y": 59.8,
+    "w": 67.0,
+    "h": 26.8
+   },
+   "rules": [
+    {
+     "id": "m19.leistungen",
+     "text": "Je Behandlungstag Tag, Monat und die abgerechneten Gebührenordnungspositionen; die Abrechnung erfolgt über das PVS.",
+     "source": {
+      "artifact": "mustersammlung",
+      "locator": "PDF-Seite 33, Muster 19a (10.2014)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "versichert",
+   "label": "Ich bin bei der oben genannten Krankenkasse versichert (Datum, Unterschrift des Versicherten)",
+   "kind": "text",
+   "filled_by": "versicherter",
+   "box": {
+    "x": 3.1,
+    "y": 86.9,
+    "w": 41.0,
+    "h": 10.0
+   },
+   "rules": [
+    {
+     "id": "m19.versichert",
+     "text": "Die/der Versicherte bestätigt mit Datum und Unterschrift, bei der genannten Krankenkasse versichert zu sein.",
+     "source": {
+      "artifact": "mustersammlung",
+      "locator": "PDF-Seite 33, Muster 19a (10.2014)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "stempel",
+   "label": "Vertragsarztstempel / Unterschrift",
+   "kind": "stempel",
+   "filled_by": "arzt",
+   "box": {
+    "x": 72.7,
+    "y": 71.9,
+    "w": 22.9,
+    "h": 22.6
+   },
+   "rules": [
+    {
+     "id": "m19.unterschrift",
+     "text": "Erst vollständig ausfüllen, dann mit Vertragsarztstempel persönlich unterschreiben – nie blanko.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5"
+     }
+    }
+   ]
+  }
+ ]
+}

@@ -30,15 +30,15 @@ Rechte: KBV-Inhalte sind geschützt; Zitieren mit Quellenangabe ist erlaubt. Reg
 
 ## Dateien
 
-- `data/forms/muster-06.json`, `muster-02.json`, `muster-04.json`, `muster-10.json`, `muster-10a.json`, `muster-13.json`, `muster-12.json`, `muster-61.json` (Teil A–E, mehrseitig), `muster-21.json`, `muster-20.json` – ausfüllbare Vordrucke: Felder, Ankreuzgruppen, Lage (Prozent), Regeln mit Fundstelle (`schemas/forms-muster.schema.json`).
+- `data/forms/muster-06.json`, `muster-02.json`, `muster-04.json`, `muster-10.json`, `muster-10a.json`, `muster-13.json`, `muster-12.json`, `muster-61.json` (Teil A–E, mehrseitig), `muster-21.json`, `muster-20.json`, `muster-55.json`, `muster-19.json`, `muster-52.json`, `muster-63.json` – ausfüllbare Vordrucke: Felder, Ankreuzgruppen, Lage (Prozent), Regeln mit Fundstelle (`schemas/forms-muster.schema.json`).
 - `data/forms/catalog.json` – **alle** Vordrucke (e01 bis Muster 86, 58 Einträge, 548 Regeln) mit Zweck, Stichwörtern, „stattdessen Muster X“ und Ausfüllregeln (`schemas/forms-catalog.schema.json`). Halbautomatisch aus den Erläuterungen erstellt, stichprobenartig gegen die Quelle geprüft; fachliche Freigabe steht aus.
 - `src/forms/` – `facts.ts` (Lage des Patienten), `advisor.ts` (Einstieg: `analyse`, `propose`, `check`), `muster0X.ts` (Vorschlag + Prüfung je Vordruck), `katalog.ts` (Suche im Gesamtkatalog), `text.ts` (Unicode-sichere Texthelfer).
 - Tests: `tests/forms.test.ts`, `tests/forms-10a-20-21.test.ts` u. a. (synthetische Fälle), `tests/forms-data.test.ts` (Schema, Kennungen, SHA-256 der Quellen).
 
 - `data/forms/heilmittelkatalog.json` – Heilmittelkatalog (5 Bereiche, 44 Diagnosegruppen) aus der HeilM-RL; Muster 13 prüft damit Diagnosegruppe, Leitsymptomatik, Heilmittel und Höchstmenge je Verordnung. Der G-BA-Beschluss vom 20.08.2026 (in Kraft 01.01.2027) ist noch nicht eingearbeitet.
 
-- `data/forms/generators/` – Erzeugung von `muster-12.json`/`muster-61.json`/`muster-10a.json`/`muster-21.json`/`muster-20.json` aus dem Katalog (Regeln mit Fundstelle) und Hilfe zum Ablesen der Ankreuzfelder aus der Mustersammlung.
+- `data/forms/generators/` – Erzeugung von `muster-12.json`/`muster-61.json`/`muster-10a.json`/`muster-21.json`/`muster-20.json`/`muster-55.json`/`muster-19.json`/`muster-52.json`/`muster-63.json` aus dem Katalog (Regeln mit Fundstelle) und Hilfe zum Ablesen der Ankreuzfelder aus der Mustersammlung.
 
 ## Nächste Vordrucke (Vorschlag, nach Häufigkeit in der Hausarztpraxis)
 
-Muster 52 (Bericht bei Fortbestehen der AU), 63 (SAPV), 55 (chronisch krank), 19 (Notfall-/Vertretungsschein) – jeweils mit eigenem Feldmodell und Tests. Die Regeln dafür stehen schon im Katalog.
+Als Nächstes kämen z. B. Muster 9, 26/27, 64, 65 – jeweils mit eigenem Feldmodell und Tests (Muster 56 bearbeitet gerade eine andere Sitzung). Die Regeln dafür stehen schon im Katalog.

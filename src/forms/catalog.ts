@@ -6,9 +6,13 @@ import muster10 from '../../data/forms/muster-10.json' with { type: 'json' };
 import muster10a from '../../data/forms/muster-10a.json' with { type: 'json' };
 import muster12 from '../../data/forms/muster-12.json' with { type: 'json' };
 import muster13 from '../../data/forms/muster-13.json' with { type: 'json' };
+import muster19 from '../../data/forms/muster-19.json' with { type: 'json' };
 import muster20 from '../../data/forms/muster-20.json' with { type: 'json' };
 import muster21 from '../../data/forms/muster-21.json' with { type: 'json' };
+import muster52 from '../../data/forms/muster-52.json' with { type: 'json' };
+import muster55 from '../../data/forms/muster-55.json' with { type: 'json' };
 import muster61 from '../../data/forms/muster-61.json' with { type: 'json' };
+import muster63 from '../../data/forms/muster-63.json' with { type: 'json' };
 import type { FormDefinition, FormField, FormId, FormRule } from './types.js';
 
 export const FORMS: Readonly<Record<FormId, FormDefinition>> = {
@@ -22,9 +26,13 @@ export const FORMS: Readonly<Record<FormId, FormDefinition>> = {
   'muster-61': muster61 as unknown as FormDefinition,
   'muster-21': muster21 as unknown as FormDefinition,
   'muster-20': muster20 as unknown as FormDefinition,
+  'muster-55': muster55 as unknown as FormDefinition,
+  'muster-19': muster19 as unknown as FormDefinition,
+  'muster-52': muster52 as unknown as FormDefinition,
+  'muster-63': muster63 as unknown as FormDefinition,
 };
 
-export const FORM_IDS: readonly FormId[] = ['muster-06', 'muster-02', 'muster-04', 'muster-10', 'muster-10a', 'muster-13', 'muster-12', 'muster-61', 'muster-21', 'muster-20'];
+export const FORM_IDS: readonly FormId[] = ['muster-06', 'muster-02', 'muster-04', 'muster-10', 'muster-10a', 'muster-13', 'muster-12', 'muster-61', 'muster-21', 'muster-20', 'muster-55', 'muster-19', 'muster-52', 'muster-63'];
 
 export function getForm(id: FormId): FormDefinition {
   return FORMS[id];

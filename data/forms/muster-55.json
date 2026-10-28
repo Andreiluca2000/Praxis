@@ -1,0 +1,272 @@
+{
+ "schema_version": "1.0.0",
+ "id": "muster-55",
+ "muster": "55",
+ "title": "Bescheinigung einer schwerwiegenden chronischen Erkrankung gem. § 62 SGB V",
+ "form_version": "10.2016",
+ "released": "2016-07-08",
+ "status": "entwurf",
+ "paper": {
+  "format": "DIN A6 quer",
+  "width": 419.5,
+  "height": 297.6,
+  "tint": "gelb"
+ },
+ "copies": [
+  {
+   "id": "55",
+   "label": "Bescheinigung",
+   "recipient": "Krankenkasse (über die Versicherte/den Versicherten)"
+  }
+ ],
+ "notes": [
+  {
+   "id": "m55.anlass",
+   "text": "Das Muster 55 ist nur auszustellen, wenn Versicherte es für ihren konkreten Antrag auf Zuzahlungsbefreiung brauchen, in der Regel bei Erstantrag mit reduzierter Belastungsgrenze oder wenn bei einem Folgeantrag ein aktueller Nachweis verlangt wird; die Kasse teilt dies dem Versicherten mit.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 55, Einleitung, S. 93"
+   }
+  },
+  {
+   "id": "m55.mehrfach",
+   "text": "Vor der Ausstellung soll erfragt werden, ob die Bescheinigung bereits von einer anderen Ärztin/einem anderen Arzt ausgestellt wurde, um mehrfache Ausstellung innerhalb eines Kalenderjahres zu vermeiden.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 55, Einleitung, S. 93"
+   }
+  },
+  {
+   "id": "m55.chroniker_rl",
+   "text": "Die Chroniker-Richtlinie des G-BA zur Umsetzung von § 62 SGB V ist zu beachten.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 55, Einleitung, S. 93"
+   }
+  },
+  {
+   "id": "m55.rueckseite",
+   "text": "Die Rückseite füllt ggf. der Versicherte bzw. sein Betreuer aus; nötig nur, wenn der Antrag nicht allein für den bescheinigten Versicherten gestellt wird (z. B. gemeinsam mit dem Ehegatten).",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 55, Rückseite, S. 94"
+   }
+  },
+  {
+   "id": "m55.ebm",
+   "text": "Die Vergütung für das Ausstellen erfolgt über die hausärztliche Versichertenpauschale bzw. ist die Nr. 01610 EBM berechnungsfähig (Aufdruck auf dem Vordruck).",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 65, Muster 55 (10.2016)"
+   }
+  }
+ ],
+ "groups": [
+  {
+   "id": "versorgung",
+   "label": "Kontinuierliche medizinische Versorgung weiterhin erforderlich",
+   "select": "genau_eins",
+   "rule": {
+    "id": "m55.versorgung",
+    "text": "Angeben, ob kontinuierliche medizinische Versorgung weiter erforderlich ist, wenn ohne Behandlung lebensbedrohliche Verschlimmerung, verminderte Lebenserwartung oder dauerhafte Beeinträchtigung der Lebensqualität zu erwarten ist; ggf. mit Zeitraum (MMJJ).",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 55, ❸, S. 94"
+    }
+   }
+  }
+ ],
+ "fields": [
+  {
+   "id": "personalien",
+   "label": "Personalienfeld (Kasse, Name, geb. am, Kostenträgerkennung, Versicherten-Nr., Status, BSNR, LANR, Datum)",
+   "kind": "personalien",
+   "filled_by": "duria",
+   "box": {
+    "x": 6.2,
+    "y": 4.9,
+    "w": 53.9,
+    "h": 44.5
+   },
+   "rules": [
+    {
+     "id": "m55.personalien",
+     "text": "Die Daten der eGK werden maschinell über Kartenterminal und Praxis-EDV übertragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 5 und Nr. 6, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "seit",
+   "label": "Seit (Dauerbehandlung wegen derselben Erkrankung)",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "TTMMJJ",
+   "marker": "❶",
+   "box": {
+    "x": 68.0,
+    "y": 24.2,
+    "w": 20.6,
+    "h": 5.0
+   },
+   "rules": [
+    {
+     "id": "m55.dauerbehandlung",
+     "text": "Anzugeben ist, seit wann (TTMMJJ) Dauerbehandlung besteht. Sie liegt vor, wenn der Versicherte mindestens ein Jahr vor Ausstellung jeweils mindestens einmal im Quartal wegen derselben Erkrankung in ärztlicher Behandlung war.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 55, ❶, S. 94"
+     }
+    }
+   ]
+  },
+  {
+   "id": "icd1",
+   "label": "Dauerdiagnose 1 (ICD-10-Code)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❷",
+   "box": {
+    "x": 6.1,
+    "y": 56.5,
+    "w": 16.3,
+    "h": 5.0
+   },
+   "rules": [
+    {
+     "id": "m55.diagnosen",
+     "text": "Die behandlungsbedürftigen Dauerdiagnosen nach ICD-10 angeben; bei mehreren berücksichtigungsfähigen Diagnosen die Hauptdiagnose zuerst.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 55, ❷, S. 94"
+     }
+    }
+   ]
+  },
+  {
+   "id": "icd2",
+   "label": "Dauerdiagnose 2 (ICD-10-Code)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❷",
+   "box": {
+    "x": 25.0,
+    "y": 56.5,
+    "w": 16.3,
+    "h": 5.0
+   },
+   "rules": []
+  },
+  {
+   "id": "icd3",
+   "label": "Dauerdiagnose 3 (ICD-10-Code)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "marker": "❷",
+   "box": {
+    "x": 43.8,
+    "y": 56.5,
+    "w": 16.3,
+    "h": 5.0
+   },
+   "rules": []
+  },
+  {
+   "id": "versorgung_unbefristet",
+   "label": "ja, Ende der Dauerbehandlung derzeit nicht absehbar",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "versorgung",
+   "marker": "❸",
+   "label_pos": "rechts",
+   "box": {
+    "x": 6.2,
+    "y": 69.7,
+    "w": 2.7,
+    "h": 3.8
+   },
+   "rules": []
+  },
+  {
+   "id": "versorgung_bis",
+   "label": "ja, voraussichtlich bis",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "versorgung",
+   "marker": "❸",
+   "label_pos": "rechts",
+   "box": {
+    "x": 6.2,
+    "y": 73.8,
+    "w": 2.7,
+    "h": 3.8
+   },
+   "rules": []
+  },
+  {
+   "id": "bis",
+   "label": "voraussichtlich bis (MMJJ)",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "MMJJ",
+   "marker": "❸",
+   "box": {
+    "x": 30.1,
+    "y": 73.6,
+    "w": 10.3,
+    "h": 4.0
+   },
+   "rules": [
+    {
+     "id": "m55.versorgung",
+     "text": "Angeben, ob kontinuierliche medizinische Versorgung weiter erforderlich ist, wenn ohne Behandlung lebensbedrohliche Verschlimmerung, verminderte Lebenserwartung oder dauerhafte Beeinträchtigung der Lebensqualität zu erwarten ist; ggf. mit Zeitraum (MMJJ).",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 55, ❸, S. 94"
+     }
+    }
+   ]
+  },
+  {
+   "id": "versorgung_nein",
+   "label": "nein",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "versorgung",
+   "marker": "❸",
+   "label_pos": "rechts",
+   "box": {
+    "x": 6.2,
+    "y": 77.8,
+    "w": 2.7,
+    "h": 3.7
+   },
+   "rules": []
+  },
+  {
+   "id": "stempel",
+   "label": "Vertragsarztstempel / Unterschrift des Arztes",
+   "kind": "stempel",
+   "filled_by": "arzt",
+   "box": {
+    "x": 63.0,
+    "y": 59.7,
+    "w": 32.2,
+    "h": 34.0
+   },
+   "rules": [
+    {
+     "id": "m55.unterschrift",
+     "text": "Erst vollständig ausfüllen, dann mit Vertragsarztstempel persönlich unterschreiben – nie blanko.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 2 und Nr. 5, S. 5"
+     }
+    }
+   ]
+  }
+ ]
+}

@@ -6,9 +6,13 @@ import muster10 from '../../data/forms/layout/muster-10.json' with { type: 'json
 import muster10a from '../../data/forms/layout/muster-10a.json' with { type: 'json' };
 import muster12 from '../../data/forms/layout/muster-12.json' with { type: 'json' };
 import muster13 from '../../data/forms/layout/muster-13.json' with { type: 'json' };
+import muster19 from '../../data/forms/layout/muster-19.json' with { type: 'json' };
 import muster20 from '../../data/forms/layout/muster-20.json' with { type: 'json' };
 import muster21 from '../../data/forms/layout/muster-21.json' with { type: 'json' };
+import muster52 from '../../data/forms/layout/muster-52.json' with { type: 'json' };
+import muster55 from '../../data/forms/layout/muster-55.json' with { type: 'json' };
 import muster61 from '../../data/forms/layout/muster-61.json' with { type: 'json' };
+import muster63 from '../../data/forms/layout/muster-63.json' with { type: 'json' };
 import type { FormId } from '../../src/forms/types.js';
 
 type Rect = [number, number, number, number];
@@ -41,6 +45,10 @@ const LAYOUTS: Readonly<Record<FormId, Stored>> = {
   'muster-13': muster13 as unknown as FormLayout,
   'muster-21': muster21 as unknown as FormLayout,
   'muster-20': muster20 as unknown as FormLayout,
+  'muster-55': muster55 as unknown as FormLayout,
+  'muster-19': muster19 as unknown as FormLayout,
+  'muster-52': muster52 as unknown as FormLayout,
+  'muster-63': muster63 as unknown as FormLayout,
   'muster-12': muster12 as unknown as FormLayout,
   'muster-61': muster61 as unknown as Stored,
 };

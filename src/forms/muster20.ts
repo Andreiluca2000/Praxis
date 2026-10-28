@@ -49,7 +49,8 @@ function durationSteps(text: string, today: Date): Stufe[] {
   return out;
 }
 
-function letzteTaetigkeit(text: string): { taetigkeit: string | null; stunden: string | null; evidence: string | null } {
+/** Zuletzt ausgeübte Tätigkeit und tägliche Stunden davor (auch für Muster 52). */
+export function letzteTaetigkeit(text: string): { taetigkeit: string | null; stunden: string | null; evidence: string | null } {
   const seg = segment(labeledSegments(text), 'zuletzt ausgeübte tätigkeit', 'tätigkeit', 'beruf');
   const als = seg ?? uni(/\b(?:arbeitet|tätig|beschäftigt)\s+als\s+([^,.;]+)/iu).exec(text)?.[1]?.trim() ?? null;
   const vorher = uni(new RegExp(String.raw`\b(?:vorher|bisher|zuvor|vor der au|vollzeit|normalerweise|regulär)\b[^.;]{0,30}?${HOURS}`, 'iu')).exec(text);

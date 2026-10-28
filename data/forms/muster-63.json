@@ -1,0 +1,611 @@
+{
+ "schema_version": "1.0.0",
+ "id": "muster-63",
+ "muster": "63",
+ "title": "Verordnung spezialisierter ambulanter Palliativversorgung (SAPV)",
+ "form_version": "10.2014",
+ "released": "2014-09-01",
+ "status": "entwurf",
+ "paper": {
+  "format": "DIN A4 hoch",
+  "width": 595.3,
+  "height": 841.9,
+  "tint": "ohne"
+ },
+ "copies": [
+  {
+   "id": "63a",
+   "label": "Ausfertigung für die Krankenkasse",
+   "recipient": "Krankenkasse (Versicherte/r legt vor; Rückseite für den Antrag)"
+  },
+  {
+   "id": "63b",
+   "label": "Ausfertigung",
+   "recipient": "SAPV-Leistungserbringer"
+  },
+  {
+   "id": "63c",
+   "label": "Ausfertigung",
+   "recipient": "Versicherte/r"
+  },
+  {
+   "id": "63d",
+   "label": "Ausfertigung",
+   "recipient": "Vertragsarzt"
+  }
+ ],
+ "notes": [
+  {
+   "id": "m63.voraussetzung",
+   "text": "Zulässig nur bei nicht heilbarer, fortschreitender, weit fortgeschrittener Erkrankung mit begrenzter Lebenserwartung und besonders aufwändigem Versorgungsbedarf. Mindestens ein auf dem Vordruck genannte komplexes Symptomgeschehen (§ 4 SAPV-RL) muss vorliegen, Krankheitsbild und Bedarf ausreichend beschrieben.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 63, Nr. 1, S. 131"
+   }
+  },
+  {
+   "id": "m63.umfang",
+   "text": "SAPV wird nach Bedarf intermittierend oder durchgängig erbracht und kann verordnet werden, soweit notwendig und zweckmäßig und soweit die allgemeine Palliativversorgung nicht ausreicht; Leistungsinhalte nennt § 5 Abs. 3 SAPV-RL.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 63, Nr. 2, S. 131"
+   }
+  },
+  {
+   "id": "m63.abstimmung",
+   "text": "Der Arzt hat die erforderlichen Maßnahmen mit den an der Versorgung beteiligten Leistungserbringern abzustimmen (vernetztes Arbeiten).",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 63, Nr. 3, S. 131"
+   }
+  },
+  {
+   "id": "m63.genehmigung",
+   "text": "Die vom Versicherten durch Vorlage beantragten Leistungen bedürfen der Genehmigung der Krankenkasse; die Rückseite füllt der Versicherte bzw. SAPV-Leistungserbringer aus, nur auf Muster 63a. Nicht oder nicht voll genehmigte Maßnahmen begründet die Kasse gegenüber Arzt und Leistungserbringer.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 63, Nr. 5, S. 132"
+   }
+  },
+  {
+   "id": "m63.kostenuebernahme_frist",
+   "text": "Bis zur Entscheidung übernimmt die Krankenkasse die Kosten, wenn die Verordnung spätestens am dritten der Ausstellung folgenden Arbeitstag der Krankenkasse vorgelegt wird.",
+   "source": {
+    "artifact": "erlaeuterungen",
+    "locator": "Muster 63, Nr. 5, S. 132"
+   }
+  },
+  {
+   "id": "m63.nicht_heilbar",
+   "text": "Mit der Verordnung wird bestätigt: „Die Krankheit ist nicht heilbar, sie ist fortschreitend und weit fortgeschritten.“ (Aufdruck auf dem Vordruck).",
+   "source": {
+    "artifact": "mustersammlung",
+    "locator": "PDF-Seite 89, Muster 63a (10.2014)"
+   }
+  }
+ ],
+ "groups": [
+  {
+   "id": "verordnung",
+   "label": "Erst- oder Folgeverordnung",
+   "select": "genau_eins",
+   "rule": {
+    "id": "m63.erst_folge",
+    "text": "Erst- oder Folgeverordnung ankreuzen; für die Erstverordnung ist die Kostenpauschale 01425, für die Folgeverordnung 01426 berechnungsfähig (Aufdruck).",
+    "source": {
+     "artifact": "mustersammlung",
+     "locator": "PDF-Seite 89, Muster 63a (10.2014)"
+    }
+   }
+  },
+  {
+   "id": "symptome",
+   "label": "Komplexes Symptomgeschehen",
+   "select": "beliebig",
+   "rule": {
+    "id": "m63.voraussetzung",
+    "text": "Zulässig nur bei nicht heilbarer, fortschreitender, weit fortgeschrittener Erkrankung mit begrenzter Lebenserwartung und besonders aufwändigem Versorgungsbedarf. Mindestens ein auf dem Vordruck genannte komplexes Symptomgeschehen (§ 4 SAPV-RL) muss vorliegen, Krankheitsbild und Bedarf ausreichend beschrieben.",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 63, Nr. 1, S. 131"
+    }
+   }
+  },
+  {
+   "id": "massnahmen",
+   "label": "Folgende Maßnahmen sind notwendig",
+   "select": "beliebig",
+   "rule": {
+    "id": "m63.angaben",
+    "text": "Die Vorderseite stellen Vertragsärzte aus mit Verordnungszeitraum, leistungsbegründenden Diagnosen, komplexem Symptomgeschehen samt Versorgungsbedarf, aktueller Medikation einschließlich Betäubungsmitteln und den erforderlichen palliativärztlichen und palliativpflegerischen Maßnahmen (Beratung, Koordination, additive Teilversorgung oder vollständige Versorgung).",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 63, Nr. 4, S. 131–132"
+    }
+   }
+  },
+  {
+   "id": "beratung_wer",
+   "label": "Beratung von wem",
+   "select": "beliebig",
+   "rule": {
+    "id": "m63.angaben",
+    "text": "Die Vorderseite stellen Vertragsärzte aus mit Verordnungszeitraum, leistungsbegründenden Diagnosen, komplexem Symptomgeschehen samt Versorgungsbedarf, aktueller Medikation einschließlich Betäubungsmitteln und den erforderlichen palliativärztlichen und palliativpflegerischen Maßnahmen (Beratung, Koordination, additive Teilversorgung oder vollständige Versorgung).",
+    "source": {
+     "artifact": "erlaeuterungen",
+     "locator": "Muster 63, Nr. 4, S. 131–132"
+    }
+   }
+  }
+ ],
+ "fields": [
+  {
+   "id": "personalien",
+   "label": "Personalienfeld (Kasse, Name, geb. am, Kostenträgerkennung, Versicherten-Nr., Status, BSNR, LANR, Datum)",
+   "kind": "personalien",
+   "filled_by": "duria",
+   "box": {
+    "x": 4.4,
+    "y": 1.7,
+    "w": 38.0,
+    "h": 15.7
+   },
+   "rules": [
+    {
+     "id": "m63.personalien",
+     "text": "Die Daten der eGK werden maschinell über Kartenterminal und Praxis-EDV übertragen.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Allgemeines Nr. 5 und Nr. 6, S. 5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "erst",
+   "label": "Erstverordnung",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "verordnung",
+   "label_pos": "rechts",
+   "box": {
+    "x": 44.3,
+    "y": 7.6,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "folge",
+   "label": "Folgeverordnung",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "group": "verordnung",
+   "label_pos": "rechts",
+   "box": {
+    "x": 63.6,
+    "y": 7.6,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "unfall",
+   "label": "Unfall, Unfallfolgen",
+   "kind": "checkbox",
+   "filled_by": "praxis",
+   "label_pos": "rechts",
+   "box": {
+    "x": 44.3,
+    "y": 11.1,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": [
+    {
+     "id": "m63.unfall",
+     "text": "Ankreuzen, wenn die Versorgung wegen eines Unfalls oder seiner Folgen nötig ist.",
+     "source": {
+      "artifact": "mustersammlung",
+      "locator": "PDF-Seite 89, Muster 63a (10.2014)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "vom",
+   "label": "Verordnungszeitraum vom",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "TTMMJJ",
+   "box": {
+    "x": 47.9,
+    "y": 15.4,
+    "w": 14.4,
+    "h": 2.0
+   },
+   "rules": [
+    {
+     "id": "m63.angaben",
+     "text": "Die Vorderseite stellen Vertragsärzte aus mit Verordnungszeitraum, leistungsbegründenden Diagnosen, komplexem Symptomgeschehen samt Versorgungsbedarf, aktueller Medikation einschließlich Betäubungsmitteln und den erforderlichen palliativärztlichen und palliativpflegerischen Maßnahmen (Beratung, Koordination, additive Teilversorgung oder vollständige Versorgung).",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 63, Nr. 4, S. 131–132"
+     }
+    }
+   ]
+  },
+  {
+   "id": "bis",
+   "label": "Verordnungszeitraum bis",
+   "kind": "date",
+   "filled_by": "praxis",
+   "format": "TTMMJJ",
+   "box": {
+    "x": 67.2,
+    "y": 15.4,
+    "w": 14.4,
+    "h": 2.0
+   },
+   "rules": [
+    {
+     "id": "m63.angaben",
+     "text": "Die Vorderseite stellen Vertragsärzte aus mit Verordnungszeitraum, leistungsbegründenden Diagnosen, komplexem Symptomgeschehen samt Versorgungsbedarf, aktueller Medikation einschließlich Betäubungsmitteln und den erforderlichen palliativärztlichen und palliativpflegerischen Maßnahmen (Beratung, Koordination, additive Teilversorgung oder vollständige Versorgung).",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 63, Nr. 4, S. 131–132"
+     }
+    }
+   ]
+  },
+  {
+   "id": "diagnosen",
+   "label": "Verordnungsrelevante Diagnose(n) (ICD-10; ggf. Organmanifestationen)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 2,
+   "box": {
+    "x": 9.1,
+    "y": 20.3,
+    "w": 87.1,
+    "h": 4.3
+   },
+   "rules": [
+    {
+     "id": "m63.angaben",
+     "text": "Die Vorderseite stellen Vertragsärzte aus mit Verordnungszeitraum, leistungsbegründenden Diagnosen, komplexem Symptomgeschehen samt Versorgungsbedarf, aktueller Medikation einschließlich Betäubungsmitteln und den erforderlichen palliativärztlichen und palliativpflegerischen Maßnahmen (Beratung, Koordination, additive Teilversorgung oder vollständige Versorgung).",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 63, Nr. 4, S. 131–132"
+     }
+    }
+   ]
+  },
+  {
+   "id": "schmerz",
+   "label": "ausgeprägte Schmerzsymptomatik",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "symptome",
+   "label_pos": "rechts",
+   "box": {
+    "x": 38.2,
+    "y": 29.6,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "urogenital",
+   "label": "ausgeprägte urogenitale Symptomatik",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "symptome",
+   "label_pos": "rechts",
+   "box": {
+    "x": 9.2,
+    "y": 32.5,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "respiratorisch",
+   "label": "ausgeprägte respiratorische / kardiale Symptomatik",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "symptome",
+   "label_pos": "rechts",
+   "box": {
+    "x": 38.2,
+    "y": 32.5,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "gastro",
+   "label": "ausgeprägte gastrointestinale Symptomatik",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "symptome",
+   "label_pos": "rechts",
+   "box": {
+    "x": 72.1,
+    "y": 32.5,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "ulzerierend",
+   "label": "ausgeprägte ulzerierende / exulzerierende Wunden oder Tumore",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "symptome",
+   "label_pos": "rechts",
+   "box": {
+    "x": 9.2,
+    "y": 35.3,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "neuro",
+   "label": "ausgeprägte neurologische / psychiatrische / psychische Symptomatik",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "symptome",
+   "label_pos": "rechts",
+   "box": {
+    "x": 38.2,
+    "y": 35.3,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "sonstiges",
+   "label": "sonstiges komplexes Symptomgeschehen",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "symptome",
+   "label_pos": "rechts",
+   "box": {
+    "x": 72.1,
+    "y": 35.3,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "beschreibung",
+   "label": "Nähere Beschreibung des komplexen Symptomgeschehens und des besonderen Versorgungsbedarfs",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 2,
+   "box": {
+    "x": 9.1,
+    "y": 41.7,
+    "w": 87.1,
+    "h": 4.3
+   },
+   "rules": [
+    {
+     "id": "m63.voraussetzung",
+     "text": "Zulässig nur bei nicht heilbarer, fortschreitender, weit fortgeschrittener Erkrankung mit begrenzter Lebenserwartung und besonders aufwändigem Versorgungsbedarf. Mindestens ein auf dem Vordruck genannte komplexes Symptomgeschehen (§ 4 SAPV-RL) muss vorliegen, Krankheitsbild und Bedarf ausreichend beschrieben.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 63, Nr. 1, S. 131"
+     }
+    }
+   ]
+  },
+  {
+   "id": "medikation",
+   "label": "Aktuelle Medikation (ggf. einschließlich BtM)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 4,
+   "box": {
+    "x": 9.1,
+    "y": 48.8,
+    "w": 87.1,
+    "h": 8.6
+   },
+   "rules": [
+    {
+     "id": "m63.angaben",
+     "text": "Die Vorderseite stellen Vertragsärzte aus mit Verordnungszeitraum, leistungsbegründenden Diagnosen, komplexem Symptomgeschehen samt Versorgungsbedarf, aktueller Medikation einschließlich Betäubungsmitteln und den erforderlichen palliativärztlichen und palliativpflegerischen Maßnahmen (Beratung, Koordination, additive Teilversorgung oder vollständige Versorgung).",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 63, Nr. 4, S. 131–132"
+     }
+    }
+   ]
+  },
+  {
+   "id": "beratung",
+   "label": "Beratung",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "massnahmen",
+   "label_pos": "rechts",
+   "box": {
+    "x": 9.2,
+    "y": 61.0,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "beratung_arzt",
+   "label": "Beratung a. des behandelnden Arztes",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "beratung_wer",
+   "label_pos": "rechts",
+   "box": {
+    "x": 23.7,
+    "y": 61.0,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "beratung_pflege",
+   "label": "Beratung b. der behandelnden Pflegefachkraft",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "beratung_wer",
+   "label_pos": "rechts",
+   "box": {
+    "x": 23.7,
+    "y": 63.1,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "beratung_patient",
+   "label": "Beratung c. des Patienten / der Angehörigen",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "beratung_wer",
+   "label_pos": "rechts",
+   "box": {
+    "x": 23.7,
+    "y": 65.2,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "koordination",
+   "label": "Koordination der Palliativversorgung",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "massnahmen",
+   "label_pos": "rechts",
+   "box": {
+    "x": 63.6,
+    "y": 61.0,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "ausrichtung",
+   "label": "mit folgender inhaltlicher Ausrichtung (Gegenstand, Häufigkeit, evtl. Beratung für Sonstige)",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 3,
+   "box": {
+    "x": 9.1,
+    "y": 69.5,
+    "w": 87.1,
+    "h": 6.4
+   },
+   "rules": [
+    {
+     "id": "m63.angaben",
+     "text": "Die Vorderseite stellen Vertragsärzte aus mit Verordnungszeitraum, leistungsbegründenden Diagnosen, komplexem Symptomgeschehen samt Versorgungsbedarf, aktueller Medikation einschließlich Betäubungsmitteln und den erforderlichen palliativärztlichen und palliativpflegerischen Maßnahmen (Beratung, Koordination, additive Teilversorgung oder vollständige Versorgung).",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 63, Nr. 4, S. 131–132"
+     }
+    }
+   ]
+  },
+  {
+   "id": "teilversorgung",
+   "label": "Additiv unterstützende Teilversorgung",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "massnahmen",
+   "label_pos": "rechts",
+   "box": {
+    "x": 9.2,
+    "y": 78.1,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "vollversorgung",
+   "label": "Vollständige Versorgung",
+   "kind": "checkbox",
+   "filled_by": "arzt",
+   "group": "massnahmen",
+   "label_pos": "rechts",
+   "box": {
+    "x": 33.4,
+    "y": 78.1,
+    "w": 2.9,
+    "h": 2.0
+   },
+   "rules": []
+  },
+  {
+   "id": "naehere_angaben",
+   "label": "Nähere Angaben zu den notwendigen Maßnahmen der SAPV",
+   "kind": "text",
+   "filled_by": "arzt",
+   "lines": 5,
+   "box": {
+    "x": 9.1,
+    "y": 82.3,
+    "w": 59.9,
+    "h": 10.7
+   },
+   "rules": [
+    {
+     "id": "m63.umfang",
+     "text": "SAPV wird nach Bedarf intermittierend oder durchgängig erbracht und kann verordnet werden, soweit notwendig und zweckmäßig und soweit die allgemeine Palliativversorgung nicht ausreicht; Leistungsinhalte nennt § 5 Abs. 3 SAPV-RL.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 63, Nr. 2, S. 131"
+     }
+    }
+   ]
+  },
+  {
+   "id": "stempel",
+   "label": "Vertragsarztstempel / Unterschrift des Arztes",
+   "kind": "stempel",
+   "filled_by": "arzt",
+   "box": {
+    "x": 70.5,
+    "y": 82.9,
+    "w": 26.5,
+    "h": 12.0
+   },
+   "rules": [
+    {
+     "id": "m63.aenderungen",
+     "text": "Änderungen und Ergänzungen der Verordnung bedürfen der erneuten Unterschrift des Arztes mit Stempel und Datumsangabe.",
+     "source": {
+      "artifact": "erlaeuterungen",
+      "locator": "Muster 63, Nr. 4, S. 132"
+     }
+    }
+   ]
+  }
+ ]
+}

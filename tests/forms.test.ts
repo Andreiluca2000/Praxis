@@ -69,10 +69,10 @@ describe('Analyse: welcher Vordruck passt', () => {
   it('Laborüberweisung → Muster 10 (nicht Muster 6)', () => {
     expect(analyse('Überweisung ans Labor für Blutbild').suggestions.map((s) => s.formId)).toEqual(['muster-10', 'muster-10a']);
   });
-  it('Gesamtkatalog: „SAPV“ findet Muster 63 (nur Regeln, noch keine Vorschau)', () => {
-    const a = analyse('spezialisierte ambulante Palliativversorgung SAPV');
+  it('Gesamtkatalog: „Soziotherapie“ findet Muster 26 (nur Regeln, noch keine Vorschau)', () => {
+    const a = analyse('Verordnung Soziotherapie');
     expect(a.suggestions).toEqual([]);
-    expect(a.catalog[0]?.entry.muster).toBe('63');
+    expect(a.catalog[0]?.entry.muster).toBe('26');
     expect(a.catalog[0]?.entry.rules.length).toBeGreaterThan(5);
   });
   it('ambulante OP im Krankenhaus ist keine Einweisung', () => {
