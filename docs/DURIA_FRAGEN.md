@@ -2,7 +2,7 @@
 
 Ziel: Anbindung eines internen Praxis-Assistenten (Abrechnungsprüfung, Diktat, ICD-Suche). Das Programm liest Patientendaten und soll nach ärztlicher Freigabe Notizen sowie angenommene Ziffern und Diagnosen an DURIA übergeben. Es greift nie direkt in die Datenbank oder die DURIA-Oberfläche ein.
 
-**Wichtigste Fragen: 16, 17, 18 und 19.**
+**Wichtigste Fragen: 16, 17, 18 und 19; für den Tagesabschluss 20–22.**
 
 ## Schnittstelle
 1. Welche Schnittstelle empfehlen Sie für ein Zusatzprogramm, das Daten des **aktuell geöffneten Patienten** liest: GDT (als „Gerät“), BDT-Export oder HL7? Gibt es eine dokumentierte API?
@@ -32,6 +32,15 @@ Ziel: Anbindung eines internen Praxis-Assistenten (Abrechnungsprüfung, Diktat, 
 
 ## Quartalsprüfung vor dem KV-Versand
 19. Kann DURIA die **KVDT-Abrechnungsdatei** des Quartals vor der Verschlüsselung und dem Versand als Datei ausgeben (z. B. Prüflauf)? Wo liegt sie, und entspricht sie dem KBV-KVDT-Standard (Scheine 0101–0104, FK 5000/5001/6001/6003)?
+
+## Tagesabschluss: Prüfung aller Patienten eines Tages (ergänzt 29.10.2026)
+Ziel: Am Abend prüft das Programm die Ziffern und Diagnosen aller Patienten, die an diesem Tag aufgerufen wurden. Es merkt sich dafür tagsüber nur die Patientennummer, die Uhrzeit, den Arbeitsplatz und das Benutzerkürzel (verschlüsselt, höchstens 24 Stunden) – keinen Namen und kein Geburtsdatum.
+
+20. Kann DURIA bei **jedem Aufruf eines Patienten** (Kalender, Wartezimmer, Karteikarte öffnen) **automatisch** eine GDT-Datei an ein Zusatzprogramm senden, ohne dass der Benutzer das Gerät/Programm eigens startet? Wenn ja: wo wird das eingestellt („GDT bei Aufruf automatisch senden“ o. ä.), und gilt die Einstellung je Arbeitsplatz oder praxisweit?
+21. Enthält ein GDT-Aufruf (Satzart 6302 bzw. Ihre Standard-Satzart) die **Leistungsziffern (FK 5001) und Diagnosen (FK 6001 mit Sicherheit FK 6003) des ganzen laufenden Quartals** oder nur des Tages bzw. gar keine? Bitte mit einem Beispiel-Datensatz ohne echte Patientendaten.
+22. Kann die **KVDT-Abrechnungsdatei jederzeit** im Quartal erzeugt werden (Prüflauf), und enthält sie dann **auch die Leistungen und Diagnosen des heutigen Tages**? Gibt es dabei Nebenwirkungen (z. B. Abrechnung als „erstellt“ markiert, Sperre der Scheine)?
+23. Gibt es einen **BDT-Export für einen Tag** (alle Patienten mit Kontakt an einem Datum, einschließlich Karteikartentext), ggf. per Kommandozeile oder zeitgesteuert?
+24. Kann ein Zusatzprogramm DURIA bitten, **einen bestimmten Patienten zu öffnen** (z. B. GDT-Satzart oder Aufrufparameter mit Patientennummer), damit der Arzt vom Prüfbericht direkt zur Karteikarte springt? Wenn ja: mit welcher Satzart bzw. welchem Parameter, und muss der Benutzer bestätigen?
 
 ## Nach der Antwort
 Die bestätigte Zuordnung wird in eine eigene Datei (z. B. `config/duria-mapping.json`, Vorlage: `config/duria-mapping.example.json`) eingetragen, mit `"confirmed_by_vendor": true`. Erst dann entfällt die Warnung „nicht bestätigt“ in der Oberfläche.
