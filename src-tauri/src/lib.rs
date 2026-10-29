@@ -4,6 +4,9 @@
 
 mod accounts;
 mod ai;
+mod ai_day;
+#[cfg(test)]
+mod ai_day_tests;
 mod ai_transfer;
 #[cfg(test)]
 mod ai_tests;
@@ -257,6 +260,10 @@ pub fn run() {
             commands::rules_write,
             commands::day_list,
             commands::day_close,
+            commands::ai_day_preview,
+            commands::ai_day_ask,
+            commands::ai_stage2_unlock,
+            commands::ai_stage2_lock,
         ])
         .run(tauri::generate_context!())
         .expect("Praxis-Assistent konnte nicht starten");

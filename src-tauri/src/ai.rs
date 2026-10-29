@@ -35,12 +35,35 @@ pub struct AiConfig {
     pub provider: String,
     pub model: String,
     pub effort: String,
+    /// Freigabe Stufe 2 (Text aus Kartei/Diktat). Standard: keine = gesperrt.
+    /// Nur über `ai_stage2_unlock` (Arzt, Bestätigung AVV/ZDR/DSFA) setzbar, nie über die allgemeinen Einstellungen.
+    #[serde(default)]
+    pub stage2: Option<Stage2Approval>,
+}
+
+/// Bestätigung des Arztes im Dialog, dass die Voraussetzungen für Stufe 2 vorliegen.
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+pub struct Stage2Approval {
+    /// Kürzel des Arztes, Zeitpunkt (Sekunden seit 1970).
+    pub by: String,
+    pub at: u64,
+    /// Auftragsverarbeitungsvertrag (AVV/DPA) mit Anthropic inkl. Verschwiegenheit nach § 203 StGB.
+    pub avv: bool,
+    /// Zero Data Retention vereinbart.
+    pub zdr: bool,
+    /// Datenschutz-Folgenabschätzung (DSFA) liegt vor.
+    pub dsfa: bool,
 }
 
 impl Default for AiConfig {
     fn default() -> Self {
-        AiConfig { provider: "aus".into(), model: DEFAULT_MODEL.into(), effort: "low".into() }
+        AiConfig { provider: "aus".into(), model: DEFAULT_MODEL.into(), effort: "low".into(), stage2: None }
     }
+}
+
+/// Stufe 2 ist nur offen, wenn ein Arzt alle drei Voraussetzungen bestätigt hat.
+pub fn stage2_open(cfg: &AiConfig) -> bool {
+    matches!(&cfg.stage2, Some(a) if a.avv && a.zdr && a.dsfa && !a.by.trim().is_empty())
 }
 
 pub fn validate_config(c: &AiConfig) -> Result<(), String> {
@@ -52,6 +75,9 @@ pub fn validate_config(c: &AiConfig) -> Result<(), String> {
     }
     if !EFFORTS.contains(&c.effort.as_str()) {
         return Err("KI: Aufwand low, medium oder high.".into());
+    }
+    if c.stage2.is_some() && !stage2_open(c) {
+        return Err("KI: Freigabe Stufe 2 unvollständig.".into());
     }
     Ok(())
 }

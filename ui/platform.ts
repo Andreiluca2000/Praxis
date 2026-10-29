@@ -26,7 +26,11 @@ export interface AppConfig {
   dmp_dm2_teilnahme: boolean;
 }
 
-export interface AiConfig { provider: 'aus' | 'claude'; model: string; effort: 'low' | 'medium' | 'high' }
+export interface AiConfig {
+  provider: 'aus' | 'claude'; model: string; effort: 'low' | 'medium' | 'high';
+  /** Freigabe KI-Stufe 2 (Kartei-Text); nur über eigenen Arzt-Dialog in Rust änderbar. */
+  stage2?: { by: string; at: number; avv: boolean; zdr: boolean; dsfa: boolean } | null;
+}
 export interface AiAuditEntry { at: number; user: string; feature: string; model: string; input_tokens: number; output_tokens: number; ok: boolean; note: string }
 export interface AiStatus { config: AiConfig; models: string[]; key_present: boolean; audit: AiAuditEntry[] }
 export interface AiPreview { body: string; redactions: number; truncated: boolean; chars: number }

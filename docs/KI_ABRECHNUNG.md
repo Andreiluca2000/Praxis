@@ -1,6 +1,6 @@
 # KI la Abrechnung: ce face etapa 1 și ce rămâne pentru etapa 2
 
-29.10.2026 · **doar plan, nimic construit pentru Abrechnung.** Azi KI trimite numai testul de conexiune sintetic. Comutatorul e implicit „Aus”; oprit înseamnă că nu pleacă nicio cerere (verificat în testul Rust `ausgeschaltet_geht_keine_anfrage_hinaus`). Contextul general e în `docs/CLAUDE_INTEGRATION_PLAN.md`.
+29.10.2026 · plan; **construit doar KI în Tagesabschluss** (vezi secțiunea „Tagesabschluss”, etapa 2 blocată). Azi KI trimite numai testul de conexiune sintetic. Comutatorul e implicit „Aus”; oprit înseamnă că nu pleacă nicio cerere (verificat în testul Rust `ausgeschaltet_geht_keine_anfrage_hinaus`). Contextul general e în `docs/CLAUDE_INTEGRATION_PLAN.md`.
 
 ## Regula de bază (ambele etape)
 
@@ -49,6 +49,25 @@ Cere înainte, în această ordine:
 - **ICD din diagnoza scrisă**, verificat în catalogul oficial; G/V/A/Z doar de la medic.
 
 **Ce nu face nici în etapa 2:** nu trimite tot dosarul sau tot trimestrul dintr-o dată, nu scrie în DURIA, nu transformă „unsicher” în „bereit” fără confirmarea medicului.
+
+## Tagesabschluss: ce e construit (29.10.2026)
+
+Cerința lui Andree: KI să poată „genau lesen” documentația zilei și să propună decizii. Deciziile:
+- **Comutatorul KI rămâne poarta principală** (implicit „Aus”). Oprit = nimic nu pleacă, nici cu etapa 2 deblocată.
+- **Etapa 1 (`ai_day_ask`, `stage: "erklaeren"`):**
+  - o singură constatare odată: tipul, cifrele/ICD-urile, textul motorului;
+  - Rust verifică formatul codurilor (max. 20) și tipul, apoi înlocuiește datele cu „[Datum]” și rulează `minimize()`;
+  - nu există câmp pentru text din fișă.
+- **Etapa 2 (`stage: "genau_lesen"`):**
+  - textul fișei plus cifrele zilei, minimizat în Rust;
+  - **blocată** până când un medic (rol `arzt`) confirmă în dialog AVV/DPA, ZDR și DSFA (`ai_stage2_unlock`);
+  - închiderea se face cu `ai_stage2_lock`;
+  - `update_config` nu poate schimba poarta;
+  - o poartă incompletă în fișierul de setări e respinsă și tratată ca închisă.
+- **Răspunsul etapei 2** e JSON fix (`vorschlaege`: ziffer, begruendung, beleg; `hinweise`). Fereastra îl verifică cu motorul (cifra pusă de probă în ziua cazului; constatările noi aparțin propunerii) și cu catalogul (format EBM, deja facturat, regulă aprobată, citat găsit în textul trimis).
+  - Propunerea rămâne mereu „unsicher”. „Annehmen” o pune doar în lista de corecturi, nu în DURIA.
+- **Teste:** `src-tauri/src/ai_day_tests.rs` (poartă închisă → 0 cereri; KI oprit → 0 cereri; etapa 1 fără dată, pseudonim, număr), `tests/day-ai.test.ts`.
+- **Punctul deschis de mai sus rămâne:** cifrele unui caz real sunt date de sănătate pseudonimizate. Etapa 1 trimite doar cifrele unei constatări, fără identitate și fără date exacte. Andree și responsabilul de protecția datelor decid dacă e suficient înainte de AVV.
 
 ## Ordinea propusă
 

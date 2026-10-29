@@ -350,13 +350,65 @@ pub fn day_close(state: State<AppState>, upto: u64) -> Result<(), String> {
     state.daylist.lock().unwrap().close_until(upto)
 }
 
+/// „Was wird gesendet?“ für die KI im Tagesabschluss – dieselbe Funktion wie die echte Anfrage, sendet nichts.
+/// Stufe 2 ohne Freigabe: Fehler, es wird nicht einmal eine Vorschau gebaut.
+#[tauri::command]
+pub fn ai_day_preview(state: State<AppState>, request: crate::ai_day::DayAiRequest) -> Result<AiPreview, String> {
+    require_arzt(&state)?;
+    let cfg = state.config.lock().unwrap().ai.clone();
+    let b = crate::ai_day::build_day_request(&cfg, &request)?;
+    Ok(AiPreview { body: serde_json::to_string_pretty(&b.body).map_err(|e| e.to_string())?, redactions: b.redactions, truncated: b.truncated, chars: b.chars })
+}
+
+/// KI-Anfrage im Tagesabschluss (nur Arzt). Hauptschalter und Stufen-Freigabe prüft `ask_day`; Protokoll ohne Inhalt.
+/// Die Antwort ist ein Vorschlag: das Fenster prüft ihn mit Motor und Katalog, er bleibt „unsicher“ bis zur Entscheidung.
+#[tauri::command]
+pub async fn ai_day_ask(state: State<'_, AppState>, request: crate::ai_day::DayAiRequest) -> Result<String, String> {
+    let user = require_arzt(&state)?;
+    let cfg = state.config.lock().unwrap().ai.clone();
+    crate::ai::ensure_enabled(&cfg)?;
+    let key = state.keys.get()?.ok_or("Kein Claude-API-Schlüssel hinterlegt.")?;
+    let result = crate::ai_day::ask_day(&crate::ai::Https, &cfg, &key, &request).await;
+    let entry = crate::ai::AuditEntry {
+        at: crate::ai::now_secs(), user: user.kuerzel.clone(), feature: request.feature().into(), model: cfg.model.clone(),
+        input_tokens: result.as_ref().map(|r| r.input_tokens).unwrap_or(0),
+        output_tokens: result.as_ref().map(|r| r.output_tokens).unwrap_or(0),
+        ok: result.is_ok(), note: result.as_ref().err().cloned().unwrap_or_default(),
+    };
+    crate::ai::append_audit(&state.ai_audit_file, &entry)?;
+    Ok(result?.text)
+}
+
+/// KI-Stufe 2 freigeben (nur Arzt): nur wenn im Dialog AVV/DPA, ZDR und DSFA bestätigt wurden. Kürzel und Zeit werden gespeichert.
+#[tauri::command]
+pub fn ai_stage2_unlock(state: State<AppState>, avv: bool, zdr: bool, dsfa: bool) -> Result<AppConfig, String> {
+    let user = require_arzt(&state)?;
+    let approval = crate::ai_day::stage2_approval(&user.kuerzel, crate::ai::now_secs(), avv, zdr, dsfa)?;
+    let mut cfg = state.config.lock().unwrap();
+    cfg.ai.stage2 = Some(approval);
+    save_config(&state.config_file, &cfg)?;
+    Ok(cfg.clone())
+}
+
+/// KI-Stufe 2 wieder sperren (jeder Arzt).
+#[tauri::command]
+pub fn ai_stage2_lock(state: State<AppState>) -> Result<AppConfig, String> {
+    require_arzt(&state)?;
+    let mut cfg = state.config.lock().unwrap();
+    cfg.ai.stage2 = None;
+    save_config(&state.config_file, &cfg)?;
+    Ok(cfg.clone())
+}
+
 #[tauri::command]
 pub fn update_config(state: State<AppState>, patch: serde_json::Value) -> Result<AppConfig, String> {
     require_arzt(&state)?;
     let mut cfg = state.config.lock().unwrap();
     let mut value = serde_json::to_value(&*cfg).map_err(|e| e.to_string())?;
     config::merge(&mut value, &patch);
-    let next: AppConfig = serde_json::from_value(value).map_err(|e| format!("Ungültige Einstellung: {e}"))?;
+    let mut next: AppConfig = serde_json::from_value(value).map_err(|e| format!("Ungültige Einstellung: {e}"))?;
+    // Die Freigabe der KI-Stufe 2 ändert nur der eigene Dialog (ai_stage2_unlock/-lock), nie die allgemeine Einstellung.
+    next.ai.stage2 = cfg.ai.stage2.clone();
     crate::ai::validate_config(&next.ai)?;
     config::validate_region(&next)?;
     *cfg = next;
