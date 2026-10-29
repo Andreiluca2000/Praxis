@@ -63,7 +63,7 @@ describe('DURIA-Adapter (nur lesen)', () => {
       procedure_codes: ['TEST_X'],
       required_context: [{ domain: 'billed_services', window: { unit: 'quarter', lookback_periods: 0, anchor: 'service_date' } }],
     });
-    const base = { serviceDate: '2026-11-12', facts, billedServices: s.services };
+    const base = { serviceDate: '2026-11-12', facts, billedServices: s.services, hzvStatus: 'not_enrolled' as const };
     expect(evaluateRule(rule, { ...base, coverage: s.coverage }, settings(), 'operational').outcome).toBe('not_verifiable');
     const declared = { ...base, coverage: declareCoverage('2026-10-01', '2026-12-31') };
     expect(evaluateRule(rule, declared, settings(), 'operational').outcome).toBe('candidate');
@@ -71,7 +71,7 @@ describe('DURIA-Adapter (nur lesen)', () => {
 
   it('BILL-04 über den Adapter: bereits erfasste Leistung wird nicht erneut vorgeschlagen', () => {
     const s = readDuriaExport(syntheticBdt(), DEFAULT_MAPPING, 'bdt');
-    const f = evaluateRule(testRule(), { serviceDate: '2026-11-12', facts, billedServices: s.services, coverage: s.coverage }, settings(), 'operational');
+    const f = evaluateRule(testRule(), { serviceDate: '2026-11-12', facts, billedServices: s.services, coverage: s.coverage, hzvStatus: 'not_enrolled' }, settings(), 'operational');
     expect(f.outcome).toBe('already_billed');
   });
 });

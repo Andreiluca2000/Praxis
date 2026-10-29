@@ -89,7 +89,7 @@ export const fullCoverage = (from = DATE, to = DATE): CoverageEntry[] => [
 ];
 
 export function input(facts: Facts, over: Partial<EvaluationInput> = {}): EvaluationInput {
-  return { serviceDate: DATE, facts, billedServices: [], coverage: fullCoverage(), ...over };
+  return { serviceDate: DATE, facts, billedServices: [], coverage: fullCoverage(), hzvStatus: 'not_enrolled', ...over };
 }
 
 export const billed = (code: string, date = DATE, state: BilledService['state'] = 'active'): BilledService => ({

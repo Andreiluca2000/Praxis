@@ -16,6 +16,9 @@ import type { Note, PublicAccount } from '../src/notes/note.js';
 import { validateRulePackage, validateSettings } from '../src/validation/validate.js';
 import practice from '../config/practice.example.json';
 import rulesJson from '../data/billing/rules.example.json';
+import reviewedJson from '../data/billing/reviewed/hausarzt-welle1.json';
+import chronicJson from '../data/billing/reviewed/chronic-dx.json';
+import { loadCatalogue, rulesFor } from '../src/engine/catalogue.js';
 import { NoteBook } from './notebook.js';
 import { api, tauriSink, type AppConfig } from './platform.js';
 
@@ -44,7 +47,11 @@ interface Current {
 
 export class TreatmentSession {
   settings: PracticeSettings = validated(validateSettings(practice), 'Praxiseinstellungen');
-  readonly rules: RulePackage = validated(validateRulePackage(rulesJson), 'Regelpaket');
+  private readonly example: RulePackage = validated(validateRulePackage(rulesJson), 'Regelpaket');
+  /** Geprüfter Katalog (Welle 1) und Liste chronischer Erkrankungen; wirken erst nach ärztlicher Freigabe. */
+  readonly catalogue = loadCatalogue(reviewedJson, chronicJson);
+  /** Simulator: DEMO-Regeln; operativ: geprüfter Katalog (fehlerhaft → keine Ziffernvorschläge). */
+  get rules(): RulePackage { return rulesFor(this.mode, this.example, this.catalogue); }
   readonly notes: NoteBook;
   private readonly contexts = new ContextRegistry();
   private current: Current | null = null;
@@ -206,6 +213,8 @@ export class TreatmentSession {
     const job = runFertigInBackground({
       serviceDate, snapshot: this.current.snapshot, notes: this.notes.list, confirmedFacts: facts,
       quarterExportConfirmed: quarterConfirmed, hzvContractId: null, confirmedSeparate: new Map(this.separate),
+      // DURIA liefert kein HZV-Merkmal: unbekannt, nie „kein HZV“. Verlauf (Vorquartale) erst mit bestätigtem Export.
+      hzvStatus: 'unknown', chronicList: this.catalogue.chronic, history: null,
       practiceRules: activeRules(this.practice, serviceDate),
     }, this.settings, this.rules, this.mode, this.mode === 'simulation' ? this.pairRegistry : null);
     this.fertigJob = job;

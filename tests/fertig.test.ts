@@ -18,7 +18,7 @@ const note = (over: Partial<Note> = {}): Note => ({
 });
 const input = (over: Partial<FertigInput> = {}): FertigInput => ({
   serviceDate: '2026-11-12', snapshot: readDuriaExport(syntheticBdt(), DEFAULT_MAPPING, 'bdt'),
-  notes: [], confirmedFacts: facts, quarterExportConfirmed: true, hzvContractId: null, ...over,
+  notes: [], confirmedFacts: facts, quarterExportConfirmed: true, hzvContractId: null, hzvStatus: 'not_enrolled', ...over,
 });
 const QUARTER_RULE = testRule({
   procedure_codes: ['TEST_NEU'],

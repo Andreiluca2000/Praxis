@@ -1,6 +1,8 @@
 import { quarterEnd, quarterStart } from '../domain/dates.js';
 import type { BilledService, IsoDate, PracticeSettings, RulePackage } from '../domain/types.js';
 import { declareCoverage } from '../duria/adapter.js';
+import { isApproved, type ChronicList } from '../engine/chronic.js';
+import { checkChronicCoding } from '../engine/dx-expectations.js';
 import { evaluatePackage } from '../engine/evaluate.js';
 import { checkPairs, type PairFinding, type PairRegistry } from '../engine/pairs.js';
 import { checkWindowRules, type WindowFinding, type WindowRuleSet } from '../engine/window-rules.js';
@@ -18,6 +20,8 @@ import { first, parseXdt, parseXdtDate, type XdtRecord } from '../duria/xdt.js';
  */
 
 export const SCHEIN_SATZARTEN = ['0101', '0102', '0103', '0104'];
+/** Die KVDT-Datei ist die KV-Abrechnung: ihre Scheine laufen nicht über einen HZV-Vertrag. */
+const KVDT_HZV = 'not_enrolled' as const;
 
 export interface KvdtCase {
   index: number;
@@ -33,7 +37,7 @@ export interface CaseFinding {
   caseIndex: number;
   patientToken: string | null;
   severity: 'fehler' | 'hinweis';
-  kind: 'keine_diagnose' | 'diagnose_ohne_sicherheit' | 'leistung_ohne_datum' | 'datum_ausserhalb_quartal' | 'regel' | 'praxisregel';
+  kind: 'keine_diagnose' | 'diagnose_ohne_sicherheit' | 'leistung_ohne_datum' | 'datum_ausserhalb_quartal' | 'regel' | 'praxisregel' | 'diagnose_ziffer';
   text: string;
 }
 
@@ -98,7 +102,10 @@ export function checkQuarter(
   windows?: WindowRuleSet | null,
   /** Aktive Praxisregeln: nur Hinweise, nie Fehler. */
   practice: ActiveRule[] = [],
+  /** Liste chronischer Erkrankungen (R1 Diagnose ↔ Ziffer); wirkt nur, wenn freigegeben. Nur Hinweise. */
+  chronicList: ChronicList | null = null,
 ): QuarterReport {
+  const chronic = isApproved(chronicList) ? chronicList : null;
   const { cases, parseErrors } = readKvdt(data);
   // Entwurfsdaten sind operativ wirkungslos (wie DEMO-Regeln): nur im Simulator.
   const combinations: QuarterCombinations | null = pairs && mode === 'simulation'
@@ -122,6 +129,12 @@ export function checkQuarter(
     for (const p of evaluateOnServices(practice, c.services, { behandlungsfallComplete: true })) {
       add(c, 'hinweis', 'praxisregel', `${p.title} (v${p.version}) · ${p.codes.join(' + ')} am ${p.date}: ${p.text}`);
     }
+    if (chronic && range) {
+      const dx = c.diagnoses.map((d, i) => ({ code: d.icd, certainty: d.certainty, date: null, ref: `kvdt:${c.index}:dx${i}` }));
+      for (const h of checkChronicCoding({ services: c.services, diagnoses: dx, list: chronic, quarter: range, undatedInQuarter: true, kv: settings.region.kv })) {
+        add(c, 'hinweis', 'diagnose_ziffer', h.text);
+      }
+    }
     // Regelprüfung je Leistungstag mit vollständigem Quartal (die KVDT-Datei enthält den ganzen Fall).
     if (combinations && pairs) {
       const r = checkPairs(c.services, pairs);
@@ -136,7 +149,7 @@ export function checkQuarter(
     const coverage = range ? declareCoverage(range.from, range.to) : [];
     const days = [...new Set(c.services.map((s) => s.date))];
     for (const day of days) {
-      for (const f of evaluatePackage(rules, { serviceDate: day, facts: {}, billedServices: c.services, coverage, hzvContractId: null }, settings, mode)) {
+      for (const f of evaluatePackage(rules, { serviceDate: day, facts: {}, billedServices: c.services, coverage, hzvContractId: null, hzvStatus: KVDT_HZV }, settings, mode)) {
         if (f.outcome === 'billing_conflict') add(c, 'fehler', 'regel', `${f.codes.join(', ')} am ${day}: ${f.conflicts.join(' ')}`);
       }
     }

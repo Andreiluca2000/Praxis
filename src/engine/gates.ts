@@ -64,7 +64,14 @@ export function checkGates(rule: Rule, input: EvaluationInput, settings: Practic
   // 5. HZV-Regeln.
   if (rule.billing_system === 'HZV') checkHzv(rule, input, settings, g);
 
-  // 6. EBM-Regel in einem HZV-Fall: kein automatischer Wechsel, Ziffernkranz je Leistung prüfen.
+  // 6. HZV-Teilnahme unbekannt: EBM-Vorschlag nicht prüfbar (keine stille Annahme „kein HZV“).
+  if (rule.billing_system === 'EBM' && !input.hzvContractId && input.hzvStatus === 'unknown') {
+    g.blockers.push('HZV-Teilnahme des Patienten unbekannt – EBM-Vorschlag nicht prüfbar. Bitte HZV-Status klären.');
+  } else if (rule.billing_system === 'EBM' && !input.hzvContractId && input.hzvStatus === 'enrolled') {
+    g.blockers.push('Patient in der HZV, Vertrag unbekannt – EBM-Vorschlag nicht prüfbar.');
+  }
+
+  // 7. EBM-Regel in einem HZV-Fall: kein automatischer Wechsel, Ziffernkranz je Leistung prüfen.
   if (rule.billing_system === 'EBM' && input.hzvContractId) {
     const inc = input.facts['contract.service_included'];
     if (!inc || inc.verification !== 'confirmed' || inc.contradictory || typeof inc.value !== 'boolean') {

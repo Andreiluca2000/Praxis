@@ -70,6 +70,13 @@ export function evaluateRule(rule: Rule, input: EvaluationInput, settings: Pract
           evidence: found.flatMap((f) => f.evidence), source_ids: cr.source_ids,
         });
         states.push(s);
+      } else if (cr.relationship === 'excluded_by') {
+        const s: Tri = range === null ? 'unknown' : found.length > 0 ? 'not_fulfilled' : 'fulfilled';
+        conditions.push({
+          label: `nicht neben ${cr.with_codes.join(', ')}`, state: s, reason: cr.reason,
+          evidence: found.flatMap((f) => f.evidence), source_ids: cr.source_ids,
+        });
+        states.push(s);
       } else if (found.length > 0) {
         const verb = cr.relationship === 'cannot_combine' ? 'nicht kombinierbar mit' : 'bereits enthalten in';
         conflicts.push(`${verb} ${found.map((f) => `${f.code} (${f.date})`).join(', ')}: ${cr.reason}`);

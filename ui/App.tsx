@@ -103,7 +103,7 @@ export function App() {
           {notice && <div className="notice" role="status">{notice} <button className="link" onClick={() => setNotice('')}>×</button></div>}
           {view === 'behandlung' && <Treatment session={s} user={status.user} billingEnabled={status.config.billing_writeback_enabled} />}
           {view === 'quartal' && (status.user.role === 'arzt'
-            ? <QuarterCheck settings={s.settings} rules={s.rules} mode={status.config.mode} practice={activeRules(s.practice, today())} />
+            ? <QuarterCheck settings={s.settings} rules={s.rules} mode={status.config.mode} practice={activeRules(s.practice, today())} chronic={s.catalogue.chronic} />
             : <section className="card"><p className="muted">Die Quartalsprüfung ist Ärzten vorbehalten.</p></section>)}
           {view === 'diagnosen' && <section className="card"><h2><Stethoscope size={22} aria-hidden="true" />Diagnosen & ICD-10-GM</h2><IcdSearch /></section>}
           {view === 'formulare' && <FormsView kartei={s.snapshot ? { diagnoses: s.snapshot.diagnoses, notes: s.snapshot.notes, serviceDate: today() } : null} />}

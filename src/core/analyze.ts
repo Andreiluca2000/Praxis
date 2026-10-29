@@ -58,6 +58,8 @@ export function analyse(
       billedServices: snap.services,
       coverage,
       hzvContractId: req.hzvContractId ?? null,
+      // DURIA liefert kein HZV-Merkmal: ohne Vertrag unbekannt, nie „kein HZV“.
+      hzvStatus: req.hzvContractId ? 'enrolled' : 'unknown',
     },
     deps.settings,
     req.mode,

@@ -1,0 +1,177 @@
+{
+ "schema_version": "1.0.0",
+ "list_id": "PRAXIS_CHRONIKER_ICD",
+ "version": "0.1.0",
+ "review": {
+  "state": "pending",
+  "reviewer": null,
+  "reviewed_at": null,
+  "rationale": "Vorschlag Claude, 30.10.2026 – vom Arzt zu prüfen, zu kürzen oder zu ergänzen."
+ },
+ "basis": "Der EBM (4/2026, S. 196) verlangt für 03220/03221 eine gesicherte „lebensverändernde chronische Erkrankung“, nennt aber keine ICD-Liste. Diese Liste ist ein Auslöser der Praxis für Hinweise und Vorschläge, kein Normtext; die Liste zu 03100 ist eine andere (data/billing/chroniker). dm2_categories: DMP Diabetes Typ 2 (E11). Die verbindliche Positivliste der KV Nordrhein (§ 1 Abs. 5 der Vergütungsvereinbarung) ist nicht öffentlich und daher hier nicht abgebildet.",
+ "categories": [
+  {
+   "icd": "E10",
+   "label": "Diabetes mellitus Typ 1"
+  },
+  {
+   "icd": "E11",
+   "label": "Diabetes mellitus Typ 2"
+  },
+  {
+   "icd": "E13",
+   "label": "Sonstiger näher bezeichneter Diabetes mellitus"
+  },
+  {
+   "icd": "E14",
+   "label": "Nicht näher bezeichneter Diabetes mellitus"
+  },
+  {
+   "icd": "I10",
+   "label": "Essentielle Hypertonie"
+  },
+  {
+   "icd": "I11",
+   "label": "Hypertensive Herzkrankheit"
+  },
+  {
+   "icd": "I12",
+   "label": "Hypertensive Nierenkrankheit"
+  },
+  {
+   "icd": "I13",
+   "label": "Hypertensive Herz- und Nierenkrankheit"
+  },
+  {
+   "icd": "I25",
+   "label": "Chronische ischämische Herzkrankheit"
+  },
+  {
+   "icd": "I48",
+   "label": "Vorhofflimmern und Vorhofflattern"
+  },
+  {
+   "icd": "I50",
+   "label": "Herzinsuffizienz"
+  },
+  {
+   "icd": "I69",
+   "label": "Folgen einer zerebrovaskulären Krankheit"
+  },
+  {
+   "icd": "I70",
+   "label": "Atherosklerose (inkl. pAVK)"
+  },
+  {
+   "icd": "J44",
+   "label": "Sonstige chronische obstruktive Lungenkrankheit (COPD)"
+  },
+  {
+   "icd": "J45",
+   "label": "Asthma bronchiale"
+  },
+  {
+   "icd": "E03",
+   "label": "Sonstige Hypothyreose"
+  },
+  {
+   "icd": "E05",
+   "label": "Hyperthyreose"
+  },
+  {
+   "icd": "E78",
+   "label": "Störungen des Lipoproteinstoffwechsels"
+  },
+  {
+   "icd": "E66",
+   "label": "Adipositas"
+  },
+  {
+   "icd": "N18",
+   "label": "Chronische Nierenkrankheit"
+  },
+  {
+   "icd": "K50",
+   "label": "Morbus Crohn"
+  },
+  {
+   "icd": "K51",
+   "label": "Colitis ulcerosa"
+  },
+  {
+   "icd": "K70",
+   "label": "Alkoholische Leberkrankheit"
+  },
+  {
+   "icd": "K74",
+   "label": "Fibrose und Zirrhose der Leber"
+  },
+  {
+   "icd": "G20",
+   "label": "Primäres Parkinson-Syndrom"
+  },
+  {
+   "icd": "G30",
+   "label": "Alzheimer-Krankheit"
+  },
+  {
+   "icd": "F03",
+   "label": "Nicht näher bezeichnete Demenz"
+  },
+  {
+   "icd": "G35",
+   "label": "Multiple Sklerose"
+  },
+  {
+   "icd": "G40",
+   "label": "Epilepsie"
+  },
+  {
+   "icd": "F20",
+   "label": "Schizophrenie"
+  },
+  {
+   "icd": "F31",
+   "label": "Bipolare affektive Störung"
+  },
+  {
+   "icd": "F33",
+   "label": "Rezidivierende depressive Störung"
+  },
+  {
+   "icd": "M05",
+   "label": "Seropositive chronische Polyarthritis"
+  },
+  {
+   "icd": "M06",
+   "label": "Sonstige chronische Polyarthritis"
+  },
+  {
+   "icd": "M80",
+   "label": "Osteoporose mit pathologischer Fraktur"
+  },
+  {
+   "icd": "M81",
+   "label": "Osteoporose ohne pathologische Fraktur"
+  },
+  {
+   "icd": "B20",
+   "label": "HIV-Krankheit"
+  },
+  {
+   "icd": "C18",
+   "label": "Bösartige Neubildung des Kolons"
+  },
+  {
+   "icd": "C50",
+   "label": "Bösartige Neubildung der Brustdrüse"
+  },
+  {
+   "icd": "C61",
+   "label": "Bösartige Neubildung der Prostata"
+  }
+ ],
+ "dm2_categories": [
+  "E11"
+ ]
+}

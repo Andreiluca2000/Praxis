@@ -1,6 +1,9 @@
 import { quarterEnd, quarterStart } from '../domain/dates.js';
-import type { BilledService, Facts, Finding, IsoDate, PracticeSettings, RulePackage } from '../domain/types.js';
+import type { BilledService, BillingSystem, Expression, Facts, Finding, HzvStatus, IsoDate, PracticeSettings, RulePackage } from '../domain/types.js';
 import { declareCoverage, type DuriaSnapshot } from '../duria/adapter.js';
+import { deriveChronicFacts, isApproved, type ChronicList, type DxRecord } from '../engine/chronic.js';
+import { checkChronicCoding } from '../engine/dx-expectations.js';
+import { patientStatus, type PatientStatus } from '../engine/patient-status.js';
 import { evaluatePackage } from '../engine/evaluate.js';
 import { checkPairs, type PairFinding, type PairRegistry, type SeparateConfirmation } from '../engine/pairs.js';
 import type { Note } from '../notes/note.js';
@@ -16,7 +19,7 @@ import type { ActiveRule } from '../rules/model.js';
 
 /** Strukturierter Eintrag, der nach Annahme als Abrechnungsdaten (nicht als Notiz) an DURIA geht. */
 export type BillingEntry =
-  | { type: 'ziffer'; system: 'EBM' | 'GOAE' | 'HZV' | 'DEMO'; code: string; date: IsoDate; ruleId: string; ruleVersion: string }
+  | { type: 'ziffer'; system: BillingSystem; code: string; date: IsoDate; ruleId: string; ruleVersion: string }
   | { type: 'diagnose'; icd: string; certainty: 'G' | 'V' | 'A' | 'Z'; side: 'R' | 'L' | 'B' | null; date: IsoDate };
 
 export interface FertigProposal {
@@ -38,6 +41,8 @@ export interface FertigReport {
   serviceDate: IsoDate;
   quarter: { from: IsoDate; to: IsoDate };
   quarterComplete: boolean;
+  /** Neupatient / erster Kontakt im Quartal – Information, keine Ziffer (src/engine/patient-status.ts). */
+  patient: PatientStatus;
   proposals: FertigProposal[];
   finishedAt: string;
 }
@@ -50,6 +55,12 @@ export interface FertigInput {
   /** Bestätigt der Benutzer bzw. der DURIA-Export (Quartalsexport), dass das ganze Quartal enthalten ist? */
   quarterExportConfirmed: boolean;
   hzvContractId: string | null;
+  /** HZV-Teilnahme des Patienten; DURIA liefert sie nicht → im Fenster 'unknown', nie stillschweigend „kein HZV“. */
+  hzvStatus: HzvStatus;
+  /** Liste chronischer Erkrankungen; wirkt nur, wenn freigegeben (Chroniker-Fakten, Hinweise R1). */
+  chronicList?: ChronicList | null;
+  /** Vom Benutzer bestätigter Zeitraum des Exports für den Verlauf (Vorquartale); null = kein Verlauf. */
+  history?: { from: IsoDate; to: IsoDate } | null;
   /** Bestätigungen „getrennte Sitzungen dokumentiert“ (Schlüssel `confirmationKey`). */
   confirmedSeparate?: ReadonlyMap<string, SeparateConfirmation>;
   /** Aktive Praxisregeln am Behandlungstag – senken Vorschläge höchstens ab, geben nie etwas frei. */
@@ -70,6 +81,12 @@ export function pairsForProposal(
     .filter((f) => f.codes.includes(proposed.code) && f.verdict !== 'separate_confirmed');
 }
 
+const DERIVED_PREFIXES = ['diagnosis.', 'history.'];
+function usesDerivedFacts(e: Expression): boolean {
+  if (e.kind === 'fact') return DERIVED_PREFIXES.some((p) => e.field.startsWith(p));
+  return e.kind === 'not' ? usesDerivedFacts(e.item) : e.items.some(usesDerivedFacts);
+}
+
 const norm = (s: string) => s.toLowerCase().normalize('NFKD').replace(/\p{Diacritic}/gu, '').replace(/\s+/g, ' ').trim();
 
 /**
@@ -82,9 +99,11 @@ export function runFertig(
 ): FertigReport {
   const registry = pairs ?? null;
   const quarter = { from: quarterStart(input.serviceDate), to: quarterEnd(input.serviceDate) };
-  const coverage = input.quarterExportConfirmed
-    ? declareCoverage(quarter.from, quarter.to)
-    : input.snapshot.coverage;
+  // Bestätigter Verlauf (Vorquartale) gilt als gelesen, wie das bestätigte Quartal.
+  const coverage = [
+    ...(input.quarterExportConfirmed ? declareCoverage(quarter.from, quarter.to) : input.snapshot.coverage),
+    ...(input.history ? declareCoverage(input.history.from, input.history.to) : []),
+  ];
   const proposals: FertigProposal[] = [];
 
   if (!input.quarterExportConfirmed) {
@@ -95,12 +114,23 @@ export function runFertig(
     });
   }
 
-  const findings = evaluatePackage(rules, {
+  // Abgeleitete Fakten (Diagnosen, Verlauf) nur mit freigegebener Liste; Benutzerbestätigungen bleiben unverändert.
+  const chronic = isApproved(input.chronicList) ? input.chronicList : null;
+  const dx: DxRecord[] = input.snapshot.diagnoses.map((d) => ({ code: d.code, certainty: d.certainty, date: d.date, ref: d.ref }));
+  const derived = chronic
+    ? deriveChronicFacts({ serviceDate: input.serviceDate, services: input.snapshot.services, diagnoses: dx, list: chronic, history: input.history ?? null })
+    : {};
+  // Ohne freigegebene Liste lassen sich Diagnose-/Verlaufsfakten nicht ableiten: solche Regeln gar nicht prüfen,
+  // statt bei jedem Patienten „Dokumentation unvollständig“ zu melden.
+  const usable = chronic ? rules : { ...rules, rules: rules.rules.filter((r) => !usesDerivedFacts(r.eligibility)) };
+
+  const findings = evaluatePackage(usable, {
     serviceDate: input.serviceDate,
-    facts: input.confirmedFacts,
+    facts: { ...input.confirmedFacts, ...derived },
     billedServices: input.snapshot.services,
     coverage,
     hzvContractId: input.hzvContractId,
+    hzvStatus: input.hzvStatus,
   }, settings, mode);
 
   for (const f of findings) {
@@ -134,6 +164,17 @@ export function runFertig(
     }
   }
 
+  // R1: Diagnose ↔ Ziffern im Quartal, nur Hinweise. „Vermutlich vergessen“ entfällt, wenn eine Regel zu der Ziffer schon
+  // entschieden hat (auch „nein“); „Begründung fehlt“ für eine erfasste Ziffer bleibt immer.
+  if (chronic) {
+    const decided = new Set(findings.filter((f) => f.outcome !== 'not_applicable').flatMap((f) => f.codes));
+    const shown = new Set([...decided, ...proposals.flatMap((p) => p.finding?.codes ?? [])]);
+    for (const h of checkChronicCoding({ services: input.snapshot.services, diagnoses: dx, list: chronic, quarter, undatedInQuarter: false, kv: settings.region.kv, contactToday: true })) {
+      if (h.kind !== 'zuschlag_ohne_diagnose' && h.codes.some((c) => shown.has(c))) continue;
+      proposals.push({ kind: 'hinweis', readiness: 'klaerung', finding: null, entries: [], title: `Diagnose ↔ Ziffer: ${h.codes.join(', ')}`, detail: h.text });
+    }
+  }
+
   // BILL-13: Im Diktat genannte Diagnose ohne erfassten Code → „mögliche fehlende Kodierung“, nie automatisch kodiert.
   const coded = input.snapshot.diagnoses.filter((d) => d.date === input.serviceDate).map((d) => d.code);
   for (const note of input.notes.filter((n) => n.serviceDate === input.serviceDate)) {
@@ -159,7 +200,8 @@ export function runFertig(
   const finalProposals = input.practiceRules?.length
     ? applyToProposals(input.practiceRules, proposals, { facts: input.confirmedFacts, services: input.snapshot.services })
     : proposals;
-  return { serviceDate: input.serviceDate, quarter, quarterComplete: input.quarterExportConfirmed, proposals: finalProposals, finishedAt: new Date().toISOString() };
+  const patient = patientStatus({ serviceDate: input.serviceDate, services: input.snapshot.services, coverage, history: input.history ?? null });
+  return { serviceDate: input.serviceDate, quarter, quarterComplete: input.quarterExportConfirmed, patient, proposals: finalProposals, finishedAt: new Date().toISOString() };
 }
 
 /** Hintergrund-Ausführung mit Abbruch: blockiert die Oberfläche nicht. */

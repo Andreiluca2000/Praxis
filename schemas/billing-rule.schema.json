@@ -79,7 +79,7 @@
           "required": ["kind", "field", "operator", "source_ids"],
           "properties": {
             "kind": {"const": "fact"},
-            "field": {"enum": ["service.status", "service.date", "service.mode", "service.performer", "service.age_years_at_date", "documentation.duration_minutes", "documentation.required_components_complete", "practice.required_authorization", "practice.required_qualification", "contract.practice_participation", "contract.patient_enrollment", "contract.covers_service_date", "contract.service_included", "evidence.complete", "billed_services.count"]},
+            "field": {"enum": ["service.status", "service.date", "service.mode", "service.performer", "service.age_years_at_date", "documentation.duration_minutes", "documentation.required_components_complete", "practice.required_authorization", "practice.required_qualification", "contract.practice_participation", "contract.patient_enrollment", "contract.covers_service_date", "contract.service_included", "evidence.complete", "billed_services.count", "diagnosis.chronic_confirmed", "diagnosis.dm2_confirmed", "history.chronic_contact_quarters", "history.personal_contact_quarters", "history.base_03100_two_quarters_before", "documentation.intensive_care_confirmed", "dmp.practice_participation", "dmp.patient_enrolled", "dmp.documentation_transmitted"]},
             "operator": {"enum": ["eq", "neq", "in", "gte", "lte", "is_known"]},
             "value": {"oneOf": [{"type": ["string", "number", "boolean"]}, {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": ["string", "number", "boolean"]}}]},
             "source_ids": {"$ref": "#/$defs/source_ids"}
@@ -109,7 +109,7 @@
       "properties": {
         "id": {"type": "string", "minLength": 1},
         "version": {"type": "string", "minLength": 1},
-        "billing_system": {"enum": ["EBM", "GOAE", "HZV", "DEMO"]},
+        "billing_system": {"enum": ["EBM", "GOAE", "HZV", "KV", "DEMO"]},
         "status": {"enum": ["draft", "reviewed", "active", "retired"]},
         "title": {"type": "string", "minLength": 1},
         "procedure_codes": {"allOf": [{"$ref": "#/$defs/codes"}, {"minItems": 1}]},
@@ -131,7 +131,7 @@
           "type": "object", "additionalProperties": false,
           "required": ["relationship", "with_codes", "window", "reason", "source_ids"],
           "properties": {
-            "relationship": {"enum": ["cannot_combine", "included_in", "requires_code"]},
+            "relationship": {"enum": ["cannot_combine", "included_in", "requires_code", "excluded_by"]},
             "with_codes": {"allOf": [{"$ref": "#/$defs/codes"}, {"minItems": 1}]},
             "window": {"$ref": "#/$defs/window"},
             "reason": {"type": "string", "minLength": 1},
@@ -157,9 +157,10 @@
       },
       "allOf": [
         {"if": {"properties": {"billing_system": {"const": "HZV"}}}, "then": {"properties": {"contract_id": {"type": "string", "minLength": 1}}}},
+        {"if": {"properties": {"billing_system": {"const": "KV"}}}, "then": {"properties": {"jurisdiction": {"enum": ["Nordrhein", "Westfalen-Lippe"]}}}},
         {"if": {"properties": {"billing_system": {"const": "DEMO"}}}, "then": {"properties": {"status": {"const": "draft"}, "id": {"pattern": "^DEMO_"}, "procedure_codes": {"items": {"pattern": "^DEMO_"}}}}},
         {"if": {"properties": {"status": {"const": "active"}}}, "then": {"properties": {
-          "billing_system": {"enum": ["EBM", "GOAE", "HZV"]},
+          "billing_system": {"enum": ["EBM", "GOAE", "HZV", "KV"]},
           "jurisdiction": {"enum": ["DE", "Nordrhein", "Westfalen-Lippe"]},
           "reviews": {"properties": {"billing": {"properties": {"state": {"const": "approved"}}}, "clinical": {"properties": {"state": {"enum": ["approved", "not_applicable"]}}}}},
           "sources": {"items": {"properties": {"kind": {"enum": ["legal_text", "official_catalogue", "contract", "official_guidance"]}, "license_status": {"enum": ["permitted_for_local_use", "permitted_for_distribution"]}}}}

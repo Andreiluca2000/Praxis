@@ -8,7 +8,8 @@ export type IsoDate = string; // YYYY-MM-DD
 
 // ---------- Regeln ----------
 
-export type BillingSystem = 'EBM' | 'GOAE' | 'HZV' | 'DEMO';
+/** 'KV': regionale KV-Vertragsleistung (z. B. DMP-Symbolnummern KV Nordrhein), über KVDT abgerechnet. */
+export type BillingSystem = 'EBM' | 'GOAE' | 'HZV' | 'KV' | 'DEMO';
 export type RuleStatus = 'draft' | 'reviewed' | 'active' | 'retired';
 export type Jurisdiction = 'DE' | 'Nordrhein' | 'Westfalen-Lippe' | 'synthetic';
 export type WindowUnit = 'visit' | 'day' | 'treatment_case' | 'quarter' | 'year';
@@ -55,6 +56,18 @@ export const FACT_FIELDS = [
   'contract.service_included',
   'evidence.complete',
   'billed_services.count',
+  // Abgeleitet aus Diagnosen/Leistungen (src/engine/chronic.ts), nie aus Freitext.
+  'diagnosis.chronic_confirmed',
+  'diagnosis.dm2_confirmed',
+  'history.chronic_contact_quarters',
+  'history.personal_contact_quarters',
+  'history.base_03100_two_quarters_before',
+  /** 03221: mind. zwei persönliche Kontakte im Quartal und Überprüfung/Anpassung der leitliniengestützten Behandlung (bestätigt). */
+  'documentation.intensive_care_confirmed',
+  // DMP (KV-Vertrag): Teilnahme der Praxis, Einschreibung, übermittelte Dokumentation – nur bestätigt, nie vermutet.
+  'dmp.practice_participation',
+  'dmp.patient_enrolled',
+  'dmp.documentation_transmitted',
 ] as const;
 export type FactField = (typeof FACT_FIELDS)[number];
 
@@ -87,7 +100,11 @@ export type ContextDomain =
   | 'patient_enrollment';
 
 export interface CombinationRule {
-  relationship: 'cannot_combine' | 'included_in' | 'requires_code';
+  /**
+   * `excluded_by`: Partnerziffer im Zeitraum erfasst → die Ziffer der Regel kommt nicht in Frage (Ausschluss, kein Konflikt).
+   * Für Vorschlagsregeln: ein Partner schließt den Vorschlag aus, statt eine Fehlermeldung zu erzeugen.
+   */
+  relationship: 'cannot_combine' | 'included_in' | 'requires_code' | 'excluded_by';
   with_codes: string[];
   window: RuleWindow;
   reason: string;
@@ -223,7 +240,14 @@ export interface EvaluationInput {
   coverage: CoverageEntry[];
   /** Kennung des HZV-Vertrags des Falls, wie vom Adapter geliefert (sonst null). */
   hzvContractId?: string | null;
+  /**
+   * HZV-Teilnahme des Patienten – Pflicht, damit kein Aufrufer stillschweigend „kein HZV“ annimmt.
+   * 'unknown' (DURIA liefert kein HZV-Merkmal) macht EBM-Regeln „nicht prüfbar“.
+   */
+  hzvStatus: HzvStatus;
 }
+
+export type HzvStatus = 'enrolled' | 'not_enrolled' | 'unknown';
 
 // ---------- Ergebnisse ----------
 

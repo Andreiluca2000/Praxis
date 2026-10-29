@@ -1,0 +1,627 @@
+{
+ "schema_version": "0.1.0",
+ "package_id": "DE_HAUSARZT_WELLE1",
+ "package_version": "1.0.0",
+ "content_kind": "reviewed_catalogue",
+ "rules": [
+  {
+   "id": "EBM_03000_W1",
+   "version": "1.0.0",
+   "billing_system": "EBM",
+   "status": "draft",
+   "title": "Versichertenpauschale 03000 (erster Arzt-Patienten-Kontakt im Behandlungsfall)",
+   "procedure_codes": [
+    "03000"
+   ],
+   "valid_from": "2026-10-01",
+   "valid_to": "2026-12-31",
+   "jurisdiction": "DE",
+   "contract_id": null,
+   "sources": [
+    {
+     "id": "EBM_03000_W1_SOURCE",
+     "kind": "official_catalogue",
+     "publisher": "Kassenärztliche Bundesvereinigung",
+     "title": "Einheitlicher Bewertungsmaßstab (EBM), Stand 4/2026",
+     "uri": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+     "version": "4/2026",
+     "locator": "Abschnitt 3.2.1: S. 179 GOP 03000 (persönlicher oder Video-Kontakt, einmal im Behandlungsfall); S. 180 (nicht im organisierten Notdienst, nicht bei Definitionsauftrag, nicht im Folgequartal nach 03100, nicht neben 01600/01601/01610/03030/03100 im Behandlungsfall, nicht neben 01436); S. 182 (nur unvorhergesehene Inanspruchnahme → 03030 statt 03000)",
+     "checked_on": "2026-10-26",
+     "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+     "license_status": "pending"
+    }
+   ],
+   "reviews": {
+    "billing": {
+     "state": "pending",
+     "reviewer": null,
+     "reviewed_at": null,
+     "rationale": "Welle 1: Freigabe durch den Arzt laut docs/WELLE1_FREIGABE.md. Bis dahin ohne Wirkung."
+    },
+    "clinical": {
+     "state": "pending",
+     "reviewer": null,
+     "reviewed_at": null,
+     "rationale": "Welle 1: Freigabe durch den Arzt laut docs/WELLE1_FREIGABE.md. Bis dahin ohne Wirkung."
+    }
+   },
+   "required_context": [
+    {
+     "domain": "billed_services",
+     "window": {
+      "unit": "quarter",
+      "lookback_periods": 0,
+      "anchor": "service_date"
+     }
+    },
+    {
+     "domain": "documentation",
+     "window": {
+      "unit": "day",
+      "lookback_periods": 0,
+      "anchor": "service_date"
+     }
+    }
+   ],
+   "eligibility": {
+    "kind": "fact",
+    "field": "documentation.required_components_complete",
+    "operator": "eq",
+    "value": true,
+    "source_ids": [
+     "EBM_03000_W1_SOURCE"
+    ]
+   },
+   "combination_rules": [
+    {
+     "relationship": "excluded_by",
+     "with_codes": [
+      "01600",
+      "01601",
+      "01610",
+      "03030",
+      "03100"
+     ],
+     "window": {
+      "unit": "quarter",
+      "lookback_periods": 0,
+      "anchor": "service_date"
+     },
+     "reason": "Ausschluss im Behandlungsfall laut EBM; Behandlungsfall hier als Kalenderquartal (strenger).",
+     "source_ids": [
+      "EBM_03000_W1_SOURCE"
+     ]
+    },
+    {
+     "relationship": "excluded_by",
+     "with_codes": [
+      "03100"
+     ],
+     "window": {
+      "unit": "quarter",
+      "lookback_periods": 1,
+      "anchor": "service_date"
+     },
+     "reason": "Im Folgequartal nach 03100 derselben Praxis nicht berechnungsfähig (S. 180); braucht das Vorquartal.",
+     "source_ids": [
+      "EBM_03000_W1_SOURCE"
+     ]
+    },
+    {
+     "relationship": "excluded_by",
+     "with_codes": [
+      "01436",
+      "01210",
+      "01212",
+      "01214",
+      "01216",
+      "01218"
+     ],
+     "window": {
+      "unit": "day",
+      "lookback_periods": 0,
+      "anchor": "service_date"
+     },
+     "reason": "Nicht neben 01436; im organisierten Notdienst Notfallpauschalen statt 03000 (S. 180) – hier konservativ je Kalendertag.",
+     "source_ids": [
+      "EBM_03000_W1_SOURCE"
+     ]
+    }
+   ],
+   "frequency_limits": [],
+   "result": {
+    "type": "possible_missing_code",
+    "explanation": "03000 Versichertenpauschale: erster persönlicher oder Video-Kontakt im Quartal. Nicht im organisierten Notdienst, nicht bei Definitionsauftrag; war es nur eine unvorhergesehene Inanspruchnahme, gilt 03030. Die Altersgruppe bestimmt nur die Bewertung; 03040 setzt die KV zu. Vor Übernahme bitte prüfen.",
+    "missing_evidence_message": "03000 nicht prüfbar: Quartal oder Vorquartal (03100) nicht vollständig gelesen, Kontakt („Pflichtinhalte dokumentiert“) nicht bestätigt oder HZV-Status unbekannt.",
+    "requires_human_confirmation": true
+   }
+  },
+  {
+   "id": "EBM_03220_W1",
+   "version": "1.0.0",
+   "billing_system": "EBM",
+   "status": "draft",
+   "title": "Chroniker-Zuschlag 03220 zur Versichertenpauschale 03000",
+   "procedure_codes": [
+    "03220"
+   ],
+   "valid_from": "2026-10-01",
+   "valid_to": "2026-12-31",
+   "jurisdiction": "DE",
+   "contract_id": null,
+   "sources": [
+    {
+     "id": "EBM_03220_W1_SOURCE",
+     "kind": "official_catalogue",
+     "publisher": "Kassenärztliche Bundesvereinigung",
+     "title": "Einheitlicher Bewertungsmaßstab (EBM), Stand 4/2026",
+     "uri": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+     "version": "4/2026",
+     "locator": "S. 196 (Kontinuität: drei von vier Quartalen, zwei mit persönlichem Kontakt; Ausnahme 03100 zwei Quartale zuvor); S. 197 GOP 03220 (obligat: persönlicher Arzt-Patienten-Kontakt), einmal im Behandlungsfall",
+     "checked_on": "2026-10-26",
+     "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+     "license_status": "pending"
+    }
+   ],
+   "reviews": {
+    "billing": {
+     "state": "pending",
+     "reviewer": null,
+     "reviewed_at": null,
+     "rationale": "Welle 1: Freigabe durch den Arzt laut docs/WELLE1_FREIGABE.md. Bis dahin ohne Wirkung."
+    },
+    "clinical": {
+     "state": "pending",
+     "reviewer": null,
+     "reviewed_at": null,
+     "rationale": "Welle 1: Freigabe durch den Arzt laut docs/WELLE1_FREIGABE.md. Bis dahin ohne Wirkung."
+    }
+   },
+   "required_context": [
+    {
+     "domain": "billed_services",
+     "window": {
+      "unit": "quarter",
+      "lookback_periods": 0,
+      "anchor": "service_date"
+     }
+    },
+    {
+     "domain": "documentation",
+     "window": {
+      "unit": "day",
+      "lookback_periods": 0,
+      "anchor": "service_date"
+     }
+    }
+   ],
+   "eligibility": {
+    "kind": "all",
+    "items": [
+     {
+      "kind": "fact",
+      "field": "diagnosis.chronic_confirmed",
+      "operator": "eq",
+      "value": true,
+      "source_ids": [
+       "EBM_03220_W1_SOURCE"
+      ]
+     },
+     {
+      "kind": "any",
+      "items": [
+       {
+        "kind": "all",
+        "items": [
+         {
+          "kind": "fact",
+          "field": "history.chronic_contact_quarters",
+          "operator": "gte",
+          "value": 3,
+          "source_ids": [
+           "EBM_03220_W1_SOURCE"
+          ]
+         },
+         {
+          "kind": "fact",
+          "field": "history.personal_contact_quarters",
+          "operator": "gte",
+          "value": 2,
+          "source_ids": [
+           "EBM_03220_W1_SOURCE"
+          ]
+         }
+        ]
+       },
+       {
+        "kind": "fact",
+        "field": "history.base_03100_two_quarters_before",
+        "operator": "eq",
+        "value": true,
+        "source_ids": [
+         "EBM_03220_W1_SOURCE"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "fact",
+      "field": "documentation.required_components_complete",
+      "operator": "eq",
+      "value": true,
+      "source_ids": [
+       "EBM_03220_W1_SOURCE"
+      ]
+     }
+    ]
+   },
+   "combination_rules": [
+    {
+     "relationship": "excluded_by",
+     "with_codes": [
+      "03370",
+      "03371",
+      "03372",
+      "03373",
+      "37300",
+      "37302",
+      "37305",
+      "37306",
+      "37711",
+      "37800",
+      "37802"
+     ],
+     "window": {
+      "unit": "day",
+      "lookback_periods": 0,
+      "anchor": "service_date"
+     },
+     "reason": "Ausschluss laut EBM (Entwurf EBM_03220_CORE_DRAFT); hier konservativ je Kalendertag statt je Sitzung geprüft.",
+     "source_ids": [
+      "EBM_03220_W1_SOURCE"
+     ]
+    },
+    {
+     "relationship": "excluded_by",
+     "with_codes": [
+      "01630",
+      "32779"
+     ],
+     "window": {
+      "unit": "quarter",
+      "lookback_periods": 0,
+      "anchor": "service_date"
+     },
+     "reason": "Ausschluss im Behandlungsfall laut EBM; Behandlungsfall hier als Kalenderquartal (strenger).",
+     "source_ids": [
+      "EBM_03220_W1_SOURCE"
+     ]
+    }
+   ],
+   "frequency_limits": [
+    {
+     "max_count": 1,
+     "count_codes": [
+      "03220"
+     ],
+     "window": {
+      "unit": "quarter",
+      "lookback_periods": 0,
+      "anchor": "service_date"
+     },
+     "source_ids": [
+      "EBM_03220_W1_SOURCE"
+     ]
+    }
+   ],
+   "result": {
+    "type": "possible_missing_code",
+    "explanation": "03220 Chroniker-Zuschlag: gesicherte (G) chronische Diagnose im Quartal, Kontinuität (3 von 4 Quartalen, davon 2 mit persönlichem Kontakt – oder 03100 zwei Quartale zuvor) und persönlicher Kontakt heute bestätigt. Vor Übernahme bitte prüfen.",
+    "missing_evidence_message": "03220 nicht prüfbar: Es fehlen die Vorquartale (Export der letzten 4 Quartale), die Bestätigung „Pflichtinhalte dokumentiert“ (persönlicher Kontakt) oder der HZV-Status.",
+    "requires_human_confirmation": true
+   }
+  },
+  {
+   "id": "EBM_03221_W1",
+   "version": "1.0.0",
+   "billing_system": "EBM",
+   "status": "draft",
+   "title": "Zuschlag 03221 zu 03220 (intensive Behandlung chronisch Kranker)",
+   "procedure_codes": [
+    "03221"
+   ],
+   "valid_from": "2026-10-01",
+   "valid_to": "2026-12-31",
+   "jurisdiction": "DE",
+   "contract_id": null,
+   "sources": [
+    {
+     "id": "EBM_03221_W1_SOURCE",
+     "kind": "official_catalogue",
+     "publisher": "Kassenärztliche Bundesvereinigung",
+     "title": "Einheitlicher Bewertungsmaßstab (EBM), Stand 4/2026",
+     "uri": "https://www.kbv.de/documents/praxis/abrechnung/ebm/2026-4-ebm.pdf",
+     "version": "4/2026",
+     "locator": "S. 196 (Kontinuität wie 03220); S. 198 GOP 03221 (mind. zwei persönliche Arzt-Patienten-Kontakte, Überprüfung/Anpassung/Einleitung leitliniengestützter Behandlung), einmal im Behandlungsfall",
+     "checked_on": "2026-10-26",
+     "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
+     "license_status": "pending"
+    }
+   ],
+   "reviews": {
+    "billing": {
+     "state": "pending",
+     "reviewer": null,
+     "reviewed_at": null,
+     "rationale": "Welle 1: Freigabe durch den Arzt laut docs/WELLE1_FREIGABE.md. Bis dahin ohne Wirkung."
+    },
+    "clinical": {
+     "state": "pending",
+     "reviewer": null,
+     "reviewed_at": null,
+     "rationale": "Welle 1: Freigabe durch den Arzt laut docs/WELLE1_FREIGABE.md. Bis dahin ohne Wirkung."
+    }
+   },
+   "required_context": [
+    {
+     "domain": "billed_services",
+     "window": {
+      "unit": "quarter",
+      "lookback_periods": 0,
+      "anchor": "service_date"
+     }
+    },
+    {
+     "domain": "documentation",
+     "window": {
+      "unit": "day",
+      "lookback_periods": 0,
+      "anchor": "service_date"
+     }
+    }
+   ],
+   "eligibility": {
+    "kind": "all",
+    "items": [
+     {
+      "kind": "fact",
+      "field": "diagnosis.chronic_confirmed",
+      "operator": "eq",
+      "value": true,
+      "source_ids": [
+       "EBM_03221_W1_SOURCE"
+      ]
+     },
+     {
+      "kind": "any",
+      "items": [
+       {
+        "kind": "all",
+        "items": [
+         {
+          "kind": "fact",
+          "field": "history.chronic_contact_quarters",
+          "operator": "gte",
+          "value": 3,
+          "source_ids": [
+           "EBM_03221_W1_SOURCE"
+          ]
+         },
+         {
+          "kind": "fact",
+          "field": "history.personal_contact_quarters",
+          "operator": "gte",
+          "value": 2,
+          "source_ids": [
+           "EBM_03221_W1_SOURCE"
+          ]
+         }
+        ]
+       },
+       {
+        "kind": "fact",
+        "field": "history.base_03100_two_quarters_before",
+        "operator": "eq",
+        "value": true,
+        "source_ids": [
+         "EBM_03221_W1_SOURCE"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "fact",
+      "field": "documentation.required_components_complete",
+      "operator": "eq",
+      "value": true,
+      "source_ids": [
+       "EBM_03221_W1_SOURCE"
+      ]
+     },
+     {
+      "kind": "fact",
+      "field": "documentation.intensive_care_confirmed",
+      "operator": "eq",
+      "value": true,
+      "source_ids": [
+       "EBM_03221_W1_SOURCE"
+      ]
+     }
+    ]
+   },
+   "combination_rules": [
+    {
+     "relationship": "requires_code",
+     "with_codes": [
+      "03220"
+     ],
+     "window": {
+      "unit": "quarter",
+      "lookback_periods": 0,
+      "anchor": "service_date"
+     },
+     "reason": "Zuschlag zu 03220: 03220 muss im Behandlungsfall erfasst sein.",
+     "source_ids": [
+      "EBM_03221_W1_SOURCE"
+     ]
+    },
+    {
+     "relationship": "excluded_by",
+     "with_codes": [
+      "01630",
+      "32779"
+     ],
+     "window": {
+      "unit": "quarter",
+      "lookback_periods": 0,
+      "anchor": "service_date"
+     },
+     "reason": "Ausschluss im Behandlungsfall laut EBM; Behandlungsfall hier als Kalenderquartal (strenger).",
+     "source_ids": [
+      "EBM_03221_W1_SOURCE"
+     ]
+    }
+   ],
+   "frequency_limits": [
+    {
+     "max_count": 1,
+     "count_codes": [
+      "03221"
+     ],
+     "window": {
+      "unit": "quarter",
+      "lookback_periods": 0,
+      "anchor": "service_date"
+     },
+     "source_ids": [
+      "EBM_03221_W1_SOURCE"
+     ]
+    }
+   ],
+   "result": {
+    "type": "possible_missing_code",
+    "explanation": "03221: 03220 ist erfasst; zusätzlich bestätigt: mindestens zwei persönliche Kontakte im Quartal und Überprüfung/Anpassung der leitliniengestützten Behandlung. Vor Übernahme bitte prüfen.",
+    "missing_evidence_message": "03221 nicht prüfbar: Es fehlen die Vorquartale, die Bestätigung der Pflichtinhalte (zwei persönliche Kontakte, Behandlungsüberprüfung) oder der HZV-Status.",
+    "requires_human_confirmation": true
+   }
+  },
+  {
+   "id": "KVNO_DMP_DM2_90325_W1",
+   "version": "1.0.0",
+   "billing_system": "KV",
+   "status": "draft",
+   "title": "DMP Diabetes mellitus Typ 2 (KV Nordrhein): Folgedokumentationspauschale 90325",
+   "procedure_codes": [
+    "90325"
+   ],
+   "valid_from": "2025-07-01",
+   "valid_to": null,
+   "jurisdiction": "Nordrhein",
+   "contract_id": null,
+   "sources": [
+    {
+     "id": "KVNO_DMP_DM2_VV_2025",
+     "kind": "contract",
+     "publisher": "KV Nordrhein und nordrheinische Krankenkassen/-verbände",
+     "title": "Vergütungsvereinbarung zum DMP-Vertrag Diabetes mellitus Typ 2, Fassung ab 01.07.2025",
+     "uri": "https://www.kvno.de/fileadmin/shared/pdf/online/amtliche_bekanntmachungen/2025/20250724_verguetung_diab_2.pdf",
+     "version": "Fassung ab 01.07.2025",
+     "locator": "§ 1 Abs. 1 und 5 (S. 2: Teilnahme des Arztes, gesicherte Diagnose laut Positivliste); § 2 Abs. 1, 2, 6 (S. 3–4: gültige Einschreibung, SNR 90325 Folgedokumentation 10,00 €, höchstens eine Ziffer je Patient und Quartal bzw. Halbjahr)",
+     "checked_on": "2026-10-30",
+     "sha256": "f245f7470fa7e19ca34525b2ae6478230abfb11cc1eb7a530a26a4e107a46e89",
+     "license_status": "pending"
+    }
+   ],
+   "reviews": {
+    "billing": {
+     "state": "pending",
+     "reviewer": null,
+     "reviewed_at": null,
+     "rationale": "Welle 1: Freigabe durch den Arzt laut docs/WELLE1_FREIGABE.md. Bis dahin ohne Wirkung."
+    },
+    "clinical": {
+     "state": "pending",
+     "reviewer": null,
+     "reviewed_at": null,
+     "rationale": "Welle 1: Freigabe durch den Arzt laut docs/WELLE1_FREIGABE.md. Bis dahin ohne Wirkung."
+    }
+   },
+   "required_context": [
+    {
+     "domain": "billed_services",
+     "window": {
+      "unit": "quarter",
+      "lookback_periods": 0,
+      "anchor": "service_date"
+     }
+    }
+   ],
+   "eligibility": {
+    "kind": "all",
+    "items": [
+     {
+      "kind": "fact",
+      "field": "diagnosis.dm2_confirmed",
+      "operator": "eq",
+      "value": true,
+      "source_ids": [
+       "KVNO_DMP_DM2_VV_2025"
+      ]
+     },
+     {
+      "kind": "fact",
+      "field": "dmp.practice_participation",
+      "operator": "eq",
+      "value": true,
+      "source_ids": [
+       "KVNO_DMP_DM2_VV_2025"
+      ]
+     },
+     {
+      "kind": "fact",
+      "field": "dmp.patient_enrolled",
+      "operator": "eq",
+      "value": true,
+      "source_ids": [
+       "KVNO_DMP_DM2_VV_2025"
+      ]
+     },
+     {
+      "kind": "fact",
+      "field": "dmp.documentation_transmitted",
+      "operator": "eq",
+      "value": true,
+      "source_ids": [
+       "KVNO_DMP_DM2_VV_2025"
+      ]
+     }
+    ]
+   },
+   "combination_rules": [
+    {
+     "relationship": "excluded_by",
+     "with_codes": [
+      "90324",
+      "90325D"
+     ],
+     "window": {
+      "unit": "quarter",
+      "lookback_periods": 0,
+      "anchor": "service_date"
+     },
+     "reason": "Höchstens eine Dokumentationsziffer je Patient und Quartal (§ 2 Abs. 6).",
+     "source_ids": [
+      "KVNO_DMP_DM2_VV_2025"
+     ]
+    }
+   ],
+   "frequency_limits": [],
+   "result": {
+    "type": "possible_missing_code",
+    "explanation": "DMP Diabetes Typ 2 (KV Nordrhein): Folgedokumentationspauschale 90325 – nur mit DMP-Genehmigung der Praxis, gültiger Einschreibung und für dieses Quartal vollständig, plausibel und fristgerecht übermittelter Folgedokumentation (bei halbjährlicher Dokumentation nur im Dokumentationsquartal).",
+    "missing_evidence_message": "90325 nicht prüfbar: DMP-Genehmigung der Praxis, Einschreibung des Patienten oder die übermittelte Folgedokumentation sind nicht bestätigt.",
+    "requires_human_confirmation": true
+   }
+  }
+ ]
+}
