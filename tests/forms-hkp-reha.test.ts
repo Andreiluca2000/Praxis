@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { analyse, check, propose } from '../src/forms/advisor.js';
 import { valuesOf } from '../src/forms/build.js';
 import { getForm } from '../src/forms/catalog.js';
@@ -6,6 +6,9 @@ import type { FormId, FormIssue, FormProposal } from '../src/forms/types.js';
 
 // Synthetische Beschreibungen, keine Patientendaten.
 const TODAY = new Date('2026-10-28T10:00:00');
+// check() prüft „rückwirkend“ gegen die Systemzeit – daher hier dieselbe feste Uhrzeit.
+beforeAll(() => { vi.useFakeTimers({ toFake: ['Date'] }); vi.setSystemTime(TODAY); });
+afterAll(() => { vi.useRealTimers(); });
 function run(formId: FormId, text: string) {
   const { facts } = analyse(text);
   const p = propose(formId, text, facts, TODAY);
