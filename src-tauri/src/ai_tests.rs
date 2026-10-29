@@ -86,3 +86,79 @@ fn protokoll_ohne_inhalt_und_schluesselablage() {
     keys.delete().unwrap();
     assert_eq!(keys.get().unwrap(), None);
 }
+
+/// Attrappe für das Netz: zählt nur, wie oft gesendet worden wäre.
+struct CountingTransport(std::sync::atomic::AtomicUsize);
+impl Transport for CountingTransport {
+    async fn post(&self, _key: &str, _body: &serde_json::Value) -> Result<(u16, String), String> {
+        self.0.fetch_add(1, std::sync::atomic::Ordering::SeqCst);
+        Ok((200, r#"{"type":"message","content":[{"type":"text","text":"OK"}],"stop_reason":"end_turn","usage":{"input_tokens":1,"output_tokens":1}}"#.into()))
+    }
+}
+
+#[test]
+fn ausgeschaltet_geht_keine_anfrage_hinaus() {
+    let net = CountingTransport(Default::default());
+    let key = format!("sk-ant-api03-{}", "x".repeat(60));
+    let off = AiConfig::default();
+    assert_eq!(off.provider, "aus", "Standard ist aus");
+    assert!(!is_enabled(&off));
+    let body = build_request(&off, TEST_TASK, TEST_DATA, 64);
+    let err = tauri::async_runtime::block_on(send(&net, &off, &key, &body)).unwrap_err();
+    assert!(err.contains("ausgeschaltet"), "{err}");
+    assert_eq!(net.0.load(std::sync::atomic::Ordering::SeqCst), 0, "ausgeschaltet: kein einziger Netzaufruf");
+
+    let on = AiConfig { provider: "claude".into(), ..AiConfig::default() };
+    let reply = tauri::async_runtime::block_on(send(&net, &on, &key, &body)).unwrap();
+    assert_eq!(reply.text, "OK");
+    assert_eq!(net.0.load(std::sync::atomic::Ordering::SeqCst), 1);
+
+    // Alte Einstellungsdatei ohne „ai“ → aus.
+    let cfg: AiConfig = serde_json::from_str(r#"{"provider":"aus","model":"claude-opus-5-5","effort":"low"}"#).unwrap();
+    assert!(!is_enabled(&cfg));
+}
+
+#[test]
+fn transferdatei_mit_passwort_hin_und_zurueck() {
+    use crate::ai_transfer::*;
+    let key = format!("sk-ant-api03-{}", "Ab9_".repeat(20));
+    let password = "Kaffee-im-Wartezimmer-7";
+    let file = seal(&key, password).unwrap();
+    assert!(!file.contains(&key) && !file.contains("sk-ant") && !file.contains(password), "nichts im Klartext");
+    let parsed: TransferFile = serde_json::from_str(&file).unwrap();
+    assert_eq!((parsed.memory_kib, parsed.iterations, parsed.kdf.as_str()), (EXPORT_MEMORY_KIB, EXPORT_ITERATIONS, "argon2id"));
+    assert_eq!(open(&file, password).unwrap().as_str(), key);
+    assert!(open(&file, "Kaffee-im-Wartezimmer-8").unwrap_err().contains("falsch"));
+    // Zweiter Export: anderes Salt und andere Nonce.
+    assert_ne!(seal(&key, password).unwrap(), file);
+}
+
+#[test]
+fn transferdatei_lehnt_veraenderung_schwache_parameter_und_kurze_passwoerter_ab() {
+    use crate::ai_transfer::*;
+    let key = format!("sk-ant-api03-{}", "y".repeat(60));
+    let password = "ein-langes-Transferpasswort";
+    assert!(seal(&key, "zu-kurz").unwrap_err().contains("mindestens"));
+    assert!(seal("kein-schluessel", password).is_err());
+
+    let file: TransferFile = serde_json::from_str(&seal_for_test(&key, password, 19 * 1024, 2).unwrap()).unwrap();
+    let as_text = |f: &TransferFile| serde_json::to_string(f).unwrap();
+    assert!(open(&as_text(&file), password).is_ok());
+
+    // Chiffretext verändert → Authentifizierung scheitert.
+    let mut c = file.clone();
+    let flipped = if c.ciphertext.starts_with('0') { "1" } else { "0" };
+    c.ciphertext.replace_range(0..1, flipped);
+    assert!(open(&as_text(&c), password).unwrap_err().contains("falsch"));
+    // Kopf verändert (mehr Durchläufe behauptet) → gehört zu den geschützten Daten, scheitert ebenfalls.
+    let mut h = file.clone();
+    h.iterations = 3;
+    assert!(open(&as_text(&h), password).is_err());
+    // Zu schwache Ableitung wird gar nicht erst versucht.
+    let mut w = file.clone();
+    w.memory_kib = 1024;
+    assert!(open(&as_text(&w), password).unwrap_err().contains("Schutzparameter"));
+    // Fremde Dateien und übergroße Dateien.
+    assert!(open("{\"hallo\":1}", password).unwrap_err().contains("Keine Schlüssel-Transferdatei"));
+    assert!(open(&"x".repeat(5000), password).unwrap_err().contains("Keine Schlüssel-Transferdatei"));
+}

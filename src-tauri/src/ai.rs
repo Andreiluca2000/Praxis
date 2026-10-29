@@ -3,6 +3,7 @@
 //! - Schlüssel in der Windows-Anmeldeinformationsverwaltung (Credential Manager), nie in einer Datei.
 //! - Gesendet wird nur ein minimierter Textauszug ohne Patientennummer/Pseudonym; was gesendet würde,
 //!   zeigt die Vorschau aus derselben Funktion, die auch die Anfrage baut.
+//! - Schalter „aus“ (Standard): `send` bricht vor jedem Netzzugriff ab.
 //! - Stufe 1: Es wird nur ein synthetischer Verbindungstest gesendet, kein Text aus der Kartei.
 //! - Protokoll je Aufruf ohne Inhalt (wer, wann, Funktion, Modell, Token, Ergebnis).
 
@@ -208,23 +209,53 @@ impl KeyStore for CredentialManager {
     }
 }
 
-/// Sendet eine Anfrage (nur an API_URL). Zeitlimit, damit die Oberfläche nicht hängt.
-pub async fn send(key: &str, body: &Value) -> Result<AiReply, String> {
-    let client = reqwest::Client::builder()
-        .timeout(std::time::Duration::from_secs(90))
-        .build()
-        .map_err(|e| format!("KI: {e}"))?;
-    let res = client
-        .post(API_URL)
-        .header("x-api-key", key)
-        .header("anthropic-version", API_VERSION)
-        .header("content-type", "application/json")
-        .json(body)
-        .send()
-        .await
-        .map_err(|e| if e.is_timeout() { "KI: Zeitüberschreitung.".to_string() } else { "KI: keine Verbindung zum Dienst.".to_string() })?;
-    let status = res.status().as_u16();
-    let text = res.text().await.map_err(|_| "KI: Antwort nicht lesbar.".to_string())?;
+/// Schalter: Nur mit Anbieter „claude“ verlässt überhaupt eine Anfrage den Rechner.
+pub fn is_enabled(cfg: &AiConfig) -> bool {
+    cfg.provider == "claude"
+}
+
+pub fn ensure_enabled(cfg: &AiConfig) -> Result<(), String> {
+    if is_enabled(cfg) {
+        Ok(())
+    } else {
+        Err("KI ist ausgeschaltet – es wurde nichts gesendet.".into())
+    }
+}
+
+/// Weg ins Netz; in Tests ersetzt durch eine Attrappe, die nur zählt.
+pub trait Transport {
+    /// Antwort: HTTP-Status und Körper.
+    fn post(&self, key: &str, body: &Value) -> impl std::future::Future<Output = Result<(u16, String), String>> + Send;
+}
+
+/// HTTPS nur an API_URL. Zeitlimit, damit die Oberfläche nicht hängt.
+pub struct Https;
+
+impl Transport for Https {
+    async fn post(&self, key: &str, body: &Value) -> Result<(u16, String), String> {
+        let client = reqwest::Client::builder()
+            .timeout(std::time::Duration::from_secs(90))
+            .build()
+            .map_err(|e| format!("KI: {e}"))?;
+        let res = client
+            .post(API_URL)
+            .header("x-api-key", key)
+            .header("anthropic-version", API_VERSION)
+            .header("content-type", "application/json")
+            .json(body)
+            .send()
+            .await
+            .map_err(|e| if e.is_timeout() { "KI: Zeitüberschreitung.".to_string() } else { "KI: keine Verbindung zum Dienst.".to_string() })?;
+        let status = res.status().as_u16();
+        let text = res.text().await.map_err(|_| "KI: Antwort nicht lesbar.".to_string())?;
+        Ok((status, text))
+    }
+}
+
+/// Einziger Weg, eine Anfrage zu senden: prüft zuerst den Schalter – ausgeschaltet geht nichts hinaus.
+pub async fn send<T: Transport>(transport: &T, cfg: &AiConfig, key: &str, body: &Value) -> Result<AiReply, String> {
+    ensure_enabled(cfg)?;
+    let (status, text) = transport.post(key, body).await?;
     parse_response(status, &text)
 }
 

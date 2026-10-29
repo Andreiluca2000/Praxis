@@ -43,3 +43,6 @@ praxisregeln.json
 .claude/
 ui/mock/
 *.tmp
+
+# Transferdateien des KI-Schlüssels (verschlüsselt, gehören trotzdem nie ins Repository)
+*.praxiskey

@@ -4,6 +4,7 @@
 
 mod accounts;
 mod ai;
+mod ai_transfer;
 #[cfg(test)]
 mod ai_tests;
 #[cfg(test)]
@@ -211,6 +212,8 @@ pub fn run() {
             commands::ai_delete_key,
             commands::ai_test,
             commands::ai_preview,
+            commands::ai_export_key,
+            commands::ai_import_key,
             commands::rules_write,
         ])
         .run(tauri::generate_context!())

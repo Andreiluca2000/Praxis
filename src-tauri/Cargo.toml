@@ -25,6 +25,15 @@ getrandom = "0.2"
 # KI-Assistent (optional): HTTP zur Claude API und Schlüssel in der Windows-Anmeldeinformationsverwaltung
 reqwest = { version = "0.13", features = ["json"] }
 keyring = { version = "3", features = ["windows-native"] }
+# Schlüssel-Transferdatei (Argon2id + AES-256-GCM), Geheimnisse im Speicher nach Gebrauch überschreiben
+aes-gcm = "0.10"
+zeroize = "1"
+
+# Argon2 auch in Test-/Debug-Builds optimiert (sonst dauert eine Schlüsselableitung mit 64 MiB Sekunden).
+[profile.dev.package.argon2]
+opt-level = 3
+[profile.dev.package.blake2]
+opt-level = 3
 
 [profile.release]
 # Klein und sparsam: wichtig auf dem Terminalserver (eine Instanz je RDP-Sitzung).

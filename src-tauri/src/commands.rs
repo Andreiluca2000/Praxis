@@ -228,9 +228,10 @@ pub struct AiTestResult {
 pub async fn ai_test(state: State<'_, AppState>) -> Result<AiTestResult, String> {
     let user = require_arzt(&state)?;
     let cfg = state.config.lock().unwrap().ai.clone();
+    crate::ai::ensure_enabled(&cfg)?;
     let key = state.keys.get()?.ok_or("Kein Claude-API-Schlüssel hinterlegt.")?;
     let body = crate::ai::build_request(&cfg, crate::ai::TEST_TASK, crate::ai::TEST_DATA, 1024);
-    let result = crate::ai::send(&key, &body).await;
+    let result = crate::ai::send(&crate::ai::Https, &cfg, &key, &body).await;
     let entry = crate::ai::AuditEntry {
         at: crate::ai::now_secs(), user: user.kuerzel.clone(), feature: "verbindungstest".into(), model: cfg.model.clone(),
         input_tokens: result.as_ref().map(|r| r.input_tokens).unwrap_or(0),
@@ -240,6 +241,62 @@ pub async fn ai_test(state: State<'_, AppState>) -> Result<AiTestResult, String>
     crate::ai::append_audit(&state.ai_audit_file, &entry)?;
     let r = result?;
     Ok(AiTestResult { ok: true, model: cfg.model, answer: r.text.chars().take(200).collect(), input_tokens: r.input_tokens, output_tokens: r.output_tokens })
+}
+
+/// Schlüssel für einen anderen Rechner exportieren (nur Arzt): Rust verschlüsselt mit dem Transfer-Passwort
+/// (Argon2id + AES-256-GCM) und schreibt die Datei an den Ort aus dem Speichern-Dialog. Der Schlüssel erreicht
+/// das Fenster nie. `false` = Dialog abgebrochen.
+#[tauri::command]
+pub async fn ai_export_key(app: tauri::AppHandle, state: State<'_, AppState>, password: String) -> Result<bool, String> {
+    use tauri_plugin_dialog::DialogExt;
+    require_arzt(&state)?;
+    crate::ai_transfer::check_password(&password)?;
+    let key = zeroize::Zeroizing::new(state.keys.get()?.ok_or("Kein Claude-API-Schlüssel hinterlegt.")?);
+    let sealed = tauri::async_runtime::spawn_blocking(move || crate::ai_transfer::seal(&key, &password))
+        .await
+        .map_err(|e| e.to_string())??;
+    let ext = crate::ai_transfer::FILE_EXTENSION;
+    let Some(target) = app.dialog().file()
+        .set_title("KI-Schlüssel für die Praxis speichern")
+        .set_file_name(format!("ki-schluessel.{ext}"))
+        .add_filter("Praxis-Assistent KI-Schlüssel", &[ext])
+        .blocking_save_file()
+    else {
+        return Ok(false);
+    };
+    let path = target.into_path().map_err(|_| "Speicherort nicht verfügbar.".to_string())?;
+    std::fs::write(&path, sealed).map_err(|e| format!("Datei nicht speicherbar: {}", e.kind()))?;
+    Ok(true)
+}
+
+/// Schlüssel aus einer Transferdatei übernehmen (nur Arzt): Rust liest die Datei aus dem Öffnen-Dialog,
+/// entschlüsselt mit dem Transfer-Passwort und legt den Schlüssel in die Anmeldeinformationsverwaltung
+/// dieses Windows-Benutzers. `false` = Dialog abgebrochen.
+#[tauri::command]
+pub async fn ai_import_key(app: tauri::AppHandle, state: State<'_, AppState>, password: String) -> Result<bool, String> {
+    use tauri_plugin_dialog::DialogExt;
+    require_arzt(&state)?;
+    if password.is_empty() {
+        return Err("Bitte das Transfer-Passwort eingeben.".into());
+    }
+    let ext = crate::ai_transfer::FILE_EXTENSION;
+    let Some(source) = app.dialog().file()
+        .set_title("KI-Schlüssel übernehmen")
+        .add_filter("Praxis-Assistent KI-Schlüssel", &[ext])
+        .blocking_pick_file()
+    else {
+        return Ok(false);
+    };
+    let path = source.into_path().map_err(|_| "Datei nicht verfügbar.".to_string())?;
+    if std::fs::metadata(&path).map_err(|e| format!("Datei nicht lesbar: {}", e.kind()))?.len() > crate::ai_transfer::MAX_FILE_BYTES {
+        return Err("Keine Schlüssel-Transferdatei.".into());
+    }
+    let content = std::fs::read_to_string(&path).map_err(|_| "Keine Schlüssel-Transferdatei.".to_string())?;
+    let key = tauri::async_runtime::spawn_blocking(move || crate::ai_transfer::open(&content, &password))
+        .await
+        .map_err(|e| e.to_string())??;
+    state.keys.set(&key)?;
+    Ok(true)
 }
 
 #[derive(serde::Serialize)]

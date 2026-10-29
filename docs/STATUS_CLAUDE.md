@@ -1,4 +1,12 @@
 # Stadiul programării (Claude)
+## Etapa (29.10.2026, noaptea): cheia KI acasă → cabinet, comutatorul KI blochează rețeaua, plan KI la Abrechnung
+- **Decizie:** cheia se mută cu un **fișier de transfer criptat cu parolă** (`src-tauri/src/ai_transfer.rs`): Argon2id (64 MiB, 3 treceri) + AES-256-GCM, cu antetul autentificat (AAD). La import, parametrii slabi sau extremi sunt refuzați, iar fișierele de peste 4 KB nu se citesc. Parola de transfer are minimum 12 caractere. Cheia ajunge direct în Credential Manager, niciodată în fereastră, în fișier necriptat sau în jurnal. Ghid: `docs/KI_SCHLUESSEL.md`.
+- **Comenzi:** `ai_export_key` și `ai_import_key` (doar medic). Dialogul de fișiere e deschis din Rust, deci fereastra nu alege căi și nu are nevoie de permisiunea `dialog:allow-save`.
+- **Comutatorul:** `ai::send` primește configurația și refuză cu „KI ist ausgeschaltet” **înainte** de orice conexiune. Transportul HTTP e o trăsătură (`Transport`/`Https`), ca testul să poată număra apelurile. `ai_test` verifică întâi comutatorul. În UI: „KI-Assistent: Aus / Ein · Claude API”, cu textul „Ausgeschaltet: Es wird nichts ins Internet gesendet.” și „Verbindung testen” inactiv cât timp e oprit.
+- **Abrechnung:** `docs/KI_ABRECHNUNG.md`. Etapa 1 = doar coduri + texte de normă, fără identitate, fără text din fișă. Etapa 2 (date din fișă) abia după AVV/ZDR/DSFA; **nimic implementat**.
+- **Teste:** Rust 36 (noi: `ausgeschaltet_geht_keine_anfrage_hinaus`, `transferdatei_mit_passwort_hin_und_zurueck`, `transferdatei_lehnt_veraenderung_schwache_parameter_und_kurze_passwoerter_ab`). Argon2/blake2 sunt optimizate și în profilul dev (`Cargo.toml`). **Neverificat:** dialogurile reale în aplicația release și importul pe serverul cabinetului; cheia și comutatorul rămân per utilizator Windows.
+
+
 ## Etapa (28.10.2026): KI-Assistent prin Claude API – etapa 1 (doar date sintetice), plan în `docs/CLAUDE_INTEGRATION_PLAN.md`
 - **Abonamentul Claude nu se poate lega în program:** Anthropic nu permite login claude.ai sau limitele unui abonament în produse terțe fără aprobare (Agent SDK overview, verificat). Se folosește Claude API.
 - **Rust `src-tauri/src/ai.rs`:**

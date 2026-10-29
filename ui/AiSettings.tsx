@@ -1,4 +1,4 @@
-import { CheckCircle2, Eye, KeyRound, PlugZap, ShieldAlert, Sparkles, Trash2 } from 'lucide-react';
+import { ArrowLeftRight, CheckCircle2, Download, Eye, KeyRound, PlugZap, ShieldAlert, Sparkles, Trash2, Upload } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { api, type AiConfig, type AiPreview, type AiStatus } from './platform.js';
 
@@ -25,6 +25,9 @@ export function AiSettings({ isArzt, config, onChanged }: { isArzt: boolean; con
   const [busy, setBusy] = useState(false);
   const [sample, setSample] = useState(SAMPLE);
   const [preview, setPreview] = useState<AiPreview | null>(null);
+  const [transferPw, setTransferPw] = useState('');
+  const [transferPw2, setTransferPw2] = useState('');
+  const enabled = config.provider === 'claude';
 
   const reload = () => api.aiStatus().then(setStatus).catch((e) => setMsg(String(e)));
   useEffect(() => { void reload(); }, [config]);
@@ -48,12 +51,12 @@ export function AiSettings({ isArzt, config, onChanged }: { isArzt: boolean; con
       </div>
 
       <div className="row" style={{ marginTop: 16 }}>
-        <label>Anbieter
-          <fieldset className="segmented" aria-label="KI-Anbieter">
+        <label>KI-Assistent
+          <fieldset className="segmented" aria-label="KI-Assistent ein- oder ausschalten">
             {(['aus', 'claude'] as const).map((p) => (
               <label key={p} className={config.provider === p ? 'on' : ''}>
                 <input type="radio" name="ai-provider" checked={config.provider === p} disabled={!isArzt || busy} onChange={() => void patch({ provider: p })} />
-                {p === 'aus' ? 'Aus' : 'Claude API'}
+                {p === 'aus' ? 'Aus' : 'Ein · Claude API'}
               </label>
             ))}
           </fieldset>
@@ -70,6 +73,10 @@ export function AiSettings({ isArzt, config, onChanged }: { isArzt: boolean; con
         </label>
       </div>
 
+      <p className="muted" role="status" style={{ marginTop: 8 }}>
+        {enabled ? 'Eingeschaltet: Anfragen gehen nur an die Claude API (api.anthropic.com).' : 'Ausgeschaltet: Es wird nichts ins Internet gesendet.'}
+      </p>
+
       <div className="row" style={{ marginTop: 16 }}>
         <KeyRound size={18} aria-hidden="true" />
         {status?.key_present
@@ -77,7 +84,7 @@ export function AiSettings({ isArzt, config, onChanged }: { isArzt: boolean; con
           : <span className="muted">Kein Schlüssel hinterlegt.</span>}
         <span className="spacer" />
         {isArzt && status?.key_present && <button className="link" disabled={busy} onClick={() => void run(async () => { await api.aiDeleteKey(); return 'Schlüssel entfernt.'; })}><Trash2 size={15} aria-hidden="true" />Entfernen</button>}
-        {isArzt && <button disabled={busy || !status?.key_present} onClick={() => void run(async () => {
+        {isArzt && <button disabled={busy || !status?.key_present || !enabled} title={enabled ? undefined : 'Erst den KI-Assistenten einschalten'} onClick={() => void run(async () => {
           const r = await api.aiTest();
           return `Verbindung in Ordnung · ${MODEL_LABEL[r.model] ?? r.model} · Antwort „${r.answer}“ · ${r.input_tokens}/${r.output_tokens} Token`;
         })}><PlugZap size={16} aria-hidden="true" />Verbindung testen</button>}
@@ -90,8 +97,37 @@ export function AiSettings({ isArzt, config, onChanged }: { isArzt: boolean; con
           <button className="primary" disabled={busy || !key.trim()}>Speichern</button>
         </form>
       )}
+      {isArzt && (
+        <>
+          <h3 className="sub"><ArrowLeftRight size={17} aria-hidden="true" />Schlüssel auf einen anderen Rechner übertragen</h3>
+          <p className="muted">
+            Z. B. zu Hause hinterlegen und in der Praxis übernehmen. Die Datei ist mit dem Transfer-Passwort verschlüsselt (Argon2id + AES-256-GCM);
+            Datei und Passwort getrennt weitergeben. In der Praxis übernimmt jeder Windows-Benutzer die Datei einmal für sich.
+          </p>
+          <div className="row">
+            <label style={{ flex: 1 }}>Transfer-Passwort (mind. 12 Zeichen)
+              <input type="password" value={transferPw} onChange={(e) => setTransferPw(e.target.value)} autoComplete="new-password" />
+            </label>
+            <label style={{ flex: 1 }}>Wiederholen (nur beim Exportieren)
+              <input type="password" value={transferPw2} onChange={(e) => setTransferPw2(e.target.value)} autoComplete="new-password" />
+            </label>
+          </div>
+          <div className="row" style={{ marginTop: 8 }}>
+            <button disabled={busy || !status?.key_present || transferPw.length < 12 || transferPw !== transferPw2} onClick={() => void run(async () => {
+              if (!await api.aiExportKey(transferPw)) return;
+              setTransferPw(''); setTransferPw2('');
+              return 'Transferdatei gespeichert. Datei und Passwort getrennt in die Praxis bringen.';
+            })}><Download size={16} aria-hidden="true" />Exportieren …</button>
+            <button disabled={busy || !transferPw} onClick={() => void run(async () => {
+              if (!await api.aiImportKey(transferPw)) return;
+              setTransferPw(''); setTransferPw2('');
+              return 'Schlüssel übernommen und in der Windows-Anmeldeinformationsverwaltung abgelegt.';
+            })}><Upload size={16} aria-hidden="true" />Aus Datei übernehmen …</button>
+          </div>
+        </>
+      )}
       {!isArzt && <p className="muted">Einstellungen des KI-Assistenten ändern nur Ärzte.</p>}
-      {msg && <p className={/^KI:|nicht|Kein|ungültig|sieht nicht/.test(msg) ? 'error' : 'muted'} role="status">{msg}</p>}
+      {msg && <p className={/^KI:|nicht|Kein|ungültig|sieht nicht|falsch|mindestens|unzulässig|ausgeschaltet/.test(msg) ? 'error' : 'muted'} role="status">{msg}</p>}
 
       <h3 className="sub"><Eye size={17} aria-hidden="true" />Was würde gesendet?</h3>
       <p className="muted">Vorschau aus derselben Funktion, die später sendet – Kennungen werden vorher entfernt. Es wird hier nichts gesendet.</p>

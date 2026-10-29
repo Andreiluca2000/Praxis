@@ -59,6 +59,8 @@ export function installPreviewMock() {
     if (cmd === 'ai_status') return { config: config.ai, models: ['claude-opus-5-5', 'claude-sonnet-5-5', 'claude-haiku-5-5'], key_present: aiKey, audit: aiKey ? [{ at: 1793170000, user: 'AL', feature: 'verbindungstest', model: 'claude-opus-5-5', input_tokens: 61, output_tokens: 2, ok: true, note: '' }] : [] };
     if (cmd === 'ai_set_key') { aiKey = true; return null; }
     if (cmd === 'ai_delete_key') { aiKey = false; return null; }
+    if (cmd === 'ai_export_key') return aiKey;
+    if (cmd === 'ai_import_key') { aiKey = true; return true; }
     if (cmd === 'ai_preview') return { body: JSON.stringify({ model: config.ai.model, max_tokens: 4096, system: '…', messages: [{ role: 'user', content: `<daten>\n${String((args as { text: string }).text).replace(/P-[0-9a-f]{20}|\d{3,4}\/\d{5,}/g, '[entfernt]')}\n</daten>` }], output_config: { effort: config.ai.effort } }, null, 2), redactions: 2, truncated: false, chars: 180 };
     if (cmd === 'update_config') { Object.assign(config, (args as { patch: Record<string, unknown> }).patch); return config; }
     if (cmd === 'rules_write') { practiceRules = (args as { json: string }).json; return null; }
