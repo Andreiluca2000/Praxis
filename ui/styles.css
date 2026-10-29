@@ -70,6 +70,7 @@ button.primary { background:var(--accent); border-color:var(--accent); color:var
 button.primary:hover:not(:disabled) { background:var(--accent-hover); border-color:var(--accent-hover); }
 button.soft { background:var(--soft); border-color:transparent; }
 button.danger { background:var(--bad); border-color:var(--bad); color:#fff; }
+button.danger:hover:not(:disabled) { background:#9a1f18; border-color:#9a1f18; color:#fff; }
 button.link { border:0; background:none; color:var(--accent); padding:4px 8px; box-shadow:none; }
 button.link:hover:not(:disabled) { background:var(--soft-2); }
 button.big { padding:13px 30px; font-size:16px; }

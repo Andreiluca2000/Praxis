@@ -3,6 +3,8 @@ import { listen } from '@tauri-apps/api/event';
 import { open } from '@tauri-apps/plugin-dialog';
 import type { PublicAccount } from '../src/notes/note.js';
 import type { FileSink } from '../src/duria/writeback.js';
+import type { DayAiRequest } from '../src/kvdt/day-ai.js';
+import type { DayCall } from '../src/kvdt/day-check.js';
 
 /** Einzige Stelle, an der das Fenster mit dem Rust-Backend spricht. */
 
@@ -64,6 +66,16 @@ export const api = {
   /** Transferdatei (Argon2id + AES-256-GCM): Rust wählt die Datei per Dialog; `false` = abgebrochen. */
   aiExportKey: (password: string) => invoke<boolean>('ai_export_key', { password }),
   aiImportKey: (password: string) => invoke<boolean>('ai_import_key', { password }),
+  /** KI im Tagesabschluss: Vorschau (sendet nichts) und Anfrage; Rust prüft Schalter, Stufe-2-Freigabe und minimiert. */
+  aiDayPreview: (request: DayAiRequest) => invoke<AiPreview>('ai_day_preview', { request }),
+  aiDayAsk: (request: DayAiRequest) => invoke<string>('ai_day_ask', { request }),
+  /** Stufe 2 (Kartei-Text) nur nach Bestätigung von AVV/DPA, ZDR und DSFA durch einen Arzt. */
+  aiStage2Unlock: (c: { avv: boolean; zdr: boolean; dsfa: boolean }) => invoke<AppConfig>('ai_stage2_unlock', c),
+  aiStage2Lock: () => invoke<AppConfig>('ai_stage2_lock'),
+  /** Tagesliste (nur Arzt): Pseudonym, Zeit, Platz, Kürzel – nie die Patientennummer. */
+  dayList: () => invoke<DayCall[]>('day_list'),
+  /** Geprüfte Aufrufe bis `upto` (Sekunden) löschen; spätere bleiben. */
+  dayClose: (upto: number) => invoke<void>('day_close', { upto }),
   setAccountActive: (kuerzel: string, active: boolean) => invoke<void>('set_account_active', { kuerzel, active }),
   login: (kuerzel: string, password: string) => invoke<PublicAccount>('login', { kuerzel, password }),
   logout: () => invoke<void>('logout'),

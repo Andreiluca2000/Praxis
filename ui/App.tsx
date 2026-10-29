@@ -1,4 +1,4 @@
-import { CalendarCheck, ClipboardCheck, Files, Info, LogOut, Plus, Settings2, SlidersHorizontal, Stethoscope } from 'lucide-react';
+import { CalendarCheck, CalendarClock, ClipboardCheck, Files, Info, LogOut, Plus, Settings2, SlidersHorizontal, Stethoscope } from 'lucide-react';
 import { FormsView } from './forms/FormsView.js';
 import { IcdSearch } from './IcdSearch.js';
 import { QuarterCheck } from './QuarterCheck.js';
@@ -9,13 +9,15 @@ import { today, TreatmentSession } from './session.js';
 import { activeRules } from '../src/rules/model.js';
 import { PraxisregelnView } from './rules/PraxisregelnView.js';
 import { Settings } from './Settings.js';
+import { Tagesabschluss } from './Tagesabschluss.js';
 import { Treatment } from './Treatment.js';
 
-type View = 'behandlung' | 'quartal' | 'diagnosen' | 'formulare' | 'regeln' | 'einstellungen';
+type View = 'behandlung' | 'tagesabschluss' | 'quartal' | 'diagnosen' | 'formulare' | 'regeln' | 'einstellungen';
 
 /** Seitennavigation nach dem Codex-Entwurf (praxis-assistent-konzept.html); nur fertige Bereiche sind aktiv. */
 const NAV: { id: View | 'diagnosen' | 'formulare' | 'regeln'; label: string; icon: typeof Stethoscope; ready: boolean }[] = [
   { id: 'behandlung', label: 'Behandlung & Abrechnung', icon: ClipboardCheck, ready: true },
+  { id: 'tagesabschluss', label: 'Tagesabschluss', icon: CalendarClock, ready: true },
   { id: 'quartal', label: 'Quartalsprüfung (KVDT)', icon: CalendarCheck, ready: true },
   { id: 'diagnosen', label: 'Diagnosen & ICD', icon: Stethoscope, ready: true },
   { id: 'formulare', label: 'Formulare', icon: Files, ready: true },
@@ -95,6 +97,9 @@ export function App() {
           {status.config.mode === 'simulation' && <div className="note-box"><Info size={18} aria-hidden="true" />Simulator – DEMO-Regeln, keine echten Abrechnungsziffern.</div>}
           {notice && <div className="notice" role="status">{notice} <button className="link" onClick={() => setNotice('')}>×</button></div>}
           {view === 'behandlung' && <Treatment session={s} user={status.user} billingEnabled={status.config.billing_writeback_enabled} />}
+          {view === 'tagesabschluss' && (status.user.role === 'arzt'
+            ? <Tagesabschluss settings={s.settings} rules={s.rules} mode={status.config.mode} practice={activeRules(s.practice, today())} chronic={s.catalogue.chronic} ai={status.config.ai} />
+            : <section className="card"><p className="muted">Der Tagesabschluss ist Ärzten vorbehalten.</p></section>)}
           {view === 'quartal' && (status.user.role === 'arzt'
             ? <QuarterCheck settings={s.settings} rules={s.rules} mode={status.config.mode} practice={activeRules(s.practice, today())} chronic={s.catalogue.chronic} />
             : <section className="card"><p className="muted">Die Quartalsprüfung ist Ärzten vorbehalten.</p></section>)}

@@ -1,4 +1,4 @@
-import { ArrowLeftRight, CheckCircle2, Download, Eye, KeyRound, PlugZap, ShieldAlert, Sparkles, Trash2, Upload } from 'lucide-react';
+import { ArrowLeftRight, CheckCircle2, Download, Eye, KeyRound, Lock, LockOpen, PlugZap, ShieldAlert, Sparkles, Trash2, Upload } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { api, type AiConfig, type AiPreview, type AiStatus } from './platform.js';
 
@@ -27,7 +27,9 @@ export function AiSettings({ isArzt, config, onChanged }: { isArzt: boolean; con
   const [preview, setPreview] = useState<AiPreview | null>(null);
   const [transferPw, setTransferPw] = useState('');
   const [transferPw2, setTransferPw2] = useState('');
+  const [gate, setGate] = useState({ avv: false, zdr: false, dsfa: false });
   const enabled = config.provider === 'claude';
+  const stage2 = config.stage2 && config.stage2.avv && config.stage2.zdr && config.stage2.dsfa ? config.stage2 : null;
 
   const reload = () => api.aiStatus().then(setStatus).catch((e) => setMsg(String(e)));
   useEffect(() => { void reload(); }, [config]);
@@ -76,6 +78,26 @@ export function AiSettings({ isArzt, config, onChanged }: { isArzt: boolean; con
       <p className="muted" role="status" style={{ marginTop: 8 }}>
         {enabled ? 'Eingeschaltet: Anfragen gehen nur an die Claude API (api.anthropic.com).' : 'Ausgeschaltet: Es wird nichts ins Internet gesendet.'}
       </p>
+
+      <h3 className="sub">{stage2 ? <LockOpen size={17} aria-hidden="true" /> : <Lock size={17} aria-hidden="true" />}Stufe 2: Kartei- und Diktattext („genau lesen“)
+        <span className={`pill ${stage2 ? 'not_verifiable' : ''}`}>{stage2 ? `freigegeben von ${stage2.by} am ${when(stage2.at)}` : 'gesperrt'}</span></h3>
+      <p className="muted">
+        Stufe 1 sendet nur Ziffern, ICD und Prüftexte. Stufe 2 schickt minimierten Text aus Kartei oder Diktat (ohne Nummer und Pseudonym),
+        z. B. im Tagesabschluss. Vorschläge bleiben immer „unsicher“ und werden nie nach DURIA geschrieben. Ohne eingeschaltete KI geht auch mit Freigabe nichts hinaus.
+      </p>
+      {isArzt && !stage2 && (
+        <div className="stack" style={{ gap: 6 }}>
+          <label className="inline"><input type="checkbox" checked={gate.avv} onChange={(e) => setGate({ ...gate, avv: e.target.checked })} />Auftragsverarbeitungsvertrag (AVV/DPA) mit Anthropic ist geschlossen, einschließlich Verschwiegenheit nach § 203 StGB.</label>
+          <label className="inline"><input type="checkbox" checked={gate.zdr} onChange={(e) => setGate({ ...gate, zdr: e.target.checked })} />Zero Data Retention ist für diesen Schlüssel vereinbart.</label>
+          <label className="inline"><input type="checkbox" checked={gate.dsfa} onChange={(e) => setGate({ ...gate, dsfa: e.target.checked })} />Datenschutz-Folgenabschätzung (DSFA) liegt vor, Verarbeitungsverzeichnis ist ergänzt.</label>
+          <div className="row">
+            <button disabled={busy || !(gate.avv && gate.zdr && gate.dsfa)} onClick={() => void run(async () => {
+              await api.aiStage2Unlock(gate); setGate({ avv: false, zdr: false, dsfa: false }); onChanged(); return 'Stufe 2 freigegeben (Kürzel und Zeitpunkt gespeichert).';
+            })}><LockOpen size={16} aria-hidden="true" />Stufe 2 freigeben</button>
+          </div>
+        </div>
+      )}
+      {isArzt && stage2 && <div className="row"><button disabled={busy} onClick={() => void run(async () => { await api.aiStage2Lock(); onChanged(); return 'Stufe 2 gesperrt.'; })}><Lock size={16} aria-hidden="true" />Stufe 2 sperren</button></div>}
 
       <div className="row" style={{ marginTop: 16 }}>
         <KeyRound size={18} aria-hidden="true" />
