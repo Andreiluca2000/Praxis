@@ -157,7 +157,7 @@ Efortul e **o estimare a timpului de programare Claude**, nu un termen. Nu inclu
 |---|---|---|---|---|
 | 0 | **Fundația** | Vârsta (în ani, la data prestației) calculată în Rust și trimisă în locul datei nașterii, în GDT/BDT și în KVDT. Gruparea KVDT pe LANR/BSNR. Rezolvarea constatărilor Opus 1–3 (loaderul `combinations`, frecvențele pe vârstă, HZV necunoscut ⇒ „nicht prüfbar”). Completarea fluxului DURIA (secțiunea 6) | sesiunea care deține motorul; descrierea lui Andree | M |
 | 1 | **Raportul trimestrial, versiunea 2** | Constatările KVDT existente împărțite în categoriile din §3.1, cu „Nicht prüfbar” vizibil; dale cu cazuri, puncte, €; listă pe pacient (pseudonim) cu acțiunea și dovada; export al listei de corecturi. Machetă întâi | Orientierungswert 2026 cu sursă (Codex); OK pe machetă | M |
-| 2 | **Potențial („vermutlich vergessen”)** | Format nou de regulă „condiții → cifră așteptată”, cu trei stări și sursă. Primul set Hausarzt, de la Codex: 03360/03362, 03220/03221 (cu istoric), 01732, Hautkrebs-Screening, 03040/Vorhaltepauschale, Zuschläge. Nimic nu devine automat „bereit”; e doar o propunere de verificat | Codex: condițiile exacte; 4 trimestre de KVDT pentru istoric | L |
+| 2 | **Potențial („vermutlich vergessen”)** și **diagnoză ↔ cifre** (detaliat în §7) | Format nou de regulă „condiții → cifră așteptată” și invers, cu trei stări și sursă. Primul set Hausarzt, de la Codex: 03360/03362, 03220/03221 (cu istoric), 01732, Hautkrebs-Screening, 03040/Vorhaltepauschale, Zuschläge. Nimic nu devine automat „bereit”; e doar o propunere de verificat | Codex: condițiile exacte; 4 trimestre de KVDT pentru istoric | L |
 | 3 | **Analize pe teme** | Gesprächsziffern (volumul 03230 pe cabinet și LANR, din dosarul `frequency`); plauzibilitatea timpilor pe zi și pe trimestru, din timpii de verificare EBM (pragurile din Richtlinien zur Plausibilitätsprüfung, de verificat de Codex); Chroniker | Codex: Anhang 3 EBM și pragurile | M |
 | 4 | **Tagesabschluss** | Planul existent (`TAGESABSCHLUSS_PLAN.md`), cu aceleași categorii ca raportul trimestrial, ca „trimestrul” și „ziua” să arate la fel | răspunsurile DURIA (GDT la chemare, KVDT oricând) | L |
 | 5 | **Evoluție între trimestre** | Mai multe KVDT-uri; se păstrează doar totaluri pe trimestru (cazuri, puncte, €, pe categorie), fără date de pacient; grafic | etapa 1 | S–M |
@@ -191,9 +191,105 @@ Efortul e **o estimare a timpului de programare Claude**, nu un termen. Nu inclu
 
 ---
 
-## 7. Surse
+## 7. Cerințe noi de la Andree: diagnoză ↔ cifre (29.10.2026)
 
-Accesate pe 29.10.2026.
+### 7.1 Ce i s-a spus lui Andree și ce confirmă sursele publice
+
+Andree a aflat de la ChatGPT ce ar face Arzt Dashboard. **Sursa e neverificată.** Am comparat fiecare afirmație cu paginile publice.
+
+| # | Ce i s-a spus | Confirmat public? |
+|---|---|---|
+| a | Scanează fișierul Quartalsabrechnung și recomandă cifrele scăpate | **Da:** KVDT `.con` [A1][A5], categoriile Nachtrag și Potential [A1] |
+| b | Diagnoză fără cifre (de ex. Diabetes Typ 2 fără Chroniker sau DMP) | **Parțial:** există Chroniker-Analyse și „Zuschläge bei DMP-Komplikationen” [A1][A3]. Exemplul exact „E11 → cifre” nu apare |
+| c | Cifre fără diagnoza care le justifică | **Parțial:** categoria „Prüfen: fehlende oder unsichere Diagnosen” [A1] |
+| d | „HCV” → pacient HZV fără cifrele HZV | **Parțial:** modulul HZV există [A1]; regula exactă nu apare. Varianta hepatita C e la cerința R6 |
+| e | Anamneză fără cifră | **Nu se găsește** |
+| f | Privat (GOÄ): Blutabnahme fără cifrele GOÄ | **Nu se găsește.** GOÄ apare doar în evoluția pe trimestre [A1]. După KI-Syndikat, cabinetele private GOÄ nu sunt acoperite [A3] |
+| g | PSA (valoare sau test) fără cifră | **Nu se găsește** |
+| h | „Q-dry” | **Neclar.** Ipoteză: „Quartals-Probelauf” (dry run), adică „Abrechnung starten (ohne Versand)” [A5]. **De întrebat pe Andree** |
+
+Blogul Arzt Dashboard are articole despre 03360, 03220/03221, 03100, 03230/35100 și HZV, dar nu descrie verificări concrete de tipul b–g [A7]. **Concluzie:** cerințele de mai jos le tratăm ca **cerințele lui Andree**, nu ca o copie a unui produs.
+
+### 7.2 Ce verifică azi `src/kvdt/quarter-check.ts` / `ui/QuarterCheck.tsx`
+
+- **Pe fiecare Schein (0101–0104)** [cod]:
+  - „Fall mit Leistungen, aber ohne Diagnose”;
+  - „Diagnose ohne Sicherheit (G/V/A/Z)”;
+  - cifră fără Leistungstag;
+  - dată în afara trimestrului;
+  - conflicte din regulile DEMO sau draft (`billing_conflict`);
+  - Praxisregeln, ca Hinweis.
+- **Doar în simulator:** perechi pe ședință și excluderi pe zi, caz sau Krankheitsfall, plus frecvențe.
+- **Ce nu face încă:**
+  - Nicio legătură **între o diagnoză anume și o cifră anume**, în niciun sens.
+  - Toate cifrele sunt citite ca `system: 'EBM'`.
+  - Fără vârstă și sex (Rust le scoate împreună cu data nașterii), fără LANR.
+  - Un singur trimestru: nu există istoric.
+  - FK 5005 (multiplicatorul) nu e numărat.
+
+### 7.3 Limita surselor: ce se poate vedea din KVDT
+
+- **KVDT e fișierul pentru KV, deci conține doar cazuri GKV/KV** [cod, comentariul din `quarter-check.ts`; fapt general KBV].
+- **Pacienții privați (GOÄ) nu sunt în el.** Probabil nici cazurile HZV, care se facturează separat (de confirmat în DURIA).
+- **Rezultatele de laborator nu sunt în el** (de ex. valoarea PSA), nici textul din fișă (anamneza).
+
+Pentru f, g, e și pentru „HZV fără cifre HZV” e nevoie de **BDT** (zi sau trimestru), de exportul privat sau HZV din DURIA, ori de GDT-ul pacientului deschis. Fără aceste surse, rezultatul trebuie să fie **„nicht prüfbar”**, nu „in Ordnung”. Întrebări noi la DURIA: există export BDT pe zi sau trimestru care conține și Privat și HZV? Laboratorul (LDT) e în BDT?
+
+### 7.4 Cerințele concrete
+
+Două tipuri noi de regulă. Ambele sunt **doar propuneri**: niciodată „bereit” automat, niciodată „Fehler”, iar fiecare are sursa din normă.
+
+- **R-DX→GOP („diagnoză → cifre așteptate”):** diagnoza X, cu certitudine G pusă de medic, plus condițiile Y (vârstă, sex, istoric) înseamnă că se așteaptă una dintre cifrele Z în fereastra W. Lipsește? → „Vermutlich vergessen”. Condiție neverificabilă din date? → „Nicht prüfbar” cu lista condițiilor lipsă.
+- **R-GOP→DX („cifră → diagnoza care o justifică”):** cifra Z cere o diagnoză din lista X în același caz. Lipsește? → „Begründung fehlt” (categoria „Zu klären”).
+
+| # | Cerința (de la Andree) | Tip | Sursa de date necesară | Bază existentă în `data/billing/` | Ce lipsește |
+|---|---|---|---|---|---|
+| R1 | Diabetes Typ 2 (E11.-) G → Chroniker 03220/03221 | DX→GOP | KVDT pe **4 trimestre** (continuitate) | `chroniker/` (25 de clauze: `03220_CONTINUITY` cere „3 din 4 trimestre”, 03221, 03222 de la KV); `rules.draft.2026-q4.json` (`EBM_03220/03221_CORE_DRAFT`) | Lista ICD „chronisch krank” pentru 03220 (lista 03100 **nu** e aceeași, scrie în README-ul chroniker); istoricul pe 4 trimestre în motor |
+| R2 | Diabetes / alte boli DMP → cifre DMP | DX→GOP | KVDT + participarea la DMP | **nimic**: DMP nu apare în dosare | Cifrele DMP sunt **regionale** (contractul DMP al KV Nordrhein / WL): sursă, cifre, documentație. Depinde de alegerea KV |
+| R3 | Versorgungspauschale 03100 ↔ diagnoză din listă | GOP→DX și DX→GOP | KVDT (+ medicație, care nu e în KVDT) | `chroniker/` 03100_DIAGNOSIS (26 de coduri ICD), 03100_AGE, 03100_MEDICATION; `search-chroniker.py` | Medicația nu e în KVDT → componentă „nicht prüfbar” |
+| R4 | Geriatrie 03360/03362 la vârstnici (exemplul Arzt Dashboard) | DX→GOP | KVDT + **vârsta** | `rules.draft` `EBM_03360/03362_CORE_DRAFT` (excluderi, 1×/caz, documentație); `combinations/` `EBM_03360/03362_*` | Vârsta și criteriile geriatrice din legenda 03360 (EBM p. 205) **nu sunt modelate** în eligibilitate (de completat de Codex); vârsta în Rust |
+| R5 | Cifre fără diagnoză justificativă (în general) | GOP→DX | KVDT | `quarter-check` are doar „caz fără nicio diagnoză”; `wounds/` (excepția D22.-/T01.- pentru 02300–02302) | Liste cifră → ICD pe fiecare cifră Hausarzt (Codex), doar unde norma o cere; altfel nu se inventează nimic |
+| R6 | „HCV” ca hepatita C: Check-up ≥ 35 fără screeningul unic de hepatită | DX→GOP (prevenție) | KVDT + istoric + vârstă | `prevention/`: `HEPATITIS_AGE_ONCE`, `HEPATITIS_REFLEX`, `CHECKUP_35_INTERVAL` (cifra 01734 e acolo) | „O singură dată” cere istoric lung → mai ales „nicht prüfbar”; vârsta |
+| R7 | „HCV” ca HZV: pacient înscris în HZV fără cifrele HZV | DX→GOP (contract) | export HZV / BDT cu marcajul HZV | `hzv/`: doar șablonul de contract, fără contract (decizia lui Andree) | Contractul HZV, Ziffernkranz, marcajul de înscriere din DURIA |
+| R8 | Anamneză documentată fără cifră | DX→GOP | BDT / GDT (text) + confirmare | `rules.draft` GOÄ 1/3/5; `primary-care/` (serviciile incluse în Pauschale **nu** devin cifre lipsă) | Pentru EBM, anamneza e de regulă inclusă în Versichertenpauschale → nu e regulă. Are sens doar la **GOÄ** sau la contracte HZV. **De lămurit cu Andree ce a vrut să spună** |
+| R9 | Privat: Blutabnahme fără GOÄ | DX→GOP | BDT / exportul privat (KVDT nu ajunge) | `rules.draft` `GOAE_250_CORE_DRAFT`, `GOAE_252_CORE_DRAFT`; `goae/` (profiluri de factor 250…) | Sursa de date a cazurilor private din DURIA; recunoașterea „Blutabnahme” în fișă (Fertig o poate face, cu confirmare) |
+| R10 | PSA (test/valoare) fără cifră | DX→GOP | BDT cu laborator (LDT) sau fișa | `prevention/` `MALE_CANCER_*` (KFE bărbați); catalogul EBM/GOÄ indexează PSA | **Neclar care cifră:** PSA ca screening la GKV e de regulă IGeL (factură GOÄ), iar ca diagnostic se face prin laborator (Muster 10, facturat de laborator). Regula trebuie definită cu Andree și Codex |
+| R11 | „Q-dry” | ? | ? | ? | **Neclar**: de întrebat pe Andree (ipoteză: proba trimestrială fără trimitere) |
+
+### 7.5 Unde rulează
+
+- **Raportul trimestrial (KVDT):** R1–R6 pe toate cazurile GKV. R1, R4 și R6 au nevoie de istoric: Andree încarcă și KVDT-urile ultimelor 3 trimestre. Din ele se păstrează doar faptele minime pe pseudonim (cifră, trimestru, ICD), în Rust și criptate, cu ștergere după analiză. **Decizie Datenschutz necesară.**
+- **Tagesabschluss:** aceleași reguli, filtrate pe ziua curentă. R8–R10 doar cu sursa B (BDT pe zi).
+- **Live (Fertig / Behandlung):** R-GOP→DX ca frână („cifra are nevoie de diagnoza …”), R-DX→GOP ca propunere, cu confirmarea medicului.
+
+### 7.6 Ce trebuie construit
+
+1. **Codex (conținut):** un dosar nou `dx-expectations` (draft, neoperativ). Fiecare înregistrare are:
+   - declanșatorul: prefixe ICD, certitudinea cerută, vârstă/sex dacă norma le cere;
+   - cifrele așteptate sau diagnozele cerute;
+   - fereastra;
+   - condițiile care nu se văd în KVDT;
+   - sistemul (EBM / GOÄ / HZV / DMP-KV);
+   - ancora în normă.
+
+   Prima tranșă: R1, R3, R4, R5 (doar unde norma cere o diagnoză), R6.
+2. **Claude (motor):**
+   - vârsta și sexul calculate în Rust, la data prestației, fără data nașterii;
+   - sistemul cifrei (EBM/GOÄ/HZV) în `BilledService`;
+   - istoric pe mai multe trimestre;
+   - evaluatorul R-DX→GOP / R-GOP→DX cu trei stări;
+   - categoriile „Vermutlich vergessen” și „Begründung fehlt” în raportul trimestrial și în Tagesabschluss.
+3. **Andree / DURIA:** ce înseamnă „Q-dry”, „Anamnese” și PSA; ce KV (pentru DMP); exportul privat/HZV/BDT.
+
+**Efort Claude:** M pentru motor și UI, după ce vine prima tranșă de conținut. Conținutul Codex și revizia profesională sunt separate (L).
+
+---
+
+## 8. Surse
+
+Accesate pe 29.10.2026. „[cod]” înseamnă codul din acest repo (`src/kvdt/quarter-check.ts`, `data/billing/*`), citit pe 29.10.2026. Dosarele `chroniker/`, `combinations/`, `goae/` și `hzv/` sunt **necomise** în git în acest moment.
+
+- [A7] arzt-dashboard.de, blog (titluri de articole) – https://arzt-dashboard.de/blog
 
 - [A1] arzt-dashboard.de, pagina principală (funcții, PVS, prețuri, cifre, testimoniale) – https://arzt-dashboard.de/
 - [A2] arzt-dashboard.de, FAQ – https://arzt-dashboard.de/faq
