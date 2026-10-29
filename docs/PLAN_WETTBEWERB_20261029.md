@@ -206,7 +206,7 @@ Andree a aflat de la ChatGPT ce ar face Arzt Dashboard. **Sursa e neverificată.
 | e | Anamneză fără cifră | **Nu se găsește** |
 | f | Privat (GOÄ): Blutabnahme fără cifrele GOÄ | **Nu se găsește.** GOÄ apare doar în evoluția pe trimestre [A1]. După KI-Syndikat, cabinetele private GOÄ nu sunt acoperite [A3] |
 | g | PSA (valoare sau test) fără cifră | **Nu se găsește** |
-| h | „Q-dry” | **Neclar.** Ipoteză: „Quartals-Probelauf” (dry run), adică „Abrechnung starten (ohne Versand)” [A5]. **De întrebat pe Andree** |
+| h | „Q-dry” | **Lămurit de Andree (29.10):** e „Q 3”, adică „Q drei”. Interpretarea mea: trimestrul 3/2026, ultimul încheiat, pe care se face prima analiză (vezi §7.7) |
 
 Blogul Arzt Dashboard are articole despre 03360, 03220/03221, 03100, 03230/35100 și HZV, dar nu descrie verificări concrete de tipul b–g [A7]. **Concluzie:** cerințele de mai jos le tratăm ca **cerințele lui Andree**, nu ca o copie a unui produs.
 
@@ -245,7 +245,7 @@ Două tipuri noi de regulă. Ambele sunt **doar propuneri**: niciodată „berei
 | # | Cerința (de la Andree) | Tip | Sursa de date necesară | Bază existentă în `data/billing/` | Ce lipsește |
 |---|---|---|---|---|---|
 | R1 | Diabetes Typ 2 (E11.-) G → Chroniker 03220/03221 | DX→GOP | KVDT pe **4 trimestre** (continuitate) | `chroniker/` (25 de clauze: `03220_CONTINUITY` cere „3 din 4 trimestre”, 03221, 03222 de la KV); `rules.draft.2026-q4.json` (`EBM_03220/03221_CORE_DRAFT`) | Lista ICD „chronisch krank” pentru 03220 (lista 03100 **nu** e aceeași, scrie în README-ul chroniker); istoricul pe 4 trimestre în motor |
-| R2 | Diabetes / alte boli DMP → cifre DMP | DX→GOP | KVDT + participarea la DMP | **nimic**: DMP nu apare în dosare | Cifrele DMP sunt **regionale** (contractul DMP al KV Nordrhein / WL): sursă, cifre, documentație. Depinde de alegerea KV |
+| R2 | Diabetes / alte boli DMP → cifre DMP | DX→GOP | KVDT + participarea la DMP | **nimic**: DMP nu apare în dosare | Cifrele DMP sunt **regionale**. **KV e acum aleasă: Nordrhein** (Andree, 29.10). Codex trebuie să aducă contractele DMP ale KV Nordrhein (Diabetes Typ 2 întâi): sursă, cifre, documentație, perioadă |
 | R3 | Versorgungspauschale 03100 ↔ diagnoză din listă | GOP→DX și DX→GOP | KVDT (+ medicație, care nu e în KVDT) | `chroniker/` 03100_DIAGNOSIS (26 de coduri ICD), 03100_AGE, 03100_MEDICATION; `search-chroniker.py` | Medicația nu e în KVDT → componentă „nicht prüfbar” |
 | R4 | Geriatrie 03360/03362 la vârstnici (exemplul Arzt Dashboard) | DX→GOP | KVDT + **vârsta** | `rules.draft` `EBM_03360/03362_CORE_DRAFT` (excluderi, 1×/caz, documentație); `combinations/` `EBM_03360/03362_*` | Vârsta și criteriile geriatrice din legenda 03360 (EBM p. 205) **nu sunt modelate** în eligibilitate (de completat de Codex); vârsta în Rust |
 | R5 | Cifre fără diagnoză justificativă (în general) | GOP→DX | KVDT | `quarter-check` are doar „caz fără nicio diagnoză”; `wounds/` (excepția D22.-/T01.- pentru 02300–02302) | Liste cifră → ICD pe fiecare cifră Hausarzt (Codex), doar unde norma o cere; altfel nu se inventează nimic |
@@ -253,12 +253,12 @@ Două tipuri noi de regulă. Ambele sunt **doar propuneri**: niciodată „berei
 | R7 | „HCV” ca HZV: pacient înscris în HZV fără cifrele HZV | DX→GOP (contract) | export HZV / BDT cu marcajul HZV | `hzv/`: doar șablonul de contract, fără contract (decizia lui Andree) | Contractul HZV, Ziffernkranz, marcajul de înscriere din DURIA |
 | R8 | Anamneză documentată fără cifră | DX→GOP | BDT / GDT (text) + confirmare | `rules.draft` GOÄ 1/3/5; `primary-care/` (serviciile incluse în Pauschale **nu** devin cifre lipsă) | Pentru EBM, anamneza e de regulă inclusă în Versichertenpauschale → nu e regulă. Are sens doar la **GOÄ** sau la contracte HZV. **De lămurit cu Andree ce a vrut să spună** |
 | R9 | Privat: Blutabnahme fără GOÄ | DX→GOP | BDT / exportul privat (KVDT nu ajunge) | `rules.draft` `GOAE_250_CORE_DRAFT`, `GOAE_252_CORE_DRAFT`; `goae/` (profiluri de factor 250…) | Sursa de date a cazurilor private din DURIA; recunoașterea „Blutabnahme” în fișă (Fertig o poate face, cu confirmare) |
-| R10 | PSA (test/valoare) fără cifră | DX→GOP | BDT cu laborator (LDT) sau fișa | `prevention/` `MALE_CANCER_*` (KFE bărbați); catalogul EBM/GOÄ indexează PSA | **Neclar care cifră:** PSA ca screening la GKV e de regulă IGeL (factură GOÄ), iar ca diagnostic se face prin laborator (Muster 10, facturat de laborator). Regula trebuie definită cu Andree și Codex |
-| R11 | „Q-dry” | ? | ? | ? | **Neclar**: de întrebat pe Andree (ipoteză: proba trimestrială fără trimitere) |
+| R10 | PSA (test/valoare) fără cifră | DX→GOP | BDT cu laborator (LDT) sau fișa | `prevention/` `MALE_CANCER_*` (KFE bărbați); catalogul EBM/GOÄ indexează PSA | **Lămurit (Andree, 29.10): PSA e pentru pacienții privați**, deci regula e GOÄ: PSA documentat sau ca rezultat de laborator la un pacient privat fără poziția GOÄ potrivită (laborator și eventual Blutentnahme). Codex: pozițiile GOÄ exacte, cu sursă. Date: exportul privat / BDT, nu KVDT |
+| R11 | „Q-dry” = „Q 3” | — | — | — | Nu e o regulă, ci trimestrul pe care se face prima analiză (§7.7) |
 
 ### 7.5 Unde rulează
 
-- **Raportul trimestrial (KVDT):** R1–R6 pe toate cazurile GKV. R1, R4 și R6 au nevoie de istoric: Andree încarcă și KVDT-urile ultimelor 3 trimestre. Din ele se păstrează doar faptele minime pe pseudonim (cifră, trimestru, ICD), în Rust și criptate, cu ștergere după analiză. **Decizie Datenschutz necesară.**
+- **Raportul trimestrial (KVDT):** R1–R6 pe toate cazurile GKV. R1, R4 și R6 au nevoie de istoric: Andree încarcă și KVDT-urile ultimelor trimestre. **Istoricul se păstrează** (decizia lui Andree, 29.10), cu regulile din §7.7.
 - **Tagesabschluss:** aceleași reguli, filtrate pe ziua curentă. R8–R10 doar cu sursa B (BDT pe zi).
 - **Live (Fertig / Behandlung):** R-GOP→DX ca frână („cifra are nevoie de diagnoza …”), R-DX→GOP ca propunere, cu confirmarea medicului.
 
@@ -279,9 +279,18 @@ Două tipuri noi de regulă. Ambele sunt **doar propuneri**: niciodată „berei
    - istoric pe mai multe trimestre;
    - evaluatorul R-DX→GOP / R-GOP→DX cu trei stări;
    - categoriile „Vermutlich vergessen” și „Begründung fehlt” în raportul trimestrial și în Tagesabschluss.
-3. **Andree / DURIA:** ce înseamnă „Q-dry”, „Anamnese” și PSA; ce KV (pentru DMP); exportul privat/HZV/BDT.
+3. **Andree / DURIA:** ce înseamnă „Anamnese” (încă deschis); exportul privat/HZV/BDT.
 
 **Efort Claude:** M pentru motor și UI, după ce vine prima tranșă de conținut. Conținutul Codex și revizia profesională sunt separate (L).
+
+### 7.7 Deciziile lui Andree (29.10.2026) și ce rezultă
+
+| Decizie | Ce rezultă pentru lucru |
+|---|---|
+| **„Q-dry” = „Q 3”** | Prima analiză reală (și proba demo) se face pe KVDT-ul **Q3/2026** („ohne Versand”). **Atenție:** dosarele Codex sunt valabile doar pentru **Q4/2026** (`valid_from 2026-10-01`), iar motorul refuză corect cazurile din afara perioadei (`outOfRange`). Pentru Q3/2026 trebuie fie ediția EBM Q3/2026 (Codex: diferențele față de Q4, mai ales 03100, nou din 07/2026), fie un raport marcat clar „Regeln Q4/2026 – nur zur Orientierung”. **De ales.** Interpretarea „Q3 = trimestrul 3” e a mea: de confirmat cu Andree într-o propoziție |
+| **PSA e pentru privați** | R10 devine regulă GOÄ. Nu se vede în KVDT; depinde de exportul privat din DURIA (întrebare nouă la DURIA) |
+| **KV Nordrhein** | Profilul cabinetului: KV Nordrhein. Codex: contractele DMP KVNO, acordurile de vaccinare, Wegepauschalen și HVM KVNO. `REMAINING_WORK_20261026.md` spune încă „KV neales”: de actualizat de sesiunea care deține acel document |
+| **Istoricul se păstrează** | **Tehnic:** pseudonimul trebuie să fie **stabil între trimestre**. Azi e HMAC per sesiune: e nevoie de o cheie HMAC permanentă, păstrată în Windows Credential Manager / DPAPI, niciodată în fișier. Se păstrează doar fapte minime pe pseudonim: trimestru, cifră, dată, ICD + certitudine, an de naștere sau grupă de vârstă (nu data nașterii), fără nume și fără text liber. Stocare criptată (DPAPI) în `ProgramData`, acces doar pentru medic. **Propunere de termen:** 12 trimestre (3 ani), cât cer intervalele Check-up/Hautkrebs; ce e mai vechi se șterge automat; „Verlauf löschen” la cerere. **Datenschutz:** de trecut în registrul de prelucrări al cabinetului (scop: verificarea facturării; termen) și în DSFA; test că nu apare în loguri. Termenul exact îl confirmă Andree |
 
 ---
 
