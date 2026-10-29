@@ -11,6 +11,9 @@ mod ai_tests;
 mod accounts_tests;
 mod commands;
 mod config;
+mod daylist;
+#[cfg(test)]
+mod daylist_tests;
 mod gdt;
 mod patient;
 #[cfg(test)]
@@ -18,6 +21,7 @@ mod patient_tests;
 mod voice;
 
 use accounts::{AccountStore, PublicAccount};
+use daylist::DayList;
 use patient::PatientVault;
 use config::{load_config, AppConfig};
 use std::collections::HashSet;
@@ -40,6 +44,8 @@ pub struct AppState {
     pub keys: Box<dyn ai::KeyStore>,
     /// KI-Protokoll ohne Inhalte (je Windows-Benutzer).
     pub ai_audit_file: PathBuf,
+    /// Aufrufe des Tages für den Tagesabschluss (Nummer nur hier, DPAPI-verschlüsselt, höchstens 24 h).
+    pub daylist: Mutex<DayList>,
 }
 
 /// Bereinigte Daten für das Fenster (ohne Identität, Patientennummer pseudonymisiert).
@@ -84,6 +90,23 @@ struct InboxNotices {
     /// Übergeben, aber nicht löschbar: nicht ein zweites Mal übergeben.
     consumed: HashSet<PathBuf>,
     dir_error: Option<String>,
+    /// Speicherfehler der Tagesliste nur einmal melden.
+    daylist_error: bool,
+}
+
+/// Aufruf in der Tagesliste merken: Nummer kommt aus dem Tresor, nie aus dem Fenster; Meldungen ohne Nummer.
+fn note_call(app: &tauri::AppHandle, state: &AppState, token: Option<&str>, kuerzel: &str, seen: &mut InboxNotices) {
+    let Some(token) = token else { return };
+    let Some(id) = state.vault.lock().unwrap().open_id(token).map(|s| zeroize::Zeroizing::new(s.to_string())) else { return };
+    let recorded = state.daylist.lock().unwrap().record(&id, ai::now_secs(), &config::client_name(), kuerzel);
+    match recorded {
+        Ok(()) => seen.daylist_error = false,
+        Err(e) if !seen.daylist_error => {
+            seen.daylist_error = true;
+            let _ = app.emit("notice", format!("{e} Die Tagesliste bleibt nur bis zum Programmende erhalten."));
+        }
+        Err(_) => {}
+    }
 }
 
 /// Eine bereite Datei aus dem Eingang verarbeiten. Die Anmeldung bleibt dabei gesperrt,
@@ -122,7 +145,10 @@ fn handle_incoming(app: &tauri::AppHandle, state: &AppState, scanner: &mut gdt::
         return hold(&format!("unvollständig oder ungültig ({why})"));
     }
     // Rohdaten verlassen Rust nicht: nur die bereinigte Fassung wartet auf das Fenster.
-    *state.pending.lock().unwrap() = Some(sanitize_for_window(state, "DURIA-Übergabe", "gdt", &data));
+    let export = sanitize_for_window(state, "DURIA-Übergabe", "gdt", &data);
+    let kuerzel = user.as_ref().map(|u| u.kuerzel.clone()).unwrap_or_default();
+    note_call(app, state, export.token.as_deref(), &kuerzel, seen);
+    *state.pending.lock().unwrap() = Some(export);
     drop(user);
     let _ = app.emit("gdt-incoming", ());
     if std::fs::remove_file(path).is_err() {
@@ -160,6 +186,8 @@ fn start_inbox(app: tauri::AppHandle) {
             let Some((_, s)) = scanner.as_mut() else { continue };
             if tick % 50 == 0 {
                 gdt::purge_quarantine(s.dir(), gdt::QUARANTINE_KEEP);
+                // Löschfrist 24 h auch dann, wenn niemand den Tagesabschluss öffnet.
+                let _ = state.daylist.lock().unwrap().expire(ai::now_secs());
             }
             for path in s.ready() {
                 handle_incoming(&app, &state, s, &path, &mut seen);
@@ -179,6 +207,9 @@ pub fn run() {
             let user_dir = app.path().app_config_dir().map_err(|e| e.to_string())?;
             let (config, config_file) = load_config(&user_dir, &resource_root)?;
             let accounts = AccountStore::open(&config::shared_dir().join("konten.json"))?;
+            // Tagesliste lokal je Windows-Benutzer und Arbeitsplatz (nicht im servergespeicherten Profil).
+            let day_file = app.path().app_local_data_dir().ok().map(|d| d.join(daylist::file_name(&config::client_name())));
+            let (daylist, day_warning) = DayList::open(day_file, Box::new(daylist::Dpapi), ai::now_secs());
             app.manage(AppState {
                 accounts: Mutex::new(accounts),
                 user: Mutex::new(None),
@@ -188,7 +219,16 @@ pub fn run() {
                 pending: Mutex::new(None),
                 keys: Box::new(ai::CredentialManager),
                 ai_audit_file: user_dir.join("ki-protokoll.jsonl"),
+                daylist: Mutex::new(daylist),
             });
+            if let Some(w) = day_warning {
+                // Erst nach dem Laden des Fensters sichtbar; der Text enthält keine Nummer.
+                let handle = app.handle().clone();
+                std::thread::spawn(move || {
+                    std::thread::sleep(Duration::from_secs(3));
+                    let _ = handle.emit("notice", w);
+                });
+            }
             start_inbox(app.handle().clone());
             Ok(())
         })
@@ -215,6 +255,8 @@ pub fn run() {
             commands::ai_export_key,
             commands::ai_import_key,
             commands::rules_write,
+            commands::day_list,
+            commands::day_close,
         ])
         .run(tauri::generate_context!())
         .expect("Praxis-Assistent konnte nicht starten");

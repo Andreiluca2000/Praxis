@@ -29,6 +29,10 @@ keyring = { version = "3", features = ["windows-native"] }
 aes-gcm = "0.10"
 zeroize = "1"
 
+# Tagesliste: Windows-DPAPI (Verschlüsselung je Windows-Benutzer)
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.61", features = ["Win32_Foundation", "Win32_Security_Cryptography"] }
+
 # Argon2 auch in Test-/Debug-Builds optimiert (sonst dauert eine Schlüsselableitung mit 64 MiB Sekunden).
 [profile.dev.package.argon2]
 opt-level = 3

@@ -219,6 +219,11 @@ impl PatientVault {
         s
     }
 
+    /// Echte Nummer des geöffneten Patienten – nur für Rust-interne Zwecke (Tagesliste), nie für das Fenster.
+    pub(crate) fn open_id(&self, token: &str) -> Option<&str> {
+        self.open.get(token).map(String::as_str)
+    }
+
     pub fn close(&mut self) {
         self.open.clear();
     }

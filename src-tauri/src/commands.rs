@@ -331,6 +331,25 @@ pub fn rules_write(state: State<AppState>, json: String) -> Result<(), String> {
     config::write_practice_rules(&config::practice_rules_file(), &json)
 }
 
+/// Tagesliste für den Tagesabschluss (nur Arzt): Pseudonym, Zeitpunkt, Arbeitsplatz, Kürzel – nie die Nummer.
+/// Die Pseudonyme passen zur KVDT-Datei, die in derselben Programmsitzung gelesen wird.
+#[tauri::command]
+pub fn day_list(state: State<AppState>) -> Result<Vec<crate::daylist::DayView>, String> {
+    require_arzt(&state)?;
+    let mut list = state.daylist.lock().unwrap();
+    let _ = list.expire(crate::ai::now_secs());
+    let vault = state.vault.lock().unwrap();
+    Ok(list.view(&vault))
+}
+
+/// Nach dem Tagesabschluss (nur Arzt): die geprüften Aufrufe (bis zum Zeitpunkt `upto` des zuletzt angezeigten) löschen.
+/// Danach eingegangene Aufrufe bleiben stehen; ist die Liste leer, wird die Datei gelöscht.
+#[tauri::command]
+pub fn day_close(state: State<AppState>, upto: u64) -> Result<(), String> {
+    require_arzt(&state)?;
+    state.daylist.lock().unwrap().close_until(upto)
+}
+
 #[tauri::command]
 pub fn update_config(state: State<AppState>, patch: serde_json::Value) -> Result<AppConfig, String> {
     require_arzt(&state)?;
