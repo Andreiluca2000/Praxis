@@ -206,7 +206,7 @@ Andree a aflat de la ChatGPT ce ar face Arzt Dashboard. **Sursa e neverificată.
 | e | Anamneză fără cifră | **Nu se găsește** |
 | f | Privat (GOÄ): Blutabnahme fără cifrele GOÄ | **Nu se găsește.** GOÄ apare doar în evoluția pe trimestre [A1]. După KI-Syndikat, cabinetele private GOÄ nu sunt acoperite [A3] |
 | g | PSA (valoare sau test) fără cifră | **Nu se găsește** |
-| h | „Q-dry” | **Lămurit de Andree (29.10):** e „Q 3”, adică „Q drei”. Interpretarea mea: trimestrul 3/2026, ultimul încheiat, pe care se face prima analiză (vezi §7.7) |
+| h | „Q-dry” | **Corectat de Andree (29.10):** „3 nu q 3, m-am referit la cifra 3”. E o **cifră (Ziffer) 3**, nu trimestrul 3. Ce cifră anume e întrebare deschisă (§7.8) |
 
 Blogul Arzt Dashboard are articole despre 03360, 03220/03221, 03100, 03230/35100 și HZV, dar nu descrie verificări concrete de tipul b–g [A7]. **Concluzie:** cerințele de mai jos le tratăm ca **cerințele lui Andree**, nu ca o copie a unui produs.
 
@@ -254,7 +254,7 @@ Două tipuri noi de regulă. Ambele sunt **doar propuneri**: niciodată „berei
 | R8 | Anamneză documentată fără cifră | DX→GOP | BDT / GDT (text) + confirmare | `rules.draft` GOÄ 1/3/5; `primary-care/` (serviciile incluse în Pauschale **nu** devin cifre lipsă) | Pentru EBM, anamneza e de regulă inclusă în Versichertenpauschale → nu e regulă. Are sens doar la **GOÄ** sau la contracte HZV. **De lămurit cu Andree ce a vrut să spună** |
 | R9 | Privat: Blutabnahme fără GOÄ | DX→GOP | BDT / exportul privat (KVDT nu ajunge) | `rules.draft` `GOAE_250_CORE_DRAFT`, `GOAE_252_CORE_DRAFT`; `goae/` (profiluri de factor 250…) | Sursa de date a cazurilor private din DURIA; recunoașterea „Blutabnahme” în fișă (Fertig o poate face, cu confirmare) |
 | R10 | PSA (test/valoare) fără cifră | DX→GOP | BDT cu laborator (LDT) sau fișa | `prevention/` `MALE_CANCER_*` (KFE bărbați); catalogul EBM/GOÄ indexează PSA | **Lămurit (Andree, 29.10): PSA e pentru pacienții privați**, deci regula e GOÄ: PSA documentat sau ca rezultat de laborator la un pacient privat fără poziția GOÄ potrivită (laborator și eventual Blutentnahme). Codex: pozițiile GOÄ exacte, cu sursă. Date: exportul privat / BDT, nu KVDT |
-| R11 | „Q-dry” = „Q 3” | — | — | — | Nu e o regulă, ci trimestrul pe care se face prima analiză (§7.7) |
+| R11 | „Ziffer 3” lipsă (fostul „Q-dry”) | DX→GOP, probabil GOÄ | după variantă (§7.8): pentru GOÄ, exportul privat / BDT cu durata | `rules.draft` `GOAE_3_CORE_DRAFT` (≥ 10 min, documentație, nu lângă Nr. 2 și 804–887); `combinations/` `GOAE_3_ONLY_WITH` (Nr. 3 doar singură sau lângă 5, 6, 7, 8, 800, 801; interval nerezolvat) | Varianta exactă (§7.8); durata consultației din fișă sau dictare, confirmată de medic |
 
 ### 7.5 Unde rulează
 
@@ -287,10 +287,24 @@ Două tipuri noi de regulă. Ambele sunt **doar propuneri**: niciodată „berei
 
 | Decizie | Ce rezultă pentru lucru |
 |---|---|
-| **„Q-dry” = „Q 3”** | Prima analiză reală (și proba demo) se face pe KVDT-ul **Q3/2026** („ohne Versand”). **Atenție:** dosarele Codex sunt valabile doar pentru **Q4/2026** (`valid_from 2026-10-01`), iar motorul refuză corect cazurile din afara perioadei (`outOfRange`). Pentru Q3/2026 trebuie fie ediția EBM Q3/2026 (Codex: diferențele față de Q4, mai ales 03100, nou din 07/2026), fie un raport marcat clar „Regeln Q4/2026 – nur zur Orientierung”. **De ales.** Interpretarea „Q3 = trimestrul 3” e a mea: de confirmat cu Andree într-o propoziție |
+| **„Q-dry” = cifra 3** (corectat: nu trimestrul 3) | O cerință „Ziffer 3 lipsă” (R11). Prima analiză rămâne pe fișierul de facturare al **trimestrului curent**. Care cifră 3: întrebare deschisă în §7.8 |
 | **PSA e pentru privați** | R10 devine regulă GOÄ. Nu se vede în KVDT; depinde de exportul privat din DURIA (întrebare nouă la DURIA) |
 | **KV Nordrhein** | Profilul cabinetului: KV Nordrhein. Codex: contractele DMP KVNO, acordurile de vaccinare, Wegepauschalen și HVM KVNO. `REMAINING_WORK_20261026.md` spune încă „KV neales”: de actualizat de sesiunea care deține acel document |
 | **Istoricul se păstrează** | **Tehnic:** pseudonimul trebuie să fie **stabil între trimestre**. Azi e HMAC per sesiune: e nevoie de o cheie HMAC permanentă, păstrată în Windows Credential Manager / DPAPI, niciodată în fișier. Se păstrează doar fapte minime pe pseudonim: trimestru, cifră, dată, ICD + certitudine, an de naștere sau grupă de vârstă (nu data nașterii), fără nume și fără text liber. Stocare criptată (DPAPI) în `ProgramData`, acces doar pentru medic. **Propunere de termen:** 12 trimestre (3 ani), cât cer intervalele Check-up/Hautkrebs; ce e mai vechi se șterge automat; „Verlauf löschen” la cerere. **Datenschutz:** de trecut în registrul de prelucrări al cabinetului (scop: verificarea facturării; termen) și în DSFA; test că nu apare în loguri. Termenul exact îl confirmă Andree |
+
+### 7.8 Întrebare deschisă pentru Andree: care „cifră 3”?
+
+Andree a spus „Q-dry” în lista despre Arzt Dashboard, imediat după anamneză, privați (Blutabnahme) și PSA. Apoi a corectat: „m-am referit la cifra 3”. Variantele posibile, de la cea mai probabilă:
+
+| Variantă | Ce ar însemna regula | De ce s-ar potrivi / de ce nu | Ce avem deja |
+|---|---|---|---|
+| **A. GOÄ Nr. 3**, „eingehende Beratung, mindestens zehn Minuten” (**recomandarea mea**) | La un pacient privat cu consultație lungă documentată (≥ 10 min, de ex. anamneză amănunțită) lipsește Nr. 3. Sau invers: Nr. 3 e pusă lângă poziții cu care nu se poate | Apare în aceeași listă cu privați, Blutabnahme, PSA și anamneză; „Ziffer 3” e denumirea obișnuită la GOÄ. Ar lega și cerința „Anamnese” (R8) de GOÄ | `GOAE_3_CORE_DRAFT`, `GOAE_3_ONLY_WITH`, profil de factor GOÄ; durata vine din Fertig/dictare, cu confirmare |
+| **B. Capitolul 3 EBM** (cifrele de medic de familie 03xxx, de ex. Versichertenpauschale 03000) | Caz GKV cu contact, dar fără Versichertenpauschale sau fără suplimentele din capitolul 3 | Se potrivește cu „Hausarzt”, dar Andree a spus „cifra 3”, nu „capitolul 3” | `pauschalen/` (49 de clauze, 03000–03048), `chroniker/` |
+| **C. O cifră anume din capitolul 3 EBM** (de ex. 03230 Gespräch, 03360 Geriatrie) | La fel ca R1/R4 sau Gesprächsziffern | Ar fi spus probabil numărul întreg | `rules.draft`, `frequency/` (03230) |
+| **D. GOÄ Nr. 1 sau 3 ca „Beratung” la privați, legate de anamneză** | O singură regulă pentru R8 + R11: anamneză sau consultație documentată la privat, fără Nr. 1 sau Nr. 3 | Variantă a lui A; depinde ce înseamnă „Anamnese” pentru Andree | `GOAE_1_CORE_DRAFT`, `GOAE_3_CORE_DRAFT` |
+| **E. Altceva din DURIA** (o tastă rapidă, un lanț de cifre, un cod de contract HZV „3”) | Nu se poate spune fără descriere | Nu găsesc nimic public; mai puțin probabil | — |
+
+**Întrebarea pentru Andree, într-o propoziție:** „Cifra 3 e GOÄ Nr. 3 (consultație de minimum 10 minute la privați) sau altă cifră? Și «Anamnese» înseamnă același lucru, adică privați?”
 
 ---
 
