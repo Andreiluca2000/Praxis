@@ -1,6 +1,6 @@
 # Plan: Tagesabschluss (verificare automată la sfârșitul zilei)
 
-28.10.2026 · **doar plan**, nimic construit. Ideea lui Andree: pentru fiecare pacient chemat azi, programul își notează numărul de pacient din DURIA (nu numele); seara verifică toți pacienții zilei: ce cifre lipsesc, ce cifre sunt greșite sau incompatibile.
+28.10.2026 · plan. **Stare 29.10.2026:** etapele 0–2 construite (întrebări DURIA 20–24; lista zilei în `src-tauri/src/daylist.rs`, comenzi `day_list`/`day_close`; motorul `src/kvdt/day-check.ts`). Etapa 3: doar machetă, așteaptă OK-ul lui Andree; ecranul nu e în aplicație. Ideea lui Andree: pentru fiecare pacient chemat azi, programul își notează numărul de pacient din DURIA (nu numele); seara verifică toți pacienții zilei: ce cifre lipsesc, ce cifre sunt greșite sau incompatibile.
 
 ## Pe scurt: se poate?
 
