@@ -7,6 +7,7 @@ import { confirmationKey, type PairRegistry, type PairReport, type SeparateConfi
 import { checkWindowRules, type WindowFinding, type WindowRuleSet } from '../src/engine/window-rules.js';
 import { evaluateOnServices, type PracticeFinding } from '../src/rules/evaluate.js';
 import { activeRules, EMPTY_FILE, parseRuleFile, type PracticeRuleFile } from '../src/rules/model.js';
+import { quarterStart } from '../src/domain/dates.js';
 import type { Facts, IsoDate, PracticeSettings, RulePackage } from '../src/domain/types.js';
 import { readDuriaExport, type DuriaSnapshot } from '../src/duria/adapter.js';
 import { ContextRegistry, type PatientContext } from '../src/duria/context.js';
@@ -65,9 +66,17 @@ export class TreatmentSession {
 
   constructor(private readonly sessionId: string, private config: AppConfig) {
     this.notes = new NoteBook(() => this.config.ollama_model);
+    this.setConfig(config);
   }
 
-  setConfig(c: AppConfig) { this.config = c; }
+  /** KV kommt aus der gespeicherten Arbeitsplatz-Einstellung (bleibt über die Abmeldung hinaus erhalten). */
+  setConfig(c: AppConfig) {
+    this.config = c;
+    const kv = c.kv ?? null;
+    if (kv !== this.settings.region.kv) {
+      this.settings = validated(validateSettings({ ...this.settings, region: { ...this.settings.region, kv } }), 'Praxiseinstellungen');
+    }
+  }
   get mode() { return this.config.mode; }
   get hasPatient() { return this.current !== null; }
   get snapshot() { return this.current?.snapshot ?? null; }
@@ -207,14 +216,25 @@ export class TreatmentSession {
     return r.ok ? `${r.written} Eintrag/Einträge an DURIA übergeben.` : r.reason;
   }
 
-  fertig(serviceDate: IsoDate, facts: Facts, quarterConfirmed: boolean): Promise<FertigReport> {
+  /** DMP-Genehmigung der Praxis (Einstellungen, nur mit KV Nordrhein) als bestätigte Angabe. */
+  private practiceFacts(): Facts {
+    if (!this.config.dmp_dm2_teilnahme || this.settings.region.kv !== 'Nordrhein') return {};
+    return { 'dmp.practice_participation': { value: true, verification: 'confirmed', evidence: [{ ref: 'einstellung:dmp_dm2_teilnahme' }] } };
+  }
+
+  /**
+   * `fourQuarters`: der Benutzer bestätigt, dass der Export die letzten 4 Quartale bis zum Behandlungstag enthält
+   * (schließt das laufende Quartal ein). Ohne diese Bestätigung bleiben Vorquartal-Regeln „nicht prüfbar“.
+   */
+  fertig(serviceDate: IsoDate, facts: Facts, quarterConfirmed: boolean, fourQuarters = false): Promise<FertigReport> {
     if (!this.current) return Promise.reject(new Error('Kein Patient geladen.'));
     this.fertigJob?.cancel();
     const job = runFertigInBackground({
-      serviceDate, snapshot: this.current.snapshot, notes: this.notes.list, confirmedFacts: facts,
-      quarterExportConfirmed: quarterConfirmed, hzvContractId: null, confirmedSeparate: new Map(this.separate),
-      // DURIA liefert kein HZV-Merkmal: unbekannt, nie „kein HZV“. Verlauf (Vorquartale) erst mit bestätigtem Export.
-      hzvStatus: 'unknown', chronicList: this.catalogue.chronic, history: null,
+      serviceDate, snapshot: this.current.snapshot, notes: this.notes.list, confirmedFacts: { ...this.practiceFacts(), ...facts },
+      quarterExportConfirmed: quarterConfirmed || fourQuarters, hzvContractId: null, confirmedSeparate: new Map(this.separate),
+      // DURIA liefert kein HZV-Merkmal: unbekannt, nie „kein HZV“.
+      hzvStatus: 'unknown', chronicList: this.catalogue.chronic,
+      history: fourQuarters ? { from: quarterStart(serviceDate, 3), to: serviceDate } : null,
       practiceRules: activeRules(this.practice, serviceDate),
     }, this.settings, this.rules, this.mode, this.mode === 'simulation' ? this.pairRegistry : null);
     this.fertigJob = job;

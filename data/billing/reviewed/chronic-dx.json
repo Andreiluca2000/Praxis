@@ -3,10 +3,10 @@
  "list_id": "PRAXIS_CHRONIKER_ICD",
  "version": "0.1.0",
  "review": {
-  "state": "pending",
-  "reviewer": null,
-  "reviewed_at": null,
-  "rationale": "Vorschlag Claude, 30.10.2026 – vom Arzt zu prüfen, zu kürzen oder zu ergänzen."
+  "state": "approved",
+  "reviewer": "Andree",
+  "reviewed_at": "2026-10-29T12:00:00Z",
+  "rationale": "Liste vom Arzt (Andree) am 29.10.2026 unverändert freigegeben („aprob“, docs/WELLE1_FREIGABE.md)."
  },
  "basis": "Der EBM (4/2026, S. 196) verlangt für 03220/03221 eine gesicherte „lebensverändernde chronische Erkrankung“, nennt aber keine ICD-Liste. Diese Liste ist ein Auslöser der Praxis für Hinweise und Vorschläge, kein Normtext; die Liste zu 03100 ist eine andere (data/billing/chroniker). dm2_categories: DMP Diabetes Typ 2 (E11). Die verbindliche Positivliste der KV Nordrhein (§ 1 Abs. 5 der Vergütungsvereinbarung) ist nicht öffentlich und daher hier nicht abgebildet.",
  "categories": [

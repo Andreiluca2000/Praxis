@@ -3,7 +3,6 @@ import { FormsView } from './forms/FormsView.js';
 import { IcdSearch } from './IcdSearch.js';
 import { QuarterCheck } from './QuarterCheck.js';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { validateSettings } from '../src/validation/validate.js';
 import { Login } from './Login.js';
 import { api, type Status } from './platform.js';
 import { today, TreatmentSession } from './session.js';
@@ -29,7 +28,6 @@ export function App() {
   // ?view=… nur für die Bildschirmvorschau im Entwicklungsserver.
   const [view, setView] = useState<View>(() => (import.meta.env.DEV && (new URLSearchParams(location.search).get('view') as View)) || 'behandlung');
   const [notice, setNotice] = useState('');
-  const [, force] = useState(0);
   const session = useRef<TreatmentSession | null>(null);
 
   const refresh = useCallback(async () => {
@@ -69,11 +67,6 @@ export function App() {
     await refresh();
   }
 
-  function setKv(kv: 'Nordrhein' | 'Westfalen-Lippe' | null) {
-    const v = validateSettings({ ...s.settings, region: { ...s.settings.region, kv } });
-    if (v.ok && v.value) { s.settings = v.value; force((n) => n + 1); }
-  }
-
   const duria = status.config.writeback_enabled || status.config.billing_writeback_enabled ? 'DURIA verbunden (GDT)' : 'DURIA nur lesend';
 
   return (
@@ -108,7 +101,7 @@ export function App() {
           {view === 'diagnosen' && <section className="card"><h2><Stethoscope size={22} aria-hidden="true" />Diagnosen & ICD-10-GM</h2><IcdSearch /></section>}
           {view === 'formulare' && <FormsView kartei={s.snapshot ? { diagnoses: s.snapshot.diagnoses, notes: s.snapshot.notes, serviceDate: today() } : null} />}
           {view === 'regeln' && <PraxisregelnView session={s} user={status.user} />}
-          {view === 'einstellungen' && <Settings status={status} kv={s.settings.region.kv} onKv={setKv} onChanged={refresh} />}
+          {view === 'einstellungen' && <Settings status={status} onChanged={refresh} />}
         </main>
       </div>
     </div>

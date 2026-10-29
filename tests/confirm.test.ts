@@ -26,6 +26,14 @@ describe('Bestätigung erkannter Angaben → Fakten', () => {
     expect(f['documentation.duration_minutes']).toMatchObject({ value: 15, verification: 'confirmed' });
   });
 
+  it('Chroniker/DMP: nur angehakte Bestätigungen werden zu Fakten, fehlende bleiben unbekannt', () => {
+    const f = toFacts(c({ chronic: { intensiveCare: { by: 'AL' }, dmpEnrolled: { by: 'AL' } } }));
+    expect(f['documentation.intensive_care_confirmed']).toMatchObject({ value: true, verification: 'confirmed', evidence: [{ ref: 'benutzer:AL:intensiveCare' }] });
+    expect(f['dmp.patient_enrolled']).toMatchObject({ value: true, verification: 'confirmed' });
+    expect(f['dmp.documentation_transmitted']).toBeUndefined();
+    expect(f['dmp.practice_participation']).toBeUndefined();
+  });
+
   it('„nicht verwenden“ erzeugt keinen Fakt', () => {
     expect(toFacts(c({ decisions: [{ ref: 'x', status: null, by: 'AL' }] }))).toEqual({});
   });

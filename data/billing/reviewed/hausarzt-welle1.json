@@ -8,7 +8,7 @@
    "id": "EBM_03000_W1",
    "version": "1.0.0",
    "billing_system": "EBM",
-   "status": "draft",
+   "status": "active",
    "title": "Versichertenpauschale 03000 (erster Arzt-Patienten-Kontakt im Behandlungsfall)",
    "procedure_codes": [
     "03000"
@@ -28,21 +28,21 @@
      "locator": "Abschnitt 3.2.1: S. 179 GOP 03000 (persönlicher oder Video-Kontakt, einmal im Behandlungsfall); S. 180 (nicht im organisierten Notdienst, nicht bei Definitionsauftrag, nicht im Folgequartal nach 03100, nicht neben 01600/01601/01610/03030/03100 im Behandlungsfall, nicht neben 01436); S. 182 (nur unvorhergesehene Inanspruchnahme → 03030 statt 03000)",
      "checked_on": "2026-10-26",
      "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
-     "license_status": "pending"
+     "license_status": "permitted_for_local_use"
     }
    ],
    "reviews": {
     "billing": {
-     "state": "pending",
-     "reviewer": null,
-     "reviewed_at": null,
-     "rationale": "Welle 1: Freigabe durch den Arzt laut docs/WELLE1_FREIGABE.md. Bis dahin ohne Wirkung."
+     "state": "approved",
+     "reviewer": "Andree",
+     "reviewed_at": "2026-10-29T12:00:00Z",
+     "rationale": "Freigabe durch den Arzt (Andree) am 29.10.2026: „aprob“ zu Welle 1 laut docs/WELLE1_FREIGABE.md (Regeln, ICD-Liste, Annahmen), übermittelt über die Projektsitzung."
     },
     "clinical": {
-     "state": "pending",
-     "reviewer": null,
-     "reviewed_at": null,
-     "rationale": "Welle 1: Freigabe durch den Arzt laut docs/WELLE1_FREIGABE.md. Bis dahin ohne Wirkung."
+     "state": "approved",
+     "reviewer": "Andree",
+     "reviewed_at": "2026-10-29T12:00:00Z",
+     "rationale": "Freigabe durch den Arzt (Andree) am 29.10.2026: „aprob“ zu Welle 1 laut docs/WELLE1_FREIGABE.md (Regeln, ICD-Liste, Annahmen), übermittelt über die Projektsitzung."
     }
    },
    "required_context": [
@@ -140,7 +140,7 @@
    "id": "EBM_03220_W1",
    "version": "1.0.0",
    "billing_system": "EBM",
-   "status": "draft",
+   "status": "active",
    "title": "Chroniker-Zuschlag 03220 zur Versichertenpauschale 03000",
    "procedure_codes": [
     "03220"
@@ -160,21 +160,21 @@
      "locator": "S. 196 (Kontinuität: drei von vier Quartalen, zwei mit persönlichem Kontakt; Ausnahme 03100 zwei Quartale zuvor); S. 197 GOP 03220 (obligat: persönlicher Arzt-Patienten-Kontakt), einmal im Behandlungsfall",
      "checked_on": "2026-10-26",
      "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
-     "license_status": "pending"
+     "license_status": "permitted_for_local_use"
     }
    ],
    "reviews": {
     "billing": {
-     "state": "pending",
-     "reviewer": null,
-     "reviewed_at": null,
-     "rationale": "Welle 1: Freigabe durch den Arzt laut docs/WELLE1_FREIGABE.md. Bis dahin ohne Wirkung."
+     "state": "approved",
+     "reviewer": "Andree",
+     "reviewed_at": "2026-10-29T12:00:00Z",
+     "rationale": "Freigabe durch den Arzt (Andree) am 29.10.2026: „aprob“ zu Welle 1 laut docs/WELLE1_FREIGABE.md (Regeln, ICD-Liste, Annahmen), übermittelt über die Projektsitzung."
     },
     "clinical": {
-     "state": "pending",
-     "reviewer": null,
-     "reviewed_at": null,
-     "rationale": "Welle 1: Freigabe durch den Arzt laut docs/WELLE1_FREIGABE.md. Bis dahin ohne Wirkung."
+     "state": "approved",
+     "reviewer": "Andree",
+     "reviewed_at": "2026-10-29T12:00:00Z",
+     "rationale": "Freigabe durch den Arzt (Andree) am 29.10.2026: „aprob“ zu Welle 1 laut docs/WELLE1_FREIGABE.md (Regeln, ICD-Liste, Annahmen), übermittelt über die Projektsitzung."
     }
    },
    "required_context": [
@@ -325,7 +325,7 @@
    "id": "EBM_03221_W1",
    "version": "1.0.0",
    "billing_system": "EBM",
-   "status": "draft",
+   "status": "active",
    "title": "Zuschlag 03221 zu 03220 (intensive Behandlung chronisch Kranker)",
    "procedure_codes": [
     "03221"
@@ -345,21 +345,21 @@
      "locator": "S. 196 (Kontinuität wie 03220); S. 198 GOP 03221 (mind. zwei persönliche Arzt-Patienten-Kontakte, Überprüfung/Anpassung/Einleitung leitliniengestützter Behandlung), einmal im Behandlungsfall",
      "checked_on": "2026-10-26",
      "sha256": "609f635305e961a948cd5d23f1f0de71445270dd606beb3c70735eb7ed0a6795",
-     "license_status": "pending"
+     "license_status": "permitted_for_local_use"
     }
    ],
    "reviews": {
     "billing": {
-     "state": "pending",
-     "reviewer": null,
-     "reviewed_at": null,
-     "rationale": "Welle 1: Freigabe durch den Arzt laut docs/WELLE1_FREIGABE.md. Bis dahin ohne Wirkung."
+     "state": "approved",
+     "reviewer": "Andree",
+     "reviewed_at": "2026-10-29T12:00:00Z",
+     "rationale": "Freigabe durch den Arzt (Andree) am 29.10.2026: „aprob“ zu Welle 1 laut docs/WELLE1_FREIGABE.md (Regeln, ICD-Liste, Annahmen), übermittelt über die Projektsitzung."
     },
     "clinical": {
-     "state": "pending",
-     "reviewer": null,
-     "reviewed_at": null,
-     "rationale": "Welle 1: Freigabe durch den Arzt laut docs/WELLE1_FREIGABE.md. Bis dahin ohne Wirkung."
+     "state": "approved",
+     "reviewer": "Andree",
+     "reviewed_at": "2026-10-29T12:00:00Z",
+     "rationale": "Freigabe durch den Arzt (Andree) am 29.10.2026: „aprob“ zu Welle 1 laut docs/WELLE1_FREIGABE.md (Regeln, ICD-Liste, Annahmen), übermittelt über die Projektsitzung."
     }
    },
    "required_context": [
@@ -509,7 +509,7 @@
    "id": "KVNO_DMP_DM2_90325_W1",
    "version": "1.0.0",
    "billing_system": "KV",
-   "status": "draft",
+   "status": "active",
    "title": "DMP Diabetes mellitus Typ 2 (KV Nordrhein): Folgedokumentationspauschale 90325",
    "procedure_codes": [
     "90325"
@@ -529,21 +529,21 @@
      "locator": "§ 1 Abs. 1 und 5 (S. 2: Teilnahme des Arztes, gesicherte Diagnose laut Positivliste); § 2 Abs. 1, 2, 6 (S. 3–4: gültige Einschreibung, SNR 90325 Folgedokumentation 10,00 €, höchstens eine Ziffer je Patient und Quartal bzw. Halbjahr)",
      "checked_on": "2026-10-30",
      "sha256": "f245f7470fa7e19ca34525b2ae6478230abfb11cc1eb7a530a26a4e107a46e89",
-     "license_status": "pending"
+     "license_status": "permitted_for_local_use"
     }
    ],
    "reviews": {
     "billing": {
-     "state": "pending",
-     "reviewer": null,
-     "reviewed_at": null,
-     "rationale": "Welle 1: Freigabe durch den Arzt laut docs/WELLE1_FREIGABE.md. Bis dahin ohne Wirkung."
+     "state": "approved",
+     "reviewer": "Andree",
+     "reviewed_at": "2026-10-29T12:00:00Z",
+     "rationale": "Freigabe durch den Arzt (Andree) am 29.10.2026: „aprob“ zu Welle 1 laut docs/WELLE1_FREIGABE.md (Regeln, ICD-Liste, Annahmen), übermittelt über die Projektsitzung."
     },
     "clinical": {
-     "state": "pending",
-     "reviewer": null,
-     "reviewed_at": null,
-     "rationale": "Welle 1: Freigabe durch den Arzt laut docs/WELLE1_FREIGABE.md. Bis dahin ohne Wirkung."
+     "state": "approved",
+     "reviewer": "Andree",
+     "reviewed_at": "2026-10-29T12:00:00Z",
+     "rationale": "Freigabe durch den Arzt (Andree) am 29.10.2026: „aprob“ zu Welle 1 laut docs/WELLE1_FREIGABE.md (Regeln, ICD-Liste, Annahmen), übermittelt über die Projektsitzung."
     }
    },
    "required_context": [

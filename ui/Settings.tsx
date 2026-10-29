@@ -4,10 +4,8 @@ import { AiSettings } from './AiSettings.js';
 import { api, type Status } from './platform.js';
 
 /** Konten (nur Arzt), Arbeitsplatz, KV. Keine Patientendaten. */
-export function Settings({ status, kv, onKv, onChanged }: {
+export function Settings({ status, onChanged }: {
   status: Status;
-  kv: string | null;
-  onKv: (kv: 'Nordrhein' | 'Westfalen-Lippe' | null) => void;
   onChanged: () => void;
 }) {
   const isArzt = status.user?.role === 'arzt';
@@ -35,7 +33,12 @@ export function Settings({ status, kv, onKv, onChanged }: {
         <div className="row">
           <label>Bundesland<input value="Nordrhein-Westfalen" disabled /></label>
           <label>KV
-            <select value={kv ?? ''} disabled={!isArzt} onChange={(e) => onKv((e.target.value || null) as 'Nordrhein' | 'Westfalen-Lippe' | null)}>
+            <select value={status.config.kv ?? ''} disabled={!isArzt}
+              onChange={(e) => {
+                const kv = (e.target.value || null) as 'Nordrhein' | 'Westfalen-Lippe' | null;
+                // DMP-Genehmigung gilt nur für die KV, bei der sie erteilt wurde.
+                void patch({ kv, dmp_dm2_teilnahme: kv === 'Nordrhein' && status.config.dmp_dm2_teilnahme });
+              }}>
               <option value="">– noch nicht gewählt –</option><option>Nordrhein</option><option>Westfalen-Lippe</option>
             </select>
           </label>
@@ -45,7 +48,14 @@ export function Settings({ status, kv, onKv, onChanged }: {
             </select>
           </label>
         </div>
-        <p className="muted">Ohne KV werden regionale Regeln nicht geprüft. Ein Wechsel macht frühere Ergebnisse ungültig.</p>
+        {status.config.kv === 'Nordrhein' && (
+          <label className="inline">
+            <input type="checkbox" checked={status.config.dmp_dm2_teilnahme} disabled={!isArzt}
+              onChange={(e) => patch({ dmp_dm2_teilnahme: e.target.checked })} />
+            Praxis hat die KV-Genehmigung für DMP Diabetes mellitus Typ 2
+          </label>
+        )}
+        <p className="muted">Die KV bleibt für diesen Windows-Benutzer gespeichert. Ohne KV werden regionale Regeln nicht geprüft. Ein Wechsel macht frühere Ergebnisse ungültig.</p>
       </section>
 
       <AiSettings isArzt={isArzt} config={status.config.ai} onChanged={onChanged} />

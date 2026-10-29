@@ -1,6 +1,7 @@
 import { CircleCheckBig } from 'lucide-react';
 import { useState } from 'react';
 import type { BillingEntry, FertigProposal, FertigReport } from '../src/core/fertig.js';
+import type { PatientStatus } from '../src/engine/patient-status.js';
 import { VERDICT } from './PairEvidence.js';
 
 /**
@@ -30,6 +31,7 @@ export function FertigPanel({ report, isArzt, billingEnabled, onSubmit }: {
   return (
     <section className="card">
       <h2><CircleCheckBig size={22} aria-hidden="true" />Abschlussprüfung <span className="muted">Quartal {report.quarter.from} – {report.quarter.to}</span></h2>
+      <p className="muted">{patientLine(report.patient)}</p>
       {report.proposals.length === 0 && <p className="muted">Keine Hinweise. (Ohne freigegebene Regeln werden keine Ziffern vorgeschlagen.)</p>}
       {report.proposals.map((p: FertigProposal, i) => (
         <div key={i} className={`finding ${decision[i] ?? ''}`}>
@@ -74,4 +76,14 @@ export function FertigPanel({ report, isArzt, billingEnabled, onSubmit }: {
       {result && <p role="status">{result}</p>}
     </section>
   );
+}
+
+/** Neupatient und erster Kontakt im Quartal – nur Information; eine eigene Neupatienten-Ziffer gibt es seit 2023 nicht mehr. */
+function patientLine(p: PatientStatus): string {
+  const n = p.neupatient;
+  const neu = n.status === 'bekannt' ? `bekannt (letzter Kontakt ${n.letzterKontakt})`
+    : n.status === 'kein_frueherer_kontakt' ? `kein früherer Kontakt seit ${n.seit} – ob „nie gesehen“, zeigt nur der ganze Verlauf`
+      : 'nicht prüfbar (Vorquartale nicht gelesen)';
+  const erst = p.ersterKontaktImQuartal === null ? 'nicht prüfbar' : p.ersterKontaktImQuartal ? 'ja' : 'nein';
+  return `Patient: ${neu} · Erster Kontakt im Quartal: ${erst}`;
 }

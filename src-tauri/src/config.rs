@@ -26,6 +26,28 @@ pub struct AppConfig {
     /// KI-Assistent über die Claude API – standardmäßig aus.
     #[serde(default)]
     pub ai: crate::ai::AiConfig,
+    /// Kassenärztliche Vereinigung der Praxis: "Nordrhein" | "Westfalen-Lippe" | null (regionale Regeln, z. B. DMP).
+    #[serde(default)]
+    pub kv: Option<String>,
+    /// Praxis hat die KV-Genehmigung für DMP Diabetes mellitus Typ 2 (vom Arzt in den Einstellungen bestätigt).
+    #[serde(default)]
+    pub dmp_dm2_teilnahme: bool,
+}
+
+pub const KV_WERTE: [&str; 2] = ["Nordrhein", "Westfalen-Lippe"];
+
+/// Nur bekannte KV-Bereiche; DMP-Teilnahme ohne KV ist bedeutungslos und wird abgelehnt.
+pub fn validate_region(cfg: &AppConfig) -> Result<(), String> {
+    match cfg.kv.as_deref() {
+        None => {
+            if cfg.dmp_dm2_teilnahme {
+                return Err("DMP-Teilnahme erst nach Wahl der KV.".into());
+            }
+            Ok(())
+        }
+        Some(kv) if KV_WERTE.contains(&kv) => Ok(()),
+        Some(_) => Err("Unbekannte KV.".into()),
+    }
 }
 
 fn default_channel() -> String {
@@ -98,6 +120,8 @@ fn defaults(resource_root: &Path) -> AppConfig {
         mode: "simulation".into(),
         ollama_model: None,
         ai: crate::ai::AiConfig::default(),
+        kv: None,
+        dmp_dm2_teilnahme: false,
         voice: VoiceConfig {
             whisper_exe: tools.join("whisper").join("Release").join("whisper-cli.exe"),
             model: tools.join("models").join("ggml-large-v3-turbo-q5_0.bin"),
@@ -164,6 +188,27 @@ mod tests {
         assert!(err.contains("Administratorrechten"), "{err}");
         perm.set_readonly(false);
         fs::set_permissions(&file, perm).unwrap();
+        let _ = fs::remove_dir_all(dir);
+    }
+
+    #[test]
+    fn kv_bleibt_gespeichert_und_wird_geprueft() {
+        let nanos = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_nanos();
+        let dir = std::env::temp_dir().join(format!("praxis-config-{nanos}"));
+        let (mut cfg, file) = load_config(&dir, &dir).unwrap();
+        assert_eq!(cfg.kv, None);
+        assert!(!cfg.dmp_dm2_teilnahme);
+        cfg.kv = Some("Nordrhein".into());
+        cfg.dmp_dm2_teilnahme = true;
+        validate_region(&cfg).unwrap();
+        save_config(&file, &cfg).unwrap();
+        let (again, _) = load_config(&dir, &dir).unwrap();
+        assert_eq!(again.kv.as_deref(), Some("Nordrhein"));
+        assert!(again.dmp_dm2_teilnahme);
+        cfg.kv = Some("Bayern".into());
+        assert!(validate_region(&cfg).is_err());
+        cfg.kv = None;
+        assert!(validate_region(&cfg).is_err(), "DMP ohne KV");
         let _ = fs::remove_dir_all(dir);
     }
 }

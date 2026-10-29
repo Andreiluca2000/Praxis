@@ -1,6 +1,6 @@
 import { ClipboardCheck } from 'lucide-react';
 import type { Mention } from '../src/facts/extract.js';
-import { conflicts, SERVICE_STATUSES, suggestedStatus, type FactConfirmation, type ServiceStatus } from '../src/facts/confirm.js';
+import { conflicts, SERVICE_STATUSES, suggestedStatus, type ChronicConfirmation, type FactConfirmation, type ServiceStatus } from '../src/facts/confirm.js';
 import type { PublicAccount } from '../src/notes/note.js';
 
 const LABEL: Record<ServiceStatus, string> = {
@@ -8,16 +8,31 @@ const LABEL: Record<ServiceStatus, string> = {
 };
 const HINT: Record<string, string> = { negated: 'Verneinung', family_history: 'Familienanamnese', unknown: 'unklar' };
 
+/** Welche Chroniker-/DMP-Bestätigungen zum Patienten passen (aus gesicherten Diagnosen und KV). */
+export interface ChronicPrompt { chronic: boolean; dmp: boolean; pending: boolean }
+
+const CHRONIC_LABEL: Record<ChronicConfirmation, string> = {
+  intensiveCare: '03221: mind. zwei persönliche Kontakte im Quartal und Behandlung leitliniengerecht überprüft/angepasst',
+  dmpEnrolled: 'Patient ist im DMP Diabetes Typ 2 eingeschrieben',
+  dmpDocumented: 'DMP-Dokumentation für dieses Quartal vollständig und fristgerecht übermittelt',
+};
+
 /**
  * Angaben aus der Karteikarte bestätigen. Erkanntes ist nur ein Vorschlag;
  * „Fertig“ verwendet ausschließlich, was hier bestätigt wurde.
  */
-export function FactPanel({ mentions, value, user, onChange }: {
+export function FactPanel({ mentions, value, user, chronic, onChange }: {
   mentions: (Mention & { text: string })[];
   value: FactConfirmation;
   user: PublicAccount;
+  chronic: ChronicPrompt;
   onChange: (c: FactConfirmation) => void;
 }) {
+  const shown: ChronicConfirmation[] = [...(chronic.chronic ? ['intensiveCare' as const] : []), ...(chronic.dmp ? ['dmpEnrolled' as const, 'dmpDocumented' as const] : [])];
+  const setChronic = (key: ChronicConfirmation, on: boolean) => {
+    const rest = Object.fromEntries(Object.entries(value.chronic).filter(([k]) => k !== key));
+    onChange({ ...value, chronic: on ? { ...rest, [key]: { by: user.kuerzel } } : rest });
+  };
   const decisionFor = (ref: string) => value.decisions.find((d) => d.ref === ref);
   const setDecision = (ref: string, status: ServiceStatus | null | undefined) => {
     const rest = value.decisions.filter((d) => d.ref !== ref);
@@ -71,6 +86,18 @@ export function FactPanel({ mentions, value, user, onChange }: {
         </label>
       </div>
       <p className="muted">Ohne Angabe bleibt die Dauer unbekannt; es wird nichts geschätzt.</p>
+      {shown.length > 0 && (
+        <div style={{ display: 'grid', gap: 6, marginTop: 10 }}>
+          <strong>Chroniker / DMP</strong>
+          {shown.map((k) => (
+            <label key={k} className="inline">
+              <input type="checkbox" checked={Boolean(value.chronic[k])} onChange={(e) => setChronic(k, e.target.checked)} />
+              {CHRONIC_LABEL[k]}
+            </label>
+          ))}
+          <span className="muted">Nicht angehakt bleibt „unbekannt“ – die Ziffer wird dann nicht vorgeschlagen.{chronic.pending ? ' Wirkt erst nach ärztlicher Freigabe der Regeln (Welle 1).' : ''}</span>
+        </div>
+      )}
       {warn.map((w) => <p key={w} className="warn">⚠ {w}</p>)}
     </section>
   );

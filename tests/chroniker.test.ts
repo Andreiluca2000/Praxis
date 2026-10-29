@@ -16,7 +16,8 @@ import { confirmed, input as evalInput, settings, testRule } from './fixtures.js
 
 /**
  * Welle 1: Versichertenpauschale 03000, Chroniker 03220/03221, DMP Diabetes Typ 2 (KV Nordrhein), R1 Diagnose ↔ Ziffer, Neupatient.
- * Synthetische Fälle; die Freigabe des Arztes wird nur im Test nachgebildet (Kopie der Regel), nie in den Daten.
+ * Synthetische Fälle. Ausgeliefert ist der Katalog seit 29.10.2026 vom Arzt freigegeben; der Zustand „nicht freigegeben“
+ * wird im Test nachgebildet (Kopie mit Entwurfsstatus).
  */
 
 const SHIPPED = loadCatalogue(reviewedJson, chronicJson);
@@ -33,6 +34,14 @@ const approve = (r: Rule): Rule => ({
   sources: r.sources.map((s) => ({ ...s, license_status: 'permitted_for_local_use' })),
 });
 const APPROVED: RulePackage = { ...SHIPPED.reviewed!, rules: SHIPPED.reviewed!.rules.map(approve) };
+
+/** Zustand vor der Freigabe (nur Test): Entwurf, Prüfungen offen, Quelle offen. */
+const pend = { state: 'pending' as const, reviewer: null, reviewed_at: null, rationale: 'Test' };
+const PENDING: RulePackage = {
+  ...SHIPPED.reviewed!,
+  rules: SHIPPED.reviewed!.rules.map((r) => ({ ...r, status: 'draft', reviews: { billing: pend, clinical: pend }, sources: r.sources.map((s) => ({ ...s, license_status: 'pending' })) })),
+};
+const PENDING_LIST: ChronicList = { ...LIST, review: pend };
 
 const DATE = '2026-11-12';
 const svc = (code: string, date: string): BilledService => ({ code, system: 'EBM', date, state: 'active', session: null, evidence: [{ ref: `s:${code}:${date}` }] });
@@ -60,16 +69,17 @@ function fertig(over: Partial<FertigInput> & { data?: { services: BilledService[
 const proposal = (r: ReturnType<typeof fertig>, code: string) => r.proposals.find((p) => p.finding?.codes.includes(code));
 
 describe('Welle 1 – Katalog und Freigabe', () => {
-  it('ausgelieferter Katalog ist gültig, aber nicht freigegeben (alle Regeln draft, Liste pending)', () => {
+  it('ausgelieferter Katalog ist gültig und vom Arzt freigegeben (alle Regeln aktiv, Liste freigegeben)', () => {
     expect(SHIPPED.errors).toEqual([]);
     expect(SHIPPED.reviewed?.content_kind).toBe('reviewed_catalogue');
     expect(SHIPPED.reviewed?.rules.map((r) => r.id)).toEqual(['EBM_03000_W1', 'EBM_03220_W1', 'EBM_03221_W1', 'KVNO_DMP_DM2_90325_W1']);
-    expect(SHIPPED.reviewed?.rules.every((r) => r.status === 'draft' && r.reviews.billing.state === 'pending')).toBe(true);
-    expect(SHIPPED.chronic?.review.state).toBe('pending');
+    expect(SHIPPED.reviewed?.rules.every((r) => r.status === 'active' && r.reviews.billing.state === 'approved' && r.reviews.clinical.state === 'approved' && r.reviews.billing.reviewer === 'Andree')).toBe(true);
+    expect(SHIPPED.chronic?.review).toMatchObject({ state: 'approved', reviewer: 'Andree' });
+    expect(validateRulePackage(SHIPPED.reviewed!).errors).toEqual([]);
   });
 
   it('ohne Freigabe: operativ keine Ziffer und kein R1-Hinweis', () => {
-    const r = fertig({ chronicList: SHIPPED.chronic }, 'Nordrhein', SHIPPED.reviewed!);
+    const r = fertig({ chronicList: PENDING_LIST }, 'Nordrhein', PENDING);
     expect(r.proposals).toEqual([]);
   });
 
@@ -227,7 +237,7 @@ describe('R1 – Diagnose ↔ Ziffer', () => {
   });
 
   it('Fertig: Hinweis mit freigegebener Liste, auch wenn die Ziffernregeln noch nicht freigegeben sind', () => {
-    const r = fertig({}, null, SHIPPED.reviewed!);
+    const r = fertig({}, null, PENDING);
     expect(r.proposals.map((p) => p.title)).toEqual(['Diagnose ↔ Ziffer: 03220']);
     expect(r.proposals[0]?.entries).toEqual([]);
   });
@@ -245,7 +255,7 @@ describe('R1 – Diagnose ↔ Ziffer', () => {
     const r = checkQuarter(file, settings(), noRules, 'operational', null, null, [], APPROVED_LIST);
     const r1 = r.findings.filter((f) => f.kind === 'diagnose_ziffer');
     expect(r1.map((f) => `${f.patientToken}:${f.severity}`)).toEqual(['P-a:hinweis', 'P-b:hinweis']);
-    expect(checkQuarter(file, settings(), noRules, 'operational', null, null, [], LIST).findings.some((f) => f.kind === 'diagnose_ziffer')).toBe(false);
+    expect(checkQuarter(file, settings(), noRules, 'operational', null, null, [], PENDING_LIST).findings.some((f) => f.kind === 'diagnose_ziffer')).toBe(false);
   });
 });
 
@@ -336,5 +346,24 @@ describe('Neupatient und erster Kontakt im Quartal (nur Information)', () => {
     expect(fertig({ data }).patient.ersterKontaktImQuartal).toBe(false);
     expect(fertig({ data: { services: [], diagnoses: [] } }).patient.ersterKontaktImQuartal).toBe(true);
     expect(fertig({ data: { services: [], diagnoses: [] }, quarterExportConfirmed: false, history: null }).patient.ersterKontaktImQuartal).toBeNull();
+  });
+});
+
+describe('Welle 1 – ausgelieferter, freigegebener Katalog in der Praxis', () => {
+  const shipped = (over: Partial<FertigInput> = {}) => fertig({ chronicList: SHIPPED.chronic, hzvStatus: 'unknown', ...over }, 'Nordrhein', SHIPPED.reviewed!);
+
+  it('HZV-Status unbekannt (DURIA liefert ihn nicht): 03220 nur „Klärung“, nie „bereit“', () => {
+    const p = proposal(shipped(), '03220');
+    expect(p?.readiness).toBe('klaerung');
+    expect(JSON.stringify(p?.finding)).toContain('HZV');
+  });
+
+  it('ohne bestätigten Export der Vorquartale: 03220 nicht „bereit“', () => {
+    const p = proposal(shipped({ hzvStatus: 'not_enrolled', history: null }), '03220');
+    expect(p?.readiness).not.toBe('bereit');
+  });
+
+  it('mit Vorquartalen und bekanntem HZV-Status: 03220 „bereit“', () => {
+    expect(proposal(shipped({ hzvStatus: 'not_enrolled' }), '03220')?.readiness).toBe('bereit');
   });
 });

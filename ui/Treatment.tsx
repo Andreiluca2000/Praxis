@@ -2,12 +2,13 @@ import { ArrowRight, ClipboardList, Download, NotebookPen, SlidersHorizontal, St
 import { useEffect, useReducer, useState } from 'react';
 import type { AnalysisResponse } from '../src/core/analyze.js';
 import type { FertigReport } from '../src/core/fertig.js';
+import { isApproved } from '../src/engine/chronic.js';
 import { correctionText, proposeCorrections, type Correction } from '../src/corrections/corrections.js';
 import { emptyConfirmation, toFacts, type FactConfirmation } from '../src/facts/confirm.js';
 import { CorrectionsPanel } from './CorrectionsPanel.js';
 import type { NoteForm, PublicAccount } from '../src/notes/note.js';
 import { Dictation } from './Dictation.js';
-import { FactPanel } from './FactPanel.js';
+import { FactPanel, type ChronicPrompt } from './FactPanel.js';
 import { FertigPanel } from './FertigPanel.js';
 import { NoteCard } from './NoteCard.js';
 import { loadPairDossier, loadWindowDossiers } from './pairDossier.js';
@@ -21,6 +22,7 @@ export function Treatment({ session, user, billingEnabled }: { session: Treatmen
   const [date, setDate] = useState(today());
   const [analysis, setAnalysis] = useState<AnalysisResponse | null>(null);
   const [quarter, setQuarter] = useState(false);
+  const [fourQuarters, setFourQuarters] = useState(false);
   const [report, setReport] = useState<FertigReport | null>(null);
   const [confirmation, setConfirmation] = useState<FactConfirmation>(emptyConfirmation());
   const [corrections, setCorrections] = useState<Correction[]>([]);
@@ -99,7 +101,7 @@ export function Treatment({ session, user, billingEnabled }: { session: Treatmen
   function fertig() {
     setFertigBusy(true);
     // Nur ausdrücklich bestätigte Angaben gehen in die Prüfung.
-    session.fertig(date, toFacts(confirmation), quarter)
+    session.fertig(date, toFacts(confirmation), quarter, fourQuarters)
       .then((r) => {
         setReport(r);
         // Korrekturvorschläge (Diktat vs. DURIA, Konflikte) zur Liste hinzufügen – noch nicht festgelegt.
@@ -117,9 +119,11 @@ export function Treatment({ session, user, billingEnabled }: { session: Treatmen
   }
 
   const snap = analysis?.snapshot;
+  const quarterRead = quarter || fourQuarters;
+  const chronicPrompt = chronicPromptFor(session);
   const pairReport = session.hasPatient ? session.pairs() : null;
-  const windowFindings = session.hasPatient ? session.windowFindings(quarter) : null;
-  const practiceFindings = session.hasPatient ? session.practiceFindings(date, quarter) : [];
+  const windowFindings = session.hasPatient ? session.windowFindings(quarterRead) : null;
+  const practiceFindings = session.hasPatient ? session.practiceFindings(date, quarterRead) : [];
   function confirmPair(clauseId: string, day: string) {
     try { session.confirmSeparate(user, clauseId, day); setReport(null); } catch (e) { setMsg(String(e)); }
     rerender();
@@ -177,7 +181,7 @@ export function Treatment({ session, user, billingEnabled }: { session: Treatmen
       )}
 
       {session.hasPatient && analysis && (
-        <FactPanel mentions={analysis.mentions} value={confirmation} user={user} onChange={(c) => { setConfirmation(c); setReport(null); }} />
+        <FactPanel mentions={analysis.mentions} value={confirmation} user={user} chronic={chronicPrompt} onChange={(c) => { setConfirmation(c); setReport(null); }} />
       )}
 
       <Dictation disabled={false} onText={onText} />
@@ -191,8 +195,9 @@ export function Treatment({ session, user, billingEnabled }: { session: Treatmen
 
       <section className="card fertig-bar">
         <div className="fertig-info">
-          <label className="inline"><input type="checkbox" checked={quarter} onChange={(e) => setQuarter(e.target.checked)} /> Export enthält das ganze Quartal</label>
-          <span className="muted">Ohne Quartalsdaten bleiben Ziffern mit Quartals-/Häufigkeitsgrenzen „nicht prüfbar“.</span>
+          <label className="inline"><input type="checkbox" checked={quarterRead} disabled={fourQuarters} onChange={(e) => { setQuarter(e.target.checked); setReport(null); }} /> Export enthält das ganze Quartal</label>
+          <label className="inline"><input type="checkbox" checked={fourQuarters} onChange={(e) => { setFourQuarters(e.target.checked); setReport(null); }} /> Export enthält die letzten 4 Quartale</label>
+          <span className="muted">Ohne Quartalsdaten bleiben Ziffern mit Quartals-/Häufigkeitsgrenzen „nicht prüfbar“; 03000, 03220 und 03221 brauchen die Vorquartale.</span>
         </div>
         <span className="spacer" />
         <button className="primary big" disabled={!session.hasPatient || fertigBusy} onClick={fertig}>{fertigBusy ? 'Prüft im Hintergrund …' : <>Fertig <ArrowRight size={18} aria-hidden="true" /></>}</button>
@@ -208,4 +213,16 @@ export function Treatment({ session, user, billingEnabled }: { session: Treatmen
       {msg && <p className="muted" role="status">{msg}</p>}
     </div>
   );
+}
+
+/** Chroniker-/DMP-Bestätigungen nur anbieten, wenn eine gesicherte Diagnose dazu passt (DMP nur mit KV Nordrhein). */
+function chronicPromptFor(session: TreatmentSession): ChronicPrompt {
+  const list = session.catalogue.chronic;
+  const sure = (session.snapshot?.diagnoses ?? []).filter((d) => d.certainty === 'G').map((d) => d.code.slice(0, 3));
+  if (!list) return { chronic: false, dmp: false, pending: false };
+  return {
+    chronic: sure.some((c) => list.categories.some((cat) => cat.icd === c)),
+    dmp: session.settings.region.kv === 'Nordrhein' && sure.some((c) => list.dm2_categories.includes(c)),
+    pending: !isApproved(list),
+  };
 }

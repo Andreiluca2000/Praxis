@@ -1,6 +1,11 @@
 # Primul val: Versichertenpauschale, cronici și diabetici (de aprobat de Andree)
 
-Stare 30.10.2026. Regulile sunt în aplicație, dar **inactive**: au `status: draft` și aprobarea nu e dată. Până la aprobare, aplicația se comportă exact ca înainte. Testele care arată ce face fiecare regulă sunt în `tests/chroniker.test.ts`, pe cazuri sintetice cu da / nu / nicht prüfbar.
+**Aprobat de Andree pe 29.10.2026** („aprob”): cele 4 reguli, lista ICD și cele 4 presupuneri, nemodificate.
+- Regulile au `status: active`, iar ambele verificări sunt `approved` (reviewer „Andree”).
+- Lista bolilor cronice e `approved`.
+- Regulile lucrează în modul „Prüfung”; Simulatorul rămâne pe DEMO.
+- Ce mai dă „nicht prüfbar” e la punctul 4.
+- Testele sunt în `tests/chroniker.test.ts`, pe cazuri sintetice cu da / nu / nicht prüfbar.
 
 ## 1. Ce aprobi
 
@@ -55,9 +60,9 @@ Aceeași listă pornește și **R1** (diagnoză ↔ cifră), ca indicație în F
 | Ce lipsește | Efect | Cine / cum |
 |---|---|---|
 | **Statutul HZV al pacientului.** DURIA nu-l exportă. | Toate propunerile EBM (03220/03221) rămân „nicht prüfbar: HZV unbekannt”. DMP nu e afectat. | Andree: cabinetul are pacienți HZV? Dacă nu are deloc, se poate seta o dată pentru tot cabinetul (schimbare în UI, cu înainte/după). |
-| **Exportul BDT pe ultimele 4 trimestre.** | Fără el, 03220/03221 (și 03000, care cere trimestrul anterior) rămân „nicht prüfbar: Vorquartale fehlen”. | **De întrebat la hotline-ul DURIA** cum se exportă BDT pentru un pacient pe mai multe trimestre. Apoi în aplicație trebuie bifa „Export enthält die letzten 4 Quartale” (schimbare în UI, cu înainte/după). |
-| **Confirmările DMP** (cabinetul are aprobarea DMP, pacientul e înscris, documentația trimestrului e trimisă) și **confirmarea pentru 03221**. | 90325 și 03221 rămân „Klärung”, fără să poată fi preluate. | Schimbare în UI (FactPanel), cu înainte/după. |
-| **KV-ul nu se salvează.** | Alegerea „Nordrhein” din Einstellungen se pierde la fiecare logare. Regulile DMP și indicația DMP nu se mai aplică până o alegi din nou. | De reparat (salvare în configurație, partea Rust). Până atunci, alegi Nordrhein după fiecare logare. |
+| **Exportul BDT pe ultimele 4 trimestre.** | Fără el, 03220/03221 (și 03000, care cere trimestrul anterior) rămân „nicht prüfbar: Vorquartale fehlen”. | **De întrebat la hotline-ul DURIA** cum se exportă BDT pentru un pacient pe mai multe trimestre. În aplicație există acum bifa „Export enthält die letzten 4 Quartale”; se bifează doar când exportul chiar le conține. |
+| **Confirmările DMP și 03221.** | Fără ele, 90325 și 03221 rămân „Klärung”. | Există acum: aprobarea DMP a cabinetului în Einstellungen; înscrierea, documentația și 03221 în „Angaben aus der Karteikarte”. |
+| **KV-ul.** | Fără KV, regulile DMP nu se aplică. | Se salvează acum în setările stației de lucru, pentru fiecare utilizator Windows; fiecare cont alege o dată Nordrhein. |
 
 ## 5. Calea tehnică a aprobării
 

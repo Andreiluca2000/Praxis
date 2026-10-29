@@ -20,6 +20,10 @@ export interface AppConfig {
   voice: { threads: number; language: string };
   /** KI-Assistent über die Claude API – standardmäßig aus. */
   ai: AiConfig;
+  /** KV der Praxis; gespeichert, damit regionale Regeln (DMP) nach der Abmeldung gelten. */
+  kv: 'Nordrhein' | 'Westfalen-Lippe' | null;
+  /** Praxis hat die KV-Genehmigung für DMP Diabetes Typ 2. */
+  dmp_dm2_teilnahme: boolean;
 }
 
 export interface AiConfig { provider: 'aus' | 'claude'; model: string; effort: 'low' | 'medium' | 'high' }

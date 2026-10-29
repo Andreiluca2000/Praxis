@@ -23,9 +23,19 @@ export interface FactConfirmation {
   decisions: MentionDecision[];
   durationMinutes: { value: number; by: string; source: 'text' | 'benutzer'; ref: string } | null;
   componentsComplete: { value: boolean; by: string } | null;
+  /** Chroniker/DMP: nur ausdrücklich angehakte Bestätigungen (mit Kürzel); fehlend = unbekannt, nie „nein“. */
+  chronic: Partial<Record<ChronicConfirmation, { by: string }>>;
 }
 
-export const emptyConfirmation = (): FactConfirmation => ({ decisions: [], durationMinutes: null, componentsComplete: null });
+/** Bestätigungen für 03221 und DMP Diabetes Typ 2 (Fakten in src/domain/types.ts). */
+export const CHRONIC_CONFIRMATIONS = {
+  intensiveCare: 'documentation.intensive_care_confirmed',
+  dmpEnrolled: 'dmp.patient_enrolled',
+  dmpDocumented: 'dmp.documentation_transmitted',
+} as const;
+export type ChronicConfirmation = keyof typeof CHRONIC_CONFIRMATIONS;
+
+export const emptyConfirmation = (): FactConfirmation => ({ decisions: [], durationMinutes: null, componentsComplete: null, chronic: {} });
 
 /** Vorschlag für die Auswahlliste – Verneinung/Familie/unklar werden nicht als Leistungsstatus vorgeschlagen. */
 export function suggestedStatus(m: Mention): ServiceStatus | null {
@@ -54,6 +64,10 @@ export function toFacts(c: FactConfirmation): Facts {
     facts['documentation.required_components_complete'] = {
       value: c.componentsComplete.value, verification: 'confirmed', evidence: [{ ref: `benutzer:${c.componentsComplete.by}` }],
     };
+  }
+  for (const [key, field] of Object.entries(CHRONIC_CONFIRMATIONS) as [ChronicConfirmation, (typeof CHRONIC_CONFIRMATIONS)[ChronicConfirmation]][]) {
+    const by = c.chronic[key]?.by;
+    if (by) facts[field] = { value: true, verification: 'confirmed', evidence: [{ ref: `benutzer:${by}:${key}` }] };
   }
   return facts;
 }

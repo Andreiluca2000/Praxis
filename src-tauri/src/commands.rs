@@ -339,6 +339,7 @@ pub fn update_config(state: State<AppState>, patch: serde_json::Value) -> Result
     config::merge(&mut value, &patch);
     let next: AppConfig = serde_json::from_value(value).map_err(|e| format!("Ungültige Einstellung: {e}"))?;
     crate::ai::validate_config(&next.ai)?;
+    config::validate_region(&next)?;
     *cfg = next;
     save_config(&state.config_file, &cfg)?;
     Ok(cfg.clone())

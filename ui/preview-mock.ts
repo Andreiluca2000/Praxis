@@ -25,7 +25,7 @@ function syntheticExport() {
   const data = concatBytes([
     xdtLine('8000', '6310'), xdtLine('9206', '3'), xdtLine('3000', 'P-vorschau01'), xdtLine('6200', '27102026'),
     xdtLine('6220', 'Frau [entfernt] klagt seit 3 Tagen über Husten, kein Fieber.'),
-    xdtLine('6001', 'J20.9'), xdtLine('6003', 'G'), xdtLine('5000', '27102026'),
+    xdtLine('6001', 'J20.9'), xdtLine('6003', 'G'), xdtLine('6001', 'E11.9'), xdtLine('6003', 'G'), xdtLine('5000', '27102026'),
     // Paare für die Vorschau: 03100 + 03360 zur gleichen Uhrzeit (Ausschluss), 03230 + 35100 ohne Uhrzeit (nicht prüfbar).
     xdtLine('5001', '03100'), xdtLine('5006', '0930'), xdtLine('5001', '03360'), xdtLine('5006', '0930'),
     xdtLine('5001', '03230'), xdtLine('5001', '35100'),
@@ -43,6 +43,7 @@ export function installPreviewMock() {
     outbox_file: 'PRAX_DUR.gdt', writeback_enabled: false, billing_writeback_enabled: false, billing_channel: 'gdt',
     mode: 'simulation', ollama_model: null, voice: { threads: 4, language: 'de' },
     ai: { provider: 'aus', model: 'claude-opus-5-5', effort: 'low' },
+    kv: null, dmp_dm2_teilnahme: false,
   };
   // ?preview=login bzw. ?preview=setup zeigt die Anmeldung bzw. Ersteinrichtung.
   const screen = new URLSearchParams(location.search).get('preview');
