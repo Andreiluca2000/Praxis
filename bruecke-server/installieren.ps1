@@ -87,6 +87,18 @@ if (-not $claude -and -not $OhneInstallation) { Fehler 'Claude Code nu s-a insta
 Ok 'Claude Code gata'
 
 Schritt 'Cheia API'
+# Cheia poate sta intr-un fisier text langa script (prima linie). Se pune ca variabila de utilizator, apoi fisierul se sterge.
+foreach ($nume in @('cheie.txt', 'New Text Document.txt')) {
+  $f = Join-Path $quelle $nume
+  if (-not (Test-Path -LiteralPath $f)) { continue }
+  $v = "$(Get-Content -LiteralPath $f -TotalCount 1)".Trim()
+  if (-not $v.StartsWith('sk-ant-')) { Write-Host "   $nume nu incepe cu sk-ant- - il las neatins." -ForegroundColor Yellow; Remove-Variable v; continue }
+  if ($OhneInstallation) { $env:ANTHROPIC_API_KEY = $v } else { [Environment]::SetEnvironmentVariable('ANTHROPIC_API_KEY', $v, 'User') }
+  Remove-Variable v
+  Remove-Item -LiteralPath $f -Force
+  Ok "cheia preluata din $nume (fisierul a fost sters)"
+  break
+}
 $cheie = [Environment]::GetEnvironmentVariable('ANTHROPIC_API_KEY', 'User')
 if (-not $cheie) {
   Write-Host '   Se deschide fereastra "Umgebungsvariablen". Sus, la Benutzervariablen: Neu...'
