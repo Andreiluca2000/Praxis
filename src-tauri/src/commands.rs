@@ -379,6 +379,33 @@ pub async fn ai_day_ask(state: State<'_, AppState>, request: crate::ai_day::DayA
     Ok(result?.text)
 }
 
+/// „Was wird gesendet?“ für den KI-Auftrag: nur der Text des Arztes und die Filterbeschreibung. Sendet nichts.
+#[tauri::command]
+pub fn ai_auftrag_preview(state: State<AppState>, text: String) -> Result<AiPreview, String> {
+    require_arzt(&state)?;
+    let cfg = state.config.lock().unwrap().ai.clone();
+    let (body, redactions, truncated, chars) = crate::ai_auftrag::build_auftrag(&cfg, &text)?;
+    Ok(AiPreview { body: serde_json::to_string_pretty(&body).map_err(|e| e.to_string())?, redactions, truncated, chars })
+}
+
+/// KI-Auftrag senden (nur Arzt): Antwort ist ein Filter (JSON), den das Fenster prüft und lokal anwendet. Protokoll ohne Inhalt.
+#[tauri::command]
+pub async fn ai_auftrag_ask(state: State<'_, AppState>, text: String) -> Result<String, String> {
+    let user = require_arzt(&state)?;
+    let cfg = state.config.lock().unwrap().ai.clone();
+    crate::ai::ensure_enabled(&cfg)?;
+    let key = state.keys.get()?.ok_or("Kein Claude-API-Schlüssel hinterlegt.")?;
+    let result = crate::ai_auftrag::ask_auftrag(&crate::ai::Https, &cfg, &key, &text).await;
+    let entry = crate::ai::AuditEntry {
+        at: crate::ai::now_secs(), user: user.kuerzel.clone(), feature: crate::ai_auftrag::FEATURE.into(), model: cfg.model.clone(),
+        input_tokens: result.as_ref().map(|r| r.input_tokens).unwrap_or(0),
+        output_tokens: result.as_ref().map(|r| r.output_tokens).unwrap_or(0),
+        ok: result.is_ok(), note: result.as_ref().err().cloned().unwrap_or_default(),
+    };
+    crate::ai::append_audit(&state.ai_audit_file, &entry)?;
+    Ok(result?.text)
+}
+
 /// KI-Stufe 2 freigeben (nur Arzt): nur wenn im Dialog AVV/DPA, ZDR und DSFA bestätigt wurden. Kürzel und Zeit werden gespeichert.
 #[tauri::command]
 pub fn ai_stage2_unlock(state: State<AppState>, avv: bool, zdr: bool, dsfa: bool) -> Result<AppConfig, String> {
@@ -411,6 +438,7 @@ pub fn update_config(state: State<AppState>, patch: serde_json::Value) -> Result
     next.ai.stage2 = cfg.ai.stage2.clone();
     crate::ai::validate_config(&next.ai)?;
     config::validate_region(&next)?;
+    config::validate_reminder(&next)?;
     *cfg = next;
     save_config(&state.config_file, &cfg)?;
     Ok(cfg.clone())

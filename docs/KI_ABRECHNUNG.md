@@ -69,6 +69,14 @@ Cerința lui Andree: KI să poată „genau lesen” documentația zilei și să
 - **Teste:** `src-tauri/src/ai_day_tests.rs` (poartă închisă → 0 cereri; KI oprit → 0 cereri; etapa 1 fără dată, pseudonim, număr), `tests/day-ai.test.ts`.
 - **Punctul deschis de mai sus rămâne:** cifrele unui caz real sunt date de sănătate pseudonimizate. Etapa 1 trimite doar cifrele unei constatări, fără identitate și fără date exacte. Andree și responsabilul de protecția datelor decid dacă e suficient înainte de AVV.
 
+## KI-Auftrag: căutare în cuvinte (08.11.2026)
+
+- **Ce pleacă:** doar textul scris de medic (max. 500 de caractere, `minimize()`), plus descrierea fixă a filtrului. Nimic din fișierul KVDT, nicio listă de pacienți, niciun pseudonim, nicio cifră dintr-un caz.
+- **Ce se întoarce:** un singur obiect JSON (`version`, `titel`, `zeitraum`, `bedingungen`: diagnose, ziffer, befund, alter, geschlecht). Orice altceva e respins: text în jur, câmpuri în plus, coduri invalide, peste 8 condiții, peste 4.000 de caractere.
+- **Unde se caută:** local, în program, cu motorul de reguli; rezultatele rămân „unsicher” până la decizia medicului, iar cele acceptate merg doar în lista de corecturi.
+- **Comutatorul KI „Aus”** = nicio cerere (test `ki_aus_kein_auftrag_geht_hinaus`). „Was wird gesendet” înaintea fiecărei trimiteri; jurnal fără conținut (funcția `ki-auftrag`).
+- **Atenție la text:** medicul nu trebuie să scrie nume sau date ale pacienților; ecranul o spune explicit. Numerele de telefon, KVNR, pseudonimele și numerele lungi sunt scoase automat, numele nu pot fi recunoscute sigur.
+
 ## Ordinea propusă
 
 1. (posibil acum, după decizia cabinetului) Explicații de reguli și întrebări de catalog: doar coduri + texte de normă.

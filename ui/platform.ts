@@ -26,6 +26,8 @@ export interface AppConfig {
   kv: 'Nordrhein' | 'Westfalen-Lippe' | null;
   /** Praxis hat die KV-Genehmigung für DMP Diabetes Typ 2. */
   dmp_dm2_teilnahme: boolean;
+  /** Erinnerung „Tagesabschluss jetzt prüfen?“ ab „HH:MM“; null = aus. */
+  tagesabschluss_uhrzeit?: string | null;
 }
 
 export interface AiConfig {
@@ -72,6 +74,9 @@ export const api = {
   /** Stufe 2 (Kartei-Text) nur nach Bestätigung von AVV/DPA, ZDR und DSFA durch einen Arzt. */
   aiStage2Unlock: (c: { avv: boolean; zdr: boolean; dsfa: boolean }) => invoke<AppConfig>('ai_stage2_unlock', c),
   aiStage2Lock: () => invoke<AppConfig>('ai_stage2_lock'),
+  /** KI-Auftrag: nur der Text des Arztes und die Filterbeschreibung gehen hinaus; Antwort = Filter (JSON). */
+  aiAuftragPreview: (text: string) => invoke<AiPreview>('ai_auftrag_preview', { text }),
+  aiAuftragAsk: (text: string) => invoke<string>('ai_auftrag_ask', { text }),
   /** Tagesliste (nur Arzt): Pseudonym, Zeit, Platz, Kürzel – nie die Patientennummer. */
   dayList: () => invoke<DayCall[]>('day_list'),
   /** Geprüfte Aufrufe bis `upto` (Sekunden) löschen; spätere bleiben. */

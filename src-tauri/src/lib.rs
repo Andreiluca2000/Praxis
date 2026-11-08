@@ -4,6 +4,9 @@
 
 mod accounts;
 mod ai;
+mod ai_auftrag;
+#[cfg(test)]
+mod ai_auftrag_tests;
 mod ai_day;
 #[cfg(test)]
 mod ai_day_tests;
@@ -266,6 +269,8 @@ pub fn run() {
             commands::ai_day_ask,
             commands::ai_stage2_unlock,
             commands::ai_stage2_lock,
+            commands::ai_auftrag_preview,
+            commands::ai_auftrag_ask,
         ])
         .run(tauri::generate_context!());
     if let Err(e) = ergebnis {

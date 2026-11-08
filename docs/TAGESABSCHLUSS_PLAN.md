@@ -45,6 +45,19 @@
 - **„Was wird gesendet”** apare înaintea fiecărei cereri (aceeași funcție ca cererea reală). Jurnalul KI nu conține conținut (funcție `tagesabschluss-stufe1/-stufe2`, model, tokeni).
 - **Deschis:** sursa textului pentru etapa 2 în Tagesabschluss este exportul BDT pe zi (întrebarea DURIA 23); până atunci butonul rămâne și din acest motiv fără date.
 
+### 7. KI-Auftrag și amintirea de seară (cerința lui Andree, 08.11.2026)
+În DURIA, Fallprüfung (comanda QA) rulează aproape zilnic. Andree vrea să pornească verificarea seara și o secțiune separată în care scrie ce caută.
+- **Meniul „KI-Auftrag”** (doar Arzt): Andree scrie un text („alle Diabetiker ohne 03220 in diesem Quartal”), sau alege un exemplu.
+  - La Claude pleacă **doar textul lui** (max. 500 de caractere, minimizat) și descrierea filtrului (`src-tauri/src/ai_auftrag.rs`). Fără pacienți, pseudonime sau cifre din cazuri reale.
+  - Claude întoarce **un filtru JSON**, nu pacienți. Fereastra îl verifică strict (`src/kvdt/ki-filter.ts`, `parseKiFilter`): câmpuri necunoscute, liste de pacienți, text în plus sau coduri invalide → respins.
+  - Filtrul apare în formă lizibilă („Gefunden: ICD E11.- G, ohne 03220/03221, Quartal 4/2026”) înainte de aplicare.
+  - Aplicarea e **locală**, pe fișierul KVDT (trimestrul) sau pe lista zilei, împreună cu motorul de reguli. Fiecare rezultat rămâne „unsicher” până la Annehmen/Verwerfen; nimic nu merge în DURIA.
+  - Vârsta și sexul nu sunt în fișierul KVDT → „nicht prüfbar”, niciodată considerate îndeplinite.
+  - Textul din fișă (etapa 2) nu e folosit aici; rămâne în spatele porții existente.
+- **Amintirea** „Tagesabschluss jetzt prüfen?”: ora în setări (`tagesabschluss_uhrzeit`, „HH:MM”, implicit oprită). Cât timp programul e deschis, o dată pe zi; „Prüfen” deschide ecranul, „Später” amână 30 min, „Heute nicht” până mâine (`src/kvdt/day-reminder.ts`). Fără serviciu Windows.
+- **Fallprüfung DURIA:** întrebarea 25 (protocol/fișier citibil?) – dacă da, rezultatul se poate compara cu al nostru.
+- **Stare:** logica și Rust gata, testate; ecranul și setarea sunt doar machetă (`ui/mock/ki-auftrag.html`), așteaptă OK-ul lui Andree.
+
 ## Ce NU va face
 - Nu facturează și nu scrie nimic singur în DURIA.
 - Nu garantează că a găsit tot: unde lipsesc date, apare „nicht prüfbar”, nu „in Ordnung”.

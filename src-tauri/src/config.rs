@@ -32,6 +32,20 @@ pub struct AppConfig {
     /// Praxis hat die KV-Genehmigung für DMP Diabetes mellitus Typ 2 (vom Arzt in den Einstellungen bestätigt).
     #[serde(default)]
     pub dmp_dm2_teilnahme: bool,
+    /// Erinnerung „Tagesabschluss jetzt prüfen?“ ab dieser Uhrzeit („HH:MM“), solange das Programm offen ist. `None` = aus.
+    #[serde(default)]
+    pub tagesabschluss_uhrzeit: Option<String>,
+}
+
+/// Uhrzeit der Tagesabschluss-Erinnerung: „HH:MM“ (00:00–23:59) oder keine.
+pub fn validate_reminder(cfg: &AppConfig) -> Result<(), String> {
+    let Some(t) = cfg.tagesabschluss_uhrzeit.as_deref() else { return Ok(()) };
+    let ok = t.len() == 5
+        && t.as_bytes()[2] == b':'
+        && t[..2].parse::<u8>().map(|h| h < 24).unwrap_or(false)
+        && t[3..].parse::<u8>().map(|m| m < 60).unwrap_or(false)
+        && t.chars().enumerate().all(|(i, c)| i == 2 || c.is_ascii_digit());
+    if ok { Ok(()) } else { Err("Uhrzeit der Erinnerung bitte als HH:MM (z. B. 18:00).".into()) }
 }
 
 pub const KV_WERTE: [&str; 2] = ["Nordrhein", "Westfalen-Lippe"];
@@ -122,6 +136,7 @@ fn defaults(resource_root: &Path) -> AppConfig {
         ai: crate::ai::AiConfig::default(),
         kv: None,
         dmp_dm2_teilnahme: false,
+        tagesabschluss_uhrzeit: None,
         voice: VoiceConfig {
             whisper_exe: tools.join("whisper").join("Release").join("whisper-cli.exe"),
             model: tools.join("models").join("ggml-large-v3-turbo-q5_0.bin"),
@@ -209,6 +224,26 @@ mod tests {
         assert!(validate_region(&cfg).is_err());
         cfg.kv = None;
         assert!(validate_region(&cfg).is_err(), "DMP ohne KV");
+        let _ = fs::remove_dir_all(dir);
+    }
+
+    #[test]
+    fn erinnerung_uhrzeit_standard_aus_und_nur_hh_mm() {
+        let nanos = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_nanos();
+        let dir = std::env::temp_dir().join(format!("praxis-config-uhr-{nanos}"));
+        let (mut cfg, file) = load_config(&dir, &dir).unwrap();
+        assert_eq!(cfg.tagesabschluss_uhrzeit, None);
+        for ok in ["18:00", "00:00", "23:59", "07:30"] {
+            cfg.tagesabschluss_uhrzeit = Some(ok.into());
+            assert!(validate_reminder(&cfg).is_ok(), "{ok}");
+        }
+        for bad in ["24:00", "18:60", "8:00", "18.00", "18:0x", "+1:00", ""] {
+            cfg.tagesabschluss_uhrzeit = Some(bad.into());
+            assert!(validate_reminder(&cfg).is_err(), "{bad}");
+        }
+        cfg.tagesabschluss_uhrzeit = Some("18:00".into());
+        save_config(&file, &cfg).unwrap();
+        assert_eq!(load_config(&dir, &dir).unwrap().0.tagesabschluss_uhrzeit.as_deref(), Some("18:00"));
         let _ = fs::remove_dir_all(dir);
     }
 }
