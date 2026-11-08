@@ -56,6 +56,17 @@ export function Settings({ status, onChanged }: {
           </label>
         )}
         <p className="muted">Die KV bleibt für diesen Windows-Benutzer gespeichert. Ohne KV werden regionale Regeln nicht geprüft. Ein Wechsel macht frühere Ergebnisse ungültig.</p>
+        <div className="row">
+          <label>Tagesabschluss-Erinnerung um
+            <input type="time" value={status.config.tagesabschluss_uhrzeit ?? ''} disabled={!isArzt || !status.config.tagesabschluss_uhrzeit} style={{ width: 130 }}
+              onChange={(e) => e.target.value && patch({ tagesabschluss_uhrzeit: e.target.value })} />
+          </label>
+          <label className="inline" style={{ marginTop: 18 }}>
+            <input type="checkbox" checked={!!status.config.tagesabschluss_uhrzeit} disabled={!isArzt}
+              onChange={(e) => patch({ tagesabschluss_uhrzeit: e.target.checked ? '18:00' : null })} /> Erinnerung ein
+          </label>
+        </div>
+        <p className="muted">Solange das Programm geöffnet ist, fragt es ab dieser Uhrzeit einmal am Tag „Tagesabschluss jetzt prüfen?“. „Prüfen“ öffnet den Tagesabschluss. Kein Windows-Dienst – ist das Programm zu, gibt es keine Erinnerung.</p>
       </section>
 
       <AiSettings isArzt={isArzt} config={status.config.ai} onChanged={onChanged} />

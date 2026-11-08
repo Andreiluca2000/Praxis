@@ -56,7 +56,7 @@
   - Textul din fișă (etapa 2) nu e folosit aici; rămâne în spatele porții existente.
 - **Amintirea** „Tagesabschluss jetzt prüfen?”: ora în setări (`tagesabschluss_uhrzeit`, „HH:MM”, implicit oprită). Cât timp programul e deschis, o dată pe zi; „Prüfen” deschide ecranul, „Später” amână 30 min, „Heute nicht” până mâine (`src/kvdt/day-reminder.ts`). Fără serviciu Windows.
 - **Fallprüfung DURIA:** întrebarea 25 (protocol/fișier citibil?) – dacă da, rezultatul se poate compara cu al nostru.
-- **Stare:** logica și Rust gata, testate; ecranul și setarea sunt doar machetă (`ui/mock/ki-auftrag.html`), așteaptă OK-ul lui Andree.
+- **Stare:** după OK-ul lui Andree (08.11.2026) în aplicație: meniul „KI-Auftrag” (`ui/KiAuftrag.tsx`, doar Arzt), amintirea în `App.tsx`, ora în Einstellungen → Praxis.
 
 ## Ce NU va face
 - Nu facturează și nu scrie nimic singur în DURIA.

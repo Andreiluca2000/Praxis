@@ -53,6 +53,7 @@ function syntheticDay() {
     ...schein('P-07d9e2', [['5000', `01${ddmmyyyy.slice(2)}`], ['5001', '03000'], ...dx('M54.5', 'G')]),
     ...schein('P-5a6b13', [...heute('03000'), ...dx('M54.5', 'G')]),
     ...schein('P-9d33b1', heute('03000', '32125')),
+    ...schein('P-e2f0a8', [['5000', `02${ddmmyyyy.slice(2)}`], ['5001', '03000'], ...dx('E11.65', 'G')]),
     xdtLine('8000', 'con9'),
   ]);
   const calls = [
@@ -76,6 +77,7 @@ export function installPreviewMock() {
     mode: 'simulation', ollama_model: null, voice: { threads: 4, language: 'de' },
     ai: { provider: 'aus', model: 'claude-opus-5-5', effort: 'low', stage2: null as unknown },
     kv: null, dmp_dm2_teilnahme: false,
+    tagesabschluss_uhrzeit: null as string | null,
   };
   // ?preview=login bzw. ?preview=setup zeigt die Anmeldung bzw. Ersteinrichtung.
   const screen = new URLSearchParams(location.search).get('preview');
@@ -83,6 +85,8 @@ export function installPreviewMock() {
   let delivered = false;
   // ?preview=ki: KI eingeschaltet mit Schlüssel (für die KI-Knöpfe im Tagesabschluss).
   if (screen === 'ki') config.ai.provider = 'claude';
+  // ?preview=ki: Erinnerung sofort fällig (für die Vorschau des Hinweises).
+  if (screen === 'ki') config.tagesabschluss_uhrzeit = '00:00';
   let aiKey = screen === 'ki';
   const day = syntheticDay();
   let practiceRules: string | null = samplePracticeRules();
@@ -112,6 +116,14 @@ ${data}
 </daten>` }], output_config: { effort: config.ai.effort } }, null, 2), redactions: 0, truncated: false, chars: data.length };
     }
     if (cmd === 'ai_day_ask') return 'Vorschau-Antwort (erfunden): Der Befund bedeutet … Bitte in DURIA prüfen, ob … dokumentiert ist.';
+    if (cmd === 'ai_auftrag_preview') {
+      const text = String((args as { text: string }).text);
+      return { body: JSON.stringify({ model: config.ai.model, max_tokens: 1024, system: '… Aufgabe: … Übersetze das in GENAU EIN JSON-Objekt nach diesem Schema … (Filterbeschreibung)', messages: [{ role: 'user', content: `<daten>
+${text}
+</daten>` }], output_config: { effort: config.ai.effort } }, null, 2), redactions: 0, truncated: false, chars: text.length };
+    }
+    // Erfundene Antwort von Claude: ein Filter, keine Patienten.
+    if (cmd === 'ai_auftrag_ask') return JSON.stringify({ version: 1, titel: 'Diabetiker ohne Chronikerzuschlag', zeitraum: 'quartal', bedingungen: [{ art: 'diagnose', icd: ['E11.-'], vorhanden: true, sicherheit: ['G'] }, { art: 'ziffer', system: 'EBM', ziffern: ['03220', '03221'], vorhanden: false }] });
     if (cmd === 'ai_stage2_unlock') { config.ai.stage2 = { by: 'AL', at: Math.floor(Date.now() / 1000), avv: true, zdr: true, dsfa: true }; return config; }
     if (cmd === 'ai_stage2_lock') { config.ai.stage2 = null; return config; }
     if (cmd === 'update_config') { Object.assign(config, (args as { patch: Record<string, unknown> }).patch); return config; }
