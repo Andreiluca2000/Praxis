@@ -54,7 +54,8 @@ export interface FormLayout {
   whites: Rect[];
   strokes: ({ rect: Rect; w: number; /** Eckenradius (Ankreuz-Ovale) */ r?: number } | { line: [number, number, number, number]; w: number })[];
   fills: (Rect | [number, number, number, number, string])[];
-  labels: { t: string; x: number; y: number; s: number; b: boolean; i: boolean; ghost: boolean; dark: boolean; white?: boolean }[];
+  /** r = Drehung in Grad (senkrechte Achsen-/Spaltenbeschriftung), c = eigene Farbe (♀/♂ auf Muster 70). */
+  labels: { t: string; x: number; y: number; s: number; b: boolean; i: boolean; ghost: boolean; dark: boolean; white?: boolean; r?: number; c?: string }[];
 }
 
 type Stored = FormLayout | { pages: FormLayout[] };

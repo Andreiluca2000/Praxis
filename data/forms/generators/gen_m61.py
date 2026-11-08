@@ -61,11 +61,11 @@ f('anamnese', 'Kurze Angaben zur Anamnese und zu Krankenhaus-/Facharztbehandlung
 f('befunde', 'Rehabilitationsrelevante Schädigungen und Befunde', 'text', 'arzt', 1, (12.7, 59.4, 83.5, 5.2), [rule('m61.be_schaedigungen')], marker='❻', lines=2)
 TESTS = [  # id, label, x, y, w, bereich
     ('t_tug', 'TUG (sek)', 18.8, 69.5, 5.0, 'mobilitaet'), ('t_chair', 'Chair Rise (sek)', 33.3, 69.5, 4.9, 'mobilitaet'),
-    ('t_hand_kg', 'Handkraft (kg)', 18.8, 72.3, 5.0, 'mobilitaet'), ('t_hand_kpa', 'Handkraft (kpa)', 33.5, 72.3, 7.3, 'mobilitaet'),
+    ('t_hand_kg', 'Handkraft (kg)', 18.8, 72.3, 5.0, 'mobilitaet'), ('t_hand_kpa', 'Handkraft (kpa)', 30.9, 72.3, 7.2, 'mobilitaet'),
     ('t_demmi', 'DEMMI (/100)', 18.8, 75.2, 5.0, 'mobilitaet'), ('t_tinetti', 'Tinetti (/28)', 33.3, 75.2, 4.9, 'mobilitaet'),
     ('t_mmst', 'MMST (/30)', 48.5, 69.5, 4.8, 'kognition'), ('t_gds', 'GDS 15 (/15)', 48.5, 72.3, 4.8, 'kognition'), ('t_uhr', 'Uhrentest (/7)', 48.5, 75.2, 4.8, 'kognition'),
     ('t_schmerz', 'Schmerzskala (/10)', 65.3, 69.5, 4.9, 'schmerz'),
-    ('t_ergo', 'Ergometrie (Watt)', 83.6, 69.5, 7.3, 'herz_lunge'), ('t_fev1', 'FEV1 (%)', 82.6, 72.3, 4.8, 'herz_lunge'),
+    ('t_ergo', 'Ergometrie (Watt)', 83.6, 69.5, 7.3, 'herz_lunge'), ('t_fev1', 'FEV1 (%)', 78.7, 72.3, 4.8, 'herz_lunge'),
     ('t_vk', 'VK (%)', 89.8, 72.3, 4.9, 'herz_lunge'), ('t_nyha', 'NYHA-Stadium', 81.4, 75.2, 2.4, 'herz_lunge'),
 ]
 for i, (id_, label, x, y, w, _) in enumerate(TESTS):

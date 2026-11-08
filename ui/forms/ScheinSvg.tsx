@@ -212,7 +212,8 @@ export function ScheinSvg({ form, layout, page = 0, values, marks, selected, onS
       {layout.fills.map(([x, y, w, h, c], i) => <rect key={`f${i}`} x={x} y={y} width={w} height={h} fill={c ?? LINE} />)}
       {layout.labels.filter((l) => !(l.ghost && filled.some((b) => l.x >= b.x - 2 && l.x <= b.x + b.w && l.y >= b.y && l.y <= b.y + b.h + 4))).map((l, i) => (
         <text key={`l${i}`} x={l.x} y={l.y} fontSize={l.s} fontWeight={l.b ? 700 : 400} fontStyle={l.i ? 'italic' : 'normal'}
-          fill={l.white ? '#fff' : l.ghost ? GHOST : l.dark ? '#222' : LINE} className="schein-label">{l.t}</text>
+          transform={l.r ? `rotate(${l.r} ${l.x} ${l.y})` : undefined}
+          fill={l.c ?? (l.white ? '#fff' : l.ghost ? GHOST : l.dark ? '#222' : LINE)} className="schein-label">{l.t}</text>
       ))}
 
       {onPage.map((f, i) => {

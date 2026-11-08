@@ -1,6 +1,7 @@
 """Geometrie eines KBV-Vordrucks (Linien, Schreibflächen, Beschriftungen) aus der Mustersammlung als JSON.
 Aufruf: python extract_layout.py <mustersammlung.pdf> <seite> <muster-id> <out.json>"""
 import json
+import math
 import sys
 
 import pymupdf as fitz
@@ -30,8 +31,8 @@ for d in page.get_drawings():
                 whites.append(box)
             if d['type'] in ('s', 'fs') and color:
                 strokes.append({'rect': box, 'w': r2(d.get('width') or .5)})
-            elif d['type'] == 'f' and fill and max(fill) > .7 and min(fill) < .5:
-                fills.append(box + [hexc(fill)])  # farbige Flächen (z. B. Titelbalken) mit ihrer Farbe
+            elif d['type'] == 'f' and fill and max(fill) > .7 and (min(fill) < .5 or max(fill) - min(fill) > .3):
+                fills.append(box + [hexc(fill)])  # farbige Flächen (Titelbalken, Spalte „Pflegefachkraft“) mit ihrer Farbe
         elif it[0] == 'l' and d['type'] in ('s', 'fs') and color:
             a, b = it[1], it[2]
             strokes.append({'line': [r2(a.x), r2(a.y), r2(b.x), r2(b.y)], 'w': r2(d.get('width') or .5)})
@@ -47,22 +48,34 @@ for b in page.get_text('rawdict')['blocks']:
                         x0, x1, base = c['bbox'][0], c['bbox'][2], c['origin'][1]
                         strokes.append({'rect': [r2(x0 + .8), r2(base - 4.6), r2(x1 - x0 - 1.6), 4.6], 'w': .6, 'r': 2.3})
 
+# Symbolschrift der KBV (Muster 70/70A): Steuerzeichen stehen für ♀ und ♂
+SYMBOLS = {'Universal-NewswithCommPi': {'': '♀', '': '♂'}}
+CONTROL = ''.join(chr(i) for i in range(32))
+
 labels = []
 for b in page.get_text('dict')['blocks']:
     for l in b.get('lines', []):
-        if abs(l['dir'][1]) > 0.01:
-            continue  # gedrehte Schrift (Druckerei, „Verbindliches Muster“)
+        dx, dy = l['dir']
+        turned = abs(dy) > 0.01
         for s in l['spans']:
-            t = s['text'].strip()
+            sym = SYMBOLS.get(s['font'], {})
+            t = ''.join(sym.get(c, c) for c in s['text']).translate({ord(c): None for c in CONTROL}).strip()
             if not t or s['font'] in OVAL_FONTS or t.startswith('Freigabe') or 'Verbindliches' in t or t == 'Muster':
                 continue
+            if turned and t.replace(' ', '').isdigit() and len(t) > 6:
+                continue  # Druckerei-Ziffernfolgen am Rand (Muster 19a, 22)
             rgb = ((s['color'] >> 16) & 255, (s['color'] >> 8) & 255, s['color'] & 255)
             white = min(rgb) >= 250  # weiße Schrift auf farbigem Balken („Behandlungspflege“)
             ghost = min(rgb) > 180 and not white  # sehr helle Platzhalter („T T M M J J“)
             dark = max(rgb) < 90
-            labels.append({'t': t, 'x': r2(s['origin'][0]), 'y': r2(s['origin'][1]), 's': r2(s['size']),
-                           'b': 'Bold' in s['font'], 'i': 'Italic' in s['font'] or 'Oblique' in s['font'], 'ghost': ghost,
-                           'dark': dark, 'white': white})
+            label = {'t': t, 'x': r2(s['origin'][0]), 'y': r2(s['origin'][1]), 's': r2(s['size']),
+                     'b': 'Bold' in s['font'], 'i': 'Italic' in s['font'] or 'Oblique' in s['font'], 'ghost': ghost,
+                     'dark': dark, 'white': white}
+            if turned:
+                label['r'] = r2(math.degrees(math.atan2(dy, dx)))  # gedrehte Beschriftung (Achsen, Spaltenköpfe)
+            if sym:
+                label['c'] = hexc([v / 255 for v in rgb])  # ♀/♂ in ihrer eigenen Farbe
+            labels.append(label)
 
 json.dump({'form': form_id, 'width': r2(W), 'height': r2(H), 'tint': tint, 'bands': bands, 'whites': whites,
            'strokes': strokes, 'fills': fills, 'labels': labels}, open(out, 'w', encoding='utf-8'), ensure_ascii=False)
