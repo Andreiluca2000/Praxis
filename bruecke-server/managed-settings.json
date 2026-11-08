@@ -13,7 +13,6 @@
     "disableBypassPermissionsMode": "disable",
     "disableAutoMode": "disable"
   },
-  "forceLoginMethod": "console",
   "model": "claude-opus-5-5",
   "availableModels": ["claude-opus-5-5", "claude-sonnet-5-5", "claude-haiku-5-5"],
   "allowManagedPermissionRulesOnly": true,

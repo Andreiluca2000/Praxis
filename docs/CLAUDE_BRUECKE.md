@@ -7,8 +7,9 @@
 - **Legătura A:** Claude Code rulează **pe serverul RDP**, lângă DURIA și Praxis-Assistent. Ajunge la date **doar prin „punte”** (`praxis-bruecke.mjs`, un server MCP local), care folosește motorul Fallprüfung al aplicației. Nu poate citi singur dosare, nu are linie de comandă, nu are internet în afară de legătura lui cu Anthropic.
 - **Contul:** întâi abonamentul Claude al lui Andree, **fără AVV** cu Anthropic. De aceea Claude vede **doar sume pe tot cabinetul** (de ex. „Fall ohne Diagnose: 14 Fälle”), **niciodată caz cu caz**. Grupurile sub 5 cazuri apar doar ca număr, fără cifre și fără text.
 - **Decizie finală (09.11.2026, Andree are credit API):** Claude Code pe server cu **contul API (Console)**, nu cu abonamentul. Contul API intră sub condițiile comerciale Anthropic, care includ acordul de prelucrare (DPA, baza pentru AVV).
-  - Login: în Claude Code `/login` → cont Console → browser. **Fără cheie scrisă în fișiere sau variabile** (`ANTHROPIC_API_KEY` nu se setează). Login-ul rămâne în profilul Windows al utilizatorului.
-  - `managed-settings.json` impune login-ul Console (`forceLoginMethod`) și modelele Opus/Sonnet/Haiku 5.5 (implicit Opus 5.5). Fable e lăsat afară, pentru că nu are ZDR.
+  - **Cheia (alegerea lui Andree, 09.11.2026):** o cheie API separată doar pentru server (nu cea a aplicației), cu limită de cheltuieli în Console. Pe server stă ca variabilă `ANTHROPIC_API_KEY` **doar pentru utilizatorul Windows al lui Andree** (Start → „Umgebungsvariablen für dieses Konto bearbeiten” → Neu). Nu se scrie în PowerShell (rămâne în istoric), în fișiere, în chat sau în repo. Dacă scapă: se șterge în Console și se face alta.
+  - Alternativa fără cheie în clar: `/login` → cont Console.
+  - `managed-settings.json` fixează modelele Opus/Sonnet/Haiku 5.5 (implicit Opus 5.5). Fable e lăsat afară, pentru că nu are ZDR.
   - Opțional: `forceLoginOrgUUID` cu ID-ul organizației Console a cabinetului (din platform.claude.com → Settings → Organization). La Console doar preselectează organizația, nu o verifică.
   - Puntea rămâne tot la sume. Caz cu caz abia după: ZDR cerut la Anthropic, DSFA, OK-ul responsabilului de protecția datelor, apoi poarta „Stufe 2” din aplicație (`ai_stage2_unlock`); unealta pentru asta nu e construită.
 - **Sarcinile:** Andree le scrie într-o secțiune nouă din Praxis-Assistent („Prozesse”). Puntea le citește și scrie răspunsul. **Ecranul din aplicație nu e construit încă**: vine ca machetă, apoi după OK-ul lui Andree.
@@ -39,7 +40,7 @@ Ce rămâne deschis: chiar și sumele pe tot cabinetul sunt date despre cabinet.
 
 ## Instalarea pe server (pas cu pas, ca administrator)
 
-1. **Node.js 22 LTS** (de pe nodejs.org) și **Claude Code** (instalatorul oficial pentru Windows, versiune recentă). Login cu `/login` → **contul Console (API)**, după ce fișierele de la pasul 3 sunt puse.
+1. **Node.js 22 LTS** (de pe nodejs.org) și **Claude Code** (instalatorul oficial pentru Windows, versiune recentă). Cheia API ca variabilă de utilizator `ANTHROPIC_API_KEY` (vezi mai sus), apoi terminal nou.
 2. Dosarul `C:\Praxis-Claude\` cu:
    - `praxis-bruecke.mjs` (construit pe PC-ul lui Andree cu `pnpm build:bruecke`, din `dist-bruecke\`);
    - `CLAUDE.md` din `bruecke-server\`.
