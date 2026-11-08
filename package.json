@@ -20,7 +20,8 @@
     "build": "tauri build",
     "test:rust": "cargo test --manifest-path src-tauri/Cargo.toml",
     "check": "pnpm typecheck && pnpm test && pnpm validate:data",
-    "build:bruecke": "vite build --config vite.bruecke.config.ts"
+    "build:bruecke": "vite build --config vite.bruecke.config.ts",
+    "paket:bruecke": "pnpm build:bruecke && node bruecke-server/paket.mjs"
   },
   "dependencies": {
     "@tauri-apps/api": "2.12.4",

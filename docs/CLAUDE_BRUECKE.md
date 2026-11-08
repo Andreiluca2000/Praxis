@@ -38,7 +38,17 @@
 
 Ce rămâne deschis: chiar și sumele pe tot cabinetul sunt date despre cabinet. Recomand ca Andree și responsabilul de protecția datelor să confirme că sumele cu prag de 5 sunt suficiente fără AVV.
 
-## Instalarea pe server (pas cu pas, ca administrator)
+## Instalarea pe server
+
+**Cu un clic:** `pnpm paket:bruecke` face `dist-bruecke\Praxis-Claude.zip`. Pe server: dezarhivezi, dublu-clic pe `installieren.cmd`. Scriptul:
+1. instalează Claude Code pentru utilizatorul tău (instalatorul oficial);
+2. deschide fereastra „Umgebungsvariablen” → tu pui `ANTHROPIC_API_KEY` (scriptul verifică doar că există și începe cu `sk-ant-`, nu o afișează);
+3. cere drepturi de administrator (fereastra Windows) și instalează Node.js 22 LTS (winget), copiază puntea în `C:\Praxis-Claude\` și setările în `C:\Program Files\ClaudeCode\` (`managed-mcp.json` cu calea reală a lui `node.exe`), apoi probează puntea;
+4. pornește Claude în `C:\Praxis-Claude\`.
+
+Testat pe PC-ul de dezvoltare doar în modul de probă (`-OhneInstallation`, dosare temporare, cheie inventată), nu pe server.
+
+**Manual, pas cu pas (ca administrator):**
 
 1. **Node.js 22 LTS** (de pe nodejs.org) și **Claude Code** (instalatorul oficial pentru Windows, versiune recentă). Cheia API ca variabilă de utilizator `ANTHROPIC_API_KEY` (vezi mai sus), apoi terminal nou.
 2. Dosarul `C:\Praxis-Claude\` cu:
