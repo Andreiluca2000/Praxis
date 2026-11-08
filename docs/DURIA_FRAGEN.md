@@ -42,5 +42,10 @@ Ziel: Am Abend prüft das Programm die Ziffern und Diagnosen aller Patienten, di
 23. Gibt es einen **BDT-Export für einen Tag** (alle Patienten mit Kontakt an einem Datum, einschließlich Karteikartentext), ggf. per Kommandozeile oder zeitgesteuert?
 24. Kann ein Zusatzprogramm DURIA bitten, **einen bestimmten Patienten zu öffnen** (z. B. GDT-Satzart oder Aufrufparameter mit Patientennummer), damit der Arzt vom Prüfbericht direkt zur Karteikarte springt? Wenn ja: mit welcher Satzart bzw. welchem Parameter, und muss der Benutzer bestätigen?
 
+## Fallprüfung in DURIA (ergänzt 08.11.2026)
+Die Praxis startet die Fallprüfung fast täglich über den QA-Befehl in DURIA.
+
+25. Erzeugt die **Fallprüfung (QA-Befehl)** ein **Protokoll oder eine Datei** (Text, PDF, CSV o. ä.), die ein Zusatzprogramm lesen kann? Wenn ja: wo wird sie abgelegt, in welchem Format, mit welchen Angaben je Fall (Fall-/Patientenbezug, Ziffer, Diagnose, Meldungstext), und lässt sich die Fallprüfung auch für einen einzelnen Tag oder per Kommandozeile/zeitgesteuert starten? Damit könnte das Programm seine eigene Prüfung mit dem Ergebnis von DURIA abgleichen, ohne doppelt zu melden.
+
 ## Nach der Antwort
 Die bestätigte Zuordnung wird in eine eigene Datei (z. B. `config/duria-mapping.json`, Vorlage: `config/duria-mapping.example.json`) eingetragen, mit `"confirmed_by_vendor": true`. Erst dann entfällt die Warnung „nicht bestätigt“ in der Oberfläche.
