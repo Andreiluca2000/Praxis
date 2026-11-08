@@ -19,7 +19,8 @@
     "dev": "tauri dev",
     "build": "tauri build",
     "test:rust": "cargo test --manifest-path src-tauri/Cargo.toml",
-    "check": "pnpm typecheck && pnpm test && pnpm validate:data"
+    "check": "pnpm typecheck && pnpm test && pnpm validate:data",
+    "build:bruecke": "vite build --config vite.bruecke.config.ts"
   },
   "dependencies": {
     "@tauri-apps/api": "2.12.4",
@@ -31,6 +32,7 @@
     "react-dom": "19.3.1"
   },
   "devDependencies": {
+    "@modelcontextprotocol/sdk": "1.32.2",
     "@tauri-apps/cli": "2.12.4",
     "@types/node": "^24.0.0",
     "@types/react": "^19.3.0",
@@ -39,6 +41,7 @@
     "tsx": "4.23.15",
     "typescript": "5.9.3",
     "vite": "8.3.5",
-    "vitest": "5.0.5"
+    "vitest": "5.0.5",
+    "zod": "4.6.7"
   }
 }

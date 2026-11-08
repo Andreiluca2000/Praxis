@@ -16,6 +16,7 @@ tools/
 
 
 dist/
+dist-bruecke/
 src-tauri/target/
 src-tauri/gen/
 

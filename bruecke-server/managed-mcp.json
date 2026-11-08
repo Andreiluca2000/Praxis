@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "praxis": {
+      "type": "stdio",
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": ["C:\\Praxis-Claude\\praxis-bruecke.mjs"],
+      "env": {}
+    }
+  }
+}

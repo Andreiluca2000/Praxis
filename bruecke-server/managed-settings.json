@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "defaultMode": "dontAsk",
+    "allow": [
+      "mcp__praxis__*"
+    ],
+    "deny": [
+      "Bash", "PowerShell", "Monitor",
+      "Read", "Write", "Edit", "Glob", "Grep", "NotebookEdit",
+      "WebFetch", "WebSearch",
+      "Agent", "Skill"
+    ],
+    "disableBypassPermissionsMode": "disable",
+    "disableAutoMode": "disable"
+  },
+  "allowManagedPermissionRulesOnly": true,
+  "allowManagedHooksOnly": true,
+  "disableClaudeAiConnectors": true
+}

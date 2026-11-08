@@ -1,4 +1,12 @@
 # Stadiul programării (Claude)
+## Etapa (09.11.2026): puntea Claude ↔ aplicație pe server (Fallprüfung doar ca sume)
+- **Decizii Andree:** Claude Code pe serverul RDP, legat doar printr-o punte MCP; abonamentul lui, **fără AVV** → Claude vede doar sume pe tot cabinetul, prag 5 cazuri; sarcinile vin dintr-o secțiune nouă „Prozesse” din aplicație (ecranul: machetă, apoi OK).
+- **Cod:** `src/bruecke/` reutilizează `checkCase` neschimbat. KVDT redus ca `sanitize_many` (doar câmpuri de verificare, numerele de pacient → numere de ordine), ieșire doar agregată, datele → „[Tag]”, verificare finală pe valorile de identitate din fișier (blochează). Poarta = comutatorul KI al aplicației (`ai.provider == "claude"` în `arbeitsplatz.json`; lipsă/stricat = oprit). Jurnal fără conținut `claude-bruecke-protokoll.jsonl`.
+- **Unelte:** `status`, `fallpruefung_uebersicht`, `regeln_zu_ziffer`, `fall_simulieren`, `auftraege_lesen`, `auftrag_beantworten`.
+- **Construire:** `pnpm build:bruecke` → `dist-bruecke/praxis-bruecke.mjs` (un fișier, ~4,6 MB, Node 22). Pachetul pentru server: `bruecke-server/`. Ghid: `docs/CLAUDE_BRUECKE.md`.
+- **Teste:** `tests/bruecke.test.ts` (18), toate 550 TS verzi. Probă reală: fișierul construit pornit în afara proiectului, client MCP → 6 unelte, Fallprüfung pe KVDT inventat, fără nume în rezultat.
+- **Încă nu:** instalarea pe server, ecranul „Prozesse” în aplicație, confirmarea responsabilului de protecția datelor pentru sume fără AVV.
+
 ## Etapa (29.10.2026, noaptea): cheia KI acasă → cabinet, comutatorul KI blochează rețeaua, plan KI la Abrechnung
 - **Decizie:** cheia se mută cu un **fișier de transfer criptat cu parolă** (`src-tauri/src/ai_transfer.rs`): Argon2id (64 MiB, 3 treceri) + AES-256-GCM, cu antetul autentificat (AAD). La import, parametrii slabi sau extremi sunt refuzați, iar fișierele de peste 4 KB nu se citesc. Parola de transfer are minimum 12 caractere. Cheia ajunge direct în Credential Manager, niciodată în fereastră, în fișier necriptat sau în jurnal. Ghid: `docs/KI_SCHLUESSEL.md`.
 - **Comenzi:** `ai_export_key` și `ai_import_key` (doar medic). Dialogul de fișiere e deschis din Rust, deci fereastra nu alege căi și nu are nevoie de permisiunea `dialog:allow-save`.
