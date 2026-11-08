@@ -21,6 +21,7 @@ mod gdt;
 mod patient;
 #[cfg(test)]
 mod patient_tests;
+mod startfehler;
 mod voice;
 
 use accounts::{AccountStore, PublicAccount};
@@ -203,7 +204,8 @@ fn start_inbox(app: tauri::AppHandle) {
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
-    tauri::Builder::default()
+    startfehler::panik_abfangen();
+    let ergebnis = tauri::Builder::default()
         .plugin(tauri_plugin_dialog::init())
         .setup(|app| {
             let resource_root = app.path().resource_dir().unwrap_or_else(|_| PathBuf::from("."));
@@ -265,6 +267,9 @@ pub fn run() {
             commands::ai_stage2_unlock,
             commands::ai_stage2_lock,
         ])
-        .run(tauri::generate_context!())
-        .expect("Praxis-Assistent konnte nicht starten");
+        .run(tauri::generate_context!());
+    if let Err(e) = ergebnis {
+        startfehler::melden("Praxis-Assistent konnte nicht starten", &e.to_string());
+        std::process::exit(1);
+    }
 }
